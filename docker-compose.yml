@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  client:
+    build: './'
+    ports:
+      - "4200:4200"
+    networks:
+      - backend
+    depends_on:
+      - server
+    volumes:
+    - ./application:/home/node/application
+    - home/node/application/node_modules
+
+networks:
+  backend:
