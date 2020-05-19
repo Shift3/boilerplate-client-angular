@@ -64,6 +64,30 @@
                 }
               ]
             },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
             "es5": {
               "tsConfig": "./tsconfig.es5.json"
             }
@@ -77,6 +101,9 @@
           "configurations": {
             "production": {
               "browserTarget": "boilerplate-client-angular:build:production"
+            },
+            "staging": {
+              "browserTarget": "boilerplate-client-angular:build:staging"
             },
             "es5": {
               "browserTarget": "boilerplate-client-angular:build:es5"
