@@ -55,17 +55,22 @@
         ]
       }
     ],
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-console": {
+      "severity": "warning",
+      "options": [
+        "debug",
+        "error",
+        "info",
+        "log",
+        "time",
+        "timeEnd",
+        "trace",
+        "warn"
+      ]
+    },
     "no-empty": false,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-non-null-assertion": true,
@@ -94,6 +99,13 @@
         "named": "never"
       }
     },
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
     "typedef-whitespace": {
       "options": [
         {
