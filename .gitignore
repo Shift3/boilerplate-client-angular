@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# terraform
+terraform/terraform.tfstate
+terraform/.terraform
+
 # compiled output
 /dist
 /tmp
