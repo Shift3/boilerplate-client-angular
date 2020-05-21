@@ -17,12 +17,14 @@ describe('AppComponent', () => {
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'boilerplate-client-angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app.title).toEqual('boilerplate-client-angular');
   });
