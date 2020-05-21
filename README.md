@@ -2,6 +2,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
+## Deployment
+
+### Terraform
+
+The AWS configuration **for the sandbox** is handled by Terraform. Terraform needs the AWS credentials which developers should already have or can access through Zoho Vault.
+
+### AWS
+
+Once the AWS sandbox setup has been taken care of by Terraform, the deployment is done via `npm run deploy:staging`.
+
 ## Development
 
 ### Docker
