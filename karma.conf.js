@@ -28,8 +28,17 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     customLaunchers: {
       ChromeHeadlessCI: {
-          base: 'ChromeHeadless',
-          flags: ['--no-sandbox']
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      },
+      ChromeHeadlessDocker: {
+      base: 'ChromeHeadless',
+          flags: [
+            '--no-sandbox',
+            '--headless',
+            '--disable-gpu',
+            '--remote-debugging-port=9222'
+          ]
       }
     },
     singleRun: false,
