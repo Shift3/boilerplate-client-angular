@@ -5,6 +5,10 @@ import { tap } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 import { environment } from '@env/environment';
+import {
+  ILoginRequest,
+  ISessionDTO,
+} from '@models/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +20,9 @@ export class AuthService {
     private apiService: ApiService,
   ) {  }
 
-  public login(payload: unknown): Observable<unknown> {
+  public login(payload: ILoginRequest): Observable<ISessionDTO> {
     const endpoint = `${this.url}/login/`;
-    return this.apiService.post<unknown, unknown>(endpoint, payload);
+    return this.apiService.post<ISessionDTO, ILoginRequest>(endpoint, payload);
   }
 
   public logout(payload: any): Observable<never>  {
