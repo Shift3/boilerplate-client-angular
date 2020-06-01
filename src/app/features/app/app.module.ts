@@ -4,7 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from '@core/core.module';
+import { SharedModule } from '@shared/shared.module';
 
+/**
+ * Root feature module.
+ */
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,6 +16,7 @@ import { CoreModule } from '@core/core.module';
   imports: [
     BrowserModule,
     CoreModule,
+    SharedModule.forRoot(),
     // AppRoutingModule must be loaded last.
     AppRoutingModule,
   ],
