@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from '@shared/shared.module';
 
+/**
+ * Root feature module.
+ */
 @NgModule({
   declarations: [
     AppComponent,
