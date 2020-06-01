@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 /**
- * Connects modules, pipes, directives, components, and more that do not need to be singleton instances.
+ * Connects modules, pipes, directives, components, dependencies, and more that do not need to be singleton instances.
  */
 @NgModule({
   imports: [
