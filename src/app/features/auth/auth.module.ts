@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 
 import {
   AuthRoutingModule,
-  components as authRoutedComponents,
+  components as authComponents,
 } from './auth-routing.module';
 
 @NgModule({
-  declarations: [ authRoutedComponents ],
+  declarations: [ authComponents ],
   imports: [
     AuthRoutingModule,
   ],
