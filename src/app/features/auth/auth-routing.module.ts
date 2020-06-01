@@ -10,6 +10,9 @@ const routes: Routes = [
   },
 ];
 
+/**
+ * Lazy loaded module for all auth-related routes.
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
