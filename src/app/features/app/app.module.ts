@@ -12,6 +12,7 @@ import { CoreModule } from '@core/core.module';
   imports: [
     BrowserModule,
     CoreModule,
+    // AppRoutingModule must be loaded last.
     AppRoutingModule,
   ],
   providers: [],
