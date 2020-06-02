@@ -17,6 +17,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class LoginPresentationComponent {
   @Input() public formConfig: IFormConfig;
+  @Input() public token: string = '';
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitLogout = new EventEmitter<void>();

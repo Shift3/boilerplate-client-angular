@@ -1,8 +1,10 @@
-<app-dynamic-form
-  [formConfig]="formConfig"
-  [formTitle]="formTitle"
-  (emitForm)="propagateForm($event)"
-  (emitSubmit)="submit()"
-></app-dynamic-form>
+<ng-container *ngIf="!token">
+  <app-dynamic-form
+    [formConfig]="formConfig"
+    [formTitle]="formTitle"
+    (emitForm)="propagateForm($event)"
+    (emitSubmit)="submit()"
+  ></app-dynamic-form>
+</ng-container>
 
-<button (click)="logout()">Log Out</button>
+<button *ngIf="token" (click)="logout()">Log Out</button>
