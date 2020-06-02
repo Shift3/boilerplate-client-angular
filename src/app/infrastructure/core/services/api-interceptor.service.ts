@@ -13,16 +13,12 @@ import {
 } from 'rxjs';
 import {
   catchError,
-  retry,
 } from 'rxjs/operators';
 
 
 @Injectable()
 export class ApiInterceptorService implements HttpInterceptor {
   private AUTH_HEADER = 'Authorization';
-
-  constructor(
-  ) { }
 
   intercept<T>(req: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
     if (!req.headers.has('Content-Type')) {
