@@ -3,6 +3,7 @@ import {
   Component,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthService } from '@core/services/api/auth.service';
 import {
@@ -28,6 +29,7 @@ import { SaveCancelButtonConfig } from '@models/form/button';
       [formConfig]="formConfig"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="login()"
+      (emitLogout)="logout()"
     ></app-login-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,6 +60,7 @@ export class LoginSmartComponent {
   constructor(
     private authService: AuthService,
     private formService: FormService,
+    private router: Router,
   ) { }
 
   public propagateForm(form: FormGroup): void {
@@ -67,6 +70,10 @@ export class LoginSmartComponent {
   public login(): void {
     const requestPayload = this.buildPayload();
     this.authService.login(requestPayload).subscribe((response) => Logger.log(response));
+  }
+
+  public logout(): void {
+    this.authService.logout().subscribe(() => this.router.navigateByUrl('/auth/logout'));
   }
 
   private buildPayload(): ILoginRequest {
