@@ -1,3 +1,5 @@
+import { IUserDTO } from './user';
+
 export interface ILoginRequest {
   email: string;
   password: string;
@@ -15,5 +17,6 @@ export class LoginRequest implements ILoginRequest {
 }
 
 export interface ISessionDTO {
-  token: string;
+  jwt_token: string;
+  user: IUserDTO;
 }
