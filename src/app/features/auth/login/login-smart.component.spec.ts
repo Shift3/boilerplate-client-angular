@@ -23,8 +23,8 @@ import { LoginSmartComponent } from './login-smart.component';
           LoginSmartComponent,
         ],
         imports: [
-          ReactiveFormsModule,
           HttpClientTestingModule,
+          ReactiveFormsModule,
           RouterTestingModule,
         ],
       })

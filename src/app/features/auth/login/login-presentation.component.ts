@@ -30,5 +30,4 @@ export class LoginPresentationComponent {
   public submit(): void {
     this.emitSubmit.emit();
   }
-
 }
