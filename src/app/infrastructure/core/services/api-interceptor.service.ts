@@ -15,7 +15,6 @@ import {
   catchError,
 } from 'rxjs/operators';
 
-
 @Injectable()
 export class ApiInterceptorService implements HttpInterceptor {
   private AUTH_HEADER = 'Authorization';
