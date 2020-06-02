@@ -6,10 +6,10 @@ export interface ILoginRequest {
 }
 
 export class LoginRequest implements ILoginRequest {
-  email: string;
-  password: string;
+  email: string = '';
+  password: string = '';
 
-  constructor(configOverride?: Partial<ILoginRequest>) {
+  constructor(configOverride?: ILoginRequest) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
