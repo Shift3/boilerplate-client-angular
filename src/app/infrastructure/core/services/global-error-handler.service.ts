@@ -14,9 +14,7 @@ import {
     SentryConfig,
 } from '@models/error';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
   constructor(
     public injector: Injector,
