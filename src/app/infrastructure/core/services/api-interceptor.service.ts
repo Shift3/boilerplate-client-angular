@@ -13,7 +13,6 @@ import {
 } from 'rxjs';
 import {
   catchError,
-  retry,
 } from 'rxjs/operators';
 
 @Injectable()
@@ -29,9 +28,16 @@ export class ApiInterceptorService implements HttpInterceptor {
     req = this.addAuthenticationToken(req);
 
     return next.handle(req).pipe(
-      retry(1),
-      catchError((error: HttpErrorResponse) => observableThrowError(error),
-    ));
+      catchError((error: HttpErrorResponse) => {
+        switch (error.status) {
+          case 401:
+            // TODO: Add retry logic
+            break;
+        }
+
+        return observableThrowError(error);
+      }),
+    );
   }
 
   private addAuthenticationToken<T>(request: HttpRequest<T>): HttpRequest<T> {

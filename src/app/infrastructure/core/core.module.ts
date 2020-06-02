@@ -1,4 +1,5 @@
 import {
+  ErrorHandler,
   NgModule,
   Optional,
   SkipSelf,
@@ -6,6 +7,7 @@ import {
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ApiInterceptorService } from './services/api-interceptor.service';
+import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 import { ModuleImportGuard } from './guards/module-import.guard';
 import { SharedModule } from '@shared/shared.module';
 
@@ -21,6 +23,10 @@ import { SharedModule } from '@shared/shared.module';
       provide : HTTP_INTERCEPTORS,
       useClass: ApiInterceptorService,
       multi   : true,
+    },
+    {
+      provide  : ErrorHandler,
+      useClass : GlobalErrorHandlerService,
     },
   ],
 })
