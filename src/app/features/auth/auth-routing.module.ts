@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { LoginPresentationComponent } from './login/login-presentation.component';
 import { LoginSmartComponent } from './login/login-smart.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginSmartComponent,
     data: { title: 'Login' },
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
+    data: { title: 'Logged Out' },
   },
 ];
 
@@ -31,4 +37,5 @@ export const components = [
   AuthLayoutComponent,
   LoginPresentationComponent,
   LoginSmartComponent,
+  LogoutComponent,
 ];
