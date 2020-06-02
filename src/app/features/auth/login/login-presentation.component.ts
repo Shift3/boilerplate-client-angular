@@ -17,14 +17,19 @@ import { FormGroup } from '@angular/forms';
 })
 export class LoginPresentationComponent {
   @Input() public formConfig: IFormConfig;
+  @Input() public token: string = '';
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
+  @Output() public emitLogout = new EventEmitter<void>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
   public formTitle: string = 'Log In';
 
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);
+  }
+  public logout(): void {
+    this.emitLogout.emit();
   }
 
   public submit(): void {

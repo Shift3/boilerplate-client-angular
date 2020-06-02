@@ -1,8 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnInit,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs';
 
 import { AuthService } from '@core/services/api/auth.service';
 import {
@@ -26,13 +30,15 @@ import { SaveCancelButtonConfig } from '@models/form/button';
   template: `
     <app-login-presentation
       [formConfig]="formConfig"
+      [token]="(token$ | async)"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="login()"
+      (emitLogout)="logout()"
     ></app-login-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginSmartComponent {
+export class LoginSmartComponent implements OnInit {
   public form: FormGroup;
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
@@ -54,11 +60,17 @@ export class LoginSmartComponent {
       }),
     ],
   });
+  public token$: Observable<string>;
 
   constructor(
     private authService: AuthService,
     private formService: FormService,
+    private router: Router,
   ) { }
+
+  public ngOnInit(): void {
+    this.token$ = this.authService.getToken();
+  }
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
@@ -67,6 +79,10 @@ export class LoginSmartComponent {
   public login(): void {
     const requestPayload = this.buildPayload();
     this.authService.login(requestPayload).subscribe((response) => Logger.log(response));
+  }
+
+  public logout(): void {
+    this.authService.logout().subscribe(() => this.router.navigateByUrl('/auth/logout'));
   }
 
   private buildPayload(): ILoginRequest {
