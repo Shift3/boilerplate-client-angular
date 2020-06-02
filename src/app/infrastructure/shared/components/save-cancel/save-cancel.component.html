@@ -1,0 +1,22 @@
+<div class="save-cancel-button-row">
+  <button
+    id="cancel-button"
+    class="mat-elevation-z0"
+    type="button"
+    mat-raised-button
+    (click)="cancel()"
+  >
+    {{ buttonConfig.cancel }}
+  </button>
+    <button
+      id="form-submit-button"
+      class="mat-elevation-z0"
+      type="submit"
+      mat-raised-button
+      color="accent"
+      (click)="save()"
+      [disabled]="shouldDisable"
+  >
+    {{ buttonConfig.save }}
+  </button>
+</div>
