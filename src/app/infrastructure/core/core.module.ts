@@ -3,7 +3,9 @@ import {
   Optional,
   SkipSelf,
 } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { ApiInterceptorService } from './services/api-interceptor.service';
 import { ModuleImportGuard } from './guards/module-import.guard';
 import { SharedModule } from '@shared/shared.module';
 
@@ -13,6 +15,13 @@ import { SharedModule } from '@shared/shared.module';
 @NgModule({
   imports: [
     SharedModule,
+  ],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: ApiInterceptorService,
+      multi   : true,
+    },
   ],
 })
 export class CoreModule {
