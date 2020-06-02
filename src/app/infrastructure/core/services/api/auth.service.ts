@@ -25,9 +25,9 @@ export class AuthService {
     return this.apiService.post<ISessionDTO, ILoginRequest>(endpoint, payload);
   }
 
-  public logout(payload: any): Observable<never>  {
-    const endpoint = `${this.url}/login/`;
-    return this.apiService.post<never, any>(endpoint, payload).pipe(
+  public logout(): Observable<never>  {
+    const endpoint = `${this.url}/logout/`;
+    return this.apiService.get<never>(endpoint).pipe(
       tap(() => localStorage.clear()),
     );
   }
