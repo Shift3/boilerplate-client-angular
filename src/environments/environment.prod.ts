@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  name: 'Production',
   apiRoute: '',
   sentry: {
     DSN: '',
