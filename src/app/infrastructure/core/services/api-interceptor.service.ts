@@ -35,15 +35,8 @@ export class ApiInterceptorService implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         switch (error.status) {
-          case 0:
-          case 500:
-            break;
           case 401:
             // TODO: Add retry logic
-            break;
-          case 403:
-            break;
-          default:
             break;
         }
 
