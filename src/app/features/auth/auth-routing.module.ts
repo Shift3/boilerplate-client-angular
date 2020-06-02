@@ -5,6 +5,8 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { LoginPresentationComponent } from './login/login-presentation.component';
 import { LoginSmartComponent } from './login/login-smart.component';
 import { LogoutComponent } from './logout/logout.component';
+import { SignUpPresentationComponent } from './sign-up/sign-up-presentation.component';
+import { SignUpSmartComponent } from './sign-up/sign-up-smart.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,11 @@ const routes: Routes = [
     component: LogoutComponent,
     data: { title: 'Logged Out' },
   },
+  {
+    path: 'signup',
+    component: SignUpSmartComponent,
+    data: { title: 'Sign Up' },
+  },
 ];
 
 /**
@@ -38,4 +45,6 @@ export const components = [
   LoginPresentationComponent,
   LoginSmartComponent,
   LogoutComponent,
+  SignUpPresentationComponent,
+  SignUpSmartComponent,
 ];
