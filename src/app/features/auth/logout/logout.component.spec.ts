@@ -2,25 +2,25 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
-import { NotFoundComponent } from './not-found.component';
+import { LogoutComponent } from './logout.component';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
-  : describe('[Integration] NotFoundComponent', () => {
-    let component: NotFoundComponent;
-    let fixture: ComponentFixture<NotFoundComponent>;
+  : describe('[Integration] LogoutComponent', () => {
+    let component: LogoutComponent;
+    let fixture: ComponentFixture<LogoutComponent>;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [
-          NotFoundComponent,
+          LogoutComponent,
         ],
       })
       .compileComponents();
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(NotFoundComponent);
+      fixture = TestBed.createComponent(LogoutComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });
