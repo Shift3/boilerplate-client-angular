@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import * as Sentry from '@sentry/browser';
 
 import { environment } from '@env/environment';
-import { version } from '../../../../version';
+import { version } from 'version';
 
 Sentry.init({
   dsn: environment.sentry.DSN,
