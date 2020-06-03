@@ -62,3 +62,21 @@ export class ForgotPasswordRequest implements IForgotPasswordRequest {
     }
   }
 }
+
+export interface IResetPasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}
+
+export class ResetPasswordRequest implements IResetPasswordRequest {
+  currentPassword: string = '';
+  newPassword: string = '';
+  confirmNewPassword: string = '';
+
+  constructor(configOverride?: IResetPasswordRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
