@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
 import { environment } from '@env/environment';
 import {
+  IForgotPasswordRequest,
   ILoginRequest,
   ISessionDTO,
   ISignupDTO,
@@ -51,6 +52,12 @@ export class AuthService {
       tap(() => this.resetToken()),
       tap(() => localStorage.clear()),
     );
+  }
+
+  public forgotPassword(payload: IForgotPasswordRequest): Observable<never>  {
+    const endpoint = `${this.url}/forgot-password/`;
+
+    return this.apiService.post(endpoint, payload);
   }
 
   public getToken(): Observable<string>  {
