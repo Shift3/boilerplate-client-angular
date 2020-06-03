@@ -27,7 +27,7 @@ import { SaveCancelButtonConfig } from '@models/form/button';
     <app-sign-up-presentation
       [formConfig]="formConfig"
       (emitForm)="propagateForm($event)"
-      (emitSubmit)="login()"
+      (emitSubmit)="signup()"
     ></app-sign-up-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -79,7 +79,7 @@ export class SignUpSmartComponent {
     this.form = form;
   }
 
-  public login(): void {
+  public signup(): void {
     const requestPayload = this.buildPayload();
     this.authService.signUp(requestPayload).subscribe(() => this.router.navigateByUrl('/auth/login'));
   }
