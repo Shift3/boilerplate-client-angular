@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { ForgotPasswordPresentationComponent } from './forgot-password/forgot-password-presentation.component';
+import { ForgotPasswordSmartComponent } from './forgot-password/forgot-password-smart.component';
 import { LoginPresentationComponent } from './login/login-presentation.component';
 import { LoginSmartComponent } from './login/login-smart.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -13,6 +15,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordSmartComponent,
+    data: { title: 'Forgot Password' },
   },
   {
     path: 'login',
@@ -42,6 +49,8 @@ export class AuthRoutingModule { }
 
 export const components = [
   AuthLayoutComponent,
+  ForgotPasswordPresentationComponent,
+  ForgotPasswordSmartComponent,
   LoginPresentationComponent,
   LoginSmartComponent,
   LogoutComponent,
