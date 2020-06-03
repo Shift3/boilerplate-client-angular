@@ -5,6 +5,7 @@ import {
 import { FormGroup } from '@angular/forms';
 
 import { AuthService } from '@core/services/api/auth.service';
+import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
   FormField,
@@ -43,6 +44,7 @@ export class ForgotPasswordSmartComponent {
         label: 'Email',
         placeholder: 'Enter your email',
         fieldConfig : new InputField({ inputType: 'email' }),
+        validation: [ EmailValidation.validEmail(true) ],
       }),
     ],
   });

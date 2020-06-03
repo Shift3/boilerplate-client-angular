@@ -20,6 +20,9 @@ import {
   ResetPasswordRequest,
 } from '@models/auth';
 import { SaveCancelButtonConfig } from '@models/form/button';
+import { RequiredValidation } from '@utils/validation/required-validation';
+import { PasswordValidation } from '@app/infrastructure/utils/validation/password-validation';
+import { MatchFieldValidation } from '@app/infrastructure/utils/validation/match-field-validation';
 
 @Component({
   template: `
@@ -36,6 +39,7 @@ export class ResetPasswordSmartComponent {
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Submit'}),
+    validation: [ MatchFieldValidation.validFieldMatch('newPassword', 'confirmNewPassword', 'Password') ],
     controls: [
       new FormField<IInputField>({
         name: 'currentPassword',
@@ -43,6 +47,7 @@ export class ResetPasswordSmartComponent {
         label: 'Current Password',
         placeholder: 'Enter your current password',
         fieldConfig : new InputField({ inputType: 'password' }),
+        validation: [ RequiredValidation.required('Password') ],
       }),
       new FormField<IInputField>({
         name: 'newPassword',
@@ -50,6 +55,7 @@ export class ResetPasswordSmartComponent {
         label: 'New Password',
         placeholder: 'Enter the new password',
         fieldConfig : new InputField({ inputType: 'password' }),
+        validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
         name: 'confirmNewPassword',
