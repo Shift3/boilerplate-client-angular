@@ -7,6 +7,8 @@ import { ForgotPasswordSmartComponent } from './forgot-password/forgot-password-
 import { LoginPresentationComponent } from './login/login-presentation.component';
 import { LoginSmartComponent } from './login/login-smart.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ResetPasswordSmartComponent } from './reset-password/reset-password-smart.component';
+import { ResetPasswordPresentationComponent } from './reset-password/reset-password-presentation.component';
 import { SignUpPresentationComponent } from './sign-up/sign-up-presentation.component';
 import { SignUpSmartComponent } from './sign-up/sign-up-smart.component';
 
@@ -32,6 +34,11 @@ const routes: Routes = [
     data: { title: 'Logged Out' },
   },
   {
+    path: 'reset-password/:token',
+    component: ResetPasswordSmartComponent,
+    data: { title: 'Reset Password' },
+  },
+  {
     path: 'signup',
     component: SignUpSmartComponent,
     data: { title: 'Sign Up' },
@@ -54,6 +61,8 @@ export const components = [
   LoginPresentationComponent,
   LoginSmartComponent,
   LogoutComponent,
+  ResetPasswordSmartComponent,
+  ResetPasswordPresentationComponent,
   SignUpPresentationComponent,
   SignUpSmartComponent,
 ];
