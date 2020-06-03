@@ -10,6 +10,7 @@ export interface ISignupRequest {
 export class SignupRequest implements ISignupRequest {
   email: string = '';
   password: string = '';
+  /* tslint:disable:variable-name */
   first_name: string = '';
   last_name: string = '';
 
