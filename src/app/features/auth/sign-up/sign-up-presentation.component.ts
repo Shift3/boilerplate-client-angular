@@ -17,10 +17,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class SignUpPresentationComponent {
   @Input() public formConfig: IFormConfig;
-  @Input() public token: string = '';
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
-  @Output() public emitLogout = new EventEmitter<void>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
   public formTitle: string = 'Sign Up';

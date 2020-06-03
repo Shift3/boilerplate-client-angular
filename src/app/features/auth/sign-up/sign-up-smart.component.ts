@@ -1,12 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { Observable } from 'rxjs';
 
 import { AuthService } from '@core/services/api/auth.service';
 import {
@@ -29,14 +26,13 @@ import { SaveCancelButtonConfig } from '@models/form/button';
   template: `
     <app-sign-up-presentation
       [formConfig]="formConfig"
-      [token]="(token$ | async)"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="login()"
     ></app-sign-up-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpSmartComponent implements OnInit {
+export class SignUpSmartComponent {
   public form: FormGroup;
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
@@ -72,17 +68,12 @@ export class SignUpSmartComponent implements OnInit {
       }),
     ],
   });
-  public token$: Observable<string>;
 
   constructor(
     private authService: AuthService,
     private formService: FormService,
     private router: Router,
   ) { }
-
-  public ngOnInit(): void {
-    this.token$ = this.authService.getToken();
-  }
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
