@@ -64,15 +64,13 @@ export class ForgotPasswordRequest implements IForgotPasswordRequest {
 }
 
 export interface IResetPasswordRequest {
-  currentPassword: string;
-  newPassword: string;
-  confirmNewPassword: string;
+  password: string;
+  confirmPassword: string;
 }
 
 export class ResetPasswordRequest implements IResetPasswordRequest {
-  currentPassword: string = '';
-  newPassword: string = '';
-  confirmNewPassword: string = '';
+  password: string = '';
+  confirmPassword: string = '';
 
   constructor(configOverride?: IResetPasswordRequest) {
     if (configOverride) {

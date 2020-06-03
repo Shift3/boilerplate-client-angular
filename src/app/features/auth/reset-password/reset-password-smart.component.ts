@@ -19,10 +19,9 @@ import {
   IResetPasswordRequest,
   ResetPasswordRequest,
 } from '@models/auth';
-import { SaveCancelButtonConfig } from '@models/form/button';
-import { RequiredValidation } from '@utils/validation/required-validation';
-import { PasswordValidation } from '@app/infrastructure/utils/validation/password-validation';
 import { MatchFieldValidation } from '@app/infrastructure/utils/validation/match-field-validation';
+import { SaveCancelButtonConfig } from '@models/form/button';
+import { PasswordValidation } from '@app/infrastructure/utils/validation/password-validation';
 
 @Component({
   template: `
@@ -39,18 +38,10 @@ export class ResetPasswordSmartComponent {
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Submit'}),
-    validation: [ MatchFieldValidation.validFieldMatch('newPassword', 'confirmNewPassword', 'Password') ],
+    validation: [ MatchFieldValidation.validFieldMatch('password', 'confirmPassword', 'Password') ],
     controls: [
       new FormField<IInputField>({
-        name: 'currentPassword',
-        fieldType: 'input',
-        label: 'Current Password',
-        placeholder: 'Enter your current password',
-        fieldConfig : new InputField({ inputType: 'password' }),
-        validation: [ RequiredValidation.required('Password') ],
-      }),
-      new FormField<IInputField>({
-        name: 'newPassword',
+        name: 'password',
         fieldType: 'input',
         label: 'New Password',
         placeholder: 'Enter the new password',
@@ -58,7 +49,7 @@ export class ResetPasswordSmartComponent {
         validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
-        name: 'confirmNewPassword',
+        name: 'confirmPassword',
         fieldType: 'input',
         label: 'Confirm New Password',
         placeholder: 'Confirm the new password',
