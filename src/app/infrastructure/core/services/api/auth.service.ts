@@ -11,6 +11,7 @@ import { environment } from '@env/environment';
 import {
   IForgotPasswordRequest,
   ILoginRequest,
+  IResetPasswordRequest,
   ISessionDTO,
   ISignupDTO,
   ISignupRequest,
@@ -56,6 +57,12 @@ export class AuthService {
 
   public forgotPassword(payload: IForgotPasswordRequest): Observable<never>  {
     const endpoint = `${this.url}/forgot-password/`;
+
+    return this.apiService.post(endpoint, payload);
+  }
+
+  public resetPassword(payload: IResetPasswordRequest): Observable<never>  {
+    const endpoint = `${this.url}/reset-password/`;
 
     return this.apiService.post(endpoint, payload);
   }
