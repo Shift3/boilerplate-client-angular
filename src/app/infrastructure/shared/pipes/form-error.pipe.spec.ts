@@ -1,6 +1,6 @@
-import { environment } from '../../../../environments/environment.test';
+import { environment } from '@env/environment.test';
 import { FormErrorPipe } from './form-error.pipe';
-import { Logger } from '../../utils/logger';
+import { Logger } from '@utils/logger';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
