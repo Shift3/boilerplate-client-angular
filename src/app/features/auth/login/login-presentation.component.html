@@ -5,6 +5,9 @@
     (emitForm)="propagateForm($event)"
     (emitSubmit)="submit()"
   ></app-dynamic-form>
+  <p>
+    <a routerLink="/auth/signup">Sign Up</a>
+  </p>
 </ng-container>
 
 <button *ngIf="token" (click)="logout()">Log Out</button>
