@@ -48,3 +48,17 @@ export interface ISessionDTO {
   jwt_token: string;
   user: IUserDTO;
 }
+
+export interface IForgotPasswordRequest {
+  email: string;
+}
+
+export class ForgotPasswordRequest implements IForgotPasswordRequest {
+  email: string = '';
+
+  constructor(configOverride?: IForgotPasswordRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
