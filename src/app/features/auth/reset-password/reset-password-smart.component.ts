@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { AuthService } from '@core/services/api/auth.service';
 import {
   FormConfig,
   FormField,
@@ -18,10 +17,11 @@ import {
 import {
   IResetPasswordRequest,
   ResetPasswordRequest,
-} from '@models/auth';
-import { MatchFieldValidation } from '@app/infrastructure/utils/validation/match-field-validation';
+} from '@models/user';
+import { MatchFieldValidation } from '@utils/validation/match-field-validation';
+import { PasswordValidation } from '@utils/validation/password-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
-import { PasswordValidation } from '@app/infrastructure/utils/validation/password-validation';
+import { UserService } from '@core/services/api/user.service';
 
 @Component({
   template: `
@@ -59,8 +59,8 @@ export class ResetPasswordSmartComponent {
   });
 
   constructor(
-    private authService: AuthService,
     private formService: FormService,
+    private userService: UserService,
   ) { }
 
   public propagateForm(form: FormGroup): void {
@@ -69,7 +69,7 @@ export class ResetPasswordSmartComponent {
 
   public resetPassword(): void {
     const requestPayload = this.buildPayload();
-    this.authService.resetPassword(requestPayload).subscribe();
+    this.userService.resetPassword(requestPayload).subscribe();
   }
 
   private buildPayload(): IResetPasswordRequest {

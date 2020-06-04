@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { AuthService } from '@core/services/api/auth.service';
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
@@ -19,8 +18,9 @@ import {
 import {
   IForgotPasswordRequest,
   ForgotPasswordRequest,
-} from '@models/auth';
+} from '@models/user';
 import { SaveCancelButtonConfig } from '@models/form/button';
+import { UserService } from '@core/services/api/user.service';
 
 @Component({
   template: `
@@ -50,7 +50,7 @@ export class ForgotPasswordSmartComponent {
   });
 
   constructor(
-    private authService: AuthService,
+    private userService: UserService,
     private formService: FormService,
   ) { }
 
@@ -60,7 +60,7 @@ export class ForgotPasswordSmartComponent {
 
   public forgotPassword(): void {
     const requestPayload = this.buildPayload();
-    this.authService.forgotPassword(requestPayload).subscribe();
+    this.userService.forgotPassword(requestPayload).subscribe();
   }
 
   private buildPayload(): IForgotPasswordRequest {
