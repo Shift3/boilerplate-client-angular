@@ -32,6 +32,6 @@ export class UserService {
   public resetPassword(payload: IResetPasswordRequest): Observable<never> {
     const endpoint = `${this.url}/reset-password/`;
 
-    return this.apiService.post(endpoint, payload);
+    return this.apiService.put(endpoint, payload);
   }
 }
