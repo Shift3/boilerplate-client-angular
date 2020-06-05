@@ -19,6 +19,10 @@ export class ForgotPasswordRequest implements IForgotPasswordRequest {
   }
 }
 
+export interface IForgotPasswordDTO {
+  message: string;
+}
+
 export interface IResetPasswordRequest {
   password: string;
   confirmPassword: string;
