@@ -4,6 +4,8 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { Observable } from 'rxjs';
+
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
@@ -16,6 +18,7 @@ import {
   InputField,
 } from '@models/form/input';
 import {
+  IForgotPasswordDTO,
   IForgotPasswordRequest,
   ForgotPasswordRequest,
 } from '@models/user';
@@ -26,6 +29,7 @@ import { UserService } from '@core/services/api/user.service';
   template: `
     <app-forgot-password-presentation
       [formConfig]="formConfig"
+      [message]="(message$ | async)"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="forgotPassword()"
     ></app-forgot-password-presentation>
@@ -48,6 +52,7 @@ export class ForgotPasswordSmartComponent {
       }),
     ],
   });
+  public message$ = new Observable<IForgotPasswordDTO>();
 
   constructor(
     private userService: UserService,
@@ -60,7 +65,7 @@ export class ForgotPasswordSmartComponent {
 
   public forgotPassword(): void {
     const requestPayload = this.buildPayload();
-    this.userService.forgotPassword(requestPayload).subscribe();
+    this.message$ = this.userService.forgotPassword(requestPayload);
   }
 
   private buildPayload(): IForgotPasswordRequest {

@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 
+import { IForgotPasswordDTO } from '@app/infrastructure/models/user';
 import { IFormConfig } from '@models/form/form';
 import { FormGroup } from '@angular/forms';
 
@@ -17,6 +18,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class ForgotPasswordPresentationComponent {
   @Input() public formConfig: IFormConfig;
+  @Input() public message: IForgotPasswordDTO;
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
