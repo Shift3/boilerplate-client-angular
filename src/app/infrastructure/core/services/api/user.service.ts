@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -29,8 +30,8 @@ export class UserService {
     return this.apiService.post(endpoint, payload);
   }
 
-  public resetPassword(payload: IResetPasswordRequest): Observable<never> {
-    const endpoint = `${this.url}/reset-password/`;
+  public resetPassword(payload: IResetPasswordRequest, token: string): Observable<never> {
+    const endpoint = `${this.url}/reset-password/${token}`;
 
     return this.apiService.put(endpoint, payload);
   }
