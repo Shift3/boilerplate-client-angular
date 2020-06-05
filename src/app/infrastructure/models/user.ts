@@ -24,13 +24,13 @@ export interface IForgotPasswordDTO {
 }
 
 export interface IResetPasswordRequest {
-  password: string;
-  confirmPassword: string;
+  new_password: string;
+  confirm_password: string;
 }
 
 export class ResetPasswordRequest implements IResetPasswordRequest {
-  password: string = '';
-  confirmPassword: string = '';
+  new_password: string = '';
+  confirm_password: string = '';
 
   constructor(configOverride?: IResetPasswordRequest) {
     if (configOverride) {
