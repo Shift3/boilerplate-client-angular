@@ -7,9 +7,9 @@ import { ApiService } from './api.service';
 import { environment } from '@env/environment';
 import {
   IForgotPasswordRequest,
-  IForgotPasswordDTO,
   IResetPasswordRequest,
 } from '@models/user';
+import { IMessage } from '@app/infrastructure/models/message';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,7 @@ export class UserService {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
   }
 
-  public forgotPassword(payload: IForgotPasswordRequest): Observable<IForgotPasswordDTO> {
+  public forgotPassword(payload: IForgotPasswordRequest): Observable<IMessage> {
     const endpoint = `${this.url}/forgot-password/`;
 
     return this.apiService.post(endpoint, payload);
