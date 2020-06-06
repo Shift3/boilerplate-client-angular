@@ -1,4 +1,7 @@
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+} from '@angular/router';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -62,6 +65,7 @@ export class ResetPasswordSmartComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formService: FormService,
+    private router: Router,
     private userService: UserService,
   ) { }
 
@@ -72,7 +76,7 @@ export class ResetPasswordSmartComponent {
   public resetPassword(): void {
     const requestPayload = this.buildPayload();
     const snapshot = this.activatedRoute.snapshot;
-    this.userService.resetPassword(requestPayload, snapshot.params.token).subscribe();
+    this.userService.resetPassword(requestPayload, snapshot.params.token).subscribe(() => this.router.navigateByUrl('/auth/login'));
   }
 
   private buildPayload(): IResetPasswordRequest {
