@@ -18,10 +18,10 @@ import {
   InputField,
 } from '@models/form/input';
 import {
-  IForgotPasswordDTO,
   IForgotPasswordRequest,
   ForgotPasswordRequest,
 } from '@models/user';
+import { IMessage } from '@app/infrastructure/models/message';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { UserService } from '@core/services/api/user.service';
 
@@ -52,7 +52,7 @@ export class ForgotPasswordSmartComponent {
       }),
     ],
   });
-  public message$ = new Observable<IForgotPasswordDTO>();
+  public message$ = new Observable<IMessage>();
 
   constructor(
     private userService: UserService,
