@@ -19,17 +19,13 @@ export class ForgotPasswordRequest implements IForgotPasswordRequest {
   }
 }
 
-export interface IForgotPasswordDTO {
-  message: string;
-}
-
 export interface IResetPasswordRequest {
+  /* tslint:disable:variable-name */
   new_password: string;
   confirm_password: string;
 }
 
 export class ResetPasswordRequest implements IResetPasswordRequest {
-  /* tslint:disable:variable-name */
   new_password: string = '';
   confirm_password: string = '';
 
