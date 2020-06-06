@@ -29,6 +29,7 @@ export interface IResetPasswordRequest {
 }
 
 export class ResetPasswordRequest implements IResetPasswordRequest {
+  /* tslint:disable:variable-name */
   new_password: string = '';
   confirm_password: string = '';
 
