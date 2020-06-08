@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService } from '@core/services/api/auth.service';
+import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
   FormField,
@@ -24,6 +25,7 @@ import {
   LoginRequest,
   ILoginRequest,
 } from '@models/auth';
+import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
 
 @Component({
@@ -50,6 +52,7 @@ export class LoginSmartComponent implements OnInit {
         label: 'Email',
         placeholder: 'Enter your email',
         fieldConfig : new InputField({ inputType: 'email' }),
+        validation: [ EmailValidation.validEmail(true) ],
       }),
       new FormField<IInputField>({
         name: 'password',
@@ -57,6 +60,7 @@ export class LoginSmartComponent implements OnInit {
         label: 'Password',
         placeholder: 'Enter your password',
         fieldConfig : new InputField({ inputType: 'password' }),
+        validation: [ RequiredValidation.required('Password') ],
       }),
     ],
   });
