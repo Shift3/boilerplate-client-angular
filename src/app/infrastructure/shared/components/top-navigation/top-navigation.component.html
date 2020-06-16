@@ -14,10 +14,19 @@
         </li>
       </ul>
     </ng-container>
-    <div class="navbar-nav">
-      <div class="nav-link">
-        <i class="fa fa-user"></i>
-        Profile
+    <div class="row">
+      <div class="col">
+        <div ngbDropdown class="navbar-nav">
+          <div class="nav-link" ngbDropdownToggle>
+            <i class="fa fa-user"></i>
+            Hi Username
+          </div>
+          <div ngbDropdownMenu aria-labelledby="profileDropdown">
+            <ng-container *ngFor="let link of profileLinks; trackBy: trackByLink">
+              <button ngbDropdownItem [routerLink]="link.link">{{ link.label }}</button>
+            </ng-container>
+          </div>
+        </div>
       </div>
     </div>
   </div>

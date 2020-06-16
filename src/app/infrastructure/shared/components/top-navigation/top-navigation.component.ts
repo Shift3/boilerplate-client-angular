@@ -29,6 +29,23 @@ export class TopNavigationComponent {
       icon: 'fa fa-cog',
     },
   ];
+  public profileLinks: INavigation[] = [
+    {
+      id: 1,
+      label: 'Profile',
+      link: '/user/profile',
+    },
+    {
+      id: 2,
+      label: 'Change Password',
+      link: '/user/change-password',
+    },
+    {
+      id: 2,
+      label: 'Sign Out',
+      link: '/auth/logout',
+    },
+  ];
 
   public trackByLink(index: number, item: INavigation): number {
     return (item) ? item.id : null;
