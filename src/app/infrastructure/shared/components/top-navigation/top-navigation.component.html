@@ -7,12 +7,16 @@
     <ng-container *ngIf="navLinks?.length">
       <ul class="navbar-nav">
         <li *ngFor="let link of navLinks; trackBy: trackByLink">
-          <a class="nav-link" [routerLink]="link.link" (click)="isMenuCollapsed = true">{{ link.label }}</a>
+          <a class="nav-link" [routerLink]="link.link" (click)="isMenuCollapsed = true">
+            <i [class]="link.icon"></i>
+            {{ link.label }}
+          </a>
         </li>
       </ul>
     </ng-container>
     <div class="navbar-nav">
       <div class="nav-link">
+        <i class="fa fa-user"></i>
         Profile
       </div>
     </div>

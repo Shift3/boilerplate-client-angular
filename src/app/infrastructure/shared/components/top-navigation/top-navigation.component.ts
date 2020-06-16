@@ -14,19 +14,19 @@ export class TopNavigationComponent {
       id: 1,
       label: 'Directory',
       link: '/content',
-      icon: '',
+      icon: 'fa fa-stethoscope',
     },
     {
       id: 2,
       label: 'Users',
       link: '/admin/user-list',
-      icon: '',
+      icon: 'fa fa-users',
     },
     {
       id: 2,
       label: 'Settings',
       link: '/admin/settings',
-      icon: '',
+      icon: 'fa fa-cog',
     },
   ];
 
