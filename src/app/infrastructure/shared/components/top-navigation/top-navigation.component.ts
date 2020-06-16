@@ -23,7 +23,7 @@ export class TopNavigationComponent {
       icon: 'fa fa-users',
     },
     {
-      id: 2,
+      id: 3,
       label: 'Settings',
       link: '/admin/settings',
       icon: 'fa fa-cog',
