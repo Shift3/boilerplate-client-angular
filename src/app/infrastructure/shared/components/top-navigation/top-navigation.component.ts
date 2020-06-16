@@ -8,6 +8,7 @@ import { INavigation } from '@models/navigation';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopNavigationComponent {
+  public isMenuCollapsed = true;
   public navLinks: INavigation[] = [
     {
       id: 1,
@@ -28,4 +29,8 @@ export class TopNavigationComponent {
       icon: '',
     },
   ];
+
+  public trackByLink(index: number, item: INavigation): number {
+    return (item) ? item.id : null;
+  }
 }
