@@ -40,14 +40,11 @@ export class TopNavigationComponent {
       label: 'Change Password',
       link: '/user/change-password',
     },
-    {
-      id: 2,
-      label: 'Sign Out',
-      link: '/auth/logout',
-    },
   ];
 
   public trackByLink(index: number, item: INavigation): number {
     return (item) ? item.id : null;
   }
+
+  public signOut(): void { }
 }
