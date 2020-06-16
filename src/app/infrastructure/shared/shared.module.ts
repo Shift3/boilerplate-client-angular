@@ -17,6 +17,7 @@ import { directives } from './directives';
   ],
   exports: [
     CommonModule,
+    BoostrapModule,
     ReactiveFormsModule,
     components,
     directives,

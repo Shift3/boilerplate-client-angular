@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {
   NgbAlertModule,
   NgbButtonsModule,
+  NgbCollapseModule,
   NgbDropdownModule,
   NgbModalModule,
   NgbNavModule,
@@ -14,6 +15,17 @@ import {
   imports: [
     NgbAlertModule,
     NgbButtonsModule,
+    NgbCollapseModule,
+    NgbDropdownModule,
+    NgbModalModule,
+    NgbNavModule,
+    NgbPaginationModule,
+    NgbToastModule,
+  ],
+  exports: [
+    NgbAlertModule,
+    NgbButtonsModule,
+    NgbCollapseModule,
     NgbDropdownModule,
     NgbModalModule,
     NgbNavModule,
