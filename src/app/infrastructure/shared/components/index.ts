@@ -3,6 +3,7 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormInputComponent } from './dynamic-form/components/form-input/form-input.component';
 import { FormSelectComponent } from './dynamic-form/components/form-select/form-select.component';
 import { SaveCancelComponent } from './save-cancel/save-cancel.component';
+import { SideNavigationComponent } from './side-navigation/side-navigation.component';
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
 
 /**
@@ -14,5 +15,6 @@ export const components = [
   FormInputComponent,
   FormSelectComponent,
   SaveCancelComponent,
+  SideNavigationComponent,
   TopNavigationComponent,
 ];
