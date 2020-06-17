@@ -81,7 +81,6 @@ export class TopNavigationComponent {
   }
 
   public signOut(): void {
-    this.authService.logout().subscribe();
-    this.router.navigateByUrl('/auth');
+    this.authService.logout().subscribe(() => this.router.navigateByUrl('/auth'));
   }
 }
