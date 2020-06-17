@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
+import { BoostrapModule } from './imports/bootstrap.module';
 import { components } from './components';
 import { directives } from './directives';
 
@@ -11,10 +13,13 @@ import { directives } from './directives';
 @NgModule({
   imports: [
     CommonModule,
+    BoostrapModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
   exports: [
     CommonModule,
+    BoostrapModule,
     ReactiveFormsModule,
     components,
     directives,

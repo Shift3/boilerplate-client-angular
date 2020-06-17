@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="'/'">
+    <img src="assets/img/logo.png" alt="Shift3 Technologies">
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="isMenuCollapsed = !isMenuCollapsed"
+  >
+    &#9776;
+  </button>
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <ng-container *ngIf="navLinks?.length">
+      <ul class="navbar-nav">
+        <li *ngFor="let link of navLinks; trackBy: trackByLink">
+          <a
+            class="nav-link"
+            [routerLink]="link.link"
+            (click)="isMenuCollapsed = true"
+          >
+            <i [class]="link.icon"></i>
+            {{ link.label }}
+          </a>
+        </li>
+      </ul>
+    </ng-container>
+    <div ngbDropdown class="navbar-nav">
+      <button
+        id="profileDropdown"
+        class="nav-link"
+        ngbDropdownToggle
+      >
+        <i class="fa fa-user"></i>
+        Hi Username
+      </button>
+      <div ngbDropdownMenu aria-labelledby="profileDropdown">
+        <div class="profile-dropdown-container">
+          <span>Name</span>
+          <div>
+            <ng-container *ngFor="let link of profileLinks; trackBy: trackByLink">
+              <button ngbDropdownItem [routerLink]="link.link">{{ link.label }}</button>
+            </ng-container>
+            <button ngbDropdownItem (click)="openConfirmModal()">Sign Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

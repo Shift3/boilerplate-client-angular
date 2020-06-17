@@ -19,7 +19,6 @@ import {
   IInputField,
   InputField,
 } from '@models/form/input';
-import { Logger } from '@utils/logger';
 import {
   LoginRequest,
   ILoginRequest,
@@ -78,7 +77,7 @@ export class LoginSmartComponent implements OnInit {
 
   public login(): void {
     const requestPayload = this.buildPayload();
-    this.authService.login(requestPayload).subscribe((response) => Logger.log(response));
+    this.authService.login(requestPayload).subscribe((response) => this.router.navigateByUrl('/content'));
   }
 
   public logout(): void {
