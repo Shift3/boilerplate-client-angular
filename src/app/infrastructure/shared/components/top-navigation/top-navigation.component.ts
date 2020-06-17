@@ -12,7 +12,11 @@ import {
   ConfirmModalConfig,
   IConfirmModalConfig,
 } from '@models/modal';
-import { INavigation } from '@models/navigation';
+import {
+  INavigation,
+  navLinkList,
+  profileLinkList,
+} from '@models/navigation';
 
 @Component({
   selector: 'app-top-navigation',
@@ -22,38 +26,8 @@ import { INavigation } from '@models/navigation';
 })
 export class TopNavigationComponent {
   public isMenuCollapsed = true;
-  public navLinks: INavigation[] = [
-    {
-      id: 1,
-      label: 'Directory',
-      link: '/content',
-      icon: 'fa fa-stethoscope',
-    },
-    {
-      id: 2,
-      label: 'Users',
-      link: '/admin/user-list',
-      icon: 'fa fa-users',
-    },
-    {
-      id: 3,
-      label: 'Settings',
-      link: '/admin/settings',
-      icon: 'fa fa-cog',
-    },
-  ];
-  public profileLinks: INavigation[] = [
-    {
-      id: 1,
-      label: 'Profile',
-      link: '/user/profile',
-    },
-    {
-      id: 2,
-      label: 'Change Password',
-      link: '/user/change-password',
-    },
-  ];
+  public navLinks: INavigation[] = navLinkList;
+  public profileLinks: INavigation[] = profileLinkList;
 
   constructor(
     private authService: AuthService,
