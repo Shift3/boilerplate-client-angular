@@ -10,7 +10,9 @@ import {
   NgbToastModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
-
+/**
+ * Loads only used Bootstrap modules.
+ */
 @NgModule({
   imports: [
     NgbAlertModule,
