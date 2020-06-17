@@ -1,10 +1,16 @@
 <nav class="nav-container navbar-light bg-light">
-  <a class="logo navbar-brand" routerLink="'/'"><img src="assets/img/logo.png" alt="Shift3 Technologies"></a>
+  <a class="logo navbar-brand" routerLink="'/'">
+    <img src="assets/img/logo.png" alt="Shift3 Technologies">
+  </a>
   <div class="link-container">
     <ng-container *ngIf="navLinks?.length">
       <ul class="navbar-nav">
         <li *ngFor="let link of navLinks; trackBy: trackByLink">
-          <a class="nav-link" [routerLink]="link.link" (click)="isMenuCollapsed = true">
+          <a
+            class="nav-link"
+            [routerLink]="link.link"
+            (click)="isMenuCollapsed = true"
+          >
             <i [class]="link.icon"></i>
             {{ link.label }}
           </a>
