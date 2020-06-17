@@ -78,7 +78,7 @@ export class LoginSmartComponent implements OnInit {
 
   public login(): void {
     const requestPayload = this.buildPayload();
-    this.authService.login(requestPayload).subscribe((response) => Logger.log(response));
+    this.authService.login(requestPayload).subscribe((response) => this.router.navigateByUrl('/content'));
   }
 
   public logout(): void {
