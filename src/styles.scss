@@ -34,9 +34,9 @@ html {
 
 .holy-grail,
 .holy-grail-body {
-	display: flex;
-	flex: 1 1 auto;
-	flex-direction: column;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
 }
 
 .holy-grail-content {
@@ -44,6 +44,14 @@ html {
   display: flex;
   justify-content: center;
   max-width: 1980px;
+}
+
+.hg-sidebar {
+  background: red;
+}
+
+.holy-grail-sidebar-1 {
+  order: -1;
 }
 
 .flex-column {
@@ -59,13 +67,17 @@ html {
   width: 100vw;
 }
 
-@media (min-width: 768px) {
-	/**
-	 * Body items are now side by side
-	 */
-	.holy-grail-body {
-		flex-direction: row;
-	}
+@media (min-width: 992px) {
+  /**
+  * Body items are now side by side
+  */
+  .holy-grail-body {
+    flex-direction: row;
+  }
+
+  .hg-sidebar {
+    flex: 0 0 260px;
+  }
 }
 
 .center {
