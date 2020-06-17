@@ -19,7 +19,6 @@ import {
   IInputField,
   InputField,
 } from '@models/form/input';
-import { Logger } from '@utils/logger';
 import {
   LoginRequest,
   ILoginRequest,
