@@ -23,6 +23,10 @@ button {
   flex-direction: column;
 }
 
+.navbar-nav {
+  align-self: baseline;
+}
+
 .profile-dropdown-container {
   display: flex;
   align-items: center;
