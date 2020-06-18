@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '@core/services/api/auth.service';
+import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
   FormField,
@@ -16,11 +17,13 @@ import {
   IInputField,
   InputField,
 } from '@models/form/input';
+import { PasswordValidation } from '@utils/validation/password-validation';
+import { RequiredValidation } from '@utils/validation/required-validation';
+import { SaveCancelButtonConfig } from '@models/form/button';
 import {
   ISignupRequest,
   SignupRequest,
 } from '@models/auth';
-import { SaveCancelButtonConfig } from '@models/form/button';
 
 @Component({
   template: `
@@ -44,6 +47,7 @@ export class SignUpSmartComponent {
         label: 'Email',
         placeholder: 'Enter your email',
         fieldConfig : new InputField({ inputType: 'email' }),
+        validation: [ EmailValidation.validEmail(true) ],
       }),
       new FormField<IInputField>({
         name: 'password',
@@ -51,6 +55,7 @@ export class SignUpSmartComponent {
         label: 'Password',
         placeholder: 'Enter your password',
         fieldConfig : new InputField({ inputType: 'password' }),
+        validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
         name: 'first_name',
@@ -58,6 +63,7 @@ export class SignUpSmartComponent {
         label: 'First Name',
         placeholder: 'Enter your first name',
         fieldConfig : new InputField(),
+        validation: [ RequiredValidation.required('First Name') ],
       }),
       new FormField<IInputField>({
         name: 'last_name',
@@ -65,6 +71,7 @@ export class SignUpSmartComponent {
         label: 'Last Name',
         placeholder: 'Enter your last name',
         fieldConfig : new InputField(),
+        validation: [ RequiredValidation.required('Last Name') ],
       }),
     ],
   });
