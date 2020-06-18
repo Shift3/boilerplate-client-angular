@@ -9,25 +9,6 @@ html {
   box-sizing: border-box;
 }
 
-.container {
-  text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.child {
-  margin: auto;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
 .holy-grail {
 	height: 100vh;
 }
@@ -44,10 +25,6 @@ html {
   display: flex;
   justify-content: center;
   max-width: 1980px;
-}
-
-.hg-sidebar {
-  background: red;
 }
 
 .holy-grail-sidebar-1 {
@@ -82,4 +59,10 @@ html {
 
 .center {
   text-align: center;
+}
+
+.shadow {
+  -webkit-box-shadow: 1px 1px 5px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 1px 1px 5px 1px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow: 1px 1px 5px 1px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }

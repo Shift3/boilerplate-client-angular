@@ -5,26 +5,25 @@ button {
 }
 
 .nav-container {
-  height: 75px;
-  width: 100vw;
+  height: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 }
 
-.menu-container {
-  padding-right: 20px;
-  height: 100%;
+.logo {
+  flex-grow: 1;
+  align-self: center;
+}
+
+.link-container {
+  flex-grow: 2;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-
-.navbar-nav {
-  align-self: baseline;
 }
 
 .profile-dropdown-container {

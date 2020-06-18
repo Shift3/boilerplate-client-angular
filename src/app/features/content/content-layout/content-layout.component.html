@@ -1,9 +1,16 @@
 <main class="holy-grail">
-  <app-top-navigation></app-top-navigation>
+  <ng-container *ngIf="showTopNav">
+    <app-top-navigation class="shadow"></app-top-navigation>
+  </ng-container>
   <div id="wallpaper" class="holy-grail-body">
+    <ng-container *ngIf="showSideNav">
+      <app-side-navigation class="shadow holy-grail-sidebar-1 hg-sidebar"></app-side-navigation>
+    </ng-container>
     <div class="holy-grail-content">
       <div class="holy-grail-child flex-column">
         Content
+        <button (click)="toggleSideNav()">Toggle Side Navigation</button>
+        <button (click)="toggleTopNav()">Toggle Top Navigation</button>
         <router-outlet></router-outlet>
       </div>
     </div>

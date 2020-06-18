@@ -19,12 +19,12 @@ import {
 } from '@models/navigation';
 
 @Component({
-  selector: 'app-top-navigation',
-  templateUrl: './top-navigation.component.html',
-  styleUrls: ['./top-navigation.component.scss'],
+  selector: 'app-side-navigation',
+  templateUrl: './side-navigation.component.html',
+  styleUrls: ['./side-navigation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TopNavigationComponent {
+export class SideNavigationComponent {
   public isMenuCollapsed = true;
   public navLinks: INavigation[] = navLinkList;
   public profileLinks: INavigation[] = profileLinkList;

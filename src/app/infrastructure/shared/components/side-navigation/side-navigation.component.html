@@ -1,15 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" routerLink="'/'">
+<nav class="nav-container navbar-light">
+  <a class="logo navbar-brand" routerLink="'/'">
     <img src="assets/img/logo.png" alt="Shift3 Technologies">
   </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    (click)="isMenuCollapsed = !isMenuCollapsed"
-  >
-    &#9776;
-  </button>
-  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+  <div class="link-container">
     <ng-container *ngIf="navLinks?.length">
       <ul class="navbar-nav">
         <li *ngFor="let link of navLinks; trackBy: trackByLink">
@@ -34,7 +27,7 @@
         Hi Username
       </button>
       <div ngbDropdownMenu aria-labelledby="profileDropdown">
-        <div class="profile-dropdown-container">
+        <div ngbDropdownItem class="profile-dropdown-container">
           <span>Name</span>
           <div>
             <ng-container *ngFor="let link of profileLinks; trackBy: trackByLink">
