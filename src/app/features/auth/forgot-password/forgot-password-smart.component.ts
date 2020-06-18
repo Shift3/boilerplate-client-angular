@@ -1,14 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
-import { AuthService } from '@core/services/api/auth.service';
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
@@ -21,29 +18,29 @@ import {
   InputField,
 } from '@models/form/input';
 import {
-  LoginRequest,
-  ILoginRequest,
-} from '@models/auth';
-import { RequiredValidation } from '@utils/validation/required-validation';
+  IForgotPasswordRequest,
+  ForgotPasswordRequest,
+} from '@models/user';
+import { IMessage } from '@app/infrastructure/models/message';
 import { SaveCancelButtonConfig } from '@models/form/button';
+import { UserService } from '@core/services/api/user.service';
 
 @Component({
   template: `
-    <app-login-presentation
+    <app-forgot-password-presentation
       [formConfig]="formConfig"
-      [token]="(token$ | async)"
+      [message]="(message$ | async)"
       (emitForm)="propagateForm($event)"
-      (emitSubmit)="login()"
-      (emitLogout)="logout()"
-    ></app-login-presentation>
+      (emitSubmit)="forgotPassword()"
+    ></app-forgot-password-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginSmartComponent implements OnInit {
+export class ForgotPasswordSmartComponent {
   public form: FormGroup;
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    submit: new SaveCancelButtonConfig({save: 'Log In'}),
+    submit: new SaveCancelButtonConfig({save: 'Submit'}),
     controls: [
       new FormField<IInputField>({
         name: 'email',
@@ -53,43 +50,26 @@ export class LoginSmartComponent implements OnInit {
         fieldConfig : new InputField({ inputType: 'email' }),
         validation: [ EmailValidation.validEmail(true) ],
       }),
-      new FormField<IInputField>({
-        name: 'password',
-        fieldType: 'input',
-        label: 'Password',
-        placeholder: 'Enter your password',
-        fieldConfig : new InputField({ inputType: 'password' }),
-        validation: [ RequiredValidation.required('Password') ],
-      }),
     ],
   });
-  public token$: Observable<string>;
+  public message$ = new Observable<IMessage>();
 
   constructor(
-    private authService: AuthService,
+    private userService: UserService,
     private formService: FormService,
-    private router: Router,
   ) { }
-
-  public ngOnInit(): void {
-    this.token$ = this.authService.getToken();
-  }
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
   }
 
-  public login(): void {
+  public forgotPassword(): void {
     const requestPayload = this.buildPayload();
-    this.authService.login(requestPayload).subscribe((response) => this.router.navigateByUrl('/content'));
+    this.message$ = this.userService.forgotPassword(requestPayload);
   }
 
-  public logout(): void {
-    this.authService.logout().subscribe(() => this.router.navigateByUrl('/auth/logout'));
-  }
-
-  private buildPayload(): ILoginRequest {
-    const payload = new LoginRequest();
+  private buildPayload(): IForgotPasswordRequest {
+    const payload = new ForgotPasswordRequest();
     return this.formService.buildRequestPayload(this.form, payload);
   }
 }
