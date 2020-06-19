@@ -11,7 +11,7 @@
           [routerLink]="link.link"
           (click)="isMenuCollapsed = true"
         >
-          <i [class]="link.icon"></i>
+          <span [class]="link.icon"></span>
           {{ link.label }}
         </button>
       </ul>
@@ -22,7 +22,7 @@
         class="nav-link"
         ngbDropdownToggle
       >
-        <i class="fa fa-user"></i>
+        <span class="fa fa-user"></span>
         Hi Username
       </button>
       <div ngbDropdownMenu aria-labelledby="profileDropdown">
