@@ -11,8 +11,6 @@ import { environment } from '@env/environment';
 import {
   ILoginRequest,
   ISessionDTO,
-  ISignupDTO,
-  ISignupRequest,
 } from '@models/auth';
 
 @Injectable({
