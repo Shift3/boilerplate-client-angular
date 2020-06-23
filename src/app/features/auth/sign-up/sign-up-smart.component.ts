@@ -5,7 +5,6 @@ import {
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from '@core/services/api/auth.service';
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
@@ -24,6 +23,7 @@ import {
   ISignupRequest,
   SignupRequest,
 } from '@models/auth';
+import { UserService } from '@app/infrastructure/core/services/api/user.service';
 
 @Component({
   template: `
@@ -77,9 +77,9 @@ export class SignUpSmartComponent {
   });
 
   constructor(
-    private authService: AuthService,
     private formService: FormService,
     private router: Router,
+    private userService: UserService,
   ) { }
 
   public propagateForm(form: FormGroup): void {
@@ -88,7 +88,7 @@ export class SignUpSmartComponent {
 
   public signup(): void {
     const requestPayload = this.buildPayload();
-    this.authService.signUp(requestPayload).subscribe(() => this.router.navigateByUrl('/auth/login'));
+    this.userService.signUp(requestPayload).subscribe(() => this.router.navigateByUrl('/auth/login'));
   }
 
   private buildPayload(): ISignupRequest {

@@ -29,12 +29,6 @@ export class AuthService {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
   }
 
-  public signUp(payload: ISignupRequest): Observable<ISignupDTO> {
-    const endpoint = `${this.url}/signup/`;
-
-    return this.apiService.post<ISignupDTO, ISignupRequest>(endpoint, payload);
-  }
-
   public login(payload: ILoginRequest): Observable<ISessionDTO> {
     const endpoint = `${this.url}/login/`;
 
