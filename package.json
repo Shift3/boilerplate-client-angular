@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-client-angular",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,6 +23,7 @@
     "@angular/platform-browser": "~9.1.7",
     "@angular/platform-browser-dynamic": "~9.1.7",
     "@angular/router": "~9.1.7",
+    "@sentry/browser": "^5.15.5",
     "classlist.js": "^1.1.20150312",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

@@ -1,0 +1,7 @@
+button {
+	min-width: 100px;
+}
+
+.save-cancel-button-row > button:not(:first-child) {
+	margin-left: 10px;
+}

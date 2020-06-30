@@ -4,6 +4,13 @@
 
 export const environment = {
   production: false,
+  name: 'Development',
+  apiRoute: '',
+  sentry: {
+    DSN: '',
+    enabled: false,
+    dialogEnabled: false,
+  },
 };
 
 /*
