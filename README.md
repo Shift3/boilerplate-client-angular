@@ -7,11 +7,50 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
+## Staging URL
+
+<https://boilerplate-client-angular.shift3sandbox.com/>
+
 ## Deployment
 
 ### Terraform
 
-The AWS configuration **for the sandbox** is handled by Terraform. Terraform needs the AWS credentials which developers should already have or can access through Zoho Vault.
+The AWS configuration **for the sandbox** is handled by Terraform. Terraform needs the AWS credentials which developers should already have or can access through Zoho Vault. The Terraform configuration is separated into modules for each cloud service it sets up.
+
+Terraform also needs the project secrets saved in `project/terraform/terraform.tfvars` with the following structure:
+
+```
+profile = ""
+
+application_name = ""
+
+application_description = ""
+
+region = ""
+
+web_domain_name = ""
+
+zone_id = ""
+
+zone_alias_id = ""
+
+iam_s3_bucket_user = ""
+
+cnames = ["", ""]
+
+```
+
+| Secret                  |                                                                                                                                                    Note |
+| :---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| profile                 |                                                                                                                This must match the AWS credentials name |
+| application_name        |                                                                                                     The name of the project (can match the GitHub name) |
+| application_description |                                                                                       The description of the project (can match the GitHub description) |
+| region                  |                                                                                                                                Get this from Zoho Vault |
+| web_domain_name         |                                                                                                  The `application_name` followed by `shift3sandbox.com` |
+| zone_id                 |                                                                                                                                Get this from Zoho Vault |
+| zone_alias_id           |                                                                                                                                Get this from Zoho Vault |
+| iam_s3_bucket_user      |                                                                                                                                Get this from Zoho Vault |
+| cnames                  | [The CNAME records](https://en.wikipedia.org/wiki/CNAME_record). Probably at least `example.shift3sandbox.com` and `www.example.shift3sandbox.com` |
 
 ### AWS
 
