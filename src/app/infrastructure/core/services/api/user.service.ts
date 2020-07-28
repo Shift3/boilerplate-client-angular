@@ -1,7 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import {
+  Observable,
+  of as observableOf,
+} from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
@@ -9,6 +12,7 @@ import { environment } from '@env/environment';
 import {
   IForgotPasswordRequest,
   IResetPasswordRequest,
+  IUserDTO,
 } from '@models/user';
 import { IMessage } from '@app/infrastructure/models/message';
 import { NotificationService } from '../notification.service';
@@ -54,6 +58,12 @@ export class UserService {
     return this.apiService.put<IMessage, IResetPasswordRequest>(endpoint, payload).pipe(
       tap((response) => this.notificationService.showSuccess([response.message])),
     );
+  }
+
+  public getUserList(): Observable<IUserDTO[]> {
+    const endpoint = `${this.url}`;
+
+    return this.apiService.get<IUserDTO[]>(endpoint);
   }
 
   /**
