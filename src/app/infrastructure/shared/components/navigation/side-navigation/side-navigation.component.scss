@@ -1,8 +1,4 @@
-button {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-}
+@import '../navigation.scss';
 
 .nav-container {
   height: 100%;
@@ -18,10 +14,4 @@ button {
 
 .link-container {
   flex-grow: 2;
-}
-
-.nav-link {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 }

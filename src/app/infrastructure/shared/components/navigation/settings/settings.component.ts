@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '@core/services/api/auth.service';
-import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { ConfirmModalComponent } from '../../confirm-modal/confirm-modal.component';
 import {
   ConfirmModalConfig,
   IConfirmModalConfig,
