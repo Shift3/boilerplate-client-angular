@@ -16,6 +16,11 @@ import {
   ISignupDTO,
   ISignupRequest,
 } from '@models/auth';
+import {
+  roleList,
+  RoleType,
+} from '@models/role';
+import { ISelectOptions } from '@models/form/select';
 
 @Injectable({
   providedIn: 'root',
@@ -49,5 +54,12 @@ export class UserService {
     return this.apiService.put<IMessage, IResetPasswordRequest>(endpoint, payload).pipe(
       tap((response) => this.notificationService.showSuccess([response.message])),
     );
+  }
+
+  /**
+   * Local implementation
+   */
+  public getRoleList(): Observable<ISelectOptions<RoleType>[]> {
+    return observableOf(roleList);
   }
 }
