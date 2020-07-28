@@ -5,6 +5,19 @@ export interface IUserDTO {
   lastName: string;
 }
 
+export class UserDTO implements IUserDTO  {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+
+  constructor(configOverride?: IUserDTO) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
 export interface IForgotPasswordRequest {
   email: string;
 }
