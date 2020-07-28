@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 import { NavbarStateService } from '@core/services/navbar-state.service';
 
@@ -22,8 +21,6 @@ export class ContentLayoutComponent {
   constructor(
     private navbarStateService: NavbarStateService,
   ) {
-    this.navbarToggle$ = this.navbarStateService.getNavbarToggle().pipe(
-      take(1),
-    );
+    this.navbarToggle$ = this.navbarStateService.getNavbarToggle();
   }
 }
