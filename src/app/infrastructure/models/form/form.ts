@@ -22,7 +22,7 @@ export interface IFormField<T> {
 export class FormField<T> implements IFormField<T> {
   name: string;
   label: string;
-  placeholder: string;
+  placeholder: string = '';
   fieldType: FieldType;
   fieldConfig: T;
   validation?: ValidatorFn[] = [];
