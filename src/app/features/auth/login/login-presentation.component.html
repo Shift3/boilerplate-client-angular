@@ -1,14 +1,11 @@
-<ng-container *ngIf="!token">
-  <app-dynamic-form
-    [formConfig]="formConfig"
-    [formTitle]="formTitle"
-    (emitForm)="propagateForm($event)"
-    (emitSubmit)="submit()"
-  ></app-dynamic-form>
-  <p>
-    <a routerLink="/auth/signup">Sign Up</a>
-    <a routerLink="/auth/forgot-password">Forgot Password?</a>
-  </p>
-</ng-container>
+<app-dynamic-form
+  [formConfig]="formConfig"
+  [formTitle]="formTitle"
+  (emitForm)="propagateForm($event)"
+  (emitSubmit)="submit()"
+></app-dynamic-form>
+<p>
+  <a routerLink="/auth/signup">Sign Up</a>
+  <a routerLink="/auth/forgot-password">Forgot Password?</a>
+</p>
 
-<button *ngIf="token" (click)="logout()">Log Out</button>

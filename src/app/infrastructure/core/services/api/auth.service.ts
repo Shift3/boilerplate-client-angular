@@ -11,8 +11,6 @@ import { environment } from '@env/environment';
 import {
   ILoginRequest,
   ISessionDTO,
-  ISignupDTO,
-  ISignupRequest,
 } from '@models/auth';
 
 @Injectable({
@@ -27,12 +25,6 @@ export class AuthService {
     private apiService: ApiService,
   ) {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
-  }
-
-  public signUp(payload: ISignupRequest): Observable<ISignupDTO> {
-    const endpoint = `${this.url}/signup/`;
-
-    return this.apiService.post<ISignupDTO, ISignupRequest>(endpoint, payload);
   }
 
   public login(payload: ILoginRequest): Observable<ISessionDTO> {
