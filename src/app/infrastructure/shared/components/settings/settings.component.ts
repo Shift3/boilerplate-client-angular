@@ -16,6 +16,7 @@ import {
   INavigation,
   profileLinkList,
 } from '@models/navigation';
+import { NavbarStateService } from '@core/services/navbar-state.service';
 
 @Component({
   selector: 'app-settings',
@@ -25,10 +26,12 @@ import {
 })
 export class SettingsComponent {
   public profileLinks: INavigation[] = profileLinkList;
+  public showTopNav = (localStorage.getItem('navbarToggle') === 'top') ? true : false;
 
   constructor(
     private authService: AuthService,
     private modalService: NgbModal,
+    private navbarStateService: NavbarStateService,
     private router: Router,
   ) { }
 
@@ -53,5 +56,11 @@ export class SettingsComponent {
 
   public signOut(): void {
     this.authService.logout().subscribe(() => this.router.navigateByUrl('/auth'));
+  }
+
+  // Client-side navigation toggles for debugging purposes
+  public toggleNavBar(): void {
+    this.showTopNav = !this.showTopNav;
+    this.navbarStateService.setNavbarToggle(this.showTopNav);
   }
 }

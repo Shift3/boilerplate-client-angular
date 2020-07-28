@@ -14,6 +14,7 @@
         <ng-container *ngFor="let link of profileLinks; trackBy: trackByLink">
           <button ngbDropdownItem [routerLink]="link.link">{{ link.label }}</button>
         </ng-container>
+        <button (click)="toggleNavBar()">Toggle Navigation Bar</button>
         <button ngbDropdownItem (click)="openConfirmModal()">Sign Out</button>
       </div>
     </div>
