@@ -1,0 +1,21 @@
+<div ngbDropdown class="navbar-nav">
+  <button
+    id="profileDropdown"
+    class="nav-link"
+    ngbDropdownToggle
+  >
+    <span class="fa fa-user"></span>
+    Hi Username
+  </button>
+  <div ngbDropdownMenu aria-labelledby="profileDropdown">
+    <div ngbDropdownItem class="profile-dropdown-container">
+      <span>Name</span>
+      <div>
+        <ng-container *ngFor="let link of profileLinks; trackBy: trackByLink">
+          <button ngbDropdownItem [routerLink]="link.link">{{ link.label }}</button>
+        </ng-container>
+        <button ngbDropdownItem (click)="openConfirmModal()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+</div>
