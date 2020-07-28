@@ -47,3 +47,25 @@ export class ResetPasswordRequest implements IResetPasswordRequest {
     }
   }
 }
+
+export interface ICreateUserRequest {
+  email: string;
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+  roleId: number;
+}
+
+export class CreateUserRequest implements ICreateUserRequest {
+  email: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  profilePicture: string = '';
+  roleId: number = 0;
+
+  constructor(configOverride?: ICreateUserRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
 import { environment } from '@env/environment';
 import {
+  ICreateUserRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
   IUserDTO,
@@ -63,6 +64,18 @@ export class UserService {
     const endpoint = `${this.url}`;
 
     return this.apiService.get<IUserDTO[]>(endpoint);
+  }
+
+  public createUser(payload: ICreateUserRequest): Observable<IUserDTO>  {
+    const endpoint = `${this.url}`;
+    payload.roleId = Number(payload.roleId);
+
+    return this.apiService.post<IUserDTO, ICreateUserRequest>(endpoint, payload).pipe(
+      tap((response) => {
+        const message = `An email has been sent to ${response.email} with instructions to finish activating the account.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
   }
 
   /**
