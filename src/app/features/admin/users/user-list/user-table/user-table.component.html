@@ -1,0 +1,20 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Last Name</th>
+    <th scope="col">First Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Role</th>
+    <th scope="col">Activated</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of tableData; index as i">
+    <td>{{ item.lastName }}</td>
+    <td>{{ item.firstName }}</td>
+    <td>{{ item.email }}</td>
+    <td>{{ item.role.roleName }}</td>
+    <td>{{ item.activatedAt | date }}</td>
+  </tr>
+  </tbody>
+</table>
