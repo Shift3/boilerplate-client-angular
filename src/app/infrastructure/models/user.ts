@@ -1,8 +1,8 @@
 export interface IUserDTO {
   id: number;
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface IForgotPasswordRequest {
@@ -20,14 +20,13 @@ export class ForgotPasswordRequest implements IForgotPasswordRequest {
 }
 
 export interface IResetPasswordRequest {
-  /* tslint:disable:variable-name */
-  new_password: string;
-  confirm_password: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 
 export class ResetPasswordRequest implements IResetPasswordRequest {
-  new_password: string = '';
-  confirm_password: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
 
   constructor(configOverride?: IResetPasswordRequest) {
     if (configOverride) {
