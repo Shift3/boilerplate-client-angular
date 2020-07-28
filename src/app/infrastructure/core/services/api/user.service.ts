@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import {
@@ -14,7 +13,7 @@ import {
   IResetPasswordRequest,
   IUserDTO,
 } from '@models/user';
-import { IMessage } from '@app/infrastructure/models/message';
+import { IMessage } from '@models/message';
 import { NotificationService } from '../notification.service';
 import {
   ISignupDTO,
