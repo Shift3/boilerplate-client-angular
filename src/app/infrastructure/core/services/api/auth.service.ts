@@ -41,7 +41,7 @@ export class AuthService {
 
     return this.apiService.get<never>(endpoint).pipe(
       tap(() => this.resetToken()),
-      tap(() => localStorage.clear()),
+      tap(() => this.clearSession()),
     );
   }
 
@@ -55,5 +55,10 @@ export class AuthService {
 
   public resetToken(): void {
     this.token$.next('');
+  }
+
+  private clearSession(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 }
