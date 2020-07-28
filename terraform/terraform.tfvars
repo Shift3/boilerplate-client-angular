@@ -1,17 +1,17 @@
-profile = "shift3"
+profile = ""
 
-application_name = "boilerplate-client-angular"
+application_name = ""
 
-application_description = "The Shift3 standard starting point for new Angular projects"
+application_description = ""
 
-region = "us-west-2"
+region = ""
 
-web_domain_name = "boilerplate-client-angular.shift3sandbox.com"
+web_domain_name = ""
 
-zone_id = "Z234K2J0M1T89W"
+zone_id = ""
 
-zone_alias_id = "Z38NKT9BP95V3O"
+zone_alias_id = ""
 
-iam_s3_bucket_user = "008036621198:user/S3BucketDeployer"
+iam_s3_bucket_user = ""
 
-cnames = ["boilerplate-client-angular.shift3sandbox.com", "www.boilerplate-client-angular.shift3sandbox.com"]
+cnames = ["", ""]
