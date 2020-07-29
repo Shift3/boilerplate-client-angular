@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('../content/content.module').then((m) => m.ContentModule),
   },
   {
+    path: 'user',
+    loadChildren: () => import('../user/user.module').then((m) => m.UserModule),
+  },
+  {
     path: '**',
     component: NotFoundComponent,
     data: { title: 'Not Found' },
