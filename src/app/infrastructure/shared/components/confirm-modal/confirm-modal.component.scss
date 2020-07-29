@@ -1,0 +1,11 @@
+@import '../../../../../assets/styles/variables';
+@import '../save-cancel/save-cancel.component.scss';
+
+.modal-container {
+  background: $primary;
+}
+
+.modal-body {
+  color: white;
+  padding: 10px 0;
+}
