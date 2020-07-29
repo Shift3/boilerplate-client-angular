@@ -6,7 +6,7 @@
     mat-raised-button
     (click)="cancel()"
   >
-    {{ buttonConfig.cancel }}
+    {{ buttonConfig.cancel | uppercase }}
   </button>
     <button
       id="form-submit-button"
@@ -17,6 +17,6 @@
       (click)="save()"
       [disabled]="shouldDisable"
   >
-    {{ buttonConfig.save }}
+    {{ buttonConfig.save | uppercase }}
   </button>
 </div>
