@@ -1,8 +1,8 @@
 <div class="save-cancel-button-row">
   <button
     id="cancel-button"
-    class="mat-elevation-z0"
     type="button"
+    class="btn"
     mat-raised-button
     (click)="cancel()"
   >
@@ -10,10 +10,9 @@
   </button>
     <button
       id="form-submit-button"
-      class="mat-elevation-z0"
+      class="btn"
       type="submit"
       mat-raised-button
-      color="accent"
       (click)="save()"
       [disabled]="shouldDisable"
   >
