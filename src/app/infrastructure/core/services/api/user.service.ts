@@ -56,7 +56,21 @@ export class UserService {
     const endpoint = `${this.url}/reset-password/${token}`;
 
     return this.apiService.put<IMessage, IResetPasswordRequest>(endpoint, payload).pipe(
-      tap((response) => this.notificationService.showSuccess([response.message])),
+      tap(() => {
+        const message = 'The password was reset successfully.';
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
+
+  public activateAccount(payload: IResetPasswordRequest, token: string): Observable<IMessage> {
+    const endpoint = `${this.url}/activate-account/${token}`;
+
+    return this.apiService.put<IMessage, IResetPasswordRequest>(endpoint, payload).pipe(
+      tap(() => {
+        const message = 'This account has been activated. Please log in.';
+        return this.notificationService.showSuccess([message]);
+      }),
     );
   }
 
