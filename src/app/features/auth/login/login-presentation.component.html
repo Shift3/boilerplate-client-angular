@@ -1,11 +1,18 @@
-<app-dynamic-form
-  [formConfig]="formConfig"
-  [formTitle]="formTitle"
-  (emitForm)="propagateForm($event)"
-  (emitSubmit)="submit()"
-></app-dynamic-form>
-<p>
-  <a routerLink="/auth/signup">Sign Up</a>
-  <a routerLink="/auth/forgot-password">Forgot Password?</a>
-</p>
+<div class="login-container">
+  <div class="form-container">
+    <app-dynamic-form
+      [formConfig]="formConfig"
+      [formTitle]="formTitle"
+      (emitForm)="propagateForm($event)"
+      (emitSubmit)="submit()"
+    ></app-dynamic-form>
+    <p>
+      <a routerLink="/auth/forgot-password">Forgot Password?</a>
+    </p>
+  </div>
+  <div>
+    Haven't Registered Yet?
+    <a routerLink="/auth/signup">Sign Up</a>
+  </div>
+</div>
 
