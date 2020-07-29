@@ -2,9 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 
+import {
+  CreateUserRequest,
+  ICreateUserRequest,
+  IUserDTO,
+} from '@models/user';
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
@@ -16,52 +21,39 @@ import {
   IInputField,
   InputField,
 } from '@models/form/input';
-import { PasswordValidation } from '@utils/validation/password-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
+import {
+  roleList,
+  RoleType,
+} from '@models/role';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import {
-  ISignupRequest,
-  SignupRequest,
-} from '@models/auth';
-import { UserService } from '@app/infrastructure/core/services/api/user.service';
+  ISelectField,
+  SelectField,
+} from '@models/form/select';
+import { UserService } from '@core/services/api/user.service';
 
 @Component({
   template: `
-    <app-sign-up-presentation
+    <app-user-detail-presentation
+      [user]="user"
       [formConfig]="formConfig"
       (emitForm)="propagateForm($event)"
-      (emitSubmit)="signup()"
-    ></app-sign-up-presentation>
+      (emitSubmit)="createUser()"
+    ></app-user-detail-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpSmartComponent {
+export class UserDetailSmartComponent {
   public form: FormGroup;
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    submit: new SaveCancelButtonConfig({save: 'Sign Up'}),
+    submit: new SaveCancelButtonConfig({save: 'Create'}),
     controls: [
-      new FormField<IInputField>({
-        name: 'email',
-        fieldType: 'input',
-        label: 'Email',
-        placeholder: 'Enter your email',
-        fieldConfig : new InputField({ inputType: 'email' }),
-        validation: [ EmailValidation.validEmail(true) ],
-      }),
-      new FormField<IInputField>({
-        name: 'password',
-        fieldType: 'input',
-        label: 'Password',
-        placeholder: 'Enter your password',
-        fieldConfig : new InputField({ inputType: 'password' }),
-        validation: [ PasswordValidation.validPassword(true) ],
-      }),
       new FormField<IInputField>({
         name: 'firstName',
         fieldType: 'input',
         label: 'First Name',
-        placeholder: 'Enter your first name',
         fieldConfig : new InputField(),
         validation: [ RequiredValidation.required('First Name') ],
       }),
@@ -69,30 +61,47 @@ export class SignUpSmartComponent {
         name: 'lastName',
         fieldType: 'input',
         label: 'Last Name',
-        placeholder: 'Enter your last name',
         fieldConfig : new InputField(),
         validation: [ RequiredValidation.required('Last Name') ],
       }),
+      new FormField<IInputField>({
+        name: 'email',
+        fieldType: 'input',
+        label: 'Email',
+        fieldConfig : new InputField({ inputType: 'email' }),
+        validation: [ EmailValidation.validEmail(true) ],
+      }),
+      new FormField<ISelectField<RoleType>>({
+        name: 'roleId',
+        fieldType: 'select',
+        label: 'Role',
+        fieldConfig : new SelectField({ options: roleList }),
+        validation: [ RequiredValidation.required('Role') ],
+      }),
     ],
   });
+  public user: IUserDTO;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private formService: FormService,
     private router: Router,
     private userService: UserService,
-  ) { }
+  ) {
+    this.user = this.activatedRoute.snapshot.data.user;
+  }
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
   }
 
-  public signup(): void {
+  public createUser(): void {
     const requestPayload = this.buildPayload();
-    this.userService.signUp(requestPayload).subscribe(() => this.router.navigateByUrl('/auth/login'));
+    this.userService.createUser(requestPayload).subscribe((response) => this.router.navigateByUrl('/admin/user-list'));
   }
 
-  private buildPayload(): ISignupRequest {
-    const payload = new SignupRequest();
+  private buildPayload(): ICreateUserRequest {
+    const payload = new CreateUserRequest();
     return this.formService.buildRequestPayload(this.form, payload);
   }
 }

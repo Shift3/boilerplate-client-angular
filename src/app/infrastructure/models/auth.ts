@@ -3,16 +3,16 @@ import { IUserDTO } from './user';
 export interface ISignupRequest {
   email: string;
   password: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
 }
 
 export class SignupRequest implements ISignupRequest {
   email: string = '';
   password: string = '';
   /* tslint:disable:variable-name */
-  first_name: string = '';
-  last_name: string = '';
+  firstName: string = '';
+  lastName: string = '';
 
   constructor(configOverride?: ISignupRequest) {
     if (configOverride) {
@@ -24,8 +24,8 @@ export class SignupRequest implements ISignupRequest {
 export interface ISignupDTO {
   id: number;
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface ILoginRequest {
