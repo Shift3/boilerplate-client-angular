@@ -57,7 +57,7 @@ export class ActivateAccountSmartComponent {
         fieldType: 'input',
         label: 'Confirm Password',
         placeholder: 'Confirm the new password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig: new InputField({ inputType: 'password' }),
       }),
     ],
   });
