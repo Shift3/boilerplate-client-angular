@@ -9,11 +9,13 @@ const routes: Routes = [
   {
     path: '',
     component: UserLayoutComponent,
-  },
-  {
-    path: 'activate-account/:token',
-    component: ActivateAccountSmartComponent,
-    data: { title: 'Activate Account' },
+    children : [
+      {
+        path: 'activate-account/:token',
+        component: ActivateAccountSmartComponent,
+        data: { title: 'Activate Account' },
+      },
+    ],
   },
 ];
 
