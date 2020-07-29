@@ -57,7 +57,7 @@ export class UserService {
 
     return this.apiService.put<IMessage, IResetPasswordRequest>(endpoint, payload).pipe(
       tap(() => {
-        const message = 'The password was reset successfully. Please log back in.';
+        const message = 'The password was reset successfully.';
         return this.notificationService.showSuccess([message]);
       }),
     );
