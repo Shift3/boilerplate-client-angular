@@ -17,7 +17,7 @@ import { ISelectField } from '@models/form/select';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormSelectComponent {
-  public config: IFormField<ISelectField>;
+  public config: IFormField<ISelectField<unknown>>;
   public group: FormGroup;
 
   public get formControl(): AbstractControl {

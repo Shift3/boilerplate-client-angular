@@ -42,10 +42,10 @@ export class ResetPasswordSmartComponent {
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Submit'}),
-    validation: [ MatchFieldValidation.validFieldMatch('new_password', 'confirm_password', 'Password') ],
+    validation: [ MatchFieldValidation.validFieldMatch('newPassword', 'confirmPassword', 'Password') ],
     controls: [
       new FormField<IInputField>({
-        name: 'new_password',
+        name: 'newPassword',
         fieldType: 'input',
         label: 'New Password',
         placeholder: 'Enter the new password',
@@ -53,7 +53,7 @@ export class ResetPasswordSmartComponent {
         validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
-        name: 'confirm_password',
+        name: 'confirmPassword',
         fieldType: 'input',
         label: 'Confirm New Password',
         placeholder: 'Confirm the new password',

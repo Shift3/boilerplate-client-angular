@@ -1,0 +1,7 @@
+<button routerLink="/admin/create-user">Add User</button>
+<ng-container *ngIf="userList">
+  <app-user-table
+    class="route-content"
+    [tableData]="userList"
+  ></app-user-table>
+</ng-container>
