@@ -10,9 +10,19 @@
       <a routerLink="/auth/forgot-password">Forgot Password?</a>
     </p>
   </div>
-  <div>
-    Haven't Registered Yet?
-    <a routerLink="/auth/signup">Sign Up</a>
+  <div class="sign-up-container">
+    <h2 class="card-header">
+      Haven't Registered Yet?
+    </h2>
+    <button
+      id="form-submit-button"
+      class="btn"
+      type="button"
+      mat-raised-button
+      routerLink="/auth/signup"
+    >
+      {{ "Create Account" | uppercase }}
+    </button>
   </div>
 </div>
 
