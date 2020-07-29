@@ -29,15 +29,15 @@ import { UserService } from '@core/services/api/user.service';
 
 @Component({
   template: `
-    <app-reset-password-presentation
+    <app-activate-account-presentation
       [formConfig]="formConfig"
       (emitForm)="propagateForm($event)"
-      (emitSubmit)="resetPassword()"
-    ></app-reset-password-presentation>
+      (emitSubmit)="activateAccount()"
+    ></app-activate-account-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResetPasswordSmartComponent {
+export class ActivateAccountSmartComponent {
   public form: FormGroup;
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
@@ -47,17 +47,17 @@ export class ResetPasswordSmartComponent {
       new FormField<IInputField>({
         name: 'newPassword',
         fieldType: 'input',
-        label: 'New Password',
-        placeholder: 'Enter the new password',
+        label: 'Password',
+        placeholder: 'Enter a new password',
         fieldConfig : new InputField({ inputType: 'password' }),
         validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
         name: 'confirmPassword',
         fieldType: 'input',
-        label: 'Confirm New Password',
+        label: 'Confirm Password',
         placeholder: 'Confirm the new password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig: new InputField({ inputType: 'password' }),
       }),
     ],
   });
@@ -73,10 +73,10 @@ export class ResetPasswordSmartComponent {
     this.form = form;
   }
 
-  public resetPassword(): void {
+  public activateAccount(): void {
     const requestPayload = this.buildPayload();
     const snapshot = this.activatedRoute.snapshot;
-    this.userService.resetPassword(requestPayload, snapshot.params.token).subscribe(() => this.router.navigateByUrl('/auth/login'));
+    this.userService.activateAccount(requestPayload, snapshot.params.token).subscribe(() => this.router.navigateByUrl('/auth/login'));
   }
 
   private buildPayload(): IResetPasswordRequest {

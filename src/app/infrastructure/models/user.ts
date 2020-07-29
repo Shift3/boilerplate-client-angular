@@ -1,8 +1,21 @@
 export interface IUserDTO {
   id: number;
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
+}
+
+export class UserDTO implements IUserDTO  {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+
+  constructor(configOverride?: IUserDTO) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
 }
 
 export interface IForgotPasswordRequest {
@@ -20,16 +33,37 @@ export class ForgotPasswordRequest implements IForgotPasswordRequest {
 }
 
 export interface IResetPasswordRequest {
-  /* tslint:disable:variable-name */
-  new_password: string;
-  confirm_password: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 
 export class ResetPasswordRequest implements IResetPasswordRequest {
-  new_password: string = '';
-  confirm_password: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
 
   constructor(configOverride?: IResetPasswordRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface ICreateUserRequest {
+  email: string;
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+  roleId: number;
+}
+
+export class CreateUserRequest implements ICreateUserRequest {
+  email: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  profilePicture: string = '';
+  roleId: number = 0;
+
+  constructor(configOverride?: ICreateUserRequest) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
