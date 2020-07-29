@@ -5,16 +5,16 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
+import {
+  CreateUserRequest,
+  ICreateUserRequest,
+  IUserDTO,
+} from '@models/user';
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
-  IUserDTO,
-  ICreateUserRequest,
-  CreateUserRequest,
-} from '@models/user';
-import {
-  IFormConfig,
   FormConfig,
   FormField,
+  IFormConfig,
 } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
 import {
@@ -22,10 +22,16 @@ import {
   InputField,
 } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
+import {
+  roleList,
+  RoleType,
+} from '@models/role';
 import { SaveCancelButtonConfig } from '@models/form/button';
+import {
+  ISelectField,
+  SelectField,
+} from '@models/form/select';
 import { UserService } from '@core/services/api/user.service';
-import { ISelectField, SelectField } from '@app/infrastructure/models/form/select';
-import { roleList, RoleType } from '@app/infrastructure/models/role';
 
 @Component({
   template: `
@@ -78,9 +84,9 @@ export class UserDetailSmartComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userService: UserService,
     private formService: FormService,
     private router: Router,
+    private userService: UserService,
   ) {
     this.user = this.activatedRoute.snapshot.data.user;
   }

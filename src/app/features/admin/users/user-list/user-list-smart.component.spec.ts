@@ -1,13 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {
-  HttpClientTestingModule,
-} from '@angular/common/http/testing';
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { UserListPresentationComponent } from './user-list-presentation.component';
-import { UserListSmartComponent } from './user-list-smart.component';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { UserListPresentationComponent } from './user-list-presentation.component';
+import { UserListSmartComponent } from './user-list-smart.component';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')

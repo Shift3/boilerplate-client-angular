@@ -17,9 +17,7 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import {
-  IUserDTO,
-} from '@models/user';
+import { IUserDTO } from '@models/user';
 import { UserService } from '@core/services/api/user.service';
 
 @Component({

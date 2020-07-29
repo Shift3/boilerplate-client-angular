@@ -3,6 +3,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
+
 import { IUserDTO } from '@models/user';
 
 @Component({

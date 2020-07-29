@@ -7,6 +7,7 @@ import { UserDetailPresentationComponent } from './users/user-detail/user-detail
 import { UserListPresentationComponent } from './users/user-list/user-list-presentation.component';
 import { UserListSmartComponent } from './users/user-list/user-list-smart.component';
 import { UserTableComponent } from './users/user-list/user-table/user-table.component';
+
 import { resolverList } from '@core/resolvers';
 
 const routes: Routes = [
@@ -25,7 +26,7 @@ const routes: Routes = [
         data: { title: 'Create User' },
         resolve: {
           user: resolverList.CreateUserResolver,
-      },
+        },
       },
       {
         path: 'user-list',
