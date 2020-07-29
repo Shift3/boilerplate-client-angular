@@ -47,7 +47,10 @@ export class UserService {
     const endpoint = `${this.url}/reset-password/${token}`;
 
     return this.apiService.put<IMessage, IResetPasswordRequest>(endpoint, payload).pipe(
-      tap((response) => this.notificationService.showSuccess([response.message])),
+      tap(() => {
+        const message = 'The password was reset successfully. Please log back in.';
+        return this.notificationService.showSuccess([message]);
+      }),
     );
   }
 
