@@ -89,3 +89,19 @@ html {
   justify-content: center;
   margin-top: 50px;
 }
+
+//#region Cards
+.card {
+  background: $primary;
+  padding: 50px;
+  max-width: 500px;
+  min-width: 500px;
+}
+
+.card-header {
+  color: #C5E6EC;
+  padding: 0;
+  background-color: inherit;
+  border-bottom: initial;
+}
+//#endregion
