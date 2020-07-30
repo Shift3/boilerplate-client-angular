@@ -1,3 +1,4 @@
+@import './assets/styles/overrides';
 @import './assets/styles/variables';
 
 /* You can add global styles to this file, and also import other style files */
@@ -101,6 +102,7 @@ html {
   padding: 50px;
   max-width: 500px;
   min-width: 500px;
+  border: 0;
 }
 
 .card-header {

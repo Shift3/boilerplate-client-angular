@@ -1,19 +1,23 @@
 <div class="login-container">
   <div class="form-container">
     <app-dynamic-form
+      id="login-card"
       [formConfig]="formConfig"
       [formTitle]="formTitle"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="submit()"
     ></app-dynamic-form>
-    <p>
-      <a routerLink="/auth/forgot-password">Forgot Password?</a>
-    </p>
+    <div class="forgot-password-container">
+      <a class="forgot-password-link" routerLink="/auth/forgot-password">Forgot Password?</a>
+    </div>
   </div>
   <div class="sign-up-container">
     <h2 class="card-header">
       Haven't Registered Yet?
     </h2>
+    <div class="instruction">
+      Registering for your account is quick and easy.
+    </div>
     <button
       id="form-submit-button"
       class="btn"
