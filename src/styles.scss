@@ -74,7 +74,7 @@ html {
 #cancel-button {
   color: white;
   background: $primary;
-  border-color: #66BBCD;
+  border-color: $primary-border;
 }
 
 #form-submit-button {
@@ -107,7 +107,7 @@ html {
 }
 
 .card-header {
-  color: #C5E6EC;
+  color: $card-header;
   padding: 0;
   background-color: inherit;
   border-bottom: initial;
