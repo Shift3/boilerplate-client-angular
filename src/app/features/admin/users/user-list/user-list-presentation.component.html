@@ -1,4 +1,6 @@
-<button routerLink="/admin/create-user">Add User</button>
+<div class="row">
+  <button class="btn btn-add" routerLink="/admin/create-user">{{ "Add User" |  uppercase }}</button>
+</div>
 <ng-container *ngIf="userList">
   <app-user-table
     class="route-content"

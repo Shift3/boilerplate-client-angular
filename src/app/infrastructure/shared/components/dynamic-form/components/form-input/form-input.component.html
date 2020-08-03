@@ -1,9 +1,11 @@
-<div [formGroup]="group" >
-  <label [for]="config.label">{{ config.label }}</label>
+<div class="field-container" [formGroup]="group">
+  <label class="field-label" [for]="config.label">{{ config.label }}</label>
   <input
     [type]="config.fieldConfig.inputType"
     [formControlName]="config.name"
     [placeholder]="config.placeholder"
   >
-  {{ formControl.errors | formError }}
+  <span class="field-label">
+    {{ formControl.errors | formError }}
+  </span>
 </div>

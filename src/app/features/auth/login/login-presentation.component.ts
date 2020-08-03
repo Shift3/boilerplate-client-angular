@@ -21,7 +21,7 @@ export class LoginPresentationComponent {
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
-  public formTitle: string = 'Log In';
+  public formTitle: string = 'Member Log In';
 
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);

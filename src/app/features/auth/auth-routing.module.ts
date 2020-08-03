@@ -15,33 +15,39 @@ import { SignUpSmartComponent } from './sign-up/sign-up-smart.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'forgot-password',
-    component: ForgotPasswordSmartComponent,
-    data: { title: 'Forgot Password' },
-  },
-  {
-    path: 'login',
-    component: LoginSmartComponent,
-    data: { title: 'Login' },
-  },
-  {
-    path: 'logout',
-    component: LogoutComponent,
-    data: { title: 'Logged Out' },
-  },
-  {
-    path: 'reset-password/:token',
-    component: ResetPasswordSmartComponent,
-    data: { title: 'Reset Password' },
-  },
-  {
-    path: 'signup',
-    component: SignUpSmartComponent,
-    data: { title: 'Sign Up' },
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordSmartComponent,
+        data: { title: 'Forgot Password' },
+      },
+      {
+        path: 'login',
+        component: LoginSmartComponent,
+        data: { title: 'Login' },
+      },
+      {
+        path: 'logout',
+        component: LogoutComponent,
+        data: { title: 'Logged Out' },
+      },
+      {
+        path: 'reset-password/:token',
+        component: ResetPasswordSmartComponent,
+        data: { title: 'Reset Password' },
+      },
+      {
+        path: 'signup',
+        component: SignUpSmartComponent,
+        data: { title: 'Sign Up' },
+      },
+    ],
   },
 ];
 

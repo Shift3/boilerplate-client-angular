@@ -1,3 +1,6 @@
+@import './assets/styles/overrides';
+@import './assets/styles/variables';
+
 /* You can add global styles to this file, and also import other style files */
 
 body,
@@ -65,4 +68,48 @@ html {
   -webkit-box-shadow: 1px 1px 5px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: 1px 1px 5px 1px #ccc;  /* Firefox 3.5 - 3.6 */
   box-shadow: 1px 1px 5px 1px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  z-index: 1;
 }
+
+#cancel-button {
+  color: white;
+  background: $primary;
+  border-color: $primary-border;
+}
+
+#form-submit-button {
+  background-color: $accent;
+  color: white;
+  border-color: $accent;
+}
+
+#form-submit-button:disabled {
+  background-color: $accent-disabled;
+}
+
+.save-cancel-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.routed-content {
+  padding: 20px;
+}
+
+//#region Cards
+.card {
+  background: $primary;
+  padding: 50px;
+  max-width: 500px;
+  min-width: 500px;
+  border: 0;
+}
+
+.card-header {
+  color: $card-header;
+  padding: 0;
+  background-color: inherit;
+  border-bottom: initial;
+}
+//#endregion
