@@ -10,15 +10,13 @@ import {
 
 @Component({
   selector: 'app-side-navigation',
-  templateUrl: './side-navigation.component.html',
-  styleUrls: ['./side-navigation.component.scss'],
+  template: `
+  <app-side-navigation-presentation
+    [navLinks]="(navLinks)"
+  ></app-side-navigation-presentation>
+`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SideNavigationComponent {
-  public isMenuCollapsed = true;
+export class SideNavigationSmartComponent {
   public navLinks: INavigation[] = navLinkList;
-
-  public trackByLink(index: number, item: INavigation): number {
-    return (item) ? item.id : null;
-  }
 }
