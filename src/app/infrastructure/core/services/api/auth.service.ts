@@ -12,6 +12,7 @@ import {
   ILoginRequest,
   ISessionDTO,
 } from '@models/auth';
+import { AuthStateService } from '../state/auth-state.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,7 @@ export class AuthService {
 
   constructor(
     private apiService: ApiService,
+    private authStateService: AuthStateService,
   ) {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
   }
@@ -32,6 +34,7 @@ export class AuthService {
 
     return this.apiService.post<ISessionDTO, ILoginRequest>(endpoint, payload).pipe(
       tap((response) => localStorage.setItem('token', response.jwt_token)),
+      tap((response) => this.authStateService.setAuth(response.user)),
       tap((response) => this.setToken(response.jwt_token)),
     );
   }
@@ -59,5 +62,6 @@ export class AuthService {
 
   private clearSession(): void {
     localStorage.removeItem('token');
+    this.authStateService.resetAuth();
   }
 }
