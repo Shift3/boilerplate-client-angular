@@ -27,6 +27,7 @@ export class AuthStateService {
   }
 
   public setAuth(user: IUserDTO): void {
+    localStorage.setItem('user', JSON.stringify(user));
     this.auth$.next(user);
   }
 
