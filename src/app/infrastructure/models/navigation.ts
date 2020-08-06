@@ -11,7 +11,8 @@ export class Navigation implements INavigation {
   link: string;
   icon?: string;
 
-  static buildNavLinkList(isAdmin: boolean, navLinks: INavigation[]): INavigation[] {
+  static buildNavLinkList(isAdmin: boolean): INavigation[] {
+    let navLinks: INavigation[] = [];
     if (isAdmin) {
       navLinks = [
         {
