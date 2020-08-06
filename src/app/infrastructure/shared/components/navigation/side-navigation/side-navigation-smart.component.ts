@@ -17,7 +17,6 @@ import {
   selector: 'app-side-navigation',
   template: `
   <app-side-navigation-presentation
-    [isAdmin]="(isAdmin$ | async)"
     [isLoggedInUser]="(isLoggedInUser$ | async)"
     [navLinks]="(navLinks)"
   ></app-side-navigation-presentation>

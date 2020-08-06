@@ -13,7 +13,6 @@ import { INavigation } from '@models/navigation';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopNavigationPresentationComponent {
-  @Input() public isAdmin: boolean = false;
   @Input() public isLoggedInUser: boolean = false;
   @Input() public navLinks: INavigation[];
 

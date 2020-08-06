@@ -17,7 +17,6 @@ import {
   selector: 'app-top-navigation',
   template: `
       <app-top-navigation-presentation
-        [isAdmin]="(isAdmin$ | async)"
         [isLoggedInUser]="(isLoggedInUser$ | async)"
         [navLinks]="(navLinks)"
       ></app-top-navigation-presentation>
