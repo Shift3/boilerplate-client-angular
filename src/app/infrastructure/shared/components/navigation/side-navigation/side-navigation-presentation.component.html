@@ -2,20 +2,23 @@
   <a class="logo navbar-brand" [routerLink]="'/'">
     <img src="assets/img/logo.png" alt="Shift3 Technologies">
   </a>
-  <div class="link-container">
-    <ng-container *ngIf="navLinks?.length">
-      <ul class="navbar-nav">
-        <button
-          *ngFor="let link of navLinks; trackBy: trackByLink"
-          class="nav-link"
-          [routerLink]="link.link"
-          (click)="isMenuCollapsed = true"
-        >
-          <span [class]="link.icon"></span>
-          {{ link.label }}
-        </button>
-      </ul>
-    </ng-container>
-    <app-settings></app-settings>
-  </div>
+  <ng-container *ngIf="isLoggedInUser; else loggedOut">
+    <div class="link-container">
+      <ng-container *ngIf="navLinks?.length">
+        <ul class="navbar-nav">
+          <button
+            *ngFor="let link of navLinks; trackBy: trackByLink"
+            class="nav-link"
+            [routerLink]="link.link"
+            (click)="isMenuCollapsed = true"
+          >
+            <span [class]="link.icon"></span>
+            {{ link.label }}
+          </button>
+        </ul>
+      </ng-container>
+      <app-settings></app-settings>
+    </div>
+  </ng-container>
+  <ng-template #loggedOut>Log In</ng-template>
 </nav>

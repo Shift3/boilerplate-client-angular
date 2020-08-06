@@ -2,27 +2,40 @@
   <a class="navbar-brand" [routerLink]="'/'">
     <img src="assets/img/logo.png" alt="Shift3 Technologies">
   </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    (click)="isMenuCollapsed = !isMenuCollapsed"
-  >
-    &#9776;
-  </button>
-  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
-    <ng-container *ngIf="navLinks?.length">
-      <ul class="navbar-nav">
-        <button
-          *ngFor="let link of navLinks; trackBy: trackByLink"
-          class="nav-link"
-          [routerLink]="link.link"
-          (click)="isMenuCollapsed = true"
-        >
-          <span [class]="link.icon"></span>
-          {{ link.label }}
-        </button>
-      </ul>
-    </ng-container>
-    <app-settings></app-settings>
-  </div>
+  <ng-container *ngIf="isLoggedInUser; else loggedOut">
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isMenuCollapsed = !isMenuCollapsed"
+    >
+      &#9776;
+    </button>
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ng-container *ngIf="navLinks?.length">
+        <ul class="navbar-nav">
+          <button
+            *ngFor="let link of navLinks; trackBy: trackByLink"
+            class="nav-link"
+            [routerLink]="link.link"
+            (click)="isMenuCollapsed = true"
+          >
+            <span [class]="link.icon"></span>
+            {{ link.label }}
+          </button>
+        </ul>
+      </ng-container>
+      <app-settings></app-settings>
+    </div>
+  </ng-container>
+  <ng-template #loggedOut>
+    <button
+      id="form-submit-button"
+      class="btn"
+      type="button"
+      mat-raised-button
+      routerLink="/auth/login"
+    >
+      {{ "Login/Create Account" | uppercase }}
+    </button>
+  </ng-template>
 </nav>
