@@ -10,7 +10,7 @@ import { tap } from 'rxjs/operators';
 import { AuthStateService } from '@core/services/state/auth-state.service';
 import {
   INavigation,
-  navLinkList,
+  Navigation,
 } from '@models/navigation';
 
 @Component({
@@ -25,9 +25,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideNavigationSmartComponent implements OnInit {
-  public navLinks: INavigation[] = navLinkList;
   public isAdmin$: Observable<boolean>;
   public isLoggedInUser$: Observable<boolean>;
+  public navLinks: INavigation[] = [];
 
   constructor(
     private authStateService: AuthStateService,

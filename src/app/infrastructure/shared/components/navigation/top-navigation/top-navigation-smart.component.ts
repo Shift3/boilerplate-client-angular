@@ -4,11 +4,14 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { INavigation, navLinkList } from '@models/navigation';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { AuthStateService } from '@core/services/state/auth-state.service';
+import {
+  INavigation,
+  Navigation,
+} from '@models/navigation';
 
 @Component({
   selector: 'app-top-navigation',
@@ -22,9 +25,9 @@ import { AuthStateService } from '@core/services/state/auth-state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopNavigationSmartComponent implements OnInit {
-  public navLinks: INavigation[] = navLinkList;
   public isAdmin$: Observable<boolean>;
   public isLoggedInUser$: Observable<boolean>;
+  public navLinks: INavigation[] = [];
 
   constructor(
     private authStateService: AuthStateService,
