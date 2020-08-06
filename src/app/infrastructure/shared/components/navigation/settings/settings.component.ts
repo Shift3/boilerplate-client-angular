@@ -16,7 +16,7 @@ import {
   INavigation,
   profileLinkList,
 } from '@models/navigation';
-import { NavbarStateService } from '@core/services/navbar-state.service';
+import { NavbarStateService } from '@core/services/state/navbar-state.service';
 
 @Component({
   selector: 'app-settings',
