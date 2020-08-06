@@ -12,6 +12,10 @@ import {
 } from '@models/user';
 import { IMessage } from '@app/infrastructure/models/message';
 import { NotificationService } from '../notification.service';
+import {
+  ISignupDTO,
+  ISignupRequest,
+} from '@models/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +29,12 @@ export class UserService {
     private notificationService: NotificationService,
   ) {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
+  }
+
+  public signUp(payload: ISignupRequest): Observable<ISignupDTO> {
+    const endpoint = `${this.url}/signup/`;
+
+    return this.apiService.post<ISignupDTO, ISignupRequest>(endpoint, payload);
   }
 
   public forgotPassword(payload: IForgotPasswordRequest): Observable<IMessage> {
