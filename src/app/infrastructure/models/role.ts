@@ -1,6 +1,6 @@
 import { ISelectOptions } from './form/select';
 
-export type RoleType = 'Admin' | 'Editor' | 'User' | 'Super Administrator';
+export type RoleType = 'Admin' | 'Editor' | 'User' | 'Super Administrator' | '';
 
 export const roleList: ISelectOptions<RoleType>[] = [
   {
