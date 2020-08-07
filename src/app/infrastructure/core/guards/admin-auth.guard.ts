@@ -12,6 +12,7 @@ import {
 } from 'rxjs/operators';
 
 import { AuthStateService } from '../services/state/auth-state.service';
+import { NotificationService } from '../services/notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ import { AuthStateService } from '../services/state/auth-state.service';
 export class AdminAuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private authStateService: AuthStateService,
+    private notificationService: NotificationService,
     private router: Router,
   ) { }
 
@@ -27,7 +29,9 @@ export class AdminAuthGuard implements CanActivate, CanActivateChild {
       take(1),
       tap(isAdmin => {
         if (!isAdmin) {
-          this.router.navigateByUrl('/auth');
+          const message = 'You cannot view the requested page. Returning to the dashboard.';
+          this.notificationService.showError([message]);
+          this.router.navigateByUrl('/');
         }
       }),
     );

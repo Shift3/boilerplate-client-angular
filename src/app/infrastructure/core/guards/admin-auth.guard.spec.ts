@@ -11,6 +11,7 @@ import { AdminAuthGuard } from './admin-auth.guard';
 import { AuthStateService } from '../services/state/auth-state.service';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { NotificationService } from '../services/notification.service';
 import {
   IUserDTO,
   UserDTO,
@@ -22,12 +23,15 @@ import {
     let guard: AdminAuthGuard;
     let authState: AuthStateService;
     let injector: TestBed;
+    const notificationMock = { showError: jasmine.createSpy('showError') };
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
-          AdminAuthGuard, { provide: Router, useValue: routerMock },
+          AdminAuthGuard,
+          { provide: Router, useValue: routerMock },
+          { provide: NotificationService, useValue: notificationMock },
           AuthStateService,
         ],
         imports: [HttpClientTestingModule],
@@ -51,9 +55,33 @@ import {
         });
       });
 
-      it(`should redirect to the '/auth' route when there is no user token`, () => {
-        guard.canActivate().subscribe();
-        expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
+      it(`should redirect to the root '/' route when there is no user token`, () => {
+        guard.canActivate().subscribe(() => {
+          expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/');
+        });
+      });
+
+      it(`should show a notification on failing the guard`, () => {
+        const message = ['You cannot view the requested page. Returning to the dashboard.'];
+        guard.canActivate().subscribe(() => {
+          expect(notificationMock.showError).toHaveBeenCalledWith(message);
+        });
+      });
+
+      it(`should redirect to the root '/' route when navigation fails due to non-admin role.`, () => {
+        const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+          firstName: 'Test',
+          lastName: 'Tester',
+          role: {
+            id: 2,
+            roleName: 'User',
+          },
+        }));
+
+        authState.auth$ = mockUser$;
+        guard.canActivate().subscribe(() => {
+          expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/');
+        });
       });
 
       it('should return true for an Admin', () => {
