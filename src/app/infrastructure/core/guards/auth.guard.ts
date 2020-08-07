@@ -7,12 +7,11 @@ import {
 
 import { Observable } from 'rxjs';
 import {
-  map,
   take,
+  tap,
 } from 'rxjs/operators';
 
 import { AuthStateService } from '../services/state/auth-state.service';
-import { RoleDTO } from '@models/role';
 
 @Injectable({
   providedIn: 'root',
@@ -24,14 +23,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ) { }
 
   public canActivate(): Observable<boolean> {
-    return this.authStateService.getAuth().pipe(
+    return this.authStateService.isLoggedInUser().pipe(
       take(1),
-      map((user) => {
-        if (RoleDTO.isRoleType(user?.role?.roleName)) {
-          return true;
+      tap(isLoggedInUser => {
+        if (!isLoggedInUser) {
+          this.router.navigateByUrl('/auth');
         }
-        this.router.navigateByUrl('/auth');
-        return false;
       }),
     );
   }

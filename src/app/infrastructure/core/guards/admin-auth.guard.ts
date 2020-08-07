@@ -7,12 +7,11 @@ import {
 
 import { Observable } from 'rxjs';
 import {
-  map,
   take,
+  tap,
 } from 'rxjs/operators';
 
 import { AuthStateService } from '../services/state/auth-state.service';
-import { RoleDTO } from '@models/role';
 
 @Injectable({
   providedIn: 'root',
@@ -24,14 +23,12 @@ export class AdminAuthGuard implements CanActivate, CanActivateChild {
   ) { }
 
   public canActivate(): Observable<boolean> {
-    return this.authStateService.getAuth().pipe(
+    return this.authStateService.isAdmin().pipe(
       take(1),
-      map((user) => {
-        if (RoleDTO.isAdminRoleType(user?.role?.roleName)) {
-          return true;
+      tap(isAdmin => {
+        if (!isAdmin) {
+          this.router.navigateByUrl('/auth');
         }
-        this.router.navigateByUrl('/auth');
-        return false;
       }),
     );
   }
