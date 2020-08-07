@@ -5,15 +5,22 @@ import {
   getTestBed,
 } from '@angular/core/testing';
 
+import { BehaviorSubject } from 'rxjs';
+
 import { AuthGuard } from './auth.guard';
 import { AuthStateService } from '../services/state/auth-state.service';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import {
+  IUserDTO,
+  UserDTO,
+} from '@models/user';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] AuthGuard', () => {
     let guard: AuthGuard;
+    let authState: AuthStateService;
     let injector: TestBed;
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
 
@@ -25,6 +32,7 @@ import { Logger } from '@utils/logger';
         ],
         imports: [HttpClientTestingModule],
       });
+      authState = TestBed.inject(AuthStateService);
       injector = getTestBed();
       guard = injector.inject(AuthGuard);
     });
@@ -46,6 +54,22 @@ import { Logger } from '@utils/logger';
       it(`should redirect to the '/auth' route when there is no user token`, () => {
         guard.canActivate().subscribe();
         expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
+      });
+
+      it('should return true for any logged in user', () => {
+        const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+          firstName: 'Test',
+          lastName: 'Tester',
+          role: {
+            id: 2,
+            roleName: 'User',
+          },
+        }));
+
+        authState.auth$ = mockUser$;
+        guard.canActivate().subscribe(response => {
+          expect(response).toEqual(true);
+        });
       });
     });
 
