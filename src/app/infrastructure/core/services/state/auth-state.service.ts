@@ -16,7 +16,7 @@ import { IUserDTO } from '@models/user';
   providedIn: 'root',
 })
 export class AuthStateService {
-  private auth$ = new BehaviorSubject<IUserDTO>(JSON.parse(localStorage.getItem('user')));
+  public auth$ = new BehaviorSubject<IUserDTO>(JSON.parse(localStorage.getItem('user')));
 
   public getAuth(): Observable<IUserDTO> {
     return this.auth$.asObservable();
