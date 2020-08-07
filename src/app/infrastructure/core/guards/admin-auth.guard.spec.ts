@@ -23,16 +23,16 @@ import {
     let guard: AdminAuthGuard;
     let authState: AuthStateService;
     let injector: TestBed;
-    const notificationMock = { showError: jasmine.createSpy('showError') };
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
+    const notificationMock = { showError: jasmine.createSpy('showError') };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
           AdminAuthGuard,
-          { provide: Router, useValue: routerMock },
-          { provide: NotificationService, useValue: notificationMock },
           AuthStateService,
+          { provide: NotificationService, useValue: notificationMock },
+          { provide: Router, useValue: routerMock },
         ],
         imports: [HttpClientTestingModule],
       });
