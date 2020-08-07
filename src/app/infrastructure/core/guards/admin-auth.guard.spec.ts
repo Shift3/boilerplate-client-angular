@@ -63,6 +63,7 @@ import {
 
       it(`should show a notification on failing the guard`, () => {
         const message = ['You cannot view the requested page. Returning to the dashboard.'];
+
         guard.canActivate().subscribe(() => {
           expect(notificationMock.showError).toHaveBeenCalledWith(message);
         });
@@ -136,6 +137,7 @@ import {
     describe('canActivateChild()', () => {
       it('should exist', () => {
         const spy = spyOn(guard, 'canActivateChild');
+
         expect(spy).toBeTruthy();
       });
 

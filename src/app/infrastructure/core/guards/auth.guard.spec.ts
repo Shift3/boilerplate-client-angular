@@ -56,12 +56,14 @@ import {
       });
 
       it(`should redirect to the '/auth' route when there is no user token`, () => {
-        guard.canActivate().subscribe();
-        expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
+        guard.canActivate().subscribe(() => {
+          expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
+        });
       });
 
       it(`should show a notification on failing the guard`, () => {
         const message = ['You cannot view the requested page. Returning to the login page.'];
+
         guard.canActivate().subscribe(() => {
           expect(notificationMock.showError).toHaveBeenCalledWith(message);
         });
@@ -102,6 +104,7 @@ import {
       it('should also call canActivate() when calling canActivateChild()', () => {
         const canActivateChildSpy = spyOn(guard, 'canActivateChild');
         const canActivateSpy = spyOn(guard, 'canActivate');
+
         guard.canActivateChild();
         canActivateChildSpy.and.returnValue(guard.canActivate());
         expect(canActivateChildSpy).toHaveBeenCalled();

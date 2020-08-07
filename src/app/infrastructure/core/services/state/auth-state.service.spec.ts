@@ -33,15 +33,14 @@ import {
           firstName: 'Test',
           lastName: 'Tester',
         }));
-        service.auth$ = mockUser$;
         const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
         }));
         const expectedValue = testUser$.asObservable();
 
-        const response = service.getAuth();
-        expect(response).toEqual(expectedValue);
+        service.auth$ = mockUser$;
+        expect(service.getAuth()).toEqual(expectedValue);
       });
     });
 
@@ -55,6 +54,7 @@ import {
           firstName: 'Test',
           lastName: 'Tester',
         });
+
         service.setAuth(mockUser);
         expect(service.auth$.getValue()).toEqual(expectedValue);
       });
@@ -87,8 +87,8 @@ import {
           firstName: 'Test',
           lastName: 'Tester',
         }));
-        service.auth$ = mockUser$;
 
+        service.auth$ = mockUser$;
         service.resetAuth();
         expect(service.auth$.getValue()).toEqual(null);
       });
