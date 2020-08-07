@@ -5,14 +5,14 @@ import {
   Router,
 } from '@angular/router';
 
+import { Observable } from 'rxjs';
 import {
-  Observable,
-  of as observableOf,
-} from 'rxjs';
+  map,
+  take,
+} from 'rxjs/operators';
 
 import { AuthStateService } from '../services/state/auth-state.service';
 import { RoleDTO } from '@models/role';
-import { IUserDTO } from '@models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -24,13 +24,16 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ) { }
 
   public canActivate(): Observable<boolean> {
-    const user: IUserDTO = this.authStateService.getAuthValue();
-    if (RoleDTO.isRoleType(user?.role?.roleName)) {
-      return observableOf(true);
-    }
-
-    this.router.navigateByUrl('/auth');
-    return observableOf(false);
+    return this.authStateService.getAuth().pipe(
+      take(1),
+      map((user) => {
+        if (RoleDTO.isRoleType(user?.role?.roleName)) {
+          return true;
+        }
+        this.router.navigateByUrl('/auth');
+        return false;
+      }),
+    );
   }
 
   public canActivateChild(): Observable<boolean> {
