@@ -22,10 +22,6 @@ export class AuthStateService {
     return this.auth$.asObservable();
   }
 
-  public getAuthValue(): IUserDTO {
-    return this.auth$.getValue();
-  }
-
   public setAuth(user: IUserDTO): void {
     localStorage.setItem('user', JSON.stringify(user));
     this.auth$.next(user);
