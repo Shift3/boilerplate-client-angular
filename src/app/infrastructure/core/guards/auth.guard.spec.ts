@@ -99,7 +99,7 @@ import {
         expect(spy).toBeTruthy();
       });
 
-      it('should call canActivate()', () => {
+      it('should also call canActivate() when calling canActivateChild()', () => {
         const canActivateChildSpy = spyOn(guard, 'canActivateChild');
         const canActivateSpy = spyOn(guard, 'canActivate');
         guard.canActivateChild();
