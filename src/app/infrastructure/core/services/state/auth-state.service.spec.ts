@@ -45,6 +45,55 @@ import {
       });
     });
 
+    describe('setAuth()', () => {
+      it('should set the emitted value to the user param', () => {
+        const mockUser = new UserDTO({
+          firstName: 'Test',
+          lastName: 'Tester',
+        });
+        const expectedValue = new UserDTO({
+          firstName: 'Test',
+          lastName: 'Tester',
+        });
+        service.setAuth(mockUser);
+        expect(service.auth$.getValue()).toEqual(expectedValue);
+      });
+
+      it('should set user value in localStorage to the user param', () => {
+        const mockUser = new UserDTO({
+          firstName: 'Test',
+          lastName: 'Tester',
+        });
+        const expectedValue = {
+          id: 0,
+          email: '',
+          firstName: 'Test',
+          lastName: 'Tester',
+          profilePicture: null,
+          role: {
+            id: 0,
+            roleName: '',
+          },
+        };
+        service.setAuth(mockUser);
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        expect(storedUser).toEqual(expectedValue);
+      });
+    });
+
+    describe('resetAuth()', () => {
+      it('should set the emitted value of auth$ to null', () => {
+        const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+          firstName: 'Test',
+          lastName: 'Tester',
+        }));
+        service.auth$ = mockUser$;
+
+        service.resetAuth();
+        expect(service.auth$.getValue()).toEqual(null);
+      });
+    });
+
     describe('isAdmin()', () => {
       it(`should emit false when there is no user session`, () => {
         service.isAdmin().subscribe((response) => {
