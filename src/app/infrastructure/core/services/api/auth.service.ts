@@ -62,6 +62,7 @@ export class AuthService {
 
   private clearSession(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.authStateService.resetAuth();
   }
 }
