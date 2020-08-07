@@ -28,14 +28,16 @@
     </div>
   </ng-container>
   <ng-template #loggedOut>
-    <button
-      id="form-submit-button"
-      class="btn"
-      type="button"
-      mat-raised-button
-      routerLink="/auth/login"
-    >
-      {{ "Login/Create Account" | uppercase }}
-    </button>
+    <div class="login-button-container">
+      <button
+        id="form-submit-button"
+        class="btn"
+        type="button"
+        mat-raised-button
+        routerLink="/auth/login"
+      >
+        {{ "Login/Create Account" | uppercase }}
+      </button>
+    </div>
   </ng-template>
 </nav>
