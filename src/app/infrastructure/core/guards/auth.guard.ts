@@ -12,6 +12,7 @@ import {
 } from 'rxjs/operators';
 
 import { AuthStateService } from '../services/state/auth-state.service';
+import { NotificationService } from '../services/notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ import { AuthStateService } from '../services/state/auth-state.service';
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private authStateService: AuthStateService,
+    private notificationService: NotificationService,
     private router: Router,
   ) { }
 
@@ -27,6 +29,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       take(1),
       tap(isLoggedInUser => {
         if (!isLoggedInUser) {
+          const message = 'You cannot view the requested page. Returning to the login page.';
+          this.notificationService.showError([message]);
           this.router.navigateByUrl('/auth');
         }
       }),

@@ -11,6 +11,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthStateService } from '../services/state/auth-state.service';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { NotificationService } from '../services/notification.service';
 import {
   IUserDTO,
   UserDTO,
@@ -22,13 +23,16 @@ import {
     let guard: AuthGuard;
     let authState: AuthStateService;
     let injector: TestBed;
+    const notificationMock = { showError: jasmine.createSpy('showError') };
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
-          AuthGuard, { provide: Router, useValue: routerMock },
+          AuthGuard,
           AuthStateService,
+          { provide: NotificationService, useValue: notificationMock },
+          { provide: Router, useValue: routerMock },
         ],
         imports: [HttpClientTestingModule],
       });
@@ -54,6 +58,22 @@ import {
       it(`should redirect to the '/auth' route when there is no user token`, () => {
         guard.canActivate().subscribe();
         expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
+      });
+
+      it(`should show a notification on failing the guard`, () => {
+        const message = ['You cannot view the requested page. Returning to the login page.'];
+        guard.canActivate().subscribe(() => {
+          expect(notificationMock.showError).toHaveBeenCalledWith(message);
+        });
+      });
+
+      it(`should redirect to the '/auth' route when navigation fails due to invalid user.`, () => {
+        const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
+
+        authState.auth$ = mockUser$;
+        guard.canActivate().subscribe(() => {
+          expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
+        });
       });
 
       it('should return true for any logged in user', () => {
