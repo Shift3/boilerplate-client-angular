@@ -5,10 +5,20 @@ import { AuthGuard } from '@app/infrastructure/core/guards/auth.guard';
 import { AdminAuthGuard } from '@app/infrastructure/core/guards/admin-auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+// TODO: See if this can be tied into existing logic while still being static for compilation.
+/**
+ * This variable sets the default route when navigating to the bare app route.
+ * It does not handle auth.
+ */
+const role = JSON.parse(localStorage.getItem('user'))?.role?.roleName;
+const redirectRoute = (role === 'Admin' || role === 'Super Administrator')
+  ? '/admin'
+  : '/content';
+
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: redirectRoute,
     pathMatch: 'full',
   },
   {
