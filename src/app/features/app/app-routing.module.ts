@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from '@/core/guards/auth.guard';
-import { AdminAuthGuard } from '@/core/guards/admin-auth.guard';
+import { AuthGuard } from '@core/guards/auth.guard';
+import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 // TODO: See if this can be tied into existing logic while still being static for compilation.
