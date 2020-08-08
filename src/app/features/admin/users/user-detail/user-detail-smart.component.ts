@@ -103,6 +103,11 @@ export class UserDetailSmartComponent {
     this.userService.createUser(requestPayload).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
   }
 
+  public updateUser(): void {
+    const requestPayload = this.buildPayload();
+    this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
+  }
+
   private buildPayload(): IChangeUserRequest {
     const payload = new ChangeUserRequest();
     return this.formService.buildRequestPayload(this.form, payload);
