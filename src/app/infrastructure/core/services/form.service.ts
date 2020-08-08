@@ -26,7 +26,9 @@ export class FormService {
   public buildForm(formConfig: IFormConfig): FormGroup {
     const form = this.fb.group({});
 
-    formConfig.controls.forEach(formField => this.addFormControl(form, formField.name, formField.validation, formField.disabled));
+    formConfig.controls.forEach(formField => {
+      return this.addFormControl(form, formField.name, formField.value.toString(), formField.validation, formField.disabled);
+    });
     form.setValidators(Validators.compose([...formConfig.validation]));
 
     return form;
@@ -35,13 +37,13 @@ export class FormService {
   /**
    * Will add a `FormControl` to the provided `FormGroup`.
    */
-  public addFormControl(form: FormGroup, fieldName: string, validators: ValidatorFn[] = [], disabled: boolean = false): void {
+  public addFormControl(form: FormGroup, fieldName: string, fieldValue: string = '', validators: ValidatorFn[] = [], disabled: boolean = false): void {
     // Prevent collisions when creating form values.
     if (form.contains(fieldName)) {
       form.removeControl(fieldName);
     }
 
-    return form.addControl(fieldName, new FormControl({ value: '', disabled }, Validators.compose([...validators])));
+    return form.addControl(fieldName, new FormControl({ value: fieldValue, disabled }, Validators.compose([...validators])));
   }
 
   /**
