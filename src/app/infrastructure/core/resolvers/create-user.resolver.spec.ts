@@ -7,6 +7,7 @@ import {
 import { CreateUserResolver } from './create-user.resolver';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { UserDTO } from '@app/infrastructure/models/user';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
@@ -31,6 +32,13 @@ import { Logger } from '@utils/logger';
       it('should exist', () => {
         const spy = spyOn(resolver, 'resolve');
         expect(spy).toBeTruthy();
+      });
+
+      it('should resolve a new instance of the user object', () => {
+        const expectedValue = new UserDTO();
+        resolver.resolve().subscribe(response => {
+          expect(response).toEqual(expectedValue);
+        });
       });
     });
   });

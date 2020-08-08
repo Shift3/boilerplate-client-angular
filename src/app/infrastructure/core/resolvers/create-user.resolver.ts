@@ -16,7 +16,7 @@ import { IUserDTO, UserDTO } from '@models/user';
   providedIn: 'root',
 })
 export class CreateUserResolver implements Resolve<IUserDTO> {
-    resolve(route: ActivatedRouteSnapshot, stateSnap: RouterStateSnapshot): Observable<IUserDTO> {
+    resolve(): Observable<IUserDTO> {
         return observableOf(new UserDTO());
     }
 }
