@@ -41,7 +41,7 @@ import { UserService } from '@core/services/api/user.service';
       [user]="user"
       [formConfig]="formConfig"
       (emitForm)="propagateForm($event)"
-      (emitSubmit)="createUser()"
+      (emitSubmit)="updateOrCreateUser()"
     ></app-user-detail-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
