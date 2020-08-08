@@ -98,6 +98,10 @@ export class UserDetailSmartComponent {
     this.form = form;
   }
 
+  public updateOrCreateUser(): void {
+    return (this.user.id) ? this.updateUser() : this.createUser();
+  }
+
   public createUser(): void {
     const requestPayload = this.buildPayload();
     this.userService.createUser(requestPayload).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
