@@ -29,6 +29,14 @@ const routes: Routes = [
         },
       },
       {
+        path: 'update-user/:id',
+        component: UserDetailSmartComponent,
+        data: { title: 'Update User' },
+        resolve: {
+          user: resolverList.UpdateUserResolver,
+        },
+      },
+      {
         path: 'user-list',
         component: UserListSmartComponent,
         data: { title: 'User List' },
