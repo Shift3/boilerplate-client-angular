@@ -92,6 +92,18 @@ export class UserService {
     );
   }
 
+
+  public updateUser(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
+    const endpoint = `${this.url}/${userId}`;
+    payload.roleId = Number(payload.roleId);
+
+    return this.apiService.put<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
+      tap(() => {
+        const message = `User updated.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
   /**
    * Local implementation
    */
