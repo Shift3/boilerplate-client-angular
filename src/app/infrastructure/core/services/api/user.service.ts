@@ -4,7 +4,10 @@ import {
   Observable,
   of as observableOf,
 } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {
+  map,
+  tap,
+} from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 import { environment } from '@env/environment';
@@ -92,6 +95,21 @@ export class UserService {
     );
   }
 
+  /**
+   * TEMPORARY implementation until API provides an endpoint.
+   */
+  public findUser(id: number): Observable<IUserDTO> {
+    return this.getUserList().pipe(
+      map((userList) => {
+        const foundUser = userList.find((user) => user.id === Number(id));
+        if (foundUser) {
+          return foundUser;
+        } else {
+          throw(new Error('User not found.'));
+        }
+      }),
+    );
+  }
 
   public updateUser(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
     const endpoint = `${this.url}/${userId}`;
