@@ -18,10 +18,10 @@
       <td>{{ item.activatedAt | date }}</td>
       <td>
         <button class="btn" routerLink="/admin/update-user/{{ item.id }}">
-          Edit
+          <span class="fa fa-edit"></span>
         </button>
         <button class="btn" (click)="deleteUser(item)">
-          Delete
+          <span class="fa fa-trash"></span>
         </button>
       </td>
     </tr>
