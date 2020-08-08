@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
@@ -45,42 +46,9 @@ import { UserService } from '@core/services/api/user.service';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserDetailSmartComponent {
+export class UserDetailSmartComponent implements OnInit {
   public form: FormGroup;
-  public formConfig: IFormConfig = new FormConfig({
-    formName: 'form',
-    submit: new SaveCancelButtonConfig({save: 'Create'}),
-    controls: [
-      new FormField<IInputField>({
-        name: 'firstName',
-        fieldType: 'input',
-        label: 'First Name',
-        fieldConfig : new InputField(),
-        validation: [ RequiredValidation.required('First Name') ],
-      }),
-      new FormField<IInputField>({
-        name: 'lastName',
-        fieldType: 'input',
-        label: 'Last Name',
-        fieldConfig : new InputField(),
-        validation: [ RequiredValidation.required('Last Name') ],
-      }),
-      new FormField<IInputField>({
-        name: 'email',
-        fieldType: 'input',
-        label: 'Email',
-        fieldConfig : new InputField({ inputType: 'email' }),
-        validation: [ EmailValidation.validEmail(true) ],
-      }),
-      new FormField<ISelectField<RoleType>>({
-        name: 'roleId',
-        fieldType: 'select',
-        label: 'Role',
-        fieldConfig : new SelectField({ options: roleList }),
-        validation: [ RequiredValidation.required('Role') ],
-      }),
-    ],
-  });
+  public formConfig: IFormConfig = new FormConfig();
   public formTitle: string = '';
   public user: IUserDTO;
 
@@ -92,6 +60,10 @@ export class UserDetailSmartComponent {
   ) {
     this.formTitle = this.activatedRoute.snapshot.data.title;
     this.user = this.activatedRoute.snapshot.data.user;
+  }
+
+  public ngOnInit(): void {
+    this.formConfig = this.buildFormConfig();
   }
 
   public propagateForm(form: FormGroup): void {
