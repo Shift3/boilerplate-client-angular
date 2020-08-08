@@ -6,8 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 import {
-  CreateUserRequest,
-  ICreateUserRequest,
+  ChangeUserRequest,
+  IChangeUserRequest,
   IUserDTO,
 } from '@models/user';
 import { EmailValidation } from '@utils/validation/email-validation';
@@ -100,8 +100,8 @@ export class UserDetailSmartComponent {
     this.userService.createUser(requestPayload).subscribe((response) => this.router.navigateByUrl('/admin/user-list'));
   }
 
-  private buildPayload(): ICreateUserRequest {
-    const payload = new CreateUserRequest();
+  private buildPayload(): IChangeUserRequest {
+    const payload = new ChangeUserRequest();
     return this.formService.buildRequestPayload(this.form, payload);
   }
 }

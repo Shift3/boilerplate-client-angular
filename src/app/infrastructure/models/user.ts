@@ -48,7 +48,7 @@ export class ResetPasswordRequest implements IResetPasswordRequest {
   }
 }
 
-export interface ICreateUserRequest {
+export interface IChangeUserRequest {
   email: string;
   firstName: string;
   lastName: string;
@@ -56,14 +56,14 @@ export interface ICreateUserRequest {
   roleId: number;
 }
 
-export class CreateUserRequest implements ICreateUserRequest {
+export class ChangeUserRequest implements IChangeUserRequest {
   email: string = '';
   firstName: string = '';
   lastName: string = '';
   profilePicture: string = '';
   roleId: number = 0;
 
-  constructor(configOverride?: ICreateUserRequest) {
+  constructor(configOverride?: IChangeUserRequest) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
