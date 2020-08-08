@@ -6,6 +6,7 @@
       <th scope="col">Email</th>
       <th scope="col">Role</th>
       <th scope="col">Activated</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,11 @@
       <td>{{ item.email }}</td>
       <td>{{ item.role.roleName }}</td>
       <td>{{ item.activatedAt | date }}</td>
+      <td>
+        <button class="btn" routerLink="/admin/update-user/{{ item.id }}">
+          Edit
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
