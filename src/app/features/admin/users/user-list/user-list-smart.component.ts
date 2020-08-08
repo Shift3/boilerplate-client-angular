@@ -30,6 +30,7 @@ import { UserService } from '@core/services/api/user.service';
   template: `
     <app-user-list-presentation
       [userList]="(userList$ | async)"
+      (emitDelete)="openDeleteModal($event)"
     ></app-user-list-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
