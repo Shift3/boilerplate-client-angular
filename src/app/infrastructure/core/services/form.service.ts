@@ -37,7 +37,13 @@ export class FormService {
   /**
    * Will add a `FormControl` to the provided `FormGroup`.
    */
-  public addFormControl(form: FormGroup, fieldName: string, fieldValue: string = '', validators: ValidatorFn[] = [], disabled: boolean = false): void {
+  public addFormControl(
+    form: FormGroup,
+    fieldName: string,
+    fieldValue: string = '',
+    validators: ValidatorFn[] = [],
+    disabled: boolean = false,
+  ): void {
     // Prevent collisions when creating form values.
     if (form.contains(fieldName)) {
       form.removeControl(fieldName);
@@ -53,10 +59,10 @@ export class FormService {
   public buildRequestPayload<T>(form: FormGroup, requestPayload: T): T {
     for (const property in requestPayload) {
       if (requestPayload.hasOwnProperty(property)) {
-            if (form.controls[property] && form.controls[property].value) {
-                requestPayload[property] = form.controls[property].value;
-            }
+        if (form.controls[property] && form.controls[property].value) {
+          requestPayload[property] = form.controls[property].value;
         }
+      }
     }
 
     return requestPayload;
