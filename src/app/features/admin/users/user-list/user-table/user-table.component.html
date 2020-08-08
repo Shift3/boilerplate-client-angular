@@ -20,6 +20,9 @@
         <button class="btn" routerLink="/admin/update-user/{{ item.id }}">
           Edit
         </button>
+        <button class="btn" (click)="deleteUser(item)">
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>
