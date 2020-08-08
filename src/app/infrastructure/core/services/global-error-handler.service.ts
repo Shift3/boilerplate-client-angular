@@ -13,6 +13,7 @@ import {
     ISentryConfig,
     SentryConfig,
 } from '@models/error';
+import { NotificationService } from './notification.service';
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
@@ -26,6 +27,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     sentryConfig: ISentryConfig = new SentryConfig(),
   ): void {
     const errorService = this.injector.get(ErrorService);
+    const notifier = this.injector.get(NotificationService);
     const sentryErrorHandler = this.injector.get(SentryErrorHandlerService);
 
     let errorMessage: string[] | string;
@@ -58,6 +60,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       if (typeof errorMessage === 'string') {
         errorMessage = this.convertStringMessageToList(errorMessage);
       }
+      notifier.showError(errorMessage);
       if (sentryConfig.sendToSentry) {
         this.logError(sentryErrorHandler, error, sentryConfig, errorMessage);
       }
@@ -69,6 +72,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       if (typeof errorMessage === 'string') {
         errorMessage = this.convertStringMessageToList(errorMessage);
       }
+      notifier.showError(errorMessage);
       this.logError(sentryErrorHandler, error, sentryConfig, errorMessage);
     }
   }
