@@ -57,4 +57,8 @@ export class UserListSmartComponent implements OnInit {
       }),
     );
   }
+
+  private deleteUser(user: IUserDTO): void {
+    this.userService.deleteUser(user).subscribe(() => this.emitGetUserList.emit());
+  }
 }
