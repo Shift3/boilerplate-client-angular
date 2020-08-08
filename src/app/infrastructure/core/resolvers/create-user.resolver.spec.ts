@@ -7,7 +7,7 @@ import {
 import { CreateUserResolver } from './create-user.resolver';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
-import { UserDTO } from '@app/infrastructure/models/user';
+import { UserDTO } from '@models/user';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
@@ -25,9 +25,11 @@ import { UserDTO } from '@app/infrastructure/models/user';
       injector = getTestBed();
       resolver = injector.inject(CreateUserResolver);
     });
+
     it('should be created', () => {
       expect(resolver).toBeTruthy();
     });
+
     describe('resolve()', () => {
       it('should exist', () => {
         const spy = spyOn(resolver, 'resolve');

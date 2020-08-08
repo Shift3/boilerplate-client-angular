@@ -29,16 +29,16 @@ export class UpdateUserResolver implements Resolve<IUserDTO> {
     private router: Router,
     private userService: UserService,
   ) { }
-    resolve(route: ActivatedRouteSnapshot, stateSnap: RouterStateSnapshot): Observable<IUserDTO> {
+    resolve(route: ActivatedRouteSnapshot): Observable<IUserDTO> {
       const id: number = route.params.id;
       return this.userService.findUser(id)
-      .pipe(
-        take(1),
-        catchError((error: HttpErrorResponse) => {
-          this.navigateOnError();
-          return observableThrowError(error);
-        }),
-      );
+        .pipe(
+          take(1),
+          catchError((error: HttpErrorResponse) => {
+            this.navigateOnError();
+            return observableThrowError(error);
+          }),
+        );
     }
 
   private navigateOnError(): void {
