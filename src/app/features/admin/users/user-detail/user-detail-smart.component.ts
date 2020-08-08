@@ -36,6 +36,7 @@ import { UserService } from '@core/services/api/user.service';
 @Component({
   template: `
     <app-user-detail-presentation
+      [formTitle]="formTitle"
       [user]="user"
       [formConfig]="formConfig"
       (emitForm)="propagateForm($event)"
@@ -80,6 +81,7 @@ export class UserDetailSmartComponent {
       }),
     ],
   });
+  public formTitle: string = '';
   public user: IUserDTO;
 
   constructor(
@@ -88,6 +90,7 @@ export class UserDetailSmartComponent {
     private router: Router,
     private userService: UserService,
   ) {
+    this.formTitle = this.activatedRoute.snapshot.data.title;
     this.user = this.activatedRoute.snapshot.data.user;
   }
 

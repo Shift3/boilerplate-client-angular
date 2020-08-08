@@ -19,13 +19,13 @@ import { IUserDTO } from '@models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailPresentationComponent {
-  @Input() public user: IUserDTO;
   @Input() public formConfig: IFormConfig;
+  @Input() public formTitle: string = 'Create User';
+  @Input() public user: IUserDTO;
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
-  public formTitle: string = 'Create User';
 
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);
