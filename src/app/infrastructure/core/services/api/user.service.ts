@@ -104,6 +104,18 @@ export class UserService {
       }),
     );
   }
+
+  public deleteUser(user: IUserDTO): Observable<IUserDTO> {
+    const endpoint = `${this.url}/${user.id}`;
+
+    return this.apiService.delete<IUserDTO>(endpoint).pipe(
+      tap(() => {
+        const message = `User ${user.firstName} ${user.lastName} deleted.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
+
   /**
    * Local implementation
    */
