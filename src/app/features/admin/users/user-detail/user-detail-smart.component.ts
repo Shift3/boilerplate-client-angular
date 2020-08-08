@@ -112,4 +112,47 @@ export class UserDetailSmartComponent {
     const payload = new ChangeUserRequest();
     return this.formService.buildRequestPayload(this.form, payload);
   }
+
+  private buildFormConfig() {
+    const formConfig = new FormConfig({
+      formName: 'form',
+      submit: new SaveCancelButtonConfig({save: (this.user.id) ? 'Update' : 'Create' }),
+      controls: [
+        new FormField<IInputField>({
+          name: 'firstName',
+          value: this.user.firstName,
+          fieldType: 'input',
+          label: 'First Name',
+          fieldConfig : new InputField(),
+          validation: [ RequiredValidation.required('First Name') ],
+        }),
+        new FormField<IInputField>({
+          name: 'lastName',
+          value: this.user.lastName,
+          fieldType: 'input',
+          label: 'Last Name',
+          fieldConfig : new InputField(),
+          validation: [ RequiredValidation.required('Last Name') ],
+        }),
+        new FormField<IInputField>({
+          name: 'email',
+          value: this.user.email,
+          fieldType: 'input',
+          label: 'Email',
+          fieldConfig : new InputField({ inputType: 'email' }),
+          validation: [ EmailValidation.validEmail(true) ],
+        }),
+        new FormField<ISelectField<RoleType>>({
+          name: 'roleId',
+          value: this.user.role.id,
+          fieldType: 'select',
+          label: 'Role',
+          fieldConfig : new SelectField({ options: roleList }),
+          validation: [ RequiredValidation.required('Role') ],
+        }),
+      ],
+    });
+
+    return formConfig;
+  }
 }
