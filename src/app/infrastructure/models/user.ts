@@ -1,17 +1,23 @@
+import { IRoleDTO, RoleDTO } from './role';
+
 export interface IUserDTO {
   id: number;
   email: string;
   firstName: string;
   lastName: string;
+  profilePicture: string;
+  role: IRoleDTO;
 }
 
-export class UserDTO implements IUserDTO  {
-  id: number;
-  email: string;
-  firstName: string;
-  lastName: string;
+export class UserDTO implements IUserDTO {
+  id: number = 0;
+  email: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  profilePicture: string = null;
+  role: IRoleDTO = new RoleDTO();
 
-  constructor(configOverride?: IUserDTO) {
+  constructor(configOverride?: Partial<IUserDTO>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
