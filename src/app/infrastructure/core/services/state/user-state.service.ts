@@ -16,6 +16,7 @@ import { IUserDTO } from '@models/user';
   providedIn: 'root',
 })
 export class UserStateService {
+  // Saving user session data in local storage temporarily until session data is revisited.
   public userSession$ = new BehaviorSubject<IUserDTO>(JSON.parse(localStorage.getItem('user')));
 
   public getUserSession(): Observable<IUserDTO> {
