@@ -16,6 +16,7 @@ export interface IFormField<T> {
   fieldType: FieldType;
   fieldConfig: T;
   validation?: ValidatorFn[];
+  value: string | number;
   disabled?: boolean;
 }
 
@@ -26,6 +27,7 @@ export class FormField<T> implements IFormField<T> {
   fieldType: FieldType;
   fieldConfig: T;
   validation?: ValidatorFn[] = [];
+  value: string | number = '';
   disabled?: boolean = false;
 
   constructor(configOverride?: Partial<IFormField<T>>) {

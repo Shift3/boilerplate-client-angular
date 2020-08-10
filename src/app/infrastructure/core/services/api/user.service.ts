@@ -4,12 +4,15 @@ import {
   Observable,
   of as observableOf,
 } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {
+  map,
+  tap,
+} from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 import { environment } from '@env/environment';
 import {
-  ICreateUserRequest,
+  IChangeUserRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
   IUserDTO,
@@ -80,13 +83,52 @@ export class UserService {
     return this.apiService.get<IUserDTO[]>(endpoint);
   }
 
-  public createUser(payload: ICreateUserRequest): Observable<IUserDTO>  {
+  public createUser(payload: IChangeUserRequest): Observable<IUserDTO> {
     const endpoint = `${this.url}`;
     payload.roleId = Number(payload.roleId);
 
-    return this.apiService.post<IUserDTO, ICreateUserRequest>(endpoint, payload).pipe(
+    return this.apiService.post<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
       tap((response) => {
         const message = `An email has been sent to ${response.email} with instructions to finish activating the account.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
+
+  /**
+   * TEMPORARY implementation until API provides an endpoint.
+   */
+  public findUser(id: number): Observable<IUserDTO> {
+    return this.getUserList().pipe(
+      map((userList) => {
+        const foundUser = userList.find((user) => user.id === Number(id));
+        if (foundUser) {
+          return foundUser;
+        } else {
+          throw(new Error('User not found.'));
+        }
+      }),
+    );
+  }
+
+  public updateUser(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
+    const endpoint = `${this.url}/${userId}`;
+    payload.roleId = Number(payload.roleId);
+
+    return this.apiService.put<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
+      tap(() => {
+        const message = `User updated.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
+
+  public deleteUser(user: IUserDTO): Observable<IUserDTO> {
+    const endpoint = `${this.url}/${user.id}`;
+
+    return this.apiService.delete<IUserDTO>(endpoint).pipe(
+      tap(() => {
+        const message = `User ${user.firstName} ${user.lastName} deleted.`;
         return this.notificationService.showSuccess([message]);
       }),
     );

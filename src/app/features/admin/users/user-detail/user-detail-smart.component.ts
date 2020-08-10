@@ -1,13 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 import {
-  CreateUserRequest,
-  ICreateUserRequest,
+  ChangeUserRequest,
+  IChangeUserRequest,
   IUserDTO,
 } from '@models/user';
 import { EmailValidation } from '@utils/validation/email-validation';
@@ -36,50 +37,19 @@ import { UserService } from '@core/services/api/user.service';
 @Component({
   template: `
     <app-user-detail-presentation
+      [formTitle]="formTitle"
       [user]="user"
       [formConfig]="formConfig"
       (emitForm)="propagateForm($event)"
-      (emitSubmit)="createUser()"
+      (emitSubmit)="updateOrCreateUser()"
     ></app-user-detail-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserDetailSmartComponent {
+export class UserDetailSmartComponent implements OnInit {
   public form: FormGroup;
-  public formConfig: IFormConfig = new FormConfig({
-    formName: 'form',
-    submit: new SaveCancelButtonConfig({save: 'Create'}),
-    controls: [
-      new FormField<IInputField>({
-        name: 'firstName',
-        fieldType: 'input',
-        label: 'First Name',
-        fieldConfig : new InputField(),
-        validation: [ RequiredValidation.required('First Name') ],
-      }),
-      new FormField<IInputField>({
-        name: 'lastName',
-        fieldType: 'input',
-        label: 'Last Name',
-        fieldConfig : new InputField(),
-        validation: [ RequiredValidation.required('Last Name') ],
-      }),
-      new FormField<IInputField>({
-        name: 'email',
-        fieldType: 'input',
-        label: 'Email',
-        fieldConfig : new InputField({ inputType: 'email' }),
-        validation: [ EmailValidation.validEmail(true) ],
-      }),
-      new FormField<ISelectField<RoleType>>({
-        name: 'roleId',
-        fieldType: 'select',
-        label: 'Role',
-        fieldConfig : new SelectField({ options: roleList }),
-        validation: [ RequiredValidation.required('Role') ],
-      }),
-    ],
-  });
+  public formConfig: IFormConfig = new FormConfig();
+  public formTitle: string = '';
   public user: IUserDTO;
 
   constructor(
@@ -88,20 +58,77 @@ export class UserDetailSmartComponent {
     private router: Router,
     private userService: UserService,
   ) {
+    this.formTitle = this.activatedRoute.snapshot.data.title;
     this.user = this.activatedRoute.snapshot.data.user;
+  }
+
+  public ngOnInit(): void {
+    this.formConfig = this.buildFormConfig();
   }
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
   }
 
-  public createUser(): void {
-    const requestPayload = this.buildPayload();
-    this.userService.createUser(requestPayload).subscribe((response) => this.router.navigateByUrl('/admin/user-list'));
+  public updateOrCreateUser(): void {
+    return (this.user.id) ? this.updateUser() : this.createUser();
   }
 
-  private buildPayload(): ICreateUserRequest {
-    const payload = new CreateUserRequest();
+  public createUser(): void {
+    const requestPayload = this.buildPayload();
+    this.userService.createUser(requestPayload).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
+  }
+
+  public updateUser(): void {
+    const requestPayload = this.buildPayload();
+    this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
+  }
+
+  private buildPayload(): IChangeUserRequest {
+    const payload = new ChangeUserRequest();
     return this.formService.buildRequestPayload(this.form, payload);
+  }
+
+  private buildFormConfig() {
+    const formConfig = new FormConfig({
+      formName: 'form',
+      submit: new SaveCancelButtonConfig({save: (this.user.id) ? 'Update' : 'Create' }),
+      controls: [
+        new FormField<IInputField>({
+          name: 'firstName',
+          value: this.user.firstName,
+          fieldType: 'input',
+          label: 'First Name',
+          fieldConfig : new InputField(),
+          validation: [ RequiredValidation.required('First Name') ],
+        }),
+        new FormField<IInputField>({
+          name: 'lastName',
+          value: this.user.lastName,
+          fieldType: 'input',
+          label: 'Last Name',
+          fieldConfig : new InputField(),
+          validation: [ RequiredValidation.required('Last Name') ],
+        }),
+        new FormField<IInputField>({
+          name: 'email',
+          value: this.user.email,
+          fieldType: 'input',
+          label: 'Email',
+          fieldConfig : new InputField({ inputType: 'email' }),
+          validation: [ EmailValidation.validEmail(true) ],
+        }),
+        new FormField<ISelectField<RoleType>>({
+          name: 'roleId',
+          value: this.user.role.id,
+          fieldType: 'select',
+          label: 'Role',
+          fieldConfig : new SelectField({ options: roleList }),
+          validation: [ RequiredValidation.required('Role') ],
+        }),
+      ],
+    });
+
+    return formConfig;
   }
 }
