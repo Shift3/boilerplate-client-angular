@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiRoute: '',
+  apiRoute: 'http://localhost:3000',
   sentry: {
     DSN: '',
     enabled: true,
