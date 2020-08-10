@@ -27,7 +27,7 @@ import { UserStateService } from './user-state.service';
       expect(service).toBeTruthy();
     });
 
-    describe('getAuth()', () => {
+    describe('getUserSession()', () => {
       it('should return as an Observable', () => {
         const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
@@ -44,7 +44,7 @@ import { UserStateService } from './user-state.service';
       });
     });
 
-    describe('setAuth()', () => {
+    describe('setUserSession()', () => {
       it('should set the emitted value to the user param', () => {
         const mockUser = new UserDTO({
           firstName: 'Test',
@@ -81,8 +81,8 @@ import { UserStateService } from './user-state.service';
       });
     });
 
-    describe('resetAuth()', () => {
-      it('should set the emitted value of auth$ to null', () => {
+    describe('resetUserSession()', () => {
+      it('should set the emitted value of userSession$ to null', () => {
         const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
@@ -142,7 +142,7 @@ import { UserStateService } from './user-state.service';
         });
       });
 
-      it(`should emit true when given a non-admin role`, () => {
+      it(`should emit false when given a non-admin role`, () => {
         const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
