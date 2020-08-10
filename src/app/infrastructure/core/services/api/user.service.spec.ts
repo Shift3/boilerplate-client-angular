@@ -12,6 +12,7 @@ import {
   ChangeUserRequest,
   IChangeUserRequest,
   IUserDTO,
+  UserDTO,
 } from '@models/user';
 import { Logger } from '@utils/logger';
 import { UserService } from './user.service';
@@ -133,6 +134,72 @@ import { UserService } from './user.service';
         spyOn(service, 'findUser').and.returnValue(observableOf(expectedValue));
 
         service.findUser(1).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('updateUser()', () => {
+      it ('should use the PUT method', () => {
+        const user: IChangeUserRequest = new ChangeUserRequest();
+        service.updateUser(user, 1).subscribe();
+        const req = httpTestingController.expectOne(`${route}/1`);
+
+        expect(req.request.method).toBe('PUT');
+      });
+
+      it('should return the requested user on successful update', () => {
+        const user: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = {
+            id: 1,
+            email: 'test@test.com',
+            firstName: 'Test',
+            lastName: 'Tester',
+            profilePicture: null,
+            role: {
+              id: 1,
+              roleName: 'User',
+            },
+          };
+        let response: IUserDTO;
+        spyOn(service, 'updateUser').and.returnValue(observableOf(expectedValue));
+
+        service.updateUser(user, 1).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('deleteUser()', () => {
+      it ('should use the DELETE method', () => {
+        const user: IUserDTO = new UserDTO({ id: 1 });
+        service.deleteUser(user).subscribe();
+        const req = httpTestingController.expectOne(`${route}/1`);
+
+        expect(req.request.method).toBe('DELETE');
+      });
+
+      it('should return the updated user on successful deletion', () => {
+        const user: IUserDTO = new UserDTO({ id: 1 });
+        const expectedValue: IUserDTO = {
+            id: 1,
+            email: 'test@test.com',
+            firstName: 'Test',
+            lastName: 'Tester',
+            profilePicture: null,
+            role: {
+              id: 1,
+              roleName: 'User',
+            },
+          };
+        let response: IUserDTO;
+        spyOn(service, 'deleteUser').and.returnValue(observableOf(expectedValue));
+
+        service.deleteUser(user).subscribe(res => {
           response = res;
         });
 
