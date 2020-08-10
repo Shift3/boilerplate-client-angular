@@ -14,7 +14,7 @@ export class Navigation implements INavigation {
   static buildNavLinkList(isAdmin: boolean): INavigation[] {
     let navLinks: INavigation[] = [];
     if (isAdmin) {
-      navLinks = [
+      return navLinks = [
         {
           id: 1,
           label: 'Directory',
@@ -34,18 +34,16 @@ export class Navigation implements INavigation {
           icon: 'fa fa-cog',
         },
       ];
-    } else {
-      navLinks = [
-        {
-          id: 1,
-          label: 'Directory',
-          link: '/content',
-          icon: 'fa fa-stethoscope',
-        },
-      ];
     }
 
-    return navLinks;
+    return navLinks = [
+      {
+        id: 1,
+        label: 'Directory',
+        link: '/content',
+        icon: 'fa fa-stethoscope',
+      },
+    ];
   }
 
   constructor(configOverride?: INavigation) {
