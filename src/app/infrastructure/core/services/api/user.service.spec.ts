@@ -8,8 +8,12 @@ import { of as observableOf } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { environment } from '@env/environment.test';
+import {
+  ChangeUserRequest,
+  IChangeUserRequest,
+  IUserDTO,
+} from '@models/user';
 import { Logger } from '@utils/logger';
-import { IUserDTO } from '@models/user';
 import { UserService } from './user.service';
 
 !environment.testUnit
@@ -19,6 +23,7 @@ import { UserService } from './user.service';
     let service: UserService;
     let apiService: ApiService;
     let httpTestingController: HttpTestingController;
+
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule],
@@ -63,6 +68,71 @@ import { UserService } from './user.service';
         spyOn(service, 'getUserList').and.returnValue(observableOf(expectedValue));
 
         service.getUserList().subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('createUser()', () => {
+      it ('should use the POST method', () => {
+        const newUser: IChangeUserRequest = new ChangeUserRequest();
+        service.createUser(newUser).subscribe();
+        const req = httpTestingController.expectOne(route);
+
+        expect(req.request.method).toBe('POST');
+      });
+
+      it('should return the requested user on creation', () => {
+        const newUser: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = {
+            id: 1,
+            email: 'test@test.com',
+            firstName: 'Test',
+            lastName: 'Tester',
+            profilePicture: null,
+            role: {
+              id: 1,
+              roleName: 'User',
+            },
+          };
+        let response: IUserDTO;
+        spyOn(service, 'createUser').and.returnValue(observableOf(expectedValue));
+
+        service.createUser(newUser).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('findUser()', () => {
+      it ('should use the GET method', () => {
+        const id = 1;
+        service.findUser(id).subscribe();
+        const req = httpTestingController.expectOne(route);
+
+        expect(req.request.method).toBe('GET');
+      });
+
+      it('should return the requested user', () => {
+        const expectedValue: IUserDTO = {
+          id: 1,
+          email: 'test@test.com',
+          firstName: 'Test',
+          lastName: 'Tester',
+          profilePicture: null,
+          role: {
+            id: 1,
+            roleName: 'User',
+          },
+        };
+        let response: IUserDTO;
+        spyOn(service, 'findUser').and.returnValue(observableOf(expectedValue));
+
+        service.findUser(1).subscribe(res => {
           response = res;
         });
 
