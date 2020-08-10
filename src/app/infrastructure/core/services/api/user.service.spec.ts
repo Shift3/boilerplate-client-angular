@@ -77,7 +77,7 @@ import { UserService } from './user.service';
     });
 
     describe('createUser()', () => {
-      it ('should use the POST method', () => {
+      it ('should use POST as the request method', () => {
         const newUser: IChangeUserRequest = new ChangeUserRequest();
         service.createUser(newUser).subscribe();
         const req = httpTestingController.expectOne(route);
@@ -142,7 +142,7 @@ import { UserService } from './user.service';
     });
 
     describe('updateUser()', () => {
-      it ('should use the PUT method', () => {
+      it ('should use PUT as the request method', () => {
         const user: IChangeUserRequest = new ChangeUserRequest();
         service.updateUser(user, 1).subscribe();
         const req = httpTestingController.expectOne(`${route}/1`);
@@ -175,7 +175,7 @@ import { UserService } from './user.service';
     });
 
     describe('deleteUser()', () => {
-      it ('should use the DELETE method', () => {
+      it ('should use DELETE as the request method', () => {
         const user: IUserDTO = new UserDTO({ id: 1 });
         service.deleteUser(user).subscribe();
         const req = httpTestingController.expectOne(`${route}/1`);
