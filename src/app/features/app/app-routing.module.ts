@@ -1,16 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuard } from '@core/guards/auth.guard';
+import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RoleType } from '@app/infrastructure/models/role';
+
+// TODO: See if this can be tied into existing logic while still being static for compilation.
+/**
+ * This variable sets the default route when navigating to the bare app route (in a logged-in state).
+ * It does not handle auth.
+ */
+const role: RoleType = JSON.parse(localStorage.getItem('user'))?.role?.roleName;
+const redirectRoute = (role === 'Admin' || role === 'Super Administrator')
+  ? '/admin'
+  : '/content';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: redirectRoute,
     pathMatch: 'full',
   },
   {
     path: 'admin',
+    canActivate: [AdminAuthGuard],
+    canActivateChild: [AdminAuthGuard],
     loadChildren: () => import('../admin/admin.module').then((m) => m.AdminModule),
   },
   {
@@ -19,10 +34,14 @@ const routes: Routes = [
   },
   {
     path: 'content',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     loadChildren: () => import('../content/content.module').then((m) => m.ContentModule),
   },
   {
     path: 'user',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     loadChildren: () => import('../user/user.module').then((m) => m.UserModule),
   },
   {
