@@ -11,6 +11,41 @@ export class Navigation implements INavigation {
   link: string;
   icon?: string;
 
+  static buildNavLinkList(isAdmin: boolean): INavigation[] {
+    let navLinks: INavigation[] = [];
+    if (isAdmin) {
+      return navLinks = [
+        {
+          id: 1,
+          label: 'Directory',
+          link: '/content',
+          icon: 'fa fa-stethoscope',
+        },
+        {
+          id: 2,
+          label: 'Users',
+          link: '/admin/user-list',
+          icon: 'fa fa-users',
+        },
+        {
+          id: 3,
+          label: 'Settings',
+          link: '/admin/settings',
+          icon: 'fa fa-cog',
+        },
+      ];
+    }
+
+    return navLinks = [
+      {
+        id: 1,
+        label: 'Directory',
+        link: '/content',
+        icon: 'fa fa-stethoscope',
+      },
+    ];
+  }
+
   constructor(configOverride?: INavigation) {
     if (configOverride) {
       Object.assign(this, configOverride);
@@ -19,27 +54,6 @@ export class Navigation implements INavigation {
 }
 
 export type NavType = 'side' | 'top';
-
-export const navLinkList: INavigation[] = [
-  {
-    id: 1,
-    label: 'Directory',
-    link: '/content',
-    icon: 'fa fa-stethoscope',
-  },
-  {
-    id: 2,
-    label: 'Users',
-    link: '/admin/user-list',
-    icon: 'fa fa-users',
-  },
-  {
-    id: 3,
-    label: 'Settings',
-    link: '/admin/settings',
-    icon: 'fa fa-cog',
-  },
-];
 
 export const profileLinkList: INavigation[] = [
   {

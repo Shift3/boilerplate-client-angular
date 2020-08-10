@@ -1,16 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+} from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { TopNavigationSmartComponent } from './top-navigation-smart.component';
+import { TopNavigationPresentationComponent } from './top-navigation-presentation.component';
 
-describe('TopNavigationSmartComponent', () => {
-  let component: TopNavigationSmartComponent;
-  let fixture: ComponentFixture<TopNavigationSmartComponent>;
+describe('TopNavigationPresentationComponent', () => {
+  let component: TopNavigationPresentationComponent;
+  let fixture: ComponentFixture<TopNavigationPresentationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TopNavigationSmartComponent ],
+      declarations: [
+        TopNavigationPresentationComponent,
+        TopNavigationSmartComponent,
+      ],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
@@ -20,7 +28,7 @@ describe('TopNavigationSmartComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TopNavigationSmartComponent);
+    fixture = TestBed.createComponent(TopNavigationPresentationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
