@@ -11,21 +11,21 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { AuthStateService } from '../services/state/auth-state.service';
 import { NotificationService } from '../services/notification.service';
+import { UserStateService } from '../services/state/user-state.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminAuthGuard implements CanActivate, CanActivateChild {
   constructor(
-    private authStateService: AuthStateService,
     private notificationService: NotificationService,
     private router: Router,
+    private userStateService: UserStateService,
   ) { }
 
   public canActivate(): Observable<boolean> {
-    return this.authStateService.isAdmin().pipe(
+    return this.userStateService.isAdmin().pipe(
       take(1),
       tap(isAdmin => {
         if (!isAdmin) {

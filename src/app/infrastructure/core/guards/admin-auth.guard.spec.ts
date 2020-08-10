@@ -8,7 +8,6 @@ import {
 import { BehaviorSubject } from 'rxjs';
 
 import { AdminAuthGuard } from './admin-auth.guard';
-import { AuthStateService } from '../services/state/auth-state.service';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
@@ -16,12 +15,13 @@ import {
   IUserDTO,
   UserDTO,
 } from '@models/user';
+import { UserStateService } from '../services/state/user-state.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] AdminAuthGuard', () => {
     let guard: AdminAuthGuard;
-    let authState: AuthStateService;
+    let userStateState: UserStateService;
     let injector: TestBed;
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
     const notificationMock = { showError: jasmine.createSpy('showError') };
@@ -30,13 +30,13 @@ import {
       TestBed.configureTestingModule({
         providers: [
           AdminAuthGuard,
-          AuthStateService,
+          UserStateService,
           { provide: NotificationService, useValue: notificationMock },
           { provide: Router, useValue: routerMock },
         ],
         imports: [HttpClientTestingModule],
       });
-      authState = TestBed.inject(AuthStateService);
+      userStateState = TestBed.inject(UserStateService);
       injector = getTestBed();
       guard = injector.inject(AdminAuthGuard);
     });
@@ -79,7 +79,7 @@ import {
           },
         }));
 
-        authState.auth$ = mockUser$;
+        userStateState.userSession$ = mockUser$;
         guard.canActivate().subscribe(() => {
           expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/');
         });
@@ -95,7 +95,7 @@ import {
           },
         }));
 
-        authState.auth$ = mockUser$;
+        userStateState.userSession$ = mockUser$;
         guard.canActivate().subscribe(response => {
           expect(response).toEqual(true);
         });
@@ -111,7 +111,7 @@ import {
           },
         }));
 
-        authState.auth$ = mockUser$;
+        userStateState.userSession$ = mockUser$;
         guard.canActivate().subscribe(response => {
           expect(response).toEqual(true);
         });
@@ -127,7 +127,7 @@ import {
           },
         }));
 
-        authState.auth$ = mockUser$;
+        userStateState.userSession$ = mockUser$;
         guard.canActivate().subscribe(response => {
           expect(response).toEqual(false);
         });

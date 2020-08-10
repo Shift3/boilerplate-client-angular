@@ -8,7 +8,6 @@ import {
 import { BehaviorSubject } from 'rxjs';
 
 import { AuthGuard } from './auth.guard';
-import { AuthStateService } from '../services/state/auth-state.service';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
@@ -16,12 +15,13 @@ import {
   IUserDTO,
   UserDTO,
 } from '@models/user';
+import { UserStateService } from '../services/state/user-state.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] AuthGuard', () => {
     let guard: AuthGuard;
-    let authState: AuthStateService;
+    let userState: UserStateService;
     let injector: TestBed;
     const notificationMock = { showError: jasmine.createSpy('showError') };
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
@@ -30,13 +30,13 @@ import {
       TestBed.configureTestingModule({
         providers: [
           AuthGuard,
-          AuthStateService,
+          UserStateService,
           { provide: NotificationService, useValue: notificationMock },
           { provide: Router, useValue: routerMock },
         ],
         imports: [HttpClientTestingModule],
       });
-      authState = TestBed.inject(AuthStateService);
+      userState = TestBed.inject(UserStateService);
       injector = getTestBed();
       guard = injector.inject(AuthGuard);
     });
@@ -72,7 +72,7 @@ import {
       it(`should redirect to the '/auth' route when navigation fails due to invalid user.`, () => {
         const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
 
-        authState.auth$ = mockUser$;
+        userState.userSession$ = mockUser$;
         guard.canActivate().subscribe(() => {
           expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
         });
@@ -88,7 +88,7 @@ import {
           },
         }));
 
-        authState.auth$ = mockUser$;
+        userState.userSession$ = mockUser$;
         guard.canActivate().subscribe(response => {
           expect(response).toEqual(true);
         });

@@ -7,11 +7,11 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AuthStateService } from '@core/services/state/auth-state.service';
 import {
   INavigation,
   Navigation,
 } from '@models/navigation';
+import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
   selector: 'app-side-navigation',
@@ -28,7 +28,7 @@ export class SideNavigationSmartComponent implements OnInit {
   public navLinks$: Observable<INavigation[]>;
 
   constructor(
-    private authStateService: AuthStateService,
+    private userStateService: UserStateService,
   ) { }
 
   public ngOnInit(): void {
@@ -37,11 +37,11 @@ export class SideNavigationSmartComponent implements OnInit {
   }
 
   public buildNavLinkListBasedOnRole(): Observable<INavigation[]> {
-    return this.authStateService.isAdmin()
+    return this.userStateService.isAdmin()
       .pipe(map((isAdmin) => Navigation.buildNavLinkList(isAdmin)));
   }
 
   public isLoggedInUser(): Observable<boolean> {
-    return this.authStateService.isLoggedInUser();
+    return this.userStateService.isLoggedInUser();
   }
 }

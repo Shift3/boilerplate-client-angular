@@ -15,31 +15,31 @@ import { IUserDTO } from '@models/user';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthStateService {
-  public auth$ = new BehaviorSubject<IUserDTO>(JSON.parse(localStorage.getItem('user')));
+export class UserStateService {
+  public userSession$ = new BehaviorSubject<IUserDTO>(JSON.parse(localStorage.getItem('user')));
 
-  public getAuth(): Observable<IUserDTO> {
-    return this.auth$.asObservable();
+  public getUserSession(): Observable<IUserDTO> {
+    return this.userSession$.asObservable();
   }
 
-  public setAuth(user: IUserDTO): void {
+  public setUserSession(user: IUserDTO): void {
     localStorage.setItem('user', JSON.stringify(user));
-    this.auth$.next(user);
+    this.userSession$.next(user);
   }
 
-  public resetAuth(): void {
-    this.auth$.next(null);
+  public resetUserSession(): void {
+    this.userSession$.next(null);
   }
 
   public isAdmin(): Observable<boolean> {
-    return this.getAuth().pipe(
+    return this.getUserSession().pipe(
       map((user) => user?.role?.roleName),
       map((roleName) => RoleDTO.isAdminRoleType(roleName)),
     );
   }
 
   public isLoggedInUser(): Observable<boolean> {
-    return this.getAuth().pipe(
+    return this.getUserSession().pipe(
       map((user) => user?.role?.roleName),
       map((roleName) => RoleDTO.isRoleType(roleName)),
     );

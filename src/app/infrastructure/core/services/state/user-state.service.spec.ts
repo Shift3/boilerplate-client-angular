@@ -2,25 +2,25 @@ import { TestBed } from '@angular/core/testing';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { AuthStateService } from './auth-state.service';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import {
   IUserDTO,
   UserDTO,
 } from '@models/user';
+import { UserStateService } from './user-state.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
-  : describe('[Unit] AuthStateService', () => {
-    let service: AuthStateService;
+  : describe('[Unit] UserStateService', () => {
+    let service: UserStateService;
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
-          AuthStateService,
+          UserStateService,
         ],
       });
-      service = TestBed.inject(AuthStateService);
+      service = TestBed.inject(UserStateService);
     });
 
     it('should be created', () => {
@@ -39,8 +39,8 @@ import {
         }));
         const expectedValue = testUser$.asObservable();
 
-        service.auth$ = mockUser$;
-        expect(service.getAuth()).toEqual(expectedValue);
+        service.userSession$ = mockUser$;
+        expect(service.getUserSession()).toEqual(expectedValue);
       });
     });
 
@@ -55,8 +55,8 @@ import {
           lastName: 'Tester',
         });
 
-        service.setAuth(mockUser);
-        expect(service.auth$.getValue()).toEqual(expectedValue);
+        service.setUserSession(mockUser);
+        expect(service.userSession$.getValue()).toEqual(expectedValue);
       });
 
       it('should set user value in localStorage to the user param', () => {
@@ -75,7 +75,7 @@ import {
             roleName: '',
           },
         };
-        service.setAuth(mockUser);
+        service.setUserSession(mockUser);
         const storedUser = JSON.parse(localStorage.getItem('user'));
         expect(storedUser).toEqual(expectedValue);
       });
@@ -88,9 +88,9 @@ import {
           lastName: 'Tester',
         }));
 
-        service.auth$ = mockUser$;
-        service.resetAuth();
-        expect(service.auth$.getValue()).toEqual(null);
+        service.userSession$ = mockUser$;
+        service.resetUserSession();
+        expect(service.userSession$.getValue()).toEqual(null);
       });
     });
 
@@ -105,7 +105,7 @@ import {
         service.isAdmin().subscribe((response) => {
           const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
 
-          service.auth$ = mockUser$;
+          service.userSession$ = mockUser$;
           expect(response).toEqual(false);
         });
       });
@@ -120,7 +120,7 @@ import {
           },
         }));
 
-        service.auth$ = mockUser$;
+        service.userSession$ = mockUser$;
         service.isAdmin().subscribe((response) => {
           expect(response).toEqual(true);
         });
@@ -136,7 +136,7 @@ import {
           },
         }));
 
-        service.auth$ = mockUser$;
+        service.userSession$ = mockUser$;
         service.isAdmin().subscribe((response) => {
           expect(response).toEqual(true);
         });
@@ -152,7 +152,7 @@ import {
           },
         }));
 
-        service.auth$ = mockUser$;
+        service.userSession$ = mockUser$;
         service.isAdmin().subscribe((response) => {
           expect(response).toEqual(false);
         });
@@ -170,7 +170,7 @@ import {
         service.isLoggedInUser().subscribe((response) => {
           const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
 
-          service.auth$ = mockUser$;
+          service.userSession$ = mockUser$;
           expect(response).toEqual(false);
         });
       });
@@ -185,7 +185,7 @@ import {
           },
         }));
 
-        service.auth$ = mockUser$;
+        service.userSession$ = mockUser$;
         service.isLoggedInUser().subscribe((response) => {
           expect(response).toEqual(true);
         });
