@@ -1,7 +1,7 @@
 import {
   HttpClientTestingModule,
   HttpTestingController,
-  } from '@angular/common/http/testing';
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { of as observableOf } from 'rxjs';
