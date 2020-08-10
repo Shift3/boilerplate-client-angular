@@ -4,13 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@core/guards/auth.guard';
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RoleType } from '@app/infrastructure/models/role';
 
 // TODO: See if this can be tied into existing logic while still being static for compilation.
 /**
- * This variable sets the default route when navigating to the bare app route.
+ * This variable sets the default route when navigating to the bare app route (in a logged-in state).
  * It does not handle auth.
  */
-const role = JSON.parse(localStorage.getItem('user'))?.role?.roleName;
+const role: RoleType = JSON.parse(localStorage.getItem('user'))?.role?.roleName;
 const redirectRoute = (role === 'Admin' || role === 'Super Administrator')
   ? '/admin'
   : '/content';
