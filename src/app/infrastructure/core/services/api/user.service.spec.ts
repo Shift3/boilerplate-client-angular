@@ -44,7 +44,7 @@ import { UserService } from './user.service';
     });
 
     describe('getUserList()', () => {
-      it ('should use the GET method', () => {
+      it ('should use GET as the request method', () => {
         service.getUserList().subscribe();
         const req = httpTestingController.expectOne(route);
 
@@ -110,7 +110,7 @@ import { UserService } from './user.service';
     });
 
     describe('findUser()', () => {
-      it ('should use the GET method', () => {
+      it ('should use GET as the request method', () => {
         const id = 1;
         service.findUser(id).subscribe();
         const req = httpTestingController.expectOne(route);
