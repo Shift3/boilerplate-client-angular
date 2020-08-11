@@ -10,7 +10,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of tableData; index as i">
-      <td>{{ item.name }}</td>
+      <td>
+        <ng-container *ngIf="item.thumbnail">
+          <img class="thumbnail-container" [src]="item.thumbnail" [alt]="item.name">
+        </ng-container>
+        {{ item.name }}
+      </td>
       <td>{{ item.description }}</td>
       <td>{{ item.email }}</td>
       <td>{{ item.phoneNumber }}</td>
