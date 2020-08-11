@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Email</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of tableData; index as i">
+      <td>{{ item.name }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.email }}</td>
+      <td>
+        <button class="btn" routerLink="/admin/update-user/{{ item.id }}">
+          <span class="fa fa-edit"></span>
+        </button>
+        <button class="btn" (click)="deleteProvider(item)">
+          <span class="fa fa-trash"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
