@@ -4,6 +4,7 @@
       <th scope="col">Name</th>
       <th scope="col">Description</th>
       <th scope="col">Email</th>
+      <th scope="col">Phone Number</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
       <td>{{ item.name }}</td>
       <td>{{ item.description }}</td>
       <td>{{ item.email }}</td>
+      <td>{{ item.phoneNumber }}</td>
       <td>
         <button class="btn" routerLink="/admin/update-user/{{ item.id }}">
           <span class="fa fa-edit"></span>
