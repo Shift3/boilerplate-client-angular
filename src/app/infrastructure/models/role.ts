@@ -37,10 +37,10 @@ export const roleList: ISelectOptions<RoleType>[] = [
   },
   {
     value: 3,
-    name: 'User',
+    name: 'Super Administrator',
   },
   {
     value: 4,
-    name: 'Super Administrator',
+    name: 'User',
   },
 ];
