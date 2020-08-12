@@ -1,10 +1,16 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnDestroy,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+} from '@angular/router';
 import { FormGroup } from '@angular/forms';
+
+import { Subscription } from 'rxjs';
 
 import {
   ChangeUserRequest,
@@ -33,37 +39,46 @@ import {
   SelectField,
 } from '@models/form/select';
 import { UserService } from '@core/services/api/user.service';
+import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
   template: `
     <app-user-detail-presentation
       [formTitle]="formTitle"
-      [user]="user"
       [formConfig]="formConfig"
+      [user]="user"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="updateOrCreateUser()"
     ></app-user-detail-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserDetailSmartComponent implements OnInit {
+export class UserDetailSmartComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public formConfig: IFormConfig = new FormConfig();
   public formTitle: string = '';
+  public isSelf: boolean = false;
   public user: IUserDTO;
+
+  private checkSelfSubscription: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private formService: FormService,
     private router: Router,
     private userService: UserService,
+    private userStateService: UserStateService,
   ) {
     this.formTitle = this.activatedRoute.snapshot.data.title;
     this.user = this.activatedRoute.snapshot.data.user;
   }
 
   public ngOnInit(): void {
-    this.formConfig = this.buildFormConfig();
+    this.checkIfSelfAndBuildFormConfig();
+  }
+
+  public ngOnDestroy(): void {
+    this.checkSelfSubscription.unsubscribe();
   }
 
   public propagateForm(form: FormGroup): void {
@@ -82,6 +97,13 @@ export class UserDetailSmartComponent implements OnInit {
   public updateUser(): void {
     const requestPayload = this.buildPayload();
     this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
+  }
+
+  private checkIfSelfAndBuildFormConfig(): void {
+    this.checkSelfSubscription = this.userStateService.isSelf(this.user.id).subscribe((isSelf) => {
+      this.isSelf = isSelf;
+      this.formConfig = this.buildFormConfig();
+    });
   }
 
   private buildPayload(): IChangeUserRequest {
@@ -125,6 +147,7 @@ export class UserDetailSmartComponent implements OnInit {
           label: 'Role',
           fieldConfig : new SelectField({ options: roleList }),
           validation: [ RequiredValidation.required('Role') ],
+          disabled: this.isSelf,
         }),
       ],
     });
