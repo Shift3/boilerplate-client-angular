@@ -55,7 +55,8 @@ export class SettingsComponent {
   }
 
   public signOut(): void {
-    this.authService.logout().subscribe(() => this.router.navigateByUrl('/auth'));
+    this.authService.logout().subscribe();
+    this.router.navigateByUrl('/auth');
   }
 
   // Client-side navigation toggles for debugging purposes
