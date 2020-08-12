@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ActivateAccountPresentationComponent } from './activate-account/activate-account-presentation.component';
+import { ActivateAccountSmartComponent } from './activate-account/activate-account-smart.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { ForgotPasswordPresentationComponent } from './forgot-password/forgot-password-presentation.component';
 import { ForgotPasswordSmartComponent } from './forgot-password/forgot-password-smart.component';
@@ -21,6 +23,11 @@ const routes: Routes = [
         path: '',
         redirectTo: 'login',
         pathMatch: 'full',
+      },
+      {
+        path: 'activate-account/:token',
+        component: ActivateAccountSmartComponent,
+        data: { title: 'Activate Account' },
       },
       {
         path: 'forgot-password',
@@ -61,6 +68,8 @@ const routes: Routes = [
 export class AuthRoutingModule { }
 
 export const components = [
+  ActivateAccountPresentationComponent,
+  ActivateAccountSmartComponent,
   AuthLayoutComponent,
   ForgotPasswordPresentationComponent,
   ForgotPasswordSmartComponent,
