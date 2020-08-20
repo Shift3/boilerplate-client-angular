@@ -28,6 +28,12 @@ export class AgentService {
     return this.apiService.get<IAgentDTO[]>(endpoint);
   }
 
+  public findAgent(id: number): Observable<IAgentDTO> {
+    const endpoint = `${this.url}/${id}`;
+
+    return this.apiService.get<IAgentDTO>(endpoint);
+  }
+
   public deleteAgent(agent: IAgentDTO): Observable<IAgentDTO> {
     const endpoint = `${this.url}/${agent.id}`;
 
