@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
@@ -40,7 +39,6 @@ import {
   ISelectField,
   ISelectOptions,
   SelectField,
-  SelectOptions,
 } from '@models/form/select';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
@@ -69,7 +67,6 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cd: ChangeDetectorRef,
     private formService: FormService,
     private roleService: RoleService,
     private router: Router,
@@ -78,10 +75,11 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   ) {
     this.formTitle = this.activatedRoute.snapshot.data.title;
     this.user = this.activatedRoute.snapshot.data.user;
+    this.roleList = this.activatedRoute.snapshot.data.roleList;
   }
 
   public ngOnInit(): void {
-    this.getRoleList();
+    this.checkIfSelfAndBuildFormConfig();
   }
 
   public ngOnDestroy(): void {
@@ -163,35 +161,5 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     });
 
     return formConfig;
-  }
-
-  private getRoleList(): void {
-    this.roleService.getRoleList().subscribe((response) => {
-      this.roleList = this.mapRoleListToSelect(response);
-      this.checkIfSelfAndBuildFormConfig();
-      this.cd.markForCheck();
-    });
-  }
-
-  /**
-   * Maps the specific `IRoleDTO` properties to the general `name`/`value` properties that `ISelectOptions` expects
-   */
-  private mapRoleListToSelect(roles: IRoleDTO[]): ISelectOptions<RoleType>[] {
-    const selectOptionList: ISelectOptions<RoleType>[] = [];
-    roles.forEach((role) => {
-      const selectOption: ISelectOptions<RoleType> = new SelectOptions<RoleType>();
-      for (const property in selectOption) {
-        if (selectOption.hasOwnProperty(property)) {
-          if (property === 'value') {
-            selectOption[property] = role.id;
-          } else if (property === 'name') {
-            selectOption[property] = role.roleName;
-          }
-        }
-      }
-      selectOptionList.push(selectOption);
-    });
-
-    return selectOptionList;
   }
 }
