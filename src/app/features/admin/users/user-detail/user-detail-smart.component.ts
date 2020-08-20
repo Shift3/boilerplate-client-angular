@@ -14,8 +14,8 @@ import { Subscription } from 'rxjs';
 
 import {
   ChangeUserRequest,
+  IChangeUserRequest,
   IUserDTO,
-  UpdateUserRequest,
 } from '@models/user';
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
@@ -29,11 +29,7 @@ import {
   InputField,
 } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
-import {
-  RoleType,
-  IRoleDTO,
-} from '@models/role';
-import { RoleService } from '@core/services/api/role.service';
+import {  RoleType } from '@models/role';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import {
   ISelectField,
@@ -68,7 +64,6 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formService: FormService,
-    private roleService: RoleService,
     private router: Router,
     private userService: UserService,
     private userStateService: UserStateService,
@@ -95,14 +90,14 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   public createUser(): void {
-    let requestPayload = new ChangeUserRequest();
-    requestPayload = this.buildPayload(requestPayload);
+    const requestPayload = this.buildPayload();
+    // Set unique value that diverges from the `FormGroup` here
+    requestPayload.role.id = this.form.get('roleId').value;
     this.userService.createUser(requestPayload).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
   }
 
   public updateUser(): void {
-    let requestPayload = new UpdateUserRequest();
-    requestPayload = this.buildPayload(requestPayload);
+    const requestPayload = this.buildPayload();
     // Set unique value that diverges from the `FormGroup` here
     requestPayload.role.id = this.form.get('roleId').value;
     this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
@@ -115,7 +110,8 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     });
   }
 
-  private buildPayload<T>(payload: T): T {
+  private buildPayload(): IChangeUserRequest {
+    const payload = new ChangeUserRequest();
     return this.formService.buildRequestPayload(this.form, payload);
   }
 

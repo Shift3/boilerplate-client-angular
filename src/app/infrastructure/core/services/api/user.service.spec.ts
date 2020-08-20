@@ -9,11 +9,9 @@ import { of as observableOf } from 'rxjs';
 import { ApiService } from './api.service';
 import { environment } from '@env/environment.test';
 import {
-  ChangeUserRequest,
   IChangeUserRequest,
-  IUpdateUserRequest,
   IUserDTO,
-  UpdateUserRequest,
+  ChangeUserRequest,
   UserDTO,
 } from '@models/user';
 import { Logger } from '@utils/logger';
@@ -145,7 +143,7 @@ import { UserService } from './user.service';
 
     describe('updateUser()', () => {
       it ('should use PUT as the request method', () => {
-        const user: IUpdateUserRequest = new UpdateUserRequest();
+        const user: IChangeUserRequest = new ChangeUserRequest();
         service.updateUser(user, 1).subscribe();
         const req = httpTestingController.expectOne(`${route}/1`);
 
@@ -153,7 +151,7 @@ import { UserService } from './user.service';
       });
 
       it('should return the requested user on successful update', () => {
-        const user: IUpdateUserRequest = new UpdateUserRequest();
+        const user: IChangeUserRequest = new ChangeUserRequest();
         const expectedValue: IUserDTO = {
             id: 1,
             email: 'test@test.com',

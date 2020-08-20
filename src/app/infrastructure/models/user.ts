@@ -59,7 +59,7 @@ export interface IChangeUserRequest {
   firstName: string;
   lastName: string;
   profilePicture: string;
-  roleId: number;
+  role: IRoleDTO;
 }
 
 export class ChangeUserRequest implements IChangeUserRequest {
@@ -67,7 +67,7 @@ export class ChangeUserRequest implements IChangeUserRequest {
   firstName: string = '';
   lastName: string = '';
   profilePicture: string = '';
-  roleId: number = 0;
+  role: IRoleDTO = new RoleDTO();
 
   constructor(configOverride?: IChangeUserRequest) {
     if (configOverride) {
@@ -82,18 +82,4 @@ export interface IUpdateUserRequest {
   lastName: string;
   profilePicture: string;
   role: IRoleDTO;
-}
-
-export class UpdateUserRequest implements IUpdateUserRequest {
-  email: string = '';
-  firstName: string = '';
-  lastName: string = '';
-  profilePicture: string = '';
-  role: IRoleDTO = new RoleDTO();
-
-  constructor(configOverride?: IUpdateUserRequest) {
-    if (configOverride) {
-      Object.assign(this, configOverride);
-    }
-  }
 }
