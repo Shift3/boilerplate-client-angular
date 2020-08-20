@@ -14,8 +14,8 @@ import { Subscription } from 'rxjs';
 
 import {
   ChangeUserRequest,
-  IChangeUserRequest,
   IUserDTO,
+  UpdateUserRequest,
 } from '@models/user';
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
@@ -90,12 +90,16 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   public createUser(): void {
-    const requestPayload = this.buildPayload();
+    let requestPayload = new ChangeUserRequest();
+    requestPayload = this.buildPayload(requestPayload);
     this.userService.createUser(requestPayload).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
   }
 
   public updateUser(): void {
-    const requestPayload = this.buildPayload();
+    let requestPayload = new UpdateUserRequest();
+    requestPayload = this.buildPayload(requestPayload);
+    // Set unique value that diverges from the `FormGroup` here
+    requestPayload.role.id = this.form.get('roleId').value;
     this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
   }
 
@@ -106,8 +110,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     });
   }
 
-  private buildPayload(): IChangeUserRequest {
-    const payload = new ChangeUserRequest();
+  private buildPayload<T>(payload: T): T {
     return this.formService.buildRequestPayload(this.form, payload);
   }
 

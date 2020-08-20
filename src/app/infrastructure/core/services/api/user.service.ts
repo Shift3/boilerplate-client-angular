@@ -15,6 +15,7 @@ import {
   IChangeUserRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
+  IUpdateUserRequest,
   IUserDTO,
 } from '@models/user';
 import { IMessage } from '@models/message';
@@ -111,11 +112,11 @@ export class UserService {
     );
   }
 
-  public updateUser(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
+  public updateUser(payload: IUpdateUserRequest, userId: number): Observable<IUserDTO> {
     const endpoint = `${this.url}/${userId}`;
-    payload.roleId = Number(payload.roleId);
+    payload.role.id = Number(payload.role.id);
 
-    return this.apiService.put<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
+    return this.apiService.put<IUserDTO, IUpdateUserRequest>(endpoint, payload).pipe(
       tap(() => {
         const message = `User updated.`;
         return this.notificationService.showSuccess([message]);

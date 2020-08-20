@@ -75,3 +75,25 @@ export class ChangeUserRequest implements IChangeUserRequest {
     }
   }
 }
+
+export interface IUpdateUserRequest {
+  email: string;
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+  role: IRoleDTO;
+}
+
+export class UpdateUserRequest implements IUpdateUserRequest {
+  email: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  profilePicture: string = '';
+  role: IRoleDTO = new RoleDTO();
+
+  constructor(configOverride?: IUpdateUserRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
