@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of tableData; index as i">
-      <td>
+      <td class="name-container">
         <ng-container *ngIf="item.thumbnail">
           <img class="thumbnail-container" [src]="item.thumbnail" [alt]="item.name">
         </ng-container>
