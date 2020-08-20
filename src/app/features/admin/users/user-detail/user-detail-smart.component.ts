@@ -91,15 +91,11 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
 
   public createUser(): void {
     const requestPayload = this.buildPayload();
-    // Set unique value that diverges from the `FormGroup` here
-    requestPayload.role.id = this.form.get('roleId').value;
     this.userService.createUser(requestPayload).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
   }
 
   public updateUser(): void {
     const requestPayload = this.buildPayload();
-    // Set unique value that diverges from the `FormGroup` here
-    requestPayload.role.id = this.form.get('roleId').value;
     this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
   }
 
@@ -111,8 +107,11 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private buildPayload(): IChangeUserRequest {
-    const payload = new ChangeUserRequest();
-    return this.formService.buildRequestPayload(this.form, payload);
+    const payloadDTO = new ChangeUserRequest();
+    const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
+    // Set unique value that diverges from the `FormGroup` here
+    payload.role.id = this.form.get('roleId').value;
+    return payload;
   }
 
   private buildFormConfig() {
