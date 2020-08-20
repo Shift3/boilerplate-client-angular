@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
@@ -30,10 +31,10 @@ import {
 } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import {
-  roleList,
   RoleType,
   IRoleDTO,
 } from '@models/role';
+import { RoleService } from '@core/services/api/role.service';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import {
   ISelectField,
@@ -64,10 +65,13 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   public user: IUserDTO;
 
   private checkSelfSubscription: Subscription;
+  private roleList: ISelectOptions<RoleType>[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private cd: ChangeDetectorRef,
     private formService: FormService,
+    private roleService: RoleService,
     private router: Router,
     private userService: UserService,
     private userStateService: UserStateService,
@@ -77,7 +81,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.checkIfSelfAndBuildFormConfig();
+    this.getRoleList();
   }
 
   public ngOnDestroy(): void {
@@ -151,7 +155,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           value: this.user.role.id,
           fieldType: 'select',
           label: 'Role',
-          fieldConfig : new SelectField({ options: roleList }),
+          fieldConfig : new SelectField({ options: this.roleList }),
           validation: [ RequiredValidation.required('Role') ],
           disabled: this.isSelf,
         }),
@@ -159,6 +163,14 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     });
 
     return formConfig;
+  }
+
+  private getRoleList(): void {
+    this.roleService.getRoleList().subscribe((response) => {
+      this.roleList = this.mapRoleListToSelect(response);
+      this.checkIfSelfAndBuildFormConfig();
+      this.cd.markForCheck();
+    });
   }
 
   /**
