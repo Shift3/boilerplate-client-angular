@@ -29,6 +29,17 @@ const routes: Routes = [
         path: 'create-agent',
         component: AgentDetailSmartComponent,
         data: { title: 'Add Agent' },
+        resolve: {
+          agent: resolverList.CreateAgentResolver,
+        },
+      },
+      {
+        path: 'update-agent/:id',
+        component: AgentDetailSmartComponent,
+        data: { title: 'Update Agent' },
+        resolve: {
+          agent: resolverList.UpdateAgentResolver,
+        },
       },
     ],
   },
