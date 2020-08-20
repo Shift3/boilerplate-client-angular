@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AgentDetailPresentationComponent } from './agents/agent-detail/agent-detail-presentation.component';
+import { AgentDetailSmartComponent } from './agents/agent-detail/agent-detail-smart.component';
 import { AgentListPresentationComponent } from './agents/agent-list/agent-list-presentation.component';
 import { AgentListSmartComponent } from './agents/agent-list/agent-list-smart.component';
 import { AgentTableComponent } from './agents/agent-table/agent-table.component';
@@ -21,6 +23,11 @@ const routes: Routes = [
         component: AgentListSmartComponent,
         data: { title: 'Agent List' },
       },
+      {
+        path: 'create-agent',
+        component: AgentDetailSmartComponent,
+        data: { title: 'Add Agent' },
+      },
     ],
   },
 ];
@@ -35,6 +42,8 @@ const routes: Routes = [
 export class ContentRoutingModule { }
 
 export const components = [
+  AgentDetailSmartComponent,
+  AgentDetailPresentationComponent,
   AgentListPresentationComponent,
   AgentListSmartComponent,
   AgentTableComponent,
