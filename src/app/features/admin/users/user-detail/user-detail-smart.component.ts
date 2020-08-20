@@ -32,11 +32,14 @@ import { RequiredValidation } from '@utils/validation/required-validation';
 import {
   roleList,
   RoleType,
+  IRoleDTO,
 } from '@models/role';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import {
   ISelectField,
+  ISelectOptions,
   SelectField,
+  SelectOptions,
 } from '@models/form/select';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
@@ -156,5 +159,27 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     });
 
     return formConfig;
+  }
+
+  /**
+   * Maps the specific `IRoleDTO` properties to the general `name`/`value` properties that `ISelectOptions` expects
+   */
+  private mapRoleListToSelect(roles: IRoleDTO[]): ISelectOptions<RoleType>[] {
+    const selectOptionList: ISelectOptions<RoleType>[] = [];
+    roles.forEach((role) => {
+      const selectOption: ISelectOptions<RoleType> = new SelectOptions<RoleType>();
+      for (const property in selectOption) {
+        if (selectOption.hasOwnProperty(property)) {
+          if (property === 'value') {
+            selectOption[property] = role.id;
+          } else if (property === 'name') {
+            selectOption[property] = role.roleName;
+          }
+        }
+      }
+      selectOptionList.push(selectOption);
+    });
+
+    return selectOptionList;
   }
 }
