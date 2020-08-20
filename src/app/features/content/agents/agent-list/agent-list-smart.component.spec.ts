@@ -6,10 +6,10 @@ import {
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { environment } from '@env/environment.test';
-import { Logger } from '@utils/logger';
 import { AgentListPresentationComponent } from './agent-list-presentation.component';
 import { AgentListSmartComponent } from './agent-list-smart.component';
+import { environment } from '@env/environment.test';
+import { Logger } from '@utils/logger';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
