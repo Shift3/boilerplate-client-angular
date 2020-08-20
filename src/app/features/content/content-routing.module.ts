@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AgentListPresentationComponent } from './agents/agent-list/agent-list-presentation.component';
+import { AgentListSmartComponent } from './agents/agent-list/agent-list-smart.component';
+import { AgentTableComponent } from './agents/agent-table/agent-table.component';
 import { ContentLayoutComponent } from './content-layout/content-layout.component';
-import { ProviderListPresentationComponent } from './providers/provider-list/provider-list-presentation.component';
-import { ProviderListSmartComponent } from './providers/provider-list/provider-list-smart.component';
-import { ProviderTableComponent } from './providers/provider-table/provider-table.component';
 
 const routes: Routes = [
   {
@@ -13,13 +13,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'provider-list',
+        redirectTo: 'agent-list',
         pathMatch: 'full',
       },
       {
-        path: 'provider-list',
-        component: ProviderListSmartComponent,
-        data: { title: 'Provider List' },
+        path: 'agent-list',
+        component: AgentListSmartComponent,
+        data: { title: 'Agent List' },
       },
     ],
   },
@@ -35,8 +35,8 @@ const routes: Routes = [
 export class ContentRoutingModule { }
 
 export const components = [
+  AgentListPresentationComponent,
+  AgentListSmartComponent,
+  AgentTableComponent,
   ContentLayoutComponent,
-  ProviderListPresentationComponent,
-  ProviderListSmartComponent,
-  ProviderTableComponent,
 ];

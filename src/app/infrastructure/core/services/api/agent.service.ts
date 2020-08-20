@@ -28,12 +28,12 @@ export class AgentService {
     return this.apiService.get<IAgentDTO[]>(endpoint);
   }
 
-  public deleteAgent(provider: IAgentDTO): Observable<IAgentDTO> {
-    const endpoint = `${this.url}/${provider.id}`;
+  public deleteAgent(agent: IAgentDTO): Observable<IAgentDTO> {
+    const endpoint = `${this.url}/${agent.id}`;
 
     return this.apiService.delete<IAgentDTO>(endpoint).pipe(
       tap(() => {
-        const message = `Provider ${provider.name} deleted.`;
+        const message = `Agent ${agent.name} deleted.`;
         return this.notificationService.showSuccess([message]);
       }),
     );

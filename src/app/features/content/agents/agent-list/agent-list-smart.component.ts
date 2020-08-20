@@ -28,18 +28,18 @@ import { IAgentDTO } from '@models/agent';
 
 @Component({
   template: `
-    <app-provider-list-presentation
-      [providerList]="(providerList$ | async)"
+    <app-agent-list-presentation
+      [agentList]="(agentList$ | async)"
       (emitDelete)="openDeleteModal($event)"
-    ></app-provider-list-presentation>
+    ></app-agent-list-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProviderListSmartComponent implements OnInit {
-  public emitGetProviderList = new EventEmitter<void>();
+export class AgentListSmartComponent implements OnInit {
+  public emitGetAgentList = new EventEmitter<void>();
   public isLoaded: boolean = false;
   public isLoadingResults: boolean = false;
-  public providerList$: Observable<IAgentDTO[]>;
+  public agentList$: Observable<IAgentDTO[]>;
 
   constructor(
     private agentService: AgentService,
@@ -47,12 +47,12 @@ export class ProviderListSmartComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.getProviderList();
+    this.getAgentList();
   }
 
-  public openDeleteModal(provider: IAgentDTO): void {
+  public openDeleteModal(agent: IAgentDTO): void {
     const modalConfig = new ConfirmModalConfig({
-      message: `Delete ${provider.name}?`,
+      message: `Delete ${agent.name}?`,
       action: 'Delete',
     });
     const modalRef = this.modalService.open(ConfirmModalComponent);
@@ -60,13 +60,13 @@ export class ProviderListSmartComponent implements OnInit {
     modalRef.componentInstance.modalConfig = modalConfig;
     modalRef.result.then((result: IConfirmModalConfig) => {
       if (result) {
-        this.deleteProvider(provider);
+        this.deleteAgent(agent);
       }
     });
   }
 
-  private getProviderList(): void {
-    this.providerList$ = merge(this.emitGetProviderList).pipe(
+  private getAgentList(): void {
+    this.agentList$ = merge(this.emitGetAgentList).pipe(
       startWith({}),
       switchMap(() => {
         this.isLoadingResults = true;
@@ -81,7 +81,7 @@ export class ProviderListSmartComponent implements OnInit {
     );
   }
 
-  private deleteProvider(provider: IAgentDTO): void {
-    this.agentService.deleteAgent(provider).subscribe(() => this.emitGetProviderList.emit());
+  private deleteAgent(agent: IAgentDTO): void {
+    this.agentService.deleteAgent(agent).subscribe(() => this.emitGetAgentList.emit());
   }
 }

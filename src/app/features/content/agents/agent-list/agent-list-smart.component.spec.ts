@@ -8,20 +8,20 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
-import { ProviderListPresentationComponent } from './provider-list-presentation.component';
-import { ProviderListSmartComponent } from './provider-list-smart.component';
+import { AgentListPresentationComponent } from './agent-list-presentation.component';
+import { AgentListSmartComponent } from './agent-list-smart.component';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
-  : describe('[Integration] ProviderListSmartComponent', () => {
-    let component: ProviderListSmartComponent;
-    let fixture: ComponentFixture<ProviderListSmartComponent>;
+  : describe('[Integration] AgentListSmartComponent', () => {
+    let component: AgentListSmartComponent;
+    let fixture: ComponentFixture<AgentListSmartComponent>;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [
-          ProviderListPresentationComponent,
-          ProviderListSmartComponent,
+          AgentListPresentationComponent,
+          AgentListSmartComponent,
         ],
         imports: [
           HttpClientTestingModule,
@@ -32,7 +32,7 @@ import { ProviderListSmartComponent } from './provider-list-smart.component';
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(ProviderListSmartComponent);
+      fixture = TestBed.createComponent(AgentListSmartComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });

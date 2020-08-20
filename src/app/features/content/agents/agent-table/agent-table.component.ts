@@ -8,12 +8,12 @@ import {
 import { IAgentDTO } from '@models/agent';
 
 @Component({
-  selector: 'app-provider-table',
-  templateUrl: './provider-table.component.html',
-  styleUrls: ['./provider-table.component.scss'],
+  selector: 'app-agent-table',
+  templateUrl: './agent-table.component.html',
+  styleUrls: ['./agent-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProviderTableComponent {
+export class AgentTableComponent {
   @Input() public tableData: any;
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
@@ -22,7 +22,7 @@ export class ProviderTableComponent {
     return (item) ? item.columnIndex : null;
   }
 
-  public deleteProvider(provider: IAgentDTO): void {
-    this.emitDelete.emit(provider);
+  public deleteAgent(agent: IAgentDTO): void {
+    this.emitDelete.emit(agent);
   }
 }
