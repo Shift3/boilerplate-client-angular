@@ -4,18 +4,18 @@ export type RoleType = 'Admin' | 'Editor' | 'User' | 'Super Administrator' | '';
 
 export interface IRoleDTO {
   id: number;
-  roleName: RoleType;
+  roleName: string;
 }
 
 export class RoleDTO implements IRoleDTO {
   id: number = 0;
-  roleName: RoleType = '';
+  roleName: string = '';
 
-  static isRoleType(role: RoleType): role is RoleType {
+  static isRoleType(role: string): role is RoleType {
     return ['Admin', 'Editor', 'User', 'Super Administrator'].includes(role);
   }
 
-  static isAdminRoleType(role: RoleType): role is RoleType {
+  static isAdminRoleType(role: string): role is RoleType {
     return ['Admin', 'Super Administrator'].includes(role);
   }
 
