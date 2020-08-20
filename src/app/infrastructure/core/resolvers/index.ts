@@ -1,4 +1,5 @@
 import { CreateUserResolver } from './create-user.resolver';
+import { GetRoleListResolver } from './get-role-list.resolver';
 import { UpdateUserResolver } from './update-user.resolver';
 
 /**
@@ -6,5 +7,6 @@ import { UpdateUserResolver } from './update-user.resolver';
  */
 export const resolverList = {
     CreateUserResolver,
+    GetRoleListResolver,
     UpdateUserResolver,
 };
