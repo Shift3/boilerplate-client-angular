@@ -8,6 +8,8 @@ import { AgentListSmartComponent } from './agents/agent-list/agent-list-smart.co
 import { AgentTableComponent } from './agents/agent-table/agent-table.component';
 import { ContentLayoutComponent } from './content-layout/content-layout.component';
 
+import { resolverList } from '@core/resolvers';
+
 const routes: Routes = [
   {
     path: '',
