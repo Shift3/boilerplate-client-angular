@@ -1,6 +1,17 @@
 export interface ISelectOptions<T> {
-  name: T;
+  name: string;
   value: string | number;
+}
+
+export class SelectOptions<T> implements ISelectOptions<T> {
+  name: string = '';
+  value: string | number = '';
+
+  constructor(configOverride?: Partial<ISelectOptions<T>>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
 }
 
 export interface ISelectField<T> {
