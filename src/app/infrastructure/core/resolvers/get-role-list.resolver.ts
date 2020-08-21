@@ -14,22 +14,21 @@ import {
   take,
 } from 'rxjs/operators';
 
+import { IRoleDTO } from '@models/role';
 import { NotificationService } from '../services/notification.service';
 import { RoleService } from '../services/api/role.service';
-import { RoleType } from '@models/role';
-import { ISelectOptions } from '@models/form/select';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetRoleListResolver implements Resolve<ISelectOptions<RoleType>[]> {
+export class GetRoleListResolver implements Resolve<IRoleDTO[]> {
   constructor(
     private notificationService: NotificationService,
     private router: Router,
     private roleService: RoleService,
   ) { }
 
-  resolve(): Observable<ISelectOptions<RoleType>[]> {
+  resolve(): Observable<IRoleDTO[]> {
     return this.roleService.getRoleList()
       .pipe(
         take(1),

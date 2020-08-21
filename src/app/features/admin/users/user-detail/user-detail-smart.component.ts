@@ -148,7 +148,11 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           value: this.user.role.id,
           fieldType: 'select',
           label: 'Role',
-          fieldConfig : new SelectField({ options: this.roleList }),
+          fieldConfig : new SelectField({
+            options: this.roleList,
+            optionName: 'roleName',
+            optionValue: 'id',
+          }),
           validation: [ RequiredValidation.required('Role') ],
           disabled: this.isSelf,
         }),

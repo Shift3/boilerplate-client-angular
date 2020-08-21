@@ -16,10 +16,14 @@ export class SelectOptions<T> implements ISelectOptions<T> {
 
 export interface ISelectField<T> {
   options: ISelectOptions<T>[];
+  optionName: string;
+  optionValue: string;
 }
 
 export class SelectField<T> implements ISelectField<T> {
   options: ISelectOptions<T>[] = [];
+  optionName: string = '';
+  optionValue: string = '';
 
   constructor(configOverride?: Partial<ISelectField<T>>) {
     if (configOverride) {
