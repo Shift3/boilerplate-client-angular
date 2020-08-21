@@ -1,23 +1,26 @@
-<div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">{{ modalConfig.message }}</h4>
-</div>
-<div class="modal-body">
-  <p class="confirm">Do you want to continue?</p>
-</div>
-<div class="modal-footer">
-  <button
-    id="cancel-button"
-    type="button"
-    (click)="cancel()"
-  >
-    {{ "Cancel" | uppercase }}
-  </button>
-  <button
-    id="form-submit-button"
-    type="button"
-    class="btn btn-outline-dark"
-    (click)="submit()"
-  >
-    {{ modalConfig.action | uppercase }}
-  </button>
+<div class="card">
+  <div class="card-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ modalConfig.message }}</h4>
+  </div>
+  <div class="modal-body">
+    Do you want to continue?
+  </div>
+  <div class="save-cancel-container save-cancel-button-row">
+    <button
+      id="cancel-button"
+      class="btn btn-outline-dark"
+      type="button"
+      (click)="cancel()"
+    >
+      {{ "Cancel" | uppercase }}
+    </button>
+    <button
+      id="form-submit-button"
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="submit()"
+    >
+      {{ modalConfig.action | uppercase }}
+    </button>
+  </div>
 </div>
