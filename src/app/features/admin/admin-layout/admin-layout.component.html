@@ -1,0 +1,17 @@
+<main class="holy-grail">
+  <ng-container *ngIf="(navbarToggle$ | async) as navbarToggle">
+    <ng-container *ngIf="navbarToggle === 'top'">
+      <app-top-navigation class="shadow"></app-top-navigation>
+    </ng-container>
+    <div class="holy-grail-body">
+      <ng-container *ngIf="navbarToggle === 'side'">
+        <app-side-navigation class="shadow holy-grail-sidebar-1 hg-sidebar"></app-side-navigation>
+      </ng-container>
+      <div class="holy-grail-content admin-background routed-content">
+        <div class="holy-grail-child flex-column">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</main>

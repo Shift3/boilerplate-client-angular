@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '@core/services/api/auth.service';
-import { ConfirmModalComponent } from '../../confirm-modal/confirm-modal.component';
+import { ConfirmModalComponent } from '@shared/components/confirm-modal/confirm-modal.component';
 import {
   ConfirmModalConfig,
   IConfirmModalConfig,
@@ -16,7 +16,7 @@ import {
   INavigation,
   profileLinkList,
 } from '@models/navigation';
-import { NavbarStateService } from '@core/services/navbar-state.service';
+import { NavbarStateService } from '@core/services/state/navbar-state.service';
 
 @Component({
   selector: 'app-settings',
@@ -55,7 +55,8 @@ export class SettingsComponent {
   }
 
   public signOut(): void {
-    this.authService.logout().subscribe(() => this.router.navigateByUrl('/auth'));
+    this.authService.logout().subscribe();
+    this.router.navigateByUrl('/auth');
   }
 
   // Client-side navigation toggles for debugging purposes

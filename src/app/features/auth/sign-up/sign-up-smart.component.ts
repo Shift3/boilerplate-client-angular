@@ -58,7 +58,7 @@ export class SignUpSmartComponent {
         validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
-        name: 'first_name',
+        name: 'firstName',
         fieldType: 'input',
         label: 'First Name',
         placeholder: 'Enter your first name',
@@ -66,7 +66,7 @@ export class SignUpSmartComponent {
         validation: [ RequiredValidation.required('First Name') ],
       }),
       new FormField<IInputField>({
-        name: 'last_name',
+        name: 'lastName',
         fieldType: 'input',
         label: 'Last Name',
         placeholder: 'Enter your last name',
