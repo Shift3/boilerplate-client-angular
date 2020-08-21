@@ -2,15 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { SideNavigationComponent } from './side-navigation.component';
+import { SideNavigationSmartComponent } from './side-navigation-smart.component';
 
-describe('SideNavigationComponent', () => {
-  let component: SideNavigationComponent;
-  let fixture: ComponentFixture<SideNavigationComponent>;
+describe('SideNavigationSmartComponent', () => {
+  let component: SideNavigationSmartComponent;
+  let fixture: ComponentFixture<SideNavigationSmartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SideNavigationComponent ],
+      declarations: [ SideNavigationSmartComponent ],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
@@ -20,7 +20,7 @@ describe('SideNavigationComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SideNavigationComponent);
+    fixture = TestBed.createComponent(SideNavigationSmartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

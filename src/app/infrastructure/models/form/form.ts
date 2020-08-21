@@ -16,16 +16,18 @@ export interface IFormField<T> {
   fieldType: FieldType;
   fieldConfig: T;
   validation?: ValidatorFn[];
+  value: string | number;
   disabled?: boolean;
 }
 
 export class FormField<T> implements IFormField<T> {
   name: string;
   label: string;
-  placeholder: string;
+  placeholder: string = '';
   fieldType: FieldType;
   fieldConfig: T;
   validation?: ValidatorFn[] = [];
+  value: string | number = '';
   disabled?: boolean = false;
 
   constructor(configOverride?: Partial<IFormField<T>>) {
@@ -38,14 +40,14 @@ export class FormField<T> implements IFormField<T> {
 export interface IFormConfig {
   formName: string;
   validation: ValidatorFn[];
-  controls: IFormField<IInputField | ISelectField>[];
+  controls: IFormField<IInputField | ISelectField<unknown>>[];
   submit?: ISaveCancelButtonConfig;
 }
 
 export class FormConfig implements IFormConfig {
   formName: string = 'form';
   validation: ValidatorFn[] = [];
-  controls: IFormField<IInputField | ISelectField>[] = [];
+  controls: IFormField<IInputField | ISelectField<unknown>>[] = [];
   submit?: ISaveCancelButtonConfig = new SaveCancelButtonConfig();
 
   constructor(configOverride?: Partial<IFormConfig>) {

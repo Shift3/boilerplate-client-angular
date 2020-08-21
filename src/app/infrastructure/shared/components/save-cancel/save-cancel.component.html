@@ -1,22 +1,21 @@
 <div class="save-cancel-button-row">
   <button
     id="cancel-button"
-    class="mat-elevation-z0"
     type="button"
+    class="btn"
     mat-raised-button
     (click)="cancel()"
   >
-    {{ buttonConfig.cancel }}
+    {{ buttonConfig.cancel | uppercase }}
   </button>
-    <button
-      id="form-submit-button"
-      class="mat-elevation-z0"
-      type="submit"
-      mat-raised-button
-      color="accent"
-      (click)="save()"
-      [disabled]="shouldDisable"
+  <button
+    id="form-submit-button"
+    class="btn"
+    type="submit"
+    mat-raised-button
+    (click)="save()"
+    [disabled]="shouldDisable"
   >
-    {{ buttonConfig.save }}
+    {{ buttonConfig.save | uppercase }}
   </button>
 </div>

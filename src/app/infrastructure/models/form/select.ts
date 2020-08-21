@@ -1,16 +1,31 @@
-export interface ISelectOptions {
+export interface ISelectOptions<T> {
   name: string;
-  value: string;
+  value: string | number;
 }
 
-export interface ISelectField {
-  options: ISelectOptions[];
+export class SelectOptions<T> implements ISelectOptions<T> {
+  name: string = '';
+  value: string | number = '';
+
+  constructor(configOverride?: Partial<ISelectOptions<T>>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
 }
 
-export class SelectField implements ISelectField {
-  options: ISelectOptions[] = [];
+export interface ISelectField<T> {
+  options: ISelectOptions<T>[];
+  optionName: string;
+  optionValue: string;
+}
 
-  constructor(configOverride?: Partial<ISelectField>) {
+export class SelectField<T> implements ISelectField<T> {
+  options: ISelectOptions<T>[] = [];
+  optionName: string = '';
+  optionValue: string = '';
+
+  constructor(configOverride?: Partial<ISelectField<T>>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
