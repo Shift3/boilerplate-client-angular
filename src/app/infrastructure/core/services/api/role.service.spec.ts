@@ -46,7 +46,7 @@ import { RoleService } from './role.service';
         expect(req.request.method).toBe('GET');
       });
 
-      it('should return a list of users', () => {
+      it('should return a list of roles', () => {
         const expectedValue: IRoleDTO[] = [
           {
             id: 1,
