@@ -9,9 +9,9 @@ import { of as observableOf } from 'rxjs';
 import { ApiService } from './api.service';
 import { environment } from '@env/environment.test';
 import {
-  ChangeUserRequest,
   IChangeUserRequest,
   IUserDTO,
+  ChangeUserRequest,
   UserDTO,
 } from '@models/user';
 import { Logger } from '@utils/logger';

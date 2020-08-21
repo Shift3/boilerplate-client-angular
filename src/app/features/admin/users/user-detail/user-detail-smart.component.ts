@@ -29,13 +29,11 @@ import {
   InputField,
 } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
-import {
-  roleList,
-  RoleType,
-} from '@models/role';
+import {  RoleType } from '@models/role';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import {
   ISelectField,
+  ISelectOptions,
   SelectField,
 } from '@models/form/select';
 import { UserService } from '@core/services/api/user.service';
@@ -61,6 +59,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   public user: IUserDTO;
 
   private checkSelfSubscription: Subscription;
+  private roleList: ISelectOptions<RoleType>[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -71,6 +70,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   ) {
     this.formTitle = this.activatedRoute.snapshot.data.title;
     this.user = this.activatedRoute.snapshot.data.user;
+    this.roleList = this.activatedRoute.snapshot.data.roleList;
   }
 
   public ngOnInit(): void {
@@ -107,8 +107,11 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private buildPayload(): IChangeUserRequest {
-    const payload = new ChangeUserRequest();
-    return this.formService.buildRequestPayload(this.form, payload);
+    const payloadDTO = new ChangeUserRequest();
+    const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
+    // Set unique value that diverges from the `FormGroup` here
+    payload.role.id = this.form.get('roleId').value;
+    return payload;
   }
 
   private buildFormConfig() {
@@ -145,7 +148,11 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           value: this.user.role.id,
           fieldType: 'select',
           label: 'Role',
-          fieldConfig : new SelectField({ options: roleList }),
+          fieldConfig : new SelectField({
+            options: this.roleList,
+            optionName: 'roleName',
+            optionValue: 'id',
+          }),
           validation: [ RequiredValidation.required('Role') ],
           disabled: this.isSelf,
         }),

@@ -23,11 +23,6 @@ import {
   ISignupDTO,
   ISignupRequest,
 } from '@models/auth';
-import {
-  roleList,
-  RoleType,
-} from '@models/role';
-import { ISelectOptions } from '@models/form/select';
 
 @Injectable({
   providedIn: 'root',
@@ -85,7 +80,7 @@ export class UserService {
 
   public createUser(payload: IChangeUserRequest): Observable<IUserDTO> {
     const endpoint = `${this.url}`;
-    payload.roleId = Number(payload.roleId);
+    payload.role.id = Number(payload.role.id);
 
     return this.apiService.post<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
       tap((response) => {
@@ -113,7 +108,7 @@ export class UserService {
 
   public updateUser(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
     const endpoint = `${this.url}/${userId}`;
-    payload.roleId = Number(payload.roleId);
+    payload.role.id = Number(payload.role.id);
 
     return this.apiService.put<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
       tap(() => {
@@ -132,12 +127,5 @@ export class UserService {
         return this.notificationService.showSuccess([message]);
       }),
     );
-  }
-
-  /**
-   * Local implementation
-   */
-  public getRoleList(): Observable<ISelectOptions<RoleType>[]> {
-    return observableOf(roleList);
   }
 }
