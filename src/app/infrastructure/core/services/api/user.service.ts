@@ -23,11 +23,6 @@ import {
   ISignupDTO,
   ISignupRequest,
 } from '@models/auth';
-import {
-  roleList,
-  RoleType,
-} from '@models/role';
-import { ISelectOptions } from '@models/form/select';
 
 @Injectable({
   providedIn: 'root',
@@ -132,12 +127,5 @@ export class UserService {
         return this.notificationService.showSuccess([message]);
       }),
     );
-  }
-
-  /**
-   * Local implementation
-   */
-  public getRoleList(): Observable<ISelectOptions<RoleType>[]> {
-    return observableOf(roleList);
   }
 }

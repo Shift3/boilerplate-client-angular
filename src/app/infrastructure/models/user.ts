@@ -75,11 +75,3 @@ export class ChangeUserRequest implements IChangeUserRequest {
     }
   }
 }
-
-export interface IUpdateUserRequest {
-  email: string;
-  firstName: string;
-  lastName: string;
-  profilePicture: string;
-  role: IRoleDTO;
-}
