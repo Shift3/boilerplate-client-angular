@@ -8,6 +8,8 @@ import {
   getTestBed,
 } from '@angular/core/testing';
 
+import { of as observableOf } from 'rxjs';
+
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
@@ -66,6 +68,8 @@ import { UserService } from '../services/api/user.service';
 
       it('should resolve an instance of the user object', () => {
         const expectedValue = new UserDTO();
+        spyOn(service, 'findUser').and.returnValue(observableOf(new UserDTO()));
+
         resolver.resolve(route.snapshot).subscribe(response => {
           expect(response).toEqual(expectedValue);
         });

@@ -8,6 +8,8 @@ import {
   getTestBed,
 } from '@angular/core/testing';
 
+import { of as observableOf } from 'rxjs';
+
 import { AgentDTO } from '@models/agent';
 import { AgentService } from '../services/api/agent.service';
 import { environment } from '@env/environment.test';
@@ -66,6 +68,8 @@ import { UpdateAgentResolver } from './update-agent.resolver';
 
       it('should resolve an instance of the agent object', () => {
         const expectedValue = new AgentDTO();
+        spyOn(service, 'findAgent').and.returnValue(observableOf(new AgentDTO()));
+
         resolver.resolve(route.snapshot).subscribe(response => {
           expect(response).toEqual(expectedValue);
         });
