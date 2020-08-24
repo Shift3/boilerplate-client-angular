@@ -21,7 +21,7 @@ import { UserService } from '../services/api/user.service';
     let injector: TestBed;
     let resolver: UpdateUserResolver;
     let route: ActivatedRoute;
-    let userService: UserService;
+    let service: UserService;
     const notificationMock = { showError: jasmine.createSpy('showError') };
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
 
@@ -52,7 +52,7 @@ import { UserService } from '../services/api/user.service';
       injector = getTestBed();
       resolver = injector.inject(UpdateUserResolver);
       route = TestBed.inject(ActivatedRoute);
-      userService = TestBed.inject(UserService);
+      service = TestBed.inject(UserService);
     });
     it('should be created', () => {
       expect(resolver).toBeTruthy();

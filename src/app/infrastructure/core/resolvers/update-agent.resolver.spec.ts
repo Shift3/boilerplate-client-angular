@@ -21,7 +21,7 @@ import { UpdateAgentResolver } from './update-agent.resolver';
     let injector: TestBed;
     let resolver: UpdateAgentResolver;
     let route: ActivatedRoute;
-    let agentService: AgentService;
+    let service: AgentService;
     const notificationMock = { showError: jasmine.createSpy('showError') };
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
 
@@ -52,7 +52,7 @@ import { UpdateAgentResolver } from './update-agent.resolver';
       injector = getTestBed();
       resolver = injector.inject(UpdateAgentResolver);
       route = TestBed.inject(ActivatedRoute);
-      agentService = TestBed.inject(AgentService);
+      service = TestBed.inject(AgentService);
     });
     it('should be created', () => {
       expect(resolver).toBeTruthy();
