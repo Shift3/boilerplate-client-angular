@@ -25,7 +25,6 @@ export class AgentDetailPresentationComponent {
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
-
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);
   }
