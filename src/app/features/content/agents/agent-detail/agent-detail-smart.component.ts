@@ -75,6 +75,21 @@ export class AgentDetailSmartComponent implements OnInit  {
           fieldConfig : new InputField({ inputType: 'email' }),
           validation: [ EmailValidation.validEmail(true) ],
         }),
+        new FormField<IInputField>({
+          name: 'description',
+          value: this.agent.description,
+          fieldType: 'input',
+          label: 'Description',
+          fieldConfig : new InputField(),
+        }),
+        new FormField<IInputField>({
+          name: 'phoneNumber',
+          value: this.agent.phoneNumber,
+          fieldType: 'input',
+          label: 'Phone Number',
+          fieldConfig : new InputField(),
+          validation: [ RequiredValidation.required('Phone Number') ],
+        }),
       ],
     });
 
