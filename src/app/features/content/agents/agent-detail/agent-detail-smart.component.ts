@@ -13,7 +13,6 @@ import {
   FormField,
   IFormConfig,
 } from '@models/form/form';
-import { FormService } from '@core/services/form.service';
 import {
   IInputField,
   InputField,
@@ -40,7 +39,6 @@ export class AgentDetailSmartComponent implements OnInit  {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private formService: FormService,
   ) {
     this.agent = this.activatedRoute.snapshot.data.agent;
     this.formTitle = this.activatedRoute.snapshot.data.title;
