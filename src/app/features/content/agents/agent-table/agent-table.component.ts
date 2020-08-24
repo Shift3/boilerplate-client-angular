@@ -14,13 +14,9 @@ import { IAgentDTO } from '@models/agent';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgentTableComponent {
-  @Input() public tableData: any;
+  @Input() public tableData: IAgentDTO[];
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
-
-  public trackByColumnId(index: number, item: any): number | null {
-    return (item) ? item.columnIndex : null;
-  }
 
   public deleteAgent(agent: IAgentDTO): void {
     this.emitDelete.emit(agent);
