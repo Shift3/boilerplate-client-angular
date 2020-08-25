@@ -7,6 +7,10 @@ import {
 } from '@angular/core';
 
 import { IAgentDTO } from '@models/agent';
+import {
+  IRoleGuard,
+  RoleGuard,
+} from '@models/role';
 
 @Component({
   selector: 'app-agent-list-presentation',
@@ -16,8 +20,7 @@ import { IAgentDTO } from '@models/agent';
 })
 export class AgentListPresentationComponent {
   @Input() public agentList: IAgentDTO;
-  @Input() public canEdit: boolean;
-  @Input() public isAdmin: boolean;
+  @Input() public checkRole: IRoleGuard = new RoleGuard();
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
 

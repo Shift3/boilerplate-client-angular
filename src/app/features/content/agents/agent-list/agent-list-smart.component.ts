@@ -25,14 +25,14 @@ import {
   IConfirmModalConfig,
 } from '@models/modal';
 import { IAgentDTO } from '@models/agent';
+import { IRoleGuard } from '@models/role';
 import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
   template: `
     <app-agent-list-presentation
       [agentList]="(agentList$ | async)"
-      [canEdit]="(canEdit$ | async)"
-      [isAdmin]="(isAdmin$ | async)"
+      [checkRole]="(checkRole$ | async)"
       (emitDelete)="openDeleteModal($event)"
     ></app-agent-list-presentation>
   `,
@@ -40,8 +40,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
 })
 export class AgentListSmartComponent implements OnInit {
   public emitGetAgentList = new EventEmitter<void>();
-  public canEdit$: Observable<boolean>;
-  public isAdmin$: Observable<boolean>;
+  public checkRole$: Observable<IRoleGuard>;
   public isLoaded: boolean = false;
   public isLoadingResults: boolean = false;
   public agentList$: Observable<IAgentDTO[]>;
@@ -54,16 +53,11 @@ export class AgentListSmartComponent implements OnInit {
 
   public ngOnInit(): void {
     this.getAgentList();
-    this.canEdit$ = this.canEdit();
-    this.isAdmin$ = this.isAdmin();
+    this.checkRole$ = this.checkRoleGuard();
   }
 
-  public canEdit(): Observable<boolean> {
-    return this.userStateService.canEdit();
-  }
-
-  public isAdmin(): Observable<boolean> {
-    return this.userStateService.isAdmin();
+  public checkRoleGuard(): Observable<IRoleGuard> {
+    return this.userStateService.checkRoleGuard();
   }
 
   public openDeleteModal(agent: IAgentDTO): void {

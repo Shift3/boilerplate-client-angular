@@ -5,7 +5,7 @@
       <th scope="col">{{ "Description" | uppercase }}</th>
       <th scope="col">{{ "Email" | uppercase }}</th>
       <th scope="col">{{ "Phone Number" | uppercase }}</th>
-      <ng-container *ngIf="canEdit">
+      <ng-container *ngIf="checkRole.canEdit">
         <th scope="col">{{ "Actions" | uppercase }}</th>
       </ng-container>
     </tr>
@@ -21,12 +21,12 @@
       <td>{{ item.description }}</td>
       <td>{{ item.email }}</td>
       <td>{{ item.phoneNumber }}</td>
-      <ng-container *ngIf="canEdit">
+      <ng-container *ngIf="checkRole.canEdit">
         <td>
           <button class="btn" routerLink="/content/update-agent/{{ item.id }}">
             <span class="fa fa-edit"></span>
           </button>
-          <ng-container *ngIf="isAdmin">
+          <ng-container *ngIf="checkRole.isAdmin">
             <button class="btn" (click)="deleteAgent(item)">
               <span class="fa fa-trash"></span>
             </button>
