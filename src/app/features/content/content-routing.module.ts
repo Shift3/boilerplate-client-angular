@@ -8,6 +8,8 @@ import { AgentListSmartComponent } from './agents/agent-list/agent-list-smart.co
 import { AgentTableComponent } from './agents/agent-table/agent-table.component';
 import { ContentLayoutComponent } from './content-layout/content-layout.component';
 
+import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
+import { CanEditAuthGuard } from '@core/guards/can-edit-auth.guard';
 import { resolverList } from '@core/resolvers';
 
 const routes: Routes = [
@@ -28,6 +30,7 @@ const routes: Routes = [
       {
         path: 'create-agent',
         component: AgentDetailSmartComponent,
+        canActivate: [AdminAuthGuard],
         data: { title: 'Add Agent' },
         resolve: {
           agent: resolverList.CreateAgentResolver,
@@ -36,6 +39,7 @@ const routes: Routes = [
       {
         path: 'update-agent/:id',
         component: AgentDetailSmartComponent,
+        canActivate: [CanEditAuthGuard],
         data: { title: 'Update Agent' },
         resolve: {
           agent: resolverList.UpdateAgentResolver,
