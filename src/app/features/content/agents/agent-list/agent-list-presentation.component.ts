@@ -16,6 +16,8 @@ import { IAgentDTO } from '@models/agent';
 })
 export class AgentListPresentationComponent {
   @Input() public agentList: IAgentDTO;
+  @Input() public canEdit: boolean;
+  @Input() public isAdmin: boolean;
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
 

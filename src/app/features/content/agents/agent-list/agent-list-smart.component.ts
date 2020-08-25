@@ -25,11 +25,14 @@ import {
   IConfirmModalConfig,
 } from '@models/modal';
 import { IAgentDTO } from '@models/agent';
+import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
   template: `
     <app-agent-list-presentation
       [agentList]="(agentList$ | async)"
+      [canEdit]="(canEdit$ | async)"
+      [isAdmin]="(isAdmin$ | async)"
       (emitDelete)="openDeleteModal($event)"
     ></app-agent-list-presentation>
   `,
@@ -37,6 +40,8 @@ import { IAgentDTO } from '@models/agent';
 })
 export class AgentListSmartComponent implements OnInit {
   public emitGetAgentList = new EventEmitter<void>();
+  public canEdit$: Observable<boolean>;
+  public isAdmin$: Observable<boolean>;
   public isLoaded: boolean = false;
   public isLoadingResults: boolean = false;
   public agentList$: Observable<IAgentDTO[]>;
@@ -44,10 +49,13 @@ export class AgentListSmartComponent implements OnInit {
   constructor(
     private agentService: AgentService,
     private modalService: NgbModal,
+    private userStateService: UserStateService,
   ) { }
 
   public ngOnInit(): void {
     this.getAgentList();
+    this.canEdit$ = this.canEdit();
+    this.isAdmin$ = this.isAdmin();
   }
 
   public openDeleteModal(agent: IAgentDTO): void {
@@ -79,6 +87,14 @@ export class AgentListSmartComponent implements OnInit {
         return observableOf([]);
       }),
     );
+  }
+
+  public isAdmin(): Observable<boolean> {
+    return this.userStateService.isAdmin();
+  }
+
+  public canEdit(): Observable<boolean> {
+    return this.userStateService.canEdit();
   }
 
   private deleteAgent(agent: IAgentDTO): void {

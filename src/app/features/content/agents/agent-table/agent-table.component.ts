@@ -14,7 +14,9 @@ import { IAgentDTO } from '@models/agent';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgentTableComponent {
-  @Input() public tableData: IAgentDTO[];
+  @Input() public canEdit: boolean = false;
+  @Input() public isAdmin: boolean = false;
+  @Input() public tableData: IAgentDTO[] = [];
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
 

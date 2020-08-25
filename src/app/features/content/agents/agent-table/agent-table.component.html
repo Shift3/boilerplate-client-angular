@@ -1,11 +1,13 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Actions</th>
+      <th scope="col">{{ "Name" | uppercase }}</th>
+      <th scope="col">{{ "Description" | uppercase }}</th>
+      <th scope="col">{{ "Email" | uppercase }}</th>
+      <th scope="col">{{ "Phone Number" | uppercase }}</th>
+      <ng-container *ngIf="canEdit">
+        <th scope="col">{{ "Actions" | uppercase }}</th>
+      </ng-container>
     </tr>
   </thead>
   <tbody>
@@ -19,14 +21,18 @@
       <td>{{ item.description }}</td>
       <td>{{ item.email }}</td>
       <td>{{ item.phoneNumber }}</td>
-      <td>
-        <button class="btn" routerLink="/content/update-agent/{{ item.id }}">
-          <span class="fa fa-edit"></span>
-        </button>
-        <button class="btn" (click)="deleteAgent(item)">
-          <span class="fa fa-trash"></span>
-        </button>
-      </td>
+      <ng-container *ngIf="canEdit">
+        <td>
+          <button class="btn" routerLink="/content/update-agent/{{ item.id }}">
+            <span class="fa fa-edit"></span>
+          </button>
+          <ng-container *ngIf="isAdmin">
+            <button class="btn" (click)="deleteAgent(item)">
+              <span class="fa fa-trash"></span>
+            </button>
+          </ng-container>
+        </td>
+      </ng-container>
     </tr>
   </tbody>
 </table>

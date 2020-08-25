@@ -1,9 +1,13 @@
-<div class="row">
-  <button class="btn btn-add" routerLink="/content/create-agent">{{ "Add Agent" |  uppercase }}</button>
-</div>
+<ng-container *ngIf="isAdmin">
+  <div class="row">
+    <button class="btn btn-add" routerLink="/content/create-agent">{{ "Add Agent" |  uppercase }}</button>
+  </div>
+</ng-container>
 <ng-container *ngIf="agentList">
   <app-agent-table
     class="route-content"
+    [canEdit]="canEdit"
+    [isAdmin]="isAdmin"
     [tableData]="agentList"
     (emitDelete)="deleteAgent($event)"
   ></app-agent-table>
