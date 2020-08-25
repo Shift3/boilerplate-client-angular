@@ -58,6 +58,14 @@ export class AgentListSmartComponent implements OnInit {
     this.isAdmin$ = this.isAdmin();
   }
 
+  public canEdit(): Observable<boolean> {
+    return this.userStateService.canEdit();
+  }
+
+  public isAdmin(): Observable<boolean> {
+    return this.userStateService.isAdmin();
+  }
+
   public openDeleteModal(agent: IAgentDTO): void {
     const modalConfig = new ConfirmModalConfig({
       message: `Delete ${agent.name}?`,
@@ -87,14 +95,6 @@ export class AgentListSmartComponent implements OnInit {
         return observableOf([]);
       }),
     );
-  }
-
-  public isAdmin(): Observable<boolean> {
-    return this.userStateService.isAdmin();
-  }
-
-  public canEdit(): Observable<boolean> {
-    return this.userStateService.canEdit();
   }
 
   private deleteAgent(agent: IAgentDTO): void {
