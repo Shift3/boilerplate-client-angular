@@ -25,11 +25,14 @@ import {
   IConfirmModalConfig,
 } from '@models/modal';
 import { IAgentDTO } from '@models/agent';
+import { IRoleGuard } from '@models/role';
+import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
   template: `
     <app-agent-list-presentation
       [agentList]="(agentList$ | async)"
+      [checkRole]="(checkRole$ | async)"
       (emitDelete)="openDeleteModal($event)"
     ></app-agent-list-presentation>
   `,
@@ -37,6 +40,7 @@ import { IAgentDTO } from '@models/agent';
 })
 export class AgentListSmartComponent implements OnInit {
   public emitGetAgentList = new EventEmitter<void>();
+  public checkRole$: Observable<IRoleGuard>;
   public isLoaded: boolean = false;
   public isLoadingResults: boolean = false;
   public agentList$: Observable<IAgentDTO[]>;
@@ -44,10 +48,16 @@ export class AgentListSmartComponent implements OnInit {
   constructor(
     private agentService: AgentService,
     private modalService: NgbModal,
+    private userStateService: UserStateService,
   ) { }
 
   public ngOnInit(): void {
     this.getAgentList();
+    this.checkRole$ = this.checkRoleGuard();
+  }
+
+  public checkRoleGuard(): Observable<IRoleGuard> {
+    return this.userStateService.checkRoleGuard();
   }
 
   public openDeleteModal(agent: IAgentDTO): void {
