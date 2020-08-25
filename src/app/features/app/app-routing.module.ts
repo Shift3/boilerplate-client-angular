@@ -13,8 +13,8 @@ import { RoleType } from '@models/role';
  */
 const role: RoleType = JSON.parse(localStorage.getItem('user'))?.role?.roleName;
 const redirectRoute = (role === 'Admin' || role === 'Super Administrator')
-  ? '/admin'
-  : '/content';
+  ? '/admin/user-list'
+  : '/content/agent-list';
 
 const routes: Routes = [
   {
