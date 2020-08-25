@@ -71,6 +71,7 @@ html {
   z-index: 1;
 }
 
+//#region Form
 #cancel-button {
   color: white;
   background: $primary;
@@ -92,6 +93,12 @@ html {
   justify-content: center;
   margin-top: 50px;
 }
+
+.btn-add {
+  color: white;
+  background-color: $accent;
+}
+//#endregion
 
 .routed-content {
   padding: 20px;
