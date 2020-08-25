@@ -32,6 +32,9 @@ export class UserStateService {
     this.userSession$.next(null);
   }
 
+  /**
+   * Checks the user session for `Super Administrator` or `Admin` roles.
+   */
   public isAdmin(): Observable<boolean> {
     return this.getUserSession().pipe(
       map((user) => user?.role?.roleName),
