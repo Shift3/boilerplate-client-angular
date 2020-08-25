@@ -6,7 +6,11 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { RoleDTO } from '@models/role';
+import {
+  IRoleGuard,
+  RoleDTO,
+  RoleGuard,
+} from '@models/role';
 import { IUserDTO } from '@models/user';
 
 /**
@@ -49,6 +53,22 @@ export class UserStateService {
     return this.getUserSession().pipe(
       map((user) => user?.role?.roleName),
       map((roleName) => RoleDTO.canEdit(roleName)),
+    );
+  }
+
+  /**
+   * Combined state stream to listen to multiple role states.
+   */
+  public checkRoleGuard(): Observable<IRoleGuard> {
+    return this.getUserSession().pipe(
+      map((user) => user?.role?.roleName),
+      map((roleName) => {
+        const roleGuard: IRoleGuard = new RoleGuard({
+          canEdit: RoleDTO.canEdit(roleName),
+          isAdmin: RoleDTO.isAdminRoleType(roleName),
+        });
+        return roleGuard;
+      }),
     );
   }
 
