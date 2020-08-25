@@ -13,6 +13,13 @@ export class RoleDTO implements IRoleDTO {
     return ['Admin', 'Editor', 'User', 'Super Administrator'].includes(role);
   }
 
+  /**
+   * Checks if the parameter matches the `Super Administrator`, `Admin`, or `Editor` roles.
+   */
+  static canEdit(role: RoleType): role is RoleType {
+    return ['Admin', 'Editor', 'Super Administrator'].includes(role);
+  }
+
   static isAdminRoleType(role: RoleType): role is RoleType {
     return ['Admin', 'Super Administrator'].includes(role);
   }
