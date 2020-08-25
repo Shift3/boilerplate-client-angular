@@ -39,6 +39,16 @@ export class UserStateService {
     );
   }
 
+  /**
+   * Checks the user session for `Super Administrator`, `Admin`, or `Editor` roles.
+   */
+  public canEdit(): Observable<boolean> {
+    return this.getUserSession().pipe(
+      map((user) => user?.role?.roleName),
+      map((roleName) => RoleDTO.canEdit(roleName)),
+    );
+  }
+
   public isLoggedInUser(): Observable<boolean> {
     return this.getUserSession().pipe(
       map((user) => user?.role?.roleName),
