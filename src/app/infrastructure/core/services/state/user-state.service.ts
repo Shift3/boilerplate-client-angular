@@ -42,7 +42,7 @@ export class UserStateService {
   public isLoggedInUser(): Observable<boolean> {
     return this.getUserSession().pipe(
       map((user) => user?.role?.roleName),
-      map((roleName) => RoleDTO.isRoleType(roleName)),
+      map((roleName) => RoleDTO.isValidRoleType(roleName)),
     );
   }
 

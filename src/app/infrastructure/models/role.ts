@@ -9,7 +9,7 @@ export class RoleDTO implements IRoleDTO {
   id: number = 0;
   roleName: RoleType = '';
 
-  static isRoleType(role: RoleType): role is RoleType {
+  static isValidRoleType(role: RoleType): role is RoleType {
     return ['Admin', 'Editor', 'User', 'Super Administrator'].includes(role);
   }
 
