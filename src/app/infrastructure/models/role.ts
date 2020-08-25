@@ -33,3 +33,19 @@ export class RoleDTO implements IRoleDTO {
     }
   }
 }
+
+export interface IRoleGuard {
+  canEdit: boolean;
+  isAdmin: boolean;
+}
+
+export class RoleGuard implements IRoleGuard {
+  canEdit: boolean = false;
+  isAdmin: boolean = false;
+
+  constructor(configOverride?: IRoleGuard) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
