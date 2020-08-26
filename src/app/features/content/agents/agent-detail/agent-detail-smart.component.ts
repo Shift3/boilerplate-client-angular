@@ -3,10 +3,18 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router,
+} from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
-import { IAgentDTO } from '@models/agent';
+import {
+  AgentRequest,
+  IAgentDTO,
+  IAgentRequest,
+} from '@models/agent';
+import { AgentService } from '@core/services/api/agent.service';
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
@@ -39,6 +47,8 @@ export class AgentDetailSmartComponent implements OnInit  {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private agentService: AgentService,
+    private router: Router,
   ) {
     this.agent = this.activatedRoute.snapshot.data.agent;
     this.formTitle = this.activatedRoute.snapshot.data.title;
@@ -50,6 +60,10 @@ export class AgentDetailSmartComponent implements OnInit  {
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
+  }
+
+  public updateOrCreateAgent(): void {
+    return (this.agent.id) ? this.updateAgent() : this.createAgent();
   }
 
   private buildFormConfig() {
@@ -132,5 +146,15 @@ export class AgentDetailSmartComponent implements OnInit  {
     });
 
     return formConfig;
+  }
+
+  private createAgent(): void {
+    const requestPayload = this.buildPayload();
+    this.agentService.createAgent(requestPayload).subscribe(() => this.router.navigateByUrl('/content/agent-list'));
+  }
+
+  private updateAgent(): void {
+    const requestPayload = this.buildPayload();
+    this.agentService.updateAgent(requestPayload, this.agent.id).subscribe(() => this.router.navigateByUrl('/content/agent-list'));
   }
 }
