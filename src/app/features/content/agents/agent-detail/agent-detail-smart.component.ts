@@ -159,7 +159,14 @@ export class AgentDetailSmartComponent implements OnInit {
 
   private buildPayload(): IAgentRequest {
     const payloadDTO = new AgentRequest();
-    return this.formService.buildRequestPayload(this.form, payloadDTO);
+    const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
+    // Set unique value that diverges from the `FormGroup` here
+    payload.address.address1 = this.form.get('address1').value;
+    payload.address.address2 = this.form.get('address2').value;
+    payload.address.city = this.form.get('city').value;
+    payload.address.state = this.form.get('state').value;
+    payload.address.zipCode = this.form.get('zipCode').value;
+    return payload;
   }
 
   private createAgent(): void {
