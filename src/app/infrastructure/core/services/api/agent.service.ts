@@ -48,6 +48,17 @@ export class AgentService {
     );
   }
 
+  public updateAgent(payload: IAgentRequest, agentId: number): Observable<IAgentDTO> {
+    const endpoint = `${this.url}/${agentId}`;
+
+    return this.apiService.put<IAgentDTO, IAgentRequest>(endpoint, payload).pipe(
+      tap(() => {
+        const message = `Agent updated.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
+
   public deleteAgent(agent: IAgentDTO): Observable<IAgentDTO> {
     const endpoint = `${this.url}/${agent.id}`;
 
