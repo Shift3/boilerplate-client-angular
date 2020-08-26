@@ -41,7 +41,7 @@ import { SaveCancelButtonConfig } from '@models/form/button';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AgentDetailSmartComponent implements OnInit  {
+export class AgentDetailSmartComponent implements OnInit {
   public agent: IAgentDTO;
   public form: FormGroup;
   public formConfig: IFormConfig = new FormConfig();
