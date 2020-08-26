@@ -9,6 +9,7 @@ import {
 } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
+import { AddressDTO } from '@models/address';
 import {
   AgentRequest,
   IAgentDTO,
@@ -160,12 +161,10 @@ export class AgentDetailSmartComponent implements OnInit {
   private buildPayload(): IAgentRequest {
     const payloadDTO = new AgentRequest();
     const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
-    // Set unique value that diverges from the `FormGroup` here
-    payload.address.address1 = this.form.get('address1').value;
-    payload.address.address2 = this.form.get('address2').value;
-    payload.address.city = this.form.get('city').value;
-    payload.address.state = this.form.get('state').value;
-    payload.address.zipCode = this.form.get('zipCode').value;
+    const addressDTO = new AddressDTO();
+    const addressPayload = this.formService.buildRequestPayload(this.form, addressDTO);
+    payload.address = addressPayload;
+
     return payload;
   }
 
