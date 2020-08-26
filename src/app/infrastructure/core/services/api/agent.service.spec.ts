@@ -69,7 +69,7 @@ import { Logger } from '@utils/logger';
       it('should return a list of agents', () => {
         const expectedValue: IAgentDTO[] = [ { ...testAgent }];
         let response: IAgentDTO[];
-        spyOn(service, 'getAgentList').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
         service.getAgentList().subscribe(res => {
           response = res;
@@ -92,7 +92,7 @@ import { Logger } from '@utils/logger';
         const newAgent: IAgentRequest = new AgentRequest();
         const expectedValue: IAgentDTO = { ...testAgent };
         let response: IAgentDTO;
-        spyOn(service, 'createAgent').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
 
         service.createAgent(newAgent).subscribe(res => {
           response = res;
@@ -114,7 +114,7 @@ import { Logger } from '@utils/logger';
       it('should return the requested agent', () => {
         const expectedValue: IAgentDTO = { ...testAgent };
         let response: IAgentDTO;
-        spyOn(service, 'findAgent').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
         service.findAgent(1).subscribe(res => {
           response = res;
@@ -137,7 +137,7 @@ import { Logger } from '@utils/logger';
         const agent: IAgentRequest = new AgentRequest();
         const expectedValue: IAgentDTO = { ...testAgent };
         let response: IAgentDTO;
-        spyOn(service, 'updateAgent').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
 
         service.updateAgent(agent, 1).subscribe(res => {
           response = res;
@@ -160,7 +160,7 @@ import { Logger } from '@utils/logger';
         const agent: IAgentDTO = new AgentDTO({ id: 1 });
         const expectedValue: IAgentDTO = { ...testAgent };
         let response: IAgentDTO;
-        spyOn(service, 'deleteAgent').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'delete').and.returnValue(observableOf(expectedValue));
 
         service.deleteAgent(agent).subscribe(res => {
           response = res;
