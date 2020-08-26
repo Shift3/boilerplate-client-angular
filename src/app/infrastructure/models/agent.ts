@@ -12,7 +12,7 @@ export interface IAgentDTO {
   phoneNumber: string;
   categoryList: unknown[];
   documentList: unknown[];
-  address: unknown;
+  address: IAddressDTO;
   agency: unknown;
 }
 
@@ -25,7 +25,7 @@ export class AgentDTO implements IAgentDTO {
   phoneNumber: string = '';
   categoryList: unknown[] = [];
   documentList: unknown[] = [];
-  address: unknown;
+  address: IAddressDTO = new AddressDTO();
   agency: unknown;
 
   constructor(configOverride?: Partial<IAgentDTO>) {
