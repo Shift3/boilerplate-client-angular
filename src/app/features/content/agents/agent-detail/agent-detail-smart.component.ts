@@ -21,6 +21,7 @@ import {
   FormField,
   IFormConfig,
 } from '@models/form/form';
+import { FormService } from '@core/services/form.service';
 import {
   IInputField,
   InputField,
@@ -48,6 +49,7 @@ export class AgentDetailSmartComponent implements OnInit  {
   constructor(
     private activatedRoute: ActivatedRoute,
     private agentService: AgentService,
+    private formService: FormService,
     private router: Router,
   ) {
     this.agent = this.activatedRoute.snapshot.data.agent;
@@ -146,6 +148,11 @@ export class AgentDetailSmartComponent implements OnInit  {
     });
 
     return formConfig;
+  }
+
+  private buildPayload(): IAgentRequest {
+    const payloadDTO = new AgentRequest();
+    return this.formService.buildRequestPayload(this.form, payloadDTO);
   }
 
   private createAgent(): void {
