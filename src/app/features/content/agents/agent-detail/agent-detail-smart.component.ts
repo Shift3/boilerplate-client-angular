@@ -36,6 +36,7 @@ import { SaveCancelButtonConfig } from '@models/form/button';
       [formConfig]="formConfig"
       [formTitle]="formTitle"
       (emitForm)="propagateForm($event)"
+      (emitSubmit)="updateOrCreateAgent()"
     ></app-agent-detail-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
