@@ -124,7 +124,6 @@ export class AgentDetailSmartComponent implements OnInit {
           fieldType: 'input',
           label: 'Address 2',
           fieldConfig : new InputField(),
-          validation: [ RequiredValidation.required('Address 2') ],
         }),
         new FormField<IInputField>({
           name: 'city',
