@@ -28,6 +28,11 @@ import {
 } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
+import {
+  ISelectField,
+  SelectField,
+} from '@models/form/select';
+import { stateList } from '@models/state';
 
 @Component({
   template: `
@@ -129,12 +134,14 @@ export class AgentDetailSmartComponent implements OnInit {
           fieldConfig : new InputField(),
           validation: [ RequiredValidation.required('City') ],
         }),
-        new FormField<IInputField>({
+        new FormField<ISelectField<string>>({
           name: 'state',
           value: this.agent.address.state,
-          fieldType: 'input',
+          fieldType: 'select',
           label: 'State',
-          fieldConfig : new InputField(),
+          fieldConfig : new SelectField({
+            options: stateList,
+          }),
           validation: [ RequiredValidation.required('State') ],
         }),
         new FormField<IInputField>({
