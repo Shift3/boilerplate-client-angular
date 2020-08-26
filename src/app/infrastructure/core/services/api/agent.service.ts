@@ -41,7 +41,7 @@ export class AgentService {
     const endpoint = `${this.url}`;
 
     return this.apiService.post<IAgentDTO, IAgentRequest>(endpoint, payload).pipe(
-      tap((response) => {
+      tap(() => {
         const message = `Agent created.`;
         return this.notificationService.showSuccess([message]);
       }),
