@@ -1,3 +1,8 @@
+import {
+  IAddressDTO,
+  AddressDTO,
+} from './address';
+
 export interface IAgentDTO {
   id: number;
   thumbnail: string;
@@ -24,6 +29,30 @@ export class AgentDTO implements IAgentDTO {
   agency: unknown;
 
   constructor(configOverride?: Partial<IAgentDTO>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface IAgentRequest {
+  description: string;
+  email: string;
+  name: string;
+  phoneNumber: string;
+  thumbnail: string;
+  address: IAddressDTO;
+}
+
+export class AgentRequest implements IAgentRequest {
+  description: string = '';
+  email: string = '';
+  name: string = '';
+  phoneNumber: string = '';
+  thumbnail: string;
+  address: IAddressDTO = new AddressDTO();
+
+  constructor(configOverride?: Partial<IAgentRequest>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
