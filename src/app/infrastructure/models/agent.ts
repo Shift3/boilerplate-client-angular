@@ -49,7 +49,7 @@ export class AgentRequest implements IAgentRequest {
   email: string = '';
   name: string = '';
   phoneNumber: string = '';
-  thumbnail: string;
+  thumbnail: string = 'https://shift3tech.com/images/s3-logo-white.svg';
   address: IAddressDTO = new AddressDTO();
 
   constructor(configOverride?: Partial<IAgentRequest>) {
