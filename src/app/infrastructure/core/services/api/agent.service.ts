@@ -64,7 +64,7 @@ export class AgentService {
 
     return this.apiService.delete<IAgentDTO>(endpoint).pipe(
       tap(() => {
-        const message = `Agent ${agent.name} deleted.`;
+        const message = `Agent deleted.`;
         return this.notificationService.showSuccess([message]);
       }),
     );
