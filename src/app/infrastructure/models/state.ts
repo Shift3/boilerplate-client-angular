@@ -1,6 +1,6 @@
 import { ISelectOptions } from './form/select';
 
-const stateList: ISelectOptions<string>[] = [
+export const stateList: ISelectOptions<string>[] = [
   {
     name: 'Alabama',
     value: 'AL',
