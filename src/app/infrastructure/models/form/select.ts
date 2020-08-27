@@ -22,8 +22,8 @@ export interface ISelectField<T> {
 
 export class SelectField<T> implements ISelectField<T> {
   options: ISelectOptions<T>[] = [];
-  optionName: string = '';
-  optionValue: string = '';
+  optionName: string = 'name';
+  optionValue: string = 'value';
 
   constructor(configOverride?: Partial<ISelectField<T>>) {
     if (configOverride) {

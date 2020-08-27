@@ -4,7 +4,10 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
-import { IAgentDTO } from '@models/agent';
+import {
+  IAgentDTO,
+  IAgentRequest,
+} from '@models/agent';
 import { environment } from '@env/environment';
 import { NotificationService } from '../notification.service';
 
@@ -34,12 +37,34 @@ export class AgentService {
     return this.apiService.get<IAgentDTO>(endpoint);
   }
 
+  public createAgent(payload: IAgentRequest): Observable<IAgentDTO> {
+    const endpoint = `${this.url}`;
+
+    return this.apiService.post<IAgentDTO, IAgentRequest>(endpoint, payload).pipe(
+      tap(() => {
+        const message = `Agent created.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
+
+  public updateAgent(payload: IAgentRequest, agentId: number): Observable<IAgentDTO> {
+    const endpoint = `${this.url}/${agentId}`;
+
+    return this.apiService.put<IAgentDTO, IAgentRequest>(endpoint, payload).pipe(
+      tap(() => {
+        const message = `Agent updated.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
+
   public deleteAgent(agent: IAgentDTO): Observable<IAgentDTO> {
     const endpoint = `${this.url}/${agent.id}`;
 
     return this.apiService.delete<IAgentDTO>(endpoint).pipe(
       tap(() => {
-        const message = `Agent ${agent.name} deleted.`;
+        const message = `Agent deleted.`;
         return this.notificationService.showSuccess([message]);
       }),
     );

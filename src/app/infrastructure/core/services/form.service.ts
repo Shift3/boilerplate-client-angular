@@ -27,6 +27,7 @@ export class FormService {
     const form = this.fb.group({});
 
     formConfig.controls.forEach(formField => {
+      formField.value = formField.value || '';
       return this.addFormControl(form, formField.name, formField.value.toString(), formField.validation, formField.disabled);
     });
     form.setValidators(Validators.compose([...formConfig.validation]));
