@@ -14,6 +14,8 @@ import { UserStateService } from './user-state.service';
   ? Logger.log('Unit skipped')
   : describe('[Unit] UserStateService', () => {
     let service: UserStateService;
+    let testSuperAdministratorUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
+    let testAdminUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
@@ -21,6 +23,22 @@ import { UserStateService } from './user-state.service';
         ],
       });
       service = TestBed.inject(UserStateService);
+      testSuperAdministratorUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+        firstName: 'Test',
+        lastName: 'Tester',
+        role: {
+          id: 2,
+          roleName: 'Super Administrator',
+        },
+      }));
+      testAdminUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+        firstName: 'Test',
+        lastName: 'Tester',
+        role: {
+          id: 1,
+          roleName: 'Admin',
+        },
+      }));
     });
 
     it('should be created', () => {
@@ -60,7 +78,7 @@ import { UserStateService } from './user-state.service';
       });
 
       it('should set user value in localStorage to the user param', () => {
-        const mockUser = new UserDTO({
+        const testUser = new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
         });
@@ -75,7 +93,7 @@ import { UserStateService } from './user-state.service';
             roleName: '',
           },
         };
-        service.setUserSession(mockUser);
+        service.setUserSession(testUser);
         const storedUser = JSON.parse(localStorage.getItem('user'));
         expect(storedUser).toEqual(expectedValue);
       });
@@ -83,12 +101,12 @@ import { UserStateService } from './user-state.service';
 
     describe('resetUserSession()', () => {
       it('should set the emitted value of userSession$ to null', () => {
-        const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+        const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
         }));
 
-        service.userSession$ = mockUser$;
+        service.userSession$ = testUser$;
         service.resetUserSession();
         expect(service.userSession$.getValue()).toEqual(null);
       });
@@ -111,49 +129,94 @@ import { UserStateService } from './user-state.service';
       });
 
       it(`should emit true when given a role of 'Admin'`, () => {
-        const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
-          firstName: 'Test',
-          lastName: 'Tester',
-          role: {
-            id: 2,
-            roleName: 'Admin',
-          },
-        }));
-
-        service.userSession$ = mockUser$;
+        service.userSession$ = testAdminUser$;
         service.isAdmin().subscribe((response) => {
           expect(response).toEqual(true);
         });
       });
 
       it(`should emit true when given a role of 'Super Administrator'`, () => {
-        const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
-          firstName: 'Test',
-          lastName: 'Tester',
-          role: {
-            id: 2,
-            roleName: 'Super Administrator',
-          },
-        }));
-
-        service.userSession$ = mockUser$;
+        service.userSession$ = testSuperAdministratorUser$;
         service.isAdmin().subscribe((response) => {
           expect(response).toEqual(true);
         });
       });
 
       it(`should emit false when given a non-admin role`, () => {
-        const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+        const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
           role: {
-            id: 2,
+            id: 4,
             roleName: 'User',
           },
         }));
 
-        service.userSession$ = mockUser$;
+        service.userSession$ = testUser$;
         service.isAdmin().subscribe((response) => {
+          expect(response).toEqual(false);
+        });
+      });
+    });
+
+    describe('canEdit()', () => {
+      it(`should emit false when there is no user session`, () => {
+        service.canEdit().subscribe((response) => {
+          expect(response).toEqual(false);
+        });
+      });
+
+      it(`should emit false when there is an invalid user`, () => {
+        service.canEdit().subscribe((response) => {
+          const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
+
+          service.userSession$ = testUser$;
+          expect(response).toEqual(false);
+        });
+      });
+
+      it(`should emit true when given a role of 'Admin'`, () => {
+        service.userSession$ = testAdminUser$;
+        service.canEdit().subscribe((response) => {
+          expect(response).toEqual(true);
+        });
+      });
+
+      it(`should emit true when given a role of 'Super Administrator'`, () => {
+        service.userSession$ = testSuperAdministratorUser$;
+        service.canEdit().subscribe((response) => {
+          expect(response).toEqual(true);
+        });
+      });
+
+      it(`should emit true when given a role of 'Editor'`, () => {
+        const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+          firstName: 'Test',
+          lastName: 'Tester',
+          role: {
+            id: 3,
+            roleName: 'Editor',
+          },
+        }));
+
+        service.userSession$ = testUser$;
+        service.canEdit().subscribe((response) => {
+          expect(response).toEqual(true);
+        });
+      });
+
+      it(`should emit false when given a non-editor role`, () => {
+        const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+          firstName: 'Test',
+          lastName: 'Tester',
+          role: {
+            id: 4,
+            roleName: 'User',
+          },
+        }));
+
+        service.userSession$ = testUser$;
+        service.canEdit().subscribe((response) => {
           expect(response).toEqual(false);
         });
       });
@@ -168,24 +231,24 @@ import { UserStateService } from './user-state.service';
 
       it(`should emit false when there is an invalid user`, () => {
         service.isLoggedInUser().subscribe((response) => {
-          const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
+          const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
 
-          service.userSession$ = mockUser$;
+          service.userSession$ = testUser$;
           expect(response).toEqual(false);
         });
       });
 
       it(`should emit true when given any role`, () => {
-        const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+        const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
           role: {
-            id: 2,
+            id: 3,
             roleName: 'Editor',
           },
         }));
 
-        service.userSession$ = mockUser$;
+        service.userSession$ = testUser$;
         service.isLoggedInUser().subscribe((response) => {
           expect(response).toEqual(true);
         });

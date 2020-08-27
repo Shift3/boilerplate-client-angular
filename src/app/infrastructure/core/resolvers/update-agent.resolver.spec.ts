@@ -10,28 +10,28 @@ import {
 
 import { of as observableOf } from 'rxjs';
 
+import { AgentDTO } from '@models/agent';
+import { AgentService } from '../services/api/agent.service';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
-import { UpdateUserResolver } from './update-user.resolver';
-import { UserDTO } from '@models/user';
-import { UserService } from '../services/api/user.service';
+import { UpdateAgentResolver } from './update-agent.resolver';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
-  : describe('[Unit] UpdateUserResolver', () => {
+  : describe('[Unit] UpdateAgentResolver', () => {
     let injector: TestBed;
-    let resolver: UpdateUserResolver;
+    let resolver: UpdateAgentResolver;
     let route: ActivatedRoute;
-    let service: UserService;
+    let service: AgentService;
     const notificationMock = { showError: jasmine.createSpy('showError') };
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
-          UpdateUserResolver,
-          UserService,
+          UpdateAgentResolver,
+          AgentService,
           {
             provide: ActivatedRoute,
             useValue: {
@@ -52,9 +52,9 @@ import { UserService } from '../services/api/user.service';
         imports: [HttpClientTestingModule],
       });
       injector = getTestBed();
-      resolver = injector.inject(UpdateUserResolver);
+      resolver = injector.inject(UpdateAgentResolver);
       route = TestBed.inject(ActivatedRoute);
-      service = TestBed.inject(UserService);
+      service = TestBed.inject(AgentService);
     });
     it('should be created', () => {
       expect(resolver).toBeTruthy();
@@ -66,9 +66,9 @@ import { UserService } from '../services/api/user.service';
         expect(spy).toBeTruthy();
       });
 
-      it('should resolve an instance of the user object', () => {
-        const expectedValue = new UserDTO();
-        spyOn(service, 'findUser').and.returnValue(observableOf(new UserDTO()));
+      it('should resolve an instance of the agent object', () => {
+        const expectedValue = new AgentDTO();
+        spyOn(service, 'findAgent').and.returnValue(observableOf(new AgentDTO()));
 
         resolver.resolve(route.snapshot).subscribe(response => {
           expect(response).toEqual(expectedValue);

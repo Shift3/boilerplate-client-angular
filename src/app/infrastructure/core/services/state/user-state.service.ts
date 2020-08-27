@@ -6,7 +6,11 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { RoleDTO } from '@models/role';
+import {
+  IRoleGuard,
+  RoleDTO,
+  RoleGuard,
+} from '@models/role';
 import { IUserDTO } from '@models/user';
 
 /**
@@ -32,6 +36,9 @@ export class UserStateService {
     this.userSession$.next(null);
   }
 
+  /**
+   * Checks the user session for `Super Administrator` or `Admin` roles.
+   */
   public isAdmin(): Observable<boolean> {
     return this.getUserSession().pipe(
       map((user) => user?.role?.roleName),
@@ -39,10 +46,36 @@ export class UserStateService {
     );
   }
 
+  /**
+   * Checks the user session for `Super Administrator`, `Admin`, or `Editor` roles.
+   */
+  public canEdit(): Observable<boolean> {
+    return this.getUserSession().pipe(
+      map((user) => user?.role?.roleName),
+      map((roleName) => RoleDTO.canEdit(roleName)),
+    );
+  }
+
+  /**
+   * Combined state stream to listen to multiple role states.
+   */
+  public checkRoleGuard(): Observable<IRoleGuard> {
+    return this.getUserSession().pipe(
+      map((user) => user?.role?.roleName),
+      map((roleName) => {
+        const roleGuard: IRoleGuard = new RoleGuard({
+          canEdit: RoleDTO.canEdit(roleName),
+          isAdmin: RoleDTO.isAdminRoleType(roleName),
+        });
+        return roleGuard;
+      }),
+    );
+  }
+
   public isLoggedInUser(): Observable<boolean> {
     return this.getUserSession().pipe(
       map((user) => user?.role?.roleName),
-      map((roleName) => RoleDTO.isRoleType(roleName)),
+      map((roleName) => RoleDTO.isValidRoleType(roleName)),
     );
   }
 
