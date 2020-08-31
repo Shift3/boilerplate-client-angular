@@ -14,6 +14,7 @@ import { IUserDTO } from '@app/infrastructure/models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserTableComponent {
+  @Input() public loggedInUser: IUserDTO;
   @Input() public tableData: any;
 
   @Output() public emitDelete = new EventEmitter<IUserDTO>();
