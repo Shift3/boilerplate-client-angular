@@ -22,6 +22,7 @@ import { UserService } from './user.service';
   ? Logger.log('Unit skipped')
   : describe('[Unit] UserService', () => {
     const route = `${environment.apiRoute}/users`;
+    let testUser: IUserDTO;
     let service: UserService;
     let apiService: ApiService;
     let httpTestingController: HttpTestingController;
@@ -41,6 +42,17 @@ import { UserService } from './user.service';
       apiService = TestBed.inject(ApiService);
       // Inject the http service and test controller for each test
       httpTestingController = TestBed.inject(HttpTestingController);
+      testUser = new UserDTO({
+        id: 1,
+        email: 'test@test.com',
+        firstName: 'Test',
+        lastName: 'Tester',
+        profilePicture: null,
+        role: {
+          id: 1,
+          roleName: 'User',
+        },
+      });
     });
     it('should be created', () => {
       expect(service).toBeTruthy();
@@ -56,17 +68,7 @@ import { UserService } from './user.service';
 
       it('should return a list of users', () => {
         const expectedValue: IUserDTO[] = [
-          {
-            id: 1,
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'Tester',
-            profilePicture: null,
-            role: {
-              id: 1,
-              roleName: 'User',
-            },
-          },
+          { ...testUser },
         ];
         let response: IUserDTO[];
         spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
@@ -90,17 +92,7 @@ import { UserService } from './user.service';
 
       it('should return the requested user on creation', () => {
         const newUser: IChangeUserRequest = new ChangeUserRequest();
-        const expectedValue: IUserDTO = {
-            id: 1,
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'Tester',
-            profilePicture: null,
-            role: {
-              id: 1,
-              roleName: 'User',
-            },
-          };
+        const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
         spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
 
@@ -113,17 +105,7 @@ import { UserService } from './user.service';
 
       it(`should show a notification on success`, () => {
         const newUser: IChangeUserRequest = new ChangeUserRequest();
-        const expectedValue: IUserDTO = {
-          id: 1,
-          email: 'test@test.com',
-          firstName: 'Test',
-          lastName: 'Tester',
-          profilePicture: null,
-          role: {
-            id: 1,
-            roleName: 'User',
-          },
-        };
+        const expectedValue: IUserDTO = { ...testUser };
         const message = [`An email has been sent to ${expectedValue.email} with instructions to finish activating the account.`];
         spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
 
@@ -144,17 +126,7 @@ import { UserService } from './user.service';
       });
 
       it('should return the requested user', () => {
-        const expectedValue: IUserDTO = {
-          id: 1,
-          email: 'test@test.com',
-          firstName: 'Test',
-          lastName: 'Tester',
-          profilePicture: null,
-          role: {
-            id: 1,
-            roleName: 'User',
-          },
-        };
+        const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
         spyOn(service, 'findUser').and.returnValue(observableOf(expectedValue));
 
@@ -177,17 +149,7 @@ import { UserService } from './user.service';
 
       it('should return the requested user on successful update', () => {
         const user: IChangeUserRequest = new ChangeUserRequest();
-        const expectedValue: IUserDTO = {
-            id: 1,
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'Tester',
-            profilePicture: null,
-            role: {
-              id: 1,
-              roleName: 'User',
-            },
-          };
+        const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
         spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
 
@@ -210,17 +172,7 @@ import { UserService } from './user.service';
 
       it('should return the updated user on successful deletion', () => {
         const user: IUserDTO = new UserDTO({ id: 1 });
-        const expectedValue: IUserDTO = {
-            id: 1,
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'Tester',
-            profilePicture: null,
-            role: {
-              id: 1,
-              roleName: 'User',
-            },
-          };
+        const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
         spyOn(apiService, 'delete').and.returnValue(observableOf(expectedValue));
 
@@ -242,17 +194,7 @@ import { UserService } from './user.service';
       });
 
       it(`should show a notification on success`, () => {
-        const user: IUserDTO = new UserDTO({
-          id: 1,
-          email: 'test@test.com',
-          firstName: 'Test',
-          lastName: 'Tester',
-          profilePicture: null,
-          role: {
-            id: 1,
-            roleName: 'User',
-          },
-        });
+        const user: IUserDTO = new UserDTO({ ...testUser });
         const expectedValue = null;
         const message = [`A new activation email was sent to ${user.firstName} ${user.lastName}.`];
         spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
