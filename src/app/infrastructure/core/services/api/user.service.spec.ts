@@ -69,7 +69,7 @@ import { UserService } from './user.service';
           },
         ];
         let response: IUserDTO[];
-        spyOn(service, 'getUserList').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
         service.getUserList().subscribe(res => {
           response = res;
@@ -102,7 +102,7 @@ import { UserService } from './user.service';
             },
           };
         let response: IUserDTO;
-        spyOn(service, 'createUser').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
 
         service.createUser(newUser).subscribe(res => {
           response = res;
@@ -167,7 +167,7 @@ import { UserService } from './user.service';
             },
           };
         let response: IUserDTO;
-        spyOn(service, 'updateUser').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
 
         service.updateUser(user, 1).subscribe(res => {
           response = res;
@@ -200,7 +200,7 @@ import { UserService } from './user.service';
             },
           };
         let response: IUserDTO;
-        spyOn(service, 'deleteUser').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'delete').and.returnValue(observableOf(expectedValue));
 
         service.deleteUser(user).subscribe(res => {
           response = res;
