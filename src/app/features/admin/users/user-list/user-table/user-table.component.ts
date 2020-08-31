@@ -17,6 +17,7 @@ export class UserTableComponent {
   @Input() public tableData: any;
 
   @Output() public emitDelete = new EventEmitter<IUserDTO>();
+  @Output() public emitResendActivationEmail = new EventEmitter<IUserDTO>();
 
   public trackByColumnId(index: number, item: any): number | null {
     return (item) ? item.columnIndex : null;
@@ -24,5 +25,9 @@ export class UserTableComponent {
 
   public deleteUser(user: IUserDTO): void {
     this.emitDelete.emit(user);
+  }
+
+  public resendActivationEmail(user: IUserDTO): void {
+    this.emitResendActivationEmail.emit(user);
   }
 }

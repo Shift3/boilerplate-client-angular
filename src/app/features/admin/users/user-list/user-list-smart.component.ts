@@ -31,6 +31,7 @@ import { UserService } from '@core/services/api/user.service';
     <app-user-list-presentation
       [userList]="(userList$ | async)"
       (emitDelete)="openDeleteModal($event)"
+      (emitResendActivationEmail)="openResendActivationEmailModal($event)"
     ></app-user-list-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -65,6 +66,21 @@ export class UserListSmartComponent implements OnInit {
     });
   }
 
+  public openResendActivationEmailModal(user: IUserDTO): void {
+    const modalConfig = new ConfirmModalConfig({
+      message: `Resend Activation Email to ${user.firstName} ${user.lastName}?`,
+      action: 'Resend',
+    });
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+
+    modalRef.componentInstance.modalConfig = modalConfig;
+    modalRef.result.then((result: IConfirmModalConfig) => {
+      if (result) {
+        this.resendActivationEmail(user);
+      }
+    });
+  }
+
   private getUserList(): void {
     this.userList$ = merge(this.emitGetUserList).pipe(
       startWith({}),
@@ -83,5 +99,9 @@ export class UserListSmartComponent implements OnInit {
 
   private deleteUser(user: IUserDTO): void {
     this.userService.deleteUser(user).subscribe(() => this.emitGetUserList.emit());
+  }
+
+  private resendActivationEmail(user: IUserDTO): void {
+    this.userService.resendActivationEmail(user).subscribe();
   }
 }

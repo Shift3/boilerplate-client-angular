@@ -6,5 +6,6 @@
     class="route-content"
     [tableData]="userList"
     (emitDelete)="deleteUser($event)"
+    (emitResendActivationEmail)="resendActivationEmail($event)"
   ></app-user-table>
 </ng-container>
