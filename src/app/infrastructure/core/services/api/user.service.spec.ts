@@ -110,6 +110,27 @@ import { UserService } from './user.service';
 
         expect(response).toEqual(expectedValue);
       });
+
+      it(`should show a notification on success`, () => {
+        const newUser: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = {
+          id: 1,
+          email: 'test@test.com',
+          firstName: 'Test',
+          lastName: 'Tester',
+          profilePicture: null,
+          role: {
+            id: 1,
+            roleName: 'User',
+          },
+        };
+        const message = [`An email has been sent to ${expectedValue.email} with instructions to finish activating the account.`];
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
+
+        service.createUser(newUser).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalledWith(message);
+        });
+      });
     });
 
     // TODO: Update test when API implementation updates.
