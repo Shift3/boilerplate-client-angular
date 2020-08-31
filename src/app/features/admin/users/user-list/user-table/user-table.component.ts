@@ -26,4 +26,8 @@ export class UserTableComponent {
   public deleteUser(user: IUserDTO): void {
     this.emitDelete.emit(user);
   }
+
+  public isSelf(userId: number): boolean {
+    return this.loggedInUser.id === userId;
+  }
 }
