@@ -15,6 +15,7 @@ import {
   UserDTO,
 } from '@models/user';
 import { Logger } from '@utils/logger';
+import { NotificationService } from '@core/services/notification.service';
 import { UserService } from './user.service';
 
 !environment.testUnit
@@ -24,6 +25,7 @@ import { UserService } from './user.service';
     let service: UserService;
     let apiService: ApiService;
     let httpTestingController: HttpTestingController;
+    const notificationMock = { showSuccess: jasmine.createSpy('showSuccess') };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -31,6 +33,7 @@ import { UserService } from './user.service';
         providers: [
           ApiService,
           UserService,
+          { provide: NotificationService, useValue: notificationMock },
         ],
       });
       // Returns a service with the MockBackend so we can test with dummy responses
@@ -204,6 +207,37 @@ import { UserService } from './user.service';
         });
 
         expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('resendActivationEmail()', () => {
+      it ('should use GET as the request method', () => {
+        const user: IUserDTO = new UserDTO({ id: 1 });
+        service.resendActivationEmail(user).subscribe();
+        const req = httpTestingController.expectOne(`${route}/resend-email/1`);
+
+        expect(req.request.method).toBe('GET');
+      });
+
+      it(`should show a notification on success`, () => {
+        const user: IUserDTO = new UserDTO({
+          id: 1,
+          email: 'test@test.com',
+          firstName: 'Test',
+          lastName: 'Tester',
+          profilePicture: null,
+          role: {
+            id: 1,
+            roleName: 'User',
+          },
+        });
+        const expectedValue = null;
+        const message = [`A new activation email was sent to ${user.firstName} ${user.lastName}.`];
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
+
+        service.resendActivationEmail(user).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalledWith(message);
+        });
       });
     });
   });
