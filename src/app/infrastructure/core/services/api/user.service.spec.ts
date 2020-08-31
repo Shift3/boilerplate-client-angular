@@ -112,6 +112,7 @@ import { UserService } from './user.service';
       });
     });
 
+    // TODO: Update test when API implementation updates.
     describe('findUser()', () => {
       it ('should use GET as the request method', () => {
         const id = 1;
