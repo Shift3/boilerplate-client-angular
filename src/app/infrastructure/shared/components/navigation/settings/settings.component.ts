@@ -39,7 +39,7 @@ export class SettingsComponent {
       message: 'This will end your login session.',
       action: 'Log Out',
     });
-    this.modalService.openConfirmModal(modalConfig).then((isConfirmed) => {
+    this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {
         this.signOut();
       }
