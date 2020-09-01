@@ -20,9 +20,11 @@
         <button class="btn" routerLink="/admin/update-user/{{ item.id }}">
           <span class="fa fa-edit"></span>
         </button>
-        <button class="btn" (click)="deleteUser(item)">
-          <span class="fa fa-trash"></span>
-        </button>
+        <ng-container *ngIf="!isSelf(item.id)">
+          <button class="btn" (click)="deleteUser(item)">
+            <span class="fa fa-trash"></span>
+          </button>
+        </ng-container>
       </td>
     </tr>
   </tbody>

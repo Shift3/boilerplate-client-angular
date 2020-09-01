@@ -15,7 +15,8 @@ import { IUserDTO } from '@models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListPresentationComponent {
-  @Input() public userList: IUserDTO;
+  @Input() public loggedInUser: IUserDTO;
+  @Input() public userList: IUserDTO[];
 
   @Output() public emitDelete = new EventEmitter<IUserDTO>();
 

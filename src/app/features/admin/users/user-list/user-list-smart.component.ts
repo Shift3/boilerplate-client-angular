@@ -21,10 +21,12 @@ import { ConfirmModalConfig } from '@models/modal';
 import { IUserDTO } from '@models/user';
 import { ModalService } from '@core/services/modal.service';
 import { UserService } from '@core/services/api/user.service';
+import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
   template: `
     <app-user-list-presentation
+      [loggedInUser]="(loggedInUser$ | async)"
       [userList]="(userList$ | async)"
       (emitDelete)="openDeleteModal($event)"
     ></app-user-list-presentation>
@@ -36,14 +38,17 @@ export class UserListSmartComponent implements OnInit {
   public emitGetUserList = new EventEmitter<void>();
   public isLoaded: boolean = false;
   public isLoadingResults: boolean = false;
+  public loggedInUser$: Observable<IUserDTO>;
 
   constructor(
     private modalService: ModalService,
     private userService: UserService,
+    private userStateService: UserStateService,
   ) { }
 
   public ngOnInit(): void {
     this.getUserList();
+    this.loggedInUser$ = this.getLoggedInUser();
   }
 
   public openDeleteModal(user: IUserDTO): void {
@@ -56,6 +61,10 @@ export class UserListSmartComponent implements OnInit {
         this.deleteUser(user);
       }
     });
+  }
+
+  private getLoggedInUser(): Observable<IUserDTO> {
+    return this.userStateService.getUserSession();
   }
 
   private getUserList(): void {
