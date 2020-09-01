@@ -22,10 +22,10 @@
           <span class="sr-only">Update User</span>
         </button>
         <ng-container *ngIf="!isSelf(item.id)">
-        <button class="btn" type="button" (click)="deleteUser(item)" tooltip="Delete User">
-          <span class="fa fa-trash"></span>
-          <span class="sr-only">Delete User</span>
-        </button>
+          <button class="btn" type="button" (click)="deleteUser(item)" tooltip="Delete User">
+            <span class="fa fa-trash"></span>
+            <span class="sr-only">Delete User</span>
+          </button>
         </ng-container>
       </td>
     </tr>
