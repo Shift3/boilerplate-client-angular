@@ -35,4 +35,4 @@ import {
     NgbToastModule,
   ],
 })
-export class BoostrapModule { }
+export class BootstrapModule { }
