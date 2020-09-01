@@ -47,11 +47,13 @@ export class SettingsComponent {
     const modalRef = this.modalService.open(ConfirmModalComponent);
 
     modalRef.componentInstance.modalConfig = modalConfig;
-    modalRef.result.then((result: IConfirmModalConfig) => {
-      if (result) {
-        this.signOut();
-      }
-    });
+    modalRef.result
+      .then((result: IConfirmModalConfig) => {
+        if (result) {
+          this.signOut();
+        }
+      })
+      .then(null, () => {});
   }
 
   public signOut(): void {

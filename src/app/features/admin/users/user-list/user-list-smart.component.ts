@@ -58,11 +58,13 @@ export class UserListSmartComponent implements OnInit {
     const modalRef = this.modalService.open(ConfirmModalComponent);
 
     modalRef.componentInstance.modalConfig = modalConfig;
-    modalRef.result.then((result: IConfirmModalConfig) => {
-      if (result) {
-        this.deleteUser(user);
-      }
-    });
+    modalRef.result
+      .then((result: IConfirmModalConfig) => {
+        if (result) {
+          this.deleteUser(user);
+        }
+      })
+      .then(null, () => {});
   }
 
   private getUserList(): void {

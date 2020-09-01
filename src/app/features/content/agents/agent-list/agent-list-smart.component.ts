@@ -68,11 +68,13 @@ export class AgentListSmartComponent implements OnInit {
     const modalRef = this.modalService.open(ConfirmModalComponent);
 
     modalRef.componentInstance.modalConfig = modalConfig;
-    modalRef.result.then((result: IConfirmModalConfig) => {
-      if (result) {
-        this.deleteAgent(agent);
-      }
-    });
+    modalRef.result
+      .then((result: IConfirmModalConfig) => {
+        if (result) {
+          this.deleteAgent(agent);
+        }
+      })
+      .then(null, () => {});
   }
 
   private getAgentList(): void {
