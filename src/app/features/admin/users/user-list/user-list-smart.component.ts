@@ -5,7 +5,6 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   merge,
   Observable,
@@ -18,12 +17,9 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { ConfirmModalComponent } from '@shared/components/confirm-modal/confirm-modal.component';
-import {
-  ConfirmModalConfig,
-  IConfirmModalConfig,
-} from '@models/modal';
+import { ConfirmModalConfig } from '@models/modal';
 import { IUserDTO } from '@models/user';
+import { ModalService } from '@core/services/modal.service';
 import { UserService } from '@core/services/api/user.service';
 
 @Component({
@@ -42,7 +38,7 @@ export class UserListSmartComponent implements OnInit {
   public isLoadingResults: boolean = false;
 
   constructor(
-    private modalService: NgbModal,
+    private modalService: ModalService,
     private userService: UserService,
   ) { }
 
@@ -55,11 +51,8 @@ export class UserListSmartComponent implements OnInit {
       message: `Delete ${user.firstName} ${user.lastName}?`,
       action: 'Delete',
     });
-    const modalRef = this.modalService.open(ConfirmModalComponent);
-
-    modalRef.componentInstance.modalConfig = modalConfig;
-    modalRef.result.then((result: IConfirmModalConfig) => {
-      if (result) {
+    this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
+      if (isConfirmed) {
         this.deleteUser(user);
       }
     });

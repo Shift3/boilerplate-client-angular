@@ -4,14 +4,9 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { AuthService } from '@core/services/api/auth.service';
-import { ConfirmModalComponent } from '@shared/components/confirm-modal/confirm-modal.component';
-import {
-  ConfirmModalConfig,
-  IConfirmModalConfig,
-} from '@models/modal';
+import { ConfirmModalConfig } from '@models/modal';
+import { ModalService } from '@core/services/modal.service';
 import {
   INavigation,
   profileLinkList,
@@ -30,7 +25,7 @@ export class SettingsComponent {
 
   constructor(
     private authService: AuthService,
-    private modalService: NgbModal,
+    private modalService: ModalService,
     private navbarStateService: NavbarStateService,
     private router: Router,
   ) { }
@@ -44,11 +39,8 @@ export class SettingsComponent {
       message: 'This will end your login session.',
       action: 'Log Out',
     });
-    const modalRef = this.modalService.open(ConfirmModalComponent);
-
-    modalRef.componentInstance.modalConfig = modalConfig;
-    modalRef.result.then((result: IConfirmModalConfig) => {
-      if (result) {
+    this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
+      if (isConfirmed) {
         this.signOut();
       }
     });
