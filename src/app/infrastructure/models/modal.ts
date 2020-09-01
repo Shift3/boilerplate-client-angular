@@ -15,5 +15,3 @@ export class ConfirmModalConfig implements IConfirmModalConfig {
     }
   }
 }
-
-export type IConfirmModalCallback<T> = (value: T) => void;
