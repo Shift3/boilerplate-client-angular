@@ -5,7 +5,6 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   merge,
   Observable,
@@ -19,13 +18,10 @@ import {
 } from 'rxjs/operators';
 
 import { AgentService } from '@core/services/api/agent.service';
-import { ConfirmModalComponent } from '@shared/components/confirm-modal/confirm-modal.component';
-import {
-  ConfirmModalConfig,
-  IConfirmModalConfig,
-} from '@models/modal';
+import { ConfirmModalConfig } from '@models/modal';
 import { IAgentDTO } from '@models/agent';
 import { IRoleGuard } from '@models/role';
+import { ModalService } from '@core/services/modal.service';
 import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
@@ -47,7 +43,7 @@ export class AgentListSmartComponent implements OnInit {
 
   constructor(
     private agentService: AgentService,
-    private modalService: NgbModal,
+    private modalService: ModalService,
     private userStateService: UserStateService,
   ) { }
 
@@ -65,16 +61,7 @@ export class AgentListSmartComponent implements OnInit {
       message: `Delete ${agent.name}?`,
       action: 'Delete',
     });
-    const modalRef = this.modalService.open(ConfirmModalComponent);
-
-    modalRef.componentInstance.modalConfig = modalConfig;
-    modalRef.result
-      .then((result: IConfirmModalConfig) => {
-        if (result) {
-          this.deleteAgent(agent);
-        }
-      })
-      .then(null, () => {});
+    this.modalService.openConfirmModal(modalConfig, this.deleteAgent, agent);
   }
 
   private getAgentList(): void {
