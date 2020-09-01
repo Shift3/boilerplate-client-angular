@@ -10,6 +10,8 @@ import {
   NgbToastModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
 /**
  * Loads only used Bootstrap modules.
  */
@@ -35,4 +37,23 @@ import {
     NgbToastModule,
   ],
 })
-export class BoostrapModule { }
+export class BootstrapModule { }
+
+/**
+ * Loads only used NgxBootstrap modules.
+ */
+@NgModule({
+  imports: [
+    TooltipModule.forRoot(),
+  ],
+  exports: [
+    TooltipModule,
+  ],
+})
+export class NgxBootstrapModule {
+  static forRoot() {
+    return {
+      ngModule: NgxBootstrapModule,
+    };
+  }
+}

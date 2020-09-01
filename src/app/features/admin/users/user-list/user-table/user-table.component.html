@@ -17,12 +17,14 @@
       <td>{{ item.role.roleName }}</td>
       <td>{{ item.activatedAt | date }}</td>
       <td>
-        <button class="btn" routerLink="/admin/update-user/{{ item.id }}">
+        <button class="btn" type="button" routerLink="/admin/update-user/{{ item.id }}" tooltip="Update User">
           <span class="fa fa-edit"></span>
+          <span class="sr-only">Update User</span>
         </button>
         <ng-container *ngIf="!isSelf(item.id)">
-          <button class="btn" (click)="deleteUser(item)">
+          <button class="btn" type="button" (click)="deleteUser(item)" tooltip="Delete User">
             <span class="fa fa-trash"></span>
+            <span class="sr-only">Delete User</span>
           </button>
         </ng-container>
       </td>
