@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { BootstrapModule } from './imports/bootstrap.module';
+import {
+  BootstrapModule,
+  NgxBootstrapModule,
+} from './imports/bootstrap.module';
 import { components } from './components';
 import { directives } from './directives';
 import { pipes } from './pipes';
@@ -15,12 +18,14 @@ import { pipes } from './pipes';
   imports: [
     CommonModule,
     BootstrapModule,
+    NgxBootstrapModule.forRoot(),
     ReactiveFormsModule,
     RouterModule,
   ],
   exports: [
     CommonModule,
     BootstrapModule,
+    NgxBootstrapModule,
     ReactiveFormsModule,
     components,
     directives,
