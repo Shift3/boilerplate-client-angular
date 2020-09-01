@@ -5,7 +5,6 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   merge,
   Observable,
@@ -18,17 +17,16 @@ import {
   tap,
 } from 'rxjs/operators';
 
-import { ConfirmModalComponent } from '@shared/components/confirm-modal/confirm-modal.component';
-import {
-  ConfirmModalConfig,
-  IConfirmModalConfig,
-} from '@models/modal';
+import { ConfirmModalConfig } from '@models/modal';
 import { IUserDTO } from '@models/user';
+import { ModalService } from '@core/services/modal.service';
 import { UserService } from '@core/services/api/user.service';
+import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
   template: `
     <app-user-list-presentation
+      [loggedInUser]="(loggedInUser$ | async)"
       [userList]="(userList$ | async)"
       (emitDelete)="openDeleteModal($event)"
     ></app-user-list-presentation>
@@ -40,14 +38,17 @@ export class UserListSmartComponent implements OnInit {
   public emitGetUserList = new EventEmitter<void>();
   public isLoaded: boolean = false;
   public isLoadingResults: boolean = false;
+  public loggedInUser$: Observable<IUserDTO>;
 
   constructor(
-    private modalService: NgbModal,
+    private modalService: ModalService,
     private userService: UserService,
+    private userStateService: UserStateService,
   ) { }
 
   public ngOnInit(): void {
     this.getUserList();
+    this.loggedInUser$ = this.getLoggedInUser();
   }
 
   public openDeleteModal(user: IUserDTO): void {
@@ -55,14 +56,15 @@ export class UserListSmartComponent implements OnInit {
       message: `Delete ${user.firstName} ${user.lastName}?`,
       action: 'Delete',
     });
-    const modalRef = this.modalService.open(ConfirmModalComponent);
-
-    modalRef.componentInstance.modalConfig = modalConfig;
-    modalRef.result.then((result: IConfirmModalConfig) => {
-      if (result) {
+    this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
+      if (isConfirmed) {
         this.deleteUser(user);
       }
     });
+  }
+
+  private getLoggedInUser(): Observable<IUserDTO> {
+    return this.userStateService.getUserSession();
   }
 
   private getUserList(): void {
