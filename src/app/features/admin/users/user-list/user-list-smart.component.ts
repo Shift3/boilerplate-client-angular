@@ -51,7 +51,11 @@ export class UserListSmartComponent implements OnInit {
       message: `Delete ${user.firstName} ${user.lastName}?`,
       action: 'Delete',
     });
-    this.modalService.openConfirmModal(modalConfig, this.deleteUser, user);
+    this.modalService.openConfirmModal(modalConfig).then((isConfirmed) => {
+      if (isConfirmed) {
+        this.deleteUser(user);
+      }
+    });
   }
 
   private getUserList(): void {

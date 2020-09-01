@@ -61,7 +61,11 @@ export class AgentListSmartComponent implements OnInit {
       message: `Delete ${agent.name}?`,
       action: 'Delete',
     });
-    this.modalService.openConfirmModal(modalConfig, this.deleteAgent, agent);
+    this.modalService.openConfirmModal(modalConfig).then((isConfirmed) => {
+      if (isConfirmed) {
+        this.deleteAgent(agent);
+      }
+    });
   }
 
   private getAgentList(): void {
