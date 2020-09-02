@@ -106,11 +106,10 @@ import { UserService } from './user.service';
       it(`should show a notification on success`, () => {
         const newUser: IChangeUserRequest = new ChangeUserRequest();
         const expectedValue: IUserDTO = { ...testUser };
-        const message = [`An email has been sent to ${expectedValue.email} with instructions to finish activating the account.`];
         spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
 
         service.createUser(newUser).subscribe(() => {
-          expect(notificationMock.showSuccess).toHaveBeenCalledWith(message);
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
         });
       });
     });
@@ -196,11 +195,10 @@ import { UserService } from './user.service';
       it(`should show a notification on success`, () => {
         const user: IUserDTO = new UserDTO({ ...testUser });
         const expectedValue = null;
-        const message = [`A new activation email was sent to ${user.firstName} ${user.lastName}.`];
         spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
         service.resendActivationEmail(user).subscribe(() => {
-          expect(notificationMock.showSuccess).toHaveBeenCalledWith(message);
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
         });
       });
     });
