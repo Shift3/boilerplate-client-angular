@@ -69,10 +69,7 @@ export class UserListSmartComponent implements OnInit {
       message: `Resend Activation Email to ${user.firstName} ${user.lastName}?`,
       action: 'Resend',
     });
-    const modalRef = this.modalService.open(ConfirmModalComponent);
-
-    modalRef.componentInstance.modalConfig = modalConfig;
-    modalRef.result.then((result: IConfirmModalConfig) => {
+    this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
       if (result) {
         this.resendActivationEmail(user);
       }
