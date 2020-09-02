@@ -20,8 +20,9 @@
           {{ item.activatedAt | date }}
         </ng-container>
         <ng-template #resendEmail>
-          <button class="btn" (click)="resendActivationEmail(item)">
+          <button class="btn" (click)="resendActivationEmail(item)" tooltip="Resend Activation Email">
             <span class="fa fa-envelope"></span>
+            <span class="sr-only">Resend Activation Email</span>
           </button>
         </ng-template>
       </td>
