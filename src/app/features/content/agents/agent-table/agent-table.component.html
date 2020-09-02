@@ -23,12 +23,14 @@
       <td>{{ item.phoneNumber }}</td>
       <ng-container *ngIf="checkRole.canEdit">
         <td>
-          <button class="btn" routerLink="/content/update-agent/{{ item.id }}">
+          <button class="btn" type="button" tooltip="Update Agent" routerLink="/content/update-agent/{{ item.id }}">
             <span class="fa fa-edit"></span>
+            <span class="sr-only">Update Agent</span>
           </button>
           <ng-container *ngIf="checkRole.isAdmin">
-            <button class="btn" (click)="deleteAgent(item)">
+            <button class="btn" type="button" tooltip="Delete Agent" (click)="deleteAgent(item)">
               <span class="fa fa-trash"></span>
+              <span class="sr-only">Delete Agent</span>
             </button>
           </ng-container>
         </td>

@@ -14,6 +14,7 @@ import { IUserDTO } from '@app/infrastructure/models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserTableComponent {
+  @Input() public loggedInUser: IUserDTO;
   @Input() public tableData: any;
 
   @Output() public emitDelete = new EventEmitter<IUserDTO>();
@@ -25,6 +26,10 @@ export class UserTableComponent {
 
   public deleteUser(user: IUserDTO): void {
     this.emitDelete.emit(user);
+  }
+
+  public isSelf(userId: number): boolean {
+    return this.loggedInUser.id === userId;
   }
 
   public resendActivationEmail(user: IUserDTO): void {
