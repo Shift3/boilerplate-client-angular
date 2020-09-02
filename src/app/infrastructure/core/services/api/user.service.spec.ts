@@ -158,6 +158,16 @@ import { UserService } from './user.service';
 
         expect(response).toEqual(expectedValue);
       });
+
+      it(`should show a notification on success`, () => {
+        const user: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = { ...testUser };
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.updateUser(user, 1).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
+      });
     });
 
     describe('deleteUser()', () => {
@@ -180,6 +190,16 @@ import { UserService } from './user.service';
         });
 
         expect(response).toEqual(expectedValue);
+      });
+
+      it(`should show a notification on success`, () => {
+        const user: IUserDTO = new UserDTO({ id: 1 });
+        const expectedValue: IUserDTO = { ...testUser };
+        spyOn(apiService, 'delete').and.returnValue(observableOf(expectedValue));
+
+        service.deleteUser(user).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
       });
     });
 
