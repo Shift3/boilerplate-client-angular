@@ -131,7 +131,7 @@ export class UserService {
 
   // TODO: Update this method to match API when ready.
   public resendActivationEmail(user: IUserDTO): Observable<never> {
-    const endpoint = `${this.url}/resend-email/${user.id}`;
+    const endpoint = `${this.url}/resend-activation-email/${user.id}`;
 
     return this.apiService.get<never>(endpoint).pipe(
       tap(() => {

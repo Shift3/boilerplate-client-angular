@@ -188,7 +188,7 @@ import { UserService } from './user.service';
       it ('should use GET as the request method', () => {
         const user: IUserDTO = new UserDTO({ id: 1 });
         service.resendActivationEmail(user).subscribe();
-        const req = httpTestingController.expectOne(`${route}/resend-email/1`);
+        const req = httpTestingController.expectOne(`${route}/resend-activation-email/1`);
 
         expect(req.request.method).toBe('GET');
       });
