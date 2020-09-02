@@ -128,4 +128,15 @@ export class UserService {
       }),
     );
   }
+
+  public resendActivationEmail(user: IUserDTO): Observable<never> {
+    const endpoint = `${this.url}/resend-activation-email/${user.id}`;
+
+    return this.apiService.get<never>(endpoint).pipe(
+      tap(() => {
+        const message = `A new activation email was sent to ${user.firstName} ${user.lastName}.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
 }

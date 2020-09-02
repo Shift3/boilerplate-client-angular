@@ -15,7 +15,17 @@
       <td>{{ item.firstName }}</td>
       <td>{{ item.email }}</td>
       <td>{{ item.role.roleName }}</td>
-      <td>{{ item.activatedAt | date }}</td>
+      <td>
+        <ng-container *ngIf="item.activatedAt; else resendEmail">
+          {{ item.activatedAt | date }}
+        </ng-container>
+        <ng-template #resendEmail>
+          <button class="btn" (click)="resendActivationEmail(item)" tooltip="Resend Activation Email">
+            <span class="fa fa-envelope"></span>
+            <span class="sr-only">Resend Activation Email</span>
+          </button>
+        </ng-template>
+      </td>
       <td>
         <button class="btn" type="button" routerLink="/admin/update-user/{{ item.id }}" tooltip="Update User">
           <span class="fa fa-edit"></span>

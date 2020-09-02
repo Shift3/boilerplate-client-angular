@@ -29,6 +29,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
       [loggedInUser]="(loggedInUser$ | async)"
       [userList]="(userList$ | async)"
       (emitDelete)="openDeleteModal($event)"
+      (emitResendActivationEmail)="openResendActivationEmailModal($event)"
     ></app-user-list-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -63,6 +64,18 @@ export class UserListSmartComponent implements OnInit {
     });
   }
 
+  public openResendActivationEmailModal(user: IUserDTO): void {
+    const modalConfig = new ConfirmModalConfig({
+      message: `Resend Activation Email to ${user.firstName} ${user.lastName}?`,
+      action: 'Resend',
+    });
+    this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
+      if (result) {
+        this.resendActivationEmail(user);
+      }
+    });
+  }
+
   private getLoggedInUser(): Observable<IUserDTO> {
     return this.userStateService.getUserSession();
   }
@@ -85,5 +98,9 @@ export class UserListSmartComponent implements OnInit {
 
   private deleteUser(user: IUserDTO): void {
     this.userService.deleteUser(user).subscribe(() => this.emitGetUserList.emit());
+  }
+
+  private resendActivationEmail(user: IUserDTO): void {
+    this.userService.resendActivationEmail(user).subscribe();
   }
 }

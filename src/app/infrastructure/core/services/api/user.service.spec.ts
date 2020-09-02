@@ -15,15 +15,18 @@ import {
   UserDTO,
 } from '@models/user';
 import { Logger } from '@utils/logger';
+import { NotificationService } from '@core/services/notification.service';
 import { UserService } from './user.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] UserService', () => {
     const route = `${environment.apiRoute}/users`;
+    let testUser: IUserDTO;
     let service: UserService;
     let apiService: ApiService;
     let httpTestingController: HttpTestingController;
+    const notificationMock = { showSuccess: jasmine.createSpy('showSuccess') };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -31,6 +34,7 @@ import { UserService } from './user.service';
         providers: [
           ApiService,
           UserService,
+          { provide: NotificationService, useValue: notificationMock },
         ],
       });
       // Returns a service with the MockBackend so we can test with dummy responses
@@ -38,6 +42,17 @@ import { UserService } from './user.service';
       apiService = TestBed.inject(ApiService);
       // Inject the http service and test controller for each test
       httpTestingController = TestBed.inject(HttpTestingController);
+      testUser = new UserDTO({
+        id: 1,
+        email: 'test@test.com',
+        firstName: 'Test',
+        lastName: 'Tester',
+        profilePicture: null,
+        role: {
+          id: 1,
+          roleName: 'User',
+        },
+      });
     });
     it('should be created', () => {
       expect(service).toBeTruthy();
@@ -53,20 +68,10 @@ import { UserService } from './user.service';
 
       it('should return a list of users', () => {
         const expectedValue: IUserDTO[] = [
-          {
-            id: 1,
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'Tester',
-            profilePicture: null,
-            role: {
-              id: 1,
-              roleName: 'User',
-            },
-          },
+          { ...testUser },
         ];
         let response: IUserDTO[];
-        spyOn(service, 'getUserList').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
         service.getUserList().subscribe(res => {
           response = res;
@@ -87,19 +92,9 @@ import { UserService } from './user.service';
 
       it('should return the requested user on creation', () => {
         const newUser: IChangeUserRequest = new ChangeUserRequest();
-        const expectedValue: IUserDTO = {
-            id: 1,
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'Tester',
-            profilePicture: null,
-            role: {
-              id: 1,
-              roleName: 'User',
-            },
-          };
+        const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
-        spyOn(service, 'createUser').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
 
         service.createUser(newUser).subscribe(res => {
           response = res;
@@ -107,8 +102,19 @@ import { UserService } from './user.service';
 
         expect(response).toEqual(expectedValue);
       });
+
+      it(`should show a notification on success`, () => {
+        const newUser: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = { ...testUser };
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
+
+        service.createUser(newUser).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
+      });
     });
 
+    // TODO: Update test when API implementation updates.
     describe('findUser()', () => {
       it ('should use GET as the request method', () => {
         const id = 1;
@@ -119,17 +125,7 @@ import { UserService } from './user.service';
       });
 
       it('should return the requested user', () => {
-        const expectedValue: IUserDTO = {
-          id: 1,
-          email: 'test@test.com',
-          firstName: 'Test',
-          lastName: 'Tester',
-          profilePicture: null,
-          role: {
-            id: 1,
-            roleName: 'User',
-          },
-        };
+        const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
         spyOn(service, 'findUser').and.returnValue(observableOf(expectedValue));
 
@@ -152,25 +148,25 @@ import { UserService } from './user.service';
 
       it('should return the requested user on successful update', () => {
         const user: IChangeUserRequest = new ChangeUserRequest();
-        const expectedValue: IUserDTO = {
-            id: 1,
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'Tester',
-            profilePicture: null,
-            role: {
-              id: 1,
-              roleName: 'User',
-            },
-          };
+        const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
-        spyOn(service, 'updateUser').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
 
         service.updateUser(user, 1).subscribe(res => {
           response = res;
         });
 
         expect(response).toEqual(expectedValue);
+      });
+
+      it(`should show a notification on success`, () => {
+        const user: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = { ...testUser };
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.updateUser(user, 1).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
       });
     });
 
@@ -185,25 +181,45 @@ import { UserService } from './user.service';
 
       it('should return the updated user on successful deletion', () => {
         const user: IUserDTO = new UserDTO({ id: 1 });
-        const expectedValue: IUserDTO = {
-            id: 1,
-            email: 'test@test.com',
-            firstName: 'Test',
-            lastName: 'Tester',
-            profilePicture: null,
-            role: {
-              id: 1,
-              roleName: 'User',
-            },
-          };
+        const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
-        spyOn(service, 'deleteUser').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'delete').and.returnValue(observableOf(expectedValue));
 
         service.deleteUser(user).subscribe(res => {
           response = res;
         });
 
         expect(response).toEqual(expectedValue);
+      });
+
+      it(`should show a notification on success`, () => {
+        const user: IUserDTO = new UserDTO({ id: 1 });
+        const expectedValue: IUserDTO = { ...testUser };
+        spyOn(apiService, 'delete').and.returnValue(observableOf(expectedValue));
+
+        service.deleteUser(user).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
+      });
+    });
+
+    describe('resendActivationEmail()', () => {
+      it ('should use GET as the request method', () => {
+        const user: IUserDTO = new UserDTO({ id: 1 });
+        service.resendActivationEmail(user).subscribe();
+        const req = httpTestingController.expectOne(`${route}/resend-activation-email/1`);
+
+        expect(req.request.method).toBe('GET');
+      });
+
+      it(`should show a notification on success`, () => {
+        const user: IUserDTO = new UserDTO({ ...testUser });
+        const expectedValue = null;
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
+
+        service.resendActivationEmail(user).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
       });
     });
   });
