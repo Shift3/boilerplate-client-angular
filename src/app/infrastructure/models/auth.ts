@@ -45,6 +45,6 @@ export class LoginRequest implements ILoginRequest {
 }
 
 export interface ISessionDTO {
-  jwt_token: string;
+  jwtToken: string;
   user: IUserDTO;
 }

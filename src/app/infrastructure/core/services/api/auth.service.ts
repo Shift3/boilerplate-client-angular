@@ -37,9 +37,9 @@ export class AuthService {
     const endpoint = `${this.url}/login/`;
 
     return this.apiService.post<ISessionDTO, ILoginRequest>(endpoint, payload).pipe(
-      tap((response) => localStorage.setItem('token', response.jwt_token)),
+      tap((response) => localStorage.setItem('token', response.jwtToken)),
       tap((response) => this.userStateService.setUserSession(response.user)),
-      tap((response) => this.setToken(response.jwt_token)),
+      tap((response) => this.setToken(response.jwtToken)),
     );
   }
 
