@@ -40,6 +40,10 @@ export class ApiInterceptorService implements HttpInterceptor {
         switch (error.status) {
           case 401:
             // TODO: Add retry logic
+            this.logoutOnAuthError();
+            break;
+          case 403:
+            this.logoutOnAuthError();
             break;
         }
 
