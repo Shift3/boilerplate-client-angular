@@ -21,7 +21,7 @@ import { UserStateService } from '../services/state/user-state.service';
 @Injectable({
   providedIn: 'root',
 })
-export class UpdateProfileResolver implements Resolve<IUserDTO> {
+export class GetLoggedInUserResolver implements Resolve<IUserDTO> {
   constructor(
     private notificationService: NotificationService,
     private router: Router,
@@ -38,7 +38,7 @@ export class UpdateProfileResolver implements Resolve<IUserDTO> {
     }
 
   private navigateOnError(): void {
-    const message = 'Unable to load profile. Returning to the dashboard.';
+    const message = 'Unable to load user information. Returning to the dashboard.';
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/content/agent-list');
   }

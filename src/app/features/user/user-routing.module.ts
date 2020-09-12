@@ -22,7 +22,7 @@ const routes: Routes = [
         data: { title: 'Update Profile' },
         resolve: {
           roleList: resolverList.GetOwnRoleListResolver,
-          user: resolverList.UpdateProfileResolver,
+          user: resolverList.GetLoggedInUserResolver,
         },
       },
     ],

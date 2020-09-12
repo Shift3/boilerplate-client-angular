@@ -8,17 +8,17 @@ import {
 import { of as observableOf } from 'rxjs';
 
 import { environment } from '@env/environment.test';
+import { GetLoggedInUserResolver } from './get-logged-in-user.resolver';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
-import { UpdateProfileResolver } from './update-profile.resolver';
 import { UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
-  : describe('[Unit] UpdateProfileResolver', () => {
+  : describe('[Unit] GetLoggedInUserResolver', () => {
     let injector: TestBed;
-    let resolver: UpdateProfileResolver;
+    let resolver: GetLoggedInUserResolver;
     let service: UserStateService;
     const notificationMock = { showError: jasmine.createSpy('showError') };
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
@@ -26,7 +26,7 @@ import { UserStateService } from '../services/state/user-state.service';
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
-          UpdateProfileResolver,
+          GetLoggedInUserResolver,
           UserStateService,
           {
             provide: NotificationService,
@@ -40,7 +40,7 @@ import { UserStateService } from '../services/state/user-state.service';
         imports: [HttpClientTestingModule],
       });
       injector = getTestBed();
-      resolver = injector.inject(UpdateProfileResolver);
+      resolver = injector.inject(GetLoggedInUserResolver);
       service = TestBed.inject(UserStateService);
     });
     it('should be created', () => {

@@ -3,7 +3,7 @@ import { CreateUserResolver } from './create-user.resolver';
 import { GetRoleListResolver } from './get-role-list.resolver';
 import { GetOwnRoleListResolver } from './get-own-role-list.resolver';
 import { UpdateAgentResolver } from './update-agent.resolver';
-import { UpdateProfileResolver } from './update-profile.resolver';
+import { GetLoggedInUserResolver } from './get-logged-in-user.resolver';
 import { UpdateUserResolver } from './update-user.resolver';
 
 /**
@@ -15,6 +15,6 @@ export const resolverList = {
   GetRoleListResolver,
   GetOwnRoleListResolver,
   UpdateAgentResolver,
-  UpdateProfileResolver,
+  GetLoggedInUserResolver,
   UpdateUserResolver,
 };
