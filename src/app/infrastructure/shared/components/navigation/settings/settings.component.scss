@@ -5,6 +5,13 @@
   align-items: center;
 }
 
+.profile-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
 .profile-photo {
   border-radius: 50%;
   height: 50px;
