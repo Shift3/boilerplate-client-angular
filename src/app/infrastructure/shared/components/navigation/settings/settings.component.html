@@ -16,6 +16,7 @@
         <div>{{ loggedInUser?.firstName }}</div>
         <div>{{ loggedInUser?.lastName }}</div>
       </div>
+      <span class="vertical-line"></span>
       <div>
         <ng-container *ngFor="let link of profileLinks; trackBy: trackByLink">
           <button ngbDropdownItem [routerLink]="link.link">{{ link.label }}</button>

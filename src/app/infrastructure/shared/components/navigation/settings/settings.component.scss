@@ -17,3 +17,10 @@
   height: 50px;
   width: 50px;
 }
+
+.vertical-line{
+  display: inline-block;
+  border-left: 1px solid lightgray;
+  margin: 0 20px;
+  height: 125px;
+}
