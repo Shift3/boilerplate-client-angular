@@ -38,7 +38,7 @@ export class UpdateProfileResolver implements Resolve<IUserDTO> {
     }
 
   private navigateOnError(): void {
-    const message = 'Unable to load user. Returning to the dashboard.';
+    const message = 'Unable to load profile. Returning to the dashboard.';
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/content/agent-list');
   }
