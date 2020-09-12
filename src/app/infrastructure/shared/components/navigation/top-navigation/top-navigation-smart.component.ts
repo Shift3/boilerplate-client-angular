@@ -11,6 +11,7 @@ import {
   INavigation,
   Navigation,
 } from '@models/navigation';
+import { IUserDTO } from '@app/infrastructure/models/user';
 import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
@@ -18,6 +19,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
   template: `
       <app-top-navigation-presentation
         [isLoggedInUser]="(isLoggedInUser$ | async)"
+        [loggedInUser]="(loggedInUser$ | async)"
         [navLinks]="(navLinks$ | async)"
       ></app-top-navigation-presentation>
   `,
@@ -25,6 +27,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
 })
 export class TopNavigationSmartComponent implements OnInit {
   public isLoggedInUser$: Observable<boolean>;
+  public loggedInUser$: Observable<IUserDTO>;
   public navLinks$: Observable<INavigation[]>;
 
   constructor(
@@ -32,13 +35,18 @@ export class TopNavigationSmartComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.navLinks$ = this.buildNavLinkListBasedOnRole();
     this.isLoggedInUser$ = this.isLoggedInUser();
+    this.loggedInUser$ = this.getLoggedInUser();
+    this.navLinks$ = this.buildNavLinkListBasedOnRole();
   }
 
   public buildNavLinkListBasedOnRole(): Observable<INavigation[]> {
     return this.userStateService.isAdmin()
       .pipe(map((isAdmin) => Navigation.buildNavLinkList(isAdmin)));
+  }
+
+  public getLoggedInUser(): Observable<IUserDTO> {
+    return this.userStateService.getUserSession();
   }
 
   public isLoggedInUser(): Observable<boolean> {
