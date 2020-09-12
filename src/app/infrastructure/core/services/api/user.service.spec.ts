@@ -9,9 +9,11 @@ import { of as observableOf } from 'rxjs';
 import { ApiService } from './api.service';
 import { environment } from '@env/environment.test';
 import {
+  ChangePasswordRequest,
+  ChangeUserRequest,
+  IChangePasswordRequest,
   IChangeUserRequest,
   IUserDTO,
-  ChangeUserRequest,
   UserDTO,
 } from '@models/user';
 import { Logger } from '@utils/logger';
@@ -134,6 +136,16 @@ import { UserService } from './user.service';
         });
 
         expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('changePassword()', () => {
+      it ('should use PUT as the request method', () => {
+        const newPassword: IChangePasswordRequest = new ChangePasswordRequest();
+        service.changePassword(newPassword, 1).subscribe();
+        const req = httpTestingController.expectOne(`${route}/change-password/1`);
+
+        expect(req.request.method).toBe('PUT');
       });
     });
 
