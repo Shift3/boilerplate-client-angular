@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {
-  Observable,
-  of as observableOf,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   map,
   tap,
