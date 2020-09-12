@@ -12,6 +12,7 @@ import {
 import { ApiService } from './api.service';
 import { environment } from '@env/environment';
 import {
+  IChangePasswordRequest,
   IChangeUserRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
@@ -20,6 +21,7 @@ import {
 import { IMessage } from '@models/message';
 import { NotificationService } from '../notification.service';
 import {
+  ISessionDTO,
   ISignupDTO,
   ISignupRequest,
 } from '@models/auth';
@@ -102,6 +104,20 @@ export class UserService {
         } else {
           throw(new Error('User not found.'));
         }
+      }),
+    );
+  }
+
+  /**
+   * This lets the logged in user change their own password only.
+   */
+  public changePassword(payload: IChangePasswordRequest, userId: number): Observable<ISessionDTO> {
+    const endpoint = `${this.url}/change-password/${userId}`;
+
+    return this.apiService.put<ISessionDTO, IChangePasswordRequest>(endpoint, payload).pipe(
+      tap(() => {
+        const message = `Password updated.`;
+        return this.notificationService.showSuccess([message]);
       }),
     );
   }
