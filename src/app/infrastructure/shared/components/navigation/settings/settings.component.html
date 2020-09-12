@@ -5,11 +5,13 @@
     ngbDropdownToggle
   >
     <span class="fa fa-user"></span>
-    Hi Username
+    Hi {{ loggedInUser?.firstName }}
   </button>
   <div ngbDropdownMenu aria-labelledby="profileDropdown">
     <div class="profile-dropdown-container">
-      <span>Name</span>
+      <span>{{ loggedInUser?.profilePicture }}</span>
+      <span>{{ loggedInUser?.firstName }}</span>
+      <span>{{ loggedInUser?.lastName }}</span>
       <div>
         <ng-container *ngFor="let link of profileLinks; trackBy: trackByLink">
           <button ngbDropdownItem [routerLink]="link.link">{{ link.label }}</button>
