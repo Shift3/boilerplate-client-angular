@@ -70,7 +70,7 @@ export class AuthService {
     this.token$.next('');
   }
 
-  private clearSession(): void {
+  public clearSession(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.userStateService.resetUserSession();

@@ -69,7 +69,8 @@ export class ApiInterceptorService implements HttpInterceptor {
      * Initial naive behavior for 401s and 403s.
      */
   private logoutOnAuthError(): void {
-    this.authService.logout();
+    this.authService.resetToken();
+    this.authService.clearSession();
     this.router.navigateByUrl('/auth');
   }
 }
