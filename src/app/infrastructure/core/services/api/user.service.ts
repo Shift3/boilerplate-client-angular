@@ -90,7 +90,6 @@ export class UserService {
     );
   }
 
-
   public findUser(id: number): Observable<IUserDTO> {
     const endpoint = `${this.url}/${id}`;
 
