@@ -90,20 +90,10 @@ export class UserService {
     );
   }
 
-  /**
-   * TEMPORARY implementation until API provides an endpoint.
-   */
   public findUser(id: number): Observable<IUserDTO> {
-    return this.getUserList().pipe(
-      map((userList) => {
-        const foundUser = userList.find((user) => user.id === Number(id));
-        if (foundUser) {
-          return foundUser;
-        } else {
-          throw(new Error('User not found.'));
-        }
-      }),
-    );
+    const endpoint = `${this.url}/${id}`;
+
+    return this.apiService.get<IUserDTO>(endpoint);
   }
 
   public updateUser(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
