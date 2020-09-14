@@ -11,7 +11,7 @@ import {
   INavigation,
   Navigation,
 } from '@models/navigation';
-import { IUserDTO } from '@app/infrastructure/models/user';
+import { IUserDTO } from '@models/user';
 import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
