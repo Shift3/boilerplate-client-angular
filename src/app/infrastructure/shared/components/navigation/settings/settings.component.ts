@@ -1,6 +1,7 @@
 import {
   Component,
   ChangeDetectionStrategy,
+  Input,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,6 +13,10 @@ import {
   profileLinkList,
 } from '@models/navigation';
 import { NavbarStateService } from '@core/services/state/navbar-state.service';
+import {
+  IUserDTO,
+  UserDTO,
+} from '@models/user';
 
 @Component({
   selector: 'app-settings',
@@ -20,6 +25,8 @@ import { NavbarStateService } from '@core/services/state/navbar-state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {
+  @Input() loggedInUser: IUserDTO = new UserDTO();
+
   public profileLinks: INavigation[] = profileLinkList;
   public showTopNav = (localStorage.getItem('navbarToggle') === 'top') ? true : false;
 
