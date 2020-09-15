@@ -15,6 +15,7 @@ import {
   IChangeUserRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
+  IUpdateProfileRequest,
   IUserDTO,
 } from '@models/user';
 import { IMessage } from '@models/message';
@@ -68,6 +69,17 @@ export class UserService {
       tap(() => {
         const message = 'This account has been activated. Please log in.';
         return this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
+
+  public updateProfile(payload: IUpdateProfileRequest, userId: number): Observable<IUserDTO> {
+    const endpoint = `${this.url}/profile/${userId}`;
+
+    return this.apiService.put<IUserDTO, IUpdateProfileRequest>(endpoint, payload).pipe(
+      tap(() => {
+        const message = 'Profile updated.';
+        this.notificationService.showSuccess([message]);
       }),
     );
   }
