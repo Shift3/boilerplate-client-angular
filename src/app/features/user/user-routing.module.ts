@@ -21,7 +21,6 @@ const routes: Routes = [
         component: UserDetailSmartComponent,
         data: { title: 'Update Profile' },
         resolve: {
-          roleList: resolverList.GetOwnRoleListResolver,
           user: resolverList.GetLoggedInUserResolver,
         },
       },
