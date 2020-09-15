@@ -86,17 +86,16 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   public updateOrCreateUser(): void {
-    return (this.user.id) ? this.updateUser() : this.createUser();
+    const requestPayload = this.buildPayload();
+    return (this.user.id) ? this.updateUser(requestPayload) : this.createUser(requestPayload);
   }
 
-  public createUser(): void {
-    const requestPayload = this.buildPayload();
-    this.userService.createUser(requestPayload).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
+  public createUser(requestPayload: IChangeUserRequest): void {
+    this.userService.createUser(requestPayload).subscribe(() => this.navigateOnSuccess());
   }
 
-  public updateUser(): void {
-    const requestPayload = this.buildPayload();
-    this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
+  public updateUser(requestPayload: IChangeUserRequest): void {
+    this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.navigateOnSuccess());
   }
 
   private checkIfSelfAndBuildFormConfig(): void {
@@ -160,5 +159,9 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     });
 
     return formConfig;
+  }
+
+  private navigateOnSuccess(): void {
+    this.router.navigateByUrl('/admin/user-list');
   }
 }
