@@ -88,7 +88,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   public updateOrCreateUser(): void {
     const requestPayload = this.buildPayload();
     if (this.user.id) {
-      (this.isSelf) ? this.updateProfile(requestPayload) : this.updateUser(requestPayload)
+      (this.isSelf) ? this.updateProfile(requestPayload) : this.updateUser(requestPayload);
     } else {
       this.createUser(requestPayload);
     }
