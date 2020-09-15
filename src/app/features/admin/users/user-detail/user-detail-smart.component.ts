@@ -94,15 +94,15 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     }
   }
 
-  public createUser(requestPayload: IChangeUserRequest): void {
+  private createUser(requestPayload: IChangeUserRequest): void {
     this.userService.createUser(requestPayload).subscribe(() => this.navigateOnSuccess());
   }
 
-  public updateUser(requestPayload: IChangeUserRequest): void {
+  private updateUser(requestPayload: IChangeUserRequest): void {
     this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.navigateOnSuccess());
   }
 
-  public updateProfile(requestPayload: IChangeUserRequest): void {
+  private updateProfile(requestPayload: IChangeUserRequest): void {
     this.userService.updateProfile(requestPayload, this.user.id).subscribe(() => this.navigateOnSuccess());
   }
 
