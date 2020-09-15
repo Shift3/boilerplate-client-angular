@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { AgencyTableComponent } from './agency/agency-table/agency-table.component';
 import { UserDetailSmartComponent } from './users/user-detail/user-detail-smart.component';
 import { UserDetailPresentationComponent } from './users/user-detail/user-detail-presentation.component';
 import { UserListPresentationComponent } from './users/user-list/user-list-presentation.component';
@@ -57,6 +58,7 @@ export const components = [
   AdminLayoutComponent,
   UserDetailPresentationComponent,
   UserDetailSmartComponent,
+  AgencyTableComponent,
   UserListPresentationComponent,
   UserListSmartComponent,
   UserTableComponent,
