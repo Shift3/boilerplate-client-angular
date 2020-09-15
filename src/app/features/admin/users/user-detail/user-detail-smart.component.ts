@@ -116,8 +116,10 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   private buildPayload(): IChangeUserRequest {
     const payloadDTO = new ChangeUserRequest();
     const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
-    // Set unique value that diverges from the `FormGroup` here
-    payload.role.id = this.form.get('roleId').value;
+    if (!this.isSelf) {
+      // Set unique value that diverges from the `FormGroup` here
+      payload.role.id = this.form.get('roleId').value;
+    }
     return payload;
   }
 
@@ -150,21 +152,26 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           fieldConfig : new InputField({ inputType: 'email' }),
           validation: [ EmailValidation.validEmail(true) ],
         }),
-        new FormField<ISelectField<RoleType>>({
-          name: 'roleId',
-          value: this.user.role.id,
-          fieldType: 'select',
-          label: 'Role',
-          fieldConfig : new SelectField({
-            options: this.roleList,
-            optionName: 'roleName',
-            optionValue: 'id',
-          }),
-          validation: [ RequiredValidation.required('Role') ],
-          disabled: this.isSelf,
-        }),
       ],
     });
+
+    // Add role control if the user is not the logged in user.
+    if (!this.isSelf) {
+      const roleList = new FormField<ISelectField<RoleType>>({
+        name: 'roleId',
+        value: this.user.role.id,
+        fieldType: 'select',
+        label: 'Role',
+        fieldConfig : new SelectField({
+          options: this.roleList,
+          optionName: 'roleName',
+          optionValue: 'id',
+        }),
+        validation: [ RequiredValidation.required('Role') ],
+        disabled: this.isSelf,
+      });
+      formConfig.controls.push(roleList);
+    }
 
     return formConfig;
   }
