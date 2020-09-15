@@ -24,7 +24,9 @@
           </button>
         </ul>
       </ng-container>
-      <app-settings></app-settings>
+      <app-settings
+        [loggedInUser]="loggedInUser"
+      ></app-settings>
     </div>
   </ng-container>
   <ng-template #loggedOut>

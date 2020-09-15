@@ -149,12 +149,11 @@ import { UserService } from './user.service';
       });
     });
 
-    // TODO: Update test when API implementation updates.
     describe('findUser()', () => {
       it ('should use GET as the request method', () => {
         const id = 1;
         service.findUser(id).subscribe();
-        const req = httpTestingController.expectOne(route);
+        const req = httpTestingController.expectOne(`${route}/${id}`);
 
         expect(req.request.method).toBe('GET');
       });
@@ -162,7 +161,7 @@ import { UserService } from './user.service';
       it('should return the requested user', () => {
         const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
-        spyOn(service, 'findUser').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
         service.findUser(1).subscribe(res => {
           response = res;
