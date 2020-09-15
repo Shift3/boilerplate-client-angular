@@ -8,6 +8,8 @@ import { UserListPresentationComponent } from './users/user-list/user-list-prese
 import { UserListSmartComponent } from './users/user-list/user-list-smart.component';
 import { UserTableComponent } from './users/user-list/user-table/user-table.component';
 
+import { UpdateProfileOrUserGuard } from '@core/guards/update-profile-or-user.guard';
+
 import { resolverList } from '@core/resolvers';
 
 const routes: Routes = [
@@ -33,6 +35,7 @@ const routes: Routes = [
         path: 'update-user/:id',
         component: UserDetailSmartComponent,
         data: { title: 'Update User' },
+        canActivate: [UpdateProfileOrUserGuard],
         resolve: {
           roleList: resolverList.GetRoleListResolver,
           user: resolverList.UpdateUserResolver,
