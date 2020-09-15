@@ -11,9 +11,7 @@ import { environment } from '@env/environment.test';
 import {
   ChangeUserRequest,
   IChangeUserRequest,
-  IUpdateProfileRequest,
   IUserDTO,
-  UpdateProfileRequest,
   UserDTO,
 } from '@models/user';
 import { Logger } from '@utils/logger';
@@ -62,7 +60,7 @@ import { UserService } from './user.service';
 
     describe('updateProfile()', () => {
       it ('should use PUT as the request method', () => {
-        const profile: IUpdateProfileRequest = new UpdateProfileRequest();
+        const profile: IChangeUserRequest = new ChangeUserRequest();
         service.updateProfile(profile, 1).subscribe();
         const req = httpTestingController.expectOne(`${route}/profile/1`);
 
@@ -70,7 +68,7 @@ import { UserService } from './user.service';
       });
 
       it('should return the requested user on successful update', () => {
-        const profile: IUpdateProfileRequest = new UpdateProfileRequest();
+        const profile: IChangeUserRequest = new ChangeUserRequest();
         const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
         spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
@@ -83,7 +81,7 @@ import { UserService } from './user.service';
       });
 
       it(`should show a notification on success`, () => {
-        const profile: IUpdateProfileRequest = new UpdateProfileRequest();
+        const profile: IChangeUserRequest = new ChangeUserRequest();
         const expectedValue: IUserDTO = { ...testUser };
         spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
 
