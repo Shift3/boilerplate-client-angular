@@ -48,8 +48,8 @@ export class AgencyService {
     );
   }
 
-  public updateAgency(payload: IAgencyRequest, agentId: number): Observable<IAgencyDTO> {
-    const endpoint = `${this.url}/${agentId}`;
+  public updateAgency(payload: IAgencyRequest, agencyId: number): Observable<IAgencyDTO> {
+    const endpoint = `${this.url}/${agencyId}`;
 
     return this.apiService.put<IAgencyDTO, IAgencyRequest>(endpoint, payload).pipe(
       tap(() => {
@@ -59,8 +59,8 @@ export class AgencyService {
     );
   }
 
-  public deleteAgency(agent: IAgencyDTO): Observable<IAgencyDTO> {
-    const endpoint = `${this.url}/${agent.id}`;
+  public deleteAgency(agency: IAgencyDTO): Observable<IAgencyDTO> {
+    const endpoint = `${this.url}/${agency.id}`;
 
     return this.apiService.delete<IAgencyDTO>(endpoint).pipe(
       tap(() => {
