@@ -19,3 +19,17 @@ export class AgencyDTO implements IAgencyDTO {
     }
   }
 }
+
+export interface IAgencyRequest {
+  agencyName: string;
+}
+
+export class AgencyRequest implements IAgencyRequest {
+  agencyName: string = '';
+
+  constructor(configOverride?: Partial<IAgencyRequest>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}

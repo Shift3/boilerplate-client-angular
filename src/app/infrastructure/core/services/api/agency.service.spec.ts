@@ -9,7 +9,9 @@ import { of as observableOf } from 'rxjs';
 import { ApiService } from './api.service';
 import {
   AgencyDTO,
+  AgencyRequest,
   IAgencyDTO,
+  IAgencyRequest,
 } from '@models/agency';
 import { AgencyService } from './agency.service';
 import { environment } from '@env/environment.test';
@@ -61,6 +63,97 @@ import { Logger } from '@utils/logger';
 
         service.getAgencyList().subscribe(res => {
           response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('createAgency()', () => {
+      it ('should use POST as the request method', () => {
+        const newAgent: IAgencyRequest = new AgencyRequest();
+        service.createAgency(newAgent).subscribe();
+        const req = httpTestingController.expectOne(route);
+
+        expect(req.request.method).toBe('POST');
+      });
+
+      it('should return the requested agent on creation', () => {
+        const newAgency: IAgencyRequest = new AgencyRequest();
+        const expectedValue: IAgencyDTO = { ...testAgency };
+        let response: IAgencyDTO;
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
+
+        service.createAgency(newAgency).subscribe(res => {
+        response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('findAgency()', () => {
+      it ('should use GET as the request method', () => {
+        const id = 1;
+        service.findAgency(id).subscribe();
+        const req = httpTestingController.expectOne(`${route}/${id}`);
+
+        expect(req.request.method).toBe('GET');
+      });
+
+      it('should return the requested agent', () => {
+        const expectedValue: IAgencyDTO = { ...testAgency };
+        let response: IAgencyDTO;
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
+
+        service.findAgency(1).subscribe(res => {
+        response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('updateAgency()', () => {
+      it ('should use PUT as the request method', () => {
+        const agency: IAgencyRequest = new AgencyRequest();
+        service.updateAgency(agency, 1).subscribe();
+        const req = httpTestingController.expectOne(`${route}/1`);
+
+        expect(req.request.method).toBe('PUT');
+      });
+
+      it('should return the requested agent on successful update', () => {
+        const agency: IAgencyRequest = new AgencyRequest();
+        const expectedValue: IAgencyDTO = { ...testAgency };
+        let response: IAgencyDTO;
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.updateAgency(agency, 1).subscribe(res => {
+        response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('deleteAgency()', () => {
+      it ('should use DELETE as the request method', () => {
+        const agent: IAgencyDTO = new AgencyDTO({ id: 1 });
+        service.deleteAgency(agent).subscribe();
+        const req = httpTestingController.expectOne(`${route}/1`);
+
+        expect(req.request.method).toBe('DELETE');
+      });
+
+      it('should return the updated agent on successful deletion', () => {
+        const agent: IAgencyDTO = new AgencyDTO({ id: 1 });
+        const expectedValue: IAgencyDTO = { ...testAgency };
+        let response: IAgencyDTO;
+        spyOn(apiService, 'delete').and.returnValue(observableOf(expectedValue));
+
+        service.deleteAgency(agent).subscribe(res => {
+        response = res;
         });
 
         expect(response).toEqual(expectedValue);
