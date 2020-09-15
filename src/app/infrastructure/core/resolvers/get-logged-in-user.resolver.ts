@@ -11,11 +11,13 @@ import {
 } from 'rxjs';
 import {
   catchError,
+  mergeMap,
   take,
 } from 'rxjs/operators';
 
 import { IUserDTO } from '@models/user';
 import { NotificationService } from '../services/notification.service';
+import { UserService } from '../services/api/user.service';
 import { UserStateService } from '../services/state/user-state.service';
 
 @Injectable({
@@ -25,11 +27,13 @@ export class GetLoggedInUserResolver implements Resolve<IUserDTO> {
   constructor(
     private notificationService: NotificationService,
     private router: Router,
+    private userService: UserService,
     private userStateService: UserStateService,
   ) { }
     resolve(): Observable<IUserDTO> {
       return this.userStateService.getUserSession().pipe(
         take(1),
+        mergeMap((user) => this.userService.findUser(user.id)),
         catchError((error: HttpErrorResponse) => {
           this.navigateOnError();
           return observableThrowError(error);
