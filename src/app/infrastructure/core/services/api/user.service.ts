@@ -24,6 +24,7 @@ import {
   ISignupDTO,
   ISignupRequest,
 } from '@models/auth';
+import { UserStateService } from '../state/user-state.service';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,7 @@ export class UserService {
   constructor(
     private apiService: ApiService,
     private notificationService: NotificationService,
+    private userStateService: UserStateService,
   ) {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
   }
@@ -77,6 +79,7 @@ export class UserService {
     const endpoint = `${this.url}/profile/${userId}`;
 
     return this.apiService.put<IUserDTO, IUpdateProfileRequest>(endpoint, payload).pipe(
+      tap((user) => this.userStateService.setUserSession(user)),
       tap(() => {
         const message = 'Profile updated.';
         this.notificationService.showSuccess([message]);
