@@ -54,6 +54,26 @@ export class ResetPasswordRequest implements IResetPasswordRequest {
   }
 }
 
+export interface IUpdateProfileRequest {
+  email: string;
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+}
+
+export class UpdateProfileRequest implements IUpdateProfileRequest {
+  email: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  profilePicture: string = '';
+
+  constructor(configOverride?: IUpdateProfileRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
 export interface IChangeUserRequest {
   email: string;
   firstName: string;
