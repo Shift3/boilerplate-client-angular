@@ -98,6 +98,10 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.navigateOnSuccess());
   }
 
+  public updateProfile(requestPayload: IChangeUserRequest): void {
+    this.userService.updateProfile(requestPayload, this.user.id).subscribe(() => this.navigateOnSuccess());
+  }
+
   private checkIfSelfAndBuildFormConfig(): void {
     this.checkSelfSubscription = this.userStateService.isSelf(this.user.id).subscribe((isSelf) => {
       this.isSelf = isSelf;
