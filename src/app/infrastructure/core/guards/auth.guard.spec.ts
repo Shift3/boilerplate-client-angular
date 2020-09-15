@@ -5,7 +5,10 @@ import {
   getTestBed,
 } from '@angular/core/testing';
 
-import { BehaviorSubject } from 'rxjs';
+import {
+  BehaviorSubject,
+  of as observableOf,
+} from 'rxjs';
 
 import { AuthGuard } from './auth.guard';
 import { environment } from '@env/environment.test';
@@ -50,6 +53,7 @@ import { UserStateService } from '../services/state/user-state.service';
       });
 
       it('should return false when there is no user token', () => {
+        spyOn(userState, 'isLoggedInUser').and.returnValue(observableOf(false));
         guard.canActivate().subscribe(response => {
           expect(response).toEqual(false);
         });
