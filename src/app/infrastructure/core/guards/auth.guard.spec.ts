@@ -60,12 +60,14 @@ import { UserStateService } from '../services/state/user-state.service';
       });
 
       it(`should redirect to the '/auth' route when there is no user token`, () => {
+        spyOn(userState, 'isLoggedInUser').and.returnValue(observableOf(false));
         guard.canActivate().subscribe(() => {
           expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
         });
       });
 
       it(`should show a notification on failing the guard`, () => {
+        spyOn(userState, 'isLoggedInUser').and.returnValue(observableOf(false));
         const message = ['You cannot view the requested page. Returning to the login page.'];
 
         guard.canActivate().subscribe(() => {
