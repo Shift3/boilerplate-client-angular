@@ -27,6 +27,13 @@ export class RoleDTO implements IRoleDTO {
     return ['Admin', 'Super Administrator'].includes(role);
   }
 
+  /**
+   * Checks if the parameter matches the `Super Administrator` role.
+   */
+  static isSuperAdminRoleType(role: RoleType): role is RoleType {
+    return ['Super Administrator'].includes(role);
+  }
+
   constructor(configOverride?: IRoleDTO) {
     if (configOverride) {
       Object.assign(this, configOverride);
