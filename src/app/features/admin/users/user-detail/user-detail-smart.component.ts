@@ -29,7 +29,10 @@ import {
   InputField,
 } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
-import {  RoleType } from '@models/role';
+import {
+  IRoleGuard,
+  RoleType,
+} from '@models/role';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import {
   ISelectField,
@@ -52,6 +55,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailSmartComponent implements OnInit, OnDestroy {
+  public checkRole: IRoleGuard;
   public form: FormGroup;
   public formConfig: IFormConfig = new FormConfig();
   public formTitle: string = '';
@@ -74,6 +78,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.checkRoleGuard();
     this.checkIfSelfAndBuildFormConfig();
   }
 
@@ -83,6 +88,12 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
+  }
+
+  private checkRoleGuard(): void {
+    this.userStateService.checkRoleGuard().subscribe((role) => {
+      this.checkRole = role;
+    });
   }
 
   public updateOrCreateUser(): void {
