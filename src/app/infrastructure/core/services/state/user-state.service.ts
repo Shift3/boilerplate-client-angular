@@ -66,6 +66,7 @@ export class UserStateService {
         const roleGuard: IRoleGuard = new RoleGuard({
           canEdit: RoleDTO.canEdit(roleName),
           isAdmin: RoleDTO.isAdminRoleType(roleName),
+          isSuperAdmin: RoleDTO.isSuperAdminRoleType(roleName),
         });
         return roleGuard;
       }),

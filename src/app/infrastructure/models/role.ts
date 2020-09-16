@@ -44,11 +44,13 @@ export class RoleDTO implements IRoleDTO {
 export interface IRoleGuard {
   canEdit: boolean;
   isAdmin: boolean;
+  isSuperAdmin: boolean;
 }
 
 export class RoleGuard implements IRoleGuard {
   canEdit: boolean = false;
   isAdmin: boolean = false;
+  isSuperAdmin: boolean = false;
 
   constructor(configOverride?: IRoleGuard) {
     if (configOverride) {
