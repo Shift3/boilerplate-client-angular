@@ -5,7 +5,12 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { IUserDTO } from '@app/infrastructure/models/user';
+
+import {
+  IRoleGuard,
+  RoleGuard,
+} from '@models/role';
+import { IUserDTO } from '@models/user';
 
 @Component({
   selector: 'app-user-table',
@@ -14,8 +19,9 @@ import { IUserDTO } from '@app/infrastructure/models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserTableComponent {
+  @Input() public checkRole: IRoleGuard = new RoleGuard();
   @Input() public loggedInUser: IUserDTO;
-  @Input() public tableData: any;
+  @Input() public tableData: IUserDTO[] = [];
 
   @Output() public emitDelete = new EventEmitter<IUserDTO>();
   @Output() public emitResendActivationEmail = new EventEmitter<IUserDTO>();
