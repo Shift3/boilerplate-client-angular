@@ -30,6 +30,7 @@ const routes: Routes = [
         component: UserDetailSmartComponent,
         data: { title: 'Create User' },
         resolve: {
+          agencyList: resolverList.GetAgencyListResolver,
           roleList: resolverList.GetRoleListResolver,
           user: resolverList.CreateUserResolver,
         },
@@ -39,6 +40,7 @@ const routes: Routes = [
         component: UserDetailSmartComponent,
         data: { title: 'Update User' },
         resolve: {
+          agencyList: resolverList.GetAgencyListResolver,
           roleList: resolverList.GetRoleListResolver,
           user: resolverList.UpdateUserResolver,
         },
