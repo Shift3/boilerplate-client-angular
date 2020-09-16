@@ -9,9 +9,9 @@ import { of as observableOf } from 'rxjs';
 import { ApiService } from './api.service';
 import { environment } from '@env/environment.test';
 import {
+  ChangeUserRequest,
   IChangeUserRequest,
   IUserDTO,
-  ChangeUserRequest,
   UserDTO,
 } from '@models/user';
 import { Logger } from '@utils/logger';
@@ -56,6 +56,39 @@ import { UserService } from './user.service';
     });
     it('should be created', () => {
       expect(service).toBeTruthy();
+    });
+
+    describe('updateProfile()', () => {
+      it ('should use PUT as the request method', () => {
+        const profile: IChangeUserRequest = new ChangeUserRequest();
+        service.updateProfile(profile, 1).subscribe();
+        const req = httpTestingController.expectOne(`${route}/profile/1`);
+
+        expect(req.request.method).toBe('PUT');
+      });
+
+      it('should return the requested user on successful update', () => {
+        const profile: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = { ...testUser };
+        let response: IUserDTO;
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.updateProfile(profile, 1).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+
+      it(`should show a notification on success`, () => {
+        const profile: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = { ...testUser };
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.updateProfile(profile, 1).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
+      });
     });
 
     describe('getUserList()', () => {
