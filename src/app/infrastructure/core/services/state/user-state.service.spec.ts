@@ -23,6 +23,7 @@ import { UserStateService } from './user-state.service';
         ],
       });
       service = TestBed.inject(UserStateService);
+      service.userSession$ = new BehaviorSubject<IUserDTO>(null);
       testSuperAdministratorUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
         firstName: 'Test',
         lastName: 'Tester',

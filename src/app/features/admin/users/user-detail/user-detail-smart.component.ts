@@ -4,10 +4,8 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import {
-  ActivatedRoute,
-  Router,
-} from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -70,7 +68,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formService: FormService,
-    private router: Router,
+    private location: Location,
     private userService: UserService,
     private userStateService: UserStateService,
   ) {
@@ -101,17 +99,24 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   public updateOrCreateUser(): void {
-    return (this.user.id) ? this.updateUser() : this.createUser();
+    const requestPayload = this.buildPayload();
+    if (this.user.id) {
+      (this.isSelf) ? this.updateProfile(requestPayload) : this.updateUser(requestPayload);
+    } else {
+      this.createUser(requestPayload);
+    }
   }
 
-  public createUser(): void {
-    const requestPayload = this.buildPayload();
-    this.userService.createUser(requestPayload).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
+  private createUser(requestPayload: IChangeUserRequest): void {
+    this.userService.createUser(requestPayload).subscribe(() => this.navigateOnSuccess());
   }
 
-  public updateUser(): void {
-    const requestPayload = this.buildPayload();
-    this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.router.navigateByUrl('/admin/user-list'));
+  private updateUser(requestPayload: IChangeUserRequest): void {
+    this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.navigateOnSuccess());
+  }
+
+  private updateProfile(requestPayload: IChangeUserRequest): void {
+    this.userService.updateProfile(requestPayload, this.user.id).subscribe(() => this.navigateOnSuccess());
   }
 
   private checkIfSelfAndBuildFormConfig(): void {
@@ -125,8 +130,10 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   private buildPayload(): IChangeUserRequest {
     const payloadDTO = new ChangeUserRequest();
     const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
-    // Set unique value that diverges from the `FormGroup` here
-    payload.role.id = this.form.get('roleId').value;
+    if (!this.isSelf) {
+      // Set unique value that diverges from the `FormGroup` here
+      payload.role.id = this.form.get('roleId').value;
+    }
     return payload;
   }
 
@@ -172,22 +179,31 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           validation: [ RequiredValidation.required('Agency') ],
           disabled: !this.checkRole.isSuperAdmin,
         }),
-        new FormField<ISelectField<RoleType>>({
-          name: 'roleId',
-          value: this.user.role.id,
-          fieldType: 'select',
-          label: 'Role',
-          fieldConfig : new SelectField({
-            options: this.roleList,
-            optionName: 'roleName',
-            optionValue: 'id',
-          }),
-          validation: [ RequiredValidation.required('Role') ],
-          disabled: this.isSelf,
-        }),
       ],
     });
 
+    // Add role control if the user is not the logged in user.
+    if (!this.isSelf) {
+      const roleList = new FormField<ISelectField<RoleType>>({
+        name: 'roleId',
+        value: this.user.role.id,
+        fieldType: 'select',
+        label: 'Role',
+        fieldConfig : new SelectField({
+          options: this.roleList,
+          optionName: 'roleName',
+          optionValue: 'id',
+        }),
+        validation: [ RequiredValidation.required('Role') ],
+        disabled: this.isSelf,
+      });
+      formConfig.controls.push(roleList);
+    }
+
     return formConfig;
+  }
+
+  private navigateOnSuccess(): void {
+    this.location.back();
   }
 }
