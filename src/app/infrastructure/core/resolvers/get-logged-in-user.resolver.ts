@@ -31,14 +31,27 @@ export class GetLoggedInUserResolver implements Resolve<IUserDTO> {
     private userStateService: UserStateService,
   ) { }
     resolve(): Observable<IUserDTO> {
-      return this.userStateService.getUserSession().pipe(
-        take(1),
-        mergeMap((user) => this.userService.findUser(user.id)),
-        catchError((error: HttpErrorResponse) => {
-          this.navigateOnError();
-          return observableThrowError(error);
-        }),
-      );
+      // Add shim to return user session from state as `findUser()` is restricted to admins.
+      return this.userStateService.checkRoleGuard()
+        .pipe(
+          take(1),
+          mergeMap((roleGuard) => {
+            if (roleGuard.isAdmin) {
+              return this.userStateService.getUserSession().pipe(
+                take(1),
+                mergeMap((loggedInUser) => this.userService.findUser(loggedInUser.id)),
+              );
+            } else {
+              return this.userStateService.getUserSession().pipe(
+                take(1),
+              );
+            }
+          }),
+          catchError((error: HttpErrorResponse) => {
+            this.navigateOnError();
+            return observableThrowError(error);
+          }),
+        );
     }
 
   private navigateOnError(): void {
