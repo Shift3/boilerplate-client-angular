@@ -22,6 +22,9 @@ const routes: Routes = [
         path: 'change-password',
         component: ChangePasswordSmartComponent,
         data: { title: 'Change Password' },
+        resolve: {
+          user: resolverList.GetLoggedInUserResolver,
+        },
       },
       {
         path: 'profile',
