@@ -64,8 +64,8 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   public user: IUserDTO;
 
   private agencyList: ISelectOptions<IAgencyDTO>[];
-  private checkSelfSubscription: Subscription;
   private roleList: ISelectOptions<RoleType>[];
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -86,7 +86,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.checkSelfSubscription.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   public propagateForm(form: FormGroup): void {
@@ -94,9 +94,10 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private checkRoleGuard(): void {
-    this.userStateService.checkRoleGuard().subscribe((role) => {
+    const roleGuardSubscription = this.userStateService.checkRoleGuard().subscribe((role) => {
       this.checkRole = role;
     });
+    this.subscriptions.push(roleGuardSubscription);
   }
 
   public updateOrCreateUser(): void {
@@ -114,10 +115,11 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private checkIfSelfAndBuildFormConfig(): void {
-    this.checkSelfSubscription = this.userStateService.isSelf(this.user.id).subscribe((isSelf) => {
+    const checkSelfSubscription = this.userStateService.isSelf(this.user.id).subscribe((isSelf) => {
       this.isSelf = isSelf;
       this.formConfig = this.buildFormConfig();
     });
+    this.subscriptions.push(checkSelfSubscription);
   }
 
   private buildPayload(): IChangeUserRequest {
