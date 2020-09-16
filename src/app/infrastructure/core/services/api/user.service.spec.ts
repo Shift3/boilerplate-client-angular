@@ -18,17 +18,23 @@ import {
 } from '@models/user';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '@core/services/notification.service';
+import { ISessionDTO } from '@models/auth';
 import { UserService } from './user.service';
+import { AuthService } from './auth.service';
+import { UserStateService } from '../state/user-state.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] UserService', () => {
     const route = `${environment.apiRoute}/users`;
     let testUser: IUserDTO;
+    let testUserSession: ISessionDTO;
     let service: UserService;
     let apiService: ApiService;
     let httpTestingController: HttpTestingController;
+    const authMock = { setToken: jasmine.createSpy('setToken') };
     const notificationMock = { showSuccess: jasmine.createSpy('showSuccess') };
+    const userStateMock = { setUserSession: jasmine.createSpy('setUserSession') };
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -36,7 +42,9 @@ import { UserService } from './user.service';
         providers: [
           ApiService,
           UserService,
+          { provide: AuthService, useValue: authMock },
           { provide: NotificationService, useValue: notificationMock },
+          { provide: UserStateService, useValue: userStateMock },
         ],
       });
       // Returns a service with the MockBackend so we can test with dummy responses
@@ -55,6 +63,20 @@ import { UserService } from './user.service';
           roleName: 'User',
         },
       });
+      testUserSession = {
+        user: {
+          id: 1,
+          email: 'test@test.com',
+          firstName: 'Test',
+          lastName: 'Tester',
+          profilePicture: null,
+          role: {
+            id: 1,
+            roleName: 'User',
+          },
+        },
+        jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+      };
     });
     it('should be created', () => {
       expect(service).toBeTruthy();
@@ -178,6 +200,49 @@ import { UserService } from './user.service';
         const req = httpTestingController.expectOne(`${route}/change-password/1`);
 
         expect(req.request.method).toBe('PUT');
+      });
+
+      it('should return the updated user session on successful update', () => {
+        const newPassword: IChangePasswordRequest = new ChangePasswordRequest();
+        const expectedValue: ISessionDTO = { ...testUserSession };
+        let response: ISessionDTO;
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.changePassword(newPassword, 1).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+
+      it(`should call userStateService.setUserSession on success`, () => {
+        const newPassword: IChangePasswordRequest = new ChangePasswordRequest();
+        const expectedValue: ISessionDTO = { ...testUserSession };
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.changePassword(newPassword, 1).subscribe((response) => {
+          expect(userStateMock.setUserSession).toHaveBeenCalledWith(response.user);
+        });
+      });
+
+      it(`should call authService.setToken on success`, () => {
+        const newPassword: IChangePasswordRequest = new ChangePasswordRequest();
+        const expectedValue: ISessionDTO = { ...testUserSession };
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.changePassword(newPassword, 1).subscribe((response) => {
+          expect(authMock.setToken).toHaveBeenCalledWith(response.jwtToken);
+        });
+      });
+
+      it(`should show a notification on success`, () => {
+        const newPassword: IChangePasswordRequest = new ChangePasswordRequest();
+        const expectedValue: ISessionDTO = { ...testUserSession };
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.changePassword(newPassword, 1).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
       });
     });
 
