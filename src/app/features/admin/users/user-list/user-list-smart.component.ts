@@ -84,7 +84,7 @@ export class UserListSmartComponent implements OnInit {
     return this.userStateService.getUserSession();
   }
 
-  public checkRoleGuard(): Observable<IRoleGuard> {
+  private checkRoleGuard(): Observable<IRoleGuard> {
     return this.userStateService.checkRoleGuard();
   }
 
