@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 
-import {
-  Observable,
-  of as observableOf,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 import {
   map,
   tap,
 } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 import { environment } from '@env/environment';
 import {
+  IChangePasswordRequest,
   IChangeUserRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
@@ -20,6 +19,7 @@ import {
 import { IMessage } from '@models/message';
 import { NotificationService } from '../notification.service';
 import {
+  ISessionDTO,
   ISignupDTO,
   ISignupRequest,
 } from '@models/auth';
@@ -34,6 +34,7 @@ export class UserService {
 
   constructor(
     private apiService: ApiService,
+    private authService: AuthService,
     private notificationService: NotificationService,
     private userStateService: UserStateService,
   ) {
@@ -108,6 +109,23 @@ export class UserService {
     const endpoint = `${this.url}/${id}`;
 
     return this.apiService.get<IUserDTO>(endpoint);
+  }
+
+  /**
+   * This lets the logged in user change their own password only.
+   */
+  public changePassword(payload: IChangePasswordRequest, userId: number): Observable<ISessionDTO> {
+    const endpoint = `${this.url}/change-password/${userId}`;
+
+    return this.apiService.put<ISessionDTO, IChangePasswordRequest>(endpoint, payload).pipe(
+      tap((response) => localStorage.setItem('token', response.jwtToken)),
+      tap((response) => this.userStateService.setUserSession(response.user)),
+      tap((response) => this.authService.setToken(response.jwtToken)),
+      tap(() => {
+        const message = `Password updated.`;
+        return this.notificationService.showSuccess([message]);
+      }),
+    );
   }
 
   public updateUser(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
