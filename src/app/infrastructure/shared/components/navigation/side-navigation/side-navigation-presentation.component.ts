@@ -5,6 +5,10 @@ import {
 } from '@angular/core';
 
 import { INavigation } from '@models/navigation';
+import {
+  IUserDTO,
+  UserDTO,
+} from '@models/user';
 
 @Component({
   selector: 'app-side-navigation-presentation',
@@ -14,6 +18,7 @@ import { INavigation } from '@models/navigation';
 })
 export class SideNavigationPresentationComponent {
   @Input() public isLoggedInUser: boolean = false;
+  @Input() public loggedInUser: IUserDTO = new UserDTO();
   @Input() public navLinks: INavigation[];
 
   public isMenuCollapsed = true;

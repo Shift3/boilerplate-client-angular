@@ -60,6 +60,39 @@ import { UserService } from './user.service';
       expect(service).toBeTruthy();
     });
 
+    describe('updateProfile()', () => {
+      it ('should use PUT as the request method', () => {
+        const profile: IChangeUserRequest = new ChangeUserRequest();
+        service.updateProfile(profile, 1).subscribe();
+        const req = httpTestingController.expectOne(`${route}/profile/1`);
+
+        expect(req.request.method).toBe('PUT');
+      });
+
+      it('should return the requested user on successful update', () => {
+        const profile: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = { ...testUser };
+        let response: IUserDTO;
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.updateProfile(profile, 1).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+
+      it(`should show a notification on success`, () => {
+        const profile: IChangeUserRequest = new ChangeUserRequest();
+        const expectedValue: IUserDTO = { ...testUser };
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.updateProfile(profile, 1).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
+      });
+    });
+
     describe('getUserList()', () => {
       it ('should use GET as the request method', () => {
         service.getUserList().subscribe();
@@ -116,12 +149,11 @@ import { UserService } from './user.service';
       });
     });
 
-    // TODO: Update test when API implementation updates.
     describe('findUser()', () => {
       it ('should use GET as the request method', () => {
         const id = 1;
         service.findUser(id).subscribe();
-        const req = httpTestingController.expectOne(route);
+        const req = httpTestingController.expectOne(`${route}/${id}`);
 
         expect(req.request.method).toBe('GET');
       });
@@ -129,7 +161,7 @@ import { UserService } from './user.service';
       it('should return the requested user', () => {
         const expectedValue: IUserDTO = { ...testUser };
         let response: IUserDTO;
-        spyOn(service, 'findUser').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
         service.findUser(1).subscribe(res => {
           response = res;

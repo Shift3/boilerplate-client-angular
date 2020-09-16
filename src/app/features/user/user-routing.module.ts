@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ChangePasswordPresentationComponent } from './change-password/change-password-presentation.component';
 import { ChangePasswordSmartComponent } from './change-password/change-password-smart.component';
+import { UserDetailSmartComponent } from '../admin/users/user-detail/user-detail-smart.component';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
+
+import { resolverList } from '@core/resolvers';
 
 const routes: Routes = [
   {
@@ -19,6 +22,14 @@ const routes: Routes = [
         path: 'change-password',
         component: ChangePasswordSmartComponent,
         data: { title: 'Change Password' },
+      },
+      {
+        path: 'profile',
+        component: UserDetailSmartComponent,
+        data: { title: 'Update Profile' },
+        resolve: {
+          user: resolverList.GetLoggedInUserResolver,
+        },
       },
     ],
   },

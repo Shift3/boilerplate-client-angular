@@ -75,6 +75,18 @@ export class UserService {
     );
   }
 
+  public updateProfile(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
+    const endpoint = `${this.url}/profile/${userId}`;
+
+    return this.apiService.put<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
+      tap((user) => this.userStateService.setUserSession(user)),
+      tap(() => {
+        const message = 'Profile updated.';
+        this.notificationService.showSuccess([message]);
+      }),
+    );
+  }
+
   public getUserList(): Observable<IUserDTO[]> {
     const endpoint = `${this.url}`;
 
@@ -93,20 +105,10 @@ export class UserService {
     );
   }
 
-  /**
-   * TEMPORARY implementation until API provides an endpoint.
-   */
   public findUser(id: number): Observable<IUserDTO> {
-    return this.getUserList().pipe(
-      map((userList) => {
-        const foundUser = userList.find((user) => user.id === Number(id));
-        if (foundUser) {
-          return foundUser;
-        } else {
-          throw(new Error('User not found.'));
-        }
-      }),
-    );
+    const endpoint = `${this.url}/${id}`;
+
+    return this.apiService.get<IUserDTO>(endpoint);
   }
 
   /**
