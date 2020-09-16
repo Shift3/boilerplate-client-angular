@@ -4,10 +4,8 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import {
-  ActivatedRoute,
-  Router,
-} from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -64,7 +62,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formService: FormService,
-    private router: Router,
+    private location: Location,
     private userService: UserService,
     private userStateService: UserStateService,
   ) {
@@ -177,6 +175,6 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private navigateOnSuccess(): void {
-    this.router.navigateByUrl('/admin/user-list');
+    this.location.back();
   }
 }
