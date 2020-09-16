@@ -1,12 +1,10 @@
-import {
-  ActivatedRoute,
-  Router,
-} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 
 import {
   FormConfig,
@@ -76,7 +74,7 @@ export class ChangePasswordSmartComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formService: FormService,
-    private router: Router,
+    private location: Location,
     private userService: UserService,
   ) {
     this.user = this.activatedRoute.snapshot.data.user;
@@ -90,7 +88,7 @@ export class ChangePasswordSmartComponent {
     const requestPayload = this.buildPayload();
     const snapshot = this.activatedRoute.snapshot;
     this.userService.changePassword(requestPayload, this.user.id).subscribe(() => {
-      this.router.navigateByUrl('/content/agent-list');
+      this.location.back();
     });
   }
 
