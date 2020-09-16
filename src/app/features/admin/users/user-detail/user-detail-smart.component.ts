@@ -12,6 +12,7 @@ import { FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
+import { IAgencyDTO } from '@models/agency';
 import {
   ChangeUserRequest,
   IChangeUserRequest,
@@ -62,6 +63,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   public isSelf: boolean = false;
   public user: IUserDTO;
 
+  private agencyList: ISelectOptions<IAgencyDTO>[];
   private checkSelfSubscription: Subscription;
   private roleList: ISelectOptions<RoleType>[];
 
@@ -74,6 +76,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   ) {
     this.formTitle = this.activatedRoute.snapshot.data.title;
     this.user = this.activatedRoute.snapshot.data.user;
+    this.agencyList = this.activatedRoute.snapshot.data.agencyList;
     this.roleList = this.activatedRoute.snapshot.data.roleList;
   }
 
@@ -153,6 +156,19 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           label: 'Email',
           fieldConfig : new InputField({ inputType: 'email' }),
           validation: [ EmailValidation.validEmail(true) ],
+        }),
+        new FormField<ISelectField<IAgencyDTO>>({
+          name: 'agencyId',
+          value: this.user.agency.id,
+          fieldType: 'select',
+          label: 'Agency',
+          fieldConfig : new SelectField({
+            options: this.agencyList,
+            optionName: 'agencyName',
+            optionValue: 'id',
+          }),
+          validation: [ RequiredValidation.required('Agency') ],
+          disabled: !this.checkRole.isSuperAdmin,
         }),
         new FormField<ISelectField<RoleType>>({
           name: 'roleId',
