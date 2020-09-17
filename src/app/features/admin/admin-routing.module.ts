@@ -61,7 +61,7 @@ const routes: Routes = [
       {
         path: 'create-agency',
         component: AgencyDetailSmartComponent,
-        data: { title: 'Add Agency' },
+        data: { title: 'Create Agency' },
         resolve: {
           agency: resolverList.CreateAgencyResolver,
         },
