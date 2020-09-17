@@ -5,5 +5,7 @@
     (emitForm)="propagateForm($event)"
     (emitSubmit)="submit()"
   ></app-dynamic-form>
-  <app-user-list></app-user-list>
+  <ng-container *ngIf="agency.id">
+    <app-user-list></app-user-list>
+  </ng-container>
 </div>
