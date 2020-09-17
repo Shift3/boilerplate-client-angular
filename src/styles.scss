@@ -84,6 +84,11 @@ html {
   box-shadow: 1px 1px 5px 1px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
   z-index: 1;
 }
+
+.routed-content {
+  padding: 20px;
+  height: 100%;
+}
 //#endregion
 
 //#region Form
@@ -114,10 +119,6 @@ html {
   background-color: $accent;
 }
 //#endregion
-
-.routed-content {
-  padding: 20px;
-}
 
 //#region Cards
 .card {
