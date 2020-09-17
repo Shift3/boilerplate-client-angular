@@ -1,0 +1,8 @@
+@import '../../../../../assets/styles/variables';
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  background: $primary;
+  color: white;
+}
