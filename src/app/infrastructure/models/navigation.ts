@@ -1,3 +1,5 @@
+import { IRoleGuard } from './role';
+
 export interface INavigation {
   id: number;
   label: string;
@@ -11,9 +13,37 @@ export class Navigation implements INavigation {
   link: string;
   icon?: string;
 
-  static buildNavLinkList(isAdmin: boolean): INavigation[] {
+  static buildNavLinkList(roleGuard: IRoleGuard): INavigation[] {
     let navLinks: INavigation[] = [];
-    if (isAdmin) {
+    if (roleGuard.isSuperAdmin) {
+      return navLinks = [
+        {
+          id: 1,
+          label: 'Directory',
+          link: '/content',
+          icon: 'fa fa-stethoscope',
+        },
+        {
+          id: 2,
+          label: 'Users',
+          link: '/admin/user-list',
+          icon: 'fa fa-users',
+        },
+        {
+          id: 3,
+          label: 'Agencies',
+          link: '/admin/agency-list',
+          icon: 'fa fa-building',
+        },
+        {
+          id: 4,
+          label: 'Settings',
+          link: '/admin/settings',
+          icon: 'fa fa-cog',
+        },
+      ];
+    }
+    else if (roleGuard.isAdmin) {
       return navLinks = [
         {
           id: 1,
