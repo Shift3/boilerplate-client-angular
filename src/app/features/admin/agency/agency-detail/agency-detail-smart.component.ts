@@ -3,10 +3,8 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import {
-  ActivatedRoute,
-  Router,
-} from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 import {
@@ -50,7 +48,7 @@ export class AgencyDetailSmartComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private agencyService: AgencyService,
     private formService: FormService,
-    private router: Router,
+    private location: Location,
   ) {
     this.agency = this.activatedRoute.snapshot.data.agency;
     this.formTitle = this.activatedRoute.snapshot.data.title;
@@ -65,7 +63,8 @@ export class AgencyDetailSmartComponent implements OnInit {
   }
 
   public updateOrCreateAgency(): void {
-    return (this.agency.id) ? this.updateAgency() : this.createAgency();
+    const requestPayload = this.buildPayload();
+    return (this.agency.id) ? this.updateAgency(requestPayload) : this.createAgency(requestPayload);
   }
 
   private buildFormConfig() {
@@ -92,13 +91,15 @@ export class AgencyDetailSmartComponent implements OnInit {
     return this.formService.buildRequestPayload(this.form, payloadDTO);
   }
 
-  private createAgency(): void {
-    const requestPayload = this.buildPayload();
-    this.agencyService.createAgency(requestPayload).subscribe(() => this.router.navigateByUrl('/admin/agency-list'));
+  private createAgency(requestPayload: IAgencyRequest): void {
+    this.agencyService.createAgency(requestPayload).subscribe(() => this.navigateOnSuccess());
   }
 
-  private updateAgency(): void {
-    const requestPayload = this.buildPayload();
-    this.agencyService.updateAgency(requestPayload, this.agency.id).subscribe(() => this.router.navigateByUrl('/admin/agency-list'));
+  private updateAgency(requestPayload: IAgencyRequest): void {
+    this.agencyService.updateAgency(requestPayload, this.agency.id).subscribe(() => this.navigateOnSuccess());
+  }
+
+  private navigateOnSuccess(): void {
+    this.location.back();
   }
 }
