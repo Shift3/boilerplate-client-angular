@@ -25,6 +25,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
 import { IRoleGuard } from '@models/role';
 
 @Component({
+  selector: 'app-user-list',
   template: `
     <app-user-list-presentation
       [checkRole]="(checkRole$ | async)"
