@@ -17,9 +17,9 @@ import { FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgencyDetailPresentationComponent {
+  @Input() public agency: IAgencyDTO;
   @Input() public formConfig: IFormConfig;
   @Input() public formTitle: string = 'Create Agency';
-  @Input() public agency: IAgencyDTO;
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
