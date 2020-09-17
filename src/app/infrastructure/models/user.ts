@@ -82,6 +82,7 @@ export interface IChangeUserRequest {
   firstName: string;
   lastName: string;
   profilePicture: string;
+  agency: IAgencyDTO;
   role: IRoleDTO;
 }
 
@@ -90,6 +91,7 @@ export class ChangeUserRequest implements IChangeUserRequest {
   firstName: string = '';
   lastName: string = '';
   profilePicture: string = '';
+  agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
 
   constructor(configOverride?: IChangeUserRequest) {
