@@ -60,6 +60,19 @@ html {
   }
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+.child {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .center {
   text-align: center;
 }
