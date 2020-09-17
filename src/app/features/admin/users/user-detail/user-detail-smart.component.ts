@@ -130,8 +130,11 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   private buildPayload(): IChangeUserRequest {
     const payloadDTO = new ChangeUserRequest();
     const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
+    // Set unique values that diverges from the `FormGroup` here
+    if (this.checkRole.isSuperAdmin) {
+      payload.agency.agencyName = this.form.get('agencyName').value;
+    }
     if (!this.isSelf) {
-      // Set unique value that diverges from the `FormGroup` here
       payload.role.id = this.form.get('roleId').value;
     }
     return payload;
@@ -166,21 +169,26 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           fieldConfig : new InputField({ inputType: 'email' }),
           validation: [ EmailValidation.validEmail(true) ],
         }),
-        new FormField<ISelectField<IAgencyDTO>>({
-          name: 'agencyId',
-          value: this.user.agency.id,
-          fieldType: 'select',
-          label: 'Agency',
-          fieldConfig : new SelectField({
-            options: this.agencyList,
-            optionName: 'agencyName',
-            optionValue: 'id',
-          }),
-          validation: [ RequiredValidation.required('Agency') ],
-          disabled: !this.checkRole.isSuperAdmin,
-        }),
       ],
     });
+
+    // Add agency control only if the user is a Super Administrator.
+    if (this.checkRole.isSuperAdmin) {
+      const agencyList = new FormField<ISelectField<IAgencyDTO>>({
+        name: 'agencyName',
+        value: this.user.agency.agencyName,
+        fieldType: 'select',
+        label: 'Agency',
+        fieldConfig : new SelectField({
+          options: this.agencyList,
+          optionName: 'agencyName',
+          optionValue: 'agencyName',
+        }),
+        validation: [ RequiredValidation.required('Agency') ],
+        disabled: !this.checkRole.isSuperAdmin,
+      });
+      formConfig.controls.push(agencyList);
+    }
 
     // Add role control if the user is not the logged in user.
     if (!this.isSelf) {
