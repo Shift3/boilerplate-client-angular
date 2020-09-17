@@ -67,9 +67,17 @@ import { UserStateService } from '../state/user-state.service';
         user: {
           id: 1,
           email: 'test@test.com',
+          activatedAt: null,
           firstName: 'Test',
           lastName: 'Tester',
           profilePicture: null,
+          agency: {
+            id: 0,
+            agencyName: '',
+            createdBy: 0,
+            deletedAt: '',
+            deletedBy: 0,
+          },
           role: {
             id: 1,
             roleName: 'User',

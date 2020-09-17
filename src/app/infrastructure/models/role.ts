@@ -27,6 +27,13 @@ export class RoleDTO implements IRoleDTO {
     return ['Admin', 'Super Administrator'].includes(role);
   }
 
+  /**
+   * Checks if the parameter matches the `Super Administrator` role.
+   */
+  static isSuperAdminRoleType(role: RoleType): role is RoleType {
+    return ['Super Administrator'].includes(role);
+  }
+
   constructor(configOverride?: IRoleDTO) {
     if (configOverride) {
       Object.assign(this, configOverride);
@@ -37,11 +44,13 @@ export class RoleDTO implements IRoleDTO {
 export interface IRoleGuard {
   canEdit: boolean;
   isAdmin: boolean;
+  isSuperAdmin: boolean;
 }
 
 export class RoleGuard implements IRoleGuard {
   canEdit: boolean = false;
   isAdmin: boolean = false;
+  isSuperAdmin: boolean = false;
 
   constructor(configOverride?: IRoleGuard) {
     if (configOverride) {

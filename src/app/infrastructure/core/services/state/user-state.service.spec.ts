@@ -86,9 +86,17 @@ import { UserStateService } from './user-state.service';
         const expectedValue = {
           id: 0,
           email: '',
+          activatedAt: null,
           firstName: 'Test',
           lastName: 'Tester',
           profilePicture: null,
+          agency: {
+            id: 0,
+            agencyName: '',
+            createdBy: 0,
+            deletedAt: '',
+            deletedBy: 0,
+          },
           role: {
             id: 0,
             roleName: '',

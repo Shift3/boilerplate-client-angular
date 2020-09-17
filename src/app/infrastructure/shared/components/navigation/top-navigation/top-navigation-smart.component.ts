@@ -41,8 +41,8 @@ export class TopNavigationSmartComponent implements OnInit {
   }
 
   public buildNavLinkListBasedOnRole(): Observable<INavigation[]> {
-    return this.userStateService.isAdmin()
-      .pipe(map((isAdmin) => Navigation.buildNavLinkList(isAdmin)));
+    return this.userStateService.checkRoleGuard()
+      .pipe(map((roleGuard) => Navigation.buildNavLinkList(roleGuard)));
   }
 
   public getLoggedInUser(): Observable<IUserDTO> {

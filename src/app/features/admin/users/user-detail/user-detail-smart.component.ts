@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
+import { IAgencyDTO } from '@models/agency';
 import {
   ChangeUserRequest,
   IChangeUserRequest,
@@ -27,7 +28,10 @@ import {
   InputField,
 } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
-import {  RoleType } from '@models/role';
+import {
+  IRoleGuard,
+  RoleType,
+} from '@models/role';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import {
   ISelectField,
@@ -50,14 +54,16 @@ import { UserStateService } from '@core/services/state/user-state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailSmartComponent implements OnInit, OnDestroy {
+  public checkRole: IRoleGuard;
   public form: FormGroup;
   public formConfig: IFormConfig = new FormConfig();
   public formTitle: string = '';
   public isSelf: boolean = false;
   public user: IUserDTO;
 
-  private checkSelfSubscription: Subscription;
+  private agencyList: ISelectOptions<IAgencyDTO>[];
   private roleList: ISelectOptions<RoleType>[];
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -68,19 +74,28 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   ) {
     this.formTitle = this.activatedRoute.snapshot.data.title;
     this.user = this.activatedRoute.snapshot.data.user;
+    this.agencyList = this.activatedRoute.snapshot.data.agencyList;
     this.roleList = this.activatedRoute.snapshot.data.roleList;
   }
 
   public ngOnInit(): void {
+    this.checkRoleGuard();
     this.checkIfSelfAndBuildFormConfig();
   }
 
   public ngOnDestroy(): void {
-    this.checkSelfSubscription.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
+  }
+
+  private checkRoleGuard(): void {
+    const roleGuardSubscription = this.userStateService.checkRoleGuard().subscribe((role) => {
+      this.checkRole = role;
+    });
+    this.subscriptions.push(roleGuardSubscription);
   }
 
   public updateOrCreateUser(): void {
@@ -105,17 +120,21 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private checkIfSelfAndBuildFormConfig(): void {
-    this.checkSelfSubscription = this.userStateService.isSelf(this.user.id).subscribe((isSelf) => {
+    const checkSelfSubscription = this.userStateService.isSelf(this.user.id).subscribe((isSelf) => {
       this.isSelf = isSelf;
       this.formConfig = this.buildFormConfig();
     });
+    this.subscriptions.push(checkSelfSubscription);
   }
 
   private buildPayload(): IChangeUserRequest {
     const payloadDTO = new ChangeUserRequest();
     const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
+    // Set unique values that diverges from the `FormGroup` here
+    if (this.checkRole.isSuperAdmin) {
+      payload.agency.agencyName = this.form.get('agencyName').value;
+    }
     if (!this.isSelf) {
-      // Set unique value that diverges from the `FormGroup` here
       payload.role.id = this.form.get('roleId').value;
     }
     return payload;
@@ -152,6 +171,24 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
         }),
       ],
     });
+
+    // Add agency control only if the user is a Super Administrator.
+    if (this.checkRole.isSuperAdmin) {
+      const agencyList = new FormField<ISelectField<IAgencyDTO>>({
+        name: 'agencyName',
+        value: this.user.agency.agencyName,
+        fieldType: 'select',
+        label: 'Agency',
+        fieldConfig : new SelectField({
+          options: this.agencyList,
+          optionName: 'agencyName',
+          optionValue: 'agencyName',
+        }),
+        validation: [ RequiredValidation.required('Agency') ],
+        disabled: !this.checkRole.isSuperAdmin,
+      });
+      formConfig.controls.push(agencyList);
+    }
 
     // Add role control if the user is not the logged in user.
     if (!this.isSelf) {

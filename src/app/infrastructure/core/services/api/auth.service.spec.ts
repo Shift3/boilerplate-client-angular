@@ -58,9 +58,14 @@ import {
           user: {
             id: 1,
             email: 'test@test.com',
+            activatedAt: null,
             firstName: 'Test',
             lastName: 'Tester',
             profilePicture: null,
+            agency: {
+              id: 1,
+              agencyName: 'Test',
+            },
             role: {
               id: 1,
               roleName: 'User',

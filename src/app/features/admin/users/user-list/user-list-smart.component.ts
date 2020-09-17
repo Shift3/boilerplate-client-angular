@@ -22,10 +22,13 @@ import { IUserDTO } from '@models/user';
 import { ModalService } from '@core/services/modal.service';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
+import { IRoleGuard } from '@models/role';
 
 @Component({
+  selector: 'app-user-list',
   template: `
     <app-user-list-presentation
+      [checkRole]="(checkRole$ | async)"
       [loggedInUser]="(loggedInUser$ | async)"
       [userList]="(userList$ | async)"
       (emitDelete)="openDeleteModal($event)"
@@ -35,11 +38,12 @@ import { UserStateService } from '@core/services/state/user-state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListSmartComponent implements OnInit {
-  public userList$: Observable<IUserDTO[]>;
+  public checkRole$: Observable<IRoleGuard>;
   public emitGetUserList = new EventEmitter<void>();
   public isLoaded: boolean = false;
   public isLoadingResults: boolean = false;
   public loggedInUser$: Observable<IUserDTO>;
+  public userList$: Observable<IUserDTO[]>;
 
   constructor(
     private modalService: ModalService,
@@ -49,6 +53,7 @@ export class UserListSmartComponent implements OnInit {
 
   public ngOnInit(): void {
     this.getUserList();
+    this.checkRole$ = this.checkRoleGuard();
     this.loggedInUser$ = this.getLoggedInUser();
   }
 
@@ -78,6 +83,10 @@ export class UserListSmartComponent implements OnInit {
 
   private getLoggedInUser(): Observable<IUserDTO> {
     return this.userStateService.getUserSession();
+  }
+
+  private checkRoleGuard(): Observable<IRoleGuard> {
+    return this.userStateService.checkRoleGuard();
   }
 
   private getUserList(): void {

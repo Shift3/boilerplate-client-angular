@@ -1,20 +1,25 @@
+import { AgencyDTO, IAgencyDTO } from './agency';
 import { IRoleDTO, RoleDTO } from './role';
 
 export interface IUserDTO {
   id: number;
   email: string;
+  activatedAt: string;
   firstName: string;
   lastName: string;
   profilePicture: string;
+  agency: IAgencyDTO;
   role: IRoleDTO;
 }
 
 export class UserDTO implements IUserDTO {
   id: number = 0;
   email: string = '';
+  activatedAt: string = null;
   firstName: string = '';
   lastName: string = '';
   profilePicture: string = null;
+  agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
 
   constructor(configOverride?: Partial<IUserDTO>) {
@@ -77,6 +82,7 @@ export interface IChangeUserRequest {
   firstName: string;
   lastName: string;
   profilePicture: string;
+  agency: IAgencyDTO;
   role: IRoleDTO;
 }
 
@@ -85,6 +91,7 @@ export class ChangeUserRequest implements IChangeUserRequest {
   firstName: string = '';
   lastName: string = '';
   profilePicture: string = '';
+  agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
 
   constructor(configOverride?: IChangeUserRequest) {

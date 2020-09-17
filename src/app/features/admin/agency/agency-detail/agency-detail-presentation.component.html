@@ -1,0 +1,11 @@
+<div class="agency-container">
+  <app-dynamic-form
+    [formConfig]="formConfig"
+    [formTitle]="formTitle"
+    (emitForm)="propagateForm($event)"
+    (emitSubmit)="submit()"
+  ></app-dynamic-form>
+  <ng-container *ngIf="agency.id">
+    <app-user-list></app-user-list>
+  </ng-container>
+</div>

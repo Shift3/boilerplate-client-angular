@@ -4,6 +4,7 @@
 <ng-container *ngIf="userList">
   <app-user-table
     class="route-content"
+    [checkRole]="(checkRole)"
     [loggedInUser]="loggedInUser"
     [tableData]="userList"
     (emitDelete)="deleteUser($event)"

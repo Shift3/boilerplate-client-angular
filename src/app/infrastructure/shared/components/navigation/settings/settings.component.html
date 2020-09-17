@@ -10,7 +10,7 @@
   <div ngbDropdownMenu aria-labelledby="profileDropdown">
     <div class="profile-dropdown-container">
       <div class="profile-info">
-        <ng-container *ngIf="loggedInUser.profilePicture">
+        <ng-container *ngIf="loggedInUser?.profilePicture">
           <img class="profile-photo" [src]="loggedInUser.profilePicture"/>
         </ng-container>
         <div>{{ loggedInUser?.firstName }}</div>
