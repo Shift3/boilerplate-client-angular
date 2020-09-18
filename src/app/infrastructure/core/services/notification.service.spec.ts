@@ -35,14 +35,6 @@ import { ToastrService } from 'ngx-toastr';
         service.showSuccess(messageList);
         expect(toastrMock.success).toHaveBeenCalled();
       });
-
-      it('should call toastrService.success with the messageList as a joined string', () => {
-        const messageList = ['Notification'];
-        const expectedValue = 'Notification';
-
-        service.showSuccess(messageList);
-        expect(toastrMock.success).toHaveBeenCalledWith(expectedValue);
-      });
     });
 
     describe('showError()', () => {
@@ -51,14 +43,6 @@ import { ToastrService } from 'ngx-toastr';
 
         service.showError(messageList);
         expect(toastrMock.error).toHaveBeenCalled();
-      });
-
-      it('should call toastrService.error with the messageList as a joined string', () => {
-        const messageList = ['Notification'];
-        const expectedValue = 'Notification';
-
-        service.showError(messageList);
-        expect(toastrMock.error).toHaveBeenCalledWith(expectedValue);
       });
     });
   });
