@@ -10,10 +10,16 @@ export class NotificationService {
     private toastr: ToastrService,
   ) { }
   public showSuccess(messageList: string[]): void {
-    this.toastr.success(messageList[0]);
+    const formattedMessage = this.formatMessageList(messageList);
+    this.toastr.success(formattedMessage, '', { enableHtml: true });
   }
 
   public showError(messageList: string[]): void {
-    this.toastr.error(messageList[0]);
+    const formattedMessage = this.formatMessageList(messageList);
+    this.toastr.error(formattedMessage, '', { enableHtml: true });
+  }
+
+  private formatMessageList(messageList: string[]): string {
+    return messageList.join('<br />');
   }
 }
