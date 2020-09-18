@@ -94,6 +94,28 @@ import { UserStateService } from '../state/user-state.service';
       expect(service).toBeTruthy();
     });
 
+    describe('findProfile()', () => {
+      it ('should use GET as the request method', () => {
+        const id = 1;
+        service.findProfile(id).subscribe();
+        const req = httpTestingController.expectOne(`${route}/profile/${id}`);
+
+        expect(req.request.method).toBe('GET');
+      });
+
+      it('should return the requested user', () => {
+        const expectedValue: IUserDTO = { ...testUser };
+        let response: IUserDTO;
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
+
+        service.findProfile(1).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
     describe('updateProfile()', () => {
       it ('should use PUT as the request method', () => {
         const profile: IChangeUserRequest = new ChangeUserRequest();

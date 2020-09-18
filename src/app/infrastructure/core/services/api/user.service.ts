@@ -75,6 +75,12 @@ export class UserService {
     );
   }
 
+  public findProfile(userId: number): Observable<IUserDTO> {
+    const endpoint = `${this.url}/profile/${userId}`;
+
+    return this.apiService.get<IUserDTO>(endpoint);
+  }
+
   public updateProfile(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
     const endpoint = `${this.url}/profile/${userId}`;
 

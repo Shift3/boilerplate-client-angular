@@ -35,18 +35,12 @@ export class GetLoggedInUserResolver implements Resolve<IUserDTO> {
       return this.userStateService.checkRoleGuard()
         .pipe(
           take(1),
-          mergeMap((roleGuard) => {
-            if (roleGuard.isAdmin) {
-              return this.userStateService.getUserSession().pipe(
-                take(1),
-                mergeMap((loggedInUser) => this.userService.findUser(loggedInUser.id)),
-              );
-            } else {
-              return this.userStateService.getUserSession().pipe(
-                take(1),
-              );
-            }
-          }),
+          mergeMap((roleGuard) => this.userStateService.getUserSession().pipe(
+            take(1),
+            mergeMap((loggedInUser) => (roleGuard.isAdmin)
+              ? this.userService.findUser(loggedInUser.id)
+              : this.userService.findProfile(loggedInUser.id)),
+          )),
           catchError((error: HttpErrorResponse) => {
             this.navigateOnError();
             return observableThrowError(error);

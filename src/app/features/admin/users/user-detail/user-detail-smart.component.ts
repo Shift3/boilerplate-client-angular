@@ -131,7 +131,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     const payloadDTO = new ChangeUserRequest();
     const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
     // Set unique values that diverges from the `FormGroup` here
-    if (this.checkRole.isSuperAdmin) {
+    if (this.checkRole.isSuperAdmin && !this.isSelf) {
       payload.agency.agencyName = this.form.get('agencyName').value;
     }
     if (!this.isSelf) {
@@ -173,7 +173,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     });
 
     // Add agency control only if the user is a Super Administrator.
-    if (this.checkRole.isSuperAdmin) {
+    if (this.checkRole.isSuperAdmin && !this.isSelf) {
       const agencyList = new FormField<ISelectField<IAgencyDTO>>({
         name: 'agencyName',
         value: this.user.agency.agencyName,
