@@ -47,7 +47,10 @@ export class ForgotPasswordSmartComponent {
         fieldType: 'input',
         label: 'Email',
         placeholder: 'Enter your email',
-        fieldConfig : new InputField({ inputType: 'email' }),
+        fieldConfig : new InputField({
+          inputType: 'email',
+          autocomplete: 'email',
+        }),
         validation: [ EmailValidation.validEmail(true) ],
       }),
     ],
