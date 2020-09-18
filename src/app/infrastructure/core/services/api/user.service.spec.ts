@@ -7,6 +7,7 @@ import { TestBed } from '@angular/core/testing';
 import { of as observableOf } from 'rxjs';
 
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 import { environment } from '@env/environment.test';
 import {
   ChangePasswordRequest,
@@ -20,7 +21,7 @@ import { Logger } from '@utils/logger';
 import { NotificationService } from '@core/services/notification.service';
 import { ISessionDTO } from '@models/auth';
 import { UserService } from './user.service';
-import { AuthService } from './auth.service';
+import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 import { UserStateService } from '../state/user-state.service';
 
 !environment.testUnit
@@ -38,7 +39,10 @@ import { UserStateService } from '../state/user-state.service';
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
+        imports: [
+          HttpClientTestingModule,
+          ToastrTestingModule,
+        ],
         providers: [
           ApiService,
           UserService,

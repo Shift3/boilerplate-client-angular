@@ -10,6 +10,7 @@ import { AgentListPresentationComponent } from './agent-list-presentation.compon
 import { AgentListSmartComponent } from './agent-list-smart.component';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -26,6 +27,7 @@ import { Logger } from '@utils/logger';
         imports: [
           HttpClientTestingModule,
           RouterTestingModule,
+          ToastrTestingModule,
         ],
       })
       .compileComponents();

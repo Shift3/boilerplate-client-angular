@@ -11,6 +11,7 @@ import { ActivateAccountPresentationComponent } from './activate-account-present
 import { ActivateAccountSmartComponent } from './activate-account-smart.component';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -28,6 +29,7 @@ import { Logger } from '@utils/logger';
           HttpClientTestingModule,
           ReactiveFormsModule,
           RouterTestingModule,
+          ToastrTestingModule,
         ],
       })
       .compileComponents();
