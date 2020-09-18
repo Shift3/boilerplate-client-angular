@@ -44,6 +44,7 @@ export class GetLoggedInUserResolver implements Resolve<IUserDTO> {
             } else {
               return this.userStateService.getUserSession().pipe(
                 take(1),
+                mergeMap((loggedInUser) => this.userService.findProfile(loggedInUser.id)),
               );
             }
           }),
