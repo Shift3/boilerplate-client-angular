@@ -1,6 +1,7 @@
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormInputComponent } from './dynamic-form/components/form-input/form-input.component';
+import { FooterComponent } from './footer/footer.component';
 import { FormSelectComponent } from './dynamic-form/components/form-select/form-select.component';
 import { SaveCancelComponent } from './save-cancel/save-cancel.component';
 import { SettingsComponent } from './navigation/settings/settings.component';
@@ -15,6 +16,7 @@ import { TopNavigationSmartComponent } from './navigation/top-navigation/top-nav
 export const components = [
   ConfirmModalComponent,
   DynamicFormComponent,
+  FooterComponent,
   FormInputComponent,
   FormSelectComponent,
   SaveCancelComponent,

@@ -16,7 +16,12 @@ import {
   map,
   mergeMap,
 } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import {
+  Observable,
+  Subscription,
+} from 'rxjs';
+
+import { NavbarStateService } from '@core/services/state/navbar-state.service';
 
 @Component({
   selector: 'app-root',
@@ -25,15 +30,19 @@ import { Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'boilerplate-client-angular';
+  public navbarToggle$: Observable<string>;
+  public title = 'boilerplate-client-angular';
 
   private routerEventsSubscription: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private navbarStateService: NavbarStateService,
     private router: Router,
     private titleService: Title,
-  ) { }
+  ) {
+    this.navbarToggle$ = this.navbarStateService.getNavbarToggle();
+  }
 
   public ngOnInit(): void {
     this.setPageTitle();

@@ -6,6 +6,7 @@ export interface IPattern {
 
 export interface IConstant {
   patterns: IPattern;
+  initialCopyrightYear: number;
 }
 
 export const Constants: IConstant = {
@@ -15,4 +16,5 @@ export const Constants: IConstant = {
     EMAIL_REGEX: /^[a-z0-9!#$%&'*+\/=?^_\`{|}~.-]+@[a-z0-9]([a-z0-9-])+(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i,
     SYMBOL_REGEX: /[-+_!@#$%^&*,.?]/,
   },
+  initialCopyrightYear: 2020,
 };

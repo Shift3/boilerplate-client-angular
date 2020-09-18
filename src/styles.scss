@@ -3,6 +3,7 @@
 
 /* You can add global styles to this file, and also import other style files */
 
+//#region Global Positioning
 body,
 html {
   margin: 0;
@@ -27,7 +28,6 @@ html {
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
-  max-width: 1980px;
 }
 
 .holy-grail-sidebar-1 {
@@ -39,8 +39,8 @@ html {
 }
 
 .holy-grail-child {
-  display: flex;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .content-expand {
@@ -60,6 +60,19 @@ html {
   }
 }
 
+.route-container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+.child {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .center {
   text-align: center;
 }
@@ -70,6 +83,14 @@ html {
   box-shadow: 1px 1px 5px 1px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
   z-index: 1;
 }
+
+.routed-content {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+//#endregion
 
 //#region Form
 #cancel-button {
@@ -99,10 +120,6 @@ html {
   background-color: $accent;
 }
 //#endregion
-
-.routed-content {
-  padding: 20px;
-}
 
 //#region Cards
 .card {
