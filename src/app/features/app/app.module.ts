@@ -1,6 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+
+import { ToastrModule } from 'ngx-toastr';
 
 import {
   AppRoutingModule,
@@ -19,10 +21,14 @@ import { SharedModule } from '@shared/shared.module';
     mainComponents,
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
     SharedModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
     // AppRoutingModule must be loaded last.
     AppRoutingModule,
   ],
