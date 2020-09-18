@@ -1,3 +1,5 @@
+import { AutocompleteType } from './autocomplete';
+
 export interface ISelectOptions<T> {
   name: string;
   value: string | number;
@@ -18,12 +20,14 @@ export interface ISelectField<T> {
   options: ISelectOptions<T>[];
   optionName: string;
   optionValue: string;
+  autocomplete: AutocompleteType;
 }
 
 export class SelectField<T> implements ISelectField<T> {
   options: ISelectOptions<T>[] = [];
   optionName: string = 'name';
   optionValue: string = 'value';
+  autocomplete: AutocompleteType = 'on';
 
   constructor(configOverride?: Partial<ISelectField<T>>) {
     if (configOverride) {
