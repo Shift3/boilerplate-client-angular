@@ -39,8 +39,8 @@ html {
 }
 
 .holy-grail-child {
-  display: flex;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .content-expand {
