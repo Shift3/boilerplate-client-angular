@@ -9,6 +9,7 @@ import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { ResetPasswordPresentationComponent } from './reset-password-presentation.component';
 import { ResetPasswordSmartComponent } from './reset-password-smart.component';
+import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -26,6 +27,7 @@ import { ResetPasswordSmartComponent } from './reset-password-smart.component';
           HttpClientTestingModule,
           ReactiveFormsModule,
           RouterTestingModule,
+          ToastrTestingModule,
         ],
       })
       .compileComponents();

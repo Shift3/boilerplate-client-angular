@@ -9,6 +9,7 @@ import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { SignUpPresentationComponent } from './sign-up-presentation.component';
 import { SignUpSmartComponent } from './sign-up-smart.component';
+import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -26,6 +27,7 @@ import { SignUpSmartComponent } from './sign-up-smart.component';
           HttpClientTestingModule,
           ReactiveFormsModule,
           RouterTestingModule,
+          ToastrTestingModule,
         ],
       })
       .compileComponents();

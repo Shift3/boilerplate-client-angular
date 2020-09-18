@@ -16,6 +16,7 @@ import {
   IAgentRequest,
 } from '@models/agent';
 import { Logger } from '@utils/logger';
+import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
@@ -28,7 +29,10 @@ import { Logger } from '@utils/logger';
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
+        imports: [
+          HttpClientTestingModule,
+          ToastrTestingModule,
+        ],
         providers: [
           ApiService,
           AgentService,
