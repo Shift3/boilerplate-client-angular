@@ -16,7 +16,7 @@ export class NotificationService {
 
   public showError(messageList: string[]): void {
     const formattedMessage = this.formatMessageList(messageList);
-    this.toastr.error(formattedMessage, '', { enableHtml: true });
+    this.toastr.error(formattedMessage, '', { enableHtml: true, timeOut: 10000 });
   }
 
   private formatMessageList(messageList: string[]): string {
