@@ -49,7 +49,10 @@ export class ChangePasswordSmartComponent {
         fieldType: 'input',
         label: 'Current Password',
         placeholder: 'Enter the current password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig : new InputField({
+          inputType: 'password',
+          autocomplete: 'current-password',
+        }),
         validation: [ RequiredValidation.required('Current Password') ],
       }),
       new FormField<IInputField>({
@@ -57,7 +60,10 @@ export class ChangePasswordSmartComponent {
         fieldType: 'input',
         label: 'New Password',
         placeholder: 'Enter a new password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig : new InputField({
+          inputType: 'password',
+          autocomplete: 'new-password',
+        }),
         validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
@@ -65,7 +71,10 @@ export class ChangePasswordSmartComponent {
         fieldType: 'input',
         label: 'Confirm New Password',
         placeholder: 'Confirm the new password',
-        fieldConfig: new InputField({ inputType: 'password' }),
+        fieldConfig: new InputField({
+          inputType: 'password',
+          autocomplete: 'new-password',
+        }),
       }),
     ],
   });

@@ -49,7 +49,10 @@ export class ResetPasswordSmartComponent {
         fieldType: 'input',
         label: 'New Password',
         placeholder: 'Enter the new password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig : new InputField({
+          inputType: 'password',
+          autocomplete: 'new-password',
+        }),
         validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
@@ -57,7 +60,10 @@ export class ResetPasswordSmartComponent {
         fieldType: 'input',
         label: 'Confirm New Password',
         placeholder: 'Confirm the new password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig : new InputField({
+          inputType: 'password',
+          autocomplete: 'new-password',
+        }),
       }),
     ],
   });

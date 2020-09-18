@@ -150,7 +150,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           value: this.user.firstName,
           fieldType: 'input',
           label: 'First Name',
-          fieldConfig : new InputField(),
+          fieldConfig : new InputField({ autocomplete: 'given-name' }),
           validation: [ RequiredValidation.required('First Name') ],
         }),
         new FormField<IInputField>({
@@ -158,7 +158,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           value: this.user.lastName,
           fieldType: 'input',
           label: 'Last Name',
-          fieldConfig : new InputField(),
+          fieldConfig : new InputField({ autocomplete: 'family-name' }),
           validation: [ RequiredValidation.required('Last Name') ],
         }),
         new FormField<IInputField>({
@@ -166,7 +166,10 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           value: this.user.email,
           fieldType: 'input',
           label: 'Email',
-          fieldConfig : new InputField({ inputType: 'email' }),
+          fieldConfig : new InputField({
+            inputType: 'email',
+            autocomplete: 'email',
+          }),
           validation: [ EmailValidation.validEmail(true) ],
         }),
       ],

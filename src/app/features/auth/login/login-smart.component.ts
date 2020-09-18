@@ -47,7 +47,10 @@ export class LoginSmartComponent {
         fieldType: 'input',
         label: 'Email',
         placeholder: 'Enter your email',
-        fieldConfig : new InputField({ inputType: 'email' }),
+        fieldConfig : new InputField({
+          inputType: 'email',
+          autocomplete: 'email',
+        }),
         validation: [ EmailValidation.validEmail(true) ],
       }),
       new FormField<IInputField>({
@@ -55,7 +58,10 @@ export class LoginSmartComponent {
         fieldType: 'input',
         label: 'Password',
         placeholder: 'Enter your password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig : new InputField({
+          inputType: 'password',
+          autocomplete: 'current-password',
+        }),
         validation: [ RequiredValidation.required('Password') ],
       }),
     ],
