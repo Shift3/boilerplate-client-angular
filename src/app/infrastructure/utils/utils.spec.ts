@@ -12,7 +12,7 @@ describe('[Unit] Utils', () => {
   });
 
   describe('getCopyrightYear()', () => {
-    it('should return a year range string from the initial year to the current year when the initial year is not the current year', () => {
+    it('should return a year range string when the initial year is less than the current year', () => {
       Constants.initialCopyrightYear = 2018;
       const expectedValue = `${Constants.initialCopyrightYear} - ${new Date().getFullYear().toString()}`;
 
