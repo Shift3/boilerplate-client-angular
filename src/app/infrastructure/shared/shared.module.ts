@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { NgxMaskModule } from 'ngx-mask';
+
 import {
   BootstrapModule,
   NgxBootstrapModule,
@@ -19,6 +21,7 @@ import { pipes } from './pipes';
     CommonModule,
     BootstrapModule,
     NgxBootstrapModule.forRoot(),
+    NgxMaskModule.forRoot(),
     ReactiveFormsModule,
     RouterModule,
   ],
