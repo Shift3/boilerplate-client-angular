@@ -96,11 +96,7 @@ export class UserListSmartComponent implements OnInit {
     this.userList$ = merge(this.emitGetUserList).pipe(
       startWith({}),
       tap(() => this.isLoadingResults = true),
-      switchMap(() =>
-        (this.agencyId)
-          ? this.userService.getUserListByAgencyId(this.agencyId)
-          : this.userService.getUserList()
-      ),
+      switchMap(() => this.userService.getUserList(this.agencyId)),
       tap(() => this.isLoaded = true),
       tap(() => this.isLoadingResults = false),
       catchError(() => {

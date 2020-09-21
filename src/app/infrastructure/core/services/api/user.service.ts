@@ -91,16 +91,12 @@ export class UserService {
     );
   }
 
-  public getUserList(): Observable<IUserDTO[]> {
+  public getUserList(agencyId?: number): Observable<IUserDTO[]> {
     const endpoint = `${this.url}`;
-
-    return this.apiService.get<IUserDTO[]>(endpoint);
-  }
-
-  public getUserListByAgencyId(agencyId: number): Observable<IUserDTO[]> {
-    const endpoint = `${this.url}`;
-    const params = new HttpParams().set('agencyId', agencyId.toString());
-
+    let params = new HttpParams();
+    if (agencyId) {
+      params = new HttpParams().set('agencyId', agencyId.toString());
+    }
     return this.apiService.get<IUserDTO[]>(endpoint, { params });
   }
 
