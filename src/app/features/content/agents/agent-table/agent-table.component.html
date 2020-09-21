@@ -6,7 +6,7 @@
       <th scope="col">{{ "Email" | uppercase }}</th>
       <th scope="col">{{ "Phone Number" | uppercase }}</th>
       <ng-container *ngIf="checkRole.canEdit">
-        <th scope="col">{{ "Actions" | uppercase }}</th>
+        <th scope="col w-10">{{ "Actions" | uppercase }}</th>
       </ng-container>
     </tr>
   </thead>
@@ -23,7 +23,7 @@
         <td>{{ item.email }}</td>
         <td>{{ item.phoneNumber }}</td>
         <ng-container *ngIf="checkRole.canEdit">
-          <td>
+          <td class="w-10">
             <button class="btn" type="button" tooltip="Update Agent" routerLink="/content/update-agent/{{ item.id }}">
               <span class="fa fa-edit"></span>
               <span class="sr-only">Update Agent</span>

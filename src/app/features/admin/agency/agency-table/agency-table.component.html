@@ -2,14 +2,14 @@
   <thead>
     <tr>
       <th scope="col">{{ "Agency Name" | uppercase }}</th>
-      <th scope="col">{{ "Actions" | uppercase }}</th>
+      <th scope="col w-10">{{ "Actions" | uppercase }}</th>
     </tr>
   </thead>
   <tbody>
     <ng-container *ngIf="tableData.length">
       <tr *ngFor="let item of tableData; index as i">
         <td>{{ item.agencyName }}</td>
-        <td>
+        <td class="w-10">
           <button class="btn" type="button" tooltip="Update Agency" routerLink="/admin/update-agency/{{ item.id }}">
             <span class="fa fa-edit"></span>
             <span class="sr-only">Update Agency</span>
