@@ -16,6 +16,7 @@ import {
   IAgentRequest,
 } from '@models/agent';
 import { AgentService } from '@core/services/api/agent.service';
+import { Constants } from '@utils/constants';
 import { EmailValidation } from '@utils/validation/email-validation';
 import {
   FormConfig,
@@ -108,7 +109,7 @@ export class AgentDetailSmartComponent implements OnInit {
           value: this.agent.phoneNumber,
           fieldType: 'input',
           label: 'Phone Number',
-          fieldConfig : new InputField({ mask: '(000) 000-0000' }),
+          fieldConfig : new InputField({ mask: Constants.masks.US_PHONE }),
           validation: [ RequiredValidation.required('Phone Number') ],
         }),
         new FormField<IInputField>({
