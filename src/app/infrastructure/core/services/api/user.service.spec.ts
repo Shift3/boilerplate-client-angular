@@ -157,6 +157,15 @@ import { UserStateService } from '../state/user-state.service';
         expect(req.request.method).toBe('GET');
       });
 
+      it ('should use GET as the request method and add query parameters when they are provided', () => {
+        const agencyId = 1;
+        const userRoute = `${route}?agencyId=${agencyId}`;
+        service.getUserList(agencyId).subscribe();
+        const req = httpTestingController.expectOne(userRoute);
+
+        expect(req.request.method).toBe('GET');
+      });
+
       it('should return a list of users', () => {
         const expectedValue: IUserDTO[] = [
           { ...testUser },
