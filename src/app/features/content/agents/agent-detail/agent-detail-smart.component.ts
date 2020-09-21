@@ -108,7 +108,7 @@ export class AgentDetailSmartComponent implements OnInit {
           value: this.agent.phoneNumber,
           fieldType: 'input',
           label: 'Phone Number',
-          fieldConfig : new InputField(),
+          fieldConfig : new InputField({ mask: '(000) 000-0000' }),
           validation: [ RequiredValidation.required('Phone Number') ],
         }),
         new FormField<IInputField>({
