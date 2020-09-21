@@ -14,7 +14,6 @@ import {
   catchError,
   startWith,
   switchMap,
-  tap,
 } from 'rxjs/operators';
 
 import { ConfirmModalConfig } from '@models/modal';
@@ -40,8 +39,6 @@ import { IRoleGuard } from '@models/role';
 export class UserListSmartComponent implements OnInit {
   public checkRole$: Observable<IRoleGuard>;
   public emitGetUserList = new EventEmitter<void>();
-  public isLoaded: boolean = false;
-  public isLoadingResults: boolean = false;
   public loggedInUser$: Observable<IUserDTO>;
   public userList$: Observable<IUserDTO[]>;
 
@@ -92,16 +89,8 @@ export class UserListSmartComponent implements OnInit {
   private getUserList(): void {
     this.userList$ = merge(this.emitGetUserList).pipe(
       startWith({}),
-      switchMap(() => {
-        this.isLoadingResults = true;
-        return this.userService.getUserList();
-      }),
-      tap(() => this.isLoaded = true),
-      tap(() => this.isLoadingResults = false),
-      catchError(() => {
-        this.isLoadingResults = false;
-        return observableOf([]);
-      }),
+      switchMap(() => this.userService.getUserList()),
+      catchError(() => observableOf([])),
     );
   }
 
