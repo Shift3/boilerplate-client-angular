@@ -172,6 +172,32 @@ import { UserStateService } from '../state/user-state.service';
       });
     });
 
+    describe('getUserListByAgencyId()', () => {
+      it ('should use GET as the request method', () => {
+        const agencyId = 1;
+        const agencyIdRoute = `${route}?agencyId=${agencyId}`;
+        service.getUserListByAgencyId(agencyId).subscribe();
+        const req = httpTestingController.expectOne(agencyIdRoute);
+
+        expect(req.request.method).toBe('GET');
+      });
+
+      it('should return a filtered list of users', () => {
+        const agencyId = 1;
+        const expectedValue: IUserDTO[] = [
+          { ...testUser },
+        ];
+        let response: IUserDTO[];
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
+
+        service.getUserListByAgencyId(agencyId).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
     describe('createUser()', () => {
       it ('should use POST as the request method', () => {
         const newUser: IChangeUserRequest = new ChangeUserRequest();
