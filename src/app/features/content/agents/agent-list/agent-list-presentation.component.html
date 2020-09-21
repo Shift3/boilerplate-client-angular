@@ -3,7 +3,7 @@
     <button class="btn btn-add" routerLink="/content/create-agent">{{ "Add Agent" |  uppercase }}</button>
   </div>
 </ng-container>
-<ng-container *ngIf="agentList">
+<ng-container *ngIf="agentList; else loading">
   <app-agent-table
     class="route-content"
     [checkRole]="checkRole"
@@ -11,3 +11,8 @@
     (emitDelete)="deleteAgent($event)"
   ></app-agent-table>
 </ng-container>
+<ng-template #loading>
+  <div class="table">
+    <div class="loader"></div>
+  </div>
+</ng-template>
