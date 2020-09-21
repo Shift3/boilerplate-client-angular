@@ -10,6 +10,10 @@ import {
   IRoleGuard,
   RoleGuard,
 } from '@models/role';
+import {
+  ITableConfig,
+  TableConfig,
+} from '@models/table';
 import { IUserDTO } from '@models/user';
 
 @Component({
@@ -20,6 +24,7 @@ import { IUserDTO } from '@models/user';
 export class UserTableComponent {
   @Input() public checkRole: IRoleGuard = new RoleGuard();
   @Input() public loggedInUser: IUserDTO;
+  @Input() public tableConfig: ITableConfig = new TableConfig();
   @Input() public tableData: IUserDTO[] = [];
 
   @Output() public emitDelete = new EventEmitter<IUserDTO>();

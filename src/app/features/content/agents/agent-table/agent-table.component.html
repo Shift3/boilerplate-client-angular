@@ -11,30 +11,33 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of tableData; index as i">
-      <td class="name-container">
-        <ng-container *ngIf="item.thumbnail">
-          <img class="thumbnail-container" [src]="item.thumbnail" [alt]="item.name">
-        </ng-container>
-        {{ item.name }}
-      </td>
-      <td>{{ item.description }}</td>
-      <td>{{ item.email }}</td>
-      <td>{{ item.phoneNumber }}</td>
-      <ng-container *ngIf="checkRole.canEdit">
-        <td>
-          <button class="btn" type="button" tooltip="Update Agent" routerLink="/content/update-agent/{{ item.id }}">
-            <span class="fa fa-edit"></span>
-            <span class="sr-only">Update Agent</span>
-          </button>
-          <ng-container *ngIf="checkRole.isAdmin">
-            <button class="btn" type="button" tooltip="Delete Agent" (click)="deleteAgent(item)">
-              <span class="fa fa-trash"></span>
-              <span class="sr-only">Delete Agent</span>
-            </button>
+    <ng-container *ngIf="tableData.length">
+      <tr *ngFor="let item of tableData; index as i">
+        <td class="name-container">
+          <ng-container *ngIf="item.thumbnail">
+            <img class="thumbnail-container" [src]="item.thumbnail" [alt]="item.name">
           </ng-container>
+          {{ item.name }}
         </td>
-      </ng-container>
-    </tr>
+        <td>{{ item.description }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.phoneNumber }}</td>
+        <ng-container *ngIf="checkRole.canEdit">
+          <td>
+            <button class="btn" type="button" tooltip="Update Agent" routerLink="/content/update-agent/{{ item.id }}">
+              <span class="fa fa-edit"></span>
+              <span class="sr-only">Update Agent</span>
+            </button>
+            <ng-container *ngIf="checkRole.isAdmin">
+              <button class="btn" type="button" tooltip="Delete Agent" (click)="deleteAgent(item)">
+                <span class="fa fa-trash"></span>
+                <span class="sr-only">Delete Agent</span>
+              </button>
+            </ng-container>
+          </td>
+        </ng-container>
+      </tr>
+    </ng-container>
   </tbody>
 </table>
+<div class="center" *ngIf="!tableData.length">{{ tableConfig?.emptyListMessage }}</div>

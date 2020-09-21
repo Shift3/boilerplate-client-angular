@@ -6,18 +6,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of tableData; index as i">
-      <td>{{ item.agencyName }}</td>
-      <td>
-        <button class="btn" type="button" tooltip="Update Agency" routerLink="/admin/update-agency/{{ item.id }}">
-          <span class="fa fa-edit"></span>
-          <span class="sr-only">Update Agency</span>
-        </button>
-        <button class="btn" type="button" tooltip="Delete Agency" (click)="deleteAgency(item)">
-          <span class="fa fa-trash"></span>
-          <span class="sr-only">Delete Agency</span>
-        </button>
-      </td>
-    </tr>
+    <ng-container *ngIf="tableData.length">
+      <tr *ngFor="let item of tableData; index as i">
+        <td>{{ item.agencyName }}</td>
+        <td>
+          <button class="btn" type="button" tooltip="Update Agency" routerLink="/admin/update-agency/{{ item.id }}">
+            <span class="fa fa-edit"></span>
+            <span class="sr-only">Update Agency</span>
+          </button>
+          <button class="btn" type="button" tooltip="Delete Agency" (click)="deleteAgency(item)">
+            <span class="fa fa-trash"></span>
+            <span class="sr-only">Delete Agency</span>
+          </button>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>
+<div class="center" *ngIf="!tableData.length">{{ tableConfig?.emptyListMessage }}</div>

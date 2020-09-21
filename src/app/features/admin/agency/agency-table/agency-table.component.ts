@@ -5,7 +5,12 @@ import {
   Input,
   Output,
 } from '@angular/core';
+
 import { IAgencyDTO } from '@models/agency';
+import {
+  ITableConfig,
+  TableConfig,
+} from '@models/table';
 
 @Component({
   selector: 'app-agency-table',
@@ -14,6 +19,7 @@ import { IAgencyDTO } from '@models/agency';
 })
 export class AgencyTableComponent {
   @Input() public tableData: IAgencyDTO[] = [];
+  @Input() public tableConfig: ITableConfig = new TableConfig();
 
   @Output() public emitDelete = new EventEmitter<IAgencyDTO>();
 
