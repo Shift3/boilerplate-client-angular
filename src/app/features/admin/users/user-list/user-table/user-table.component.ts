@@ -15,7 +15,6 @@ import { IUserDTO } from '@models/user';
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserTableComponent {

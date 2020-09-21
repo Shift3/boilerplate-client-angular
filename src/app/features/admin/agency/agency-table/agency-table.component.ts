@@ -10,7 +10,6 @@ import { IAgencyDTO } from '@models/agency';
 @Component({
   selector: 'app-agency-table',
   templateUrl: './agency-table.component.html',
-  styleUrls: ['./agency-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgencyTableComponent {
