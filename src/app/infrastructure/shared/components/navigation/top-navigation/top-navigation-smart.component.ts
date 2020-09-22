@@ -18,7 +18,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
   selector: 'app-top-navigation',
   template: `
       <app-top-navigation-presentation
-        [isAuthenticated]="(isAuthenticated$ | async)"
+        [isValid]="(isValid$ | async)"
         [loggedInUser]="(loggedInUser$ | async)"
         [navLinks]="(navLinks$ | async)"
       ></app-top-navigation-presentation>
@@ -26,7 +26,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopNavigationSmartComponent implements OnInit {
-  public isAuthenticated$: Observable<boolean>;
+  public isValid$: Observable<boolean>;
   public loggedInUser$: Observable<IUserDTO>;
   public navLinks$: Observable<INavigation[]>;
 
@@ -35,7 +35,7 @@ export class TopNavigationSmartComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.isAuthenticated$ = this.isAuthenticated();
+    this.isValid$ = this.isValid();
     this.loggedInUser$ = this.getLoggedInUser();
     this.navLinks$ = this.buildNavLinkListBasedOnRole();
   }
@@ -49,8 +49,8 @@ export class TopNavigationSmartComponent implements OnInit {
     return this.userStateService.getUserSession();
   }
 
-  public isAuthenticated(): Observable<boolean> {
+  public isValid(): Observable<boolean> {
     return this.userStateService.checkRoleList()
-      .pipe(map((checkRole) => checkRole.isAuthenticated));
+      .pipe(map((checkRole) => checkRole.isValid));
   }
 }

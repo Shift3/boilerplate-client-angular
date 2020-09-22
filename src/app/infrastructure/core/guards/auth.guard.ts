@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   public canActivate(): Observable<boolean> {
     return this.userStateService.checkRoleList().pipe(
       take(1),
-      map((checkRole) => checkRole.isAuthenticated),
+      map((checkRole) => checkRole.isValid),
       tap(isLoggedInUser => {
         if (!isLoggedInUser) {
           const message = 'You cannot view the requested page. Returning to the login page.';

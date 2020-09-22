@@ -17,7 +17,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopNavigationPresentationComponent {
-  @Input() public isAuthenticated: boolean = false;
+  @Input() public isValid: boolean = false;
   @Input() public loggedInUser: IUserDTO = new UserDTO();
   @Input() public navLinks: INavigation[];
 

@@ -141,7 +141,7 @@ import { UserStateService } from './user-state.service';
         });
       });
 
-      it(`should return a role object with a true value for 'isAuthenticated' when given any role`, () => {
+      it(`should return a role object with a true value for 'isValid' when given any role`, () => {
         const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
@@ -150,7 +150,7 @@ import { UserStateService } from './user-state.service';
             roleName: 'User',
           },
         }));
-        const expectedValue = new RoleCheck({ isAuthenticated: true });
+        const expectedValue = new RoleCheck({ isValid: true });
 
         service.userSession$ = testUser$;
         service.checkRoleList().subscribe((response) => {
@@ -158,7 +158,7 @@ import { UserStateService } from './user-state.service';
         });
       });
 
-      it(`should return a role object with true values for 'isAuthenticated' and 'canEdit' when given an 'Editor' role`, () => {
+      it(`should return a role object with true values for 'isValid' and 'canEdit' when given an 'Editor' role`, () => {
         const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
@@ -168,7 +168,7 @@ import { UserStateService } from './user-state.service';
           },
         }));
         const expectedValue = new RoleCheck({
-          isAuthenticated: true,
+          isValid: true,
           canEdit: true,
           isAdmin: false,
           isSuperAdmin: false,
@@ -180,7 +180,7 @@ import { UserStateService } from './user-state.service';
         });
       });
 
-      it(`should return a role object with true values for 'isAuthenticated', 'canEdit', and 'isAdmin' when given an 'Admin' role`, () => {
+      it(`should return a role object with true values for 'isValid', 'canEdit', and 'isAdmin' when given an 'Admin' role`, () => {
         const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
@@ -190,7 +190,7 @@ import { UserStateService } from './user-state.service';
           },
         }));
         const expectedValue = new RoleCheck({
-          isAuthenticated: true,
+          isValid: true,
           canEdit: true,
           isAdmin: true,
           isSuperAdmin: false,
@@ -212,7 +212,7 @@ import { UserStateService } from './user-state.service';
           },
         }));
         const expectedValue = new RoleCheck({
-          isAuthenticated: true,
+          isValid: true,
           canEdit: true,
           isAdmin: true,
           isSuperAdmin: true,

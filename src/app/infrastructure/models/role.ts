@@ -44,14 +44,14 @@ export class RoleDTO implements IRoleDTO {
 export interface IRoleCheck {
   canEdit: boolean;
   isAdmin: boolean;
-  isAuthenticated: boolean;
+  isValid: boolean;
   isSuperAdmin: boolean;
 }
 
 export class RoleCheck implements IRoleCheck {
   canEdit: boolean = false;
   isAdmin: boolean = false;
-  isAuthenticated: boolean = false;
+  isValid: boolean = false;
   isSuperAdmin: boolean = false;
 
   constructor(configOverride?: Partial<IRoleCheck>) {

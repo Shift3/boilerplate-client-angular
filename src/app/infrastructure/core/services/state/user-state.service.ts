@@ -46,7 +46,7 @@ export class UserStateService {
         const roleList: IRoleCheck = new RoleCheck({
           canEdit: RoleDTO.canEdit(roleName),
           isAdmin: RoleDTO.isAdminRoleType(roleName),
-          isAuthenticated: RoleDTO.isValidRoleType(roleName),
+          isValid: RoleDTO.isValidRoleType(roleName),
           isSuperAdmin: RoleDTO.isSuperAdminRoleType(roleName),
         });
         return roleList;
