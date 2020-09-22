@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   OnInit,
 } from '@angular/core';
 
@@ -37,6 +38,8 @@ import { IRoleGuard } from '@models/role';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListSmartComponent implements OnInit {
+  @Input() public agencyId: number = 0;
+
   public checkRole$: Observable<IRoleGuard>;
   public emitGetUserList = new EventEmitter<void>();
   public loggedInUser$: Observable<IUserDTO>;
@@ -89,7 +92,7 @@ export class UserListSmartComponent implements OnInit {
   private getUserList(): void {
     this.userList$ = merge(this.emitGetUserList).pipe(
       startWith({}),
-      switchMap(() => this.userService.getUserList()),
+      switchMap(() => this.userService.getUserList(this.agencyId)),
       catchError(() => observableOf([])),
     );
   }

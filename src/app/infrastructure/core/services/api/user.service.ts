@@ -1,10 +1,8 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import {
-  map,
-  tap,
-} from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
@@ -93,10 +91,13 @@ export class UserService {
     );
   }
 
-  public getUserList(): Observable<IUserDTO[]> {
+  public getUserList(agencyId?: number): Observable<IUserDTO[]> {
     const endpoint = `${this.url}`;
-
-    return this.apiService.get<IUserDTO[]>(endpoint);
+    let params = new HttpParams();
+    if (agencyId) {
+      params = new HttpParams().set('agencyId', agencyId.toString());
+    }
+    return this.apiService.get<IUserDTO[]>(endpoint, { params });
   }
 
   public createUser(payload: IChangeUserRequest): Observable<IUserDTO> {
