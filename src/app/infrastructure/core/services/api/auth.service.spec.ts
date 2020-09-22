@@ -46,7 +46,7 @@ import {
     describe('login()', () => {
       it('should call the method', () => {
         const requestPayload: ILoginRequest = new LoginRequest();
-        const spy = spyOn(service, 'login').and.callThrough();
+        const spy = spyOn(apiService, 'post').and.callThrough();
 
         service.login(requestPayload);
         expect(spy).toHaveBeenCalled();
@@ -74,7 +74,7 @@ import {
           jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
         };
         let response: ISessionDTO;
-        spyOn(service, 'login').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
 
         service.login(requestPayload).subscribe(res => {
           response = res;
@@ -86,7 +86,7 @@ import {
 
     describe('logout()', () => {
       it('should call the method', () => {
-        const spy = spyOn(service, 'logout').and.callThrough();
+        const spy = spyOn(apiService, 'get').and.callThrough();
 
         service.logout();
         expect(spy).toHaveBeenCalled();
