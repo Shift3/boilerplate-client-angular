@@ -41,7 +41,6 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
       fixture.detectChanges();
     });
 
-    // TODO: Get tests passing with passed in user data from resolver
     it('should create', () => {
       expect(component).toBeTruthy();
     });
