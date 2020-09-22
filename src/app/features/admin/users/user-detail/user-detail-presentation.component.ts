@@ -6,7 +6,10 @@ import {
   Output,
 } from '@angular/core';
 
-import { IFormConfig } from '@models/form/form';
+import {
+  FormConfig,
+  IFormConfig,
+} from '@models/form/form';
 import { FormGroup } from '@angular/forms';
 
 
@@ -19,7 +22,7 @@ import { IUserDTO } from '@models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailPresentationComponent {
-  @Input() public formConfig: IFormConfig;
+  @Input() public formConfig: IFormConfig = new FormConfig();
   @Input() public formTitle: string = 'Create User';
   @Input() public user: IUserDTO;
 
