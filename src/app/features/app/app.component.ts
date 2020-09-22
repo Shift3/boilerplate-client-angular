@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.setPageTitle();
+    this.setPageFocus();
   }
 
   public ngOnDestroy(): void {
@@ -72,5 +73,14 @@ export class AppComponent implements OnInit, OnDestroy {
           : this.title;
         this.titleService.setTitle(`${title}`);
       });
+  }
+
+  private setPageFocus(): void{
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      const mainHeader: HTMLElement = document.querySelector('#content-container');
+      if (mainHeader) {
+        mainHeader.focus();
+      }
+    });
   }
 }
