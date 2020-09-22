@@ -42,7 +42,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
     });
 
     // TODO: Get tests passing with passed in user data from resolver
-    xit('should create', () => {
+    it('should create', () => {
       expect(component).toBeTruthy();
     });
   });
