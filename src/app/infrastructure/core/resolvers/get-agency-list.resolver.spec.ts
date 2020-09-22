@@ -13,10 +13,10 @@ import { environment } from '@env/environment.test';
 import { GetAgencyListResolver } from './get-agency-list.resolver';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
+import { RoleGuard } from '@models/role';
 import { UserDTO } from '@models/user';
-import { UserStateService } from '../services/state/user-state.service';
-import { RoleGuard } from '@app/infrastructure/models/role';
 import { UserService } from '../services/api/user.service';
+import { UserStateService } from '../services/state/user-state.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
