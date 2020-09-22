@@ -31,6 +31,7 @@ import { NavbarStateService } from '@core/services/state/navbar-state.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   public navbarToggle$: Observable<string>;
+  public header = '';
   public title = 'boilerplate-client-angular';
 
   private routerEventsSubscription: Subscription;
@@ -71,6 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
         const title = event.title
           ? `${this.title} - ${event.title}`
           : this.title;
+        this.header = event.title;
         this.titleService.setTitle(`${title}`);
       });
   }
