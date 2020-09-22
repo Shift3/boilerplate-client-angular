@@ -79,11 +79,11 @@ export class AgentDetailSmartComponent implements OnInit {
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
-      submit: new SaveCancelButtonConfig({save: (this.agent.id) ? 'Update' : 'Create' }),
+      submit: new SaveCancelButtonConfig({save: (this.agent?.id) ? 'Update' : 'Create' }),
       controls: [
         new FormField<IInputField>({
           name: 'name',
-          value: this.agent.name,
+          value: this.agent?.name,
           fieldType: 'input',
           label: 'Full Name',
           fieldConfig : new InputField(),
@@ -91,7 +91,7 @@ export class AgentDetailSmartComponent implements OnInit {
         }),
         new FormField<IInputField>({
           name: 'email',
-          value: this.agent.email,
+          value: this.agent?.email,
           fieldType: 'input',
           label: 'Email',
           fieldConfig : new InputField({ inputType: 'email' }),
@@ -99,14 +99,14 @@ export class AgentDetailSmartComponent implements OnInit {
         }),
         new FormField<IInputField>({
           name: 'description',
-          value: this.agent.description,
+          value: this.agent?.description,
           fieldType: 'input',
           label: 'Description',
           fieldConfig : new InputField(),
         }),
         new FormField<IInputField>({
           name: 'phoneNumber',
-          value: this.agent.phoneNumber,
+          value: this.agent?.phoneNumber,
           fieldType: 'input',
           label: 'Phone Number',
           fieldConfig : new InputField({ mask: Constants.masks.US_PHONE }),
@@ -114,7 +114,7 @@ export class AgentDetailSmartComponent implements OnInit {
         }),
         new FormField<IInputField>({
           name: 'address1',
-          value: this.agent.address.address1,
+          value: this.agent?.address.address1,
           fieldType: 'input',
           label: 'Address',
           fieldConfig : new InputField(),
@@ -122,14 +122,14 @@ export class AgentDetailSmartComponent implements OnInit {
         }),
         new FormField<IInputField>({
           name: 'address2',
-          value: this.agent.address.address2,
+          value: this.agent?.address.address2,
           fieldType: 'input',
           label: 'Address 2',
           fieldConfig : new InputField(),
         }),
         new FormField<IInputField>({
           name: 'city',
-          value: this.agent.address.city,
+          value: this.agent?.address.city,
           fieldType: 'input',
           label: 'City',
           fieldConfig : new InputField(),
@@ -137,7 +137,7 @@ export class AgentDetailSmartComponent implements OnInit {
         }),
         new FormField<ISelectField<string>>({
           name: 'state',
-          value: this.agent.address.state,
+          value: this.agent?.address.state,
           fieldType: 'select',
           label: 'State',
           fieldConfig : new SelectField({
@@ -147,7 +147,7 @@ export class AgentDetailSmartComponent implements OnInit {
         }),
         new FormField<IInputField>({
           name: 'zipCode',
-          value: this.agent.address.zipCode,
+          value: this.agent?.address.zipCode,
           fieldType: 'input',
           label: 'Zip Code',
           fieldConfig : new InputField(),
