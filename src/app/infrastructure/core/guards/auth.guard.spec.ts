@@ -19,6 +19,7 @@ import {
   UserDTO,
 } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
+import { RoleCheck } from '@models/role';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
@@ -53,21 +54,21 @@ import { UserStateService } from '../services/state/user-state.service';
       });
 
       it('should return false when there is no user token', () => {
-        spyOn(userState, 'isLoggedInUser').and.returnValue(observableOf(false));
+        spyOn(userState, 'checkRoleList').and.returnValue(observableOf(new RoleCheck()));
         guard.canActivate().subscribe(response => {
           expect(response).toEqual(false);
         });
       });
 
       it(`should redirect to the '/auth' route when there is no user token`, () => {
-        spyOn(userState, 'isLoggedInUser').and.returnValue(observableOf(false));
+        spyOn(userState, 'checkRoleList').and.returnValue(observableOf(new RoleCheck()));
         guard.canActivate().subscribe(() => {
           expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
         });
       });
 
       it(`should show a notification on failing the guard`, () => {
-        spyOn(userState, 'isLoggedInUser').and.returnValue(observableOf(false));
+        spyOn(userState, 'checkRoleList').and.returnValue(observableOf(new RoleCheck()));
         const message = ['You cannot view the requested page. Returning to the login page.'];
 
         guard.canActivate().subscribe(() => {

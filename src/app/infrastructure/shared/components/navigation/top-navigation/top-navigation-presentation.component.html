@@ -2,7 +2,7 @@
   <a class="navbar-brand" [routerLink]="'/'">
     <img src="assets/img/logo.png" alt="Shift3 Technologies">
   </a>
-  <ng-container *ngIf="isLoggedInUser; else loggedOut">
+  <ng-container *ngIf="isValid; else loggedOut">
     <button
       class="navbar-toggler"
       type="button"

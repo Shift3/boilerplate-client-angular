@@ -1,4 +1,4 @@
-import { IRoleGuard } from './role';
+import { IRoleCheck } from './role';
 
 export interface INavigation {
   id: number;
@@ -13,9 +13,9 @@ export class Navigation implements INavigation {
   link: string;
   icon?: string;
 
-  static buildNavLinkList(roleGuard: IRoleGuard): INavigation[] {
+  static buildNavLinkList(roleList: IRoleCheck): INavigation[] {
     let navLinks: INavigation[] = [];
-    if (roleGuard.isSuperAdmin) {
+    if (roleList.isSuperAdmin) {
       return navLinks = [
         {
           id: 1,
@@ -43,7 +43,7 @@ export class Navigation implements INavigation {
         },
       ];
     }
-    else if (roleGuard.isAdmin) {
+    else if (roleList.isAdmin) {
       return navLinks = [
         {
           id: 1,

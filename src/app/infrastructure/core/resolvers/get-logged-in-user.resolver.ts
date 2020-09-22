@@ -31,13 +31,12 @@ export class GetLoggedInUserResolver implements Resolve<IUserDTO> {
     private userStateService: UserStateService,
   ) { }
     resolve(): Observable<IUserDTO> {
-      // Add shim to return user session from state as `findUser()` is restricted to admins.
-      return this.userStateService.checkRoleGuard()
+      return this.userStateService.checkRoleList()
         .pipe(
           take(1),
-          mergeMap((roleGuard) => this.userStateService.getUserSession().pipe(
+          mergeMap((roleList) => this.userStateService.getUserSession().pipe(
             take(1),
-            mergeMap((loggedInUser) => (roleGuard.isAdmin)
+            mergeMap((loggedInUser) => (roleList.isAdmin)
               ? this.userService.findUser(loggedInUser.id)
               : this.userService.findProfile(loggedInUser.id)),
           )),

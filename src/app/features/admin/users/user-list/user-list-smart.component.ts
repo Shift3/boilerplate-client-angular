@@ -22,7 +22,7 @@ import { IUserDTO } from '@models/user';
 import { ModalService } from '@core/services/modal.service';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
-import { IRoleGuard } from '@models/role';
+import { IRoleCheck } from '@models/role';
 
 @Component({
   selector: 'app-user-list',
@@ -40,7 +40,7 @@ import { IRoleGuard } from '@models/role';
 export class UserListSmartComponent implements OnInit {
   @Input() public agencyId: number = 0;
 
-  public checkRole$: Observable<IRoleGuard>;
+  public checkRole$: Observable<IRoleCheck>;
   public emitGetUserList = new EventEmitter<void>();
   public loggedInUser$: Observable<IUserDTO>;
   public userList$: Observable<IUserDTO[]>;
@@ -53,7 +53,7 @@ export class UserListSmartComponent implements OnInit {
 
   public ngOnInit(): void {
     this.getUserList();
-    this.checkRole$ = this.checkRoleGuard();
+    this.checkRole$ = this.checkRoleList();
     this.loggedInUser$ = this.getLoggedInUser();
   }
 
@@ -85,8 +85,8 @@ export class UserListSmartComponent implements OnInit {
     return this.userStateService.getUserSession();
   }
 
-  private checkRoleGuard(): Observable<IRoleGuard> {
-    return this.userStateService.checkRoleGuard();
+  private checkRoleList(): Observable<IRoleCheck> {
+    return this.userStateService.checkRoleList();
   }
 
   private getUserList(): void {

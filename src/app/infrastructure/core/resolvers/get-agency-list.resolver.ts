@@ -38,11 +38,11 @@ export class GetAgencyListResolver implements Resolve<IAgencyDTO[]> {
   ) { }
 
   resolve(): Observable<IAgencyDTO[]> {
-    return this.userStateService.checkRoleGuard()
+    return this.userStateService.checkRoleList()
       .pipe(
         take(1),
-        mergeMap((roleGuard) => {
-          if (roleGuard.isSuperAdmin) {
+        mergeMap((roleList) => {
+          if (roleList.isSuperAdmin) {
             return this.agencyService.getAgencyList();
           } else {
             return this.userStateService.getUserSession().pipe(

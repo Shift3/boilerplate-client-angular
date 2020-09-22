@@ -8,8 +8,8 @@ import {
 
 import { IAgentDTO } from '@models/agent';
 import {
-  IRoleGuard,
-  RoleGuard,
+  IRoleCheck,
+  RoleCheck,
 } from '@models/role';
 
 @Component({
@@ -20,7 +20,7 @@ import {
 })
 export class AgentListPresentationComponent {
   @Input() public agentList: IAgentDTO;
-  @Input() public checkRole: IRoleGuard = new RoleGuard();
+  @Input() public checkRole: IRoleCheck = new RoleCheck();
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
 
