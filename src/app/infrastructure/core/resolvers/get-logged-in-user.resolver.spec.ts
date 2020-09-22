@@ -11,15 +11,18 @@ import { environment } from '@env/environment.test';
 import { GetLoggedInUserResolver } from './get-logged-in-user.resolver';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
+import { RoleGuard } from '@models/role';
 import { UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
+import { UserService } from '../services/api/user.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] GetLoggedInUserResolver', () => {
     let injector: TestBed;
     let resolver: GetLoggedInUserResolver;
-    let service: UserStateService;
+    let userService: UserService;
+    let userStateService: UserStateService;
     const notificationMock = { showError: jasmine.createSpy('showError') };
     const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
 
@@ -41,7 +44,8 @@ import { UserStateService } from '../services/state/user-state.service';
       });
       injector = getTestBed();
       resolver = injector.inject(GetLoggedInUserResolver);
-      service = TestBed.inject(UserStateService);
+      userService = TestBed.inject(UserService);
+      userStateService = TestBed.inject(UserStateService);
     });
     it('should be created', () => {
       expect(resolver).toBeTruthy();
@@ -53,9 +57,32 @@ import { UserStateService } from '../services/state/user-state.service';
         expect(spy).toBeTruthy();
       });
 
-      it('should resolve an instance of the user object', () => {
+      it(`should resolve an instance of the user object through 'findUser' when 'isAdmin' is true`, () => {
+        const userRole = new RoleGuard({
+          isAdmin: true,
+          isSuperAdmin: true,
+          canEdit: true,
+        });
         const expectedValue = new UserDTO();
-        spyOn(service, 'getUserSession').and.returnValue(observableOf(new UserDTO()));
+        spyOn(userStateService, 'checkRoleGuard').and.returnValue(observableOf(userRole));
+        spyOn(userStateService, 'getUserSession').and.returnValue(observableOf(new UserDTO()));
+        spyOn(userService, 'findUser').and.returnValue(observableOf(new UserDTO()));
+
+        resolver.resolve().subscribe(response => {
+          expect(response).toEqual(expectedValue);
+        });
+      });
+
+      it(`should resolve an instance of the user object through 'findUser' when 'isAdmin' is false`, () => {
+        const userRole = new RoleGuard({
+          isAdmin: false,
+          isSuperAdmin: false,
+          canEdit: true,
+        });
+        const expectedValue = new UserDTO();
+        spyOn(userStateService, 'checkRoleGuard').and.returnValue(observableOf(userRole));
+        spyOn(userStateService, 'getUserSession').and.returnValue(observableOf(new UserDTO()));
+        spyOn(userService, 'findProfile').and.returnValue(observableOf(new UserDTO()));
 
         resolver.resolve().subscribe(response => {
           expect(response).toEqual(expectedValue);
