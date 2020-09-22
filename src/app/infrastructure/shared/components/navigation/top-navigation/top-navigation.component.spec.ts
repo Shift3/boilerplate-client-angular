@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { TopNavigationSmartComponent } from './top-navigation-smart.component';
+import { TopNavigationPresentationComponent } from './top-navigation-presentation.component';
 
 describe('TopNavigationSmartComponent', () => {
   let component: TopNavigationSmartComponent;
@@ -10,7 +11,10 @@ describe('TopNavigationSmartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TopNavigationSmartComponent ],
+      declarations: [
+        TopNavigationPresentationComponent,
+        TopNavigationSmartComponent,
+      ],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,

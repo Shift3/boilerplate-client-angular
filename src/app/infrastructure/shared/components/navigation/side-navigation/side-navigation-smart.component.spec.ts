@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { SideNavigationSmartComponent } from './side-navigation-smart.component';
+import { SideNavigationPresentationComponent } from './side-navigation-presentation.component';
 
 describe('SideNavigationSmartComponent', () => {
   let component: SideNavigationSmartComponent;
@@ -10,7 +11,10 @@ describe('SideNavigationSmartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SideNavigationSmartComponent ],
+      declarations: [
+        SideNavigationPresentationComponent,
+        SideNavigationSmartComponent,
+      ],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,

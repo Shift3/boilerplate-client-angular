@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { TopNavigationSmartComponent } from './top-navigation-smart.component';
 import { TopNavigationPresentationComponent } from './top-navigation-presentation.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 describe('TopNavigationPresentationComponent', () => {
   let component: TopNavigationPresentationComponent;
@@ -18,6 +19,7 @@ describe('TopNavigationPresentationComponent', () => {
       declarations: [
         TopNavigationPresentationComponent,
         TopNavigationSmartComponent,
+        SettingsComponent,
       ],
       imports: [
         HttpClientTestingModule,

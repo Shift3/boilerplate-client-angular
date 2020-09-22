@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { SideNavigationSmartComponent } from './side-navigation-smart.component';
 import { SideNavigationPresentationComponent } from './side-navigation-presentation.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 describe('SideNavigationPresentationComponent', () => {
   let component: SideNavigationPresentationComponent;
@@ -18,6 +19,7 @@ describe('SideNavigationPresentationComponent', () => {
       declarations: [
         SideNavigationPresentationComponent,
         SideNavigationSmartComponent,
+        SettingsComponent,
       ],
       imports: [
         HttpClientTestingModule,
