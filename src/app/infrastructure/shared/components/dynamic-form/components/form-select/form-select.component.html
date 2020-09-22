@@ -5,7 +5,6 @@
     [name]="config.name"
     [formControlName]="config.name"
   >
-    <label [for]="config.label"></label>
     <option *ngFor="let option of config.fieldConfig.options" [value]="option[config.fieldConfig.optionValue]">
       {{ option[config.fieldConfig.optionName] }}
     </option>
