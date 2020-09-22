@@ -11,7 +11,7 @@ import { environment } from '@env/environment.test';
 import { GetLoggedInUserResolver } from './get-logged-in-user.resolver';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
-import { RoleGuard } from '@models/role';
+import { RoleCheck } from '@models/role';
 import { UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
 import { UserService } from '../services/api/user.service';
@@ -58,13 +58,13 @@ import { UserService } from '../services/api/user.service';
       });
 
       it(`should resolve an instance of the user object through 'findUser' when 'isAdmin' is true`, () => {
-        const userRole = new RoleGuard({
+        const userRole = new RoleCheck({
           isAdmin: true,
           isSuperAdmin: true,
           canEdit: true,
         });
         const expectedValue = new UserDTO();
-        spyOn(userStateService, 'checkRoleGuard').and.returnValue(observableOf(userRole));
+        spyOn(userStateService, 'checkRoleList').and.returnValue(observableOf(userRole));
         spyOn(userStateService, 'getUserSession').and.returnValue(observableOf(new UserDTO()));
         spyOn(userService, 'findUser').and.returnValue(observableOf(new UserDTO()));
 
@@ -74,13 +74,13 @@ import { UserService } from '../services/api/user.service';
       });
 
       it(`should resolve an instance of the user object through 'findUser' when 'isAdmin' is false`, () => {
-        const userRole = new RoleGuard({
+        const userRole = new RoleCheck({
           isAdmin: false,
           isSuperAdmin: false,
           canEdit: true,
         });
         const expectedValue = new UserDTO();
-        spyOn(userStateService, 'checkRoleGuard').and.returnValue(observableOf(userRole));
+        spyOn(userStateService, 'checkRoleList').and.returnValue(observableOf(userRole));
         spyOn(userStateService, 'getUserSession').and.returnValue(observableOf(new UserDTO()));
         spyOn(userService, 'findProfile').and.returnValue(observableOf(new UserDTO()));
 

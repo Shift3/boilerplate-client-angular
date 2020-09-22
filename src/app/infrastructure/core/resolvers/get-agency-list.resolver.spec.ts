@@ -13,7 +13,7 @@ import { environment } from '@env/environment.test';
 import { GetAgencyListResolver } from './get-agency-list.resolver';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
-import { RoleGuard } from '@models/role';
+import { RoleCheck } from '@models/role';
 import { UserDTO } from '@models/user';
 import { UserService } from '../services/api/user.service';
 import { UserStateService } from '../services/state/user-state.service';
@@ -65,7 +65,7 @@ import { UserStateService } from '../services/state/user-state.service';
       });
 
       it(`should resolve agency object in an array through 'getAgencyList' when 'isSuperAdmin' is true`, () => {
-        const userRole = new RoleGuard({
+        const userRole = new RoleCheck({
           isAdmin: true,
           isSuperAdmin: true,
           canEdit: true,
@@ -74,7 +74,7 @@ import { UserStateService } from '../services/state/user-state.service';
           id: 0,
           agencyName: '',
         });
-        spyOn(userStateService, 'checkRoleGuard').and.returnValue(observableOf(userRole));
+        spyOn(userStateService, 'checkRoleList').and.returnValue(observableOf(userRole));
         spyOn(service, 'getAgencyList').and.returnValue(observableOf(expectedValue));
 
         resolver.resolve().subscribe(response => {
@@ -83,7 +83,7 @@ import { UserStateService } from '../services/state/user-state.service';
       });
 
       it(`should resolve agency object in an array through 'getAgencyList' when 'isSuperAdmin' is false`, () => {
-        const userRole = new RoleGuard({
+        const userRole = new RoleCheck({
           isAdmin: true,
           isSuperAdmin: false,
           canEdit: true,
@@ -91,7 +91,7 @@ import { UserStateService } from '../services/state/user-state.service';
         const expectedValue = [
           new AgencyDTO(),
         ];
-        spyOn(userStateService, 'checkRoleGuard').and.returnValue(observableOf(userRole));
+        spyOn(userStateService, 'checkRoleList').and.returnValue(observableOf(userRole));
         spyOn(userStateService, 'getUserSession').and.returnValue(observableOf(new UserDTO()));
         spyOn(userService, 'findUser').and.returnValue(observableOf(new UserDTO()));
 
