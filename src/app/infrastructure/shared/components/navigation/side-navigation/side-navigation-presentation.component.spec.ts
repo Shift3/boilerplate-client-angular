@@ -22,7 +22,6 @@ describe('SideNavigationPresentationComponent', () => {
         MockComponent(SettingsComponent),
       ],
       imports: [
-        HttpClientTestingModule,
         RouterTestingModule,
       ],
     })
