@@ -5,13 +5,14 @@ import {
   getTestBed,
 } from '@angular/core/testing';
 
+import { of as observableOf } from 'rxjs';
+
 import { environment } from '@env/environment.test';
+import { GetRoleListResolver } from './get-role-list.resolver';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
-import { GetRoleListResolver } from './get-role-list.resolver';
 import { RoleDTO } from '@models/role';
 import { RoleService } from '../services/api/role.service';
-import { of } from 'rxjs';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
@@ -42,6 +43,7 @@ import { of } from 'rxjs';
       resolver = injector.inject(GetRoleListResolver);
       service = TestBed.inject(RoleService);
     });
+
     it('should be created', () => {
       expect(resolver).toBeTruthy();
     });
@@ -57,7 +59,7 @@ import { of } from 'rxjs';
           id: 0,
           roleName: '',
         });
-        spyOn(service, 'getRoleList').and.returnValue(of(expectedValue));
+        spyOn(service, 'getRoleList').and.returnValue(observableOf(expectedValue));
 
         resolver.resolve().subscribe(response => {
           expect(response).toEqual(expectedValue);
