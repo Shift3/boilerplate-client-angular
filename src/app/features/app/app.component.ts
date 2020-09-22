@@ -31,6 +31,7 @@ import { NavbarStateService } from '@core/services/state/navbar-state.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   public navbarToggle$: Observable<string>;
+  public header = '';
   public title = 'boilerplate-client-angular';
 
   private routerEventsSubscription: Subscription;
@@ -46,6 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.setPageTitle();
+    this.setPageFocus();
   }
 
   public ngOnDestroy(): void {
@@ -70,7 +72,17 @@ export class AppComponent implements OnInit, OnDestroy {
         const title = event.title
           ? `${this.title} - ${event.title}`
           : this.title;
+        this.header = event.title;
         this.titleService.setTitle(`${title}`);
       });
+  }
+
+  private setPageFocus(): void{
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      const mainHeader: HTMLElement = document.querySelector('#content-container');
+      if (mainHeader) {
+        mainHeader.focus();
+      }
+    });
   }
 }
