@@ -89,6 +89,13 @@ import { RequiredValidation } from '@utils/validation/required-validation';
           expect(form.contains('test')).toBeTruthy();
         });
 
+        it(`should return a FormGroup with a the provided value as the FormControl value`, () => {
+          const form = fb.group({});
+          const expectedValue = 'testValue';
+          formService.addFormControl(form, 'test', 'testValue');
+          expect(form.get('test').value).toEqual(expectedValue);
+        });
+
         it(`should return a FormGroup with a disabled control when disabled is true`, () => {
           const form = fb.group({});
           const expectedValue = 'DISABLED';
