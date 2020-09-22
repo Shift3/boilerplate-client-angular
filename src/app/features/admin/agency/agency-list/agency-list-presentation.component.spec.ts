@@ -3,6 +3,7 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
 
@@ -22,6 +23,9 @@ import { Logger } from '@utils/logger';
         declarations: [
           AgencyListPresentationComponent,
           MockComponent(AgencyTableComponent),
+        ],
+        imports: [
+          RouterTestingModule,
         ],
       })
       .compileComponents();

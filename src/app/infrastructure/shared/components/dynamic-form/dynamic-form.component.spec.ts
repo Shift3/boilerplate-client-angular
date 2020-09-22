@@ -1,11 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import {
+  FormBuilder,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { MockComponent } from 'ng-mocks';
 
 import { DynamicFormComponent } from './dynamic-form.component';
-import { FormBuilder } from '@angular/forms';
 import { SaveCancelComponent } from '../save-cancel/save-cancel.component';
 
 describe('DynamicFormComponent', () => {
@@ -20,6 +23,7 @@ describe('DynamicFormComponent', () => {
       ],
       imports: [
         HttpClientTestingModule,
+        ReactiveFormsModule,
         RouterTestingModule,
       ],
       providers: [
