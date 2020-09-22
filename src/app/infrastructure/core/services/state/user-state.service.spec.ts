@@ -180,7 +180,7 @@ import { UserStateService } from './user-state.service';
         });
       });
 
-      it(`should return a role object with true values for 'isAuthenticated' and 'canEdit', and 'isAdmin' when given an 'Admin' role`, () => {
+      it(`should return a role object with true values for 'isAuthenticated', 'canEdit', and 'isAdmin' when given an 'Admin' role`, () => {
         const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
