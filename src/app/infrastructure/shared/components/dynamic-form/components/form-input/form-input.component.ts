@@ -11,7 +11,10 @@ import {
   FormField,
   IFormField,
 } from '@models/form/form';
-import { IInputField } from '@models/form/input';
+import {
+  IInputField,
+  InputField,
+} from '@models/form/input';
 
 @Component({
   selector: 'app-form-input',
@@ -20,7 +23,7 @@ import { IInputField } from '@models/form/input';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormInputComponent {
-  public config: IFormField<IInputField> = new FormField<IInputField>();
+  public config: IFormField<IInputField> = new FormField<IInputField>({ fieldConfig: new InputField() });
   public group: FormGroup = new FormGroup({});
 
   public get formControl(): AbstractControl {

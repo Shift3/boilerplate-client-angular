@@ -6,7 +6,10 @@ import {
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { IConfirmModalConfig } from '@models/modal';
+import {
+  ConfirmModalConfig,
+  IConfirmModalConfig,
+} from '@models/modal';
 
 @Component({
   templateUrl: './confirm-modal.component.html',
@@ -14,7 +17,7 @@ import { IConfirmModalConfig } from '@models/modal';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmModalComponent {
-  @Input() public modalConfig: IConfirmModalConfig;
+  @Input() public modalConfig: IConfirmModalConfig = new ConfirmModalConfig();
 
   constructor(
     private activeModal: NgbActiveModal,
