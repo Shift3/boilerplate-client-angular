@@ -1,14 +1,24 @@
 import {
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import {
   async,
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { FormErrorPipe } from '@shared/pipes/form-error.pipe';
+
+import { MockPipe } from 'ng-mocks';
 
 import { environment } from '@env/environment.test';
+import { FormErrorPipe } from '@shared/pipes/form-error.pipe';
+import { FormField } from '@models/form/form';
 import { FormSelectComponent } from './form-select.component';
 import { Logger } from '@utils/logger';
-import { MockPipe } from 'ng-mocks';
+import {
+  ISelectField,
+  SelectField,
+} from '@models/form/select';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -22,6 +32,9 @@ import { MockPipe } from 'ng-mocks';
           FormSelectComponent,
           MockPipe(FormErrorPipe),
         ],
+        imports: [
+          ReactiveFormsModule,
+        ],
       })
       .compileComponents();
     }));
@@ -29,6 +42,12 @@ import { MockPipe } from 'ng-mocks';
     beforeEach(() => {
       fixture = TestBed.createComponent(FormSelectComponent);
       component = fixture.componentInstance;
+      const formControlName = 'testControl';
+      component.config = new FormField<ISelectField<unknown>>({
+        name: formControlName,
+        fieldConfig: new SelectField(),
+      });
+      component.group.addControl(formControlName, new FormControl());
       fixture.detectChanges();
     });
 
