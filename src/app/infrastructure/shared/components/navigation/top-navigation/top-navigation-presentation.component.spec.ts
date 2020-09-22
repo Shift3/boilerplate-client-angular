@@ -6,7 +6,8 @@ import {
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { TopNavigationSmartComponent } from './top-navigation-smart.component';
+import { MockComponent } from 'ng-mocks';
+
 import { TopNavigationPresentationComponent } from './top-navigation-presentation.component';
 import { SettingsComponent } from '../settings/settings.component';
 
@@ -18,8 +19,7 @@ describe('TopNavigationPresentationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         TopNavigationPresentationComponent,
-        TopNavigationSmartComponent,
-        SettingsComponent,
+        MockComponent(SettingsComponent),
       ],
       imports: [
         HttpClientTestingModule,

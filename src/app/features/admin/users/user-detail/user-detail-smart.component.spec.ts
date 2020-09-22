@@ -5,6 +5,8 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { MockComponent } from 'ng-mocks';
+
 import { UserDetailPresentationComponent } from './user-detail-presentation.component';
 import { UserDetailSmartComponent } from './user-detail-smart.component';
 import { environment } from '@env/environment.test';
@@ -19,8 +21,8 @@ import { Logger } from '@utils/logger';
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [
-          UserDetailPresentationComponent,
           UserDetailSmartComponent,
+          MockComponent(UserDetailPresentationComponent),
         ],
         imports: [
           HttpClientTestingModule,

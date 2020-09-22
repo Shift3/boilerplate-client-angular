@@ -4,9 +4,12 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
+import { MockComponent } from 'ng-mocks';
+
 import { AgentListPresentationComponent } from './agent-list-presentation.component';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { AgentTableComponent } from '../agent-table/agent-table.component';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -18,6 +21,7 @@ import { Logger } from '@utils/logger';
       TestBed.configureTestingModule({
         declarations: [
           AgentListPresentationComponent,
+          MockComponent(AgentTableComponent),
         ],
       })
       .compileComponents();

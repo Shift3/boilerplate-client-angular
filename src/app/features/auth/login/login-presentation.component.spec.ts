@@ -4,6 +4,9 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
+import { MockComponent } from 'ng-mocks';
+
+import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-form.component';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { LoginPresentationComponent } from './login-presentation.component';
@@ -18,6 +21,7 @@ import { LoginPresentationComponent } from './login-presentation.component';
       TestBed.configureTestingModule({
         declarations: [
           LoginPresentationComponent,
+          MockComponent(DynamicFormComponent),
         ],
       })
       .compileComponents();

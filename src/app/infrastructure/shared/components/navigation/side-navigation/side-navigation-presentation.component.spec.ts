@@ -6,7 +6,8 @@ import {
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { SideNavigationSmartComponent } from './side-navigation-smart.component';
+import { MockComponent } from 'ng-mocks';
+
 import { SideNavigationPresentationComponent } from './side-navigation-presentation.component';
 import { SettingsComponent } from '../settings/settings.component';
 
@@ -18,8 +19,7 @@ describe('SideNavigationPresentationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         SideNavigationPresentationComponent,
-        SideNavigationSmartComponent,
-        SettingsComponent,
+        MockComponent(SettingsComponent),
       ],
       imports: [
         HttpClientTestingModule,

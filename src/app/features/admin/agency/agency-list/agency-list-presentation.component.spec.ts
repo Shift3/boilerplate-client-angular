@@ -4,7 +4,10 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
+import { MockComponent } from 'ng-mocks';
+
 import { AgencyListPresentationComponent } from './agency-list-presentation.component';
+import { AgencyTableComponent } from '../agency-table/agency-table.component';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 
@@ -18,6 +21,7 @@ import { Logger } from '@utils/logger';
       TestBed.configureTestingModule({
         declarations: [
           AgencyListPresentationComponent,
+          MockComponent(AgencyTableComponent),
         ],
       })
       .compileComponents();

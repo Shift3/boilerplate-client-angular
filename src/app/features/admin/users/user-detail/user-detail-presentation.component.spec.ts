@@ -4,9 +4,12 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { UserDetailPresentationComponent } from './user-detail-presentation.component';
+import { MockComponent } from 'ng-mocks';
+
+import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-form.component';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { UserDetailPresentationComponent } from './user-detail-presentation.component';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -18,6 +21,7 @@ import { Logger } from '@utils/logger';
       TestBed.configureTestingModule({
         declarations: [
           UserDetailPresentationComponent,
+          MockComponent(DynamicFormComponent),
         ],
       })
       .compileComponents();

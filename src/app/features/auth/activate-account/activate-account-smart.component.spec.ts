@@ -6,6 +6,7 @@ import {
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MockComponent } from 'ng-mocks';
 
 import { ActivateAccountPresentationComponent } from './activate-account-presentation.component';
 import { ActivateAccountSmartComponent } from './activate-account-smart.component';
@@ -22,8 +23,8 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [
-          ActivateAccountPresentationComponent,
           ActivateAccountSmartComponent,
+          MockComponent(ActivateAccountPresentationComponent),
         ],
         imports: [
           HttpClientTestingModule,

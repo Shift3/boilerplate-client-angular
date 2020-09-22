@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { MockComponent } from 'ng-mocks';
+
 import { SideNavigationSmartComponent } from './side-navigation-smart.component';
 import { SideNavigationPresentationComponent } from './side-navigation-presentation.component';
 
@@ -12,8 +14,8 @@ describe('SideNavigationSmartComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        SideNavigationPresentationComponent,
         SideNavigationSmartComponent,
+        MockComponent(SideNavigationPresentationComponent),
       ],
       imports: [
         HttpClientTestingModule,

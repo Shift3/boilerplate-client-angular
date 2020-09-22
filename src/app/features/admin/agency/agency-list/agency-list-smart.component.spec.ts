@@ -6,6 +6,8 @@ import {
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { MockComponent } from 'ng-mocks';
+
 import { AgencyListPresentationComponent } from './agency-list-presentation.component';
 import { AgencyListSmartComponent } from './agency-list-smart.component';
 import { environment } from '@env/environment.test';
@@ -21,8 +23,8 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [
-          AgencyListPresentationComponent,
           AgencyListSmartComponent,
+          MockComponent(AgencyListPresentationComponent),
         ],
         imports: [
           HttpClientTestingModule,

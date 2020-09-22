@@ -5,6 +5,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { MockComponent } from 'ng-mocks';
+
 import { environment } from '@env/environment.test';
 import { ForgotPasswordPresentationComponent } from './forgot-password-presentation.component';
 import { ForgotPasswordSmartComponent } from './forgot-password-smart.component';
@@ -20,8 +22,8 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [
-          ForgotPasswordPresentationComponent,
           ForgotPasswordSmartComponent,
+          MockComponent(ForgotPasswordPresentationComponent),
         ],
         imports: [
           HttpClientTestingModule,
