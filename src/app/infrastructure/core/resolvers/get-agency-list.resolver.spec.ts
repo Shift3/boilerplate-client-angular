@@ -82,7 +82,7 @@ import { UserStateService } from '../services/state/user-state.service';
         });
       });
 
-      it(`should resolve agency object in an array through 'getAgencyList' when 'isSuperAdmin' is false`, () => {
+      it(`should resolve agency object in an array through 'findUser' when 'isSuperAdmin' is false`, () => {
         const userRole = new RoleCheck({
           isAdmin: true,
           isSuperAdmin: false,

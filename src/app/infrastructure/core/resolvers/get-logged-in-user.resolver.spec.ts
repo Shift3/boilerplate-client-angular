@@ -73,7 +73,7 @@ import { UserService } from '../services/api/user.service';
         });
       });
 
-      it(`should resolve an instance of the user object through 'findUser' when 'isAdmin' is false`, () => {
+      it(`should resolve an instance of the user object through 'findProfile' when 'isAdmin' is false`, () => {
         const userRole = new RoleCheck({
           isAdmin: false,
           isSuperAdmin: false,
