@@ -7,6 +7,7 @@ import {
 
 import { Observable } from 'rxjs';
 import {
+  map,
   take,
   tap,
 } from 'rxjs/operators';
@@ -25,8 +26,9 @@ export class CanEditAuthGuard implements CanActivate, CanActivateChild {
   ) { }
 
   public canActivate(): Observable<boolean> {
-    return this.userStateService.canEdit().pipe(
+    return this.userStateService.checkRoleList().pipe(
       take(1),
+      map((checkRole) => checkRole.canEdit),
       tap(canEdit => {
         if (!canEdit) {
           const message = 'You cannot view the requested page. Returning to the dashboard.';

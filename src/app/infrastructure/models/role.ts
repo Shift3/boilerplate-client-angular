@@ -41,18 +41,20 @@ export class RoleDTO implements IRoleDTO {
   }
 }
 
-export interface IRoleGuard {
+export interface IRoleCheck {
   canEdit: boolean;
   isAdmin: boolean;
+  isValid: boolean;
   isSuperAdmin: boolean;
 }
 
-export class RoleGuard implements IRoleGuard {
+export class RoleCheck implements IRoleCheck {
   canEdit: boolean = false;
   isAdmin: boolean = false;
+  isValid: boolean = false;
   isSuperAdmin: boolean = false;
 
-  constructor(configOverride?: IRoleGuard) {
+  constructor(configOverride?: Partial<IRoleCheck>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }

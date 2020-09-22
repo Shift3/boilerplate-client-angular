@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { RoleCheck } from '@models/role';
 import {
   IUserDTO,
   UserDTO,
@@ -121,84 +122,43 @@ import { UserStateService } from './user-state.service';
       });
     });
 
-    describe('isAdmin()', () => {
-      it(`should emit false when there is no user session`, () => {
-        service.isAdmin().subscribe((response) => {
-          expect(response).toEqual(false);
+    describe('checkRoleList()', () => {
+      it(`should return a role object with all false values when there is no user session`, () => {
+        const expectedValue = new RoleCheck();
+
+        service.checkRoleList().subscribe((response) => {
+          expect(response).toEqual(expectedValue);
         });
       });
 
-      it(`should emit false when there is an invalid user`, () => {
-        service.isAdmin().subscribe((response) => {
-          const mockUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
+      it(`should return a role object with all false values when there is an invalid user`, () => {
+        service.checkRoleList().subscribe((response) => {
+          const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
+          const expectedValue = new RoleCheck();
 
-          service.userSession$ = mockUser$;
-          expect(response).toEqual(false);
+          service.userSession$ = testUser$;
+          expect(response).toEqual(expectedValue);
         });
       });
 
-      it(`should emit true when given a role of 'Admin'`, () => {
-        service.userSession$ = testAdminUser$;
-        service.isAdmin().subscribe((response) => {
-          expect(response).toEqual(true);
-        });
-      });
-
-      it(`should emit true when given a role of 'Super Administrator'`, () => {
-        service.userSession$ = testSuperAdministratorUser$;
-        service.isAdmin().subscribe((response) => {
-          expect(response).toEqual(true);
-        });
-      });
-
-      it(`should emit false when given a non-admin role`, () => {
+      it(`should return a role object with a true value for 'isValid' when given any role`, () => {
         const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
           role: {
-            id: 4,
+            id: 3,
             roleName: 'User',
           },
         }));
+        const expectedValue = new RoleCheck({ isValid: true });
 
         service.userSession$ = testUser$;
-        service.isAdmin().subscribe((response) => {
-          expect(response).toEqual(false);
-        });
-      });
-    });
-
-    describe('canEdit()', () => {
-      it(`should emit false when there is no user session`, () => {
-        service.canEdit().subscribe((response) => {
-          expect(response).toEqual(false);
+        service.checkRoleList().subscribe((response) => {
+          expect(response).toEqual(expectedValue);
         });
       });
 
-      it(`should emit false when there is an invalid user`, () => {
-        service.canEdit().subscribe((response) => {
-          const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
-
-          service.userSession$ = testUser$;
-          expect(response).toEqual(false);
-        });
-      });
-
-      it(`should emit true when given a role of 'Admin'`, () => {
-        service.userSession$ = testAdminUser$;
-        service.canEdit().subscribe((response) => {
-          expect(response).toEqual(true);
-        });
-      });
-
-      it(`should emit true when given a role of 'Super Administrator'`, () => {
-        service.userSession$ = testSuperAdministratorUser$;
-        service.canEdit().subscribe((response) => {
-          expect(response).toEqual(true);
-        });
-      });
-
-      it(`should emit true when given a role of 'Editor'`, () => {
+      it(`should return a role object with true values for 'isValid' and 'canEdit' when given an 'Editor' role`, () => {
         const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
@@ -207,59 +167,60 @@ import { UserStateService } from './user-state.service';
             roleName: 'Editor',
           },
         }));
+        const expectedValue = new RoleCheck({
+          isValid: true,
+          canEdit: true,
+          isAdmin: false,
+          isSuperAdmin: false,
+        });
 
         service.userSession$ = testUser$;
-        service.canEdit().subscribe((response) => {
-          expect(response).toEqual(true);
+        service.checkRoleList().subscribe((response) => {
+          expect(response).toEqual(expectedValue);
         });
       });
 
-      it(`should emit false when given a non-editor role`, () => {
-        const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
-          firstName: 'Test',
-          lastName: 'Tester',
-          role: {
-            id: 4,
-            roleName: 'User',
-          },
-        }));
-
-        service.userSession$ = testUser$;
-        service.canEdit().subscribe((response) => {
-          expect(response).toEqual(false);
-        });
-      });
-    });
-
-    describe('isLoggedInUser()', () => {
-      it(`should emit false when there is no user session`, () => {
-        service.isLoggedInUser().subscribe((response) => {
-          expect(response).toEqual(false);
-        });
-      });
-
-      it(`should emit false when there is an invalid user`, () => {
-        service.isLoggedInUser().subscribe((response) => {
-          const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
-
-          service.userSession$ = testUser$;
-          expect(response).toEqual(false);
-        });
-      });
-
-      it(`should emit true when given any role`, () => {
+      it(`should return a role object with true values for 'isValid', 'canEdit', and 'isAdmin' when given an 'Admin' role`, () => {
         const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
           role: {
             id: 3,
-            roleName: 'Editor',
+            roleName: 'Admin',
           },
         }));
+        const expectedValue = new RoleCheck({
+          isValid: true,
+          canEdit: true,
+          isAdmin: true,
+          isSuperAdmin: false,
+        });
 
         service.userSession$ = testUser$;
-        service.isLoggedInUser().subscribe((response) => {
-          expect(response).toEqual(true);
+        service.checkRoleList().subscribe((response) => {
+          expect(response).toEqual(expectedValue);
+        });
+      });
+
+      it(`should return a role object with all true values when given a 'Super Administrator' role`, () => {
+        const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
+          firstName: 'Test',
+          lastName: 'Tester',
+          role: {
+            id: 3,
+            roleName: 'Super Administrator',
+          },
+        }));
+        const expectedValue = new RoleCheck({
+          isValid: true,
+          canEdit: true,
+          isAdmin: true,
+          isSuperAdmin: true,
+        });
+
+        service.userSession$ = testUser$;
+        service.checkRoleList().subscribe((response) => {
+          expect(response).toEqual(expectedValue);
         });
       });
     });

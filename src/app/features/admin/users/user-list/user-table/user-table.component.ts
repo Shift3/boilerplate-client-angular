@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 
 import {
-  IRoleGuard,
-  RoleGuard,
+  IRoleCheck,
+  RoleCheck,
 } from '@models/role';
 import {
   ITableConfig,
@@ -22,7 +22,7 @@ import { IUserDTO } from '@models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserTableComponent {
-  @Input() public checkRole: IRoleGuard = new RoleGuard();
+  @Input() public checkRole: IRoleCheck = new RoleCheck();
   @Input() public loggedInUser: IUserDTO;
   @Input() public tableConfig: ITableConfig = new TableConfig();
   @Input() public tableData: IUserDTO[] = [];
