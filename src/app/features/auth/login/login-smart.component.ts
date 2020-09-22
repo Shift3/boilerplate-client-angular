@@ -37,7 +37,7 @@ import { SaveCancelButtonConfig } from '@models/form/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginSmartComponent {
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Log In'}),

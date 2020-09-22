@@ -19,12 +19,12 @@ import { FormConfig, IFormConfig } from '@models/form/form';
 })
 export class DynamicFormComponent implements OnInit {
   @Input() public formConfig: IFormConfig = new FormConfig();
-  @Input() public formTitle: string;
+  @Input() public formTitle: string = '';
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
 
   constructor(
     private formService: FormService,

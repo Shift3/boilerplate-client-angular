@@ -50,7 +50,7 @@ import { stateList } from '@models/state';
 })
 export class AgentDetailSmartComponent implements OnInit {
   public agent: IAgentDTO;
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
   public formTitle: string = '';
 

@@ -7,7 +7,10 @@ import {
   FormGroup,
 } from '@angular/forms';
 
-import { IFormField } from '@models/form/form';
+import {
+  FormField,
+  IFormField,
+} from '@models/form/form';
 import { IInputField } from '@models/form/input';
 
 @Component({
@@ -17,8 +20,8 @@ import { IInputField } from '@models/form/input';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormInputComponent {
-  public config: IFormField<IInputField>;
-  public group: FormGroup;
+  public config: IFormField<IInputField> = new FormField<IInputField>();
+  public group: FormGroup = new FormGroup({});
 
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);

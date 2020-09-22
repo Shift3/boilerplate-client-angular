@@ -40,7 +40,7 @@ import { SaveCancelButtonConfig } from '@models/form/button';
 })
 export class AgencyDetailSmartComponent implements OnInit {
   public agency: IAgencyDTO;
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
   public formTitle: string = '';
 

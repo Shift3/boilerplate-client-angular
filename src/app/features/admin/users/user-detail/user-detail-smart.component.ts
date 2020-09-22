@@ -55,7 +55,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
 })
 export class UserDetailSmartComponent implements OnInit, OnDestroy {
   public checkRole: IRoleGuard;
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
   public formTitle: string = '';
   public isSelf: boolean = false;

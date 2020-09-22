@@ -38,7 +38,7 @@ import { RequiredValidation } from '@app/infrastructure/utils/validation/require
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChangePasswordSmartComponent {
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Submit'}),
