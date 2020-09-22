@@ -1,6 +1,8 @@
 <div class="field-container" [formGroup]="group">
-  <label class="field-label" [for]="config.label">{{ config.label }}</label>
+  <label class="field-label" [for]="config.name">{{ config.label }}</label>
   <input
+    [id]="config.name"
+    [name]="config.name"
     [type]="config.fieldConfig.inputType"
     [formControlName]="config.name"
     [placeholder]="config.placeholder"

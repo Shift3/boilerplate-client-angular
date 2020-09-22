@@ -8,7 +8,11 @@
         <app-side-navigation class="shadow holy-grail-sidebar-1 hg-sidebar"></app-side-navigation>
       </ng-container>
       <main class="holy-grail-content">
-        <div class="holy-grail-child">
+        <div tabindex="0" class="holy-grail-child" id="content-container">
+          <ng-container *ngIf="header">
+            <!-- This is a hidden h1 that is available to screen readers for accessibility. Any other headers in the application should be h2 or below. -->
+            <h1 [attr.aria-label]="header" class="sr-only"> {{ header }} </h1>
+          </ng-container>
           <router-outlet></router-outlet>
         </div>
       </main>
