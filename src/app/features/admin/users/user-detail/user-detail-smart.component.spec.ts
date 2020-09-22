@@ -11,6 +11,7 @@ import { UserDetailPresentationComponent } from './user-detail-presentation.comp
 import { UserDetailSmartComponent } from './user-detail-smart.component';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -28,6 +29,7 @@ import { Logger } from '@utils/logger';
           HttpClientTestingModule,
           ReactiveFormsModule,
           RouterTestingModule,
+          ToastrTestingModule,
         ],
       })
       .compileComponents();
@@ -40,7 +42,7 @@ import { Logger } from '@utils/logger';
     });
 
     // TODO: Get tests passing with passed in user data from resolver
-    xit('should create', () => {
+    it('should create', () => {
       expect(component).toBeTruthy();
     });
   });

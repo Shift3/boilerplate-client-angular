@@ -120,7 +120,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private checkIfSelfAndBuildFormConfig(): void {
-    const checkSelfSubscription = this.userStateService.isSelf(this.user.id).subscribe((isSelf) => {
+    const checkSelfSubscription = this.userStateService.isSelf(this.user?.id).subscribe((isSelf) => {
       this.isSelf = isSelf;
       this.formConfig = this.buildFormConfig();
     });
@@ -143,11 +143,11 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
-      submit: new SaveCancelButtonConfig({save: (this.user.id) ? 'Update' : 'Create' }),
+      submit: new SaveCancelButtonConfig({save: (this.user?.id) ? 'Update' : 'Create' }),
       controls: [
         new FormField<IInputField>({
           name: 'firstName',
-          value: this.user.firstName,
+          value: this.user?.firstName,
           fieldType: 'input',
           label: 'First Name',
           fieldConfig : new InputField({ autocomplete: 'given-name' }),
@@ -155,7 +155,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
         }),
         new FormField<IInputField>({
           name: 'lastName',
-          value: this.user.lastName,
+          value: this.user?.lastName,
           fieldType: 'input',
           label: 'Last Name',
           fieldConfig : new InputField({ autocomplete: 'family-name' }),
@@ -163,7 +163,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
         }),
         new FormField<IInputField>({
           name: 'email',
-          value: this.user.email,
+          value: this.user?.email,
           fieldType: 'input',
           label: 'Email',
           fieldConfig : new InputField({
@@ -179,7 +179,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     if (this.checkRole.isSuperAdmin && !this.isSelf) {
       const agencyList = new FormField<ISelectField<IAgencyDTO>>({
         name: 'agencyName',
-        value: this.user.agency.agencyName,
+        value: this.user?.agency.agencyName,
         fieldType: 'select',
         label: 'Agency',
         fieldConfig : new SelectField({
@@ -197,7 +197,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     if (!this.isSelf) {
       const roleList = new FormField<ISelectField<RoleType>>({
         name: 'roleId',
-        value: this.user.role.id,
+        value: this.user?.role.id,
         fieldType: 'select',
         label: 'Role',
         fieldConfig : new SelectField({
