@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ) { }
 
   public canActivate(): Observable<boolean> {
-    return this.userStateService.checkRoleGuard().pipe(
+    return this.userStateService.checkRoleList().pipe(
       take(1),
       map((checkRole) => checkRole.isAuthenticated),
       tap(isLoggedInUser => {

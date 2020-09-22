@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 
 import {
-  IRoleGuard,
-  RoleGuard,
+  IRoleCheck,
+  RoleCheck,
 } from '@models/role';
 import { IUserDTO } from '@models/user';
 
@@ -19,7 +19,7 @@ import { IUserDTO } from '@models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListPresentationComponent {
-  @Input() public checkRole: IRoleGuard = new RoleGuard();
+  @Input() public checkRole: IRoleCheck = new RoleCheck();
   @Input() public loggedInUser: IUserDTO;
   @Input() public userList: IUserDTO[];
 

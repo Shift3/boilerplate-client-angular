@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 import { IAgentDTO } from '@models/agent';
-import { IRoleGuard } from '@models/role';
+import { IRoleCheck } from '@models/role';
 import {
   ITableConfig,
   TableConfig,
@@ -20,7 +20,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgentTableComponent {
-  @Input() public checkRole: IRoleGuard;
+  @Input() public checkRole: IRoleCheck;
   @Input() public tableConfig: ITableConfig = new TableConfig();
   @Input() public tableData: IAgentDTO[] = [];
 

@@ -41,8 +41,8 @@ export class TopNavigationSmartComponent implements OnInit {
   }
 
   public buildNavLinkListBasedOnRole(): Observable<INavigation[]> {
-    return this.userStateService.checkRoleGuard()
-      .pipe(map((roleGuard) => Navigation.buildNavLinkList(roleGuard)));
+    return this.userStateService.checkRoleList()
+      .pipe(map((roleList) => Navigation.buildNavLinkList(roleList)));
   }
 
   public getLoggedInUser(): Observable<IUserDTO> {
@@ -50,7 +50,7 @@ export class TopNavigationSmartComponent implements OnInit {
   }
 
   public isAuthenticated(): Observable<boolean> {
-    return this.userStateService.checkRoleGuard()
+    return this.userStateService.checkRoleList()
       .pipe(map((checkRole) => checkRole.isAuthenticated));
   }
 }

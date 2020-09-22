@@ -19,7 +19,7 @@ import {
 import { AgentService } from '@core/services/api/agent.service';
 import { ConfirmModalConfig } from '@models/modal';
 import { IAgentDTO } from '@models/agent';
-import { IRoleGuard } from '@models/role';
+import { IRoleCheck } from '@models/role';
 import { ModalService } from '@core/services/modal.service';
 import { UserStateService } from '@core/services/state/user-state.service';
 
@@ -35,7 +35,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
 })
 export class AgentListSmartComponent implements OnInit {
   public emitGetAgentList = new EventEmitter<void>();
-  public checkRole$: Observable<IRoleGuard>;
+  public checkRole$: Observable<IRoleCheck>;
   public agentList$: Observable<IAgentDTO[]>;
 
   constructor(
@@ -46,11 +46,11 @@ export class AgentListSmartComponent implements OnInit {
 
   public ngOnInit(): void {
     this.getAgentList();
-    this.checkRole$ = this.checkRoleGuard();
+    this.checkRole$ = this.checkRoleList();
   }
 
-  public checkRoleGuard(): Observable<IRoleGuard> {
-    return this.userStateService.checkRoleGuard();
+  public checkRoleList(): Observable<IRoleCheck> {
+    return this.userStateService.checkRoleList();
   }
 
   public openDeleteModal(agent: IAgentDTO): void {
