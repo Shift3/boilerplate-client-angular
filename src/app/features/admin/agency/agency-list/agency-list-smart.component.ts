@@ -14,7 +14,6 @@ import {
   catchError,
   startWith,
   switchMap,
-  tap,
 } from 'rxjs/operators';
 
 import { AgencyService } from '@core/services/api/agency.service';
@@ -33,8 +32,6 @@ import { ModalService } from '@core/services/modal.service';
 })
 export class AgencyListSmartComponent implements OnInit {
   public emitGetAgencyList = new EventEmitter<void>();
-  public isLoaded: boolean = false;
-  public isLoadingResults: boolean = false;
   public agencyList$: Observable<IAgencyDTO[]>;
 
   constructor(
@@ -61,16 +58,8 @@ export class AgencyListSmartComponent implements OnInit {
   private getAgencyList(): void {
     this.agencyList$ = merge(this.emitGetAgencyList).pipe(
       startWith({}),
-      switchMap(() => {
-        this.isLoadingResults = true;
-        return this.agencyService.getAgencyList();
-      }),
-      tap(() => this.isLoaded = true),
-      tap(() => this.isLoadingResults = false),
-      catchError(() => {
-        this.isLoadingResults = false;
-        return observableOf([]);
-      }),
+      switchMap(() => this.agencyService.getAgencyList()),
+      catchError(() => observableOf([])),
     );
   }
 

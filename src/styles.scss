@@ -90,6 +90,21 @@ html {
   display: flex;
   justify-content: center;
 }
+
+.loader {
+  border: 0.3em solid $primary; /* 3/4 spinner */
+  border-top: 0.3em solid rgba(255, 255, 255, 0.2); /* 1/4 spinner */
+  border-radius: 50%;
+  width: 4em;
+  height: 4em;
+  animation: spin 1.1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 //#endregion
 
 //#region Form
@@ -144,6 +159,10 @@ thead {
   color: white;
 }
 
+.table {
+  min-width: 1000px;
+}
+
 .table th {
   border-top: 0;
 }
@@ -163,6 +182,8 @@ tbody > tr {
 td {
   color: $primary;
 }
+
+table .w-10 { width:12%; }
 //#endregion
 
 .fa {

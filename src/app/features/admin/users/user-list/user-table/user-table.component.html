@@ -1,49 +1,52 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Last Name</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Email</th>
+      <th scope="col">{{ "Last Name" | uppercase }}</th>
+      <th scope="col">{{ "First Name" | uppercase }}</th>
+      <th scope="col">{{ "Email" | uppercase }}</th>
       <ng-container *ngIf="checkRole?.isSuperAdmin">
-        <th scope="col">Agency</th>
+        <th scope="col">{{ "Agency" | uppercase }}</th>
       </ng-container>
-      <th scope="col">Role</th>
-      <th scope="col">Activated</th>
-      <th scope="col">Actions</th>
+      <th scope="col">{{ "Role" | uppercase }}</th>
+      <th scope="col">{{ "Activated" | uppercase }}</th>
+      <th scope="col">{{ "Actions" | uppercase }}</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of tableData; index as i">
-      <td>{{ item.lastName }}</td>
-      <td>{{ item.firstName }}</td>
-      <td>{{ item.email }}</td>
-      <ng-container *ngIf="checkRole?.isSuperAdmin">
-        <td>{{ item.agency.agencyName }}</td>
-      </ng-container>
-      <td>{{ item.role.roleName }}</td>
-      <td>
-        <ng-container *ngIf="item.activatedAt; else resendEmail">
-          {{ item.activatedAt | date }}
+    <ng-container *ngIf="tableData.length">
+      <tr *ngFor="let item of tableData; index as i">
+        <td>{{ item.lastName }}</td>
+        <td>{{ item.firstName }}</td>
+        <td>{{ item.email }}</td>
+        <ng-container *ngIf="checkRole?.isSuperAdmin">
+          <td>{{ item.agency.agencyName }}</td>
         </ng-container>
-        <ng-template #resendEmail>
-          <button class="btn" (click)="resendActivationEmail(item)" tooltip="Resend Activation Email">
-            <span class="fa fa-envelope"></span>
-            <span class="sr-only">Resend Activation Email</span>
+        <td>{{ item.role.roleName }}</td>
+        <td>
+          <ng-container *ngIf="item.activatedAt; else resendEmail">
+            {{ item.activatedAt | date }}
+          </ng-container>
+          <ng-template #resendEmail>
+            <button class="btn" (click)="resendActivationEmail(item)" tooltip="Resend Activation Email">
+              <span class="fa fa-envelope"></span>
+              <span class="sr-only">Resend Activation Email</span>
+            </button>
+          </ng-template>
+        </td>
+        <td>
+          <button class="btn" type="button" routerLink="/admin/update-user/{{ item.id }}" tooltip="Update User">
+            <span class="fa fa-edit"></span>
+            <span class="sr-only">Update User</span>
           </button>
-        </ng-template>
-      </td>
-      <td>
-        <button class="btn" type="button" routerLink="/admin/update-user/{{ item.id }}" tooltip="Update User">
-          <span class="fa fa-edit"></span>
-          <span class="sr-only">Update User</span>
-        </button>
-        <ng-container *ngIf="!isSelf(item.id)">
-          <button class="btn" type="button" (click)="deleteUser(item)" tooltip="Delete User">
-            <span class="fa fa-trash"></span>
-            <span class="sr-only">Delete User</span>
-          </button>
-        </ng-container>
-      </td>
-    </tr>
+          <ng-container *ngIf="!isSelf(item.id)">
+            <button class="btn" type="button" (click)="deleteUser(item)" tooltip="Delete User">
+              <span class="fa fa-trash"></span>
+              <span class="sr-only">Delete User</span>
+            </button>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>
+<div class="center" *ngIf="!tableData.length">{{ tableConfig?.emptyListMessage }}</div>

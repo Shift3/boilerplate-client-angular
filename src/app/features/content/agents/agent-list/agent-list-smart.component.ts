@@ -14,7 +14,6 @@ import {
   catchError,
   startWith,
   switchMap,
-  tap,
 } from 'rxjs/operators';
 
 import { AgentService } from '@core/services/api/agent.service';
@@ -37,8 +36,6 @@ import { UserStateService } from '@core/services/state/user-state.service';
 export class AgentListSmartComponent implements OnInit {
   public emitGetAgentList = new EventEmitter<void>();
   public checkRole$: Observable<IRoleGuard>;
-  public isLoaded: boolean = false;
-  public isLoadingResults: boolean = false;
   public agentList$: Observable<IAgentDTO[]>;
 
   constructor(
@@ -71,16 +68,8 @@ export class AgentListSmartComponent implements OnInit {
   private getAgentList(): void {
     this.agentList$ = merge(this.emitGetAgentList).pipe(
       startWith({}),
-      switchMap(() => {
-        this.isLoadingResults = true;
-        return this.agentService.getAgentList();
-      }),
-      tap(() => this.isLoaded = true),
-      tap(() => this.isLoadingResults = false),
-      catchError(() => {
-        this.isLoadingResults = false;
-        return observableOf([]);
-      }),
+      switchMap(() => this.agentService.getAgentList()),
+      catchError(() => observableOf([])),
     );
   }
 
