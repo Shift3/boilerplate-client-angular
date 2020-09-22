@@ -1,5 +1,5 @@
 <div class="card">
-  <h1 class="card-header">{{ formTitle }}</h1>
+  <h2 class="card-header">{{ formTitle }}</h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-container *ngIf="formConfig.controls.length">
       <ng-container
