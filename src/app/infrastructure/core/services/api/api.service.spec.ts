@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -11,92 +12,72 @@ import { Logger } from '@utils/logger';
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] ApiService', () => {
+    let httpClient: HttpClient;
+    let service: ApiService;
+    let httpTestingController: HttpTestingController;
     beforeEach(() => {
       TestBed.configureTestingModule({
-        providers: [ApiService],
         imports: [HttpClientTestingModule],
+        providers: [
+          ApiService,
+        ],
       });
+      httpClient = TestBed.inject(HttpClient);
+      service = TestBed.inject(ApiService);
+      // Inject the http service and test controller for each test
+      httpTestingController = TestBed.inject(HttpTestingController);
     });
+
     it('should be created', () => {
       expect(ApiService).toBeTruthy();
     });
+
     describe('get<T>()', () => {
-      function setup() {
-        const service: ApiService = TestBed.inject(ApiService);
-        const httpTestingController: HttpTestingController = TestBed.inject(HttpTestingController);
-        return { service, httpTestingController };
-      }
       it('should be created', () => {
-        const { service } = setup();
-        const spy = spyOn(service, 'get');
+        const spy = spyOn(httpClient, 'get');
         expect(spy).toBeTruthy();
       });
       afterEach(() => {
-        const { httpTestingController } = setup();
         httpTestingController.verify();
       });
     });
+
     describe('post<T, U>()', () => {
-      function setup() {
-        const service: ApiService = TestBed.inject(ApiService);
-        const httpTestingController: HttpTestingController = TestBed.inject(HttpTestingController);
-        return { service, httpTestingController };
-      }
       it('should be created', () => {
-        const { service } = setup();
-        const spy = spyOn(service, 'post');
+        const spy = spyOn(httpClient, 'post');
         expect(spy).toBeTruthy();
       });
       afterEach(() => {
-        const { httpTestingController } = setup();
         httpTestingController.verify();
       });
     });
+
     describe('put<T, U>()', () => {
-      function setup() {
-        const service: ApiService = TestBed.inject(ApiService);
-        const httpTestingController: HttpTestingController = TestBed.inject(HttpTestingController);
-        return { service, httpTestingController };
-      }
       it('should be created', () => {
-        const { service } = setup();
-        const spy = spyOn(service, 'put');
+        const spy = spyOn(httpClient, 'put');
         expect(spy).toBeTruthy();
       });
       afterEach(() => {
-        const { httpTestingController } = setup();
         httpTestingController.verify();
       });
     });
+
     describe('patch<T, U>()', () => {
-      function setup() {
-        const service: ApiService = TestBed.inject(ApiService);
-        const httpTestingController: HttpTestingController = TestBed.inject(HttpTestingController);
-        return { service, httpTestingController };
-      }
       it('should be created', () => {
-        const { service } = setup();
-        const spy = spyOn(service, 'patch');
+        const spy = spyOn(httpClient, 'patch');
         expect(spy).toBeTruthy();
       });
       afterEach(() => {
-        const { httpTestingController } = setup();
         httpTestingController.verify();
       });
     });
+
     describe('delete<T>()', () => {
-      function setup() {
-        const service: ApiService = TestBed.inject(ApiService);
-        const httpTestingController: HttpTestingController = TestBed.inject(HttpTestingController);
-        return { service, httpTestingController };
-      }
       it('should be created', () => {
-        const { service } = setup();
-        const spy = spyOn(service, 'delete');
+        const spy = spyOn(httpClient, 'delete');
         expect(spy).toBeTruthy();
       });
       afterEach(() => {
-        const { httpTestingController } = setup();
         httpTestingController.verify();
       });
     });
