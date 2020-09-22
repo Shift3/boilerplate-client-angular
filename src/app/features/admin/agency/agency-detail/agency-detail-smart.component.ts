@@ -70,11 +70,11 @@ export class AgencyDetailSmartComponent implements OnInit {
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
-      submit: new SaveCancelButtonConfig({save: (this.agency.id) ? 'Update' : 'Create' }),
+      submit: new SaveCancelButtonConfig({save: (this.agency?.id) ? 'Update' : 'Create' }),
       controls: [
         new FormField<IInputField>({
           name: 'agencyName',
-          value: this.agency.agencyName,
+          value: this.agency?.agencyName,
           fieldType: 'input',
           label: 'Agency Name',
           fieldConfig : new InputField(),
