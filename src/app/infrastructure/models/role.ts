@@ -54,7 +54,7 @@ export class RoleGuard implements IRoleGuard {
   isAuthenticated: boolean = false;
   isSuperAdmin: boolean = false;
 
-  constructor(configOverride?: IRoleGuard) {
+  constructor(configOverride?: Partial<IRoleGuard>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }

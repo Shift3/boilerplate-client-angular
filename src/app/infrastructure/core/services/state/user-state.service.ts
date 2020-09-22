@@ -37,26 +37,6 @@ export class UserStateService {
   }
 
   /**
-   * Checks the user session for `Super Administrator` or `Admin` roles.
-   */
-  public isAdmin(): Observable<boolean> {
-    return this.getUserSession().pipe(
-      map((user) => user?.role?.roleName),
-      map((roleName) => RoleDTO.isAdminRoleType(roleName)),
-    );
-  }
-
-  /**
-   * Checks the user session for `Super Administrator`, `Admin`, or `Editor` roles.
-   */
-  public canEdit(): Observable<boolean> {
-    return this.getUserSession().pipe(
-      map((user) => user?.role?.roleName),
-      map((roleName) => RoleDTO.canEdit(roleName)),
-    );
-  }
-
-  /**
    * Combined state stream to listen to multiple role states.
    */
   public checkRoleGuard(): Observable<IRoleGuard> {
@@ -71,13 +51,6 @@ export class UserStateService {
         });
         return roleGuard;
       }),
-    );
-  }
-
-  public isLoggedInUser(): Observable<boolean> {
-    return this.getUserSession().pipe(
-      map((user) => user?.role?.roleName),
-      map((roleName) => RoleDTO.isValidRoleType(roleName)),
     );
   }
 
