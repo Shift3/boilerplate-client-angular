@@ -50,6 +50,7 @@ export class TopNavigationSmartComponent implements OnInit {
   }
 
   public isLoggedInUser(): Observable<boolean> {
-    return this.userStateService.isLoggedInUser();
+    return this.userStateService.checkRoleGuard()
+      .pipe(map((checkRole) => checkRole.isAuthenticatedUser));
   }
 }
