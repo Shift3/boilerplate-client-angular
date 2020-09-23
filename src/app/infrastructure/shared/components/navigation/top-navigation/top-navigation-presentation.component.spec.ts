@@ -3,37 +3,41 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { TopNavigationSmartComponent } from './top-navigation-smart.component';
+import { MockComponent } from 'ng-mocks';
+
+import { environment } from '@env/environment.test';
+import { Logger } from '@utils/logger';
+import { SettingsComponent } from '../settings/settings.component';
 import { TopNavigationPresentationComponent } from './top-navigation-presentation.component';
 
-describe('TopNavigationPresentationComponent', () => {
-  let component: TopNavigationPresentationComponent;
-  let fixture: ComponentFixture<TopNavigationPresentationComponent>;
+!environment.testIntegration
+  ? Logger.log('Integration skipped')
+  : describe('[Integration] TopNavigationPresentationComponent', () => {
+    let component: TopNavigationPresentationComponent;
+    let fixture: ComponentFixture<TopNavigationPresentationComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        TopNavigationPresentationComponent,
-        TopNavigationSmartComponent,
-      ],
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-      ],
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          TopNavigationPresentationComponent,
+          MockComponent(SettingsComponent),
+        ],
+        imports: [
+          RouterTestingModule,
+        ],
+      })
+      .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TopNavigationPresentationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TopNavigationPresentationComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});

@@ -56,7 +56,7 @@ export class UserStateService {
 
   public isSelf(userId: number): Observable<boolean> {
     return this.getUserSession().pipe(
-      map((user) => user.id === userId),
+      map((user) => user?.id === userId),
     );
   }
 }

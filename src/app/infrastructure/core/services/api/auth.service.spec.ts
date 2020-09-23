@@ -18,19 +18,30 @@ import {
   LoginRequest,
   ISessionDTO,
 } from '@models/auth';
+import {
+  IUserDTO,
+  UserDTO,
+} from '@models/user';
+import { UserStateService } from '../state/user-state.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] AuthService', () => {
+    const route = `${environment.apiRoute}/auth`;
+    let testUser: IUserDTO;
+    let testUserSession: ISessionDTO;
     let service: AuthService;
     let apiService: ApiService;
     let httpTestingController: HttpTestingController;
+    const userStateMock = { setUserSession: jasmine.createSpy('setUserSession') };
+
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule],
         providers: [
           ApiService,
           AuthService,
+          { provide: UserStateService, useValue: userStateMock },
         ],
       });
       // Returns a service with the MockBackend so we can test with dummy responses
@@ -38,15 +49,57 @@ import {
       apiService = TestBed.inject(ApiService);
       // Inject the http service and test controller for each test
       httpTestingController = TestBed.inject(HttpTestingController);
+      testUser = new UserDTO({
+        id: 1,
+        email: 'test@test.com',
+        firstName: 'Test',
+        lastName: 'Tester',
+        profilePicture: null,
+        role: {
+          id: 1,
+          roleName: 'User',
+        },
+      });
+      testUserSession = {
+        user: {
+          id: 1,
+          email: 'test@test.com',
+          activatedAt: null,
+          firstName: 'Test',
+          lastName: 'Tester',
+          profilePicture: null,
+          agency: {
+            id: 0,
+            agencyName: '',
+            createdBy: 0,
+            deletedAt: '',
+            deletedBy: 0,
+          },
+          role: {
+            id: 1,
+            roleName: 'User',
+          },
+        },
+        jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+      };
     });
+
     it('should be created', () => {
       expect(service).toBeTruthy();
     });
 
     describe('login()', () => {
+      it ('should use POST as the request method', () => {
+        const payload = new LoginRequest();
+        service.login(payload).subscribe();
+        const req = httpTestingController.expectOne(`${route}/login/`);
+
+        expect(req.request.method).toBe('POST');
+      });
+
       it('should call the method', () => {
         const requestPayload: ILoginRequest = new LoginRequest();
-        const spy = spyOn(service, 'login').and.callThrough();
+        const spy = spyOn(apiService, 'post').and.callThrough();
 
         service.login(requestPayload);
         expect(spy).toHaveBeenCalled();
@@ -54,27 +107,9 @@ import {
 
       it('should return a login session', () => {
         const requestPayload: ILoginRequest = new LoginRequest();
-        const expectedValue: ISessionDTO = {
-          user: {
-            id: 1,
-            email: 'test@test.com',
-            activatedAt: null,
-            firstName: 'Test',
-            lastName: 'Tester',
-            profilePicture: null,
-            agency: {
-              id: 1,
-              agencyName: 'Test',
-            },
-            role: {
-              id: 1,
-              roleName: 'User',
-            },
-          },
-          jwtToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-        };
+        const expectedValue: ISessionDTO = { ...testUserSession };
         let response: ISessionDTO;
-        spyOn(service, 'login').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
 
         service.login(requestPayload).subscribe(res => {
           response = res;
@@ -82,11 +117,29 @@ import {
 
         expect(response).toEqual(expectedValue);
       });
+
+      it('should call userStateService.setUserSession on success', () => {
+        const requestPayload: ILoginRequest = new LoginRequest();
+        const expectedValue: ISessionDTO = { ...testUserSession };
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
+
+        service.login(requestPayload).subscribe(response => {
+          expect(userStateMock.setUserSession).toHaveBeenCalledWith(response.user);
+        });
+      });
     });
 
     describe('logout()', () => {
+      it ('should use GET as the request method', () => {
+        const id = 1;
+        service.logout().subscribe();
+        const req = httpTestingController.expectOne(`${route}/logout/`);
+
+        expect(req.request.method).toBe('GET');
+      });
+
       it('should call the method', () => {
-        const spy = spyOn(service, 'logout').and.callThrough();
+        const spy = spyOn(apiService, 'get').and.callThrough();
 
         service.logout();
         expect(spy).toHaveBeenCalled();

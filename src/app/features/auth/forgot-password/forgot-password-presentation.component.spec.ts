@@ -4,6 +4,9 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
+import { MockComponent } from 'ng-mocks';
+
+import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-form.component';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { ForgotPasswordPresentationComponent } from './forgot-password-presentation.component';
@@ -18,6 +21,7 @@ import { ForgotPasswordPresentationComponent } from './forgot-password-presentat
       TestBed.configureTestingModule({
         declarations: [
           ForgotPasswordPresentationComponent,
+          MockComponent(DynamicFormComponent),
         ],
       })
       .compileComponents();

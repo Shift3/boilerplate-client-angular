@@ -18,8 +18,8 @@ import { SaveCancelButtonConfig } from '@models/form/button';
 })
 export class SaveCancelComponent {
   @Input() public buttonConfig: SaveCancelButtonConfig = new SaveCancelButtonConfig();
-  @Input() public form: FormGroup;
-  @Input() public shouldDisable: boolean;
+  @Input() public form: FormGroup = new FormGroup({});
+  @Input() public shouldDisable: boolean = false;
 
   @Output() public emitSave = new EventEmitter<void>();
 

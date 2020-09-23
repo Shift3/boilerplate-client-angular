@@ -25,7 +25,7 @@ const components = {
 })
 export class DynamicFieldDirective implements OnInit, OnDestroy {
   @Input() fieldConfig: IFormField<IInputField & ISelectField<unknown>>;
-  @Input() group: FormGroup;
+  @Input() group: FormGroup = new FormGroup({});
 
   private component: ComponentRef<FormInputComponent & FormSelectComponent>;
 

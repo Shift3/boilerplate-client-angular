@@ -36,7 +36,7 @@ import { UserService } from '@app/infrastructure/core/services/api/user.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpSmartComponent {
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Sign Up'}),

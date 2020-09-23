@@ -7,7 +7,10 @@ import {
 } from '@angular/core';
 
 import { IAgencyDTO } from '@models/agency';
-import { IFormConfig } from '@models/form/form';
+import {
+  FormConfig,
+  IFormConfig,
+} from '@models/form/form';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -18,7 +21,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class AgencyDetailPresentationComponent {
   @Input() public agency: IAgencyDTO;
-  @Input() public formConfig: IFormConfig;
+  @Input() public formConfig: IFormConfig = new FormConfig();
   @Input() public formTitle: string = 'Create Agency';
 
   @Output() public emitForm = new EventEmitter<FormGroup>();

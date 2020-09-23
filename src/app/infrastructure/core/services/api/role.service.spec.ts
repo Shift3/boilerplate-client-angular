@@ -54,7 +54,7 @@ import { RoleService } from './role.service';
           },
         ];
         let response: IRoleDTO[];
-        spyOn(service, 'getRoleList').and.returnValue(observableOf(expectedValue));
+        spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
         service.getRoleList().subscribe(res => {
           response = res;

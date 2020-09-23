@@ -8,7 +8,10 @@ import {
 } from '@angular/core';
 
 import { IAgentDTO } from '@models/agent';
-import { IFormConfig } from '@models/form/form';
+import {
+  FormConfig,
+  IFormConfig,
+} from '@models/form/form';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -18,7 +21,7 @@ import { FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgentDetailPresentationComponent {
-  @Input() public formConfig: IFormConfig;
+  @Input() public formConfig: IFormConfig = new FormConfig();
   @Input() public formTitle: string = 'Create Agent';
   @Input() public agent: IAgentDTO;
 

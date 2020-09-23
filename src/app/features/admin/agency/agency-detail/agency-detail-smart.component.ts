@@ -40,7 +40,7 @@ import { SaveCancelButtonConfig } from '@models/form/button';
 })
 export class AgencyDetailSmartComponent implements OnInit {
   public agency: IAgencyDTO;
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
   public formTitle: string = '';
 
@@ -70,11 +70,11 @@ export class AgencyDetailSmartComponent implements OnInit {
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
-      submit: new SaveCancelButtonConfig({save: (this.agency.id) ? 'Update' : 'Create' }),
+      submit: new SaveCancelButtonConfig({save: (this.agency?.id) ? 'Update' : 'Create' }),
       controls: [
         new FormField<IInputField>({
           name: 'agencyName',
-          value: this.agency.agencyName,
+          value: this.agency?.agencyName,
           fieldType: 'input',
           label: 'Agency Name',
           fieldConfig : new InputField(),
