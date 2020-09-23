@@ -12,17 +12,26 @@ import { environment } from '@env/environment.test';
 import {
   ChangePasswordRequest,
   ChangeUserRequest,
+  ForgotPasswordRequest,
   IChangePasswordRequest,
   IChangeUserRequest,
+  IForgotPasswordRequest,
+  IResetPasswordRequest,
   IUserDTO,
+  ResetPasswordRequest,
   UserDTO,
 } from '@models/user';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '@core/services/notification.service';
-import { ISessionDTO } from '@models/auth';
+import {
+  ISessionDTO,
+  ISignupRequest,
+  SignupRequest,
+} from '@models/auth';
 import { UserService } from './user.service';
 import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 import { UserStateService } from '../state/user-state.service';
+import { IMessage } from '@models/message';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
@@ -92,6 +101,126 @@ import { UserStateService } from '../state/user-state.service';
     });
     it('should be created', () => {
       expect(service).toBeTruthy();
+    });
+
+    describe('signUp()', () => {
+      it ('should use POST as the request method', () => {
+        const payload: ISignupRequest = new SignupRequest();
+        service.signUp(payload).subscribe();
+        const req = httpTestingController.expectOne(`${route}/signup/`);
+
+        expect(req.request.method).toBe('POST');
+      });
+
+      it('should return a status message on success', () => {
+        const payload: ISignupRequest = new SignupRequest();
+        const expectedValue: IUserDTO = new UserDTO();
+        let response: IUserDTO;
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
+
+        service.signUp(payload).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('forgotPassword()', () => {
+      it ('should use POST as the request method', () => {
+        const payload: IForgotPasswordRequest = new ForgotPasswordRequest();
+        service.forgotPassword(payload).subscribe();
+        const req = httpTestingController.expectOne(`${route}/forgot-password/`);
+
+        expect(req.request.method).toBe('POST');
+      });
+
+      it('should return a status message on success', () => {
+        const payload: IForgotPasswordRequest = new ForgotPasswordRequest();
+        const expectedValue: IMessage = {
+          message: '',
+        };
+        let response: IMessage;
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
+
+        service.forgotPassword(payload).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+    });
+
+    describe('resetPassword()', () => {
+      it ('should use PUT as the request method', () => {
+        const payload: IResetPasswordRequest = new ResetPasswordRequest();
+        const token = '';
+        service.resetPassword(payload, token).subscribe();
+        const req = httpTestingController.expectOne(`${route}/reset-password/${token}`);
+
+        expect(req.request.method).toBe('PUT');
+      });
+
+      it('should return the requested user on successful reset', () => {
+        const payload: IResetPasswordRequest = new ResetPasswordRequest();
+        const token = '';
+        const expectedValue: IUserDTO = { ...testUser };
+        let response: IUserDTO;
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.resetPassword(payload, token).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+
+      it(`should show a notification on success`, () => {
+        const payload: IResetPasswordRequest = new ResetPasswordRequest();
+        const token = '';
+        const expectedValue: IUserDTO = { ...testUser };
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.resetPassword(payload, token).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
+      });
+    });
+
+    describe('activateAccount()', () => {
+      it ('should use PUT as the request method', () => {
+        const payload: IResetPasswordRequest = new ResetPasswordRequest();
+        const token = '';
+        service.activateAccount(payload, token).subscribe();
+        const req = httpTestingController.expectOne(`${route}/activate-account/${token}`);
+
+        expect(req.request.method).toBe('PUT');
+      });
+
+      it('should return the requested user on successful activation', () => {
+        const payload: IResetPasswordRequest = new ResetPasswordRequest();
+        const token = '';
+        const expectedValue: IUserDTO = { ...testUser };
+        let response: IUserDTO;
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.activateAccount(payload, token).subscribe(res => {
+          response = res;
+        });
+
+        expect(response).toEqual(expectedValue);
+      });
+
+      it(`should show a notification on success`, () => {
+        const payload: IResetPasswordRequest = new ResetPasswordRequest();
+        const token = '';
+        const expectedValue: IUserDTO = { ...testUser };
+        spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+        service.activateAccount(payload, token).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
+      });
     });
 
     describe('findProfile()', () => {
