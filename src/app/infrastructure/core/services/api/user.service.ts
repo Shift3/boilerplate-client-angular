@@ -18,7 +18,6 @@ import { IMessage } from '@models/message';
 import { NotificationService } from '../notification.service';
 import {
   ISessionDTO,
-  ISignupDTO,
   ISignupRequest,
 } from '@models/auth';
 import { UserStateService } from '../state/user-state.service';
@@ -39,10 +38,10 @@ export class UserService {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
   }
 
-  public signUp(payload: ISignupRequest): Observable<ISignupDTO> {
+  public signUp(payload: ISignupRequest): Observable<IUserDTO> {
     const endpoint = `${this.url}/signup/`;
 
-    return this.apiService.post<ISignupDTO, ISignupRequest>(endpoint, payload);
+    return this.apiService.post<IUserDTO, ISignupRequest>(endpoint, payload);
   }
 
   public forgotPassword(payload: IForgotPasswordRequest): Observable<IMessage> {
@@ -51,10 +50,10 @@ export class UserService {
     return this.apiService.post(endpoint, payload);
   }
 
-  public resetPassword(payload: IResetPasswordRequest, token: string): Observable<IMessage> {
+  public resetPassword(payload: IResetPasswordRequest, token: string): Observable<IUserDTO> {
     const endpoint = `${this.url}/reset-password/${token}`;
 
-    return this.apiService.put<IMessage, IResetPasswordRequest>(endpoint, payload).pipe(
+    return this.apiService.put<IUserDTO, IResetPasswordRequest>(endpoint, payload).pipe(
       tap(() => {
         const message = 'The password was reset successfully.';
         return this.notificationService.showSuccess([message]);
@@ -62,10 +61,10 @@ export class UserService {
     );
   }
 
-  public activateAccount(payload: IResetPasswordRequest, token: string): Observable<IMessage> {
+  public activateAccount(payload: IResetPasswordRequest, token: string): Observable<IUserDTO> {
     const endpoint = `${this.url}/activate-account/${token}`;
 
-    return this.apiService.put<IMessage, IResetPasswordRequest>(endpoint, payload).pipe(
+    return this.apiService.put<IUserDTO, IResetPasswordRequest>(endpoint, payload).pipe(
       tap(() => {
         const message = 'This account has been activated. Please log in.';
         return this.notificationService.showSuccess([message]);
