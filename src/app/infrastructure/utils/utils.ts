@@ -9,4 +9,8 @@ export class Utils {
       ? `${new Date().getFullYear()}`
       : `${Constants.initialCopyrightYear} - ${new Date().getFullYear()}`;
   }
+
+  static trackByValue<T, U>(index: number, value: T, key: string): U | null {
+    return (value) ? value[key] as U : null;
+  }
 }
