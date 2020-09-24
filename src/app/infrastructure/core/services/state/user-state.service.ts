@@ -11,7 +11,10 @@ import {
   RoleDTO,
   RoleCheck,
 } from '@models/role';
-import { IUserDTO } from '@models/user';
+import {
+  IUserDTO,
+  UserDTO,
+} from '@models/user';
 
 /**
  * Maintains active state listeners for authentication and role status.
@@ -33,7 +36,7 @@ export class UserStateService {
   }
 
   public resetUserSession(): void {
-    this.userSession$.next(null);
+    this.userSession$.next(new UserDTO());
   }
 
   /**

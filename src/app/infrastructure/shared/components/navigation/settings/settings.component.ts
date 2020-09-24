@@ -38,7 +38,7 @@ export class SettingsComponent {
     private router: Router,
   ) { }
 
-  public trackByLink(index: number, item: INavigation): number {
+  public trackByLink(index: number, item: INavigation): number | null {
     return Utils.trackByValue(index, item, 'id');
   }
 
