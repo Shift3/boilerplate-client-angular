@@ -10,7 +10,13 @@ export class Utils {
       : `${Constants.initialCopyrightYear} - ${new Date().getFullYear()}`;
   }
 
+  /**
+   * Helps index an `*ngFor` iterator. Must be provided a valid key.
+   */
   static trackByValue<T, U>(index: number, value: T, key: string): U | null {
+    if (value[key] === undefined) {
+      throw new TypeError('Key not provided to trackByValue() for *ngFor.');
+    }
     return (value) ? value[key] as U : null;
   }
 }
