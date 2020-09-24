@@ -1,3 +1,5 @@
+import { version } from '../../package.json';
+
 export const environment = {
   production: false,
   apiRoute: 'http://localhost:3000',
@@ -8,4 +10,5 @@ export const environment = {
   },
   testUnit: true,
   testIntegration: true,
+  version,
 };

@@ -1,3 +1,5 @@
+import { version } from '../../package.json';
+
 export const environment = {
   production: true,
   name: 'Staging',
@@ -7,4 +9,5 @@ export const environment = {
     enabled: true,
     dialogEnabled: true,
   },
+  version,
 };
