@@ -15,7 +15,7 @@ import { Utils } from '@utils/utils';
 export class FooterComponent {
   public copyrightYear: string = Utils.getCopyrightYear();
   public clientEnvironment = {
-    environment: environment.name,
+    environment: environment.environment,
     version: environment.version,
   };
 }
