@@ -3,7 +3,7 @@
   <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-container *ngIf="formConfig.controls.length">
       <ng-container
-        *ngFor="let field of formConfig.controls"
+        *ngFor="let field of formConfig.controls; trackBy: trackByName"
         appDynamicField
         [fieldConfig]="field"
         [group]="form"

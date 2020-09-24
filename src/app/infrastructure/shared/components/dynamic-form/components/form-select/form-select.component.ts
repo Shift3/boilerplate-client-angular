@@ -11,7 +11,8 @@ import {
   FormField,
   IFormField,
 } from '@models/form/form';
-import { ISelectField, SelectField } from '@models/form/select';
+import { ISelectField, ISelectOptions, SelectField } from '@models/form/select';
+import { Utils } from '@utils/utils';
 
 @Component({
   selector: 'app-form-select',
@@ -22,6 +23,10 @@ import { ISelectField, SelectField } from '@models/form/select';
 export class FormSelectComponent {
   public config: IFormField<ISelectField<unknown>> = new FormField<ISelectField<unknown>>({ fieldConfig: new SelectField<unknown>() });
   public group: FormGroup = new FormGroup({});
+
+  public trackByOptions<T>(index: number, item: ISelectOptions<T>): string | null {
+    return Utils.trackByValue(index, item, 'name');
+  }
 
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);
