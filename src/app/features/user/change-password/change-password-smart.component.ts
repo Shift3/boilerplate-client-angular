@@ -95,10 +95,7 @@ export class ChangePasswordSmartComponent {
 
   public changePassword(): void {
     const requestPayload = this.buildPayload();
-    const snapshot = this.activatedRoute.snapshot;
-    this.userService.changePassword(requestPayload, this.user.id).subscribe(() => {
-      this.location.back();
-    });
+    this.userService.changePassword(requestPayload, this.user.id).subscribe(() => this.location.back());
   }
 
   private buildPayload(): IChangePasswordRequest {
