@@ -47,7 +47,9 @@ export class UserService {
   public forgotPassword(payload: IForgotPasswordRequest): Observable<IMessage> {
     const endpoint = `${this.url}/forgot-password/`;
 
-    return this.apiService.post(endpoint, payload);
+    return this.apiService.post<IMessage, IForgotPasswordRequest>(endpoint, payload).pipe(
+      tap((response) => this.notificationService.showSuccess([response.message])),
+    );
   }
 
   public resetPassword(payload: IResetPasswordRequest, token: string): Observable<IUserDTO> {

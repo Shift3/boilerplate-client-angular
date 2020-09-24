@@ -25,6 +25,7 @@ export class UserListPresentationComponent {
 
   @Output() public emitDelete = new EventEmitter<IUserDTO>();
   @Output() public emitResendActivationEmail = new EventEmitter<IUserDTO>();
+  @Output() public emitResetPassword = new EventEmitter<IUserDTO>();
 
   public deleteUser(user: IUserDTO): void {
     this.emitDelete.emit(user);
@@ -32,5 +33,8 @@ export class UserListPresentationComponent {
 
   public resendActivationEmail(user: IUserDTO): void {
     this.emitResendActivationEmail.emit(user);
+  }
+  public resetPassword(user: IUserDTO): void {
+    this.emitResetPassword.emit(user);
   }
 }

@@ -18,7 +18,10 @@ import {
 } from 'rxjs/operators';
 
 import { ConfirmModalConfig } from '@models/modal';
-import { IUserDTO } from '@models/user';
+import {
+  ForgotPasswordRequest,
+  IUserDTO,
+} from '@models/user';
 import { ModalService } from '@core/services/modal.service';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
@@ -33,6 +36,7 @@ import { IRoleCheck } from '@models/role';
       [userList]="(userList$ | async)"
       (emitDelete)="openDeleteModal($event)"
       (emitResendActivationEmail)="openResendActivationEmailModal($event)"
+      (emitResetPassword)="openResetPasswordModal($event)"
     ></app-user-list-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -81,6 +85,18 @@ export class UserListSmartComponent implements OnInit {
     });
   }
 
+  public openResetPasswordModal(user: IUserDTO): void {
+    const modalConfig = new ConfirmModalConfig({
+      message: `Send Reset Password Email to ${user.firstName} ${user.lastName}?`,
+      action: 'Send',
+    });
+    this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
+      if (result) {
+        this.resetPassword(user);
+      }
+    });
+  }
+
   private getLoggedInUser(): Observable<IUserDTO> {
     return this.userStateService.getUserSession();
   }
@@ -103,5 +119,10 @@ export class UserListSmartComponent implements OnInit {
 
   private resendActivationEmail(user: IUserDTO): void {
     this.userService.resendActivationEmail(user).subscribe();
+  }
+
+  private resetPassword(user: IUserDTO): void {
+    const payload = new ForgotPasswordRequest({ email: user.email });
+    this.userService.forgotPassword(payload).subscribe();
   }
 }

@@ -30,6 +30,7 @@ export class UserTableComponent {
 
   @Output() public emitDelete = new EventEmitter<IUserDTO>();
   @Output() public emitResendActivationEmail = new EventEmitter<IUserDTO>();
+  @Output() public emitResetPassword = new EventEmitter<IUserDTO>();
 
   public trackById(index: number, item: IUserDTO): number | null {
     return Utils.trackByValue(index, item, 'id');
@@ -45,5 +46,9 @@ export class UserTableComponent {
 
   public resendActivationEmail(user: IUserDTO): void {
     this.emitResendActivationEmail.emit(user);
+  }
+
+  public resetPassword(user: IUserDTO): void {
+    this.emitResetPassword.emit(user);
   }
 }
