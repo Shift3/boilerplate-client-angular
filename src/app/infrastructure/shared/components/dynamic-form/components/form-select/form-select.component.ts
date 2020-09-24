@@ -28,10 +28,6 @@ export class FormSelectComponent {
   public config: IFormField<ISelectField<unknown>> = new FormField<ISelectField<unknown>>({ fieldConfig: new SelectField<unknown>() });
   public group: FormGroup = new FormGroup({});
 
-  public trackByOptions<T>(index: number, item: ISelectOptions<T>): string | null {
-    return Utils.trackByValue(index, item, 'name');
-  }
-
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);
   }
