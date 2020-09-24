@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
+import { environment } from '@env/environment';
 import { Utils } from '@utils/utils';
 
 @Component({
@@ -13,4 +14,8 @@ import { Utils } from '@utils/utils';
 })
 export class FooterComponent {
   public copyrightYear: string = Utils.getCopyrightYear();
+  public clientEnvironment = {
+    environment: environment.environment,
+    version: environment.version,
+  };
 }

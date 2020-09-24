@@ -37,7 +37,8 @@
       "@utils/*": [
         "app/infrastructure/utils/*"
       ]
-    }
+    },
+    "resolveJsonModule": true,
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

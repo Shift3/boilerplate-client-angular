@@ -1,5 +1,9 @@
+import { name, version } from '../../package.json';
+
 export const environment = {
   production: false,
+  name,
+  environment: 'Test',
   apiRoute: 'http://localhost:3000',
   sentry: {
     DSN: '',
@@ -8,4 +12,5 @@ export const environment = {
   },
   testUnit: true,
   testIntegration: true,
+  version,
 };
