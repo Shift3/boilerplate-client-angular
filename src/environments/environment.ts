@@ -1,4 +1,4 @@
-import { version } from '../../package.json';
+import { name, version } from '../../package.json';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -6,7 +6,8 @@ import { version } from '../../package.json';
 
 export const environment = {
   production: false,
-  name: 'Development',
+  name,
+  environment: 'Development',
   apiRoute: 'http://localhost:3000',
   sentry: {
     DSN: '',

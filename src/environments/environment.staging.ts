@@ -1,8 +1,9 @@
-import { version } from '../../package.json';
+import { name, version } from '../../package.json';
 
 export const environment = {
   production: true,
-  name: 'Staging',
+  name,
+  environment: 'Staging',
   apiRoute: '',
   sentry: {
     DSN: '',
