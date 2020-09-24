@@ -3,12 +3,11 @@ import { Injectable } from '@angular/core';
 import * as Sentry from '@sentry/browser';
 
 import { environment } from '@env/environment';
-import { version } from 'version';
 
 Sentry.init({
   dsn: environment.sentry.DSN,
   environment: environment.name,
-  release: version,
+  release: `${environment.name}@${environment.version}`,
   // TODO: Evaluate for false negatives.
   integrations(integrations) {
     return integrations.filter((i) => i.name !== 'TryCatch');
