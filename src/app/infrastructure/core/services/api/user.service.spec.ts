@@ -149,6 +149,16 @@ import { IMessage } from '@models/message';
 
         expect(response).toEqual(expectedValue);
       });
+
+      it(`should show a notification on success`, () => {
+        const payload: IForgotPasswordRequest = new ForgotPasswordRequest();
+        const expectedValue: IMessage = { message: 'Success' };
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
+
+        service.forgotPassword(payload).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
+      });
     });
 
     describe('resetPassword()', () => {
