@@ -21,7 +21,7 @@ import {
   IForgotPasswordRequest,
   ForgotPasswordRequest,
 } from '@models/user';
-import { IMessage } from '@app/infrastructure/models/message';
+import { IMessage } from '@models/message';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { UserService } from '@core/services/api/user.service';
 

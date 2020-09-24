@@ -11,7 +11,7 @@ import {
   IFormConfig,
 } from '@models/form/form';
 import { FormGroup } from '@angular/forms';
-import { IMessage } from '@app/infrastructure/models/message';
+import { IMessage } from '@models/message';
 
 @Component({
   selector: 'app-forgot-password-presentation',

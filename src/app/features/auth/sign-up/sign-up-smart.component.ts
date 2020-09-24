@@ -23,7 +23,7 @@ import {
   ISignupRequest,
   SignupRequest,
 } from '@models/auth';
-import { UserService } from '@app/infrastructure/core/services/api/user.service';
+import { UserService } from '@core/services/api/user.service';
 
 @Component({
   template: `
