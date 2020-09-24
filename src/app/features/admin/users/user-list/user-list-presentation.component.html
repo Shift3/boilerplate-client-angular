@@ -9,6 +9,7 @@
     [tableData]="userList"
     (emitDelete)="deleteUser($event)"
     (emitResendActivationEmail)="resendActivationEmail($event)"
+    (emitResetPassword)="resetPassword($event)"
   ></app-user-table>
 </ng-container>
 <ng-template #loading>
