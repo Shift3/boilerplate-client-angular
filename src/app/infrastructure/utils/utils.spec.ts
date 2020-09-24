@@ -1,4 +1,5 @@
 import { Constants } from './constants';
+import { Logger } from './logger';
 import { Utils } from './utils';
 
 describe('[Unit] Utils', () => {
@@ -38,7 +39,7 @@ describe('[Unit] Utils', () => {
       expect(Utils.trackByValue(index, value, key)).toEqual(expectedValue);
     });
 
-    it('should should throw a TypeError when it cannot use the provided key', () => {
+    it('should should throw a console warning when it cannot use the provided key', () => {
       const index = 0;
       const value = {
         id: 1,
@@ -46,7 +47,10 @@ describe('[Unit] Utils', () => {
       };
       const key = 'foo';
 
-      expect(() => Utils.trackByValue(index, value, key)).toThrowError(TypeError);
+      const spy = spyOn(Logger, 'warn');
+      Utils.trackByValue(index, value, key);
+
+      expect(spy).toHaveBeenCalled();
     });
   });
 });

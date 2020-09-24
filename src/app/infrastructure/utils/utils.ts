@@ -1,4 +1,5 @@
 import { Constants } from './constants';
+import { Logger } from './logger';
 
 export class Utils {
   /**
@@ -15,7 +16,7 @@ export class Utils {
    */
   static trackByValue<T, U>(index: number, value: T, key: string): U | null {
     if (value[key] === undefined) {
-      throw new TypeError('Key not provided to trackByValue() for *ngFor.');
+      Logger.warn('Key not provided to trackByValue() for *ngFor.');
     }
     return (value) ? value[key] as U : null;
   }
