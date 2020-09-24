@@ -35,12 +35,12 @@ export class Navigation implements INavigation {
           link: '/admin/agency-list',
           icon: 'fa fa-building',
         },
-        {
-          id: 4,
-          label: 'Settings',
-          link: '/admin/settings',
-          icon: 'fa fa-cog',
-        },
+        // {
+        //   id: 4,
+        //   label: 'Settings',
+        //   link: '/admin/settings',
+        //   icon: 'fa fa-cog',
+        // },
       ];
     }
     else if (roleList.isAdmin) {
@@ -57,12 +57,12 @@ export class Navigation implements INavigation {
           link: '/admin/user-list',
           icon: 'fa fa-users',
         },
-        {
-          id: 3,
-          label: 'Settings',
-          link: '/admin/settings',
-          icon: 'fa fa-cog',
-        },
+        // {
+        //   id: 3,
+        //   label: 'Settings',
+        //   link: '/admin/settings',
+        //   icon: 'fa fa-cog',
+        // },
       ];
     }
 
