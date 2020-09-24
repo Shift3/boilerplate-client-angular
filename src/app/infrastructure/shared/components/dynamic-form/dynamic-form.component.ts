@@ -9,7 +9,11 @@ import {
 import { FormGroup } from '@angular/forms';
 
 import { FormService } from '@core/services/form.service';
-import { FormConfig, IFormConfig, IFormField } from '@models/form/form';
+import {
+  FormConfig,
+  IFormConfig,
+  IFormField,
+} from '@models/form/form';
 import { Utils } from '@utils/utils';
 
 @Component({
