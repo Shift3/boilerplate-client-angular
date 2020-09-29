@@ -5,6 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { Trackable } from '@models/trackable';
 
 import { IAgencyDTO } from '@models/agency';
 import {
@@ -23,6 +24,8 @@ export class AgencyTableComponent {
   @Input() public tableConfig: ITableConfig = new TableConfig();
 
   @Output() public emitDelete = new EventEmitter<IAgencyDTO>();
+
+  public trackable = new Trackable('id');
 
   public trackById(index: number, item: IAgencyDTO): number | null {
     return Utils.trackByValue(index, item, 'id');
