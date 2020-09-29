@@ -1,14 +1,25 @@
 import { Injectable } from '@angular/core';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
-  public showSuccess(message: string[]): void {
-    alert(message);
+  constructor(
+    private toastr: ToastrService,
+  ) { }
+  public showSuccess(messageList: string[]): void {
+    const formattedMessage = this.formatMessageList(messageList);
+    this.toastr.success(formattedMessage, '', { enableHtml: true });
   }
 
-  public showError(message: string[]): void {
-    alert(message);
+  public showError(messageList: string[]): void {
+    const formattedMessage = this.formatMessageList(messageList);
+    this.toastr.error(formattedMessage, '', { enableHtml: true, timeOut: 10000 });
+  }
+
+  private formatMessageList(messageList: string[]): string {
+    return messageList.join('<br />');
   }
 }

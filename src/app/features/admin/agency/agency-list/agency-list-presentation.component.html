@@ -1,0 +1,15 @@
+<div class="row">
+  <button class="btn btn-add" routerLink="/admin/create-agency">{{ "Add Agency" |  uppercase }}</button>
+</div>
+<ng-container *ngIf="agencyList; else loading">
+  <app-agency-table
+    class="route-content"
+    [tableData]="agencyList"
+    (emitDelete)="deleteAgency($event)"
+  ></app-agency-table>
+</ng-container>
+<ng-template #loading>
+  <div class="table">
+    <div class="loader"></div>
+  </div>
+</ng-template>

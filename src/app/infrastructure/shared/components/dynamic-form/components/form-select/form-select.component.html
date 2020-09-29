@@ -1,14 +1,15 @@
-<div [formGroup]="group">
-  <label [for]="config.label">{{ config.label }}</label>
-    <select
-      [id]="config.name"
-      [name]="config.name"
-      [formControlName]="config.name"
-    >
-      <label [for]="config.label"></label>
-      <option *ngFor="let option of config.fieldConfig.options" [value]="option.value">
-        {{ option.name }}
-      </option>
-    </select>
-    {{ formControl.errors | formError }}
+<div class="field-container" [formGroup]="group">
+  <label class="field-label" [for]="config.name">{{ config.label }}</label>
+  <select
+    [id]="config.name"
+    [name]="config.name"
+    [formControlName]="config.name"
+  >
+    <option *ngFor="let option of config.fieldConfig.options" [value]="option[config.fieldConfig.optionValue]">
+      {{ option[config.fieldConfig.optionName] }}
+    </option>
+  </select>
+  <span class="field-label">
+    {{ formControl?.errors | formError }}
+  </span>
 </div>

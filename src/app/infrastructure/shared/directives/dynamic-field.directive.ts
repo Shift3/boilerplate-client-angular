@@ -24,8 +24,8 @@ const components = {
   selector: '[appDynamicField]',
 })
 export class DynamicFieldDirective implements OnInit, OnDestroy {
-  @Input() fieldConfig: IFormField<IInputField & ISelectField>;
-  @Input() group: FormGroup;
+  @Input() fieldConfig: IFormField<IInputField & ISelectField<unknown>>;
+  @Input() group: FormGroup = new FormGroup({});
 
   private component: ComponentRef<FormInputComponent & FormSelectComponent>;
 

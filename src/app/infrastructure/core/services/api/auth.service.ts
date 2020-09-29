@@ -3,8 +3,12 @@ import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   Observable,
+  of as observableOf,
 } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {
+  catchError,
+  tap,
+} from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 import { environment } from '@env/environment';
@@ -12,6 +16,7 @@ import {
   ILoginRequest,
   ISessionDTO,
 } from '@models/auth';
+import { UserStateService } from '../state/user-state.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +28,7 @@ export class AuthService {
 
   constructor(
     private apiService: ApiService,
+    private userStateService: UserStateService,
   ) {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
   }
@@ -31,21 +37,28 @@ export class AuthService {
     const endpoint = `${this.url}/login/`;
 
     return this.apiService.post<ISessionDTO, ILoginRequest>(endpoint, payload).pipe(
-      tap((response) => localStorage.setItem('token', response.jwt_token)),
-      tap((response) => this.setToken(response.jwt_token)),
+      tap((response) => localStorage.setItem('token', response.jwtToken)),
+      tap((response) => this.userStateService.setUserSession(response.user)),
+      tap((response) => this.setToken(response.jwtToken)),
     );
   }
 
-  public logout(): Observable<never>  {
+  public logout(): Observable<never | null> {
     const endpoint = `${this.url}/logout/`;
 
     return this.apiService.get<never>(endpoint).pipe(
       tap(() => this.resetToken()),
-      tap(() => localStorage.clear()),
+      tap(() => this.clearSession()),
+      // Reset session client-side even if server-side logout call fails.
+      catchError(() => {
+        this.clearSession();
+        this.resetToken();
+        return observableOf(null);
+      }),
     );
   }
 
-  public getToken(): Observable<string>  {
+  public getToken(): Observable<string> {
     return this.token$.asObservable();
   }
 
@@ -55,5 +68,11 @@ export class AuthService {
 
   public resetToken(): void {
     this.token$.next('');
+  }
+
+  public clearSession(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.userStateService.resetUserSession();
   }
 }

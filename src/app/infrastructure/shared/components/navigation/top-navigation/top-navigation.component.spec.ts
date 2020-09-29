@@ -1,31 +1,39 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 
-import { TopNavigationComponent } from './top-navigation.component';
+import { MockComponent } from 'ng-mocks';
 
-describe('TopNavigationComponent', () => {
-  let component: TopNavigationComponent;
-  let fixture: ComponentFixture<TopNavigationComponent>;
+import { environment } from '@env/environment.test';
+import { Logger } from '@utils/logger';
+import { TopNavigationSmartComponent } from './top-navigation-smart.component';
+import { TopNavigationPresentationComponent } from './top-navigation-presentation.component';
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TopNavigationComponent ],
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-      ],
-    })
-    .compileComponents();
-  }));
+!environment.testIntegration
+  ? Logger.log('Integration skipped')
+  : describe('[Integration] TopNavigationSmartComponent', () => {
+    let component: TopNavigationSmartComponent;
+    let fixture: ComponentFixture<TopNavigationSmartComponent>;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TopNavigationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          TopNavigationSmartComponent,
+          MockComponent(TopNavigationPresentationComponent),
+        ],
+        imports: [
+          HttpClientTestingModule,
+        ],
+      })
+      .compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TopNavigationSmartComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});

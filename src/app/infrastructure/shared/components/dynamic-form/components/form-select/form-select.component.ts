@@ -7,8 +7,16 @@ import {
   FormGroup,
 } from '@angular/forms';
 
-import { IFormField } from '@models/form/form';
-import { ISelectField } from '@models/form/select';
+import {
+  FormField,
+  IFormField,
+} from '@models/form/form';
+import {
+  ISelectField,
+  ISelectOptions,
+  SelectField,
+} from '@models/form/select';
+import { Utils } from '@utils/utils';
 
 @Component({
   selector: 'app-form-select',
@@ -17,8 +25,8 @@ import { ISelectField } from '@models/form/select';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormSelectComponent {
-  public config: IFormField<ISelectField>;
-  public group: FormGroup;
+  public config: IFormField<ISelectField<unknown>> = new FormField<ISelectField<unknown>>({ fieldConfig: new SelectField<unknown>() });
+  public group: FormGroup = new FormGroup({});
 
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);

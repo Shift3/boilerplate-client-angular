@@ -6,9 +6,12 @@ import {
   Output,
 } from '@angular/core';
 
-import { IFormConfig } from '@models/form/form';
+import {
+  FormConfig,
+  IFormConfig,
+} from '@models/form/form';
 import { FormGroup } from '@angular/forms';
-import { IMessage } from '@app/infrastructure/models/message';
+import { IMessage } from '@models/message';
 
 @Component({
   selector: 'app-forgot-password-presentation',
@@ -17,7 +20,7 @@ import { IMessage } from '@app/infrastructure/models/message';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForgotPasswordPresentationComponent {
-  @Input() public formConfig: IFormConfig;
+  @Input() public formConfig: IFormConfig = new FormConfig();
   @Input() public message: IMessage;
 
   @Output() public emitForm = new EventEmitter<FormGroup>();

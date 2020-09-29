@@ -38,26 +38,32 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPasswordSmartComponent {
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Submit'}),
-    validation: [ MatchFieldValidation.validFieldMatch('new_password', 'confirm_password', 'Password') ],
+    validation: [ MatchFieldValidation.validFieldMatch('newPassword', 'confirmPassword', 'Password') ],
     controls: [
       new FormField<IInputField>({
-        name: 'new_password',
+        name: 'newPassword',
         fieldType: 'input',
         label: 'New Password',
         placeholder: 'Enter the new password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig : new InputField({
+          inputType: 'password',
+          autocomplete: 'new-password',
+        }),
         validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
-        name: 'confirm_password',
+        name: 'confirmPassword',
         fieldType: 'input',
         label: 'Confirm New Password',
         placeholder: 'Confirm the new password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig : new InputField({
+          inputType: 'password',
+          autocomplete: 'new-password',
+        }),
       }),
     ],
   });

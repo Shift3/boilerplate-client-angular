@@ -37,7 +37,7 @@ import { SaveCancelButtonConfig } from '@models/form/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginSmartComponent {
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Log In'}),
@@ -47,7 +47,10 @@ export class LoginSmartComponent {
         fieldType: 'input',
         label: 'Email',
         placeholder: 'Enter your email',
-        fieldConfig : new InputField({ inputType: 'email' }),
+        fieldConfig : new InputField({
+          inputType: 'email',
+          autocomplete: 'email',
+        }),
         validation: [ EmailValidation.validEmail(true) ],
       }),
       new FormField<IInputField>({
@@ -55,7 +58,10 @@ export class LoginSmartComponent {
         fieldType: 'input',
         label: 'Password',
         placeholder: 'Enter your password',
-        fieldConfig : new InputField({ inputType: 'password' }),
+        fieldConfig : new InputField({
+          inputType: 'password',
+          autocomplete: 'current-password',
+        }),
         validation: [ RequiredValidation.required('Password') ],
       }),
     ],

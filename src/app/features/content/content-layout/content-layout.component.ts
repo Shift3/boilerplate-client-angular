@@ -5,7 +5,7 @@ import {
 
 import { Observable } from 'rxjs';
 
-import { NavbarStateService } from '@core/services/navbar-state.service';
+import { NavbarStateService } from '@core/services/state/navbar-state.service';
 
 /**
  * Wrapper component for all `ContentModule` routes.

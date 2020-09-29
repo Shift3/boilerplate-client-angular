@@ -1,8 +1,32 @@
+import { AgencyDTO, IAgencyDTO } from './agency';
+import { IRoleDTO, RoleDTO } from './role';
+
 export interface IUserDTO {
   id: number;
   email: string;
-  first_name: string;
-  last_name: string;
+  activatedAt: string | null;
+  firstName: string;
+  lastName: string;
+  profilePicture: string | null;
+  agency: IAgencyDTO;
+  role: IRoleDTO;
+}
+
+export class UserDTO implements IUserDTO {
+  id: number = 0;
+  email: string = '';
+  activatedAt: string | null = null;
+  firstName: string = '';
+  lastName: string = '';
+  profilePicture: string | null = null;
+  agency: IAgencyDTO = new AgencyDTO();
+  role: IRoleDTO = new RoleDTO();
+
+  constructor(configOverride?: Partial<IUserDTO>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
 }
 
 export interface IForgotPasswordRequest {
@@ -20,16 +44,57 @@ export class ForgotPasswordRequest implements IForgotPasswordRequest {
 }
 
 export interface IResetPasswordRequest {
-  /* tslint:disable:variable-name */
-  new_password: string;
-  confirm_password: string;
+  newPassword: string;
+  confirmPassword: string;
 }
 
 export class ResetPasswordRequest implements IResetPasswordRequest {
-  new_password: string = '';
-  confirm_password: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
 
   constructor(configOverride?: IResetPasswordRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface IChangePasswordRequest {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
+export class ChangePasswordRequest implements IChangePasswordRequest {
+  oldPassword: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
+
+  constructor(configOverride?: IChangePasswordRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface IChangeUserRequest {
+  email: string;
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+  agency: IAgencyDTO;
+  role: IRoleDTO;
+}
+
+export class ChangeUserRequest implements IChangeUserRequest {
+  email: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  profilePicture: string = '';
+  agency: IAgencyDTO = new AgencyDTO();
+  role: IRoleDTO = new RoleDTO();
+
+  constructor(configOverride?: IChangeUserRequest) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }

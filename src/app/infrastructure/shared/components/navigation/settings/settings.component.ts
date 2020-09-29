@@ -1,22 +1,22 @@
 import {
   Component,
   ChangeDetectionStrategy,
+  Input,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { AuthService } from '@core/services/api/auth.service';
-import { ConfirmModalComponent } from '../../confirm-modal/confirm-modal.component';
-import {
-  ConfirmModalConfig,
-  IConfirmModalConfig,
-} from '@models/modal';
+import { ConfirmModalConfig } from '@models/modal';
+import { ModalService } from '@core/services/modal.service';
 import {
   INavigation,
   profileLinkList,
 } from '@models/navigation';
-import { NavbarStateService } from '@core/services/navbar-state.service';
+import { NavbarStateService } from '@core/services/state/navbar-state.service';
+import {
+  IUserDTO,
+  UserDTO,
+} from '@models/user';
 
 @Component({
   selector: 'app-settings',
@@ -25,37 +25,33 @@ import { NavbarStateService } from '@core/services/navbar-state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {
+  @Input() loggedInUser: IUserDTO = new UserDTO();
+
   public profileLinks: INavigation[] = profileLinkList;
   public showTopNav = (localStorage.getItem('navbarToggle') === 'top') ? true : false;
 
   constructor(
     private authService: AuthService,
-    private modalService: NgbModal,
+    private modalService: ModalService,
     private navbarStateService: NavbarStateService,
     private router: Router,
   ) { }
-
-  public trackByLink(index: number, item: INavigation): number {
-    return (item) ? item.id : null;
-  }
 
   public openConfirmModal(): void {
     const modalConfig = new ConfirmModalConfig({
       message: 'This will end your login session.',
       action: 'Log Out',
     });
-    const modalRef = this.modalService.open(ConfirmModalComponent);
-
-    modalRef.componentInstance.modalConfig = modalConfig;
-    modalRef.result.then((result: IConfirmModalConfig) => {
-      if (result) {
+    this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
+      if (isConfirmed) {
         this.signOut();
       }
     });
   }
 
   public signOut(): void {
-    this.authService.logout().subscribe(() => this.router.navigateByUrl('/auth'));
+    this.authService.logout().subscribe();
+    this.router.navigateByUrl('/auth');
   }
 
   // Client-side navigation toggles for debugging purposes

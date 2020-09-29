@@ -1,9 +1,15 @@
-<div [formGroup]="group" >
-  <label [for]="config.label">{{ config.label }}</label>
+<div class="field-container" [formGroup]="group">
+  <label class="field-label" [for]="config.name">{{ config.label }}</label>
   <input
+    [id]="config.name"
+    [name]="config.name"
     [type]="config.fieldConfig.inputType"
     [formControlName]="config.name"
     [placeholder]="config.placeholder"
+    [autocomplete]="config.fieldConfig.autocomplete"
+    [mask]="config.fieldConfig.mask"
   >
-  {{ formControl.errors | formError }}
+  <span class="field-label">
+    {{ formControl?.errors | formError }}
+  </span>
 </div>

@@ -1,10 +1,14 @@
+import { name, version } from '../../package.json';
+
 export const environment = {
   production: true,
-  name: 'Production',
+  name,
+  environment: '',
   apiRoute: '',
   sentry: {
     DSN: '',
     enabled: true,
     dialogEnabled: true,
   },
+  version,
 };

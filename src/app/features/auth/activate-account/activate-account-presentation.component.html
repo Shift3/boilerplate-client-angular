@@ -1,0 +1,6 @@
+<app-dynamic-form
+  [formConfig]="formConfig"
+  [formTitle]="formTitle"
+  (emitForm)="propagateForm($event)"
+  (emitSubmit)="submit()"
+></app-dynamic-form>

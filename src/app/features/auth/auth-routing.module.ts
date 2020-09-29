@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ActivateAccountPresentationComponent } from './activate-account/activate-account-presentation.component';
+import { ActivateAccountSmartComponent } from './activate-account/activate-account-smart.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { ForgotPasswordPresentationComponent } from './forgot-password/forgot-password-presentation.component';
 import { ForgotPasswordSmartComponent } from './forgot-password/forgot-password-smart.component';
@@ -15,33 +17,44 @@ import { SignUpSmartComponent } from './sign-up/sign-up-smart.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'forgot-password',
-    component: ForgotPasswordSmartComponent,
-    data: { title: 'Forgot Password' },
-  },
-  {
-    path: 'login',
-    component: LoginSmartComponent,
-    data: { title: 'Login' },
-  },
-  {
-    path: 'logout',
-    component: LogoutComponent,
-    data: { title: 'Logged Out' },
-  },
-  {
-    path: 'reset-password/:token',
-    component: ResetPasswordSmartComponent,
-    data: { title: 'Reset Password' },
-  },
-  {
-    path: 'signup',
-    component: SignUpSmartComponent,
-    data: { title: 'Sign Up' },
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
+      {
+        path: 'activate-account/:token',
+        component: ActivateAccountSmartComponent,
+        data: { title: 'Activate Account' },
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordSmartComponent,
+        data: { title: 'Forgot Password' },
+      },
+      {
+        path: 'login',
+        component: LoginSmartComponent,
+        data: { title: 'Login' },
+      },
+      {
+        path: 'logout',
+        component: LogoutComponent,
+        data: { title: 'Logged Out' },
+      },
+      {
+        path: 'reset-password/:token',
+        component: ResetPasswordSmartComponent,
+        data: { title: 'Reset Password' },
+      },
+      {
+        path: 'signup',
+        component: SignUpSmartComponent,
+        data: { title: 'Sign Up' },
+      },
+    ],
   },
 ];
 
@@ -55,6 +68,8 @@ const routes: Routes = [
 export class AuthRoutingModule { }
 
 export const components = [
+  ActivateAccountPresentationComponent,
+  ActivateAccountSmartComponent,
   AuthLayoutComponent,
   ForgotPasswordPresentationComponent,
   ForgotPasswordSmartComponent,

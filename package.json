@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-client-angular",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -29,6 +29,9 @@
     "bootstrap": "^4.4.0",
     "classlist.js": "^1.1.20150312",
     "font-awesome": "^4.7.0",
+    "ngx-bootstrap": "^6.1.0",
+    "ngx-mask": "^10.0.1",
+    "ngx-toastr": "^13.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -48,6 +51,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "ng-mocks": "^10.1.3",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",

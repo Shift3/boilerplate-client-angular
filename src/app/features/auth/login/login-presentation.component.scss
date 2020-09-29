@@ -1,0 +1,45 @@
+@import '../../../../assets/styles/variables';
+
+#login-card {
+  padding: 0 !important;
+}
+
+// local override
+#form-submit-button {
+  width: 200px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-bottom: 70px;
+}
+
+.login-container {
+  display: flex;
+  background: $primary;
+  border-radius: .25rem;
+  flex-wrap: wrap;
+}
+
+.forgot-password-container {
+  margin: 0 0 50px 50px;
+}
+
+.forgot-password-link {
+  color: white;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+.sign-up-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 50px;
+  max-width: 350px;
+  min-height: 400px;
+}
+
+.instruction {
+  color: white;
+}

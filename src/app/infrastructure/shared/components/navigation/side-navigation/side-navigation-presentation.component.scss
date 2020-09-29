@@ -1,0 +1,22 @@
+@import '../navigation.scss';
+
+.nav-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.logo {
+  flex-grow: 1;
+  align-self: center;
+}
+
+.link-container {
+  flex-grow: 2;
+}
+
+.login-button-container {
+  padding-bottom: 20px;
+  justify-content: center;
+}

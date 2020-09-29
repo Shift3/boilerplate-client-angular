@@ -7,7 +7,7 @@ import {
 import { Constants } from '@utils/constants';
 
 export class PasswordValidation {
-  static validPassword(isRequired: boolean = false): ValidatorFn {
+  static validPassword(isRequired: boolean): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) {
         return isRequired ? { invalidPassword: `Password is required.` } : null;

@@ -21,7 +21,7 @@ import {
   IForgotPasswordRequest,
   ForgotPasswordRequest,
 } from '@models/user';
-import { IMessage } from '@app/infrastructure/models/message';
+import { IMessage } from '@models/message';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { UserService } from '@core/services/api/user.service';
 
@@ -37,7 +37,7 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForgotPasswordSmartComponent {
-  public form: FormGroup;
+  public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Submit'}),
@@ -47,7 +47,10 @@ export class ForgotPasswordSmartComponent {
         fieldType: 'input',
         label: 'Email',
         placeholder: 'Enter your email',
-        fieldConfig : new InputField({ inputType: 'email' }),
+        fieldConfig : new InputField({
+          inputType: 'email',
+          autocomplete: 'email',
+        }),
         validation: [ EmailValidation.validEmail(true) ],
       }),
     ],

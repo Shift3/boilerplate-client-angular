@@ -5,10 +5,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { MockComponent } from 'ng-mocks';
+
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { SignUpPresentationComponent } from './sign-up-presentation.component';
 import { SignUpSmartComponent } from './sign-up-smart.component';
+import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -19,13 +22,14 @@ import { SignUpSmartComponent } from './sign-up-smart.component';
     beforeEach(async(() => {
       TestBed.configureTestingModule({
         declarations: [
-          SignUpPresentationComponent,
           SignUpSmartComponent,
+          MockComponent(SignUpPresentationComponent),
         ],
         imports: [
           HttpClientTestingModule,
           ReactiveFormsModule,
           RouterTestingModule,
+          ToastrTestingModule,
         ],
       })
       .compileComponents();

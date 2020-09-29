@@ -6,7 +6,10 @@ import {
   Output,
 } from '@angular/core';
 
-import { IFormConfig } from '@models/form/form';
+import {
+  FormConfig,
+  IFormConfig,
+} from '@models/form/form';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -16,12 +19,12 @@ import { FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPresentationComponent {
-  @Input() public formConfig: IFormConfig;
+  @Input() public formConfig: IFormConfig = new FormConfig();
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
-  public formTitle: string = 'Log In';
+  public formTitle: string = 'Member Log In';
 
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);
