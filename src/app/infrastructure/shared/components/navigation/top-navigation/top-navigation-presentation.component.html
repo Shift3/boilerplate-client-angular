@@ -14,7 +14,7 @@
       <ng-container *ngIf="navLinks?.length">
         <ul class="navbar-nav">
           <button
-            *ngFor="let link of navLinks; trackBy: trackByLink"
+            *ngFor="let link of navLinks; trackBy: ('id' | trackByKey)"
             class="nav-link"
             [routerLink]="link.link"
             (click)="isMenuCollapsed = true"

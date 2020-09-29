@@ -31,10 +31,6 @@ export class UserTableComponent {
   @Output() public emitResendActivationEmail = new EventEmitter<IUserDTO>();
   @Output() public emitResetPassword = new EventEmitter<IUserDTO>();
 
-  public trackByColumnId(index: number, item: any): number | null {
-    return (item) ? item.columnIndex : null;
-  }
-
   public deleteUser(user: IUserDTO): void {
     this.emitDelete.emit(user);
   }

@@ -37,10 +37,6 @@ export class SettingsComponent {
     private router: Router,
   ) { }
 
-  public trackByLink(index: number, item: INavigation): number {
-    return (item) ? item.id : null;
-  }
-
   public openConfirmModal(): void {
     const modalConfig = new ConfirmModalConfig({
       message: 'This will end your login session.',

@@ -4,10 +4,10 @@ import { IRoleDTO, RoleDTO } from './role';
 export interface IUserDTO {
   id: number;
   email: string;
-  activatedAt: string;
+  activatedAt: string | null;
   firstName: string;
   lastName: string;
-  profilePicture: string;
+  profilePicture: string | null;
   agency: IAgencyDTO;
   role: IRoleDTO;
 }
@@ -15,10 +15,10 @@ export interface IUserDTO {
 export class UserDTO implements IUserDTO {
   id: number = 0;
   email: string = '';
-  activatedAt: string = null;
+  activatedAt: string | null = null;
   firstName: string = '';
   lastName: string = '';
-  profilePicture: string = null;
+  profilePicture: string | null = null;
   agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
 

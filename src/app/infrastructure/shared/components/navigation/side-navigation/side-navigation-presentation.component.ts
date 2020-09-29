@@ -22,8 +22,4 @@ export class SideNavigationPresentationComponent {
   @Input() public navLinks: INavigation[];
 
   public isMenuCollapsed = true;
-
-  public trackByLink(index: number, item: INavigation): number {
-    return (item) ? item.id : null;
-  }
 }

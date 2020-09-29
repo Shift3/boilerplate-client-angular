@@ -79,7 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private setPageFocus(): void{
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
-      const mainHeader: HTMLElement = document.querySelector('#content-container');
+      const mainHeader: HTMLElement | null = document.querySelector('#content-container');
       if (mainHeader) {
         mainHeader.focus();
       }

@@ -9,7 +9,10 @@ import {
 import { FormGroup } from '@angular/forms';
 
 import { FormService } from '@core/services/form.service';
-import { FormConfig, IFormConfig } from '@models/form/form';
+import {
+  FormConfig,
+  IFormConfig,
+} from '@models/form/form';
 
 @Component({
   selector: 'app-dynamic-form',

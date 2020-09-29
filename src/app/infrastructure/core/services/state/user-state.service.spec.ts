@@ -110,7 +110,7 @@ import { UserStateService } from './user-state.service';
     });
 
     describe('resetUserSession()', () => {
-      it('should set the emitted value of userSession$ to null', () => {
+      it('should set the emitted value of userSession$ to a new object instance', () => {
         const testUser$ = new BehaviorSubject<IUserDTO>(new UserDTO({
           firstName: 'Test',
           lastName: 'Tester',
@@ -118,7 +118,7 @@ import { UserStateService } from './user-state.service';
 
         service.userSession$ = testUser$;
         service.resetUserSession();
-        expect(service.userSession$.getValue()).toEqual(null);
+        expect(service.userSession$.getValue()).toEqual(new UserDTO());
       });
     });
 

@@ -23,9 +23,9 @@ import {
 } from '@models/user';
 import { MatchFieldValidation } from '@utils/validation/match-field-validation';
 import { PasswordValidation } from '@utils/validation/password-validation';
+import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { UserService } from '@core/services/api/user.service';
-import { RequiredValidation } from '@app/infrastructure/utils/validation/required-validation';
 
 @Component({
   template: `
@@ -95,10 +95,7 @@ export class ChangePasswordSmartComponent {
 
   public changePassword(): void {
     const requestPayload = this.buildPayload();
-    const snapshot = this.activatedRoute.snapshot;
-    this.userService.changePassword(requestPayload, this.user.id).subscribe(() => {
-      this.location.back();
-    });
+    this.userService.changePassword(requestPayload, this.user.id).subscribe(() => this.location.back());
   }
 
   private buildPayload(): IChangePasswordRequest {

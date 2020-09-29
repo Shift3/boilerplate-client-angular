@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <ng-container *ngIf="tableData.length">
-    <tr *ngFor="let item of tableData; index as i">
+    <tr *ngFor="let item of tableData; trackBy:('id' | trackByKey)">
       <td class="name-container">
         <ng-container *ngIf="item.thumbnail">
           <img class="thumbnail-container" [src]="item.thumbnail" alt="{{item.name}} thumbnail">
