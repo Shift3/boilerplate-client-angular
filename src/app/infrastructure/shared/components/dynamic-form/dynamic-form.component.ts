@@ -12,9 +12,7 @@ import { FormService } from '@core/services/form.service';
 import {
   FormConfig,
   IFormConfig,
-  IFormField,
 } from '@models/form/form';
-import { Utils } from '@utils/utils';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -37,10 +35,6 @@ export class DynamicFormComponent implements OnInit {
 
   public ngOnInit(): void {
     this.form = this.createFormAndPropagateToParent();
-  }
-
-  public trackByName<T>(index: number, item: IFormField<T>): string | null {
-    return Utils.trackByValue(index, item, 'name');
   }
 
   public submit(): void {

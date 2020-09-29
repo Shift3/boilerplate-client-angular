@@ -15,7 +15,6 @@ import {
   TableConfig,
 } from '@models/table';
 import { IUserDTO } from '@models/user';
-import { Utils } from '@utils/utils';
 
 @Component({
   selector: 'app-user-table',
@@ -31,10 +30,6 @@ export class UserTableComponent {
   @Output() public emitDelete = new EventEmitter<IUserDTO>();
   @Output() public emitResendActivationEmail = new EventEmitter<IUserDTO>();
   @Output() public emitResetPassword = new EventEmitter<IUserDTO>();
-
-  public trackById(index: number, item: IUserDTO): number | null {
-    return Utils.trackByValue(index, item, 'id');
-  }
 
   public deleteUser(user: IUserDTO): void {
     this.emitDelete.emit(user);

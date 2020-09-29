@@ -15,7 +15,6 @@ import {
   ITableConfig,
   TableConfig,
 } from '@models/table';
-import { Utils } from '@utils/utils';
 
 @Component({
   selector: 'app-agent-table',
@@ -29,10 +28,6 @@ export class AgentTableComponent {
   @Input() public tableData: IAgentDTO[] = [];
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
-
-  public trackById(index: number, item: IAgentDTO): number | null {
-    return Utils.trackByValue(index, item, 'id');
-  }
 
   public deleteAgent(agent: IAgentDTO): void {
     this.emitDelete.emit(agent);

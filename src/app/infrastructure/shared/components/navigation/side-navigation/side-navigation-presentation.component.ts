@@ -9,7 +9,6 @@ import {
   IUserDTO,
   UserDTO,
 } from '@models/user';
-import { Utils } from '@utils/utils';
 
 @Component({
   selector: 'app-side-navigation-presentation',
@@ -23,8 +22,4 @@ export class SideNavigationPresentationComponent {
   @Input() public navLinks: INavigation[];
 
   public isMenuCollapsed = true;
-
-  public trackByLink(index: number, item: INavigation): number | null {
-    return Utils.trackByValue(index, item, 'id');
-  }
 }

@@ -18,7 +18,7 @@
       </div>
       <span class="vertical-line"></span>
       <div>
-        <ng-container *ngFor="let link of profileLinks; trackBy: trackByLink">
+        <ng-container *ngFor="let link of profileLinks; trackBy: ('id' | trackByKey)">
           <button ngbDropdownItem [routerLink]="link.link">{{ link.label }}</button>
         </ng-container>
         <button ngbDropdownItem (click)="toggleNavBar()">Toggle Navigation Bar</button>

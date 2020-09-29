@@ -1,5 +1,4 @@
 import { Constants } from './constants';
-import { Logger } from './logger';
 import { Utils } from './utils';
 
 describe('[Unit] Utils', () => {
@@ -23,34 +22,6 @@ describe('[Unit] Utils', () => {
       const expectedValue = new Date().getFullYear().toString();
 
       expect(Utils.getCopyrightYear()).toEqual(expectedValue);
-    });
-  });
-
-  describe('trackByValue()', () => {
-    it('should return the key when found', () => {
-      const index = 0;
-      const value = {
-        id: 1,
-        name: 'Test',
-      };
-      const key = 'id';
-      const expectedValue = 1;
-
-      expect(Utils.trackByValue(index, value, key)).toEqual(expectedValue);
-    });
-
-    it('should should throw a console warning when it cannot use the provided key', () => {
-      const index = 0;
-      const value = {
-        id: 1,
-        name: 'Test',
-      };
-      const key = 'foo';
-
-      const spy = spyOn(Logger, 'warn');
-      Utils.trackByValue(index, value, key);
-
-      expect(spy).toHaveBeenCalled();
     });
   });
 });

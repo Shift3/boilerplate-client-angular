@@ -1,5 +1,4 @@
 import { Constants } from './constants';
-import { Logger } from './logger';
 
 export class Utils {
   /**
@@ -9,15 +8,5 @@ export class Utils {
     return Constants.initialCopyrightYear >= new Date().getFullYear()
       ? `${new Date().getFullYear()}`
       : `${Constants.initialCopyrightYear} - ${new Date().getFullYear()}`;
-  }
-
-  /**
-   * Helps index an `*ngFor` iterator. Must be provided a valid key.
-   */
-  static trackByValue<T, U>(index: number, value: T, key: string): U | null {
-    if (value[key] === undefined) {
-      Logger.warn('Key not provided to trackByValue() for *ngFor.');
-    }
-    return (value) ? value[key] as U : null;
   }
 }

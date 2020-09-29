@@ -17,7 +17,6 @@ import {
   IUserDTO,
   UserDTO,
 } from '@models/user';
-import { Utils } from '@utils/utils';
 
 @Component({
   selector: 'app-settings',
@@ -37,10 +36,6 @@ export class SettingsComponent {
     private navbarStateService: NavbarStateService,
     private router: Router,
   ) { }
-
-  public trackByLink(index: number, item: INavigation): number | null {
-    return Utils.trackByValue(index, item, 'id');
-  }
 
   public openConfirmModal(): void {
     const modalConfig = new ConfirmModalConfig({
