@@ -28,23 +28,23 @@ const routes: Routes = [
     path: 'admin',
     canActivate: [AdminAuthGuard],
     canActivateChild: [AdminAuthGuard],
-    loadChildren: () => import('../admin/admin.module').then((m) => m.AdminModule),
+    loadChildren: () => import('./features/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('../auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () => import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'content',
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
-    loadChildren: () => import('../content/content.module').then((m) => m.ContentModule),
+    loadChildren: () => import('./features/content/content.module').then((m) => m.ContentModule),
   },
   {
     path: 'user',
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
-    loadChildren: () => import('../user/user.module').then((m) => m.UserModule),
+    loadChildren: () => import('./features/user/user.module').then((m) => m.UserModule),
   },
   {
     path: '**',
