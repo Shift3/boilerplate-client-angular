@@ -12,7 +12,7 @@
       <div class="profile-info">
         <img
           class="profile-photo"
-          [src]="loggedInUser.profilePicture"
+          [src]="loggedInUser.profilePicture || profilePicturePlaceholder"
           alt="Profile picture"
           (error)="showPlaceholderImageOnEmptyOrError()"
         />

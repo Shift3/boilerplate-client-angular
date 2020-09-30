@@ -27,6 +27,7 @@ import {
 export class SettingsComponent {
   @Input() loggedInUser: IUserDTO = new UserDTO();
 
+  public profilePicturePlaceholder = `assets/img/portrait_placeholder.png`;
   public profileLinks: INavigation[] = profileLinkList;
   public showTopNav = (localStorage.getItem('navbarToggle') === 'top') ? true : false;
 
@@ -61,6 +62,6 @@ export class SettingsComponent {
   }
 
   public showPlaceholderImageOnEmptyOrError(): void {
-    this.loggedInUser.profilePicture = `assets/img/portrait_placeholder.png`;
+    this.loggedInUser.profilePicture = this.profilePicturePlaceholder;
   }
 }
