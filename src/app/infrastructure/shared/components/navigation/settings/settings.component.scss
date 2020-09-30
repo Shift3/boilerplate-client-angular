@@ -14,8 +14,10 @@
 
 .profile-photo {
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  max-height: 50px;
+  max-width: 50px;
+  width: auto;
+  height: auto;
 }
 
 .vertical-line{

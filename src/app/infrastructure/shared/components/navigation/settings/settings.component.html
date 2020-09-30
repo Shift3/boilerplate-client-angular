@@ -7,12 +7,15 @@
     <span class="fa fa-user"></span>
     Hi {{ loggedInUser?.firstName }}
   </button>
-  <div ngbDropdownMenu aria-labelledby="profileDropdown">
+  <div ngbDropdownMenu aria-labelledby="profileDropdown" class="dropdown-menu-right">
     <div class="profile-dropdown-container">
       <div class="profile-info">
-        <ng-container *ngIf="loggedInUser?.profilePicture">
-          <img class="profile-photo" [src]="loggedInUser.profilePicture"/>
-        </ng-container>
+        <img
+          class="profile-photo"
+          [src]="loggedInUser.profilePicture"
+          alt="Profile picture"
+          (error)="showPlaceholderImageOnEmptyOrError()"
+        />
         <div>{{ loggedInUser?.firstName }}</div>
         <div>{{ loggedInUser?.lastName }}</div>
       </div>

@@ -59,4 +59,8 @@ export class SettingsComponent {
     this.showTopNav = !this.showTopNav;
     this.navbarStateService.setNavbarToggle(this.showTopNav);
   }
+
+  public showPlaceholderImageOnEmptyOrError(): void {
+    this.loggedInUser.profilePicture = `assets/img/portrait_placeholder.png`;
+  }
 }
