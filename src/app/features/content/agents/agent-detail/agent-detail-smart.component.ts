@@ -28,6 +28,7 @@ import {
   IInputField,
   InputField,
 } from '@models/form/input';
+import { PhoneValidation } from '@utils/validation/phone-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import {
@@ -110,7 +111,7 @@ export class AgentDetailSmartComponent implements OnInit {
           fieldType: 'input',
           label: 'Phone Number',
           fieldConfig : new InputField({ mask: Constants.masks.US_PHONE }),
-          validation: [ RequiredValidation.required('Phone Number') ],
+          validation: [ PhoneValidation.validPhone(true) ],
         }),
         new FormField<IInputField>({
           name: 'address1',
