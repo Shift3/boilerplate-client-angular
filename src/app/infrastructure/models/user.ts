@@ -18,7 +18,7 @@ export class UserDTO implements IUserDTO {
   activatedAt: string | null = null;
   firstName: string = '';
   lastName: string = '';
-  profilePicture: string | null = 'assets/img/portrait_placeholder.png';
+  profilePicture: string | null = null;
   agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
 
