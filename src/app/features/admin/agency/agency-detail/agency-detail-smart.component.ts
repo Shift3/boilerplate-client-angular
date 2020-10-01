@@ -31,7 +31,6 @@ import { SaveCancelButtonConfig } from '@models/form/button';
     <app-agency-detail-presentation
       [agency]="agency"
       [formConfig]="formConfig"
-      [formTitle]="formTitle"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="updateOrCreateAgency()"
     ></app-agency-detail-presentation>
@@ -42,7 +41,6 @@ export class AgencyDetailSmartComponent implements OnInit {
   public agency: IAgencyDTO;
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
-  public formTitle: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -51,7 +49,6 @@ export class AgencyDetailSmartComponent implements OnInit {
     private location: Location,
   ) {
     this.agency = this.activatedRoute.snapshot.data.agency;
-    this.formTitle = this.activatedRoute.snapshot.data.title;
   }
 
   public ngOnInit(): void {
@@ -70,6 +67,7 @@ export class AgencyDetailSmartComponent implements OnInit {
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
+      formTitle: this.activatedRoute.snapshot.data.title || 'Create Agency',
       submit: new SaveCancelButtonConfig({save: (this.agency?.id) ? 'Update' : 'Create' }),
       controls: [
         new FormField<IInputField>({

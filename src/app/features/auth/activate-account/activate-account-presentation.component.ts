@@ -24,8 +24,6 @@ export class ActivateAccountPresentationComponent {
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
-  public formTitle: string = 'Activate Account';
-
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);
   }
