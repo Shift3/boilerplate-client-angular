@@ -9,7 +9,13 @@
     [autocomplete]="config.fieldConfig.autocomplete"
     [mask]="config.fieldConfig.mask"
   >
-  <span class="field-label">
-    {{ formControl?.errors | formError }}
-  </span>
+  <ng-container *ngIf="formControl?.errors; else empty">
+    <span class="field-label">
+      {{ formControl?.errors | formError }}
+    </span>
+  </ng-container>
+  <ng-template #empty>
+    <span class="empty-message-container">
+    </span>
+  </ng-template>
 </div>
