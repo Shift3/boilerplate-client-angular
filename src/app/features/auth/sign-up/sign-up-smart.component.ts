@@ -39,6 +39,7 @@ export class SignUpSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
+    formTitle: 'Sign Up',
     submit: new SaveCancelButtonConfig({save: 'Sign Up'}),
     validation: [ MatchFieldValidation.validFieldMatch('email', 'confirmEmail', 'Email') ],
     controls: [

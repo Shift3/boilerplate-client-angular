@@ -24,8 +24,6 @@ export class ChangePasswordPresentationComponent {
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
-  public formTitle: string = 'Change Password';
-
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);
   }

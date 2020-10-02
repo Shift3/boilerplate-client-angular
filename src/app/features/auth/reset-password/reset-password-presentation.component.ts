@@ -24,8 +24,6 @@ export class ResetPasswordPresentationComponent {
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
-  public formTitle: string = 'Reset Password';
-
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);
   }
