@@ -21,7 +21,6 @@ import { stateList } from '@models/state';
     <app-agent-detail-presentation
       [agent]="agent"
       [formConfig]="formConfig"
-      [formTitle]="formTitle"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="updateOrCreateAgent()"
     ></app-agent-detail-presentation>
@@ -32,7 +31,6 @@ export class AgentDetailSmartComponent implements OnInit {
   public agent: IAgentDTO;
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
-  public formTitle: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -41,7 +39,6 @@ export class AgentDetailSmartComponent implements OnInit {
     private router: Router,
   ) {
     this.agent = this.activatedRoute.snapshot.data.agent;
-    this.formTitle = this.activatedRoute.snapshot.data.title;
   }
 
   public ngOnInit(): void {
@@ -59,6 +56,7 @@ export class AgentDetailSmartComponent implements OnInit {
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
+      formTitle: this.activatedRoute.snapshot.data.title || 'Create Agent',
       submit: new SaveCancelButtonConfig({
         save: this.agent?.id ? 'Update' : 'Create',
       }),
@@ -85,6 +83,7 @@ export class AgentDetailSmartComponent implements OnInit {
           fieldType: 'input',
           label: 'Description',
           fieldConfig: new InputField(),
+          validation: [RequiredValidation.required('Description')],
         }),
         new FormField<IInputField>({
           name: 'phoneNumber',

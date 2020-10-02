@@ -101,22 +101,28 @@ import { IMessage } from '@models/message';
         expect(service).toBeTruthy();
       });
 
-      describe('signUp()', () => {
-        it('should use POST as the request method', () => {
-          const payload: ISignupRequest = new SignupRequest();
-          service.signUp(payload).subscribe();
-          const req = httpTestingController.expectOne(`${route}/signup/`);
+      it('should return the new user object on success', () => {
+        const payload: ISignupRequest = new SignupRequest();
+        const expectedValue: IUserDTO = new UserDTO();
+        let response: IUserDTO;
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
 
           expect(req.request.method).toBe('POST');
         });
 
-        it('should return a status message on success', () => {
-          const payload: ISignupRequest = new SignupRequest();
-          const expectedValue: IUserDTO = new UserDTO();
-          let response: IUserDTO;
-          spyOn(apiService, 'post').and.returnValue(
-            observableOf(expectedValue),
-          );
+        expect(response).toEqual(expectedValue);
+      });
+
+      it(`should show a notification on success`, () => {
+        const payload: ISignupRequest = new SignupRequest();
+        const expectedValue: IUserDTO = new UserDTO();
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
+
+        service.signUp(payload).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
+      });
+    });
 
           service.signUp(payload).subscribe((res) => {
             response = res;

@@ -38,7 +38,14 @@ export class UserService {
   public signUp(payload: ISignupRequest): Observable<IUserDTO> {
     const endpoint = `${this.url}/signup/`;
 
-    return this.apiService.post<IUserDTO, ISignupRequest>(endpoint, payload);
+    return this.apiService
+      .post<IUserDTO, ISignupRequest>(endpoint, payload)
+      .pipe(
+        tap((response) => {
+          const message = `An activation email has been sent to ${response.email}.`;
+          this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 
   public forgotPassword(payload: IForgotPasswordRequest): Observable<IMessage> {

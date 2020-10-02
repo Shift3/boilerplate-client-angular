@@ -26,7 +26,6 @@ import { UserStateService } from '@core/services/state/user-state.service';
 @Component({
   template: `
     <app-user-detail-presentation
-      [formTitle]="formTitle"
       [formConfig]="formConfig"
       [user]="user"
       (emitForm)="propagateForm($event)"
@@ -39,7 +38,6 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   public checkRole: IRoleCheck;
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
-  public formTitle: string = '';
   public isSelf: boolean = false;
   public user: IUserDTO;
 
@@ -54,7 +52,6 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private userStateService: UserStateService,
   ) {
-    this.formTitle = this.activatedRoute.snapshot.data.title;
     this.user = this.activatedRoute.snapshot.data.user;
     this.agencyList = this.activatedRoute.snapshot.data.agencyList;
     this.roleList = this.activatedRoute.snapshot.data.roleList;
@@ -137,6 +134,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
+      formTitle: this.activatedRoute.snapshot.data.title || 'Create User',
       submit: new SaveCancelButtonConfig({
         save: this.user?.id ? 'Update' : 'Create',
       }),

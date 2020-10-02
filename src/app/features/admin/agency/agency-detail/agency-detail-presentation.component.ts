@@ -19,7 +19,6 @@ import { FormGroup } from '@angular/forms';
 export class AgencyDetailPresentationComponent {
   @Input() public agency: IAgencyDTO;
   @Input() public formConfig: IFormConfig = new FormConfig();
-  @Input() public formTitle: string = 'Create Agency';
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();

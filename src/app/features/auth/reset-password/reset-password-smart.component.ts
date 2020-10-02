@@ -25,6 +25,7 @@ export class ResetPasswordSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
+    formTitle: 'Reset Password',
     submit: new SaveCancelButtonConfig({ save: 'Submit' }),
     validation: [
       MatchFieldValidation.validFieldMatch(

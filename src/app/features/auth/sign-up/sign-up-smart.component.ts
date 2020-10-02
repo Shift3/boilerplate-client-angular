@@ -6,7 +6,7 @@ import { EmailValidation } from '@utils/validation/email-validation';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
 import { IInputField, InputField } from '@models/form/input';
-import { PasswordValidation } from '@utils/validation/password-validation';
+import { MatchFieldValidation } from '@utils/validation/match-field-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { ISignupRequest, SignupRequest } from '@models/auth';
@@ -26,7 +26,11 @@ export class SignUpSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
+    formTitle: 'Sign Up',
     submit: new SaveCancelButtonConfig({ save: 'Sign Up' }),
+    validation: [
+      MatchFieldValidation.validFieldMatch('email', 'confirmEmail', 'Email'),
+    ],
     controls: [
       new FormField<IInputField>({
         name: 'email',
@@ -40,15 +44,14 @@ export class SignUpSmartComponent {
         validation: [EmailValidation.validEmail(true)],
       }),
       new FormField<IInputField>({
-        name: 'password',
+        name: 'confirmEmail',
         fieldType: 'input',
-        label: 'Password',
-        placeholder: 'Enter your password',
+        label: 'Confirm Email',
+        placeholder: 'Confirm your email',
         fieldConfig: new InputField({
-          inputType: 'password',
-          autocomplete: 'current-password',
+          inputType: 'email',
+          autocomplete: 'email',
         }),
-        validation: [PasswordValidation.validPassword(true)],
       }),
       new FormField<IInputField>({
         name: 'firstName',

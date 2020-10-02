@@ -13,6 +13,7 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
   - [Staging URL](#staging-url)
   - [Deployment](#deployment)
     - [Terraform](#terraform)
+    - [Local Environment](#local-environment)
     - [AWS](#aws)
   - [Development](#development)
     - [Initializing the Project](#initializing-the-project)
@@ -74,9 +75,17 @@ cnames = ["", ""]
 | iam_s3_bucket_user      |                                                                                                                           Get this from Zoho Vault |
 | cnames                  | [The CNAME records](https://en.wikipedia.org/wiki/CNAME_record). Probably at least `example.shift3sandbox.com` and `www.example.shift3sandbox.com` |
 
+### Local Environment
+
+After provisioning the AWS instance through Terraform, the project environment variables need to be updated with the new server values.
+
+The `apiRoute` property in `environment.staging.ts` will now need to be filled out with the provisioned sandbox instance.
+
+The `package.json` file needs to be updated with the project name and sandbox S3 bucket: `"deploy:staging": "ng build --prod --configuration=staging && aws s3 sync ./dist/<PROJECT_DIRECTORY_PATH> s3://<AWS_SANDBOX_URL> --profile shift3 --delete"` Replace the brackets and placeholder values with the project values.
+
 ### AWS
 
-Once the AWS sandbox setup has been taken care of by Terraform, the deployment is done via `npm run deploy:staging`.
+Deploying to AWS requires having AWS credentials on the machine. The script is set to look for a default AWS profile named `shift3`. Once the AWS sandbox setup has been taken care of by Terraform, the deployment is done via `npm run deploy:staging`.
 
 ## Development
 
@@ -85,6 +94,8 @@ Once the AWS sandbox setup has been taken care of by Terraform, the deployment i
 If this project is being cloned to start a new project, there are a few things that need to be updated to make it work. The project name will need to be updated in the `package.json`, `angular.json`, `karma.conf.js`, CircleCI `config.yml`, `app.e2e.spec.ts`, `index.html`, `app.component.ts`, and `app.component.spec.ts` files with the new project name. The README also refers to the boilerplate, both in the text and in the CircleCI badges.
 
 The project `environment` files will need to be updated with the path to the APIs. The development `environment.ts` assumes a local development server of `http://localhost:3000`, which might need to be updated.
+
+After provisioning and before deploying, the `deploy:staging` script in `package.json` needs to be updated, as mentioned [above](#local-environment).
 
 ### Prettier
 

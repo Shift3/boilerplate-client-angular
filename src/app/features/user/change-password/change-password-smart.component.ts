@@ -31,6 +31,7 @@ export class ChangePasswordSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
+    formTitle: 'Change Password',
     submit: new SaveCancelButtonConfig({ save: 'Submit' }),
     validation: [
       MatchFieldValidation.validFieldMatch(
