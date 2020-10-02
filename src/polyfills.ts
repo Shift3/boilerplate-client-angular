@@ -23,7 +23,7 @@ import '@angular/localize/init';
  */
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
-import 'classlist.js';  // Run `npm install --save classlist.js`.
+import 'classlist.js'; // Run `npm install --save classlist.js`.
 
 import 'core-js/features/array/includes';
 
@@ -61,8 +61,7 @@ import 'core-js/features/array/includes';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone';  // Included with Angular CLI.
-
+import 'zone.js/dist/zone'; // Included with Angular CLI.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

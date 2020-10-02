@@ -8,41 +8,41 @@ import { ToastrService } from 'ngx-toastr';
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] NotificationService', () => {
-    let service: NotificationService;
-    const toastrMock = {
-      error: jasmine.createSpy('error'),
-      success: jasmine.createSpy('success'),
-    };
+      let service: NotificationService;
+      const toastrMock = {
+        error: jasmine.createSpy('error'),
+        success: jasmine.createSpy('success'),
+      };
 
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        providers: [
-          NotificationService,
-          { provide: ToastrService, useValue: toastrMock },
-        ],
+      beforeEach(() => {
+        TestBed.configureTestingModule({
+          providers: [
+            NotificationService,
+            { provide: ToastrService, useValue: toastrMock },
+          ],
+        });
+        service = TestBed.inject(NotificationService);
       });
-      service = TestBed.inject(NotificationService);
-    });
 
-    it('should be created', () => {
-      expect(service).toBeTruthy();
-    });
+      it('should be created', () => {
+        expect(service).toBeTruthy();
+      });
 
-    describe('showSuccess()', () => {
-      it('should call toastrService.success with the messageList parameter', () => {
-        const messageList = ['Notification'];
+      describe('showSuccess()', () => {
+        it('should call toastrService.success with the messageList parameter', () => {
+          const messageList = ['Notification'];
 
-        service.showSuccess(messageList);
-        expect(toastrMock.success).toHaveBeenCalled();
+          service.showSuccess(messageList);
+          expect(toastrMock.success).toHaveBeenCalled();
+        });
+      });
+
+      describe('showError()', () => {
+        it('should call toastrService.error with the messageList parameter', () => {
+          const messageList = ['Notification'];
+
+          service.showError(messageList);
+          expect(toastrMock.error).toHaveBeenCalled();
+        });
       });
     });
-
-    describe('showError()', () => {
-      it('should call toastrService.error with the messageList parameter', () => {
-        const messageList = ['Notification'];
-
-        service.showError(messageList);
-        expect(toastrMock.error).toHaveBeenCalled();
-      });
-    });
-  });

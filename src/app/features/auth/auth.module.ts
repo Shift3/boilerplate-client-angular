@@ -10,10 +10,7 @@ import { SharedModule } from '@shared/shared.module';
  * Lazy loaded feature module for all auth-related components and dependencies.
  */
 @NgModule({
-  declarations: [ authComponents ],
-  imports: [
-    SharedModule,
-    AuthRoutingModule,
-  ],
+  declarations: [authComponents],
+  imports: [SharedModule, AuthRoutingModule],
 })
-export class AuthModule { }
+export class AuthModule {}

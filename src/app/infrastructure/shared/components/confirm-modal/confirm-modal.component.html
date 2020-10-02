@@ -1,10 +1,10 @@
 <div class="card">
   <div class="card-header">
-    <h4 class="modal-title" id="modal-basic-title">{{ modalConfig.message }}</h4>
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ modalConfig.message }}
+    </h4>
   </div>
-  <div class="modal-body">
-    Do you want to continue?
-  </div>
+  <div class="modal-body">Do you want to continue?</div>
   <div class="save-cancel-container save-cancel-button-row">
     <button
       id="cancel-button"
@@ -12,7 +12,7 @@
       type="button"
       (click)="cancel()"
     >
-      {{ "Cancel" | uppercase }}
+      {{ 'Cancel' | uppercase }}
     </button>
     <button
       id="form-submit-button"

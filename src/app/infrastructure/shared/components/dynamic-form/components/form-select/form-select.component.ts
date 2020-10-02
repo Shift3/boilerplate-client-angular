@@ -1,21 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
-import {
-  AbstractControl,
-  FormGroup,
-} from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
-import {
-  FormField,
-  IFormField,
-} from '@models/form/form';
-import {
-  ISelectField,
-  ISelectOptions,
-  SelectField,
-} from '@models/form/select';
+import { FormField, IFormField } from '@models/form/form';
+import { ISelectField, ISelectOptions, SelectField } from '@models/form/select';
 import { Utils } from '@utils/utils';
 
 @Component({
@@ -25,7 +12,9 @@ import { Utils } from '@utils/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormSelectComponent {
-  public config: IFormField<ISelectField<unknown>> = new FormField<ISelectField<unknown>>({ fieldConfig: new SelectField<unknown>() });
+  public config: IFormField<ISelectField<unknown>> = new FormField<
+    ISelectField<unknown>
+  >({ fieldConfig: new SelectField<unknown>() });
   public group: FormGroup = new FormGroup({});
 
   public get formControl(): AbstractControl {

@@ -1,9 +1,9 @@
 # BoilerplateClientAngular
 
-|Branch|Status|
-|---|---|
-|development|[![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular)|
-|master|[![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master)|
+| Branch      | Status                                                                                                                                                                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| development | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular)                         |
+| master      | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master) |
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
@@ -61,17 +61,17 @@ cnames = ["", ""]
 
 ```
 
-| Secret                  |                                                                                                                                                    Note |
-| :---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| profile                 |                                                                                     This must match the AWS credentials name on the development machine |
-| application_name        |                                                                                                     The name of the project (can match the GitHub name) |
-| application_description |                                                                                       The description of the project (can match the GitHub description) |
-| region                  |                                                                                                                                Get this from Zoho Vault |
-| web_domain_name         |                                                                                                  The `application_name` followed by `shift3sandbox.com` |
-| zone_id                 |                                                                                                                                Get this from Zoho Vault |
-| zone_alias_id           |                                                                                                                                Get this from Zoho Vault |
-| iam_s3_bucket_user      |                                                                                                                                Get this from Zoho Vault |
-| cnames                  |      [The CNAME records](https://en.wikipedia.org/wiki/CNAME_record). Probably at least `example.shift3sandbox.com` and `www.example.shift3sandbox.com` |
+| Secret                  |                                                                                                                                               Note |
+| :---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------: |
+| profile                 |                                                                                This must match the AWS credentials name on the development machine |
+| application_name        |                                                                                                The name of the project (can match the GitHub name) |
+| application_description |                                                                                  The description of the project (can match the GitHub description) |
+| region                  |                                                                                                                           Get this from Zoho Vault |
+| web_domain_name         |                                                                                             The `application_name` followed by `shift3sandbox.com` |
+| zone_id                 |                                                                                                                           Get this from Zoho Vault |
+| zone_alias_id           |                                                                                                                           Get this from Zoho Vault |
+| iam_s3_bucket_user      |                                                                                                                           Get this from Zoho Vault |
+| cnames                  | [The CNAME records](https://en.wikipedia.org/wiki/CNAME_record). Probably at least `example.shift3sandbox.com` and `www.example.shift3sandbox.com` |
 
 ### AWS
 

@@ -16,7 +16,7 @@ export class Navigation implements INavigation {
   static buildNavLinkList(roleList: IRoleCheck): INavigation[] {
     let navLinks: INavigation[] = [];
     if (roleList.isSuperAdmin) {
-      return navLinks = [
+      return (navLinks = [
         {
           id: 1,
           label: 'Directory',
@@ -41,10 +41,9 @@ export class Navigation implements INavigation {
         //   link: '/admin/settings',
         //   icon: 'fa fa-cog',
         // },
-      ];
-    }
-    else if (roleList.isAdmin) {
-      return navLinks = [
+      ]);
+    } else if (roleList.isAdmin) {
+      return (navLinks = [
         {
           id: 1,
           label: 'Directory',
@@ -63,17 +62,17 @@ export class Navigation implements INavigation {
         //   link: '/admin/settings',
         //   icon: 'fa fa-cog',
         // },
-      ];
+      ]);
     }
 
-    return navLinks = [
+    return (navLinks = [
       {
         id: 1,
         label: 'Directory',
         link: '/content',
         icon: 'fa fa-stethoscope',
       },
-    ];
+    ]);
   }
 
   constructor(configOverride?: INavigation) {

@@ -1,7 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -17,9 +14,7 @@ import { NavbarStateService } from '@core/services/state/navbar-state.service';
 })
 export class AuthLayoutComponent {
   public navbarToggle$: Observable<string>;
-  constructor(
-    private navbarStateService: NavbarStateService,
-  ) {
+  constructor(private navbarStateService: NavbarStateService) {
     this.navbarToggle$ = this.navbarStateService.getNavbarToggle();
   }
 }

@@ -4,22 +4,11 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import {
-  filter,
-  map,
-  mergeMap,
-} from 'rxjs/operators';
-import {
-  Observable,
-  Subscription,
-} from 'rxjs';
+import { filter, map, mergeMap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
 import { NavbarStateService } from '@core/services/state/navbar-state.service';
 
@@ -77,12 +66,16 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  private setPageFocus(): void{
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
-      const mainHeader: HTMLElement | null = document.querySelector('#content-container');
-      if (mainHeader) {
-        mainHeader.focus();
-      }
-    });
+  private setPageFocus(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        const mainHeader: HTMLElement | null = document.querySelector(
+          '#content-container',
+        );
+        if (mainHeader) {
+          mainHeader.focus();
+        }
+      });
   }
 }

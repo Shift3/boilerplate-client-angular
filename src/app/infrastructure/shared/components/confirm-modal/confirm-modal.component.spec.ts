@@ -1,8 +1,4 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,29 +9,23 @@ import { Logger } from '@utils/logger';
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] ConfirmModalComponent', () => {
-    let component: ConfirmModalComponent;
-    let fixture: ComponentFixture<ConfirmModalComponent>;
+      let component: ConfirmModalComponent;
+      let fixture: ComponentFixture<ConfirmModalComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          ConfirmModalComponent,
-        ],
-        providers: [
-          NgbActiveModal,
-        ]
-        ,
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [ConfirmModalComponent],
+          providers: [NgbActiveModal],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(ConfirmModalComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(ConfirmModalComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });

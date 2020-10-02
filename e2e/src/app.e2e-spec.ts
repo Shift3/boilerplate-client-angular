@@ -11,14 +11,18 @@ describe('workspace-project App', () => {
   // Intentionally disabled while I create a test that can handle this being a completely dynamic component.
   xit('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('boilerplate-client-angular app is running!');
+    expect(page.getTitleText()).toEqual(
+      'boilerplate-client-angular app is running!',
+    );
   });
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+    expect(logs).not.toContain(
+      jasmine.objectContaining({
+        level: logging.Level.SEVERE,
+      } as logging.Entry),
+    );
   });
 });

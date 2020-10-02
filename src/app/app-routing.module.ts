@@ -14,9 +14,10 @@ const role: RoleType = JSON.parse(localStorage.getItem('user'))?.role?.roleName;
  * This variable sets the default route when navigating to the bare app route (in a logged-in state).
  * It does not handle auth.
  */
-const redirectRoute = (role === 'Admin' || role === 'Super Administrator')
-  ? '/admin/user-list'
-  : '/content/agent-list';
+const redirectRoute =
+  role === 'Admin' || role === 'Super Administrator'
+    ? '/admin/user-list'
+    : '/content/agent-list';
 
 const routes: Routes = [
   {
@@ -28,23 +29,27 @@ const routes: Routes = [
     path: 'admin',
     canActivate: [AdminAuthGuard],
     canActivateChild: [AdminAuthGuard],
-    loadChildren: () => import('./features/admin/admin.module').then((m) => m.AdminModule),
+    loadChildren: () =>
+      import('./features/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('./features/auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () =>
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'content',
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
-    loadChildren: () => import('./features/content/content.module').then((m) => m.ContentModule),
+    loadChildren: () =>
+      import('./features/content/content.module').then((m) => m.ContentModule),
   },
   {
     path: 'user',
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
-    loadChildren: () => import('./features/user/user.module').then((m) => m.UserModule),
+    loadChildren: () =>
+      import('./features/user/user.module').then((m) => m.UserModule),
   },
   {
     path: '**',
@@ -60,8 +65,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 
-export const components = [
-  NotFoundComponent,
-];
+export const components = [NotFoundComponent];

@@ -11,29 +11,26 @@ import { TopNavigationPresentationComponent } from './top-navigation-presentatio
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] TopNavigationSmartComponent', () => {
-    let component: TopNavigationSmartComponent;
-    let fixture: ComponentFixture<TopNavigationSmartComponent>;
+      let component: TopNavigationSmartComponent;
+      let fixture: ComponentFixture<TopNavigationSmartComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          TopNavigationSmartComponent,
-          MockComponent(TopNavigationPresentationComponent),
-        ],
-        imports: [
-          HttpClientTestingModule,
-        ],
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [
+            TopNavigationSmartComponent,
+            MockComponent(TopNavigationPresentationComponent),
+          ],
+          imports: [HttpClientTestingModule],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TopNavigationSmartComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(TopNavigationSmartComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });

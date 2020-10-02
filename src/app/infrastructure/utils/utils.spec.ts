@@ -12,7 +12,9 @@ describe('[Unit] Utils', () => {
 
     it('should return a year range string when the initial year is less than the current year', () => {
       Constants.initialCopyrightYear = new Date().getFullYear() - 1;
-      const expectedValue = `${Constants.initialCopyrightYear} - ${new Date().getFullYear().toString()}`;
+      const expectedValue = `${
+        Constants.initialCopyrightYear
+      } - ${new Date().getFullYear().toString()}`;
 
       expect(Utils.getCopyrightYear()).toEqual(expectedValue);
     });

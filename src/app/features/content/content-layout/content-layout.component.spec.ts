@@ -8,26 +8,23 @@ import { Logger } from '@utils/logger';
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] ContentLayoutComponent', () => {
-    let component: ContentLayoutComponent;
-    let fixture: ComponentFixture<ContentLayoutComponent>;
+      let component: ContentLayoutComponent;
+      let fixture: ComponentFixture<ContentLayoutComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          ContentLayoutComponent,
-        ],
-        imports: [ RouterTestingModule ],
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [ContentLayoutComponent],
+          imports: [RouterTestingModule],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(ContentLayoutComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(ContentLayoutComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });

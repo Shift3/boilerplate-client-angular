@@ -1,14 +1,7 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 import { INavigation } from '@models/navigation';
-import {
-  IUserDTO,
-  UserDTO,
-} from '@models/user';
+import { IUserDTO, UserDTO } from '@models/user';
 
 @Component({
   selector: 'app-top-navigation-presentation',

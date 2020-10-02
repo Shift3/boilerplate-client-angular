@@ -1,10 +1,12 @@
 <div class="row">
-  <button class="btn btn-add" routerLink="/admin/create-user">{{ "Add User" |  uppercase }}</button>
+  <button class="btn btn-add" routerLink="/admin/create-user">
+    {{ 'Add User' | uppercase }}
+  </button>
 </div>
-<ng-container *ngIf="userList else loading">
+<ng-container *ngIf="userList; else loading">
   <app-user-table
     class="route-content"
-    [checkRole]="(checkRole)"
+    [checkRole]="checkRole"
     [loggedInUser]="loggedInUser"
     [tableData]="userList"
     (emitDelete)="deleteUser($event)"

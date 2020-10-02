@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: UserLayoutComponent,
-    children : [
+    children: [
       {
         path: '',
         redirectTo: 'profile',
@@ -45,7 +45,7 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {}
 
 export const components = [
   UserLayoutComponent,

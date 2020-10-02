@@ -1,8 +1,4 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed,
-} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MockComponent } from 'ng-mocks';
 
@@ -14,26 +10,25 @@ import { ActivateAccountPresentationComponent } from './activate-account-present
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] ActivateAccountPresentationComponent', () => {
-    let component: ActivateAccountPresentationComponent;
-    let fixture: ComponentFixture<ActivateAccountPresentationComponent>;
+      let component: ActivateAccountPresentationComponent;
+      let fixture: ComponentFixture<ActivateAccountPresentationComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          ActivateAccountPresentationComponent,
-          MockComponent(DynamicFormComponent),
-        ],
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [
+            ActivateAccountPresentationComponent,
+            MockComponent(DynamicFormComponent),
+          ],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(ActivateAccountPresentationComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(ActivateAccountPresentationComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });

@@ -1,7 +1,4 @@
-import {
-  Pipe,
-  PipeTransform,
-} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 import { Logger } from '@utils/logger';
 
@@ -13,7 +10,7 @@ export class TrackByKeyPipe implements PipeTransform {
         Logger.warn(`Key '${key}' not provided to trackByKey for *ngFor.`);
       }
 
-      return (value) ? value[key] as U : null;
+      return value ? (value[key] as U) : null;
     };
   }
 }

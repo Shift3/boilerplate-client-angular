@@ -19,12 +19,26 @@
     "member-ordering": [
       true,
       {
-        "order": ["static-field", "instance-field", "static-method", "instance-method"]
+        "order": [
+          "static-field",
+          "instance-field",
+          "static-method",
+          "instance-method"
+        ]
       }
     ],
     "no-console": {
       "severity": "warning",
-      "options": ["debug", "error", "info", "log", "time", "timeEnd", "trace", "warn"]
+      "options": [
+        "debug",
+        "error",
+        "info",
+        "log",
+        "time",
+        "timeEnd",
+        "trace",
+        "warn"
+      ]
     },
     "no-empty": false,
     "no-inferrable-types": [false, "ignore-params"],
@@ -53,7 +67,14 @@
       "options": ["ban-keywords", "check-format", "allow-pascal-case"]
     },
     "whitespace": {
-      "options": ["check-branch", "check-decl", "check-operator", "check-separator", "check-type", "check-typecast"]
+      "options": [
+        "check-branch",
+        "check-decl",
+        "check-operator",
+        "check-separator",
+        "check-type",
+        "check-typecast"
+      ]
     },
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,

@@ -10,10 +10,7 @@ import { SharedModule } from '@shared/shared.module';
  * Lazy loaded feature module for all user-related components and dependencies.
  */
 @NgModule({
-  declarations: [ userComponents ],
-  imports: [
-    SharedModule,
-    UserRoutingModule,
-  ],
+  declarations: [userComponents],
+  imports: [SharedModule, UserRoutingModule],
 })
-export class UserModule { }
+export class UserModule {}

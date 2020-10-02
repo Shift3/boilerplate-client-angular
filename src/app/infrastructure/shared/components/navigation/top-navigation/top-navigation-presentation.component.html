@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" [routerLink]="'/'">
-    <img src="assets/img/logo.png" alt="Shift3 Technologies">
+    <img src="assets/img/logo.png" alt="Shift3 Technologies" />
   </a>
   <ng-container *ngIf="isValid; else loggedOut">
     <button
@@ -10,11 +10,14 @@
     >
       &#9776;
     </button>
-    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse link-container">
+    <div
+      [ngbCollapse]="isMenuCollapsed"
+      class="collapse navbar-collapse link-container"
+    >
       <ng-container *ngIf="navLinks?.length">
         <ul class="navbar-nav">
           <button
-            *ngFor="let link of navLinks; trackBy: ('id' | trackByKey)"
+            *ngFor="let link of navLinks; trackBy: 'id' | trackByKey"
             class="nav-link"
             [routerLink]="link.link"
             (click)="isMenuCollapsed = true"
@@ -24,9 +27,7 @@
           </button>
         </ul>
       </ng-container>
-      <app-settings
-        [loggedInUser]="loggedInUser"
-      ></app-settings>
+      <app-settings [loggedInUser]="loggedInUser"></app-settings>
     </div>
   </ng-container>
   <ng-template #loggedOut>
@@ -38,7 +39,7 @@
         mat-raised-button
         routerLink="/auth/login"
       >
-        {{ "Login/Create Account" | uppercase }}
+        {{ 'Login/Create Account' | uppercase }}
       </button>
     </div>
   </ng-template>

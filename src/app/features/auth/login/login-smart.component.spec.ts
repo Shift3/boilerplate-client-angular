@@ -1,6 +1,4 @@
-import {
-  HttpClientTestingModule,
-} from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -15,31 +13,30 @@ import { LoginSmartComponent } from './login-smart.component';
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] LoginSmartComponent', () => {
-    let component: LoginSmartComponent;
-    let fixture: ComponentFixture<LoginSmartComponent>;
+      let component: LoginSmartComponent;
+      let fixture: ComponentFixture<LoginSmartComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          LoginSmartComponent,
-          MockComponent(LoginPresentationComponent),
-        ],
-        imports: [
-          HttpClientTestingModule,
-          ReactiveFormsModule,
-          RouterTestingModule,
-        ],
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [
+            LoginSmartComponent,
+            MockComponent(LoginPresentationComponent),
+          ],
+          imports: [
+            HttpClientTestingModule,
+            ReactiveFormsModule,
+            RouterTestingModule,
+          ],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(LoginSmartComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(LoginSmartComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });
