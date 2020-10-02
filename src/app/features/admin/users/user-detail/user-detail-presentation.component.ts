@@ -23,7 +23,6 @@ import { IUserDTO } from '@models/user';
 })
 export class UserDetailPresentationComponent {
   @Input() public formConfig: IFormConfig = new FormConfig();
-  @Input() public formTitle: string = 'Create User';
   @Input() public user: IUserDTO;
 
   @Output() public emitForm = new EventEmitter<FormGroup>();

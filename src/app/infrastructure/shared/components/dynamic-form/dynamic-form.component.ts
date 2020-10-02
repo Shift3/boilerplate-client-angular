@@ -22,7 +22,6 @@ import {
 })
 export class DynamicFormComponent implements OnInit {
   @Input() public formConfig: IFormConfig = new FormConfig();
-  @Input() public formTitle: string = '';
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
