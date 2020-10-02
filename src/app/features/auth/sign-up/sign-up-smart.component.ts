@@ -16,7 +16,7 @@ import {
   IInputField,
   InputField,
 } from '@models/form/input';
-import { PasswordValidation } from '@utils/validation/password-validation';
+import { MatchFieldValidation } from '@utils/validation/match-field-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import {
@@ -40,6 +40,7 @@ export class SignUpSmartComponent {
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     submit: new SaveCancelButtonConfig({save: 'Sign Up'}),
+    validation: [ MatchFieldValidation.validFieldMatch('email', 'confirmEmail', 'Email') ],
     controls: [
       new FormField<IInputField>({
         name: 'email',
@@ -53,15 +54,14 @@ export class SignUpSmartComponent {
         validation: [ EmailValidation.validEmail(true) ],
       }),
       new FormField<IInputField>({
-        name: 'password',
+        name: 'confirmEmail',
         fieldType: 'input',
-        label: 'Password',
-        placeholder: 'Enter your password',
-        fieldConfig : new InputField({
-          inputType: 'password',
-          autocomplete: 'current-password',
+        label: 'Confirm Email',
+        placeholder: 'Confirm your email',
+        fieldConfig: new InputField({
+          inputType: 'email',
+          autocomplete: 'email',
         }),
-        validation: [ PasswordValidation.validPassword(true) ],
       }),
       new FormField<IInputField>({
         name: 'firstName',
