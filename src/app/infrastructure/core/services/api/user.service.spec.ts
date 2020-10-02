@@ -112,7 +112,7 @@ import { IMessage } from '@models/message';
         expect(req.request.method).toBe('POST');
       });
 
-      it('should return a status message on success', () => {
+      it('should return the new user object on success', () => {
         const payload: ISignupRequest = new SignupRequest();
         const expectedValue: IUserDTO = new UserDTO();
         let response: IUserDTO;
@@ -123,6 +123,16 @@ import { IMessage } from '@models/message';
         });
 
         expect(response).toEqual(expectedValue);
+      });
+
+      it(`should show a notification on success`, () => {
+        const payload: ISignupRequest = new SignupRequest();
+        const expectedValue: IUserDTO = new UserDTO();
+        spyOn(apiService, 'post').and.returnValue(observableOf(expectedValue));
+
+        service.signUp(payload).subscribe(() => {
+          expect(notificationMock.showSuccess).toHaveBeenCalled();
+        });
       });
     });
 

@@ -9,7 +9,11 @@
     [autocomplete]="config.fieldConfig.autocomplete"
     [mask]="config.fieldConfig.mask"
   >
-  <span class="field-label">
-    {{ formControl?.errors | formError }}
+  <span class="error-container">
+    <ng-container *ngIf="formControl?.errors">
+      <span class="field-label">
+        {{ formControl?.errors | formError }}
+      </span>
+    </ng-container>
   </span>
 </div>
