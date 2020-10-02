@@ -9,13 +9,11 @@
       {{ option[config.fieldConfig.optionName] }}
     </option>
   </select>
-  <ng-container *ngIf="formControl?.errors; else empty">
-    <span class="field-label">
-      {{ formControl?.errors | formError }}
-    </span>
-  </ng-container>
-  <ng-template #empty>
-    <span class="empty-message-container">
-    </span>
-  </ng-template>
+  <span class="error-container">
+    <ng-container *ngIf="formControl?.errors">
+      <span class="field-label">
+        {{ formControl?.errors | formError }}
+      </span>
+    </ng-container>
+  </span>
 </div>
