@@ -6,22 +6,11 @@ import {
   OnInit,
 } from '@angular/core';
 
-import {
-  merge,
-  Observable,
-  of as observableOf,
-} from 'rxjs';
-import {
-  catchError,
-  startWith,
-  switchMap,
-} from 'rxjs/operators';
+import { merge, Observable, of as observableOf } from 'rxjs';
+import { catchError, startWith, switchMap } from 'rxjs/operators';
 
 import { ConfirmModalConfig } from '@models/modal';
-import {
-  ForgotPasswordRequest,
-  IUserDTO,
-} from '@models/user';
+import { ForgotPasswordRequest, IUserDTO } from '@models/user';
 import { ModalService } from '@core/services/modal.service';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
@@ -31,9 +20,9 @@ import { IRoleCheck } from '@models/role';
   selector: 'app-user-list',
   template: `
     <app-user-list-presentation
-      [checkRole]="(checkRole$ | async)"
-      [loggedInUser]="(loggedInUser$ | async)"
-      [userList]="(userList$ | async)"
+      [checkRole]="checkRole$ | async"
+      [loggedInUser]="loggedInUser$ | async"
+      [userList]="userList$ | async"
       (emitDelete)="openDeleteModal($event)"
       (emitResendActivationEmail)="openResendActivationEmailModal($event)"
       (emitResetPassword)="openResetPasswordModal($event)"
@@ -53,7 +42,7 @@ export class UserListSmartComponent implements OnInit {
     private modalService: ModalService,
     private userService: UserService,
     private userStateService: UserStateService,
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.getUserList();
@@ -114,7 +103,9 @@ export class UserListSmartComponent implements OnInit {
   }
 
   private deleteUser(user: IUserDTO): void {
-    this.userService.deleteUser(user).subscribe(() => this.emitGetUserList.emit());
+    this.userService
+      .deleteUser(user)
+      .subscribe(() => this.emitGetUserList.emit());
   }
 
   private resendActivationEmail(user: IUserDTO): void {

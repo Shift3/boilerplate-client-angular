@@ -7,10 +7,7 @@ import {
 } from '@angular/core';
 
 import { IAgencyDTO } from '@models/agency';
-import {
-  FormConfig,
-  IFormConfig,
-} from '@models/form/form';
+import { FormConfig, IFormConfig } from '@models/form/form';
 import { FormGroup } from '@angular/forms';
 
 @Component({

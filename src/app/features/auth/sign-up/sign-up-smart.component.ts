@@ -1,28 +1,15 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { EmailValidation } from '@utils/validation/email-validation';
-import {
-  FormConfig,
-  FormField,
-  IFormConfig,
-} from '@models/form/form';
+import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
-import {
-  IInputField,
-  InputField,
-} from '@models/form/input';
+import { IInputField, InputField } from '@models/form/input';
 import { MatchFieldValidation } from '@utils/validation/match-field-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
-import {
-  ISignupRequest,
-  SignupRequest,
-} from '@models/auth';
+import { ISignupRequest, SignupRequest } from '@models/auth';
 import { UserService } from '@core/services/api/user.service';
 
 @Component({
@@ -40,19 +27,21 @@ export class SignUpSmartComponent {
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     formTitle: 'Sign Up',
-    submit: new SaveCancelButtonConfig({save: 'Sign Up'}),
-    validation: [ MatchFieldValidation.validFieldMatch('email', 'confirmEmail', 'Email') ],
+    submit: new SaveCancelButtonConfig({ save: 'Sign Up' }),
+    validation: [
+      MatchFieldValidation.validFieldMatch('email', 'confirmEmail', 'Email'),
+    ],
     controls: [
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
         label: 'Email',
         placeholder: 'Enter your email',
-        fieldConfig : new InputField({
+        fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
         }),
-        validation: [ EmailValidation.validEmail(true) ],
+        validation: [EmailValidation.validEmail(true)],
       }),
       new FormField<IInputField>({
         name: 'confirmEmail',
@@ -69,16 +58,16 @@ export class SignUpSmartComponent {
         fieldType: 'input',
         label: 'First Name',
         placeholder: 'Enter your first name',
-        fieldConfig : new InputField({ autocomplete: 'given-name' }),
-        validation: [ RequiredValidation.required('First Name') ],
+        fieldConfig: new InputField({ autocomplete: 'given-name' }),
+        validation: [RequiredValidation.required('First Name')],
       }),
       new FormField<IInputField>({
         name: 'lastName',
         fieldType: 'input',
         label: 'Last Name',
         placeholder: 'Enter your last name',
-        fieldConfig : new InputField({ autocomplete: 'family-name' }),
-        validation: [ RequiredValidation.required('Last Name') ],
+        fieldConfig: new InputField({ autocomplete: 'family-name' }),
+        validation: [RequiredValidation.required('Last Name')],
       }),
     ],
   });
@@ -87,7 +76,7 @@ export class SignUpSmartComponent {
     private formService: FormService,
     private router: Router,
     private userService: UserService,
-  ) { }
+  ) {}
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
@@ -95,7 +84,9 @@ export class SignUpSmartComponent {
 
   public signup(): void {
     const requestPayload = this.buildPayload();
-    this.userService.signUp(requestPayload).subscribe(() => this.router.navigateByUrl('/auth/login'));
+    this.userService
+      .signUp(requestPayload)
+      .subscribe(() => this.router.navigateByUrl('/auth/login'));
   }
 
   private buildPayload(): ISignupRequest {

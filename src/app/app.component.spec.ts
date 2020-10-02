@@ -13,31 +13,29 @@ import { TopNavigationSmartComponent } from '@shared/components/navigation/top-n
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] AppComponent', () => {
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          RouterTestingModule,
-        ],
-        declarations: [
-          AppComponent,
-          MockComponent(FooterComponent),
-          MockComponent(SideNavigationSmartComponent),
-          MockComponent(TopNavigationSmartComponent),
-        ],
-      }).compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          imports: [RouterTestingModule],
+          declarations: [
+            AppComponent,
+            MockComponent(FooterComponent),
+            MockComponent(SideNavigationSmartComponent),
+            MockComponent(TopNavigationSmartComponent),
+          ],
+        }).compileComponents();
+      }));
 
-    it('should create the app', () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      fixture.detectChanges();
-      const app = fixture.componentInstance;
-      expect(app).toBeTruthy();
-    });
+      it('should create the app', () => {
+        const fixture = TestBed.createComponent(AppComponent);
+        fixture.detectChanges();
+        const app = fixture.componentInstance;
+        expect(app).toBeTruthy();
+      });
 
-    it(`should have as title 'boilerplate-client-angular'`, () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      fixture.detectChanges();
-      const app = fixture.componentInstance;
-      expect(app.title).toEqual('boilerplate-client-angular');
+      it(`should have as title 'boilerplate-client-angular'`, () => {
+        const fixture = TestBed.createComponent(AppComponent);
+        fixture.detectChanges();
+        const app = fixture.componentInstance;
+        expect(app.title).toEqual('boilerplate-client-angular');
+      });
     });
-  });

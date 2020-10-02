@@ -1,7 +1,4 @@
-import {
-  IAddressDTO,
-  AddressDTO,
-} from './address';
+import { IAddressDTO, AddressDTO } from './address';
 
 export interface IAgentDTO {
   id: number;

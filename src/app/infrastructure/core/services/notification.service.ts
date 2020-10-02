@@ -6,9 +6,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class NotificationService {
-  constructor(
-    private toastr: ToastrService,
-  ) { }
+  constructor(private toastr: ToastrService) {}
   public showSuccess(messageList: string[]): void {
     const formattedMessage = this.formatMessageList(messageList);
     this.toastr.success(formattedMessage, '', { enableHtml: true });
@@ -16,7 +14,10 @@ export class NotificationService {
 
   public showError(messageList: string[]): void {
     const formattedMessage = this.formatMessageList(messageList);
-    this.toastr.error(formattedMessage, '', { enableHtml: true, timeOut: 10000 });
+    this.toastr.error(formattedMessage, '', {
+      enableHtml: true,
+      timeOut: 10000,
+    });
   }
 
   private formatMessageList(messageList: string[]): string {

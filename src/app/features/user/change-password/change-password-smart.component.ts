@@ -1,21 +1,11 @@
 import { ActivatedRoute } from '@angular/router';
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 
-import {
-  FormConfig,
-  FormField,
-  IFormConfig,
-} from '@models/form/form';
+import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
-import {
-  IInputField,
-  InputField,
-} from '@models/form/input';
+import { IInputField, InputField } from '@models/form/input';
 import {
   ChangePasswordRequest,
   IChangePasswordRequest,
@@ -42,30 +32,36 @@ export class ChangePasswordSmartComponent {
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
     formTitle: 'Change Password',
-    submit: new SaveCancelButtonConfig({save: 'Submit'}),
-    validation: [ MatchFieldValidation.validFieldMatch('newPassword', 'confirmPassword', 'Password') ],
+    submit: new SaveCancelButtonConfig({ save: 'Submit' }),
+    validation: [
+      MatchFieldValidation.validFieldMatch(
+        'newPassword',
+        'confirmPassword',
+        'Password',
+      ),
+    ],
     controls: [
       new FormField<IInputField>({
         name: 'oldPassword',
         fieldType: 'input',
         label: 'Current Password',
         placeholder: 'Enter the current password',
-        fieldConfig : new InputField({
+        fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'current-password',
         }),
-        validation: [ RequiredValidation.required('Current Password') ],
+        validation: [RequiredValidation.required('Current Password')],
       }),
       new FormField<IInputField>({
         name: 'newPassword',
         fieldType: 'input',
         label: 'New Password',
         placeholder: 'Enter a new password',
-        fieldConfig : new InputField({
+        fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',
         }),
-        validation: [ PasswordValidation.validPassword(true) ],
+        validation: [PasswordValidation.validPassword(true)],
       }),
       new FormField<IInputField>({
         name: 'confirmPassword',
@@ -96,7 +92,9 @@ export class ChangePasswordSmartComponent {
 
   public changePassword(): void {
     const requestPayload = this.buildPayload();
-    this.userService.changePassword(requestPayload, this.user.id).subscribe(() => this.location.back());
+    this.userService
+      .changePassword(requestPayload, this.user.id)
+      .subscribe(() => this.location.back());
   }
 
   private buildPayload(): IChangePasswordRequest {

@@ -5,16 +5,8 @@ import {
   OnInit,
 } from '@angular/core';
 
-import {
-  merge,
-  Observable,
-  of as observableOf,
-} from 'rxjs';
-import {
-  catchError,
-  startWith,
-  switchMap,
-} from 'rxjs/operators';
+import { merge, Observable, of as observableOf } from 'rxjs';
+import { catchError, startWith, switchMap } from 'rxjs/operators';
 
 import { AgentService } from '@core/services/api/agent.service';
 import { ConfirmModalConfig } from '@models/modal';
@@ -26,8 +18,8 @@ import { UserStateService } from '@core/services/state/user-state.service';
 @Component({
   template: `
     <app-agent-list-presentation
-      [agentList]="(agentList$ | async)"
-      [checkRole]="(checkRole$ | async)"
+      [agentList]="agentList$ | async"
+      [checkRole]="checkRole$ | async"
       (emitDelete)="openDeleteModal($event)"
     ></app-agent-list-presentation>
   `,
@@ -42,7 +34,7 @@ export class AgentListSmartComponent implements OnInit {
     private agentService: AgentService,
     private modalService: ModalService,
     private userStateService: UserStateService,
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.getAgentList();
@@ -74,6 +66,8 @@ export class AgentListSmartComponent implements OnInit {
   }
 
   private deleteAgent(agent: IAgentDTO): void {
-    this.agentService.deleteAgent(agent).subscribe(() => this.emitGetAgentList.emit());
+    this.agentService
+      .deleteAgent(agent)
+      .subscribe(() => this.emitGetAgentList.emit());
   }
 }

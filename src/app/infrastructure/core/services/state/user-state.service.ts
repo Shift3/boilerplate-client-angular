@@ -1,20 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import {
-  BehaviorSubject,
-  Observable,
-} from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import {
-  IRoleCheck,
-  RoleDTO,
-  RoleCheck,
-} from '@models/role';
-import {
-  IUserDTO,
-  UserDTO,
-} from '@models/user';
+import { IRoleCheck, RoleDTO, RoleCheck } from '@models/role';
+import { IUserDTO, UserDTO } from '@models/user';
 
 /**
  * Maintains active state listeners for authentication and role status.
@@ -24,7 +14,9 @@ import {
 })
 export class UserStateService {
   // Saving user session data in local storage temporarily until session data is revisited.
-  public userSession$ = new BehaviorSubject<IUserDTO>(JSON.parse(localStorage.getItem('user')));
+  public userSession$ = new BehaviorSubject<IUserDTO>(
+    JSON.parse(localStorage.getItem('user')),
+  );
 
   public getUserSession(): Observable<IUserDTO> {
     return this.userSession$.asObservable();
@@ -58,8 +50,6 @@ export class UserStateService {
   }
 
   public isSelf(userId: number): Observable<boolean> {
-    return this.getUserSession().pipe(
-      map((user) => user?.id === userId),
-    );
+    return this.getUserSession().pipe(map((user) => user?.id === userId));
   }
 }

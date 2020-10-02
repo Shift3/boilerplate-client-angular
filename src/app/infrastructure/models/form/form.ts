@@ -1,10 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
 
 import { IInputField } from './input';
-import {
-  ISaveCancelButtonConfig,
-  SaveCancelButtonConfig,
-} from './button';
+import { ISaveCancelButtonConfig, SaveCancelButtonConfig } from './button';
 import { ISelectField } from './select';
 
 export type FieldType = 'input' | 'textarea' | 'select';

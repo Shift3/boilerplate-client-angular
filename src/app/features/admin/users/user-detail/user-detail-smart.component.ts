@@ -11,33 +11,15 @@ import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { IAgencyDTO } from '@models/agency';
-import {
-  ChangeUserRequest,
-  IChangeUserRequest,
-  IUserDTO,
-} from '@models/user';
+import { ChangeUserRequest, IChangeUserRequest, IUserDTO } from '@models/user';
 import { EmailValidation } from '@utils/validation/email-validation';
-import {
-  FormConfig,
-  FormField,
-  IFormConfig,
-} from '@models/form/form';
+import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
-import {
-  IInputField,
-  InputField,
-} from '@models/form/input';
+import { IInputField, InputField } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
-import {
-  IRoleCheck,
-  RoleType,
-} from '@models/role';
+import { IRoleCheck, RoleType } from '@models/role';
 import { SaveCancelButtonConfig } from '@models/form/button';
-import {
-  ISelectField,
-  ISelectOptions,
-  SelectField,
-} from '@models/form/select';
+import { ISelectField, ISelectOptions, SelectField } from '@models/form/select';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
 
@@ -89,38 +71,50 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private checkRoleList(): void {
-    const roleCheckSubscription = this.userStateService.checkRoleList().subscribe((role) => {
-      this.checkRole = role;
-    });
+    const roleCheckSubscription = this.userStateService
+      .checkRoleList()
+      .subscribe((role) => {
+        this.checkRole = role;
+      });
     this.subscriptions.push(roleCheckSubscription);
   }
 
   public updateOrCreateUser(): void {
     const requestPayload = this.buildPayload();
     if (this.user.id) {
-      (this.isSelf) ? this.updateProfile(requestPayload) : this.updateUser(requestPayload);
+      this.isSelf
+        ? this.updateProfile(requestPayload)
+        : this.updateUser(requestPayload);
     } else {
       this.createUser(requestPayload);
     }
   }
 
   private createUser(requestPayload: IChangeUserRequest): void {
-    this.userService.createUser(requestPayload).subscribe(() => this.navigateOnSuccess());
+    this.userService
+      .createUser(requestPayload)
+      .subscribe(() => this.navigateOnSuccess());
   }
 
   private updateUser(requestPayload: IChangeUserRequest): void {
-    this.userService.updateUser(requestPayload, this.user.id).subscribe(() => this.navigateOnSuccess());
+    this.userService
+      .updateUser(requestPayload, this.user.id)
+      .subscribe(() => this.navigateOnSuccess());
   }
 
   private updateProfile(requestPayload: IChangeUserRequest): void {
-    this.userService.updateProfile(requestPayload, this.user.id).subscribe(() => this.navigateOnSuccess());
+    this.userService
+      .updateProfile(requestPayload, this.user.id)
+      .subscribe(() => this.navigateOnSuccess());
   }
 
   private checkIfSelfAndBuildFormConfig(): void {
-    const checkSelfSubscription = this.userStateService.isSelf(this.user?.id).subscribe((isSelf) => {
-      this.isSelf = isSelf;
-      this.formConfig = this.buildFormConfig();
-    });
+    const checkSelfSubscription = this.userStateService
+      .isSelf(this.user?.id)
+      .subscribe((isSelf) => {
+        this.isSelf = isSelf;
+        this.formConfig = this.buildFormConfig();
+      });
     this.subscriptions.push(checkSelfSubscription);
   }
 
@@ -141,34 +135,36 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     const formConfig = new FormConfig({
       formName: 'form',
       formTitle: this.activatedRoute.snapshot.data.title || 'Create User',
-      submit: new SaveCancelButtonConfig({save: (this.user?.id) ? 'Update' : 'Create' }),
+      submit: new SaveCancelButtonConfig({
+        save: this.user?.id ? 'Update' : 'Create',
+      }),
       controls: [
         new FormField<IInputField>({
           name: 'firstName',
           value: this.user?.firstName,
           fieldType: 'input',
           label: 'First Name',
-          fieldConfig : new InputField({ autocomplete: 'given-name' }),
-          validation: [ RequiredValidation.required('First Name') ],
+          fieldConfig: new InputField({ autocomplete: 'given-name' }),
+          validation: [RequiredValidation.required('First Name')],
         }),
         new FormField<IInputField>({
           name: 'lastName',
           value: this.user?.lastName,
           fieldType: 'input',
           label: 'Last Name',
-          fieldConfig : new InputField({ autocomplete: 'family-name' }),
-          validation: [ RequiredValidation.required('Last Name') ],
+          fieldConfig: new InputField({ autocomplete: 'family-name' }),
+          validation: [RequiredValidation.required('Last Name')],
         }),
         new FormField<IInputField>({
           name: 'email',
           value: this.user?.email,
           fieldType: 'input',
           label: 'Email',
-          fieldConfig : new InputField({
+          fieldConfig: new InputField({
             inputType: 'email',
             autocomplete: 'email',
           }),
-          validation: [ EmailValidation.validEmail(true) ],
+          validation: [EmailValidation.validEmail(true)],
         }),
       ],
     });
@@ -180,12 +176,12 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
         value: this.user?.agency.agencyName,
         fieldType: 'select',
         label: 'Agency',
-        fieldConfig : new SelectField({
+        fieldConfig: new SelectField({
           options: this.agencyList,
           optionName: 'agencyName',
           optionValue: 'agencyName',
         }),
-        validation: [ RequiredValidation.required('Agency') ],
+        validation: [RequiredValidation.required('Agency')],
         disabled: !this.checkRole.isSuperAdmin,
       });
       formConfig.controls.push(agencyList);
@@ -198,12 +194,12 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
         value: this.user?.role.id,
         fieldType: 'select',
         label: 'Role',
-        fieldConfig : new SelectField({
+        fieldConfig: new SelectField({
           options: this.roleList,
           optionName: 'roleName',
           optionValue: 'id',
         }),
-        validation: [ RequiredValidation.required('Role') ],
+        validation: [RequiredValidation.required('Role')],
         disabled: this.isSelf,
       });
       formConfig.controls.push(roleList);

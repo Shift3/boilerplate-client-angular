@@ -7,10 +7,7 @@ import {
 } from '@angular/core';
 
 import { IAgentDTO } from '@models/agent';
-import {
-  IRoleCheck,
-  RoleCheck,
-} from '@models/role';
+import { IRoleCheck, RoleCheck } from '@models/role';
 
 @Component({
   selector: 'app-agent-list-presentation',

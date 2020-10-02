@@ -10,28 +10,27 @@ import { TopNavigationSmartComponent } from '@shared/components/navigation/top-n
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] AdminLayoutComponent', () => {
-    let component: AdminLayoutComponent;
-    let fixture: ComponentFixture<AdminLayoutComponent>;
+      let component: AdminLayoutComponent;
+      let fixture: ComponentFixture<AdminLayoutComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          AdminLayoutComponent,
-          SideNavigationSmartComponent,
-          TopNavigationSmartComponent,
-        ],
-        imports: [ RouterTestingModule ],
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [
+            AdminLayoutComponent,
+            SideNavigationSmartComponent,
+            TopNavigationSmartComponent,
+          ],
+          imports: [RouterTestingModule],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(AdminLayoutComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(AdminLayoutComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });

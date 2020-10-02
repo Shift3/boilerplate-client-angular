@@ -32,7 +32,7 @@ export class DynamicFieldDirective implements OnInit, OnDestroy {
   constructor(
     private container: ViewContainerRef,
     private resolver: ComponentFactoryResolver,
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.initializeComponentAndFactory();
@@ -44,7 +44,9 @@ export class DynamicFieldDirective implements OnInit, OnDestroy {
 
   private initializeComponentAndFactory(): void {
     const component = components[this.fieldConfig.fieldType];
-    const factory = this.resolver.resolveComponentFactory<FormInputComponent & FormSelectComponent>(component);
+    const factory = this.resolver.resolveComponentFactory<
+      FormInputComponent & FormSelectComponent
+    >(component);
     this.component = this.container.createComponent(factory);
     this.component.instance.config = this.fieldConfig;
     this.component.instance.group = this.group;

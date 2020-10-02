@@ -16,9 +16,7 @@ import { IFormConfig } from '@models/form/form';
   providedIn: 'root',
 })
 export class FormService {
-  constructor(
-    private fb: FormBuilder,
-  ) { }
+  constructor(private fb: FormBuilder) {}
 
   /**
    * Creates `FormGroup` from the passed in `formConfig`. Currently a naive implementation.
@@ -26,9 +24,15 @@ export class FormService {
   public buildForm(formConfig: IFormConfig): FormGroup {
     const form = this.fb.group({});
 
-    formConfig.controls.forEach(formField => {
+    formConfig.controls.forEach((formField) => {
       formField.value = formField.value || '';
-      return this.addFormControl(form, formField.name, formField.value.toString(), formField.validation, formField.disabled);
+      return this.addFormControl(
+        form,
+        formField.name,
+        formField.value.toString(),
+        formField.validation,
+        formField.disabled,
+      );
     });
     form.setValidators(Validators.compose([...formConfig.validation]));
 
@@ -50,7 +54,13 @@ export class FormService {
       form.removeControl(fieldName);
     }
 
-    return form.addControl(fieldName, new FormControl({ value: fieldValue, disabled }, Validators.compose([...validators])));
+    return form.addControl(
+      fieldName,
+      new FormControl(
+        { value: fieldValue, disabled },
+        Validators.compose([...validators]),
+      ),
+    );
   }
 
   /**

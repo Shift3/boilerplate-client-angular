@@ -1,18 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import {
-    Resolve,
-    Router,
-} from '@angular/router';
+import { Resolve, Router } from '@angular/router';
 
-import {
-  Observable,
-  throwError as observableThrowError,
-} from 'rxjs';
-import {
-  catchError,
-  take,
-} from 'rxjs/operators';
+import { Observable, throwError as observableThrowError } from 'rxjs';
+import { catchError, take } from 'rxjs/operators';
 
 import { IRoleDTO } from '@models/role';
 import { NotificationService } from '../services/notification.service';
@@ -26,17 +17,16 @@ export class GetRoleListResolver implements Resolve<IRoleDTO[]> {
     private notificationService: NotificationService,
     private router: Router,
     private roleService: RoleService,
-  ) { }
+  ) {}
 
   resolve(): Observable<IRoleDTO[]> {
-    return this.roleService.getRoleList()
-      .pipe(
-        take(1),
-        catchError((error: HttpErrorResponse) => {
-          this.navigateOnError();
-          return observableThrowError(error);
-        }),
-      );
+    return this.roleService.getRoleList().pipe(
+      take(1),
+      catchError((error: HttpErrorResponse) => {
+        this.navigateOnError();
+        return observableThrowError(error);
+      }),
+    );
   }
 
   private navigateOnError(): void {

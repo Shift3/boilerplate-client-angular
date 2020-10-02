@@ -1,9 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
-import {
-  TestBed,
-  getTestBed,
-} from '@angular/core/testing';
+import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { of as observableOf } from 'rxjs';
 
@@ -17,53 +14,55 @@ import { RoleService } from '../services/api/role.service';
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] GetRoleListResolver', () => {
-    let injector: TestBed;
-    let resolver: GetRoleListResolver;
-    let service: RoleService;
-    const notificationMock = { showError: jasmine.createSpy('showError') };
-    const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
+      let injector: TestBed;
+      let resolver: GetRoleListResolver;
+      let service: RoleService;
+      const notificationMock = { showError: jasmine.createSpy('showError') };
+      const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
 
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        providers: [
-          GetRoleListResolver,
-          RoleService,
-          {
-            provide: NotificationService,
-            useValue: notificationMock,
-          },
-          {
-            provide: Router,
-            useValue: routerMock,
-          },
-        ],
-        imports: [HttpClientTestingModule],
-      });
-      injector = getTestBed();
-      resolver = injector.inject(GetRoleListResolver);
-      service = TestBed.inject(RoleService);
-    });
-
-    it('should be created', () => {
-      expect(resolver).toBeTruthy();
-    });
-
-    describe('resolve()', () => {
-      it('should exist', () => {
-        const spy = spyOn(resolver, 'resolve');
-        expect(spy).toBeTruthy();
-      });
-
-      it('should resolve the user role object in an array', () => {
-        const expectedValue = new Array<RoleDTO>({
-          id: 0,
-          roleName: '',
+      beforeEach(() => {
+        TestBed.configureTestingModule({
+          providers: [
+            GetRoleListResolver,
+            RoleService,
+            {
+              provide: NotificationService,
+              useValue: notificationMock,
+            },
+            {
+              provide: Router,
+              useValue: routerMock,
+            },
+          ],
+          imports: [HttpClientTestingModule],
         });
-        spyOn(service, 'getRoleList').and.returnValue(observableOf(expectedValue));
+        injector = getTestBed();
+        resolver = injector.inject(GetRoleListResolver);
+        service = TestBed.inject(RoleService);
+      });
 
-        resolver.resolve().subscribe(response => {
-          expect(response).toEqual(expectedValue);
+      it('should be created', () => {
+        expect(resolver).toBeTruthy();
+      });
+
+      describe('resolve()', () => {
+        it('should exist', () => {
+          const spy = spyOn(resolver, 'resolve');
+          expect(spy).toBeTruthy();
+        });
+
+        it('should resolve the user role object in an array', () => {
+          const expectedValue = new Array<RoleDTO>({
+            id: 0,
+            roleName: '',
+          });
+          spyOn(service, 'getRoleList').and.returnValue(
+            observableOf(expectedValue),
+          );
+
+          resolver.resolve().subscribe((response) => {
+            expect(response).toEqual(expectedValue);
+          });
         });
       });
     });
-  });

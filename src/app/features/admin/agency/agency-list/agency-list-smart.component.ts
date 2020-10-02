@@ -5,16 +5,8 @@ import {
   OnInit,
 } from '@angular/core';
 
-import {
-  merge,
-  Observable,
-  of as observableOf,
-} from 'rxjs';
-import {
-  catchError,
-  startWith,
-  switchMap,
-} from 'rxjs/operators';
+import { merge, Observable, of as observableOf } from 'rxjs';
+import { catchError, startWith, switchMap } from 'rxjs/operators';
 
 import { AgencyService } from '@core/services/api/agency.service';
 import { ConfirmModalConfig } from '@models/modal';
@@ -24,7 +16,7 @@ import { ModalService } from '@core/services/modal.service';
 @Component({
   template: `
     <app-agency-list-presentation
-      [agencyList]="(agencyList$ | async)"
+      [agencyList]="agencyList$ | async"
       (emitDelete)="openDeleteModal($event)"
     ></app-agency-list-presentation>
   `,
@@ -37,7 +29,7 @@ export class AgencyListSmartComponent implements OnInit {
   constructor(
     private agencyService: AgencyService,
     private modalService: ModalService,
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.getAgencyList();
@@ -64,6 +56,8 @@ export class AgencyListSmartComponent implements OnInit {
   }
 
   private deleteAgency(agency: IAgencyDTO): void {
-    this.agencyService.deleteAgency(agency).subscribe(() => this.emitGetAgencyList.emit());
+    this.agencyService
+      .deleteAgency(agency)
+      .subscribe(() => this.emitGetAgencyList.emit());
   }
 }

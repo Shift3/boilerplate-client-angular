@@ -1,8 +1,4 @@
-import {
-  ErrorHandler,
-  Injectable,
-  Injector,
-} from '@angular/core';
+import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { environment } from '@env/environment';
@@ -10,16 +6,11 @@ import { ErrorService } from './error.service';
 import { Logger } from '@utils/logger';
 import { NotificationService } from './notification.service';
 import { SentryErrorHandlerService } from './sentry-error-handler.service';
-import {
-  ISentryConfig,
-  SentryConfig,
-} from '@models/error';
+import { ISentryConfig, SentryConfig } from '@models/error';
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
-  constructor(
-    public injector: Injector,
-  ) { }
+  constructor(public injector: Injector) {}
 
   public handleError(
     error: Error | HttpErrorResponse,

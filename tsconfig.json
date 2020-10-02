@@ -11,34 +11,17 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@app/*": [
-        "app/*"
-      ],
-      "@core/*": [
-        "app/infrastructure/core/*"
-      ],
-      "@env/*": [
-        "environments/*"
-      ],
-      "@features/*": [
-        "app/features/*"
-      ],
-      "@models/*": [
-        "app/infrastructure/models/*"
-      ],
-      "@shared/*": [
-        "app/infrastructure/shared/*"
-      ],
-      "@utils/*": [
-        "app/infrastructure/utils/*"
-      ]
+      "@app/*": ["app/*"],
+      "@core/*": ["app/infrastructure/core/*"],
+      "@env/*": ["environments/*"],
+      "@features/*": ["app/features/*"],
+      "@models/*": ["app/infrastructure/models/*"],
+      "@shared/*": ["app/infrastructure/shared/*"],
+      "@utils/*": ["app/infrastructure/utils/*"]
     },
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

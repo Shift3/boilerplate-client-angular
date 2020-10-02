@@ -1,21 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import {
-  BehaviorSubject,
-  Observable,
-  of as observableOf,
-} from 'rxjs';
-import {
-  catchError,
-  tap,
-} from 'rxjs/operators';
+import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 import { environment } from '@env/environment';
-import {
-  ILoginRequest,
-  ISessionDTO,
-} from '@models/auth';
+import { ILoginRequest, ISessionDTO } from '@models/auth';
 import { UserStateService } from '../state/user-state.service';
 
 @Injectable({
@@ -36,11 +26,13 @@ export class AuthService {
   public login(payload: ILoginRequest): Observable<ISessionDTO> {
     const endpoint = `${this.url}/login/`;
 
-    return this.apiService.post<ISessionDTO, ILoginRequest>(endpoint, payload).pipe(
-      tap((response) => localStorage.setItem('token', response.jwtToken)),
-      tap((response) => this.userStateService.setUserSession(response.user)),
-      tap((response) => this.setToken(response.jwtToken)),
-    );
+    return this.apiService
+      .post<ISessionDTO, ILoginRequest>(endpoint, payload)
+      .pipe(
+        tap((response) => localStorage.setItem('token', response.jwtToken)),
+        tap((response) => this.userStateService.setUserSession(response.user)),
+        tap((response) => this.setToken(response.jwtToken)),
+      );
   }
 
   public logout(): Observable<never | null> {

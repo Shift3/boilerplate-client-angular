@@ -1,5 +1,7 @@
 <div class="row">
-  <button class="btn btn-add" routerLink="/admin/create-agency">{{ "Add Agency" |  uppercase }}</button>
+  <button class="btn btn-add" routerLink="/admin/create-agency">
+    {{ 'Add Agency' | uppercase }}
+  </button>
 </div>
 <ng-container *ngIf="agencyList; else loading">
   <app-agency-table

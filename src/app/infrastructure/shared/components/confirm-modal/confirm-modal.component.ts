@@ -1,15 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import {
-  ConfirmModalConfig,
-  IConfirmModalConfig,
-} from '@models/modal';
+import { ConfirmModalConfig, IConfirmModalConfig } from '@models/modal';
 
 @Component({
   templateUrl: './confirm-modal.component.html',
@@ -19,9 +12,7 @@ import {
 export class ConfirmModalComponent {
   @Input() public modalConfig: IConfirmModalConfig = new ConfirmModalConfig();
 
-  constructor(
-    private activeModal: NgbActiveModal,
-  ) { }
+  constructor(private activeModal: NgbActiveModal) {}
 
   public cancel(): void {
     this.activeModal.close();

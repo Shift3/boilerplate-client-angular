@@ -7,13 +7,13 @@
       (emitSubmit)="submit()"
     ></app-dynamic-form>
     <div class="forgot-password-container">
-      <a class="forgot-password-link" routerLink="/auth/forgot-password">Forgot Password?</a>
+      <a class="forgot-password-link" routerLink="/auth/forgot-password"
+        >Forgot Password?</a
+      >
     </div>
   </div>
   <div class="sign-up-container">
-    <h2 class="card-header">
-      Haven't Registered Yet?
-    </h2>
+    <h2 class="card-header">Haven't Registered Yet?</h2>
     <div class="instruction">
       Registering for your account is quick and easy.
     </div>
@@ -24,8 +24,7 @@
       mat-raised-button
       routerLink="/auth/signup"
     >
-      {{ "Create Account" | uppercase }}
+      {{ 'Create Account' | uppercase }}
     </button>
   </div>
 </div>
-
