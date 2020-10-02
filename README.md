@@ -16,6 +16,7 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
     - [AWS](#aws)
   - [Development](#development)
     - [Initializing the Project](#initializing-the-project)
+    - [Prettier](#prettier)
     - [Docker](#docker)
     - [CI](#ci)
     - [Local Development](#local-development)
@@ -84,6 +85,12 @@ Once the AWS sandbox setup has been taken care of by Terraform, the deployment i
 If this project is being cloned to start a new project, there are a few things that need to be updated to make it work. The project name will need to be updated in the `package.json`, `angular.json`, `karma.conf.js`, CircleCI `config.yml`, `app.e2e.spec.ts`, `index.html`, `app.component.ts`, and `app.component.spec.ts` files with the new project name. The README also refers to the boilerplate, both in the text and in the CircleCI badges.
 
 The project `environment` files will need to be updated with the path to the APIs. The development `environment.ts` assumes a local development server of `http://localhost:3000`, which might need to be updated.
+
+### Prettier
+
+This project uses [Prettier](https://prettier.io/) to enforce code style. It is highly opinionated by design with relatively scant options for customization. The thought process behind it is to ignore personal styling preferences and instead embrace consistency. There are `.prettierrc` and `.prettierignore` configuration files to adjust some options. Prettier is also wired up to a [pre-commit hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks). This DOES slightly slow down git, as it runs the hook on staged files every time `git commit` is executed.
+
+Prettier can be configured within [editors](https://prettier.io/docs/en/editors.html) so that it formats files on save, which helps minimize any changes the pre-commit hook would need to make.
 
 ### Docker
 
