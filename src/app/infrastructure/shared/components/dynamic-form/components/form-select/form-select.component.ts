@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 
 import { FormField, IFormField } from '@models/form/form';
-import { ISelectField, ISelectOptions, SelectField } from '@models/form/select';
-import { Utils } from '@utils/utils';
+import { ISelectField, SelectField } from '@models/form/select';
 
 @Component({
   selector: 'app-form-select',
