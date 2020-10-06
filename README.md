@@ -16,6 +16,7 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
     - [Local Environment](#local-environment)
     - [AWS](#aws)
   - [Development](#development)
+    - [Template Repository](#template-repository)
     - [Initializing the Project](#initializing-the-project)
     - [Prettier](#prettier)
     - [Docker](#docker)
@@ -88,6 +89,10 @@ The `package.json` file needs to be updated with the project name and sandbox S3
 Deploying to AWS requires having AWS credentials on the machine. The script is set to look for a default AWS profile named `shift3`. Once the AWS sandbox setup has been taken care of by Terraform, the deployment is done via `npm run deploy:staging`.
 
 ## Development
+
+### Template Repository
+
+This project is configured as a [template repository](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template#about-repository-templates). It creates one commit in the new project based on the template instead of the entire original boilerplate history.
 
 ### Initializing the Project
 
