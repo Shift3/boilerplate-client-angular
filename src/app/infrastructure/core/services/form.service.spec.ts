@@ -1,14 +1,7 @@
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { environment } from '@env/environment.test';
-import {
-  FormConfig,
-  FormField,
-} from '@models/form/form';
+import { FormConfig, FormField } from '@models/form/form';
 import { FormService } from './form.service';
 import { Logger } from '@utils/logger';
 import { IInputField } from '@models/form/input';
@@ -46,7 +39,13 @@ import { RequiredValidation } from '@utils/validation/required-validation';
 
         it(`should return a FormGroup with validation errors when given validation on the FormGroup`, () => {
           const formConfig = new FormConfig({
-            validation: [MatchFieldValidation.validFieldMatch('test', 'confirmTest', 'Test')],
+            validation: [
+              MatchFieldValidation.validFieldMatch(
+                'test',
+                'confirmTest',
+                'Test',
+              ),
+            ],
             controls: [
               new FormField<IInputField>({
                 name: 'test',
@@ -62,7 +61,9 @@ import { RequiredValidation } from '@utils/validation/required-validation';
               }),
             ],
           });
-          const expectedValue = { fieldsMismatched: 'Test fields do not match.' };
+          const expectedValue = {
+            fieldsMismatched: 'Test fields do not match.',
+          };
           const form = formService.buildForm(formConfig);
           form.setValue({
             test: 'test',
@@ -106,7 +107,9 @@ import { RequiredValidation } from '@utils/validation/required-validation';
         it(`should return a FormGroup with validation supplying errors on the created FormControl`, () => {
           const form = fb.group({});
           const expectedValue = { isRequired: `Test is required.` };
-          formService.addFormControl(form, 'test', '', [RequiredValidation.required('Test')]);
+          formService.addFormControl(form, 'test', '', [
+            RequiredValidation.required('Test'),
+          ]);
           expect(form.get('test').errors).toEqual(expectedValue);
         });
       });
@@ -121,7 +124,9 @@ import { RequiredValidation } from '@utils/validation/required-validation';
           form.addControl('password', new FormControl('password'));
           expectedValue.email = 'test@test.com';
           expectedValue.password = 'password';
-          expect(formService.buildRequestPayload(form, requestPayload)).toEqual(expectedValue);
+          expect(formService.buildRequestPayload(form, requestPayload)).toEqual(
+            expectedValue,
+          );
         });
 
         it(`should return a partially populated object with values from partially matching form values`, () => {
@@ -132,7 +137,9 @@ import { RequiredValidation } from '@utils/validation/required-validation';
           form.addControl('test', new FormControl('test'));
           expectedValue.email = 'test@test.com';
           expectedValue.password = '';
-          expect(formService.buildRequestPayload(form, payload)).toEqual(expectedValue);
+          expect(formService.buildRequestPayload(form, payload)).toEqual(
+            expectedValue,
+          );
         });
 
         it(`should return an initialized request object when no matching form values are found`, () => {
@@ -142,7 +149,9 @@ import { RequiredValidation } from '@utils/validation/required-validation';
           form.addControl('test', new FormControl('test'));
           expectedValue.email = '';
           expectedValue.password = '';
-          expect(formService.buildRequestPayload(form, payload)).toEqual(expectedValue);
+          expect(formService.buildRequestPayload(form, payload)).toEqual(
+            expectedValue,
+          );
         });
       });
     });

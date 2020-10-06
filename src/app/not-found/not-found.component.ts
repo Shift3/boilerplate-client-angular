@@ -8,9 +8,7 @@ import { Location } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotFoundComponent {
-  constructor(
-    private location: Location,
-  ) { }
+  constructor(private location: Location) {}
 
   public back(): void {
     this.location.back();

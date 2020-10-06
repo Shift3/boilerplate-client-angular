@@ -9,5 +9,6 @@ if (environment.production) {
 }
 
 /* tslint:disable:no-console */
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));

@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
-    ActivatedRouteSnapshot,
-    Resolve,
-    RouterStateSnapshot,
+  ActivatedRouteSnapshot,
+  Resolve,
+  RouterStateSnapshot,
 } from '@angular/router';
 
-import {
-    Observable,
-    of as observableOf,
-} from 'rxjs';
+import { Observable, of as observableOf } from 'rxjs';
 
 import { IUserDTO, UserDTO } from '@models/user';
 
@@ -16,7 +13,7 @@ import { IUserDTO, UserDTO } from '@models/user';
   providedIn: 'root',
 })
 export class CreateUserResolver implements Resolve<IUserDTO> {
-    resolve(): Observable<IUserDTO> {
-        return observableOf(new UserDTO());
-    }
+  resolve(): Observable<IUserDTO> {
+    return observableOf(new UserDTO());
+  }
 }

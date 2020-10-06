@@ -16,10 +16,7 @@ import { SharedModule } from '@shared/shared.module';
  * Root feature module.
  */
 @NgModule({
-  declarations: [
-    AppComponent,
-    mainComponents,
-  ],
+  declarations: [AppComponent, mainComponents],
   imports: [
     BrowserAnimationsModule,
     CoreModule,
@@ -35,4 +32,4 @@ import { SharedModule } from '@shared/shared.module';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

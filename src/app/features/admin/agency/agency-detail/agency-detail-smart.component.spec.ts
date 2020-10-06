@@ -1,7 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  HttpClientTestingModule,
-} from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -16,32 +14,31 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] AgencyDetailSmartComponent', () => {
-    let component: AgencyDetailSmartComponent;
-    let fixture: ComponentFixture<AgencyDetailSmartComponent>;
+      let component: AgencyDetailSmartComponent;
+      let fixture: ComponentFixture<AgencyDetailSmartComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          AgencyDetailSmartComponent,
-          MockComponent(AgencyDetailPresentationComponent),
-        ],
-        imports: [
-          HttpClientTestingModule,
-          ReactiveFormsModule,
-          RouterTestingModule,
-          ToastrTestingModule,
-        ],
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [
+            AgencyDetailSmartComponent,
+            MockComponent(AgencyDetailPresentationComponent),
+          ],
+          imports: [
+            HttpClientTestingModule,
+            ReactiveFormsModule,
+            RouterTestingModule,
+            ToastrTestingModule,
+          ],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(AgencyDetailSmartComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(AgencyDetailSmartComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });

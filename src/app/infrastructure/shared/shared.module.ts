@@ -34,11 +34,7 @@ import { pipes } from './pipes';
     directives,
     pipes,
   ],
-  declarations: [
-    components,
-    directives,
-    pipes,
-  ],
+  declarations: [components, directives, pipes],
 })
 export class SharedModule {
   static forRoot() {

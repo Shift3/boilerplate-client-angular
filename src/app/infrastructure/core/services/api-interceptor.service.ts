@@ -8,13 +8,8 @@ import {
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import {
-  Observable,
-  throwError as observableThrowError,
-} from 'rxjs';
-import {
-  catchError,
-} from 'rxjs/operators';
+import { Observable, throwError as observableThrowError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { AuthService } from './api/auth.service';
 
@@ -22,12 +17,12 @@ import { AuthService } from './api/auth.service';
 export class ApiInterceptorService implements HttpInterceptor {
   private AUTH_HEADER = 'Authorization';
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  intercept<T>(req: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
+  intercept<T>(
+    req: HttpRequest<T>,
+    next: HttpHandler,
+  ): Observable<HttpEvent<T>> {
     if (!req.headers.has('Content-Type')) {
       req = req.clone({
         headers: req.headers.set('Content-Type', 'application/json'),
@@ -65,9 +60,9 @@ export class ApiInterceptorService implements HttpInterceptor {
     });
   }
 
-    /**
-     * Initial naive behavior for 401s and 403s.
-     */
+  /**
+   * Initial naive behavior for 401s and 403s.
+   */
   private logoutOnAuthError(): void {
     this.authService.resetToken();
     this.authService.clearSession();

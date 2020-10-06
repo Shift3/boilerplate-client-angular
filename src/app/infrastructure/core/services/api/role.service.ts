@@ -13,9 +13,7 @@ export class RoleService {
   private controllerRoute: string = 'roles';
   private url: string = `${environment.apiRoute}`;
 
-  constructor(
-    private apiService: ApiService,
-  ) {
+  constructor(private apiService: ApiService) {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
   }
 

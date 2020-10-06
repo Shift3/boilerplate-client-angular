@@ -9,10 +9,7 @@ import {
 import { FormGroup } from '@angular/forms';
 
 import { FormService } from '@core/services/form.service';
-import {
-  FormConfig,
-  IFormConfig,
-} from '@models/form/form';
+import { FormConfig, IFormConfig } from '@models/form/form';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -22,16 +19,13 @@ import {
 })
 export class DynamicFormComponent implements OnInit {
   @Input() public formConfig: IFormConfig = new FormConfig();
-  @Input() public formTitle: string = '';
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
   public form: FormGroup = new FormGroup({});
 
-  constructor(
-    private formService: FormService,
-  ) { }
+  constructor(private formService: FormService) {}
 
   public ngOnInit(): void {
     this.form = this.createFormAndPropagateToParent();

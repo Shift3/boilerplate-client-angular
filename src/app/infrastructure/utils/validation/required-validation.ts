@@ -1,8 +1,4 @@
-import {
-  AbstractControl,
-  ValidationErrors,
-  ValidatorFn,
-} from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export class RequiredValidation {
   /**
@@ -12,9 +8,7 @@ export class RequiredValidation {
     return (control: AbstractControl): ValidationErrors | null => {
       const condition: boolean = !control.value && control.value !== 0;
 
-      return condition
-        ? { isRequired: `${placeholder} is required.` }
-        : null;
+      return condition ? { isRequired: `${placeholder} is required.` } : null;
     };
   }
 }

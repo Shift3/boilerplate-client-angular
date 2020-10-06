@@ -1,14 +1,17 @@
 export interface ISentryConfig {
+  message: string;
   sendToSentry: boolean;
   showDialog: boolean;
 }
 
 export class SentryConfig implements ISentryConfig {
-  sendToSentry: boolean;
-  showDialog: boolean;
+  message: string = '';
+  sendToSentry: boolean = false;
+  showDialog: boolean = false;
 
-  constructor() {
-    this.sendToSentry = false;
-    this.showDialog = false;
+  constructor(configOverride?: Partial<ISentryConfig>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
   }
 }

@@ -16,10 +16,7 @@ import {
 } from '@models/user';
 import { IMessage } from '@models/message';
 import { NotificationService } from '../notification.service';
-import {
-  ISessionDTO,
-  ISignupRequest,
-} from '@models/auth';
+import { ISessionDTO, ISignupRequest } from '@models/auth';
 import { UserStateService } from '../state/user-state.service';
 
 @Injectable({
@@ -41,37 +38,58 @@ export class UserService {
   public signUp(payload: ISignupRequest): Observable<IUserDTO> {
     const endpoint = `${this.url}/signup/`;
 
-    return this.apiService.post<IUserDTO, ISignupRequest>(endpoint, payload);
+    return this.apiService
+      .post<IUserDTO, ISignupRequest>(endpoint, payload)
+      .pipe(
+        tap((response) => {
+          const message = `An activation email has been sent to ${response.email}.`;
+          this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 
   public forgotPassword(payload: IForgotPasswordRequest): Observable<IMessage> {
     const endpoint = `${this.url}/forgot-password/`;
 
-    return this.apiService.post<IMessage, IForgotPasswordRequest>(endpoint, payload).pipe(
-      tap((response) => this.notificationService.showSuccess([response.message])),
-    );
+    return this.apiService
+      .post<IMessage, IForgotPasswordRequest>(endpoint, payload)
+      .pipe(
+        tap((response) =>
+          this.notificationService.showSuccess([response.message]),
+        ),
+      );
   }
 
-  public resetPassword(payload: IResetPasswordRequest, token: string): Observable<IUserDTO> {
+  public resetPassword(
+    payload: IResetPasswordRequest,
+    token: string,
+  ): Observable<IUserDTO> {
     const endpoint = `${this.url}/reset-password/${token}`;
 
-    return this.apiService.put<IUserDTO, IResetPasswordRequest>(endpoint, payload).pipe(
-      tap(() => {
-        const message = 'The password was reset successfully.';
-        return this.notificationService.showSuccess([message]);
-      }),
-    );
+    return this.apiService
+      .put<IUserDTO, IResetPasswordRequest>(endpoint, payload)
+      .pipe(
+        tap(() => {
+          const message = 'The password was reset successfully.';
+          return this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 
-  public activateAccount(payload: IResetPasswordRequest, token: string): Observable<IUserDTO> {
+  public activateAccount(
+    payload: IResetPasswordRequest,
+    token: string,
+  ): Observable<IUserDTO> {
     const endpoint = `${this.url}/activate-account/${token}`;
 
-    return this.apiService.put<IUserDTO, IResetPasswordRequest>(endpoint, payload).pipe(
-      tap(() => {
-        const message = 'This account has been activated. Please log in.';
-        return this.notificationService.showSuccess([message]);
-      }),
-    );
+    return this.apiService
+      .put<IUserDTO, IResetPasswordRequest>(endpoint, payload)
+      .pipe(
+        tap(() => {
+          const message = 'This account has been activated. Please log in.';
+          return this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 
   public findProfile(userId: number): Observable<IUserDTO> {
@@ -80,16 +98,21 @@ export class UserService {
     return this.apiService.get<IUserDTO>(endpoint);
   }
 
-  public updateProfile(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
+  public updateProfile(
+    payload: IChangeUserRequest,
+    userId: number,
+  ): Observable<IUserDTO> {
     const endpoint = `${this.url}/profile/${userId}`;
 
-    return this.apiService.put<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
-      tap((user) => this.userStateService.setUserSession(user)),
-      tap(() => {
-        const message = 'Profile updated.';
-        this.notificationService.showSuccess([message]);
-      }),
-    );
+    return this.apiService
+      .put<IUserDTO, IChangeUserRequest>(endpoint, payload)
+      .pipe(
+        tap((user) => this.userStateService.setUserSession(user)),
+        tap(() => {
+          const message = 'Profile updated.';
+          this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 
   public getUserList(agencyId?: number): Observable<IUserDTO[]> {
@@ -105,12 +128,14 @@ export class UserService {
     const endpoint = `${this.url}`;
     payload.role.id = Number(payload.role.id);
 
-    return this.apiService.post<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
-      tap((response) => {
-        const message = `An email has been sent to ${response.email} with instructions to finish activating the account.`;
-        return this.notificationService.showSuccess([message]);
-      }),
-    );
+    return this.apiService
+      .post<IUserDTO, IChangeUserRequest>(endpoint, payload)
+      .pipe(
+        tap((response) => {
+          const message = `An email has been sent to ${response.email} with instructions to finish activating the account.`;
+          return this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 
   public findUser(id: number): Observable<IUserDTO> {
@@ -122,30 +147,40 @@ export class UserService {
   /**
    * This lets the logged in user change their own password only.
    */
-  public changePassword(payload: IChangePasswordRequest, userId: number): Observable<ISessionDTO> {
+  public changePassword(
+    payload: IChangePasswordRequest,
+    userId: number,
+  ): Observable<ISessionDTO> {
     const endpoint = `${this.url}/change-password/${userId}`;
 
-    return this.apiService.put<ISessionDTO, IChangePasswordRequest>(endpoint, payload).pipe(
-      tap((response) => localStorage.setItem('token', response.jwtToken)),
-      tap((response) => this.userStateService.setUserSession(response.user)),
-      tap((response) => this.authService.setToken(response.jwtToken)),
-      tap(() => {
-        const message = `Password updated.`;
-        return this.notificationService.showSuccess([message]);
-      }),
-    );
+    return this.apiService
+      .put<ISessionDTO, IChangePasswordRequest>(endpoint, payload)
+      .pipe(
+        tap((response) => localStorage.setItem('token', response.jwtToken)),
+        tap((response) => this.userStateService.setUserSession(response.user)),
+        tap((response) => this.authService.setToken(response.jwtToken)),
+        tap(() => {
+          const message = `Password updated.`;
+          return this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 
-  public updateUser(payload: IChangeUserRequest, userId: number): Observable<IUserDTO> {
+  public updateUser(
+    payload: IChangeUserRequest,
+    userId: number,
+  ): Observable<IUserDTO> {
     const endpoint = `${this.url}/${userId}`;
     payload.role.id = Number(payload.role.id);
 
-    return this.apiService.put<IUserDTO, IChangeUserRequest>(endpoint, payload).pipe(
-      tap(() => {
-        const message = `User updated.`;
-        return this.notificationService.showSuccess([message]);
-      }),
-    );
+    return this.apiService
+      .put<IUserDTO, IChangeUserRequest>(endpoint, payload)
+      .pipe(
+        tap(() => {
+          const message = `User updated.`;
+          return this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 
   public deleteUser(user: IUserDTO): Observable<IUserDTO> {

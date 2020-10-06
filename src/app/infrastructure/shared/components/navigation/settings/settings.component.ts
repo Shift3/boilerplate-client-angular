@@ -1,22 +1,12 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  Input,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '@core/services/api/auth.service';
 import { ConfirmModalConfig } from '@models/modal';
 import { ModalService } from '@core/services/modal.service';
-import {
-  INavigation,
-  profileLinkList,
-} from '@models/navigation';
+import { INavigation, profileLinkList } from '@models/navigation';
 import { NavbarStateService } from '@core/services/state/navbar-state.service';
-import {
-  IUserDTO,
-  UserDTO,
-} from '@models/user';
+import { IUserDTO, UserDTO } from '@models/user';
 
 @Component({
   selector: 'app-settings',
@@ -27,15 +17,17 @@ import {
 export class SettingsComponent {
   @Input() loggedInUser: IUserDTO = new UserDTO();
 
+  public profilePicturePlaceholder = `assets/img/portrait_placeholder.png`;
   public profileLinks: INavigation[] = profileLinkList;
-  public showTopNav = (localStorage.getItem('navbarToggle') === 'top') ? true : false;
+  public showTopNav =
+    localStorage.getItem('navbarToggle') === 'top' ? true : false;
 
   constructor(
     private authService: AuthService,
     private modalService: ModalService,
     private navbarStateService: NavbarStateService,
     private router: Router,
-  ) { }
+  ) {}
 
   public openConfirmModal(): void {
     const modalConfig = new ConfirmModalConfig({
@@ -58,5 +50,9 @@ export class SettingsComponent {
   public toggleNavBar(): void {
     this.showTopNav = !this.showTopNav;
     this.navbarStateService.setNavbarToggle(this.showTopNav);
+  }
+
+  public showPlaceholderImageOnEmptyOrError(): void {
+    this.loggedInUser.profilePicture = this.profilePicturePlaceholder;
   }
 }

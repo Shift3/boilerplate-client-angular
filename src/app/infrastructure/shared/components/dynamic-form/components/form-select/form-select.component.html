@@ -5,11 +5,18 @@
     [name]="config.name"
     [formControlName]="config.name"
   >
-    <option *ngFor="let option of config.fieldConfig.options" [value]="option[config.fieldConfig.optionValue]">
+    <option
+      *ngFor="let option of config.fieldConfig.options"
+      [value]="option[config.fieldConfig.optionValue]"
+    >
       {{ option[config.fieldConfig.optionName] }}
     </option>
   </select>
-  <span class="field-label">
-    {{ formControl?.errors | formError }}
+  <span class="error-container">
+    <ng-container *ngIf="formControl?.errors">
+      <span class="field-label">
+        {{ formControl?.errors | formError }}
+      </span>
+    </ng-container>
   </span>
 </div>

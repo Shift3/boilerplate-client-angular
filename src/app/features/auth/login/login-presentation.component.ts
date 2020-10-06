@@ -6,10 +6,7 @@ import {
   Output,
 } from '@angular/core';
 
-import {
-  FormConfig,
-  IFormConfig,
-} from '@models/form/form';
+import { FormConfig, IFormConfig } from '@models/form/form';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -23,8 +20,6 @@ export class LoginPresentationComponent {
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
-
-  public formTitle: string = 'Member Log In';
 
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);

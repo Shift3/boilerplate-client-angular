@@ -11,29 +11,26 @@ import { SideNavigationPresentationComponent } from './side-navigation-presentat
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] SideNavigationSmartComponent', () => {
-    let component: SideNavigationSmartComponent;
-    let fixture: ComponentFixture<SideNavigationSmartComponent>;
+      let component: SideNavigationSmartComponent;
+      let fixture: ComponentFixture<SideNavigationSmartComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          SideNavigationSmartComponent,
-          MockComponent(SideNavigationPresentationComponent),
-        ],
-        imports: [
-          HttpClientTestingModule,
-        ],
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [
+            SideNavigationSmartComponent,
+            MockComponent(SideNavigationPresentationComponent),
+          ],
+          imports: [HttpClientTestingModule],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(SideNavigationSmartComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(SideNavigationSmartComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });

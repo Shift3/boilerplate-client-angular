@@ -8,28 +8,23 @@ import { LogoutComponent } from './logout.component';
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] LogoutComponent', () => {
-    let component: LogoutComponent;
-    let fixture: ComponentFixture<LogoutComponent>;
+      let component: LogoutComponent;
+      let fixture: ComponentFixture<LogoutComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          LogoutComponent,
-        ],
-        imports: [
-          RouterTestingModule,
-        ],
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [LogoutComponent],
+          imports: [RouterTestingModule],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(LogoutComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(LogoutComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });

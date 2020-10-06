@@ -7,10 +7,7 @@ import {
 } from '@angular/core';
 
 import { IAgencyDTO } from '@models/agency';
-import {
-  ITableConfig,
-  TableConfig,
-} from '@models/table';
+import { ITableConfig, TableConfig } from '@models/table';
 
 @Component({
   selector: 'app-agency-table',

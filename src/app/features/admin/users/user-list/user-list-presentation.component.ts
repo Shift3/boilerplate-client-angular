@@ -6,10 +6,7 @@ import {
   Output,
 } from '@angular/core';
 
-import {
-  IRoleCheck,
-  RoleCheck,
-} from '@models/role';
+import { IRoleCheck, RoleCheck } from '@models/role';
 import { IUserDTO } from '@models/user';
 
 @Component({

@@ -1,7 +1,4 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { environment } from '@env/environment';
 import { Utils } from '@utils/utils';

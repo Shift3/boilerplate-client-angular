@@ -1,10 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
 
 import { IInputField } from './input';
-import {
-  ISaveCancelButtonConfig,
-  SaveCancelButtonConfig,
-} from './button';
+import { ISaveCancelButtonConfig, SaveCancelButtonConfig } from './button';
 import { ISelectField } from './select';
 
 export type FieldType = 'input' | 'textarea' | 'select';
@@ -39,6 +36,7 @@ export class FormField<T> implements IFormField<T> {
 
 export interface IFormConfig {
   formName: string;
+  formTitle: string;
   validation: ValidatorFn[];
   controls: IFormField<IInputField | ISelectField<unknown>>[];
   submit?: ISaveCancelButtonConfig;
@@ -46,6 +44,7 @@ export interface IFormConfig {
 
 export class FormConfig implements IFormConfig {
   formName: string = 'form';
+  formTitle: string = '';
   validation: ValidatorFn[] = [];
   controls: IFormField<IInputField | ISelectField<unknown>>[] = [];
   submit?: ISaveCancelButtonConfig = new SaveCancelButtonConfig();

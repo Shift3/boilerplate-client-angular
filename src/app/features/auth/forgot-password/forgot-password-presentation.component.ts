@@ -6,10 +6,7 @@ import {
   Output,
 } from '@angular/core';
 
-import {
-  FormConfig,
-  IFormConfig,
-} from '@models/form/form';
+import { FormConfig, IFormConfig } from '@models/form/form';
 import { FormGroup } from '@angular/forms';
 import { IMessage } from '@models/message';
 
@@ -25,8 +22,6 @@ export class ForgotPasswordPresentationComponent {
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
-
-  public formTitle: string = 'Forgot Password';
 
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);

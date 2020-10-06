@@ -8,26 +8,23 @@ import { Logger } from '@utils/logger';
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] AuthLayoutComponent', () => {
-    let component: AuthLayoutComponent;
-    let fixture: ComponentFixture<AuthLayoutComponent>;
+      let component: AuthLayoutComponent;
+      let fixture: ComponentFixture<AuthLayoutComponent>;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          AuthLayoutComponent,
-        ],
-        imports: [ RouterTestingModule ],
-      })
-      .compileComponents();
-    }));
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          declarations: [AuthLayoutComponent],
+          imports: [RouterTestingModule],
+        }).compileComponents();
+      }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(AuthLayoutComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
+      beforeEach(() => {
+        fixture = TestBed.createComponent(AuthLayoutComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
+
+      it('should create', () => {
+        expect(component).toBeTruthy();
+      });
     });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });

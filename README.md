@@ -1,9 +1,9 @@
 # BoilerplateClientAngular
 
-|Branch|Status|
-|---|---|
-|development|[![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular)|
-|master|[![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master)|
+| Branch      | Status                                                                                                                                                                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| development | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular)                         |
+| master      | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master) |
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
@@ -13,9 +13,12 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
   - [Staging URL](#staging-url)
   - [Deployment](#deployment)
     - [Terraform](#terraform)
+    - [Local Environment](#local-environment)
     - [AWS](#aws)
   - [Development](#development)
+    - [Template Repository](#template-repository)
     - [Initializing the Project](#initializing-the-project)
+    - [Prettier](#prettier)
     - [Docker](#docker)
     - [CI](#ci)
     - [Local Development](#local-development)
@@ -61,29 +64,49 @@ cnames = ["", ""]
 
 ```
 
-| Secret                  |                                                                                                                                                    Note |
-| :---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| profile                 |                                                                                     This must match the AWS credentials name on the development machine |
-| application_name        |                                                                                                     The name of the project (can match the GitHub name) |
-| application_description |                                                                                       The description of the project (can match the GitHub description) |
-| region                  |                                                                                                                                Get this from Zoho Vault |
-| web_domain_name         |                                                                                                  The `application_name` followed by `shift3sandbox.com` |
-| zone_id                 |                                                                                                                                Get this from Zoho Vault |
-| zone_alias_id           |                                                                                                                                Get this from Zoho Vault |
-| iam_s3_bucket_user      |                                                                                                                                Get this from Zoho Vault |
-| cnames                  |      [The CNAME records](https://en.wikipedia.org/wiki/CNAME_record). Probably at least `example.shift3sandbox.com` and `www.example.shift3sandbox.com` |
+| Secret                  |                                                                                                                                               Note |
+| :---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------: |
+| profile                 |                                                                                This must match the AWS credentials name on the development machine |
+| application_name        |                                                                                                The name of the project (can match the GitHub name) |
+| application_description |                                                                                  The description of the project (can match the GitHub description) |
+| region                  |                                                                                                                           Get this from Zoho Vault |
+| web_domain_name         |                                                                                             The `application_name` followed by `shift3sandbox.com` |
+| zone_id                 |                                                                                                                           Get this from Zoho Vault |
+| zone_alias_id           |                                                                                                                           Get this from Zoho Vault |
+| iam_s3_bucket_user      |                                                                                                                           Get this from Zoho Vault |
+| cnames                  | [The CNAME records](https://en.wikipedia.org/wiki/CNAME_record). Probably at least `example.shift3sandbox.com` and `www.example.shift3sandbox.com` |
+
+### Local Environment
+
+After provisioning the AWS instance through Terraform, the project environment variables need to be updated with the new server values.
+
+The `apiRoute` property in `environment.staging.ts` will now need to be filled out with the provisioned sandbox instance.
+
+The `package.json` file needs to be updated with the project name and sandbox S3 bucket: `"deploy:staging": "ng build --prod --configuration=staging && aws s3 sync ./dist/<PROJECT_DIRECTORY_PATH> s3://<AWS_SANDBOX_URL> --profile shift3 --delete"` Replace the brackets and placeholder values with the project values.
 
 ### AWS
 
-Once the AWS sandbox setup has been taken care of by Terraform, the deployment is done via `npm run deploy:staging`.
+Deploying to AWS requires having AWS credentials on the machine. The script is set to look for a default AWS profile named `shift3`. Once the AWS sandbox setup has been taken care of by Terraform, the deployment is done via `npm run deploy:staging`.
 
 ## Development
+
+### Template Repository
+
+This project is configured as a [template repository](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template#about-repository-templates). It creates one commit in the new project based on the template instead of the entire original boilerplate history.
 
 ### Initializing the Project
 
 If this project is being cloned to start a new project, there are a few things that need to be updated to make it work. The project name will need to be updated in the `package.json`, `angular.json`, `karma.conf.js`, CircleCI `config.yml`, `app.e2e.spec.ts`, `index.html`, `app.component.ts`, and `app.component.spec.ts` files with the new project name. The README also refers to the boilerplate, both in the text and in the CircleCI badges.
 
 The project `environment` files will need to be updated with the path to the APIs. The development `environment.ts` assumes a local development server of `http://localhost:3000`, which might need to be updated.
+
+After provisioning and before deploying, the `deploy:staging` script in `package.json` needs to be updated, as mentioned [above](#local-environment).
+
+### Prettier
+
+This project uses [Prettier](https://prettier.io/) to enforce code style. It is highly opinionated by design with relatively scant options for customization. The thought process behind it is to ignore personal styling preferences and instead embrace consistency. There are `.prettierrc` and `.prettierignore` configuration files to adjust some options. Prettier is also wired up to a [pre-commit hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks). This DOES slightly slow down git, as it runs the hook on staged files every time `git commit` is executed.
+
+Prettier can be configured within [editors](https://prettier.io/docs/en/editors.html) so that it formats files on save, which helps minimize any changes the pre-commit hook would need to make.
 
 ### Docker
 

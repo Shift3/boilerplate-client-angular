@@ -7,14 +7,8 @@ import {
 } from '@angular/core';
 
 import { IAgentDTO } from '@models/agent';
-import {
-  IRoleCheck,
-  RoleCheck,
-} from '@models/role';
-import {
-  ITableConfig,
-  TableConfig,
-} from '@models/table';
+import { IRoleCheck, RoleCheck } from '@models/role';
+import { ITableConfig, TableConfig } from '@models/table';
 
 @Component({
   selector: 'app-agent-table',

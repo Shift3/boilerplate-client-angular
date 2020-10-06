@@ -1,28 +1,13 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
-import {
-  AgencyRequest,
-  IAgencyDTO,
-  IAgencyRequest,
-} from '@models/agency';
+import { AgencyRequest, IAgencyDTO, IAgencyRequest } from '@models/agency';
 import { AgencyService } from '@core/services/api/agency.service';
-import {
-  FormConfig,
-  FormField,
-  IFormConfig,
-} from '@models/form/form';
+import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
-import {
-  IInputField,
-  InputField,
-} from '@models/form/input';
+import { IInputField, InputField } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
 
@@ -31,7 +16,6 @@ import { SaveCancelButtonConfig } from '@models/form/button';
     <app-agency-detail-presentation
       [agency]="agency"
       [formConfig]="formConfig"
-      [formTitle]="formTitle"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="updateOrCreateAgency()"
     ></app-agency-detail-presentation>
@@ -42,7 +26,6 @@ export class AgencyDetailSmartComponent implements OnInit {
   public agency: IAgencyDTO;
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
-  public formTitle: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -51,7 +34,6 @@ export class AgencyDetailSmartComponent implements OnInit {
     private location: Location,
   ) {
     this.agency = this.activatedRoute.snapshot.data.agency;
-    this.formTitle = this.activatedRoute.snapshot.data.title;
   }
 
   public ngOnInit(): void {
@@ -64,21 +46,26 @@ export class AgencyDetailSmartComponent implements OnInit {
 
   public updateOrCreateAgency(): void {
     const requestPayload = this.buildPayload();
-    return (this.agency.id) ? this.updateAgency(requestPayload) : this.createAgency(requestPayload);
+    return this.agency.id
+      ? this.updateAgency(requestPayload)
+      : this.createAgency(requestPayload);
   }
 
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
-      submit: new SaveCancelButtonConfig({save: (this.agency?.id) ? 'Update' : 'Create' }),
+      formTitle: this.activatedRoute.snapshot.data.title || 'Create Agency',
+      submit: new SaveCancelButtonConfig({
+        save: this.agency?.id ? 'Update' : 'Create',
+      }),
       controls: [
         new FormField<IInputField>({
           name: 'agencyName',
           value: this.agency?.agencyName,
           fieldType: 'input',
           label: 'Agency Name',
-          fieldConfig : new InputField(),
-          validation: [ RequiredValidation.required('Agency Name') ],
+          fieldConfig: new InputField(),
+          validation: [RequiredValidation.required('Agency Name')],
         }),
       ],
     });
@@ -92,11 +79,15 @@ export class AgencyDetailSmartComponent implements OnInit {
   }
 
   private createAgency(requestPayload: IAgencyRequest): void {
-    this.agencyService.createAgency(requestPayload).subscribe(() => this.navigateOnSuccess());
+    this.agencyService
+      .createAgency(requestPayload)
+      .subscribe(() => this.navigateOnSuccess());
   }
 
   private updateAgency(requestPayload: IAgencyRequest): void {
-    this.agencyService.updateAgency(requestPayload, this.agency.id).subscribe(() => this.navigateOnSuccess());
+    this.agencyService
+      .updateAgency(requestPayload, this.agency.id)
+      .subscribe(() => this.navigateOnSuccess());
   }
 
   private navigateOnSuccess(): void {

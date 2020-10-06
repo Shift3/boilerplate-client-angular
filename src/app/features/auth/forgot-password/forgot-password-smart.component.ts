@@ -1,26 +1,13 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 
 import { EmailValidation } from '@utils/validation/email-validation';
-import {
-  FormConfig,
-  FormField,
-  IFormConfig,
-} from '@models/form/form';
+import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
-import {
-  IInputField,
-  InputField,
-} from '@models/form/input';
-import {
-  IForgotPasswordRequest,
-  ForgotPasswordRequest,
-} from '@models/user';
+import { IInputField, InputField } from '@models/form/input';
+import { IForgotPasswordRequest, ForgotPasswordRequest } from '@models/user';
 import { IMessage } from '@models/message';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { UserService } from '@core/services/api/user.service';
@@ -29,7 +16,7 @@ import { UserService } from '@core/services/api/user.service';
   template: `
     <app-forgot-password-presentation
       [formConfig]="formConfig"
-      [message]="(message$ | async)"
+      [message]="message$ | async"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="forgotPassword()"
     ></app-forgot-password-presentation>
@@ -40,18 +27,19 @@ export class ForgotPasswordSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    submit: new SaveCancelButtonConfig({save: 'Submit'}),
+    formTitle: 'Forgot Password',
+    submit: new SaveCancelButtonConfig({ save: 'Submit' }),
     controls: [
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
         label: 'Email',
         placeholder: 'Enter your email',
-        fieldConfig : new InputField({
+        fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
         }),
-        validation: [ EmailValidation.validEmail(true) ],
+        validation: [EmailValidation.validEmail(true)],
       }),
     ],
   });
@@ -60,7 +48,7 @@ export class ForgotPasswordSmartComponent {
   constructor(
     private userService: UserService,
     private formService: FormService,
-  ) { }
+  ) {}
 
   public propagateForm(form: FormGroup): void {
     this.form = form;
