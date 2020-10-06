@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 
 import { FormField, IFormField } from '@models/form/form';
-import { ISelectField, ISelectOptions, SelectField } from '@models/form/select';
-import { Utils } from '@utils/utils';
+import { ISelectField, SelectField } from '@models/form/select';
 
 @Component({
   selector: 'app-form-select',
   templateUrl: './form-select.component.html',
   styleUrls: ['./form-select.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // TODO: This is set to the default change detection for now to show validation messages correctly. Switch back when possible.
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class FormSelectComponent {
   public config: IFormField<ISelectField<unknown>> = new FormField<

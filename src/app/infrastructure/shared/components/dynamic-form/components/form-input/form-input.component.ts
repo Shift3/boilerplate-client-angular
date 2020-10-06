@@ -8,7 +8,8 @@ import { IInputField, InputField } from '@models/form/input';
   selector: 'app-form-input',
   templateUrl: './form-input.component.html',
   styleUrls: ['./form-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // TODO: This is set to the default change detection for now to show validation messages correctly. Switch back when possible.
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class FormInputComponent {
   public config: IFormField<IInputField> = new FormField<IInputField>({
