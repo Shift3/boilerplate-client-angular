@@ -7,7 +7,6 @@ import { BehaviorSubject, of as observableOf } from 'rxjs';
 import { AuthGuard } from './auth.guard';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
-import { NotificationService } from '../services/notification.service';
 import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
 import { RoleCheck } from '@models/role';
@@ -18,7 +17,6 @@ import { RoleCheck } from '@models/role';
       let guard: AuthGuard;
       let userState: UserStateService;
       let injector: TestBed;
-      const notificationMock = { showError: jasmine.createSpy('showError') };
       const routerMock = { navigateByUrl: jasmine.createSpy('navigateByUrl') };
 
       beforeEach(() => {
@@ -26,7 +24,6 @@ import { RoleCheck } from '@models/role';
           providers: [
             AuthGuard,
             UserStateService,
-            { provide: NotificationService, useValue: notificationMock },
             { provide: Router, useValue: routerMock },
           ],
           imports: [HttpClientTestingModule],
@@ -59,19 +56,6 @@ import { RoleCheck } from '@models/role';
           );
           guard.canActivate().subscribe(() => {
             expect(routerMock.navigateByUrl).toHaveBeenCalledWith('/auth');
-          });
-        });
-
-        it(`should show a notification on failing the guard`, () => {
-          spyOn(userState, 'checkRoleList').and.returnValue(
-            observableOf(new RoleCheck()),
-          );
-          const message = [
-            'You cannot view the requested page. Returning to the login page.',
-          ];
-
-          guard.canActivate().subscribe(() => {
-            expect(notificationMock.showError).toHaveBeenCalledWith(message);
           });
         });
 

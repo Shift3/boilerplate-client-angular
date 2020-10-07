@@ -4,7 +4,6 @@ import { CanActivate, CanActivateChild, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 
-import { NotificationService } from '../services/notification.service';
 import { UserStateService } from '../services/state/user-state.service';
 
 @Injectable({
@@ -12,7 +11,6 @@ import { UserStateService } from '../services/state/user-state.service';
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
-    private notificationService: NotificationService,
     private router: Router,
     private userStateService: UserStateService,
   ) {}
@@ -23,9 +21,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       map((checkRole) => checkRole.isValid),
       tap((isLoggedInUser) => {
         if (!isLoggedInUser) {
-          const message =
-            'You cannot view the requested page. Returning to the login page.';
-          this.notificationService.showError([message]);
           this.router.navigateByUrl('/auth');
         }
       }),
