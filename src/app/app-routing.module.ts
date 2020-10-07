@@ -14,10 +14,14 @@ const role: RoleType = JSON.parse(localStorage.getItem('user'))?.role?.roleName;
  * This variable sets the default route when navigating to the bare app route (in a logged-in state).
  * It does not handle auth.
  */
-const redirectRoute =
-  role === 'Admin' || role === 'Super Administrator'
-    ? '/admin/user-list'
-    : '/content/agent-list';
+let redirectRoute = '';
+if (role === 'Admin' || role === 'Super Administrator') {
+  redirectRoute = '/admin/user-list';
+} else if (role) {
+  redirectRoute = '/content/agent-list';
+} else {
+  redirectRoute = '/auth/login';
+}
 
 const routes: Routes = [
   {
