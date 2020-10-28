@@ -44,23 +44,11 @@ The AWS configuration **for the sandbox** is handled by Terraform. Terraform nee
 Terraform also needs the project secrets saved in `project/terraform/terraform.tfvars` with the following structure:
 
 ```
-profile = ""
+profile = "shift3"
 
-application_name = ""
-
-application_description = ""
-
-region = ""
+region = "us-west-2"
 
 web_domain_name = ""
-
-zone_id = ""
-
-zone_alias_id = ""
-
-iam_s3_bucket_user = ""
-
-cnames = ["", ""]
 
 ```
 
