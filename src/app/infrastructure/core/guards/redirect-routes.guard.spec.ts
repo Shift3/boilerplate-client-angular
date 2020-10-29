@@ -2,9 +2,13 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { TestBed, getTestBed } from '@angular/core/testing';
 
-import { RedirectRouteGuard } from './redirect-route.guard';
+import { BehaviorSubject } from 'rxjs';
+
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { IUserDTO, UserDTO } from '@app/infrastructure/models/user';
+import { RedirectRouteGuard } from './redirect-route.guard';
+import { RoleDTO } from '@app/infrastructure/models/role';
 import { UserStateService } from '../services/state/user-state.service';
 
 !environment.testUnit
@@ -45,8 +49,34 @@ import { UserStateService } from '../services/state/user-state.service';
           });
         });
 
-        it(`should redirect to '/admin' when the role is 'isAdmin'`, () => {});
+        it(`should redirect to '/admin' when the role is 'isAdmin'`, () => {
+          const testUser$ = new BehaviorSubject<IUserDTO>(
+            new UserDTO({
+              role: new RoleDTO({
+                roleName: 'Admin',
+              }),
+            }),
+          );
+          userState.userSession$ = testUser$;
 
-        it(`should redirect to '/content' when the role is 'isValid'`, () => {});
+          guard.canActivate().subscribe(() => {
+            expect(routerMock.parseUrl).toHaveBeenCalledWith('/admin');
+          });
+        });
+
+        it(`should redirect to '/content' when the role is 'isValid'`, () => {
+          const testUser$ = new BehaviorSubject<IUserDTO>(
+            new UserDTO({
+              role: new RoleDTO({
+                roleName: 'Editor',
+              }),
+            }),
+          );
+          userState.userSession$ = testUser$;
+
+          guard.canActivate().subscribe(() => {
+            expect(routerMock.parseUrl).toHaveBeenCalledWith('/content');
+          });
+        });
       });
     });
