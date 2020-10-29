@@ -5,6 +5,7 @@ import { AuthGuard } from '@core/guards/auth.guard';
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoleType } from '@models/role';
+import { RedirectComponent } from './redirect/redirect.component';
 
 // TODO: See if this can be tied into existing logic while still being static for compilation.
 const role: RoleType = JSON.parse(localStorage.getItem('user'))?.role?.roleName;
@@ -71,4 +72,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
-export const components = [NotFoundComponent];
+export const components = [NotFoundComponent, RedirectComponent];
