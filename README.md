@@ -55,14 +55,8 @@ web_domain_name = ""
 | Secret                  |                                                                                                                                               Note |
 | :---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------: |
 | profile                 |                                                                                This must match the AWS credentials name on the development machine |
-| application_name        |                                                                                                The name of the project (can match the GitHub name) |
-| application_description |                                                                                  The description of the project (can match the GitHub description) |
-| region                  |                                                                                                                           Get this from Zoho Vault |
-| web_domain_name         |                                                                                             The `application_name` followed by `shift3sandbox.com` |
-| zone_id                 |                                                                                                                           Get this from Zoho Vault |
-| zone_alias_id           |                                                                                                                           Get this from Zoho Vault |
-| iam_s3_bucket_user      |                                                                                                                           Get this from Zoho Vault |
-| cnames                  | [The CNAME records](https://en.wikipedia.org/wiki/CNAME_record). Probably at least `example.shift3sandbox.com` and `www.example.shift3sandbox.com` |
+| region                  |                                                                                   This is usually `us-west-2` |
+| web_domain_name         | This will be the web domain name for the project, an example may be: `example.shift3sandbox.com` |
 
 ### Local Environment
 
