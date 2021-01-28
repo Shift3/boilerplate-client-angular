@@ -22,6 +22,7 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
     - [Docker](#docker)
     - [CI](#ci)
     - [Local Development](#local-development)
+    - [Webpack Bundle Analyzer](#webpack-bundle-analyzer)
     - [Development server](#development-server)
     - [Development server in IE11](#development-server-in-ie11)
     - [Code scaffolding](#code-scaffolding)
@@ -52,11 +53,11 @@ web_domain_name = ""
 
 ```
 
-| Secret                  |                                                                                                                                               Note |
-| :---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------: |
-| profile                 |                                                                                This must match the AWS credentials name on the development machine |
-| region                  |                                                                                   This is usually `us-west-2` |
-| web_domain_name         | This will be the web domain name for the project, an example may be: `example.shift3sandbox.com` |
+| Secret          |                                                                                             Note |
+| :-------------- | -----------------------------------------------------------------------------------------------: |
+| profile         |                              This must match the AWS credentials name on the development machine |
+| region          |                                                                      This is usually `us-west-2` |
+| web_domain_name | This will be the web domain name for the project, an example may be: `example.shift3sandbox.com` |
 
 ### Local Environment
 
@@ -103,6 +104,10 @@ This project is configured to work with CircleCI. The CI builds the application,
 ### Local Development
 
 To work with the project directly, the development machine needs [Angular CLI](https://github.com/angular/angular-cli) installed (which requires `node` and `npm`). The project has been configured to use `yarn` in addition for package dependency management.
+
+### Webpack Bundle Analyzer
+
+The project includes [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer), which helps developers figure out the size of the project and its webpack dependencies. To use it, type `npm run build:stats` or `yarn run build:stats` in the project's directory in a terminal to create the webpack bundle. Run `npm run analyze` or `yarn run analyze`, and webpack-bundle-analyzer will launch a server and browser window with a visualization of the project bundle size.
 
 ### Development server
 
