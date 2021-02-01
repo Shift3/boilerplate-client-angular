@@ -34,7 +34,7 @@ export class RoleDTO implements IRoleDTO {
     return ['Super Administrator'].includes(role);
   }
 
-  constructor(configOverride?: IRoleDTO) {
+  constructor(configOverride?: Partial<IRoleDTO>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }

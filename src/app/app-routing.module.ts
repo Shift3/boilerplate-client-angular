@@ -4,30 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@core/guards/auth.guard';
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { RoleType } from '@models/role';
-
-// TODO: See if this can be tied into existing logic while still being static for compilation.
-const role: RoleType = JSON.parse(localStorage.getItem('user'))?.role?.roleName;
-// TODO2: Try to figure out the failure in programmatically navigating to the bare routes and implement a better solution
-// than hard coding the default routes.
-/**
- * This variable sets the default route when navigating to the bare app route (in a logged-in state).
- * It does not handle auth.
- */
-let redirectRoute = '';
-if (role === 'Admin' || role === 'Super Administrator') {
-  redirectRoute = '/admin/user-list';
-} else if (role) {
-  redirectRoute = '/content/agent-list';
-} else {
-  redirectRoute = '/auth/login';
-}
+import { RedirectComponent } from './redirect/redirect.component';
+import { RedirectRouteGuard } from './infrastructure/core/guards/redirect-route.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: redirectRoute,
-    pathMatch: 'full',
+    component: RedirectComponent,
+    canActivate: [RedirectRouteGuard],
   },
   {
     path: 'admin',
@@ -71,4 +55,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
-export const components = [NotFoundComponent];
+export const components = [NotFoundComponent, RedirectComponent];
