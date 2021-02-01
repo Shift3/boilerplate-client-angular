@@ -6,6 +6,10 @@ import { map, take } from 'rxjs/operators';
 
 import { UserStateService } from '../services/state/user-state.service';
 
+/**
+ * Changes root route based on user's role.
+ * E.g navigating to `localhost:4200` redirects to `localhost:4200/auth` when not logged in.
+ */
 @Injectable({
   providedIn: 'root',
 })
