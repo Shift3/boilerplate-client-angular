@@ -11,6 +11,7 @@ import {
 import { AppComponent } from './app.component';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
+import { TranslocoRootModule } from './transloco/transloco-root.module';
 
 /**
  * Root feature module.
@@ -26,6 +27,7 @@ import { SharedModule } from '@shared/shared.module';
       positionClass: 'toast-top-center',
       preventDuplicates: true,
     }),
+    TranslocoRootModule,
     // AppRoutingModule must be loaded last.
     AppRoutingModule,
   ],

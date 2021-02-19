@@ -85,6 +85,19 @@ The project `environment` files will need to be updated with the path to the API
 
 After provisioning and before deploying, the `deploy:staging` script in `package.json` needs to be updated, as mentioned [above](#local-environment).
 
+The first steps are to install all of the project requirements above, skipping any you may already have installed. Run `yarn install` .
+
+- The first yarn install will present a few questions related to Transloco.
+- Once the questions are answered, everything related to Transloco will automatically be created.
+- First, Transloco creates boilerplate files for the requested translations.
+- Next, it will create a new file, `transloco-root.module.ts` which exposes an Angular's module with a default configuration, and inject it into the `AppModule`.
+- When you deploy your application and Transloco is unable to load your language files it might be because you need to use a relative path:
+  ```
+  getTranslation(langPath: string) {
+    return this.http.get(`./assets/i18n/${langPath}.json`);
+  }
+  ```
+
 ### Prettier
 
 This project uses [Prettier](https://prettier.io/) to enforce code style. It is highly opinionated by design with relatively scant options for customization. The thought process behind it is to ignore personal styling preferences and instead embrace consistency. There are `.prettierrc` and `.prettierignore` configuration files to adjust some options. Prettier is also wired up to a [pre-commit hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks). This DOES slightly slow down git, as it runs the hook on staged files every time `git commit` is executed.
