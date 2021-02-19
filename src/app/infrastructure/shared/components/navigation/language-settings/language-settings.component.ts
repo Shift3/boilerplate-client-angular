@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { LANGUAGE } from '@models/enums';
+import { LanguageStateService } from '@app/infrastructure/core/services/state/language-state.service';
 
 @Component({
   selector: 'app-language-settings',
@@ -9,14 +10,17 @@ import { LANGUAGE } from '@models/enums';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSettingsComponent implements OnInit {
-  public availableLanguages;
-  public activeLanguage: string = 'English';
+  public availableLanguagesForSelection$: Observable<string[]>;
+  public activeLanguage$: Observable<string>;
 
-  constructor() {}
+  constructor(public languageStateService: LanguageStateService) {}
 
   ngOnInit(): void {
-    this.availableLanguages = Object.values(LANGUAGE);
+    this.activeLanguage$ = this.languageStateService.getActiveLanguage();
+    this.availableLanguagesForSelection$ = this.languageStateService.getAvailableLanguages();
   }
 
-  public selectLanguage(language: string): void {}
+  public selectLanguage(language: string): void {
+    this.languageStateService.selectLanguage(language);
+  }
 }
