@@ -12,6 +12,7 @@ import {
 import { components } from './components';
 import { directives } from './directives';
 import { pipes } from './pipes';
+import { LanguageSettingsComponent } from './components/navigation/language-settings/language-settings.component';
 
 /**
  * Connects modules, pipes, directives, components, dependencies, and more that do not need to be singleton instances.
@@ -34,7 +35,7 @@ import { pipes } from './pipes';
     directives,
     pipes,
   ],
-  declarations: [components, directives, pipes],
+  declarations: [components, directives, pipes, LanguageSettingsComponent],
 })
 export class SharedModule {
   static forRoot() {
