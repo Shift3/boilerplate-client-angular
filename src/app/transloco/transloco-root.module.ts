@@ -26,7 +26,10 @@ export class TranslocoHttpLoader implements TranslocoLoader {
       provide: TRANSLOCO_CONFIG,
       useValue: translocoConfig(translocoConfigObj),
     },
-    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
+    {
+      provide: TRANSLOCO_LOADER,
+      useClass: TranslocoHttpLoader,
+    },
   ],
 })
 export class TranslocoRootModule {}
