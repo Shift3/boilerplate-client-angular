@@ -21,4 +21,8 @@ export class LanguageSettingsPresentationComponent {
   public selectLanguage(language: string): void {
     this.emitSelection.emit(language);
   }
+
+  public getObjectProperty(label): string {
+    return `languages.${label.toLowerCase()}`;
+  }
 }

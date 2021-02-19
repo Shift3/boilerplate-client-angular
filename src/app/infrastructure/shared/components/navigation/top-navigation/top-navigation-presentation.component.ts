@@ -15,4 +15,8 @@ export class TopNavigationPresentationComponent {
   @Input() public navLinks: INavigation[];
 
   public isMenuCollapsed = true;
+
+  getObjectProperty(label): string {
+    return `navLinks.${label.toLowerCase()}`;
+  }
 }

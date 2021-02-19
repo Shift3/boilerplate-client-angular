@@ -1,1 +1,16 @@
-{}
+{
+  "logoAlt": "Shift3 Technologies",
+  "navLinks": {
+    "directory": "Directory",
+    "users": "Users",
+    "agencies": "Agencies"
+  },
+  "languages": {
+    "english": "English",
+    "spanish": "Spanish",
+    "tagalog": "Tagalog",
+    "vietnamese": "Vietnamese"
+  },
+  "loginButtonText": "Login",
+  "signUpButtonText": "Create Account"
+}

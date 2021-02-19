@@ -19,7 +19,8 @@
       "@features/*": ["app/features/*"],
       "@models/*": ["app/infrastructure/models/*"],
       "@shared/*": ["app/infrastructure/shared/*"],
-      "@utils/*": ["app/infrastructure/utils/*"]
+      "@utils/*": ["app/infrastructure/utils/*"],
+      "@assets/*": ["assets/*"]
     },
     "resolveJsonModule": true
   },

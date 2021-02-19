@@ -11,5 +11,5 @@ export const translocoConfigObj = {
   keysManager: {},
   prodMode: environment.production,
   reRenderOnLangChange: true, // Remove this option if your application doesn't support changing language in runtime.
-  rootTranslationsPath: 'src/assets/i18n',
+  rootTranslationsPath: './assets/i18n',
 };

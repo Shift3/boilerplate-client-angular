@@ -1,6 +1,6 @@
 export enum LANGUAGE {
-  'en-US' = 'English',
-  'es-ES' = 'Spanish',
-  'tl' = 'Tagalog',
-  'vi-VN' = 'Vietnamese',
+  'en-US' = 'english',
+  'es-ES' = 'spanish',
+  'tl' = 'tagalog',
+  'vi-VN' = 'vietnamese',
 }

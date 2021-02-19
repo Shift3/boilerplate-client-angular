@@ -1,20 +1,31 @@
-<div ngbDropdown class="navbar-nav">
+<div ngbDropdown class="navbar-nav" *transloco="let t">
   <button
     ngbDropdownToggle
     id="languageDropdown"
     class="nav-link language-button"
   >
     <span class="fa fa-language"></span>
-    {{ activeLanguage | titlecase }}
+    {{ t(getObjectProperty(activeLanguage)) | titlecase }}
   </button>
   <div
     ngbDropdownMenu
     aria-labelledby="languageDropdown"
     class="dropdown-menu-left"
   >
-    <ng-container *ngFor="let language of availableLanguagesForSelection">
-      <button ngbDropdownItem (click)="selectLanguage(language)">
-        {{ language | titlecase }}
+    <ng-container
+      *ngFor="let language of availableLanguagesForSelection | async"
+    >
+      <button
+        ngbDropdownItem
+        (click)="selectLanguage($event.target.textContent)"
+      >
+        {{ t(getObjectProperty(language)) | titlecase }}
+        <span
+          *ngIf="!(activeLangIsDefaultLang$ | async)"
+          class="default-lang-text"
+        >
+          / {{ language | titlecase }}
+        </span>
       </button>
     </ng-container>
   </div>
