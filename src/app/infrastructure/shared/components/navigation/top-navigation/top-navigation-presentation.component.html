@@ -16,6 +16,7 @@
       class="collapse navbar-collapse link-container"
     >
       <ng-container *ngIf="navLinks?.length">
+        <app-language-settings></app-language-settings>
         <ul class="navbar-nav">
           <button
             *ngFor="let link of navLinks; trackBy: 'id' | trackByKey"
