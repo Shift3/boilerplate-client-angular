@@ -30,6 +30,7 @@ import { TranslocoRootModule } from './transloco/transloco-root.module';
     TranslocoRootModule,
     // AppRoutingModule must be loaded last.
     AppRoutingModule,
+    TranslocoRootModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
