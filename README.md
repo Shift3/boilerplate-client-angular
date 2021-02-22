@@ -90,23 +90,23 @@ The first steps are to install all of the project requirements above, skipping a
 
 ### Locale and Translation
 
-This project comes with locale and translation support built-in for English, Spanish, Tagalog and Vietnamese languages. If additional languages need to be supported, following steps need to be implemented:
+This project comes with locale and translation support built-in for English, Spanish, Tagalog and Vietnamese languages. To initialize this feature, following steps need to be implemented:
 
 - Rename `transloco-root.module.ts` file to `transloco-root-backup.module.ts`.
 - Rename `src/assets/i18n` folder to `src/assets/i18n-backup`.
 - Run `ng add @ngneat/transloco`. The yarn install will present a few questions.
-- Enter the globally recognized locale codes for all the languages that need to be supported. This list must include all the pre-built languages that need to also be supported.
+- Enter the globally recognized locale codes for all the languages that need to be supported. This list must include all or a subset of the built-in languages that need to also be supported. Note that the first language code entered will be the default language. This can be configured later if needed.
 - Copy all the language JSON files from `i18n-backup` that need to be supported into `i18n` folder, replacing any duplicates.
 - Copy the values of _availableLangs_ and _defaultLang_ properties from the `transloco-root.module.ts` into the the `transloco-root-backup.module.ts` and delete `transloco-root.module.ts` file.
 - Rename `transloco-root-backup.module.ts` file to `transloco-root.module.ts`.
-- When the application is deployed and Transloco is unable to load your language files it might be because you need to use a relative path:
-  ```
-  getTranslation(langPath: string) {
-    return this.http.get(`./assets/i18n/${langPath}.json`);
-  }
-  ```
 
-If only a subset of built-in languages need to be supported, remove the language codes of unwanted languages from _availableLangs_ property's value in `transloco-root.module.ts`.
+When the application is deployed and Transloco is unable to load your language files it might be because you need to use a relative path:
+
+```
+getTranslation(langPath: string) {
+  return this.http.get(`./assets/i18n/${langPath}.json`);
+}
+```
 
 ### Prettier
 
