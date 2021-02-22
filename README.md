@@ -102,8 +102,6 @@ This project comes with locale and translation support built-in for English, Spa
 - Copy the values of _defaultLang_ properties from the `transloco-root.module.ts` into the the `transloco-config.ts` and delete `transloco-root.module.ts` file.
 - Rename `transloco-root-backup.module.ts` file to `transloco-root.module.ts`.
 
-If only a subset of built-in languages need to be supported, remove the language codes of unwanted languages from _availableLangs_ property's value in `transloco-root.module.ts`.
-
 ### Prettier
 
 This project uses [Prettier](https://prettier.io/) to enforce code style. It is highly opinionated by design with relatively scant options for customization. The thought process behind it is to ignore personal styling preferences and instead embrace consistency. There are `.prettierrc` and `.prettierignore` configuration files to adjust some options. Prettier is also wired up to a [pre-commit hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks). This DOES slightly slow down git, as it runs the hook on staged files every time `git commit` is executed.
