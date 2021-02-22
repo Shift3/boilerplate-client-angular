@@ -97,7 +97,7 @@ This project comes with locale and translation support built-in for English, Spa
 - Run `ng add @ngneat/transloco`. The yarn install will present a few questions.
 - Enter the globally recognized locale codes for all the languages that need to be supported. This list must include all or a subset of the built-in languages that need to also be supported. Note that the first language code entered will be the default language. This can be configured later if needed.
 - Copy all the language JSON files from `i18n-backup` that need to be supported into `i18n` folder, replacing any duplicates.
-- Copy the values of _availableLangs_ and _defaultLang_ properties from the `transloco-root.module.ts` into the the `transloco-root-backup.module.ts` and delete `transloco-root.module.ts` file.
+- Copy the values of _availableLangs_ and _defaultLang_ properties from the `transloco-root.module.ts` into the the `transloco-config.ts` and delete `transloco-root.module.ts` file.
 - Rename `transloco-root-backup.module.ts` file to `transloco-root.module.ts`.
 
 When the application is deployed and Transloco is unable to load your language files it might be because you need to use a relative path:
