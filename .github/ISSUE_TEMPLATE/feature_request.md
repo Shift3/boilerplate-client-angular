@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea for this project
 title: ''
-labels: ''
+labels: feature
 assignees: ''
 
 ---
@@ -17,9 +17,9 @@ _Describe what is currently happening._
 
 ## Steps to Implement This Feature
 
-  1. 
-  2. 
-  3. 
+  1.
+  2.
+  3.
 
 ## Pre-Testing TODOs
 
