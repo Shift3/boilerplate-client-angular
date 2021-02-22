@@ -53,4 +53,10 @@ export class ApiService {
   ): Observable<T> {
     return this.httpClient.delete<T>(endpoint, options).pipe(shareReplay());
   }
+
+  public getTranslation<T>(language: string): Observable<T> {
+    return this.httpClient
+      .get<T>(`/assets/i18n/${language}.json`)
+      .pipe(shareReplay());
+  }
 }

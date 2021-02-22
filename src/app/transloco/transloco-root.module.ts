@@ -1,21 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import {
   TRANSLOCO_LOADER,
-  Translation,
   TranslocoLoader,
   TRANSLOCO_CONFIG,
   translocoConfig,
   TranslocoModule,
 } from '@ngneat/transloco';
 import { Injectable, NgModule } from '@angular/core';
+
 import { environment } from '@env/environment';
+
+import { ApiService } from '@core/services/api/api.service';
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   getTranslation(lang: string) {
-    return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
+    return this.apiService.getTranslation(lang);
   }
 }
 
