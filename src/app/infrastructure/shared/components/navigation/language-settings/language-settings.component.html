@@ -1,0 +1,21 @@
+<div ngbDropdown class="navbar-nav">
+  <button
+    ngbDropdownToggle
+    id="languageDropdown"
+    class="nav-link language-button"
+  >
+    <span class="fa fa-language"></span>
+    {{ activeLanguage | titlecase }}
+  </button>
+  <div
+    ngbDropdownMenu
+    aria-labelledby="languageDropdown"
+    class="dropdown-menu-left"
+  >
+    <ng-container *ngFor="let language of availableLanguages">
+      <button ngbDropdownItem (click)="selectLanguage($event.target.innerHTML)">
+        {{ language | titlecase }}
+      </button>
+    </ng-container>
+  </div>
+</div>
