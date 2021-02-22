@@ -1,5 +1,7 @@
+import { translocoConfigObj } from '@app/transloco/transloco-config';
+
 module.exports = {
   rootTranslationsPath: 'src/assets/i18n/',
-  langs: ['en-US', 'es-ES', 'tl', 'vi-VN'],
+  langs: translocoConfigObj.availabeLangs,
   keysManager: {},
 };
