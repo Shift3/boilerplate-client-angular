@@ -22,6 +22,7 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
     - [Docker](#docker)
     - [CI](#ci)
     - [Local Development](#local-development)
+    - [Webpack Bundle Analyzer](#webpack-bundle-analyzer)
     - [Development server](#development-server)
     - [Development server in IE11](#development-server-in-ie11)
     - [Code scaffolding](#code-scaffolding)
@@ -44,37 +45,19 @@ The AWS configuration **for the sandbox** is handled by Terraform. Terraform nee
 Terraform also needs the project secrets saved in `project/terraform/terraform.tfvars` with the following structure:
 
 ```
-profile = ""
+profile = "shift3"
 
-application_name = ""
-
-application_description = ""
-
-region = ""
+region = "us-west-2"
 
 web_domain_name = ""
 
-zone_id = ""
-
-zone_alias_id = ""
-
-iam_s3_bucket_user = ""
-
-cnames = ["", ""]
-
 ```
 
-| Secret                  |                                                                                                                                               Note |
-| :---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------: |
-| profile                 |                                                                                This must match the AWS credentials name on the development machine |
-| application_name        |                                                                                                The name of the project (can match the GitHub name) |
-| application_description |                                                                                  The description of the project (can match the GitHub description) |
-| region                  |                                                                                                                           Get this from Zoho Vault |
-| web_domain_name         |                                                                                             The `application_name` followed by `shift3sandbox.com` |
-| zone_id                 |                                                                                                                           Get this from Zoho Vault |
-| zone_alias_id           |                                                                                                                           Get this from Zoho Vault |
-| iam_s3_bucket_user      |                                                                                                                           Get this from Zoho Vault |
-| cnames                  | [The CNAME records](https://en.wikipedia.org/wiki/CNAME_record). Probably at least `example.shift3sandbox.com` and `www.example.shift3sandbox.com` |
+| Secret          |                                                                                             Note |
+| :-------------- | -----------------------------------------------------------------------------------------------: |
+| profile         |                              This must match the AWS credentials name on the development machine |
+| region          |                                                                      This is usually `us-west-2` |
+| web_domain_name | This will be the web domain name for the project, an example may be: `example.shift3sandbox.com` |
 
 ### Local Environment
 
@@ -96,7 +79,7 @@ This project is configured as a [template repository](https://docs.github.com/en
 
 ### Initializing the Project
 
-If this project is being cloned to start a new project, there are a few things that need to be updated to make it work. The project name will need to be updated in the `package.json`, `angular.json`, `karma.conf.js`, CircleCI `config.yml`, `app.e2e.spec.ts`, `index.html`, `app.component.ts`, and `app.component.spec.ts` files with the new project name. The README also refers to the boilerplate, both in the text and in the CircleCI badges.
+If this project is being cloned to start a new project, there are a few things that need to be updated to make it work. The project name will need to be updated in the `README.md`, `package.json`, `angular.json`, `karma.conf.js`, CircleCI `config.yml`, `app.e2e.spec.ts`, `index.html`, `app.component.ts`, and `app.component.spec.ts` files with the new project name. The README also refers to the boilerplate, both in the text and in the CircleCI badges.
 
 The project `environment` files will need to be updated with the path to the APIs. The development `environment.ts` assumes a local development server of `http://localhost:3000`, which might need to be updated.
 
@@ -121,6 +104,10 @@ This project is configured to work with CircleCI. The CI builds the application,
 ### Local Development
 
 To work with the project directly, the development machine needs [Angular CLI](https://github.com/angular/angular-cli) installed (which requires `node` and `npm`). The project has been configured to use `yarn` in addition for package dependency management.
+
+### Webpack Bundle Analyzer
+
+The project includes [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer), which helps developers figure out the size of the project and its webpack dependencies. To use it, type `npm run build:stats` or `yarn run build:stats` in the project's directory in a terminal to create the webpack bundle. Run `npm run analyze` or `yarn run analyze`, and webpack-bundle-analyzer will launch a server and browser window with a visualization of the project bundle size.
 
 ### Development server
 
