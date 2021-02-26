@@ -6,6 +6,7 @@ import { ConfirmModalConfig } from '@models/modal';
 import { ModalService } from '@core/services/modal.service';
 import { INavigation, profileLinkList } from '@models/navigation';
 import { NavbarStateService } from '@core/services/state/navbar-state.service';
+import { TranslationService } from '@core/services/translation.service';
 import { IUserDTO, UserDTO } from '@models/user';
 
 @Component({
@@ -27,6 +28,7 @@ export class SettingsComponent {
     private modalService: ModalService,
     private navbarStateService: NavbarStateService,
     private router: Router,
+    public translationService: TranslationService,
   ) {}
 
   public openConfirmModal(): void {

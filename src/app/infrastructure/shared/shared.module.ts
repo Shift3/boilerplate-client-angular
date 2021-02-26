@@ -13,7 +13,8 @@ import {
 import { components } from './components';
 import { directives } from './directives';
 import { pipes } from './pipes';
-import { LanguageSettingsComponent } from './components/navigation/language-settings/language-settings.component';
+
+import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
 
 import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
 
@@ -29,6 +30,7 @@ import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
     ReactiveFormsModule,
     TranslocoRootModule,
     RouterModule,
+    TranslocoRootModule,
   ],
   exports: [
     CommonModule,
@@ -39,7 +41,7 @@ import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
     directives,
     pipes,
   ],
-  declarations: [components, directives, pipes, LanguageSettingsComponent],
+  declarations: [components, directives, pipes],
 })
 export class SharedModule {
   static forRoot() {
