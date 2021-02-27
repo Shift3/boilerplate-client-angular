@@ -1,13 +1,4 @@
-<div class="save-cancel-button-row">
-  <button
-    id="cancel-button"
-    type="button"
-    class="btn"
-    mat-raised-button
-    (click)="cancel()"
-  >
-    {{ buttonConfig.cancel | uppercase }}
-  </button>
+<div class="save-cancel-button-row" *transloco="let t">
   <button
     id="form-submit-button"
     class="btn"
@@ -16,6 +7,29 @@
     (click)="save()"
     [disabled]="shouldDisable"
   >
-    {{ buttonConfig.save | uppercase }}
+    {{
+      t(
+        translationService.getObjectProperty(
+          'formText.buttons',
+          buttonConfig.save
+        )
+      ) | uppercase
+    }}
+  </button>
+  <button
+    id="cancel-button"
+    type="button"
+    class="btn"
+    mat-raised-button
+    (click)="cancel()"
+  >
+    {{
+      t(
+        translationService.getObjectProperty(
+          'formText.buttons',
+          buttonConfig.cancel
+        )
+      ) | uppercase
+    }}
   </button>
 </div>
