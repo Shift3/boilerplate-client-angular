@@ -56,7 +56,7 @@ export class AgencyDetailSmartComponent implements OnInit {
       formName: 'form',
       formTitle: this.activatedRoute.snapshot.data.title || 'Create Agency',
       submit: new SaveCancelButtonConfig({
-        save: this.agency?.id ? 'Update' : 'Create',
+        save: this.agency?.id ? 'update' : 'create',
       }),
       controls: [
         new FormField<IInputField>({

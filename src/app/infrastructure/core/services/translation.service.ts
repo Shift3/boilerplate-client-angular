@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class TranslationService {
   public getObjectProperty(objProperty: string, label: string): string {
-    return `${objProperty}.${this.camalize(label)}`;
+    return `${objProperty}.${
+      label.split(' ').length > 1 ? this.camalize(label) : label
+    }`;
   }
 
   private camalize(textToCamelize: string): string {

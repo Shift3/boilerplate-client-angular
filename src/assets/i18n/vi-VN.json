@@ -32,12 +32,25 @@
   },
   "dynamicForm": {
     "action": {
+      "activate": "Kích hoạt",
+      "cancel": "Huỷ bỏ",
+      "change": "Thay đổi",
       "create": "Tạo nên",
-      "forgot": "Quên mất"
+      "forgot": "Quên mất",
+      "login": "Đăng nhập",
+      "reset": "Cài lại",
+      "signUp": "Đăng ký",
+      "submit": "Gửi đi",
+      "update": "Cập nhật"
     },
     "model": {
       "account": "Tài khoản",
-      "password": "Mật khẩu"
+      "agency": "Đại lý",
+      "agent": "Đặc vụ",
+      "memberLogin": "Đăng nhập thành viên",
+      "password": "Mật khẩu",
+      "profile": "Hồ sơ",
+      "user": "Người sử dụng"
     }
   },
   "signUp": {

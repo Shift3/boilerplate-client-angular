@@ -30,7 +30,12 @@ const routes: Routes = [
       {
         path: 'create-user',
         component: UserDetailSmartComponent,
-        data: { title: 'Create User' },
+        data: {
+          title: {
+            action: 'create',
+            model: 'user',
+          },
+        },
         resolve: {
           agencyList: resolverList.GetAgencyListResolver,
           roleList: resolverList.GetRoleListResolver,
@@ -61,7 +66,12 @@ const routes: Routes = [
       {
         path: 'create-agency',
         component: AgencyDetailSmartComponent,
-        data: { title: 'Create Agency' },
+        data: {
+          title: {
+            action: 'create',
+            model: 'agency',
+          },
+        },
         resolve: {
           agency: resolverList.CreateAgencyResolver,
         },
@@ -69,7 +79,12 @@ const routes: Routes = [
       {
         path: 'update-agency/:id',
         component: AgencyDetailSmartComponent,
-        data: { title: 'Update Agency' },
+        data: {
+          title: {
+            action: 'update',
+            model: 'agency',
+          },
+        },
         resolve: {
           agency: resolverList.UpdateAgencyResolver,
         },

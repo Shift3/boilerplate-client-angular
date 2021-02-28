@@ -32,12 +32,25 @@
   },
   "dynamicForm": {
     "action": {
+      "activate": "Activar",
+      "cancel": "Cancelar",
+      "change": "Cambio",
       "create": "Crear",
-      "forgot": "Olvidó"
+      "forgot": "Olvidó",
+      "login": "Iniciar sesión",
+      "reset": "Reiniciar",
+      "signUp": "Inscribirse",
+      "submit": "Enviar",
+      "update": "Actualizar"
     },
     "model": {
       "account": "Cuenta",
-      "password": "Contraseña"
+      "agency": "Agencia",
+      "agent": "Agente",
+      "memberLogin": "Inicio de sesión de miembros",
+      "password": "Contraseña",
+      "profile": "Perfil",
+      "user": "Usuario"
     }
   },
   "signUp": {
