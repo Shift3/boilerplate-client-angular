@@ -11,6 +11,7 @@ import { FormGroup } from '@angular/forms';
 import { DataTransformationService } from '@core/services/data-transformation.service';
 import { FormService } from '@core/services/form.service';
 import { FormConfig, IFormConfig } from '@models/form/form';
+import { TranslationService } from '@core/services/translation.service';
 
 @Component({
   selector: 'app-dynamic-form',

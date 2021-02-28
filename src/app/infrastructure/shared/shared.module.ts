@@ -27,6 +27,7 @@ import { pipes } from './pipes';
     ReactiveFormsModule,
     TranslocoRootModule,
     RouterModule,
+    TranslocoRootModule,
   ],
   exports: [
     CommonModule,
