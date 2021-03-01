@@ -14,7 +14,9 @@
   <span class="error-container">
     <ng-container *ngIf="formControl?.errors">
       <span class="field-label">
-        {{ formControl?.errors | formError }}
+        {{
+          t(formErrors, { control: (config.name | sentenceCase) }) | formError
+        }}
       </span>
     </ng-container>
   </span>

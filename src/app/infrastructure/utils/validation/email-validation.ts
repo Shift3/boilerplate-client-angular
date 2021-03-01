@@ -9,7 +9,7 @@ export class EmailValidation {
         return isRequired ? { isRequired: 'Email is required.' } : null;
       }
       if (!Constants.patterns.EMAIL_REGEX.test(control.value)) {
-        return { invalidEmail: 'Please enter a valid email.' };
+        return { isInvalid: 'Please enter a valid email.' };
       }
 
       return null;

@@ -14,6 +14,10 @@
       "submit": "Enviar",
       "update": "Actualizar"
     },
+    "error": {
+      "isRequired": "{{ dynamicForm.label[control] }} se requiere.",
+      "isInvalid": "Por favor ingrese una válida {{ dynamicForm.label[control] }}."
+    },
     "label": {
       "address": "Dirección",
       "address2": "{{ dynamicForm.label.address }} 2",
