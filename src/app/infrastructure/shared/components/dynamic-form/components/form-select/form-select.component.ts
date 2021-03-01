@@ -4,6 +4,8 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormField, IFormField } from '@models/form/form';
 import { ISelectField, SelectField } from '@models/form/select';
 
+import { TranslationService } from '@app/infrastructure/core/services/translation.service';
+
 @Component({
   selector: 'app-form-select',
   templateUrl: './form-select.component.html',
@@ -16,6 +18,8 @@ export class FormSelectComponent {
     ISelectField<unknown>
   >({ fieldConfig: new SelectField<unknown>() });
   public group: FormGroup = new FormGroup({});
+
+  constructor(public translationService: TranslationService) {}
 
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);

@@ -4,6 +4,8 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormField, IFormField } from '@models/form/form';
 import { IInputField, InputField } from '@models/form/input';
 
+import { TranslationService } from '@core/services/translation.service';
+
 @Component({
   selector: 'app-form-input',
   templateUrl: './form-input.component.html',
@@ -16,6 +18,8 @@ export class FormInputComponent {
     fieldConfig: new InputField(),
   });
   public group: FormGroup = new FormGroup({});
+
+  constructor(public translationService: TranslationService) {}
 
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);
