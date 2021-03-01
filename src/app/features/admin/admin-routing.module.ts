@@ -45,7 +45,12 @@ const routes: Routes = [
       {
         path: 'update-user/:id',
         component: UserDetailSmartComponent,
-        data: { title: 'Update User' },
+        data: {
+          title: {
+            action: 'update',
+            model: 'user',
+          },
+        },
         canActivate: [UpdateProfileOrUserGuard],
         resolve: {
           agencyList: resolverList.GetAgencyListResolver,
