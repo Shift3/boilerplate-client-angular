@@ -18,8 +18,16 @@ export class FormInputComponent {
     fieldConfig: new InputField(),
   });
   public group: FormGroup = new FormGroup({});
+  public configLabel: string;
 
   constructor(private dataTransformationService: DataTransformationService) {}
+
+  ngOnInit() {
+    this.configLabel = this.dataTransformationService.getObjectProperty(
+      'label',
+      this.config.label,
+    );
+  }
 
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);

@@ -15,8 +15,8 @@
       "update": "Actualizar"
     },
     "error": {
-      "isRequired": "{{ dynamicForm.label[control] }} se requiere.",
-      "isInvalid": "Por favor ingrese una válida {{ dynamicForm.label[control] }}."
+      "isRequired": "{{ control }} se requiere.",
+      "isInvalid": "Por favor ingrese una válida {{ control }}."
     },
     "label": {
       "address": "Dirección",

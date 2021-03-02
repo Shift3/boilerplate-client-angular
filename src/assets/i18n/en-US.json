@@ -15,8 +15,8 @@
       "update": "Update"
     },
     "error": {
-      "isRequired": "{{ dynamicForm.label[control] }} is required.",
-      "isInvalid": "Please enter a valid {{ dynamicForm.label[control] }}."
+      "isRequired": "{{ control }} is required.",
+      "isInvalid": "Please enter a valid {{ control }}."
     },
     "label": {
       "address": "Address",

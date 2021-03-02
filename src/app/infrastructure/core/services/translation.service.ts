@@ -11,6 +11,8 @@ export class TranslationService {
   }
 
   private camalize(textToCamelize: string): string {
+    if (!textToCamelize) return '';
+
     return textToCamelize
       .toLowerCase()
       .trim()
