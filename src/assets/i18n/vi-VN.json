@@ -29,5 +29,19 @@
     "signOutText": "Đăng xuất",
     "toggleNavBarText": "Chuyển đổi thanh điều hướng",
     "welcomeText": "Chào"
+  },
+  "dynamicForm": {
+    "action": {
+      "create": "Tạo nên",
+      "forgot": "Quên mất"
+    },
+    "model": {
+      "account": "Tài khoản",
+      "password": "Mật khẩu"
+    }
+  },
+  "signUp": {
+    "cardHeader": "Chưa đăng ký?",
+    "instruction": "Đăng ký tài khoản của bạn nhanh chóng và dễ dàng."
   }
 }
