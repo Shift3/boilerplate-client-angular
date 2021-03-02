@@ -32,11 +32,13 @@
   },
   "dynamicForm": {
     "action": {
+      "add": "Add",
       "create": "Create",
       "forgot": "Forgot"
     },
     "model": {
       "account": "Account",
+      "agent": "Agent",
       "password": "Password"
     }
   },
