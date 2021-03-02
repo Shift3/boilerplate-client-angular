@@ -1,4 +1,8 @@
-<div class="field-container" [formGroup]="group" *transloco="let t">
+<div
+  class="field-container"
+  [formGroup]="group"
+  *transloco="let t; read: 'dynamicForm'"
+>
   <label class="field-label" [for]="config.name">
     {{ t(getObjectProperty(config.label)) }}
   </label>
@@ -17,7 +21,7 @@
   <span class="error-container">
     <ng-container *ngIf="formControl?.errors">
       <span class="field-label">
-        {{ formControl?.errors | formError }}
+        {{ t(formErrors, { control: t(configLabel) }) | formError }}
       </span>
     </ng-container>
   </span>

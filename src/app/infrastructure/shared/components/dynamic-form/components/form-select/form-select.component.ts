@@ -17,9 +17,17 @@ export class FormSelectComponent {
   public config: IFormField<ISelectField<unknown>> = new FormField<
     ISelectField<unknown>
   >({ fieldConfig: new SelectField<unknown>() });
+  public configLabel: string;
   public group: FormGroup = new FormGroup({});
 
   constructor(private dataTransformationService: DataTransformationService) {}
+
+  ngOnInit() {
+    this.configLabel = this.dataTransformationService.getObjectProperty(
+      'label',
+      this.config.label,
+    );
+  }
 
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);
@@ -32,5 +40,12 @@ export class FormSelectComponent {
           label,
         )
       : '';
+  }
+
+  public get formErrors(): string {
+    return this.dataTransformationService.getObjectProperty(
+      'error',
+      Object.keys(this.formControl.errors)[0],
+    );
   }
 }

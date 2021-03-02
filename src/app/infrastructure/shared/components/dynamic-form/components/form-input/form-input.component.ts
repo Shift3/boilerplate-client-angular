@@ -17,8 +17,8 @@ export class FormInputComponent {
   public config: IFormField<IInputField> = new FormField<IInputField>({
     fieldConfig: new InputField(),
   });
-  public group: FormGroup = new FormGroup({});
   public configLabel: string;
+  public group: FormGroup = new FormGroup({});
 
   constructor(private dataTransformationService: DataTransformationService) {}
 
