@@ -52,7 +52,7 @@ export class ResetPasswordSmartComponent {
       new FormField<IInputField>({
         name: 'confirmPassword',
         fieldType: 'input',
-        label: 'Confirm New Password',
+        label: 'confirmNewPassword',
         placeholder: 'Confirm the new password',
         fieldConfig: new InputField({
           inputType: 'password',
