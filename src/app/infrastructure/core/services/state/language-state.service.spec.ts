@@ -26,9 +26,9 @@ import { TranslocoService, TranslocoTestingModule } from '@ngneat/transloco';
 
       describe('getActiveLanguage()', () => {
         it('should return as an Observable', () => {
-          const mockActiveLang$ = new BehaviorSubject<string>('English'),
-            testActiveLang$ = new BehaviorSubject<string>('English'),
-            expectedValue = testActiveLang$.asObservable();
+          const mockActiveLang$ = new BehaviorSubject<string>('English');
+          const testActiveLang$ = new BehaviorSubject<string>('English');
+          const expectedValue = testActiveLang$.asObservable();
 
           service.activeLanguage$ = mockActiveLang$;
           expect(service.getActiveLanguage()).toEqual(expectedValue);
@@ -38,14 +38,14 @@ import { TranslocoService, TranslocoTestingModule } from '@ngneat/transloco';
       describe('getAvailableLanguages()', () => {
         it('should return as an Observable', () => {
           const mockAvailableLangs$ = new BehaviorSubject<string[]>([
-              'English',
-              'Spanish',
-            ]),
-            testAvailableLangs$ = new BehaviorSubject<string[]>([
-              'English',
-              'Spanish',
-            ]),
-            expectedValue = testAvailableLangs$.asObservable();
+            'English',
+            'Spanish',
+          ]);
+          const testAvailableLangs$ = new BehaviorSubject<string[]>([
+            'English',
+            'Spanish',
+          ]);
+          const expectedValue = testAvailableLangs$.asObservable();
 
           service.availableLanguagesForSelection$ = mockAvailableLangs$;
           expect(service.getAvailableLanguages()).toEqual(expectedValue);
@@ -54,8 +54,8 @@ import { TranslocoService, TranslocoTestingModule } from '@ngneat/transloco';
 
       describe('selectLanguage()', () => {
         it('should set the active language', () => {
-          const mockLang = 'Spanish',
-            expectedValue = 'Spanish';
+          const mockLang = 'Spanish';
+          const expectedValue = 'Spanish';
 
           service.selectLanguage(mockLang);
           expect(service.activeLanguage$.getValue()).toEqual(expectedValue);
