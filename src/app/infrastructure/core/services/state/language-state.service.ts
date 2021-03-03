@@ -88,14 +88,6 @@ export class LanguageStateService {
     );
   }
 
-  public getNavLinksTranslation(label): string {
-    return this.translocoService.translate(
-      `navLinks.${label.toLowerCase()}`,
-      {},
-      this.translocoService.getActiveLang(),
-    );
-  }
-
   private checkActiveLangIsDefaultLang(): boolean {
     return (
       this.translocoService.getActiveLang() === translocoConfigObj.defaultLang
