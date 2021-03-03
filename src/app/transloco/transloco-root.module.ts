@@ -1,3 +1,4 @@
+import { Injectable, NgModule } from '@angular/core';
 import {
   TRANSLOCO_LOADER,
   TranslocoLoader,
@@ -5,11 +6,9 @@ import {
   translocoConfig,
   TranslocoModule,
 } from '@ngneat/transloco';
-import { Injectable, NgModule } from '@angular/core';
-
-import { environment } from '@env/environment';
 
 import { ApiService } from '@core/services/api/api.service';
+import { environment } from '@env/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {

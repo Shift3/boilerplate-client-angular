@@ -102,8 +102,8 @@ This project comes with locale and translation support built-in for English, Spa
 
 When the application is deployed and Transloco is unable to load your language files it might be because you need to use a relative path:
 
-```
-getTranslation(langPath: string) {
+```ts
+public getTranslation(langPath: string) {
   return this.http.get(`./assets/i18n/${langPath}.json`);
 }
 ```
