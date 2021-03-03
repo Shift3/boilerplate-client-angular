@@ -31,16 +31,15 @@ export class LanguageStateService {
     return this.activeLanguage$.asObservable();
   }
 
-  public setActiveLanguage(languageCode: string): void {
+  private setActiveLanguage(languageCode: string): void {
     this.translocoService.setActiveLang(languageCode);
     this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
   }
 
   private getAvailableLanguagesForSelection(): string[] {
-    return Object.values(LANGUAGE).filter(
-      (language) => language !== this.getActiveLanguageFromCode(),
-    )
-    .sort();
+    return Object.values(LANGUAGE)
+      .filter((language) => language !== this.getActiveLanguageFromCode())
+      .sort();
   }
 
   public getAvailableLanguages(): Observable<string[]> {

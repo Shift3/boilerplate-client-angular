@@ -11,24 +11,54 @@ import { TranslocoService, TranslocoTestingModule } from '@ngneat/transloco';
   ? Logger.log('Unit skipped')
   : describe('[Unit] LanguageStateService', () => {
       let service: LanguageStateService;
-      const translocoMock = {
-        getActiveLang: jasmine.createSpy('getActiveLang'),
-        setActiveLang: jasmine.createSpy('setActiveLang'),
-      };
 
       beforeEach(() => {
         TestBed.configureTestingModule({
           imports: [TranslocoTestingModule],
-          providers: [
-            LanguageStateService,
-            // { provide: TranslocoService, useValue: translocoMock },
-          ],
+          providers: [LanguageStateService],
         });
         service = TestBed.inject(LanguageStateService);
-        // service.activeLanguage$ = new BehaviorSubject<string>(null);
       });
 
       it('should be created', () => {
         expect(service).toBeTruthy();
+      });
+
+      describe('getActiveLanguage()', () => {
+        it('should return as an Observable', () => {
+          const mockActiveLang$ = new BehaviorSubject<string>('English'),
+            testActiveLang$ = new BehaviorSubject<string>('English'),
+            expectedValue = testActiveLang$.asObservable();
+
+          service.activeLanguage$ = mockActiveLang$;
+          expect(service.getActiveLanguage()).toEqual(expectedValue);
+        });
+      });
+
+      describe('getAvailableLanguages()', () => {
+        it('should return as an Observable', () => {
+          const mockAvailableLangs$ = new BehaviorSubject<string[]>([
+              'English',
+              'Spanish',
+            ]),
+            testAvailableLangs$ = new BehaviorSubject<string[]>([
+              'English',
+              'Spanish',
+            ]),
+            expectedValue = testAvailableLangs$.asObservable();
+
+          service.availableLanguagesForSelection$ = mockAvailableLangs$;
+          expect(service.getAvailableLanguages()).toEqual(expectedValue);
+        });
+      });
+
+      describe('selectLanguage()', () => {
+        it('should set the active language', () => {
+          const mockLang = 'Spanish',
+            expectedValue = 'Spanish';
+
+          service.selectLanguage(mockLang);
+          expect(service.activeLanguage$.getValue()).toEqual(expectedValue);
+        });
       });
     });
