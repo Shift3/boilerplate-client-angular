@@ -1,7 +1,9 @@
 import { environment } from '@env/environment';
 
+import { LANGUAGE } from '@models/enums';
+
 export const translocoConfigObj = {
-  availableLangs: ['en-US', 'es-ES', 'tl', 'vi-VN'],
+  availableLangs: Object.keys(LANGUAGE),
   defaultLang: 'en-US',
   fallbackLang: 'en-US', // Dictates what language to use if you don’t have any particular translation label
   flatten: {

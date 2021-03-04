@@ -15,6 +15,7 @@
             <span [class]="link.icon"></span>
             {{ link.label }}
           </button>
+          <app-language-settings></app-language-settings>
         </ul>
       </ng-container>
       <app-settings [loggedInUser]="loggedInUser"></app-settings>
@@ -22,6 +23,7 @@
   </ng-container>
   <ng-template #loggedOut>
     <div class="login-button-container">
+      <app-language-settings></app-language-settings>
       <button
         id="form-submit-button"
         class="btn"
