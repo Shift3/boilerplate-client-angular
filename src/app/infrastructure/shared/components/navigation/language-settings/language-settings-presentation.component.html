@@ -12,8 +12,8 @@
     aria-labelledby="languageDropdown"
     class="dropdown-menu-left"
   >
-    <ng-container *ngFor="let language of availableLanguages">
-      <button ngbDropdownItem (click)="selectLanguage($event.target.innerHTML)">
+    <ng-container *ngFor="let language of availableLanguagesForSelection">
+      <button ngbDropdownItem (click)="selectLanguage(language)">
         {{ language | titlecase }}
       </button>
     </ng-container>
