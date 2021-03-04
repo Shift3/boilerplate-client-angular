@@ -15,6 +15,7 @@ import {
 export class LanguageSettingsPresentationComponent {
   @Input() public activeLanguage: string = '';
   @Input() public availableLanguagesForSelection: string[] = [];
+  @Input() public activeLangIsDefaultLang: boolean = true;
 
   @Output() public emitSelection = new EventEmitter<string>();
 

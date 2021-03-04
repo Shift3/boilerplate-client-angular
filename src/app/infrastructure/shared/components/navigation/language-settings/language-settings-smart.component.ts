@@ -9,6 +9,7 @@ import { LanguageStateService } from '@core/services/state/language-state.servic
     <app-language-settings-presentation
       [activeLanguage]="activeLanguage$ | async"
       [availableLanguagesForSelection]="availableLanguagesForSelection$ | async"
+      [activeLangIsDefaultLang]="activeLangIsDefaultLang$ | async"
       (emitSelection)="selectLanguage($event)"
     ></app-language-settings-presentation>
   `,
