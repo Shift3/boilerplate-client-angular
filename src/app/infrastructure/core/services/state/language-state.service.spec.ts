@@ -25,6 +25,7 @@ import { TranslocoService, TranslocoTestingModule } from '@ngneat/transloco';
       });
 
       describe('getActiveLanguage()', () => {
+        // TODO: Test null or undefined to test failure
         it('should return as an Observable', () => {
           const mockActiveLang$ = new BehaviorSubject<string>('English');
           const testActiveLang$ = new BehaviorSubject<string>('English');
@@ -36,6 +37,7 @@ import { TranslocoService, TranslocoTestingModule } from '@ngneat/transloco';
       });
 
       describe('getAvailableLanguages()', () => {
+        // TODO: Test empty array for failure
         it('should return as an Observable', () => {
           const mockAvailableLangs$ = new BehaviorSubject<string[]>([
             'English',
@@ -53,6 +55,8 @@ import { TranslocoService, TranslocoTestingModule } from '@ngneat/transloco';
       });
 
       describe('selectLanguage()', () => {
+        // TODO: Test with a language that isn't listed in the LANGUAGE enum
+        // TODO: Should be able to test if this calls translocoService correctly with the right values
         it('should set the active language', () => {
           const mockLang = 'Spanish';
           const expectedValue = 'Spanish';

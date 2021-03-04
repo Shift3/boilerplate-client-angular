@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MockComponent } from 'ng-mocks';
+
 import { TranslocoTestingModule } from '@ngneat/transloco';
 
+import { LanguageSettingsPresentationComponent } from './language-settings-presentation.component';
 import { LanguageSettingsSmartComponent } from './language-settings-smart.component';
 
 describe('LanguageSettingsSmartComponent', () => {
@@ -10,7 +13,10 @@ describe('LanguageSettingsSmartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [LanguageSettingsSmartComponent],
+      declarations: [
+        LanguageSettingsSmartComponent,
+        MockComponent(LanguageSettingsPresentationComponent),
+      ],
       imports: [TranslocoTestingModule],
     }).compileComponents();
   }));
