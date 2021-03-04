@@ -18,6 +18,8 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
   - [Development](#development)
     - [Template Repository](#template-repository)
     - [Initializing the Project](#initializing-the-project)
+    - [Yarn](#yarn)
+      - [How to Use `npm` Instead of `yarn`](#how-to-use-npm-instead-of-yarn)
     - [Prettier](#prettier)
     - [Docker](#docker)
     - [CI](#ci)
@@ -84,6 +86,18 @@ If this project is being cloned to start a new project, there are a few things t
 The project `environment` files will need to be updated with the path to the APIs. The development `environment.ts` assumes a local development server of `http://localhost:3000`, which might need to be updated.
 
 After provisioning and before deploying, the `deploy:staging` script in `package.json` needs to be updated, as mentioned [above](#local-environment).
+
+### Yarn
+
+This project is configured to use `yarn` instead of `npm`. `yarn` can be installed [here](https://yarnpkg.com/getting-started/install) and its commands are [here](https://yarnpkg.com/getting-started/usage). It is significantly faster than `npm`. `yarn` uses `yarn.lock` as its lockfile instead of the `package-lock.json` from `npm`. `yarn.lock` should be committed and kept current in the project just like `package-lock.json` would be for a project using `npm`.
+
+#### How to Use `npm` Instead of `yarn`
+
+In order to use `npm` instead of `yarn`, the project needs to be updated in a few areas.
+
+- [`angular.json`](angular.json) specifies `yarn` as the package manager on line 5.
+- CircleCI's [`config.yml`](.circleci/config.yml) uses `yarn` instead of `npm` to execute scripts.
+- The `yarn-lock` file should be deleted and the `package-lock.json` file should be committed in its place.
 
 ### Prettier
 
