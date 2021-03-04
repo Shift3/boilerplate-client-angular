@@ -22,6 +22,10 @@ export class LanguageStateService {
     this.getAvailableLanguagesForSelection(),
   );
 
+  public activeLangIsDefaultLang$ = new BehaviorSubject<boolean>(
+    this.checkActiveLangIsDefaultLang(),
+  );
+
   public getActiveLanguage(): Observable<string> {
     return this.activeLanguage$.asObservable();
   }
@@ -29,10 +33,6 @@ export class LanguageStateService {
   public getAvailableLanguages(): Observable<string[]> {
     return this.availableLanguagesForSelection$.asObservable();
   }
-
-  public activeLangIsDefaultLang$ = new BehaviorSubject<boolean>(
-    this.checkActiveLangIsDefaultLang(),
-  );
 
   public setActiveLanguage(languageCode: string): void {
     this.translocoService.setActiveLang(languageCode);
