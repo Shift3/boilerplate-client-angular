@@ -30,7 +30,6 @@ import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
     ReactiveFormsModule,
     TranslocoRootModule,
     RouterModule,
-    TranslocoRootModule,
   ],
   exports: [
     CommonModule,
