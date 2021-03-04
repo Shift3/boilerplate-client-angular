@@ -5,11 +5,16 @@ import { LanguageStateService } from '@app/infrastructure/core/services/state/la
 
 @Component({
   selector: 'app-language-settings',
-  templateUrl: './language-settings.component.html',
-  styleUrls: ['./language-settings.component.scss'],
+  template: `
+    <app-language-settings-presentation
+      [activeLanguage]="activeLanguage$ | async"
+      [availableLanguagesForSelection]="availableLanguagesForSelection$ | async"
+      (emitSelection)="selectLanguage($event)"
+    ></app-language-settings-presentation>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LanguageSettingsComponent implements OnInit {
+export class LanguageSettingsSmartComponent implements OnInit {
   public availableLanguagesForSelection$: Observable<string[]>;
   public activeLanguage$: Observable<string>;
 

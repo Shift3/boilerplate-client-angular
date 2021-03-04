@@ -3,7 +3,8 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormInputComponent } from './dynamic-form/components/form-input/form-input.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormSelectComponent } from './dynamic-form/components/form-select/form-select.component';
-import { LanguageSettingsComponent } from './navigation/language-settings/language-settings.component';
+import { LanguageSettingsPresentationComponent } from './navigation/language-settings/language-settings-presentation.component';
+import { LanguageSettingsSmartComponent } from './navigation/language-settings/language-settings-smart.component';
 import { SaveCancelComponent } from './save-cancel/save-cancel.component';
 import { SettingsComponent } from './navigation/settings/settings.component';
 import { SideNavigationPresentationComponent } from './navigation/side-navigation/side-navigation-presentation.component';
@@ -19,7 +20,8 @@ export const components = [
   FooterComponent,
   FormInputComponent,
   FormSelectComponent,
-  LanguageSettingsComponent,
+  LanguageSettingsPresentationComponent,
+  LanguageSettingsSmartComponent,
   SaveCancelComponent,
   SettingsComponent,
   SideNavigationPresentationComponent,

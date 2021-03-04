@@ -5,17 +5,15 @@
     class="nav-link language-button"
   >
     <span class="fa fa-language"></span>
-    {{ activeLanguage$ | async | titlecase }}
+    {{ activeLanguage | titlecase }}
   </button>
   <div
     ngbDropdownMenu
     aria-labelledby="languageDropdown"
     class="dropdown-menu-left"
   >
-    <ng-container
-      *ngFor="let language of availableLanguagesForSelection$ | async"
-    >
-      <button ngbDropdownItem (click)="selectLanguage($event.target.innerHTML)">
+    <ng-container *ngFor="let language of availableLanguagesForSelection">
+      <button ngbDropdownItem (click)="selectLanguage(language)">
         {{ language | titlecase }}
       </button>
     </ng-container>

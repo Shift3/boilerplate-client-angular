@@ -19,16 +19,26 @@ export class LanguageStateService {
     this.getAvailableLanguagesForSelection(),
   );
 
+  public getActiveLanguage(): Observable<string> {
+    return this.activeLanguage$.asObservable();
+  }
+
+  public getAvailableLanguages(): Observable<string[]> {
+    return this.availableLanguagesForSelection$.asObservable();
+  }
+
+  public selectLanguage(language: string): void {
+    const languageCode: string = this.getLanguageCodeFromLanguage(language);
+    this.setActiveLanguage(languageCode);
+    this.setAvailableLanguagesForSelection();
+  }
+
   private getActiveLanguageFromCode(): string {
     return this.getLanguageFromCode(this.translocoService.getActiveLang());
   }
 
   private getLanguageFromCode(languageCode: string): string {
     return LANGUAGE[languageCode];
-  }
-
-  public getActiveLanguage(): Observable<string> {
-    return this.activeLanguage$.asObservable();
   }
 
   private setActiveLanguage(languageCode: string): void {
@@ -42,10 +52,6 @@ export class LanguageStateService {
       .sort();
   }
 
-  public getAvailableLanguages(): Observable<string[]> {
-    return this.availableLanguagesForSelection$.asObservable();
-  }
-
   private setAvailableLanguagesForSelection(): void {
     this.availableLanguagesForSelection$.next(
       this.getAvailableLanguagesForSelection(),
@@ -56,11 +62,5 @@ export class LanguageStateService {
     return Object.keys(LANGUAGE).find(
       (key) => LANGUAGE[key].toLowerCase() === language.toLowerCase().trim(),
     );
-  }
-
-  public selectLanguage(language: string): void {
-    const languageCode: string = this.getLanguageCodeFromLanguage(language);
-    this.setActiveLanguage(languageCode);
-    this.setAvailableLanguagesForSelection();
   }
 }

@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MockComponent } from 'ng-mocks';
 
 import { environment } from '@env/environment.test';
-import { LanguageSettingsComponent } from '../language-settings/language-settings.component';
+import { LanguageSettingsSmartComponent } from '../language-settings/language-settings-smart.component';
 import { Logger } from '@utils/logger';
 import { SideNavigationPresentationComponent } from './side-navigation-presentation.component';
 import { SettingsComponent } from '../settings/settings.component';
@@ -19,7 +19,7 @@ import { SettingsComponent } from '../settings/settings.component';
         TestBed.configureTestingModule({
           declarations: [
             SideNavigationPresentationComponent,
-            MockComponent(LanguageSettingsComponent),
+            MockComponent(LanguageSettingsSmartComponent),
             MockComponent(SettingsComponent),
           ],
           imports: [RouterTestingModule],
