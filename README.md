@@ -101,13 +101,7 @@ This project comes with locale and translation support built-in for English, Spa
 - Copy the values of _defaultLang_ properties from the `transloco-root.module.ts` into the the `transloco-config.ts` and delete `transloco-root.module.ts` file.
 - Rename `transloco-root-backup.module.ts` file to `transloco-root.module.ts`.
 
-When the application is deployed and Transloco is unable to load your language files it might be because you need to use a relative path:
-
-```ts
-public getTranslation(langPath: string) {
-  return this.http.get(`./assets/i18n/${langPath}.json`);
-}
-```
+If Transloco is unable to load the language files it might be because a relative path is required. Modify _rootTranslationsPath_ propety's value in `transloco-config.ts` as `./assets/i18n`.
 
 ### Prettier
 

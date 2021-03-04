@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { LanguageStateService } from '@app/infrastructure/core/services/state/language-state.service';
+import { LanguageStateService } from '@core/services/state/language-state.service';
 
 @Component({
   selector: 'app-language-settings',
