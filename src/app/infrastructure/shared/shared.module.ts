@@ -27,8 +27,8 @@ import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
     NgxBootstrapModule.forRoot(),
     NgxMaskModule.forRoot(),
     ReactiveFormsModule,
-    RouterModule,
     TranslocoRootModule,
+    RouterModule,
   ],
   exports: [
     CommonModule,

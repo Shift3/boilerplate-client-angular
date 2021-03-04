@@ -34,17 +34,30 @@ export class LanguageStateService {
     this.checkActiveLangIsDefaultLang(),
   );
 
+  public setActiveLanguage(languageCode: string): void {
+    this.translocoService.setActiveLang(languageCode);
+    this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
+  }
+
+  public selectLanguage(language: string): void {
+    const languageName: string = this.getLanguageJsonKey(language),
+      languageCode: string = this.getLanguageCodeFromLanguage(languageName);
+
+    this.setActiveLanguage(languageCode);
+    this.setAvailableLanguagesForSelection();
+    this.activeLangIsDefaultLang$.next(this.checkActiveLangIsDefaultLang());
+  }
+
+  public getActiveLangIsDefaultLang(): Observable<boolean> {
+    return this.activeLangIsDefaultLang$.asObservable();
+  }
+
   private getActiveLanguageFromCode(): string {
     return this.getLanguageFromCode(this.translocoService.getActiveLang());
   }
 
   private getLanguageFromCode(languageCode: string): string {
     return LANGUAGE[languageCode];
-  }
-
-  private setActiveLanguage(languageCode: string): void {
-    this.translocoService.setActiveLang(languageCode);
-    this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
   }
 
   private getAvailableLanguagesForSelection(): string[] {
@@ -65,15 +78,6 @@ export class LanguageStateService {
     );
   }
 
-  public selectLanguage(language: string): void {
-    const languageName: string = this.getLanguageJsonKey(language),
-      languageCode: string = this.getLanguageCodeFromLanguage(languageName);
-
-    this.setActiveLanguage(languageCode);
-    this.setAvailableLanguagesForSelection();
-    this.activeLangIsDefaultLang$.next(this.checkActiveLangIsDefaultLang());
-  }
-
   private getLanguageJsonKey(language: string): string {
     // read the current lang JSON file to reversely find the key that language is a value of.
     const langCode: string = this.translocoService
@@ -92,9 +96,5 @@ export class LanguageStateService {
     return (
       this.translocoService.getActiveLang() === translocoConfigObj.defaultLang
     );
-  }
-
-  public getActiveLangIsDefaultLang(): Observable<boolean> {
-    return this.activeLangIsDefaultLang$.asObservable();
   }
 }
