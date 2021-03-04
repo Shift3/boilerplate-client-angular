@@ -14,6 +14,8 @@ import jsonFiles from '@assets/i18n/index';
 export class LanguageStateService {
   constructor(private translocoService: TranslocoService) {}
 
+  private defaultLanguage: string = translocoConfigObj.defaultLang;
+
   public activeLanguage$ = new BehaviorSubject<string>(
     this.getActiveLanguageFromCode(),
   );
@@ -50,6 +52,22 @@ export class LanguageStateService {
 
   public getActiveLangIsDefaultLang(): Observable<boolean> {
     return this.activeLangIsDefaultLang$.asObservable();
+  }
+
+  public getDefaultLangText(propertyFromJson: string): string {
+    console.log(
+      this.translocoService.translate(
+        propertyFromJson,
+        {},
+        this.defaultLanguage,
+      ),
+    );
+    console.log(this.translocoService.getTranslation(this.defaultLanguage));
+
+    debugger;
+    return this.translocoService.getTranslation(this.defaultLanguage)[
+      propertyFromJson
+    ];
   }
 
   private getActiveLanguageFromCode(): string {
@@ -93,8 +111,6 @@ export class LanguageStateService {
   }
 
   private checkActiveLangIsDefaultLang(): boolean {
-    return (
-      this.translocoService.getActiveLang() === translocoConfigObj.defaultLang
-    );
+    return this.translocoService.getActiveLang() === this.defaultLanguage;
   }
 }

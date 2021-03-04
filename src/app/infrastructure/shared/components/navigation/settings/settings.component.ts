@@ -1,5 +1,11 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { AuthService } from '@core/services/api/auth.service';
 import { ConfirmModalConfig } from '@models/modal';
@@ -15,9 +21,11 @@ import { IUserDTO, UserDTO } from '@models/user';
   styleUrls: ['./settings.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   @Input() loggedInUser: IUserDTO = new UserDTO();
 
+  public activeLangIsDefaultLang$: Observable<boolean>;
+  public defaultLangToggleNavBarText: string = '';
   public profilePicturePlaceholder = `assets/img/portrait_placeholder.png`;
   public profileLinks: INavigation[] = profileLinkList;
   public showTopNav =
@@ -30,6 +38,13 @@ export class SettingsComponent {
     private router: Router,
     public translationService: TranslationService,
   ) {}
+
+  ngOnInit() {
+    this.activeLangIsDefaultLang$ = this.translationService.getActiveLangIsDefaultLang();
+    this.defaultLangToggleNavBarText = this.translationService.getDefaultLangText(
+      'userProfile.toggleNavBarText',
+    );
+  }
 
   public openConfirmModal(): void {
     const modalConfig = new ConfirmModalConfig({

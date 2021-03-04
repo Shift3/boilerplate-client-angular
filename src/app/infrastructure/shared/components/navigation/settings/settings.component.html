@@ -33,10 +33,22 @@
                 )
               )
             }}
+            <span
+              *ngIf="!(activeLangIsDefaultLang$ | async)"
+              class="default-lang-text"
+            >
+              / {{ link.label | titlecase }}
+            </span>
           </button>
         </ng-container>
         <button ngbDropdownItem (click)="toggleNavBar()">
           {{ t('userProfile.toggleNavBarText') }}
+          <span
+            *ngIf="!(activeLangIsDefaultLang$ | async)"
+            class="default-lang-text"
+          >
+            / {{ defaultLangToggleNavBarText | titlecase }}
+          </span>
         </button>
         <button ngbDropdownItem (click)="openConfirmModal()">
           {{ t('userProfile.signOutText') }}
