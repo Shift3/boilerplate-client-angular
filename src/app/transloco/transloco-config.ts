@@ -1,8 +1,6 @@
 import { environment } from '@env/environment';
 import { LANGUAGE } from '@models/enums';
 
-import { LANGUAGE } from '@models/enums';
-
 export const translocoConfigObj = {
   availableLangs: Object.keys(LANGUAGE),
   defaultLang: 'en-US',
