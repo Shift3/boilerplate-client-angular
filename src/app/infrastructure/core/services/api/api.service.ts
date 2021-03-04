@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
+import { translocoConfigObj } from '@app/transloco/transloco-config';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -56,7 +58,7 @@ export class ApiService {
 
   public getTranslation<T>(language: string): Observable<T> {
     return this.httpClient
-      .get<T>(`/assets/i18n/${language}.json`)
+      .get<T>(`${translocoConfigObj.rootTranslationsPath}/${language}.json`)
       .pipe(shareReplay());
   }
 }
