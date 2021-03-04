@@ -40,8 +40,8 @@ export class LanguageStateService {
   }
 
   public selectLanguage(language: string): void {
-    const languageName: string = this.getLanguageJsonKey(language),
-      languageCode: string = this.getLanguageCodeFromLanguage(languageName);
+    const languageName: string = this.getLanguageJsonKey(language);
+    const languageCode: string = this.getLanguageCodeFromLanguage(languageName);
 
     this.setActiveLanguage(languageCode);
     this.setAvailableLanguagesForSelection();
@@ -81,9 +81,9 @@ export class LanguageStateService {
   private getLanguageJsonKey(language: string): string {
     // read the current lang JSON file to reversely find the key that language is a value of.
     const langCode: string = this.translocoService
-        .getActiveLang()
-        .replace('-', ''),
-      langJsonObj = jsonFiles[langCode].default['languages'];
+      .getActiveLang()
+      .replace('-', '');
+    const langJsonObj = jsonFiles[langCode].default.languages;
 
     return Object.keys(langJsonObj).find((key) =>
       typeof langJsonObj[key] === 'string'
