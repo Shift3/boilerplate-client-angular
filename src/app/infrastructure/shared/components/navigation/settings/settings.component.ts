@@ -11,7 +11,7 @@ import { ConfirmModalConfig } from '@models/modal';
 import { ModalService } from '@core/services/modal.service';
 import { INavigation, profileLinkList } from '@models/navigation';
 import { NavbarStateService } from '@core/services/state/navbar-state.service';
-import { TranslationService } from '@core/services/translation.service';
+import { DataTransformationService } from '@app/infrastructure/core/services/data-transformation.service';
 import { IUserDTO, UserDTO } from '@models/user';
 
 interface IDefaultLangText {
@@ -39,7 +39,7 @@ export class SettingsComponent implements OnInit {
     private modalService: ModalService,
     private navbarStateService: NavbarStateService,
     private router: Router,
-    public translationService: TranslationService,
+    private dataTransformationService: DataTransformationService,
   ) {}
 
   ngOnInit() {
@@ -48,11 +48,11 @@ export class SettingsComponent implements OnInit {
 
   private languageSetup() {
     this.defaultLangText = {
-      toggleNavBarText: this.translationService.getTextInDefaultLang(
+      toggleNavBarText: this.dataTransformationService.getTextInDefaultLang(
         'userProfile',
         'toggleNavBarText',
       ),
-      signOutText: this.translationService.getTextInDefaultLang(
+      signOutText: this.dataTransformationService.getTextInDefaultLang(
         'userProfile',
         'signOutText',
       ),
@@ -84,5 +84,13 @@ export class SettingsComponent implements OnInit {
 
   public showPlaceholderImageOnEmptyOrError(): void {
     this.loggedInUser.profilePicture = this.profilePicturePlaceholder;
+  }
+
+  public getObjectProperty(label: string): string {
+    if (label?.length)
+      return this.dataTransformationService.getObjectProperty(
+        'userProfile.profileLinks',
+        label,
+      );
   }
 }

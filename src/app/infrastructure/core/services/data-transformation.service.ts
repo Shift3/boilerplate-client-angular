@@ -5,7 +5,7 @@ import { LanguageStateService } from '@core/services/state/language-state.servic
 @Injectable({
   providedIn: 'root',
 })
-export class TranslationService {
+export class DataTransformationService {
   constructor(private languageStateService: LanguageStateService) {}
 
   public getObjectProperty(objProperty: string, label: string): string {

@@ -4,13 +4,13 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
-import { TranslationService } from '@core/services/translation.service';
+import { DataTransformationService } from '@app/infrastructure/core/services/data-transformation.service';
 import { LanguageStateService } from '@core/services/state/language-state.service';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
-  : describe('[Unit] TranslationService', () => {
-      let service: TranslationService;
+  : describe('[Unit] DataTransformationService', () => {
+      let service: DataTransformationService;
       const translationMock = {
         profile: 'userProfile.profileLinks.profile',
         changePassword: 'changePassword',
@@ -23,11 +23,11 @@ import { LanguageStateService } from '@core/services/state/language-state.servic
         TestBed.configureTestingModule({
           imports: [TranslocoTestingModule],
           providers: [
-            TranslationService,
+            DataTransformationService,
             { provide: LanguageStateService, useValue: languageStateMock },
           ],
         });
-        service = TestBed.inject(TranslationService);
+        service = TestBed.inject(DataTransformationService);
       });
 
       it('should be created', () => {

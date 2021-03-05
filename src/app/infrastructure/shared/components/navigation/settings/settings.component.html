@@ -25,27 +25,20 @@
           *ngFor="let link of profileLinks; trackBy: 'id' | trackByKey"
         >
           <button ngbDropdownItem [routerLink]="link.link">
-            {{
-              t(
-                translationService.getObjectProperty(
-                  'userProfile.profileLinks',
-                  link.label
-                )
-              )
-            }}
+            {{ t(getObjectProperty(link.label)) | titlecase }}
             <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
               / {{ link.label | titlecase }}
             </span>
           </button>
         </ng-container>
         <button ngbDropdownItem (click)="toggleNavBar()">
-          {{ t('userProfile.toggleNavBarText') }}
+          {{ t('userProfile.toggleNavBarText') | titlecase }}
           <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
             / {{ defaultLangText.toggleNavBarText | titlecase }}
           </span>
         </button>
         <button ngbDropdownItem (click)="openConfirmModal()">
-          {{ t('userProfile.signOutText') }}
+          {{ t('userProfile.signOutText') | titlecase }}
           <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
             / {{ defaultLangText.signOutText | titlecase }}
           </span>
