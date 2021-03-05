@@ -9,21 +9,29 @@ export class TranslationService {
   constructor(private languageStateService: LanguageStateService) {}
 
   public getObjectProperty(objProperty: string, label: string): string {
-    return `${objProperty}.${this.camalize(label)}`;
+    if (!label || label.length === 0) return '';
+
+    return `${objProperty}.${this.camelize(label)}`;
   }
 
   public getActiveLangIsDefaultLang() {
     return this.languageStateService.getActiveLangIsDefaultLang();
   }
 
-  private camalize(textToCamelize: string): string {
+  private camelize(textToCamelize: string): string {
     return textToCamelize
       .toLowerCase()
       .trim()
       .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
   }
 
-  public getDefaultLangText(property: string): string {
-    return this.languageStateService.getDefaultLangText(property);
+  public getTextInDefaultLang(
+    mainProperty: string,
+    nestedProperty: string,
+  ): string {
+    return this.languageStateService.getTextInDefaultLang(
+      mainProperty,
+      nestedProperty,
+    );
   }
 }

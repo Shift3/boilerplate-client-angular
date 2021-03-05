@@ -42,7 +42,7 @@ export class LanguageStateService {
   }
 
   public selectLanguage(language: string): void {
-    const languageName: string = this.getLanguageJsonKey(language);
+    const languageName: string = this.getLanguageKeyFromJson(language);
     const languageCode: string = this.getLanguageCodeFromLanguage(languageName);
 
     this.setActiveLanguage(languageCode);
@@ -54,19 +54,13 @@ export class LanguageStateService {
     return this.activeLangIsDefaultLang$.asObservable();
   }
 
-  public getDefaultLangText(propertyFromJson: string): string {
-    console.log(
-      this.translocoService.translate(
-        propertyFromJson,
-        {},
-        this.defaultLanguage,
-      ),
-    );
-    console.log(this.translocoService.getTranslation(this.defaultLanguage));
-
-    debugger;
-    return this.translocoService.getTranslation(this.defaultLanguage)[
-      propertyFromJson
+  public getTextInDefaultLang(
+    mainProperty: string,
+    nestedProperty: string,
+  ): string {
+    // TODO: (pratima) revisit to add logic for more than 1 level nested value
+    return this.getLangJsonObj(this.defaultLanguage)[mainProperty][
+      nestedProperty
     ];
   }
 
@@ -96,18 +90,21 @@ export class LanguageStateService {
     );
   }
 
-  private getLanguageJsonKey(language: string): string {
+  private getLanguageKeyFromJson(language: string): string {
     // read the current lang JSON file to reversely find the key that language is a value of.
-    const langCode: string = this.translocoService
-      .getActiveLang()
-      .replace('-', '');
-    const langJsonObj = jsonFiles[langCode].default.languages;
+    const langJsonObj = this.getLangJsonObj(
+      this.translocoService.getActiveLang(),
+    )['languages'];
 
     return Object.keys(langJsonObj).find((key) =>
       typeof langJsonObj[key] === 'string'
         ? langJsonObj[key].toLowerCase() === language.trim().toLowerCase()
         : false,
     );
+  }
+
+  private getLangJsonObj(languageCode: string): object {
+    return jsonFiles[languageCode.replace('-', '')].default;
   }
 
   private checkActiveLangIsDefaultLang(): boolean {
