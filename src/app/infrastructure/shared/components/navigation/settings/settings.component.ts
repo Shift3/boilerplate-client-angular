@@ -5,7 +5,6 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { AuthService } from '@core/services/api/auth.service';
 import { ConfirmModalConfig } from '@models/modal';
@@ -15,6 +14,11 @@ import { NavbarStateService } from '@core/services/state/navbar-state.service';
 import { TranslationService } from '@core/services/translation.service';
 import { IUserDTO, UserDTO } from '@models/user';
 
+interface IDefaultLangText {
+  toggleNavBarText: string;
+  signOutText: string;
+}
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -23,9 +27,8 @@ import { IUserDTO, UserDTO } from '@models/user';
 })
 export class SettingsComponent implements OnInit {
   @Input() loggedInUser: IUserDTO = new UserDTO();
-
-  public activeLangIsDefaultLang$: Observable<boolean>;
-  public defaultLangToggleNavBarText: string = '';
+  @Input() activeLangIsDefaultLang: boolean;
+  public defaultLangText: IDefaultLangText;
   public profilePicturePlaceholder = `assets/img/portrait_placeholder.png`;
   public profileLinks: INavigation[] = profileLinkList;
   public showTopNav =
@@ -40,10 +43,20 @@ export class SettingsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activeLangIsDefaultLang$ = this.translationService.getActiveLangIsDefaultLang();
-    this.defaultLangToggleNavBarText = this.translationService.getDefaultLangText(
-      'userProfile.toggleNavBarText',
-    );
+    this.languageSetup();
+  }
+
+  private languageSetup() {
+    this.defaultLangText = {
+      toggleNavBarText: this.translationService.getTextInDefaultLang(
+        'userProfile',
+        'toggleNavBarText',
+      ),
+      signOutText: this.translationService.getTextInDefaultLang(
+        'userProfile',
+        'signOutText',
+      ),
+    };
   }
 
   public openConfirmModal(): void {
