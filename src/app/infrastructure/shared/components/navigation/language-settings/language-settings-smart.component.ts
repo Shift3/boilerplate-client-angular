@@ -33,7 +33,7 @@ export class LanguageSettingsSmartComponent implements OnInit {
   }
 
   public selectLanguage(language: string): void {
-    if (language.length)
+    if (!!language && language.length)
       this.languageStateService.selectLanguage(language.split('/')[0]);
   }
 }
