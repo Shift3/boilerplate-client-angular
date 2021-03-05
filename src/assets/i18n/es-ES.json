@@ -1,1 +1,16 @@
-{}
+{
+  "logoAlt": "Consultoría de tecnología Bitwise",
+  "navLinks": {
+    "directory": "Directorio",
+    "users": "Usuarias",
+    "agencies": "Agencias"
+  },
+  "languages": {
+    "english": "Inglés",
+    "spanish": "Español",
+    "tagalog": "Tagalo",
+    "vietnamese": "Vietnamita"
+  },
+  "loginButtonText": "Acceso",
+  "signUpButtonText": "Crear una cuenta"
+}

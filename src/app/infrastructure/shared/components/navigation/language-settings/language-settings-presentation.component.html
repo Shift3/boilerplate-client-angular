@@ -1,11 +1,11 @@
-<div ngbDropdown class="navbar-nav">
+<div ngbDropdown class="navbar-nav" *transloco="let t">
   <button
     ngbDropdownToggle
     id="languageDropdown"
     class="nav-link language-button"
   >
     <span class="fa fa-language"></span>
-    {{ activeLanguage | titlecase }}
+    {{ t(getObjectProperty(activeLanguage)) | titlecase }}
   </button>
   <div
     ngbDropdownMenu
@@ -14,7 +14,10 @@
   >
     <ng-container *ngFor="let language of availableLanguagesForSelection">
       <button ngbDropdownItem (click)="selectLanguage(language)">
-        {{ language | titlecase }}
+        {{ t(getObjectProperty(language)) | titlecase }}
+        <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
+          / {{ language | titlecase }}
+        </span>
       </button>
     </ng-container>
   </div>

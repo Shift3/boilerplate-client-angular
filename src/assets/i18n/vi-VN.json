@@ -1,1 +1,16 @@
-{}
+{
+  "logoAlt": "Tư vấn Công nghệ Bitwise",
+  "navLinks": {
+    "directory": "Danh mục",
+    "users": "Người dùng",
+    "agencies": "Cơ quan"
+  },
+  "languages": {
+    "english": "Tiếng Anh",
+    "spanish": "người Tây Ban Nha",
+    "tagalog": "Tagalog",
+    "vietnamese": "Tiếng Việt"
+  },
+  "loginButtonText": "Đăng nhập",
+  "signUpButtonText": "Tạo tài khoản"
+}

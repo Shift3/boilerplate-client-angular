@@ -1,6 +1,6 @@
-<nav class="nav-container navbar-light">
+<nav class="nav-container navbar-light" *transloco="let t">
   <a class="logo navbar-brand" [routerLink]="'/'">
-    <img src="assets/img/logo.png" alt="Shift3 Technologies" />
+    <img src="assets/img/logo.png" [alt]="t('logoAlt')" />
   </a>
   <ng-container *ngIf="isValid; else loggedOut">
     <div class="link-container">
@@ -13,7 +13,7 @@
             (click)="isMenuCollapsed = true"
           >
             <span [class]="link.icon"></span>
-            {{ link.label }}
+            {{ t(getObjectProperty(link.label)) }}
           </button>
           <app-language-settings></app-language-settings>
         </ul>
@@ -31,7 +31,8 @@
         mat-raised-button
         routerLink="/auth/login"
       >
-        {{ 'Login/Create Account' | uppercase }}
+        {{ t('loginButtonText') | uppercase }} /
+        {{ t('signUpButtonText') | uppercase }}
       </button>
     </div>
   </ng-template>
