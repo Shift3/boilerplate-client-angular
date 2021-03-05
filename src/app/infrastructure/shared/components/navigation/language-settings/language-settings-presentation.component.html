@@ -13,10 +13,7 @@
     class="dropdown-menu-left"
   >
     <ng-container *ngFor="let language of availableLanguagesForSelection">
-      <button
-        ngbDropdownItem
-        (click)="selectLanguage($event.target.textContent)"
-      >
+      <button ngbDropdownItem (click)="selectLanguage(language)">
         {{ t(getObjectProperty(language)) | titlecase }}
         <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
           / {{ language | titlecase }}

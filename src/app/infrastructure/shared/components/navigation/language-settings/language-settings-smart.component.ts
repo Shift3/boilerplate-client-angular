@@ -23,12 +23,17 @@ export class LanguageSettingsSmartComponent implements OnInit {
   constructor(public languageStateService: LanguageStateService) {}
 
   ngOnInit(): void {
+    this.activeAvailableLanguageSetup();
+  }
+
+  private activeAvailableLanguageSetup() {
     this.activeLanguage$ = this.languageStateService.getActiveLanguage();
     this.availableLanguagesForSelection$ = this.languageStateService.getAvailableLanguages();
     this.activeLangIsDefaultLang$ = this.languageStateService.getActiveLangIsDefaultLang();
   }
 
   public selectLanguage(language: string): void {
-    this.languageStateService.selectLanguage(language.split('/')[0]);
+    if (language.length)
+      this.languageStateService.selectLanguage(language.split('/')[0]);
   }
 }
