@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { TranslocoTestingModule } from '@ngneat/transloco';
+
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { SaveCancelComponent } from './save-cancel.component';
@@ -12,6 +14,7 @@ import { SaveCancelComponent } from './save-cancel.component';
 
       beforeEach(async(() => {
         TestBed.configureTestingModule({
+          imports: [TranslocoTestingModule],
           declarations: [SaveCancelComponent],
         }).compileComponents();
       }));

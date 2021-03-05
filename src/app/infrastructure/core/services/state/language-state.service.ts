@@ -32,11 +32,6 @@ export class LanguageStateService {
     return this.activeLanguage$.asObservable();
   }
 
-  public setActiveLanguage(languageCode: string): void {
-    this.translocoService.setActiveLang(languageCode);
-    this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
-  }
-
   public getAvailableLanguages(): Observable<string[]> {
     return this.availableLanguagesForSelection$.asObservable();
   }
