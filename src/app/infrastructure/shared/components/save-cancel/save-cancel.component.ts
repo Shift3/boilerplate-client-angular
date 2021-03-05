@@ -28,7 +28,7 @@ export class SaveCancelComponent {
 
   constructor(
     private location: Location,
-    public translationService: TranslationService,
+    private translationService: TranslationService,
   ) {}
 
   public cancel(): void {
@@ -37,5 +37,12 @@ export class SaveCancelComponent {
 
   public save(): void {
     this.emitSave.emit();
+  }
+
+  public getObjectProperty(buttonLabel: string): string {
+    return this.translationService.getObjectProperty(
+      'formText.buttons',
+      buttonLabel,
+    );
   }
 }
