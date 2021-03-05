@@ -16,7 +16,6 @@
       class="collapse navbar-collapse link-container"
     >
       <ng-container *ngIf="navLinks?.length">
-        <app-language-settings></app-language-settings>
         <ul class="navbar-nav">
           <button
             *ngFor="let link of navLinks; trackBy: 'id' | trackByKey"
@@ -30,7 +29,10 @@
           <app-language-settings></app-language-settings>
         </ul>
       </ng-container>
-      <app-settings [loggedInUser]="loggedInUser"></app-settings>
+      <app-settings
+        [activeLangIsDefaultLang]="activeLangIsDefaultLang"
+        [loggedInUser]="loggedInUser"
+      ></app-settings>
     </div>
   </ng-container>
   <ng-template #loggedOut>

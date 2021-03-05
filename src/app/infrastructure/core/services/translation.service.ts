@@ -14,10 +14,6 @@ export class TranslationService {
     return `${objProperty}.${this.camelize(label)}`;
   }
 
-  public getActiveLangIsDefaultLang() {
-    return this.languageStateService.getActiveLangIsDefaultLang();
-  }
-
   private camelize(textToCamelize: string): string {
     return textToCamelize
       .toLowerCase()

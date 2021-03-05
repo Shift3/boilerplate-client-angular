@@ -10,6 +10,7 @@ import { IUserDTO, UserDTO } from '@models/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopNavigationPresentationComponent {
+  @Input() public activeLangIsDefaultLang: boolean = true;
   @Input() public isValid: boolean = false;
   @Input() public loggedInUser: IUserDTO = new UserDTO();
   @Input() public navLinks: INavigation[];
