@@ -92,9 +92,10 @@ export class LanguageStateService {
 
   private getLanguageKeyFromJson(language: string): string {
     // read the current lang JSON file to reversely find the key that language is a value of.
+    const objPropertyWanted: string = 'language';
     const langJsonObj = this.getLangJsonObj(
       this.translocoService.getActiveLang(),
-    )['languages'];
+    )[objPropertyWanted];
 
     return Object.keys(langJsonObj).find((key) =>
       typeof langJsonObj[key] === 'string'
