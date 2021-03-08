@@ -4,7 +4,7 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormField, IFormField } from '@models/form/form';
 import { ISelectField, SelectField } from '@models/form/select';
 
-import { TranslationService } from '@app/infrastructure/core/services/translation.service';
+import { DataTransformationService } from '@core/services/data-transformation.service';
 
 @Component({
   selector: 'app-form-select',
@@ -19,9 +19,18 @@ export class FormSelectComponent {
   >({ fieldConfig: new SelectField<unknown>() });
   public group: FormGroup = new FormGroup({});
 
-  constructor(public translationService: TranslationService) {}
+  constructor(private dataTransformationService: DataTransformationService) {}
 
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);
+  }
+
+  public getObjectProperty(label: string): string {
+    return label.length
+      ? this.dataTransformationService.getObjectProperty(
+          'dynamicForm.label',
+          label,
+        )
+      : '';
   }
 }
