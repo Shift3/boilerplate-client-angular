@@ -20,12 +20,12 @@ export class LanguageStateService {
     this.getActiveLanguageFromCode(),
   );
 
-  public availableLanguagesForSelection$ = new BehaviorSubject<string[]>(
-    this.getAvailableLanguagesForSelection(),
-  );
-
   public activeLangIsDefaultLang$ = new BehaviorSubject<boolean>(
     this.checkActiveLangIsDefaultLang(),
+  );
+
+  public availableLanguagesForSelection$ = new BehaviorSubject<string[]>(
+    this.getAvailableLanguagesForSelection(),
   );
 
   public getActiveLanguage(): Observable<string> {
@@ -34,20 +34,6 @@ export class LanguageStateService {
 
   public getAvailableLanguages(): Observable<string[]> {
     return this.availableLanguagesForSelection$.asObservable();
-  }
-
-  public setActiveLanguage(languageCode: string): void {
-    this.translocoService.setActiveLang(languageCode);
-    this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
-  }
-
-  public selectLanguage(language: string): void {
-    const languageName: string = this.getLanguageKeyFromJson(language);
-    const languageCode: string = this.getLanguageCodeFromLanguage(languageName);
-
-    this.setActiveLanguage(languageCode);
-    this.setAvailableLanguagesForSelection();
-    this.activeLangIsDefaultLang$.next(this.checkActiveLangIsDefaultLang());
   }
 
   public getActiveLangIsDefaultLang(): Observable<boolean> {
@@ -64,12 +50,26 @@ export class LanguageStateService {
     ];
   }
 
-  private getActiveLanguageFromCode(): string {
-    return this.getLanguageFromCode(this.translocoService.getActiveLang());
+  public selectLanguage(language: string): void {
+    const languageName: string = this.getLanguageKeyFromJson(language);
+    const languageCode: string = this.getLanguageCodeFromLanguage(languageName);
+
+    this.setActiveLanguage(languageCode);
+    this.setAvailableLanguagesForSelection();
+    this.activeLangIsDefaultLang$.next(this.checkActiveLangIsDefaultLang());
   }
 
-  private getLanguageFromCode(languageCode: string): string {
-    return LANGUAGE[languageCode];
+  public setActiveLanguage(languageCode: string): void {
+    this.translocoService.setActiveLang(languageCode);
+    this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
+  }
+
+  private checkActiveLangIsDefaultLang(): boolean {
+    return this.translocoService.getActiveLang() === this.defaultLanguage;
+  }
+
+  private getActiveLanguageFromCode(): string {
+    return this.getLanguageFromCode(this.translocoService.getActiveLang());
   }
 
   private getAvailableLanguagesForSelection(): string[] {
@@ -78,16 +78,14 @@ export class LanguageStateService {
       .sort();
   }
 
-  private setAvailableLanguagesForSelection(): void {
-    this.availableLanguagesForSelection$.next(
-      this.getAvailableLanguagesForSelection(),
-    );
-  }
-
   private getLanguageCodeFromLanguage(language: string): string {
     return Object.keys(LANGUAGE).find(
       (key) => LANGUAGE[key].toLowerCase() === language.toLowerCase().trim(),
     );
+  }
+
+  private getLanguageFromCode(languageCode: string): string {
+    return LANGUAGE[languageCode];
   }
 
   private getLanguageKeyFromJson(language: string): string {
@@ -99,7 +97,7 @@ export class LanguageStateService {
 
     return Object.keys(languages).find((key) =>
       typeof languages[key] === 'string'
-        ? languages[key].toLowerCase() === language.trim().toLowerCase()
+        ? key.toLowerCase() === language.trim().toLowerCase()
         : false,
     );
   }
@@ -108,7 +106,9 @@ export class LanguageStateService {
     return jsonFiles[languageCode.replace('-', '')].default;
   }
 
-  private checkActiveLangIsDefaultLang(): boolean {
-    return this.translocoService.getActiveLang() === this.defaultLanguage;
+  private setAvailableLanguagesForSelection(): void {
+    this.availableLanguagesForSelection$.next(
+      this.getAvailableLanguagesForSelection(),
+    );
   }
 }
