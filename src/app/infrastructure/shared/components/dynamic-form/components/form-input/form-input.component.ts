@@ -44,7 +44,7 @@ export class FormInputComponent {
 
   public get formErrors(): string {
     return this.dataTransformationService.getObjectProperty(
-      'dynamicForm.error',
+      'error',
       Object.keys(this.formControl.errors)[0],
     );
   }
