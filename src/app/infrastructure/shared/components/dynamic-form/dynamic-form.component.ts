@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { DataTransformationService } from '@core/services/data-transformation.service';
 import { FormService } from '@core/services/form.service';
 import { FormConfig, IFormConfig } from '@models/form/form';
-import { TranslationService } from '@core/services/translation.service';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -28,7 +28,7 @@ export class DynamicFormComponent implements OnInit {
 
   constructor(
     private formService: FormService,
-    public translationService: TranslationService,
+    private dataTransformationService: DataTransformationService,
   ) {}
 
   public ngOnInit(): void {
@@ -44,5 +44,11 @@ export class DynamicFormComponent implements OnInit {
     this.emitForm.emit(form);
 
     return form;
+  }
+
+  public getObjectProperty(property: string, label: string): string {
+    return label?.length
+      ? this.dataTransformationService.getObjectProperty(property, label)
+      : '';
   }
 }

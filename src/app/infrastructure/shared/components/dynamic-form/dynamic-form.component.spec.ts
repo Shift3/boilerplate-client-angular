@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { MockComponent } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { DynamicFormComponent } from './dynamic-form.component';
 import { environment } from '@env/environment.test';
@@ -26,6 +27,7 @@ import { SaveCancelComponent } from '../save-cancel/save-cancel.component';
             HttpClientTestingModule,
             ReactiveFormsModule,
             RouterTestingModule,
+            TranslocoTestingModule,
           ],
           providers: [FormBuilder],
         }).compileComponents();
