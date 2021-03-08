@@ -11,7 +11,9 @@ export class DataTransformationService {
   public getObjectProperty(objProperty: string, label: string): string {
     if (!label || label.length === 0) return '';
 
-    return `${objProperty}.${this.camelize(label)}`;
+    return `${objProperty}.${
+      label.split(' ').length > 1 ? this.camelize(label) : label
+    }`;
   }
 
   private camelize(textToCamelize: string): string {

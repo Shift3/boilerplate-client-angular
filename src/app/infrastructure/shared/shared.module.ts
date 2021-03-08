@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { NgxMaskModule } from 'ngx-mask';
+import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
 
 import {
   BootstrapModule,
