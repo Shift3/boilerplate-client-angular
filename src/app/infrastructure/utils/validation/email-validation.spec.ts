@@ -22,21 +22,21 @@ import { Logger } from '@utils/logger';
           expect(emailValidator(emailControl)).toEqual(expectedValue);
         });
 
-        it(`should return { invalidEmail: 'Please enter a valid email.' } when value does not match RegEx`, () => {
+        it(`should return { isInvalid: 'Please enter a valid email.' } when value does not match RegEx`, () => {
           emailControl.setValue('test@');
-          const expectedValue = { invalidEmail: 'Please enter a valid email.' };
+          const expectedValue = { isInvalid: 'Please enter a valid email.' };
           expect(emailValidator(emailControl)).toEqual(expectedValue);
         });
 
-        it(`should return { invalidEmail: 'Please enter a valid email.' } when value is too short`, () => {
+        it(`should return { isInvalid: 'Please enter a valid email.' } when value is too short`, () => {
           emailControl.setValue('t@t');
-          const expectedValue = { invalidEmail: 'Please enter a valid email.' };
+          const expectedValue = { isInvalid: 'Please enter a valid email.' };
           expect(emailValidator(emailControl)).toEqual(expectedValue);
         });
 
-        it(`should return { invalidEmail: 'Please enter a valid email.' } when domain is too short`, () => {
+        it(`should return { isInvalid: 'Please enter a valid email.' } when domain is too short`, () => {
           emailControl.setValue('test@t.com');
-          const expectedValue = { invalidEmail: 'Please enter a valid email.' };
+          const expectedValue = { isInvalid: 'Please enter a valid email.' };
           expect(emailValidator(emailControl)).toEqual(expectedValue);
         });
       });
