@@ -26,7 +26,7 @@ export class FormSelectComponent {
   }
 
   public getObjectProperty(label: string): string {
-    return label.length
+    return label?.length
       ? this.dataTransformationService.getObjectProperty(
           'dynamicForm.label',
           label,

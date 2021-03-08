@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MockPipe } from 'ng-mocks';
 import { NgxMaskModule } from 'ngx-mask';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { FormErrorPipe } from '@shared/pipes/form-error.pipe';
@@ -20,7 +21,11 @@ import { Logger } from '@utils/logger';
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           declarations: [FormInputComponent, MockPipe(FormErrorPipe)],
-          imports: [NgxMaskModule.forRoot(), ReactiveFormsModule],
+          imports: [
+            NgxMaskModule.forRoot(),
+            ReactiveFormsModule,
+            TranslocoTestingModule,
+          ],
         }).compileComponents();
       }));
 
