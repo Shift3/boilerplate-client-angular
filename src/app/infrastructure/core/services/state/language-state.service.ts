@@ -14,16 +14,18 @@ import jsonFiles from '@assets/i18n/index';
 export class LanguageStateService {
   constructor(private translocoService: TranslocoService) {}
 
+  private defaultLanguage: string = translocoConfigObj.defaultLang;
+
   public activeLanguage$ = new BehaviorSubject<string>(
     this.getActiveLanguageFromCode(),
   );
 
-  public availableLanguagesForSelection$ = new BehaviorSubject<string[]>(
-    this.getAvailableLanguagesForSelection(),
-  );
-
   public activeLangIsDefaultLang$ = new BehaviorSubject<boolean>(
     this.checkActiveLangIsDefaultLang(),
+  );
+
+  public availableLanguagesForSelection$ = new BehaviorSubject<string[]>(
+    this.getAvailableLanguagesForSelection(),
   );
 
   public getActiveLanguage(): Observable<string> {
@@ -34,13 +36,22 @@ export class LanguageStateService {
     return this.availableLanguagesForSelection$.asObservable();
   }
 
-  public setActiveLanguage(languageCode: string): void {
-    this.translocoService.setActiveLang(languageCode);
-    this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
+  public getActiveLangIsDefaultLang(): Observable<boolean> {
+    return this.activeLangIsDefaultLang$.asObservable();
+  }
+
+  public getTextInDefaultLang(
+    mainProperty: string,
+    nestedProperty: string,
+  ): string {
+    // TODO: (pratima) revisit to add logic for more than 1 level nested value
+    return this.getLangJsonObj(this.defaultLanguage)[mainProperty][
+      nestedProperty
+    ];
   }
 
   public selectLanguage(language: string): void {
-    const languageName: string = this.getLanguageJsonKey(language);
+    const languageName: string = this.getLanguageKeyFromJson(language);
     const languageCode: string = this.getLanguageCodeFromLanguage(languageName);
 
     this.setActiveLanguage(languageCode);
@@ -48,16 +59,17 @@ export class LanguageStateService {
     this.activeLangIsDefaultLang$.next(this.checkActiveLangIsDefaultLang());
   }
 
-  public getActiveLangIsDefaultLang(): Observable<boolean> {
-    return this.activeLangIsDefaultLang$.asObservable();
+  public setActiveLanguage(languageCode: string): void {
+    this.translocoService.setActiveLang(languageCode);
+    this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
+  }
+
+  private checkActiveLangIsDefaultLang(): boolean {
+    return this.translocoService.getActiveLang() === this.defaultLanguage;
   }
 
   private getActiveLanguageFromCode(): string {
     return this.getLanguageFromCode(this.translocoService.getActiveLang());
-  }
-
-  private getLanguageFromCode(languageCode: string): string {
-    return LANGUAGE[languageCode];
   }
 
   private getAvailableLanguagesForSelection(): string[] {
@@ -66,35 +78,37 @@ export class LanguageStateService {
       .sort();
   }
 
-  private setAvailableLanguagesForSelection(): void {
-    this.availableLanguagesForSelection$.next(
-      this.getAvailableLanguagesForSelection(),
-    );
-  }
-
   private getLanguageCodeFromLanguage(language: string): string {
     return Object.keys(LANGUAGE).find(
       (key) => LANGUAGE[key].toLowerCase() === language.toLowerCase().trim(),
     );
   }
 
-  private getLanguageJsonKey(language: string): string {
-    // read the current lang JSON file to reversely find the key that language is a value of.
-    const langCode: string = this.translocoService
-      .getActiveLang()
-      .replace('-', '');
-    const langJsonObj = jsonFiles[langCode].default.languages;
+  private getLanguageFromCode(languageCode: string): string {
+    return LANGUAGE[languageCode];
+  }
 
-    return Object.keys(langJsonObj).find((key) =>
-      typeof langJsonObj[key] === 'string'
-        ? langJsonObj[key].toLowerCase() === language.trim().toLowerCase()
+  private getLanguageKeyFromJson(language: string): string {
+    // read the current lang JSON file to reversely find the key that language is a value of.
+    const objPropertyWanted: string = 'languages';
+    const languages = this.getLangJsonObj(
+      this.translocoService.getActiveLang(),
+    )[objPropertyWanted];
+
+    return Object.keys(languages).find((key) =>
+      typeof languages[key] === 'string'
+        ? key.toLowerCase() === language.trim().toLowerCase()
         : false,
     );
   }
 
-  private checkActiveLangIsDefaultLang(): boolean {
-    return (
-      this.translocoService.getActiveLang() === translocoConfigObj.defaultLang
+  private getLangJsonObj(languageCode: string): object {
+    return jsonFiles[languageCode.replace('-', '')].default;
+  }
+
+  private setAvailableLanguagesForSelection(): void {
+    this.availableLanguagesForSelection$.next(
+      this.getAvailableLanguagesForSelection(),
     );
   }
 }

@@ -12,5 +12,15 @@
     "vietnamese": "Vietnamese"
   },
   "loginButtonText": "Login",
-  "signUpButtonText": "Create Account"
+  "signUpButtonText": "Create Account",
+  "userProfile": {
+    "imageAlt": "Profile picture",
+    "profileLinks": {
+      "profile": "Profile",
+      "changePassword": "Change Password"
+    },
+    "signOutText": "Sign Out",
+    "toggleNavBarText": "Toggle Navigation Bar",
+    "welcomeText": "Hi"
+  }
 }

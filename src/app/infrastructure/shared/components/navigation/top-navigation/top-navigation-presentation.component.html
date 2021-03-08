@@ -29,7 +29,10 @@
           <app-language-settings></app-language-settings>
         </ul>
       </ng-container>
-      <app-settings [loggedInUser]="loggedInUser"></app-settings>
+      <app-settings
+        [activeLangIsDefaultLang]="activeLangIsDefaultLang"
+        [loggedInUser]="loggedInUser"
+      ></app-settings>
     </div>
   </ng-container>
   <ng-template #loggedOut>

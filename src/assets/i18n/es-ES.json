@@ -12,5 +12,15 @@
     "vietnamese": "Vietnamita"
   },
   "loginButtonText": "Acceso",
-  "signUpButtonText": "Crear una cuenta"
+  "signUpButtonText": "Crear una cuenta",
+  "userProfile": {
+    "imageAlt": "Foto de perfil",
+    "profileLinks": {
+      "profile": "Perfil",
+      "changePassword": "Cambiar la contraseña"
+    },
+    "signOutText": "Desconectar",
+    "toggleNavBarText": "Alternar barra de navegación",
+    "welcomeText": "Hola"
+  }
 }

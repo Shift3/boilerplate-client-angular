@@ -12,5 +12,15 @@
     "vietnamese": "Tiếng Việt"
   },
   "loginButtonText": "Đăng nhập",
-  "signUpButtonText": "Tạo tài khoản"
+  "signUpButtonText": "Tạo tài khoản",
+  "userProfile": {
+    "imageAlt": "Ảnh đại diện",
+    "profileLinks": {
+      "profile": "Hồ sơ",
+      "changePassword": "Đổi mật khẩu"
+    },
+    "signOutText": "Đăng xuất",
+    "toggleNavBarText": "Chuyển đổi thanh điều hướng",
+    "welcomeText": "Chào"
+  }
 }
