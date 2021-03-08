@@ -10,6 +10,8 @@ import { FormGroup } from '@angular/forms';
 
 import { SaveCancelButtonConfig } from '@models/form/button';
 
+import { TranslationService } from '@core/services/translation.service';
+
 @Component({
   selector: 'app-save-cancel',
   templateUrl: './save-cancel.component.html',
@@ -24,7 +26,10 @@ export class SaveCancelComponent {
 
   @Output() public emitSave = new EventEmitter<void>();
 
-  constructor(private location: Location) {}
+  constructor(
+    private location: Location,
+    private translationService: TranslationService,
+  ) {}
 
   public cancel(): void {
     this.location.back();
@@ -32,5 +37,12 @@ export class SaveCancelComponent {
 
   public save(): void {
     this.emitSave.emit();
+  }
+
+  public getObjectProperty(buttonLabel: string): string {
+    return this.translationService.getObjectProperty(
+      'formText.buttons',
+      buttonLabel,
+    );
   }
 }

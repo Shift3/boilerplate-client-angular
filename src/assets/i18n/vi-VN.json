@@ -13,6 +13,13 @@
   },
   "loginButtonText": "Đăng nhập",
   "signUpButtonText": "Tạo tài khoản",
+  "formText": {
+    "buttons": {
+      "cancel": "Huỷ bỏ",
+      "create": "Tạo nên",
+      "update": "Cập nhật"
+    }
+  },
   "userProfile": {
     "imageAlt": "Ảnh đại diện",
     "profileLinks": {

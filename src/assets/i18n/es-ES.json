@@ -13,6 +13,13 @@
   },
   "loginButtonText": "Acceso",
   "signUpButtonText": "Crear una cuenta",
+  "formText": {
+    "buttons": {
+      "cancel": "Cancelar",
+      "create": "Crear",
+      "update": "Actualizar"
+    }
+  },
   "userProfile": {
     "imageAlt": "Foto de perfil",
     "profileLinks": {
