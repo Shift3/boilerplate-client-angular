@@ -32,13 +32,13 @@
   },
   "dynamicForm": {
     "action": {
-      "add": "Add",
+      "add": "Thêm vào",
       "create": "Tạo nên",
       "forgot": "Quên mất"
     },
     "model": {
       "account": "Tài khoản",
-      "agent": "Agent",
+      "agent": "Đặc vụ",
       "password": "Mật khẩu"
     }
   },
