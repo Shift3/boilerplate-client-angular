@@ -14,8 +14,6 @@ import { components } from './components';
 import { directives } from './directives';
 import { pipes } from './pipes';
 
-import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
-
 /**
  * Connects modules, pipes, directives, components, dependencies, and more that do not need to be singleton instances.
  */
@@ -28,7 +26,6 @@ import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
     ReactiveFormsModule,
     TranslocoRootModule,
     RouterModule,
-    TranslocoRootModule,
   ],
   exports: [
     CommonModule,

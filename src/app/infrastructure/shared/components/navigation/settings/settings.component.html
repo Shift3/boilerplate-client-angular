@@ -1,7 +1,7 @@
 <div ngbDropdown class="navbar-nav" *transloco="let t">
   <button id="profileDropdown" class="nav-link" ngbDropdownToggle>
     <span class="fa fa-user"></span>
-    {{ t('userProfile.welcomeText') }} {{ loggedInUser?.firstName }}
+    {{ t('navigation.userProfile.welcomeText') }} {{ loggedInUser?.firstName }}
   </button>
   <div
     ngbDropdownMenu
@@ -13,7 +13,7 @@
         <img
           class="profile-photo"
           [src]="loggedInUser.profilePicture || profilePicturePlaceholder"
-          [alt]="t('userProfile.imageAlt')"
+          [alt]="t('navigation.userProfile.imageAlt')"
           (error)="showPlaceholderImageOnEmptyOrError()"
         />
         <div>{{ loggedInUser?.firstName }}</div>
@@ -32,15 +32,15 @@
           </button>
         </ng-container>
         <button ngbDropdownItem (click)="toggleNavBar()">
-          {{ t('userProfile.toggleNavBarText') | titlecase }}
+          {{ t('navigation.userProfile.toggleNavBarText') | titlecase }}
           <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
             / {{ defaultLangText.toggleNavBarText | titlecase }}
           </span>
         </button>
         <button ngbDropdownItem (click)="openConfirmModal()">
-          {{ t('userProfile.signOutText') | titlecase }}
+          {{ t('navigation.userProfile.signOut') | titlecase }}
           <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
-            / {{ defaultLangText.signOutText | titlecase }}
+            / {{ defaultLangText.signOut | titlecase }}
           </span>
         </button>
       </div>

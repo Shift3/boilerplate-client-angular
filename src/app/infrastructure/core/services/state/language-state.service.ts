@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+
+import * as _ from 'lodash';
 import { TranslocoService } from '@ngneat/transloco';
 
 import { translocoConfigObj } from '@app/transloco/transloco-config';
@@ -40,14 +42,8 @@ export class LanguageStateService {
     return this.activeLangIsDefaultLang$.asObservable();
   }
 
-  public getTextInDefaultLang(
-    mainProperty: string,
-    nestedProperty: string,
-  ): string {
-    // TODO: (pratima) revisit to add logic for more than 1 level nested value
-    return this.getLangJsonObj(this.defaultLanguage)[mainProperty][
-      nestedProperty
-    ];
+  public getTextInDefaultLang(property: string): string {
+    return _.get(this.getLangJsonObj(this.defaultLanguage), property);
   }
 
   public selectLanguage(language: string): void {
@@ -90,10 +86,11 @@ export class LanguageStateService {
 
   private getLanguageKeyFromJson(language: string): string {
     // read the current lang JSON file to reversely find the key that language is a value of.
-    const objPropertyWanted: string = 'languages';
-    const languages = this.getLangJsonObj(
-      this.translocoService.getActiveLang(),
-    )[objPropertyWanted];
+    const objPropertyWanted: string = 'navigation.languages';
+    const languages = _.get(
+      this.getLangJsonObj(this.translocoService.getActiveLang()),
+      objPropertyWanted,
+    );
 
     return Object.keys(languages).find((key) =>
       typeof languages[key] === 'string'

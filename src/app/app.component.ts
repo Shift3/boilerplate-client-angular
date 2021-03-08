@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 
+import { DataTransformationService } from '@core/services/data-transformation.service';
 import { NavbarStateService } from '@core/services/state/navbar-state.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private dataTransformationService: DataTransformationService,
     private navbarStateService: NavbarStateService,
     private router: Router,
     private titleService: Title,
@@ -58,9 +60,11 @@ export class AppComponent implements OnInit, OnDestroy {
         mergeMap((route) => route.data),
       )
       .subscribe((event) => {
-        const title = event.title
-          ? `${this.title} - ${event.title}`
-          : this.title;
+        const pageTitle =
+          typeof event.title === 'string'
+            ? event.title
+            : this.dataTransformationService.concatenateObjValues(event.title);
+        const title = pageTitle ? `${this.title} - ${pageTitle}` : this.title;
         this.header = event.title;
         this.titleService.setTitle(`${title}`);
       });

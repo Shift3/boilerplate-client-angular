@@ -41,7 +41,7 @@ export class SaveCancelComponent {
 
   public getObjectProperty(buttonLabel: string): string {
     return this.translationService.getObjectProperty(
-      'formText.buttons',
+      'dynamicForm.action',
       buttonLabel,
     );
   }

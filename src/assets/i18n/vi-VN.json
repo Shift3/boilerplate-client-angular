@@ -1,35 +1,4 @@
 {
-  "logoAlt": "Tư vấn Công nghệ Bitwise",
-  "navLinks": {
-    "directory": "Danh mục",
-    "users": "Người dùng",
-    "agencies": "Cơ quan"
-  },
-  "languages": {
-    "english": "Tiếng Anh",
-    "spanish": "người Tây Ban Nha",
-    "tagalog": "Tagalog",
-    "vietnamese": "Tiếng Việt"
-  },
-  "loginButtonText": "Đăng nhập",
-  "signUpButtonText": "Tạo tài khoản",
-  "formText": {
-    "buttons": {
-      "cancel": "Huỷ bỏ",
-      "create": "Tạo nên",
-      "update": "Cập nhật"
-    }
-  },
-  "userProfile": {
-    "imageAlt": "Ảnh đại diện",
-    "profileLinks": {
-      "profile": "Hồ sơ",
-      "changePassword": "Đổi mật khẩu"
-    },
-    "signOutText": "Đăng xuất",
-    "toggleNavBarText": "Chuyển đổi thanh điều hướng",
-    "welcomeText": "Chào"
-  },
   "dynamicForm": {
     "action": {
       "activate": "Kích hoạt",
@@ -51,6 +20,30 @@
       "password": "Mật khẩu",
       "profile": "Hồ sơ",
       "user": "Người sử dụng"
+    }
+  },
+  "navigation": {
+    "languages": {
+      "english": "Tiếng Anh",
+      "spanish": "người Tây Ban Nha",
+      "tagalog": "Tagalog",
+      "vietnamese": "Tiếng Việt"
+    },
+    "logoAlt": "Tư vấn Công nghệ Bitwise",
+    "navLinks": {
+      "directory": "Danh mục",
+      "users": "Người dùng",
+      "agencies": "Cơ quan"
+    },
+    "userProfile": {
+      "imageAlt": "Ảnh đại diện",
+      "profileLinks": {
+        "profile": "Hồ sơ",
+        "changePassword": "Đổi mật khẩu"
+      },
+      "signOut": "Đăng xuất",
+      "toggleNavBarText": "Chuyển đổi thanh điều hướng",
+      "welcomeText": "Chào"
     }
   },
   "signUp": {

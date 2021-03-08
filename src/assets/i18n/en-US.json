@@ -1,35 +1,4 @@
 {
-  "logoAlt": "Bitwise Technology Consulting",
-  "navLinks": {
-    "directory": "Directory",
-    "users": "Users",
-    "agencies": "Agencies"
-  },
-  "languages": {
-    "english": "English",
-    "spanish": "Spanish",
-    "tagalog": "Tagalog",
-    "vietnamese": "Vietnamese"
-  },
-  "loginButtonText": "Login",
-  "signUpButtonText": "Create Account",
-  "formText": {
-    "buttons": {
-      "cancel": "Cancel",
-      "create": "Create",
-      "update": "Update"
-    }
-  },
-  "userProfile": {
-    "imageAlt": "Profile picture",
-    "profileLinks": {
-      "profile": "Profile",
-      "changePassword": "Change Password"
-    },
-    "signOutText": "Sign Out",
-    "toggleNavBarText": "Toggle Navigation Bar",
-    "welcomeText": "Hi"
-  },
   "dynamicForm": {
     "action": {
       "activate": "Activate",
@@ -51,6 +20,30 @@
       "password": "Password",
       "profile": "Profile",
       "user": "User"
+    }
+  },
+  "navigation": {
+    "languages": {
+      "english": "English",
+      "spanish": "Spanish",
+      "tagalog": "Tagalog",
+      "vietnamese": "Vietnamese"
+    },
+    "logoAlt": "Bitwise Technology Consulting",
+    "navLinks": {
+      "directory": "Directory",
+      "users": "Users",
+      "agencies": "Agencies"
+    },
+    "userProfile": {
+      "imageAlt": "Profile picture",
+      "profileLinks": {
+        "profile": "Profile",
+        "changePassword": "Change Password"
+      },
+      "signOut": "Sign Out",
+      "toggleNavBarText": "Toggle Navigation Bar",
+      "welcomeText": "Hi"
     }
   },
   "signUp": {

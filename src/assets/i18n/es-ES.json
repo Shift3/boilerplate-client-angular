@@ -1,35 +1,4 @@
 {
-  "logoAlt": "Consultoría de tecnología Bitwise",
-  "navLinks": {
-    "directory": "Directorio",
-    "users": "Usuarias",
-    "agencies": "Agencias"
-  },
-  "languages": {
-    "english": "Inglés",
-    "spanish": "Español",
-    "tagalog": "Tagalo",
-    "vietnamese": "Vietnamita"
-  },
-  "loginButtonText": "Acceso",
-  "signUpButtonText": "Crear una cuenta",
-  "formText": {
-    "buttons": {
-      "cancel": "Cancelar",
-      "create": "Crear",
-      "update": "Actualizar"
-    }
-  },
-  "userProfile": {
-    "imageAlt": "Foto de perfil",
-    "profileLinks": {
-      "profile": "Perfil",
-      "changePassword": "Cambiar la contraseña"
-    },
-    "signOutText": "Desconectar",
-    "toggleNavBarText": "Alternar barra de navegación",
-    "welcomeText": "Hola"
-  },
   "dynamicForm": {
     "action": {
       "activate": "Activar",
@@ -51,6 +20,30 @@
       "password": "Contraseña",
       "profile": "Perfil",
       "user": "Usuario"
+    }
+  },
+  "navigation": {
+    "languages": {
+      "english": "Inglés",
+      "spanish": "Español",
+      "tagalog": "Tagalo",
+      "vietnamese": "Vietnamita"
+    },
+    "logoAlt": "Consultoría de tecnología Bitwise",
+    "navLinks": {
+      "directory": "Directorio",
+      "users": "Usuarias",
+      "agencies": "Agencias"
+    },
+    "userProfile": {
+      "imageAlt": "Foto de perfil",
+      "profileLinks": {
+        "profile": "Perfil",
+        "changePassword": "Cambiar la contraseña"
+      },
+      "signOut": "Desconectar",
+      "toggleNavBarText": "Alternar barra de navegación",
+      "welcomeText": "Hola"
     }
   },
   "signUp": {

@@ -48,8 +48,8 @@ export interface IFormTitle {
 }
 
 export class FormTitle implements IFormTitle {
-  action?: string;
-  model?: string;
+  action?: string = '';
+  model?: string = '';
 
   constructor(configOverride?: Partial<IFormTitle>) {
     if (configOverride) {

@@ -21,13 +21,16 @@ export class DataTransformationService {
       .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
   }
 
-  public getTextInDefaultLang(
-    mainProperty: string,
-    nestedProperty: string,
-  ): string {
-    return this.languageStateService.getTextInDefaultLang(
-      mainProperty,
-      nestedProperty,
-    );
+  public concatenateObjValues(object: any): string {
+    return Object.keys(object).reduce((prev, curr) => {
+      const currValue = object[curr];
+      const capitalizedValue =
+        currValue.charAt(0).toUpperCase() + currValue.substr(1);
+      return `${prev} ${capitalizedValue}`;
+    }, '');
+  }
+
+  public getTextInDefaultLang(property: string): string {
+    return this.languageStateService.getTextInDefaultLang(property);
   }
 }

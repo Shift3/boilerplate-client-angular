@@ -1,6 +1,6 @@
 <nav class="nav-container navbar-light" *transloco="let t">
   <a class="logo navbar-brand" [routerLink]="'/'">
-    <img src="assets/img/logo.png" [alt]="t('logoAlt')" />
+    <img src="assets/img/logo.png" [alt]="t('navigation.logoAlt')" />
   </a>
   <ng-container *ngIf="isValid; else loggedOut">
     <div class="link-container">
@@ -34,7 +34,7 @@
         mat-raised-button
         routerLink="/auth/login"
       >
-        {{ t('loginButtonText') | uppercase }} /
+        {{ t('dynamicForm.action.login') | uppercase }} /
         {{ t('signUpButtonText') | uppercase }}
       </button>
     </div>
