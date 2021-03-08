@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="login-container" *transloco="let t">
   <div class="form-container">
     <app-dynamic-form
       id="login-card"
@@ -8,14 +8,15 @@
     ></app-dynamic-form>
     <div class="forgot-password-container">
       <a class="forgot-password-link" routerLink="/auth/forgot-password"
-        >Forgot Password?</a
+        >{{ t('dynamicForm.action.forgot') }}
+        {{ t('dynamicForm.model.password') }}?</a
       >
     </div>
   </div>
   <div class="sign-up-container">
-    <h2 class="card-header">Haven't Registered Yet?</h2>
+    <h2 class="card-header">{{ t('signUp.cardHeader') }}</h2>
     <div class="instruction">
-      Registering for your account is quick and easy.
+      {{ t('signUp.instruction') }}
     </div>
     <button
       id="form-submit-button"
@@ -24,7 +25,8 @@
       mat-raised-button
       routerLink="/auth/signup"
     >
-      {{ 'Create Account' | uppercase }}
+      {{ t('dynamicForm.action.create') | uppercase }}
+      {{ t('dynamicForm.model.account') | uppercase }}
     </button>
   </div>
 </div>

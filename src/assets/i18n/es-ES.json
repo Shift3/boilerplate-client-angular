@@ -29,5 +29,19 @@
     "signOutText": "Desconectar",
     "toggleNavBarText": "Alternar barra de navegación",
     "welcomeText": "Hola"
+  },
+  "dynamicForm": {
+    "action": {
+      "create": "Crear",
+      "forgot": "Olvidó"
+    },
+    "model": {
+      "account": "Cuenta",
+      "password": "Contraseña"
+    }
+  },
+  "signUp": {
+    "cardHeader": "¿Aún no te has registrado?",
+    "instruction": "Registrarse para su cuenta es rápida y fácil."
   }
 }

@@ -29,5 +29,19 @@
     "signOutText": "Sign Out",
     "toggleNavBarText": "Toggle Navigation Bar",
     "welcomeText": "Hi"
+  },
+  "dynamicForm": {
+    "action": {
+      "create": "Create",
+      "forgot": "Forgot"
+    },
+    "model": {
+      "account": "Account",
+      "password": "Password"
+    }
+  },
+  "signUp": {
+    "cardHeader": "Haven't Registered Yet?",
+    "instruction": "Registering for your account is quick and easy."
   }
 }
