@@ -1,17 +1,20 @@
-<div class="row">
-  <button class="btn btn-add" routerLink="/admin/create-agency">
-    {{ 'Add Agency' | uppercase }}
-  </button>
-</div>
-<ng-container *ngIf="agencyList; else loading">
-  <app-agency-table
-    class="route-content"
-    [tableData]="agencyList"
-    (emitDelete)="deleteAgency($event)"
-  ></app-agency-table>
-</ng-container>
-<ng-template #loading>
-  <div class="table">
-    <div class="loader"></div>
+<ng-container *transloco="let translate; read: 'dynamicForm'">
+  <div class="row">
+    <button class="btn btn-add" routerLink="/admin/create-agency">
+      {{ translate('action.add') | uppercase }}
+      {{ translate('model.agency') | uppercase }}
+    </button>
   </div>
-</ng-template>
+  <ng-container *ngIf="agencyList; else loading">
+    <app-agency-table
+      class="route-content"
+      [tableData]="agencyList"
+      (emitDelete)="deleteAgency($event)"
+    ></app-agency-table>
+  </ng-container>
+  <ng-template #loading>
+    <div class="table">
+      <div class="loader"></div>
+    </div>
+  </ng-template>
+</ng-container>

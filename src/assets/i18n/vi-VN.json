@@ -10,12 +10,14 @@
     "model": {
       "account": "Tài khoản",
       "agent": "Đặc vụ",
+      "agency": "Đại lý",
       "password": "Mật khẩu"
     }
   },
   "dynamicTable": {
     "header": {
       "actions": "Hành động",
+      "agencyName": "Tên cơ quan",
       "description": "Sự miêu tả",
       "email": "E-mail",
       "name": "Tên",
