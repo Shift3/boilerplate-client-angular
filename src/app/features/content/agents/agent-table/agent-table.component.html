@@ -1,59 +1,77 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">{{ 'Name' | uppercase }}</th>
-      <th scope="col">{{ 'Description' | uppercase }}</th>
-      <th scope="col">{{ 'Email' | uppercase }}</th>
-      <th scope="col">{{ 'Phone Number' | uppercase }}</th>
-      <ng-container *ngIf="checkRole.canEdit">
-        <th scope="col w-10">{{ 'Actions' | uppercase }}</th>
-      </ng-container>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngIf="tableData.length">
-      <tr *ngFor="let item of tableData; trackBy: 'id' | trackByKey">
-        <td class="name-container">
-          <ng-container *ngIf="item.thumbnail">
-            <img
-              class="thumbnail-container"
-              [src]="item.thumbnail"
-              alt="{{ item.name }} thumbnail"
-            />
-          </ng-container>
-          {{ item.name }}
-        </td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.email }}</td>
-        <td>{{ item.phoneNumber }}</td>
+<ng-container *transloco="let t">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">{{ t('dynamicTable.header.name') | uppercase }}</th>
+        <th scope="col">
+          {{ t('dynamicTable.header.description') | uppercase }}
+        </th>
+        <th scope="col">{{ t('dynamicTable.header.email') | uppercase }}</th>
+        <th scope="col">
+          {{ t('dynamicTable.header.phoneNumber') | uppercase }}
+        </th>
         <ng-container *ngIf="checkRole.canEdit">
-          <td class="w-10">
-            <button
-              class="btn"
-              type="button"
-              tooltip="Update Agent"
-              routerLink="/content/update-agent/{{ item.id }}"
-            >
-              <span class="fa fa-edit"></span>
-              <span class="sr-only">Update Agent</span>
-            </button>
-            <ng-container *ngIf="checkRole.isAdmin">
+          <th scope="col w-10">
+            {{ t('dynamicTable.header.actions') | uppercase }}
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="tableData.length">
+        <tr *ngFor="let item of tableData; trackBy: 'id' | trackByKey">
+          <td class="name-container">
+            <ng-container *ngIf="item.thumbnail">
+              <img
+                class="thumbnail-container"
+                [src]="item.thumbnail"
+                alt="{{ item.name }} {{ t('dynamicTable.body.thumbnail') }}"
+              />
+            </ng-container>
+            {{ item.name }}
+          </td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.phoneNumber }}</td>
+          <ng-container *ngIf="checkRole.canEdit">
+            <td class="w-10">
               <button
                 class="btn"
                 type="button"
-                tooltip="Delete Agent"
-                (click)="deleteAgent(item)"
+                tooltip="{{ t('dynamicForm.action.update') }} {{
+                  t('dynamicForm.model.agent')
+                }}"
+                routerLink="/content/update-agent/{{ item.id }}"
               >
-                <span class="fa fa-trash"></span>
-                <span class="sr-only">Delete Agent</span>
+                <span class="fa fa-edit"></span>
+                <span class="sr-only">
+                  {{ t('dynamicForm.action.update') }}
+                  {{ t('dynamicForm.model.agent') }}
+                </span>
               </button>
-            </ng-container>
-          </td>
-        </ng-container>
-      </tr>
-    </ng-container>
-  </tbody>
-</table>
-<div class="center" *ngIf="!tableData.length">
-  {{ tableConfig?.emptyListMessage }}
-</div>
+              <ng-container *ngIf="checkRole.isAdmin">
+                <button
+                  class="btn"
+                  type="button"
+                  tooltip="{{ t('dynamicForm.action.delete') }} {{
+                    t('dynamicForm.model.agent')
+                  }}"
+                  (click)="deleteAgent(item)"
+                >
+                  <span class="fa fa-trash"></span>
+                  <span class="sr-only">
+                    {{ t('dynamicForm.action.delete') }}
+                    {{ t('dynamicForm.model.agent') }}
+                  </span>
+                </button>
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <div class="center" *ngIf="!tableData.length">
+    {{ t('dynamicTable.body.emptyListMessage') }}
+  </div>
+</ng-container>
