@@ -5,26 +5,34 @@
       "create": "Create",
       "delete": "Delete",
       "forgot": "Forgot",
+      "reset": "Reset",
       "update": "Update"
     },
     "model": {
       "account": "Account",
-      "agent": "Agent",
       "agency": "Agency",
-      "password": "Password"
+      "agent": "Agent",
+      "password": "Password",
+      "user": "User"
     }
   },
   "dynamicTable": {
     "header": {
       "actions": "Actions",
+      "activated": "Activated",
+      "agency": "Agency",
       "agencyName": "Agency Name",
       "description": "Description",
       "email": "Email",
+      "firstName": "First Name",
+      "lastName": "Last Name",
       "name": "Name",
-      "phoneNumber": "Phone Number"
+      "phoneNumber": "Phone Number",
+      "role": "Role"
     },
     "body": {
       "emptyListMessage": "No data",
+      "resendActivationEmail": "Resend Activated Email",
       "thumbnail": "Thumbnail"
     }
   },

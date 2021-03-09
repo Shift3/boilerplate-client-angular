@@ -5,26 +5,34 @@
       "create": "Tạo nên",
       "delete": "Xóa bỏ",
       "forgot": "Quên mất",
+      "reset": "Cài lại",
       "update": "Cập nhật"
     },
     "model": {
       "account": "Tài khoản",
       "agent": "Đặc vụ",
       "agency": "Đại lý",
-      "password": "Mật khẩu"
+      "password": "Mật khẩu",
+      "user": "Người sử dụng"
     }
   },
   "dynamicTable": {
     "header": {
       "actions": "Hành động",
+      "activated": "Đã kích hoạt",
+      "agency": "Đại lý",
       "agencyName": "Tên cơ quan",
       "description": "Sự miêu tả",
       "email": "E-mail",
+      "firstName": "Tên đầu tiên",
+      "lastName": "Họ",
       "name": "Tên",
-      "phoneNumber": "Số điện thoại"
+      "phoneNumber": "Số điện thoại",
+      "role": "Vai trò"
     },
     "body": {
       "emptyListMessage": "Không có dữ liệu",
+      "resendActivationEmail": "Gửi lại email đã kích hoạt",
       "thumbnail": "Hình nhỏ"
     }
   },
