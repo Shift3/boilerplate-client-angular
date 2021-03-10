@@ -1,5 +1,16 @@
-<div class="card">
-  <h2 class="card-header">{{ formConfig.formTitle }}</h2>
+<div class="card" *transloco="let translate">
+  <h2 class="card-header">
+    {{
+      translate(
+        getObjectProperty('dynamicForm.action', formConfig.formTitle.action)
+      )
+    }}
+    {{
+      translate(
+        getObjectProperty('dynamicForm.model', formConfig.formTitle.model)
+      )
+    }}
+  </h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-container *ngIf="formConfig.controls.length">
       <ng-container

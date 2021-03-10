@@ -17,18 +17,26 @@
   },
   "dynamicForm": {
     "action": {
+      "activate": "Activate",
       "add": "Add",
+      "cancel": "Cancel",
+      "change": "Change",
       "create": "Create",
       "delete": "Delete",
       "forgot": "Forgot",
+      "login": "Log In",
       "reset": "Reset",
+      "signUp": "Sign Up",
+      "submit": "Submit",
       "update": "Update"
     },
     "model": {
       "account": "Account",
       "agency": "Agency",
       "agent": "Agent",
+      "memberLogin": "Member Log In",
       "password": "Password",
+      "profile": "Profile",
       "user": "User"
     }
   },
@@ -52,27 +60,30 @@
       "thumbnail": "Thumbnail"
     }
   },
-  "formText": {
-    "buttons": {
-      "cancel": "Cancel",
-      "create": "Create",
-      "update": "Update"
+  "navigation": {
+    "languages": {
+      "english": "English",
+      "spanish": "Spanish",
+      "tagalog": "Tagalog",
+      "vietnamese": "Vietnamese"
+    },
+    "logoAlt": "Bitwise Technology Consulting",
+    "navLinks": {
+      "directory": "Directory",
+      "users": "Users",
+      "agencies": "Agencies"
+    },
+    "userProfile": {
+      "imageAlt": "Profile picture",
+      "profileLinks": {
+        "profile": "Profile",
+        "changePassword": "Change Password"
+      },
+      "signOut": "Sign Out",
+      "toggleNavBarText": "Toggle Navigation Bar",
+      "welcomeText": "Hi"
     }
   },
-  "languages": {
-    "english": "English",
-    "spanish": "Spanish",
-    "tagalog": "Tagalog",
-    "vietnamese": "Vietnamese"
-  },
-  "logoAlt": "Bitwise Technology Consulting",
-  "navLinks": {
-    "directory": "Directory",
-    "users": "Users",
-    "agencies": "Agencies"
-  },
-  "loginButtonText": "Login",
-  "signUpButtonText": "Create Account",
   "signUp": {
     "cardHeader": "Haven't Registered Yet?",
     "instruction": "Registering for your account is quick and easy."

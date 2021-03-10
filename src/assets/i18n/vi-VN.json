@@ -17,18 +17,26 @@
   },
   "dynamicForm": {
     "action": {
+      "activate": "Kích hoạt",
       "add": "Thêm vào",
+      "cancel": "Huỷ bỏ",
+      "change": "Thay đổi",
       "create": "Tạo nên",
       "delete": "Xóa bỏ",
       "forgot": "Quên mất",
+      "login": "Đăng nhập",
       "reset": "Cài lại",
+      "signUp": "Đăng ký",
+      "submit": "Gửi đi",
       "update": "Cập nhật"
     },
     "model": {
       "account": "Tài khoản",
-      "agent": "Đặc vụ",
       "agency": "Đại lý",
+      "agent": "Đặc vụ",
+      "memberLogin": "Đăng nhập thành viên",
       "password": "Mật khẩu",
+      "profile": "Hồ sơ",
       "user": "Người sử dụng"
     }
   },
@@ -52,27 +60,30 @@
       "thumbnail": "Hình nhỏ"
     }
   },
-  "formText": {
-    "buttons": {
-      "cancel": "Huỷ bỏ",
-      "create": "Tạo nên",
-      "update": "Cập nhật"
+  "navigation": {
+    "languages": {
+      "english": "Tiếng Anh",
+      "spanish": "người Tây Ban Nha",
+      "tagalog": "Tagalog",
+      "vietnamese": "Tiếng Việt"
+    },
+    "logoAlt": "Tư vấn Công nghệ Bitwise",
+    "navLinks": {
+      "directory": "Danh mục",
+      "users": "Người dùng",
+      "agencies": "Cơ quan"
+    },
+    "userProfile": {
+      "imageAlt": "Ảnh đại diện",
+      "profileLinks": {
+        "profile": "Hồ sơ",
+        "changePassword": "Đổi mật khẩu"
+      },
+      "signOut": "Đăng xuất",
+      "toggleNavBarText": "Chuyển đổi thanh điều hướng",
+      "welcomeText": "Chào"
     }
   },
-  "languages": {
-    "english": "Tiếng Anh",
-    "spanish": "người Tây Ban Nha",
-    "tagalog": "Tagalog",
-    "vietnamese": "Tiếng Việt"
-  },
-  "logoAlt": "Tư vấn Công nghệ Bitwise",
-  "navLinks": {
-    "directory": "Danh mục",
-    "users": "Người dùng",
-    "agencies": "Cơ quan"
-  },
-  "loginButtonText": "Đăng nhập",
-  "signUpButtonText": "Tạo tài khoản",
   "signUp": {
     "cardHeader": "Chưa đăng ký?",
     "instruction": "Đăng ký tài khoản của bạn nhanh chóng và dễ dàng."
