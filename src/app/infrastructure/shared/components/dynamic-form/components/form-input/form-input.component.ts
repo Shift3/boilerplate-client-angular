@@ -4,6 +4,8 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormField, IFormField } from '@models/form/form';
 import { IInputField, InputField } from '@models/form/input';
 
+import { DataTransformationService } from '@core/services/data-transformation.service';
+
 @Component({
   selector: 'app-form-input',
   templateUrl: './form-input.component.html',
@@ -17,7 +19,18 @@ export class FormInputComponent {
   });
   public group: FormGroup = new FormGroup({});
 
+  constructor(private dataTransformationService: DataTransformationService) {}
+
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);
+  }
+
+  public getObjectProperty(label: string): string {
+    return label?.length
+      ? this.dataTransformationService.getObjectProperty(
+          'dynamicForm.label',
+          label,
+        )
+      : '';
   }
 }

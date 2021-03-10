@@ -47,7 +47,7 @@ export class ChangePasswordSmartComponent {
       new FormField<IInputField>({
         name: 'oldPassword',
         fieldType: 'input',
-        label: 'Current Password',
+        label: 'currentPassword',
         placeholder: 'Enter the current password',
         fieldConfig: new InputField({
           inputType: 'password',
@@ -58,7 +58,7 @@ export class ChangePasswordSmartComponent {
       new FormField<IInputField>({
         name: 'newPassword',
         fieldType: 'input',
-        label: 'New Password',
+        label: 'newPassword',
         placeholder: 'Enter a new password',
         fieldConfig: new InputField({
           inputType: 'password',
@@ -69,7 +69,7 @@ export class ChangePasswordSmartComponent {
       new FormField<IInputField>({
         name: 'confirmPassword',
         fieldType: 'input',
-        label: 'Confirm New Password',
+        label: 'confirmNewPassword',
         placeholder: 'Confirm the new password',
         fieldConfig: new InputField({
           inputType: 'password',

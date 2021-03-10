@@ -66,7 +66,7 @@ export class AgencyDetailSmartComponent implements OnInit {
           name: 'agencyName',
           value: this.agency?.agencyName,
           fieldType: 'input',
-          label: 'Agency Name',
+          label: 'agencyName',
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('Agency Name')],
         }),

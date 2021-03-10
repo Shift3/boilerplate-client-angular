@@ -22,7 +22,7 @@ export class DataTransformationService {
     if (!label?.length) return '';
 
     return `${objProperty}.${
-      label.split(' ').length > 1 ? this.camelize(label) : label
+      label.split(' ').length > 1 ? this.camelize(label) : label.toLowerCase()
     }`;
   }
 

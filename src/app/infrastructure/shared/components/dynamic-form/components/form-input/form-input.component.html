@@ -1,5 +1,7 @@
-<div class="field-container" [formGroup]="group">
-  <label class="field-label" [for]="config.name">{{ config.label }}</label>
+<div class="field-container" [formGroup]="group" *transloco="let t">
+  <label class="field-label" [for]="config.name">
+    {{ t(getObjectProperty(config.label)) }}
+  </label>
   <input
     [id]="config.name"
     [name]="config.name"
