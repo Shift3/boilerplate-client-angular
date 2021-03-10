@@ -63,7 +63,9 @@ export class AppComponent implements OnInit, OnDestroy {
         const pageTitle =
           typeof event.title === 'string'
             ? event.title
-            : this.dataTransformationService.concatenateObjValues(event.title);
+            : this.dataTransformationService.concatenateObjValues<string[]>(
+                event.title,
+              );
         const title = pageTitle ? `${this.title} - ${pageTitle}` : this.title;
         this.header = event.title;
         this.titleService.setTitle(`${title}`);

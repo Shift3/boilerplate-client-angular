@@ -8,12 +8,26 @@ import { LanguageStateService } from '@core/services/state/language-state.servic
 export class DataTransformationService {
   constructor(private languageStateService: LanguageStateService) {}
 
+  public concatenateObjValues<T>(object: T): string {
+    return Object.keys(object).reduce((prev, curr) => {
+      const currValue = object[curr];
+      const capitalizedValue =
+        currValue.charAt(0).toUpperCase() + currValue.substr(1);
+
+      return `${prev} ${capitalizedValue}`;
+    }, '');
+  }
+
   public getObjectProperty(objProperty: string, label: string): string {
-    if (!label || label.length === 0) return '';
+    if (!label?.length) return '';
 
     return `${objProperty}.${
       label.split(' ').length > 1 ? this.camelize(label) : label
     }`;
+  }
+
+  public getTextInDefaultLang(property: string): string {
+    return this.languageStateService.getTextInDefaultLang(property);
   }
 
   private camelize(textToCamelize: string): string {
@@ -21,18 +35,5 @@ export class DataTransformationService {
       .toLowerCase()
       .trim()
       .replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
-  }
-
-  public concatenateObjValues(object: any): string {
-    return Object.keys(object).reduce((prev, curr) => {
-      const currValue = object[curr];
-      const capitalizedValue =
-        currValue.charAt(0).toUpperCase() + currValue.substr(1);
-      return `${prev} ${capitalizedValue}`;
-    }, '');
-  }
-
-  public getTextInDefaultLang(property: string): string {
-    return this.languageStateService.getTextInDefaultLang(property);
   }
 }
