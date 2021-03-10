@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 
 import { FormField, IFormField } from '@models/form/form';
@@ -13,7 +13,7 @@ import { DataTransformationService } from '@core/services/data-transformation.se
   // TODO: This is set to the default change detection for now to show validation messages correctly. Switch back when possible.
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class FormSelectComponent {
+export class FormSelectComponent implements OnInit {
   public config: IFormField<ISelectField<unknown>> = new FormField<
     ISelectField<unknown>
   >({ fieldConfig: new SelectField<unknown>() });
