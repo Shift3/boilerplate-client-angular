@@ -16,7 +16,7 @@
     },
     "error": {
       "isRequired": "{{ control }} là bắt buộc",
-      "isInvalid": "Vui lòng nhập  {{ control }} hợp lệ"
+      "invalidEmail": "Vui lòng nhập  {{ control }} hợp lệ"
     },
     "label": {
       "address": "Địa chỉ",

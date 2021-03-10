@@ -16,7 +16,7 @@
     },
     "error": {
       "isRequired": "{{ control }} is required.",
-      "isInvalid": "Please enter a valid {{ control }}."
+      "invalidEmail": "Please enter a valid {{ control }}."
     },
     "label": {
       "address": "Address",
