@@ -18,6 +18,6 @@ export class SideNavigationPresentationComponent {
   public isMenuCollapsed = true;
 
   getObjectProperty(label): string {
-    return `navLinks.${label.toLowerCase()}`;
+    return `navigation.navLinks.${label.toLowerCase()}`;
   }
 }

@@ -27,8 +27,10 @@ export class LoginSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'Member Log In',
-    submit: new SaveCancelButtonConfig({ save: 'Log In' }),
+    formTitle: {
+      model: 'memberLogin',
+    },
+    submit: new SaveCancelButtonConfig({ save: 'login' }),
     controls: [
       new FormField<IInputField>({
         name: 'email',

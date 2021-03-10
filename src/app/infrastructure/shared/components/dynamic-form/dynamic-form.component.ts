@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { DataTransformationService } from '@core/services/data-transformation.service';
 import { FormService } from '@core/services/form.service';
 import { FormConfig, IFormConfig } from '@models/form/form';
 
@@ -25,7 +26,10 @@ export class DynamicFormComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({});
 
-  constructor(private formService: FormService) {}
+  constructor(
+    private formService: FormService,
+    private dataTransformationService: DataTransformationService,
+  ) {}
 
   public ngOnInit(): void {
     this.form = this.createFormAndPropagateToParent();
@@ -40,5 +44,11 @@ export class DynamicFormComponent implements OnInit {
     this.emitForm.emit(form);
 
     return form;
+  }
+
+  public getObjectProperty(property: string, label: string): string {
+    return label?.length
+      ? this.dataTransformationService.getObjectProperty(property, label)
+      : '';
   }
 }

@@ -1,17 +1,27 @@
 {
   "dynamicForm": {
     "action": {
+      "activate": "Activar",
       "add": "Agregar",
+      "cancel": "Cancelar",
+      "change": "Cambio",
       "create": "Crear",
       "delete": "Borrar",
       "forgot": "Olvidó",
+      "login": "Iniciar sesión",
+      "reset": "Reiniciar",
+      "signUp": "Inscribirse",
+      "submit": "Enviar",
       "update": "Actualizar"
     },
     "model": {
       "account": "Cuenta",
-      "agent": "Agente",
       "agency": "Agencia",
-      "password": "Contraseña"
+      "agent": "Agente",
+      "memberLogin": "Inicio de sesión de miembros",
+      "password": "Contraseña",
+      "profile": "Perfil",
+      "user": "Usuario"
     }
   },
   "dynamicTable": {
@@ -28,39 +38,32 @@
       "thumbnail": "Miniatura"
     }
   },
-  "formText": {
-    "buttons": {
-      "cancel": "Cancelar",
-      "create": "Crear",
-      "update": "Actualizar"
+  "navigation": {
+    "languages": {
+      "english": "Inglés",
+      "spanish": "Español",
+      "tagalog": "Tagalo",
+      "vietnamese": "Vietnamita"
+    },
+    "logoAlt": "Consultoría de tecnología Bitwise",
+    "navLinks": {
+      "directory": "Directorio",
+      "users": "Usuarias",
+      "agencies": "Agencias"
+    },
+    "userProfile": {
+      "imageAlt": "Foto de perfil",
+      "profileLinks": {
+        "profile": "Perfil",
+        "changePassword": "Cambiar la contraseña"
+      },
+      "signOut": "Desconectar",
+      "toggleNavBarText": "Alternar barra de navegación",
+      "welcomeText": "Hola"
     }
   },
-  "languages": {
-    "english": "Inglés",
-    "spanish": "Español",
-    "tagalog": "Tagalo",
-    "vietnamese": "Vietnamita"
-  },
-  "logoAlt": "Consultoría de tecnología Bitwise",
-  "navLinks": {
-    "directory": "Directorio",
-    "users": "Usuarias",
-    "agencies": "Agencias"
-  },
-  "loginButtonText": "Acceso",
-  "signUpButtonText": "Crear una cuenta",
   "signUp": {
     "cardHeader": "¿Aún no te has registrado?",
     "instruction": "Registrarse para su cuenta es rápida y fácil."
-  },
-  "userProfile": {
-    "imageAlt": "Foto de perfil",
-    "profileLinks": {
-      "profile": "Perfil",
-      "changePassword": "Cambiar la contraseña"
-    },
-    "signOutText": "Desconectar",
-    "toggleNavBarText": "Alternar barra de navegación",
-    "welcomeText": "Hola"
   }
 }
