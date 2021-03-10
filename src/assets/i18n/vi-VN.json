@@ -1,9 +1,37 @@
 {
-  "logoAlt": "Tư vấn Công nghệ Bitwise",
-  "navLinks": {
-    "directory": "Danh mục",
-    "users": "Người dùng",
-    "agencies": "Cơ quan"
+  "dynamicForm": {
+    "action": {
+      "add": "Thêm vào",
+      "create": "Tạo nên",
+      "delete": "Xóa bỏ",
+      "forgot": "Quên mất",
+      "update": "Cập nhật"
+    },
+    "model": {
+      "account": "Tài khoản",
+      "agent": "Đặc vụ",
+      "password": "Mật khẩu"
+    }
+  },
+  "dynamicTable": {
+    "header": {
+      "actions": "Hành động",
+      "description": "Sự miêu tả",
+      "email": "E-mail",
+      "name": "Tên",
+      "phoneNumber": "Số điện thoại"
+    },
+    "body": {
+      "emptyListMessage": "Không có dữ liệu",
+      "thumbnail": "Hình nhỏ"
+    }
+  },
+  "formText": {
+    "buttons": {
+      "cancel": "Huỷ bỏ",
+      "create": "Tạo nên",
+      "update": "Cập nhật"
+    }
   },
   "languages": {
     "english": "Tiếng Anh",
@@ -11,14 +39,17 @@
     "tagalog": "Tagalog",
     "vietnamese": "Tiếng Việt"
   },
+  "logoAlt": "Tư vấn Công nghệ Bitwise",
+  "navLinks": {
+    "directory": "Danh mục",
+    "users": "Người dùng",
+    "agencies": "Cơ quan"
+  },
   "loginButtonText": "Đăng nhập",
   "signUpButtonText": "Tạo tài khoản",
-  "formText": {
-    "buttons": {
-      "cancel": "Huỷ bỏ",
-      "create": "Tạo nên",
-      "update": "Cập nhật"
-    }
+  "signUp": {
+    "cardHeader": "Chưa đăng ký?",
+    "instruction": "Đăng ký tài khoản của bạn nhanh chóng và dễ dàng."
   },
   "userProfile": {
     "imageAlt": "Ảnh đại diện",
@@ -29,19 +60,5 @@
     "signOutText": "Đăng xuất",
     "toggleNavBarText": "Chuyển đổi thanh điều hướng",
     "welcomeText": "Chào"
-  },
-  "dynamicForm": {
-    "action": {
-      "create": "Tạo nên",
-      "forgot": "Quên mất"
-    },
-    "model": {
-      "account": "Tài khoản",
-      "password": "Mật khẩu"
-    }
-  },
-  "signUp": {
-    "cardHeader": "Chưa đăng ký?",
-    "instruction": "Đăng ký tài khoản của bạn nhanh chóng và dễ dàng."
   }
 }

@@ -1,9 +1,37 @@
 {
-  "logoAlt": "Consultoría de tecnología Bitwise",
-  "navLinks": {
-    "directory": "Directorio",
-    "users": "Usuarias",
-    "agencies": "Agencias"
+  "dynamicForm": {
+    "action": {
+      "add": "Agregar",
+      "create": "Crear",
+      "delete": "Borrar",
+      "forgot": "Olvidó",
+      "update": "Actualizar"
+    },
+    "model": {
+      "account": "Cuenta",
+      "agent": "Agente",
+      "password": "Contraseña"
+    }
+  },
+  "dynamicTable": {
+    "header": {
+      "actions": "Comportamiento",
+      "description": "Descripción",
+      "email": "Correo electrónico",
+      "name": "Nombre",
+      "phoneNumber": "Número de teléfono"
+    },
+    "body": {
+      "emptyListMessage": "Sin datos",
+      "thumbnail": "Miniatura"
+    }
+  },
+  "formText": {
+    "buttons": {
+      "cancel": "Cancelar",
+      "create": "Crear",
+      "update": "Actualizar"
+    }
   },
   "languages": {
     "english": "Inglés",
@@ -11,14 +39,17 @@
     "tagalog": "Tagalo",
     "vietnamese": "Vietnamita"
   },
+  "logoAlt": "Consultoría de tecnología Bitwise",
+  "navLinks": {
+    "directory": "Directorio",
+    "users": "Usuarias",
+    "agencies": "Agencias"
+  },
   "loginButtonText": "Acceso",
   "signUpButtonText": "Crear una cuenta",
-  "formText": {
-    "buttons": {
-      "cancel": "Cancelar",
-      "create": "Crear",
-      "update": "Actualizar"
-    }
+  "signUp": {
+    "cardHeader": "¿Aún no te has registrado?",
+    "instruction": "Registrarse para su cuenta es rápida y fácil."
   },
   "userProfile": {
     "imageAlt": "Foto de perfil",
@@ -29,19 +60,5 @@
     "signOutText": "Desconectar",
     "toggleNavBarText": "Alternar barra de navegación",
     "welcomeText": "Hola"
-  },
-  "dynamicForm": {
-    "action": {
-      "create": "Crear",
-      "forgot": "Olvidó"
-    },
-    "model": {
-      "account": "Cuenta",
-      "password": "Contraseña"
-    }
-  },
-  "signUp": {
-    "cardHeader": "¿Aún no te has registrado?",
-    "instruction": "Registrarse para su cuenta es rápida y fácil."
   }
 }
