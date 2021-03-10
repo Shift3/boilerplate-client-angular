@@ -21,7 +21,7 @@
   <span class="error-container">
     <ng-container *ngIf="formControl?.errors">
       <span class="field-label">
-        {{ t(formErrors, { control: t(configLabel) }) | formError }}
+        {{ t(formErrorValue, { control: t(configLabel) }) | formError }}
       </span>
     </ng-container>
   </span>

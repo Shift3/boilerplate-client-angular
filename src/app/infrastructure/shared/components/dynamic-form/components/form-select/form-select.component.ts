@@ -35,14 +35,11 @@ export class FormSelectComponent {
 
   public getObjectProperty(label: string): string {
     return label?.length
-      ? this.dataTransformationService.getObjectProperty(
-          'dynamicForm.label',
-          label,
-        )
+      ? this.dataTransformationService.getObjectProperty('label', label)
       : '';
   }
 
-  public get formErrors(): string {
+  public get formErrorValue(): string {
     return this.dataTransformationService.getObjectProperty(
       'error',
       Object.keys(this.formControl.errors)[0],
