@@ -10,12 +10,14 @@
     "model": {
       "account": "Account",
       "agent": "Agent",
+      "agency": "Agency",
       "password": "Password"
     }
   },
   "dynamicTable": {
     "header": {
       "actions": "Actions",
+      "agencyName": "Agency Name",
       "description": "Description",
       "email": "Email",
       "name": "Name",
