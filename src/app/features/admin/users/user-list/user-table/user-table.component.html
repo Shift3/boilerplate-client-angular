@@ -46,13 +46,15 @@
                 class="btn"
                 (click)="resendActivationEmail(item)"
                 tooltip="{{
-                  translate('dynamicTable.body.resendActivationEmail()')
+                  translate('dynamicTable.body.resendActivationEmail')
                 }}"
               >
                 <span class="fa fa-envelope"></span>
-                <span class="sr-only">{{
-                  translate('dynamicTable.body.resendActivationEmail()')
-                }}</span>
+                <span class="sr-only">
+                  {{
+                    translate('dynamicTable.body.resendActivationEmail')
+                  }}</span
+                >
               </button>
             </ng-template>
           </td>
