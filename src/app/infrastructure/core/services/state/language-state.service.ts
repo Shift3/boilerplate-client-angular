@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+
 import { TranslocoService } from '@ngneat/transloco';
 
 import { translocoConfigObj } from '@app/transloco/transloco-config';
@@ -40,14 +41,11 @@ export class LanguageStateService {
     return this.activeLangIsDefaultLang$.asObservable();
   }
 
-  public getTextInDefaultLang(
-    mainProperty: string,
-    nestedProperty: string,
-  ): string {
-    // TODO: (pratima) revisit to add logic for more than 1 level nested value
-    return this.getLangJsonObj(this.defaultLanguage)[mainProperty][
-      nestedProperty
-    ];
+  public getTextInDefaultLang(property: string): string {
+    return this.getPropValue(
+      this.getLangJsonObj(this.defaultLanguage),
+      property,
+    );
   }
 
   public selectLanguage(language: string): void {
@@ -89,11 +87,11 @@ export class LanguageStateService {
   }
 
   private getLanguageKeyFromJson(language: string): string {
-    // read the current lang JSON file to reversely find the key that language is a value of.
-    const objPropertyWanted: string = 'languages';
-    const languages = this.getLangJsonObj(
-      this.translocoService.getActiveLang(),
-    )[objPropertyWanted];
+    const navigationLanguageList: string = 'navigation.languages';
+    const languages = this.getPropValue(
+      this.getLangJsonObj(this.translocoService.getActiveLang()),
+      navigationLanguageList,
+    );
 
     return Object.keys(languages).find((key) =>
       typeof languages[key] === 'string'
@@ -104,6 +102,12 @@ export class LanguageStateService {
 
   private getLangJsonObj(languageCode: string): object {
     return jsonFiles[languageCode.replace('-', '')].default;
+  }
+
+  private getPropValue(object, path: string = '') {
+    return path
+      .split('.')
+      .reduce((o, x) => (o === undefined ? o : o[x]), object);
   }
 
   private setAvailableLanguagesForSelection(): void {

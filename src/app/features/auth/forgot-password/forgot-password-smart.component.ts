@@ -27,8 +27,11 @@ export class ForgotPasswordSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'Forgot Password',
-    submit: new SaveCancelButtonConfig({ save: 'Submit' }),
+    formTitle: {
+      action: 'forgot',
+      model: 'password',
+    },
+    submit: new SaveCancelButtonConfig({ save: 'submit' }),
     controls: [
       new FormField<IInputField>({
         name: 'email',

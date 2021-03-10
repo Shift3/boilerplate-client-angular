@@ -16,7 +16,7 @@ import { IUserDTO, UserDTO } from '@models/user';
 
 interface IDefaultLangText {
   toggleNavBarText: string;
-  signOutText: string;
+  signOut: string;
 }
 
 @Component({
@@ -49,12 +49,10 @@ export class SettingsComponent implements OnInit {
   private languageSetup() {
     this.defaultLangText = {
       toggleNavBarText: this.dataTransformationService.getTextInDefaultLang(
-        'userProfile',
-        'toggleNavBarText',
+        'navigation.userProfile.toggleNavBarText',
       ),
-      signOutText: this.dataTransformationService.getTextInDefaultLang(
-        'userProfile',
-        'signOutText',
+      signOut: this.dataTransformationService.getTextInDefaultLang(
+        'navigation.userProfile.signOut',
       ),
     };
   }
@@ -89,7 +87,7 @@ export class SettingsComponent implements OnInit {
   public getObjectProperty(label: string): string {
     if (label?.length)
       return this.dataTransformationService.getObjectProperty(
-        'userProfile.profileLinks',
+        'navigation.userProfile.profileLinks',
         label,
       );
   }

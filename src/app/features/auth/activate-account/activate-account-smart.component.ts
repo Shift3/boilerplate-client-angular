@@ -25,8 +25,11 @@ export class ActivateAccountSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'Activate Account',
-    submit: new SaveCancelButtonConfig({ save: 'Submit' }),
+    formTitle: {
+      action: 'activate',
+      model: 'account',
+    },
+    submit: new SaveCancelButtonConfig({ save: 'submit' }),
     validation: [
       MatchFieldValidation.validFieldMatch(
         'newPassword',
