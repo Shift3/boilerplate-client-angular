@@ -107,7 +107,7 @@ export class LanguageStateService {
   private getPropValue(object, path: string = '') {
     return path
       .split('.')
-      .reduce((o, x) => (o == undefined ? o : o[x]), object);
+      .reduce((o, x) => (o === undefined ? o : o[x]), object);
   }
 
   private setAvailableLanguagesForSelection(): void {
