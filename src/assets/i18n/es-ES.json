@@ -1,4 +1,14 @@
 {
+  "confirmationModal": {
+    "action": {
+      "continue": "Continuar",
+      "delete": "Borrar",
+      "logOut": "Cerrar sesión",
+      "resend": "Reenviar",
+      "send": "Enviar"
+    },
+    "body": "¿Quieres continuar?"
+  },
   "dynamicForm": {
     "action": {
       "add": "Agregar",

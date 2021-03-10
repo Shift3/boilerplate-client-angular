@@ -1,4 +1,14 @@
 {
+  "confirmationModal": {
+    "action": {
+      "continue": "Tiếp tục",
+      "delete": "Xóa bỏ",
+      "logOut": "Đăng xuất",
+      "resend": "Gửi lại",
+      "send": "Gửi"
+    },
+    "body": "Bạn có muốn tiếp tục?"
+  },
   "dynamicForm": {
     "action": {
       "add": "Thêm vào",

@@ -1,4 +1,14 @@
 {
+  "confirmationModal": {
+    "action": {
+      "continue": "Continue",
+      "delete": "Delete",
+      "logOut": "Log Out",
+      "resend": "Resend",
+      "send": "Send"
+    },
+    "body": "Do you want to continue?"
+  },
   "dynamicForm": {
     "action": {
       "add": "Add",

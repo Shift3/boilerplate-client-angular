@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { ConfirmModalComponent } from './confirm-modal.component';
 import { environment } from '@env/environment.test';
@@ -15,6 +16,7 @@ import { Logger } from '@utils/logger';
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           declarations: [ConfirmModalComponent],
+          imports: [TranslocoTestingModule],
           providers: [NgbActiveModal],
         }).compileComponents();
       }));
