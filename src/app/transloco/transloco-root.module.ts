@@ -10,6 +10,7 @@ import {
 import { ApiService } from '@core/services/api/api.service';
 import { translocoConfigObj } from './transloco-config';
 
+
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
   constructor(private apiService: ApiService) {}

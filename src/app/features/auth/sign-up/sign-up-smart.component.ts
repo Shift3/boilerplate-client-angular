@@ -37,7 +37,7 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: 'Email',
+        label: 'email',
         placeholder: 'Enter your email',
         fieldConfig: new InputField({
           inputType: 'email',
@@ -48,7 +48,7 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'confirmEmail',
         fieldType: 'input',
-        label: 'Confirm Email',
+        label: 'confirmEmail',
         placeholder: 'Confirm your email',
         fieldConfig: new InputField({
           inputType: 'email',
@@ -58,7 +58,7 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'firstName',
         fieldType: 'input',
-        label: 'First Name',
+        label: 'firstName',
         placeholder: 'Enter your first name',
         fieldConfig: new InputField({ autocomplete: 'given-name' }),
         validation: [RequiredValidation.required('First Name')],
@@ -66,7 +66,7 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'lastName',
         fieldType: 'input',
-        label: 'Last Name',
+        label: 'lastName',
         placeholder: 'Enter your last name',
         fieldConfig: new InputField({ autocomplete: 'family-name' }),
         validation: [RequiredValidation.required('Last Name')],

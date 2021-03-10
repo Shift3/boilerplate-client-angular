@@ -26,8 +26,8 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
           imports: [
             HttpClientTestingModule,
             ReactiveFormsModule,
-            RouterTestingModule,
             ToastrTestingModule,
+            RouterTestingModule,
           ],
         }).compileComponents();
       }));

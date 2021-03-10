@@ -41,7 +41,7 @@ export class ActivateAccountSmartComponent {
       new FormField<IInputField>({
         name: 'newPassword',
         fieldType: 'input',
-        label: 'Password',
+        label: 'password',
         placeholder: 'Enter a new password',
         fieldConfig: new InputField({
           inputType: 'password',
@@ -52,7 +52,7 @@ export class ActivateAccountSmartComponent {
       new FormField<IInputField>({
         name: 'confirmPassword',
         fieldType: 'input',
-        label: 'Confirm Password',
+        label: 'confirmPassword',
         placeholder: 'Confirm the new password',
         fieldConfig: new InputField({
           inputType: 'password',

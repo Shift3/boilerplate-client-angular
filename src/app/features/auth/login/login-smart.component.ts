@@ -35,7 +35,7 @@ export class LoginSmartComponent {
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: 'Email',
+        label: 'email',
         placeholder: 'Enter your email',
         fieldConfig: new InputField({
           inputType: 'email',
@@ -46,7 +46,7 @@ export class LoginSmartComponent {
       new FormField<IInputField>({
         name: 'password',
         fieldType: 'input',
-        label: 'Password',
+        label: 'password',
         placeholder: 'Enter your password',
         fieldConfig: new InputField({
           inputType: 'password',
