@@ -5,26 +5,34 @@
       "create": "Crear",
       "delete": "Borrar",
       "forgot": "Olvidó",
+      "reset": "Reiniciar",
       "update": "Actualizar"
     },
     "model": {
       "account": "Cuenta",
-      "agent": "Agente",
       "agency": "Agencia",
-      "password": "Contraseña"
+      "agent": "Agente",
+      "password": "Contraseña",
+      "user": "Usuaria"
     }
   },
   "dynamicTable": {
     "header": {
       "actions": "Comportamiento",
+      "activated": "Activada",
+      "agency": "Agencia",
       "agencyName": "Nombre de agencia",
       "description": "Descripción",
       "email": "Correo electrónico",
+      "firstName": "Nombre de pila",
+      "lastName": "Apellido",
       "name": "Nombre",
-      "phoneNumber": "Número de teléfono"
+      "phoneNumber": "Número de teléfono",
+      "role": "Papel"
     },
     "body": {
       "emptyListMessage": "Sin datos",
+      "resendActivationEmail": "Reenviar correo electrónico activado",
       "thumbnail": "Miniatura"
     }
   },
