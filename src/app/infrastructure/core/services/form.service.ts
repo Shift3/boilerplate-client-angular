@@ -81,8 +81,8 @@ export class FormService {
   }
 
   public formErrorValue(errors: ValidationErrors): string {
-    const errorKey = Object.keys(errors)[0],
-      error = errors[errorKey];
+    const errorKey = Object.keys(errors)[0];
+    const error = errors[errorKey];
 
     if (typeof error !== 'string') {
       const nestedErrorKey = Object.keys(error).reduce((prev, curr) => {
