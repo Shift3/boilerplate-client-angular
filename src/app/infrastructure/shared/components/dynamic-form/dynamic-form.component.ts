@@ -48,7 +48,10 @@ export class DynamicFormComponent implements OnInit {
 
   public getObjectProperty(property: string, label: string): string {
     return label?.length
-      ? this.dataTransformationService.getObjectProperty(property, label)
+      ? this.dataTransformationService.getObjectProperty(
+          `dynamicForm.${property}`,
+          label,
+        )
       : '';
   }
 }

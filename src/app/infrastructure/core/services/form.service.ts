@@ -5,6 +5,7 @@ import {
   FormGroup,
   ValidatorFn,
   Validators,
+  ValidationErrors,
 } from '@angular/forms';
 
 import { IFormConfig } from '@models/form/form';
@@ -77,5 +78,20 @@ export class FormService {
     }
 
     return requestPayload;
+  }
+
+  public getFormErrorValue(errors: ValidationErrors): string {
+    const errorKey = Object.keys(errors)[0];
+    const error = errors[errorKey];
+
+    if (typeof error !== 'string') {
+      const nestedErrorKey = Object.keys(error).reduce((prev, curr) => {
+        return `${prev}.${curr}`;
+      }, `${errorKey}`);
+
+      return nestedErrorKey;
+    }
+
+    return errorKey;
   }
 }
