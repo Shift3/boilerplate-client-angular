@@ -18,7 +18,7 @@ export class FormSelectComponent implements OnInit {
   public config: IFormField<ISelectField<unknown>> = new FormField<
     ISelectField<unknown>
   >({ fieldConfig: new SelectField<unknown>() });
-  public configLabel: string;
+  public configLabel: string = '';
   public group: FormGroup = new FormGroup({});
 
   constructor(
@@ -41,8 +41,11 @@ export class FormSelectComponent implements OnInit {
   }
 
   public get formErrorValue(): string {
-    const property = this.formService.formErrorValue(this.formControl.errors);
+    const property = this.formService.getFormErrorValue(
+      this.formControl.errors,
+    );
 
+    // TODO: move some of this logic into the FormService since we use it at least twice
     // Hack to set the configLabel to manipulate the control value passed into transloco
     if (property === 'fieldsMismatched') {
       this.setConfigLabel(

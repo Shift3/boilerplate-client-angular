@@ -80,7 +80,7 @@ export class FormService {
     return requestPayload;
   }
 
-  public formErrorValue(errors: ValidationErrors): string {
+  public getFormErrorValue(errors: ValidationErrors): string {
     const errorKey = Object.keys(errors)[0];
     const error = errors[errorKey];
 

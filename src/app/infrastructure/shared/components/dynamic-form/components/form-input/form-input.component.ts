@@ -41,7 +41,9 @@ export class FormInputComponent implements OnInit {
   }
 
   public get formErrorValue(): string {
-    const property = this.formService.formErrorValue(this.formControl.errors);
+    const property = this.formService.getFormErrorValue(
+      this.formControl.errors,
+    );
 
     // Hack to set the configLabel to manipulate the control value passed into transloco
     if (property === 'fieldsMismatched') {
