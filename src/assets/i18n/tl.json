@@ -15,8 +15,16 @@
       "update": "Update"
     },
     "error": {
-      "isRequired": "{{ control }} is required.",
-      "invalidEmail": "Please enter a valid {{ control }}."
+      "confirmFieldRequired": "{{ control }} is required.",
+      "fieldsMismatched": "{{ control }} fields do not match.",
+      "invalidEmail": "Please enter a valid Email.",
+      "invalidPassword": {
+        "missingNumericChar": "Password requires at least one numeric character.",
+        "missingSpecialChar": "Password requires at least one special character.",
+        "tooShort": "Password is too short."
+      },
+      "invalidPhone": "Please enter a valid phone number.",
+      "isRequired": "{{ control }} is required."
     },
     "label": {
       "address": "Address",

@@ -15,8 +15,16 @@
       "update": "Cập nhật"
     },
     "error": {
-      "isRequired": "{{ control }} là bắt buộc",
-      "invalidEmail": "Vui lòng nhập  {{ control }} hợp lệ"
+      "confirmFieldRequired": "{{ control }} là bắt buộc.",
+      "fieldsMismatched": "Các trường {{ control }} không khớp.",
+      "invalidEmail": "Vui lòng nhập  {{ control }} hợp lệ.",
+      "invalidPassword": {
+        "missingNumericChar": "Mật khẩu yêu cầu ít nhất một ký tự số.",
+        "missingSpecialChar": "Mật khẩu yêu cầu ít nhất một ký tự đặc biệt.",
+        "tooShort": "Mật khẩu quá ngắn."
+      },
+      "invalidPhone": "Xin vui lòng nhập một số điện thoại hợp lệ.",
+      "isRequired": "{{ control }} là bắt buộc."
     },
     "label": {
       "address": "Địa chỉ",
