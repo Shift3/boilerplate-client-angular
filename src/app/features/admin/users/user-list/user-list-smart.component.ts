@@ -52,7 +52,10 @@ export class UserListSmartComponent implements OnInit {
 
   public openDeleteModal(user: IUserDTO): void {
     const modalConfig = new ConfirmModalConfig({
-      message: `Delete ${user.firstName} ${user.lastName}?`,
+      message: {
+        static: 'Delete',
+        dynamic: `${user.firstName} ${user.lastName}?`,
+      },
       action: 'Delete',
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
@@ -64,7 +67,10 @@ export class UserListSmartComponent implements OnInit {
 
   public openResendActivationEmailModal(user: IUserDTO): void {
     const modalConfig = new ConfirmModalConfig({
-      message: `Resend Activation Email to ${user.firstName} ${user.lastName}?`,
+      message: {
+        static: 'Resend Activation Email to',
+        dynamic: `${user.firstName} ${user.lastName}?`,
+      },
       action: 'Resend',
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
@@ -76,7 +82,10 @@ export class UserListSmartComponent implements OnInit {
 
   public openResetPasswordModal(user: IUserDTO): void {
     const modalConfig = new ConfirmModalConfig({
-      message: `Send Reset Password Email to ${user.firstName} ${user.lastName}?`,
+      message: {
+        static: 'Send Reset Password Email to',
+        dynamic: `${user.firstName} ${user.lastName}?`,
+      },
       action: 'Send',
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((result) => {

@@ -1,7 +1,7 @@
 <div class="card" *transloco="let translate">
   <div class="card-header">
     <h4 class="modal-title" id="modal-basic-title">
-      {{ modalConfig.message }}
+      {{ modalConfig.message.static }} {{ modalConfig.message.dynamic }}
     </h4>
   </div>
   <div class="modal-body">{{ translate('confirmationModal.body') }}</div>

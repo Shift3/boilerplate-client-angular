@@ -7,7 +7,8 @@
       "resend": "Resend",
       "send": "Send"
     },
-    "body": "Do you want to continue?"
+    "body": "Do you want to continue?",
+    "title": {}
   },
   "dynamicForm": {
     "action": {
