@@ -27,10 +27,10 @@ export class ConfirmModalComponent {
     this.activeModal.close(this.modalConfig);
   }
 
-  public getObjectProperty(label: string): string {
+  public getObjectProperty(property: string, label: string): string {
     return label?.length
       ? this.dataTransformationService.getObjectProperty(
-          'confirmationModal.action',
+          `confirmationModal.${property}`,
           label,
         )
       : 'confirmationModal.action.continue';

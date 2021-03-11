@@ -62,7 +62,7 @@ export class SettingsComponent implements OnInit {
   public openConfirmModal(): void {
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: 'This will end your login session.',
+        static: 'logout',
       },
       action: 'Log Out',
     });

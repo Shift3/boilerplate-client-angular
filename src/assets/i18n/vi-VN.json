@@ -7,7 +7,13 @@
       "resend": "Gửi lại",
       "send": "Gửi"
     },
-    "body": "Bạn có muốn tiếp tục?"
+    "body": "Bạn có muốn tiếp tục?",
+    "title": {
+      "delete": "{{ confirmationModal.action.delete }}",
+      "logout": "Điều này sẽ kết thúc phiên đăng nhập của bạn.",
+      "resendActivation": "Gửi lại Email Kích hoạt tới",
+      "sendResetPassword": "Gửi Email Đặt lại Mật khẩu tới"
+    }
   },
   "dynamicForm": {
     "action": {

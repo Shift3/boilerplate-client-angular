@@ -8,7 +8,12 @@
       "send": "Send"
     },
     "body": "Do you want to continue?",
-    "title": {}
+    "title": {
+      "delete": "{{ confirmationModal.action.delete }}",
+      "logout": "This will end your login session.",
+      "resendActivation": "Resend Activation Email to",
+      "sendResetPassword": "Send Reset Password Email to"
+    }
   },
   "dynamicForm": {
     "action": {
