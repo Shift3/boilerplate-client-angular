@@ -30,6 +30,18 @@
       "submit": "Enviar",
       "update": "Actualizar"
     },
+    "error": {
+      "confirmFieldRequired": "{{ control }} se requiere.",
+      "fieldsMismatched": "Los campos de {{ control }} no concuerdan.",
+      "invalidEmail": "Por favor ingrese una válida {{ control }}.",
+      "invalidPassword": {
+        "missingNumericChar": "La contraseña requiere al menos un carácter numérico.",
+        "missingSpecialChar": "La contraseña requiere al menos un carácter especial.",
+        "tooShort": "La contraseña es demasiado corta."
+      },
+      "invalidPhone": "Por favor ingrese un número de teléfono válido.",
+      "isRequired": "{{ control }} se requiere."
+    },
     "label": {
       "address": "Dirección",
       "address2": "{{ dynamicForm.label.address }} 2",

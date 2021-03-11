@@ -87,12 +87,12 @@ export type NavType = 'side' | 'top';
 export const profileLinkList: INavigation[] = [
   {
     id: 1,
-    label: 'Profile',
+    label: 'profile',
     link: '/user/profile',
   },
   {
     id: 2,
-    label: 'Change Password',
+    label: 'changePassword',
     link: '/user/change-password',
   },
 ];
