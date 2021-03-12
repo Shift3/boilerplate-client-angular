@@ -9,7 +9,7 @@
     },
     "body": "¿Quieres continuar?",
     "title": {
-      "delete": "{{ confirmationModal.action.delete }}",
+      "delete": "¿{{ confirmationModal.action.delete }}",
       "logout": "Esto finalizará su sesión de inicio de sesión.",
       "resendActivation": "Reenviar el correo electrónico de activación a",
       "sendResetPassword": "Enviar correo electrónico de restablecimiento de contraseña a"
