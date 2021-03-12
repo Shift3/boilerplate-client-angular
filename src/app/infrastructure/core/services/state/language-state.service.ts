@@ -50,6 +50,14 @@ export class LanguageStateService {
     ];
   }
 
+  public getTranslation(value: string): string {
+    return this.translocoService.translate(
+      value,
+      {},
+      this.translocoService.getActiveLang(),
+    );
+  }
+
   public selectLanguage(language: string): void {
     const languageName: string = this.getLanguageKeyFromJson(language);
     const languageCode: string = this.getLanguageCodeFromLanguage(languageName);

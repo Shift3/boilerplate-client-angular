@@ -23,8 +23,7 @@ export class AdminAuthGuard implements CanActivate, CanActivateChild {
       map((checkRole) => checkRole.isAdmin),
       tap((isAdmin) => {
         if (!isAdmin) {
-          const message =
-            'You cannot view the requested page. Returning to the dashboard.';
+          const message: string = 'cannotViewPageReturnToDashboard';
           this.notificationService.showError([message]);
           this.router.navigateByUrl('/');
         }

@@ -50,7 +50,7 @@ export class GetAgencyListResolver implements Resolve<IAgencyDTO[]> {
   }
 
   private navigateOnError(): void {
-    const message = 'Unable to load agencies. Returning to user list.';
+    const message: string = 'unableToLoadAgencies';
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');
   }

@@ -41,7 +41,7 @@ export class AgentService {
       .post<IAgentDTO, IAgentRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message = `Agent created.`;
+          const message: string = 'agentCreated';
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -57,7 +57,7 @@ export class AgentService {
       .put<IAgentDTO, IAgentRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message = `Agent updated.`;
+          const message: string = 'agentUpdated';
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -68,7 +68,7 @@ export class AgentService {
 
     return this.apiService.delete<IAgentDTO>(endpoint).pipe(
       tap(() => {
-        const message = `Agent deleted.`;
+        const message: string = 'agentDeleted';
         return this.notificationService.showSuccess([message]);
       }),
     );

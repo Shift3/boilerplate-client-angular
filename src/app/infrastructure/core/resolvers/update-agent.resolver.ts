@@ -30,7 +30,7 @@ export class UpdateAgentResolver implements Resolve<IAgentDTO> {
   }
 
   private navigateOnError(): void {
-    const message = 'Unable to load agent. Returning to agent list.';
+    const message: string = 'unableToLoadAgent';
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/content/agent-list');
   }

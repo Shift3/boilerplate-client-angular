@@ -35,7 +35,7 @@ export class UpdateUserResolver implements Resolve<IUserDTO> {
   }
 
   private navigateOnError(): void {
-    const message = 'Unable to load user. Returning to user list.';
+    const message: string = 'unableToLoadUser';
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');
   }

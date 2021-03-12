@@ -23,8 +23,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       map((checkRole) => checkRole.isValid),
       tap((isLoggedInUser) => {
         if (!isLoggedInUser) {
-          const message =
-            'You cannot view the requested page. Returning to the login page.';
+          const message: string = 'cannotViewPageReturnToLogin';
           this.notificationService.showError([message]);
           this.router.navigateByUrl('/auth');
         }

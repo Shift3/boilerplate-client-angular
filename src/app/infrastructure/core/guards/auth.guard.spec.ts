@@ -66,9 +66,7 @@ import { RoleCheck } from '@models/role';
           spyOn(userState, 'checkRoleList').and.returnValue(
             observableOf(new RoleCheck()),
           );
-          const message = [
-            'You cannot view the requested page. Returning to the login page.',
-          ];
+          const message = ['cannotViewPageReturnToLogin'];
 
           guard.canActivate().subscribe(() => {
             expect(notificationMock.showError).toHaveBeenCalledWith(message);

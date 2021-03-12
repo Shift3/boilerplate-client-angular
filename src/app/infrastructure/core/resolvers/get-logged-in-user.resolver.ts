@@ -41,8 +41,7 @@ export class GetLoggedInUserResolver implements Resolve<IUserDTO> {
   }
 
   private navigateOnError(): void {
-    const message =
-      'Unable to load user information. Returning to the dashboard.';
+    const message: string = 'unableToLoadUserInfo';
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/content/agent-list');
   }

@@ -70,7 +70,7 @@ export class UserService {
       .put<IUserDTO, IResetPasswordRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message = 'The password was reset successfully.';
+          const message: string = 'resetPasswordSuccess';
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -86,7 +86,7 @@ export class UserService {
       .put<IUserDTO, IResetPasswordRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message = 'This account has been activated. Please log in.';
+          const message: string = 'activateAccountSuccess';
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -109,7 +109,7 @@ export class UserService {
       .pipe(
         tap((user) => this.userStateService.setUserSession(user)),
         tap(() => {
-          const message = 'Profile updated.';
+          const message: string = 'profileUpdated';
           this.notificationService.showSuccess([message]);
         }),
       );
@@ -160,7 +160,7 @@ export class UserService {
         tap((response) => this.userStateService.setUserSession(response.user)),
         tap((response) => this.authService.setToken(response.jwtToken)),
         tap(() => {
-          const message = `Password updated.`;
+          const message: string = 'passwordUpdated';
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -177,7 +177,7 @@ export class UserService {
       .put<IUserDTO, IChangeUserRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message = `User updated.`;
+          const message: string = 'userUpdated';
           return this.notificationService.showSuccess([message]);
         }),
       );

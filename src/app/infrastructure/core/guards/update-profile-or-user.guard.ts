@@ -38,8 +38,7 @@ export class UpdateProfileOrUserGuard implements CanActivate {
   }
 
   private navigateOnError(): void {
-    const message =
-      'Unable to load user information. Returning to the dashboard.';
+    const message: string = 'unableToLoadUserInfo';
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');
   }

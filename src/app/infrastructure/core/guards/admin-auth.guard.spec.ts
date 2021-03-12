@@ -56,9 +56,7 @@ import { UserStateService } from '../services/state/user-state.service';
         });
 
         it(`should show a notification on failing the guard`, () => {
-          const message = [
-            'You cannot view the requested page. Returning to the dashboard.',
-          ];
+          const message = ['cannotViewPageReturnToDashboard'];
 
           guard.canActivate().subscribe(() => {
             expect(notificationMock.showError).toHaveBeenCalledWith(message);

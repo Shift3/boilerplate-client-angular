@@ -41,7 +41,7 @@ export class AgencyService {
       .post<IAgencyDTO, IAgencyRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message = `Agency created.`;
+          const message: string = 'agencyCreated';
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -57,7 +57,7 @@ export class AgencyService {
       .put<IAgencyDTO, IAgencyRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message = `Agency updated.`;
+          const message: string = 'agencyUpdated';
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -68,7 +68,7 @@ export class AgencyService {
 
     return this.apiService.delete<IAgencyDTO>(endpoint).pipe(
       tap(() => {
-        const message = `Agency deleted.`;
+        const message: string = 'agencyDeleted';
         return this.notificationService.showSuccess([message]);
       }),
     );

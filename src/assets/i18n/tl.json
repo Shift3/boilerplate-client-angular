@@ -86,5 +86,32 @@
     "signOutText": "Sign Out",
     "toggleNavBarText": "Toggle Navigation Bar",
     "welcomeText": "Hi"
+  },
+  "notification": {
+    "activateAccountSuccess": "This account has been activated. Please log in.",
+    "agencyCreated": "Agency {{ notification.created }}.",
+    "agencyDeleted": "Agency {{ notification.deleted }}.",
+    "agencyUpdated": "Agency {{ notification.updated }}.",
+    "agentCreated": "Agent {{ notification.created }}.",
+    "agentDeleted": "Agent {{ notification.deleted }}.",
+    "agentUpdated": "Agent {{ notification.updated }}.",
+    "cannotViewPage": "You cannot view the requested page.",
+    "cannotViewPageReturnToDashboard": "{{ notification.cannotViewPage }} {{ notification.returningToDashboard }}",
+    "cannotViewPageReturnToLogin": "{{ notification.cannotViewPage }} Returning to the login page.",
+    "created": "created",
+    "deleted": "deleted",
+    "updated": "updated",
+    "passwordUpdated": "Password {{ notification.updated }}.",
+    "profileUpdated": "Profile {{ notification.updated }}.",
+    "resetPasswordSuccess": "The password was reset successfully.",
+    "returningToDashboard": "Returning to the dashboard.",
+    "returningToUserList": "Returning to user list.",
+    "unableToLoadAgencies": "Unable to load agencies. {{ notification.returningToUserList }}",
+    "unableToLoadAgency": "Unable to load agency. Returning to agency list.",
+    "unableToLoadAgent": "Unable to load agent. Returning to agent list.",
+    "unableToLoadRoles": "Unable to load roles. {{ notification.returningToUserList }}",
+    "unableToLoadUser": "Unable to load user. {{ notification.returningToUserList }}",
+    "unableToLoadUserInfo": "Unable to load user information. {{ notification.returningToDashboard }}",
+    "userUpdated": "User {{ notification.updated }}."
   }
 }

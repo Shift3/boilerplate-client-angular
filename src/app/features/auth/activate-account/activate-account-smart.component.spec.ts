@@ -2,7 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { MockComponent } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { ActivateAccountPresentationComponent } from './activate-account-presentation.component';
 import { ActivateAccountSmartComponent } from './activate-account-smart.component';
@@ -27,6 +29,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
             ReactiveFormsModule,
             RouterTestingModule,
             ToastrTestingModule,
+            TranslocoTestingModule,
           ],
         }).compileComponents();
       }));

@@ -30,7 +30,7 @@ export class GetRoleListResolver implements Resolve<IRoleDTO[]> {
   }
 
   private navigateOnError(): void {
-    const message = 'Unable to load roles. Returning to user list.';
+    const message: string = 'unableToLoadRoles';
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');
   }
