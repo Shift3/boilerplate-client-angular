@@ -4,14 +4,18 @@
   *transloco="let t; read: 'dynamicForm'"
 >
   <label class="field-label" [for]="config.name">
-    {{ t(getObjectProperty(config.label)) }}
+    {{ t(getObjectProperty('label', config.label)) }}
   </label>
   <input
     [id]="config.name"
     [name]="config.name"
     [type]="config.fieldConfig.inputType"
     [formControlName]="config.name"
-    [placeholder]="config.placeholder"
+    [placeholder]="
+      config.placeholder
+        ? t(getObjectProperty('placeholder', config.placeholder))
+        : ''
+    "
     [autocomplete]="config.fieldConfig.autocomplete"
     [mask]="config.fieldConfig.mask"
   />

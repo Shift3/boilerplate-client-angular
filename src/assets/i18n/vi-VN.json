@@ -58,6 +58,17 @@
       "password": "Mật khẩu",
       "profile": "Hồ sơ",
       "user": "Người sử dụng"
+    },
+    "placeholder": {
+      "confirmEmail": "Xác nhận email của bạn",
+      "confirmPassword": "Xác nhận mật khẩu mới",
+      "currentPassword": "Nhập mật khẩu hiện tại của bạn",
+      "email": "Nhập email của bạn",
+      "enter": "Đi vào",
+      "firstName": "Nhập tên của bạn",
+      "lastName": "Nhập họ của bạn",
+      "newPassword": "Nhập mật khẩu mới",
+      "password": "Nhập mật khẩu của bạn"
     }
   },
   "dynamicTable": {

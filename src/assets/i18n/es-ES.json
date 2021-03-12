@@ -58,6 +58,17 @@
       "password": "Contraseña",
       "profile": "Perfil",
       "user": "Usuario"
+    },
+    "placeholder": {
+      "confirmEmail": "Confirme su email",
+      "confirmPassword": "Confirma la nueva contraseña",
+      "currentPassword": "{{ dynamicForm.placeholder.enter }} tu contraseña actual",
+      "email": "{{ dynamicForm.placeholder.enter }} tu correo electrónico",
+      "enter": "Introduce",
+      "firstName": "Ponga su primer nombre",
+      "lastName": "Ingrese su apellido",
+      "newPassword": "Introduzca una nueva contraseña",
+      "password": "Ingresa tu contraseña"
     }
   },
   "dynamicTable": {

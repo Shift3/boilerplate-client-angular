@@ -34,9 +34,9 @@ export class FormInputComponent implements OnInit {
     return this.group.get(this.config.name);
   }
 
-  public getObjectProperty(label: string): string {
+  public getObjectProperty(key: string, label: string): string {
     return label?.length
-      ? this.dataTransformationService.getObjectProperty('label', label)
+      ? this.dataTransformationService.getObjectProperty(key, label)
       : '';
   }
 

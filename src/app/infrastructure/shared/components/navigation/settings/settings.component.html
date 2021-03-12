@@ -28,7 +28,7 @@
           <button ngbDropdownItem [routerLink]="link.link">
             {{ translate(getObjectProperty(link.label)) | titlecase }}
             <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
-              / {{ link.label | titlecase }}
+              / {{ link.label | sentenceCase | titlecase }}
             </span>
           </button>
         </ng-container>
