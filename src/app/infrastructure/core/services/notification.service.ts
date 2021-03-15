@@ -38,7 +38,6 @@ export class NotificationService {
     const translatedMessageList: string[] = this.translateMessageList(
       messageList,
     );
-    debugger;
     return translatedMessageList.join('<br />');
   }
 
