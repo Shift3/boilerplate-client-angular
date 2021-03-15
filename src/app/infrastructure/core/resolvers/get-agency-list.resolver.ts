@@ -7,6 +7,7 @@ import { catchError, map, mergeMap, take } from 'rxjs/operators';
 
 import { AgencyService } from '../services/api/agency.service';
 import { IAgencyDTO } from '@models/agency';
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { UserService } from '../services/api/user.service';
 import { UserStateService } from '../services/state/user-state.service';
@@ -50,7 +51,7 @@ export class GetAgencyListResolver implements Resolve<IAgencyDTO[]> {
   }
 
   private navigateOnError(): void {
-    const message: string = 'unableToLoadAgencies';
+    const message: Message = new Message({ message: 'unableToLoadAgencies' });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');
   }

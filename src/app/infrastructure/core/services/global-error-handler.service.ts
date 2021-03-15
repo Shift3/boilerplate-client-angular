@@ -2,6 +2,7 @@ import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ErrorService } from './error.service';
+import { Message } from '@models/message';
 import { NotificationService } from './notification.service';
 import { ISentryConfig } from '@models/error';
 
@@ -15,34 +16,47 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     const sentryConfig: ISentryConfig = this.errorService.setErrorStateWhenUnknown(
       error,
     );
-    let errorMessage: string[] | string;
+    let errorMessage: Message[];
 
     if (error instanceof HttpErrorResponse) {
       // Server error
       errorMessage =
-        sentryConfig.message || this.errorService.getServerMessage(error);
+        [new Message({ message: sentryConfig.message })] ||
+        this.errorService
+          .getServerMessage(error)
+          .map((errString) => new Message({ message: errString }));
+
       this.notifyAndLogMessage(error, errorMessage, sentryConfig);
     } else {
       // Client Error
       sentryConfig.sendToSentry = true;
       sentryConfig.showDialog = true;
-      errorMessage = this.errorService.getClientMessage(error);
+      errorMessage = this.errorService
+        .getClientMessage(error)
+        .map((errString) => new Message({ message: errString }));
+
       this.notifyAndLogMessage(error, errorMessage, sentryConfig);
     }
   }
 
   private notifyAndLogMessage(
     error: Error | HttpErrorResponse,
-    errorMessage: string[] | string,
+    errorMessage: Message[],
     sentryConfig: ISentryConfig,
   ): void {
     const notifier = this.injector.get(NotificationService);
     if (typeof errorMessage === 'string') {
-      errorMessage = this.errorService.convertStringMessageToList(errorMessage);
+      errorMessage = this.errorService
+        .convertStringMessageToList(errorMessage)
+        .map((message) => new Message({ message }));
     }
     notifier.showError(errorMessage);
     if (sentryConfig.sendToSentry) {
-      this.errorService.logError(error, sentryConfig, errorMessage);
+      this.errorService.logError(
+        error,
+        sentryConfig,
+        errorMessage.map((errorMessage) => errorMessage.message),
+      );
     }
   }
 }

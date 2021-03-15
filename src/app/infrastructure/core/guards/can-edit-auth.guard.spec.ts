@@ -8,6 +8,7 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 import { CanEditAuthGuard } from './can-edit-auth.guard';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
@@ -57,7 +58,9 @@ import { UserStateService } from '../services/state/user-state.service';
         });
 
         it(`should show a notification on failing the guard`, () => {
-          const message = ['cannotViewPageReturnToDashboard'];
+          const message = [
+            new Message({ message: 'cannotViewPageReturnToDashboard' }),
+          ];
 
           guard.canActivate().subscribe(() => {
             expect(notificationMock.showError).toHaveBeenCalledWith(message);

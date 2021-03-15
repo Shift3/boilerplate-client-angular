@@ -89,6 +89,7 @@
   },
   "notification": {
     "activateAccountSuccess": "Esta cuenta ha sido activada. Por favor Iniciar sesión.",
+    "activationEmailSent": "Se ha enviado un correo electrónico de activación a ",
     "agencyCreated": "Agencia {{ notification.created }}.",
     "agencyDeleted": "Agencia {{ notification.deleted }}.",
     "agencyUpdated": "Agencia {{ notification.updated }}.",
@@ -100,7 +101,9 @@
     "cannotViewPageReturnToLogin": "{{ notification.cannotViewPage }} Volviendo a la página de inicio de sesión.",
     "created": "creado",
     "deleted": "eliminada",
-    "updated": "actualizado",
+    "emailSent": "Se ha enviado un correo electrónico a ",
+    "instructionToActivate": "con instrucciones para terminar de activar la cuenta.",
+    "newActivationEmail": "Se envió un nuevo correo electrónico de activación a ",
     "passwordUpdated": "Contraseña actualiza.",
     "profileUpdated": "Perfil {{ notification.updated }}.",
     "resetPasswordSuccess": "La contraseña se restableció correctamente.",
@@ -112,6 +115,8 @@
     "unableToLoadRoles": "No se pueden cargar roles. {{ notification.returningToUserList }}",
     "unableToLoadUser": "No se pudo cargar el usuario. {{ notification.returningToUserList }}",
     "unableToLoadUserInfo": "No se pudo cargar la información del usuario. {{ notification.returningToDashboard }}",
-    "userUpdated": "Usuario {{ notification.updated }}."
+    "updated": "actualizado",
+    "user": "Usuario",
+    "userUpdated": "{{ notification.user }} {{ notification.updated }}."
   }
 }

@@ -7,6 +7,7 @@ import { BehaviorSubject, of as observableOf } from 'rxjs';
 import { AuthGuard } from './auth.guard';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
@@ -66,7 +67,9 @@ import { RoleCheck } from '@models/role';
           spyOn(userState, 'checkRoleList').and.returnValue(
             observableOf(new RoleCheck()),
           );
-          const message = ['cannotViewPageReturnToLogin'];
+          const message = [
+            new Message({ message: 'cannotViewPageReturnToLogin' }),
+          ];
 
           guard.canActivate().subscribe(() => {
             expect(notificationMock.showError).toHaveBeenCalledWith(message);

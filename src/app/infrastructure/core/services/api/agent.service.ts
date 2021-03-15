@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
 import { IAgentDTO, IAgentRequest } from '@models/agent';
 import { environment } from '@env/environment';
+import { Message } from '@models/message';
 import { NotificationService } from '../notification.service';
 
 @Injectable({
@@ -41,7 +42,7 @@ export class AgentService {
       .post<IAgentDTO, IAgentRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message: string = 'agentCreated';
+          const message: Message = new Message({ message: 'agentCreated' });
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -57,7 +58,7 @@ export class AgentService {
       .put<IAgentDTO, IAgentRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message: string = 'agentUpdated';
+          const message: Message = new Message({ message: 'agentUpdated' });
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -68,7 +69,7 @@ export class AgentService {
 
     return this.apiService.delete<IAgentDTO>(endpoint).pipe(
       tap(() => {
-        const message: string = 'agentDeleted';
+        const message: Message = new Message({ message: 'agentDeleted' });
         return this.notificationService.showSuccess([message]);
       }),
     );

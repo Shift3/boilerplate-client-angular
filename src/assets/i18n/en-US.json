@@ -89,6 +89,7 @@
   },
   "notification": {
     "activateAccountSuccess": "This account has been activated. Please log in.",
+    "activationEmailSent": "An activation email has been sent to ",
     "agencyCreated": "Agency {{ notification.created }}.",
     "agencyDeleted": "Agency {{ notification.deleted }}.",
     "agencyUpdated": "Agency {{ notification.updated }}.",
@@ -100,7 +101,9 @@
     "cannotViewPageReturnToLogin": "{{ notification.cannotViewPage }} Returning to the login page.",
     "created": "created",
     "deleted": "deleted",
-    "updated": "updated",
+    "emailSent": "An email has been sent to ",
+    "instructionToActivate": "with instructions to finish activating the account.",
+    "newActivationEmail": "A new activation email was sent to",
     "passwordUpdated": "Password {{ notification.updated }}.",
     "profileUpdated": "Profile {{ notification.updated }}.",
     "resetPasswordSuccess": "The password was reset successfully.",
@@ -112,6 +115,8 @@
     "unableToLoadRoles": "Unable to load roles. {{ notification.returningToUserList }}",
     "unableToLoadUser": "Unable to load user. {{ notification.returningToUserList }}",
     "unableToLoadUserInfo": "Unable to load user information. {{ notification.returningToDashboard }}",
-    "userUpdated": "User {{ notification.updated }}."
+    "updated": "updated",
+    "user": "User",
+    "userUpdated": "{{ notification.user }} {{ notification.updated }}."
   }
 }

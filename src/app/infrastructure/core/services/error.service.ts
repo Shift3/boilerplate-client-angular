@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from '@env/environment';
 import { Logger } from '@utils/logger';
+import { Message } from '@models/message';
 import { ISentryConfig, SentryConfig } from '@models/error';
 import { SentryErrorHandlerService } from './sentry-error-handler.service';
 

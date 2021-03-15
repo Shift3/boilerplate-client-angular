@@ -89,6 +89,7 @@
   },
   "notification": {
     "activateAccountSuccess": "Tài khoản này đã được kích hoạt. Vui lòng hãy đăng nhập.",
+    "activationEmailSent": "Email kích hoạt đã được gửi tới ",
     "agencyCreated": "Đã tạo đại lý.",
     "agencyDeleted": "Đại lý đã bị xóa.",
     "agencyUpdated": "Đã {{ notification.updated }} đại lý.",
@@ -98,7 +99,9 @@
     "cannotViewPage": "Bạn không thể xem trang được yêu cầu.",
     "cannotViewPageReturnToDashboard": "{{ notification.cannotViewPage }} {{ notification.returningToDashboard }}",
     "cannotViewPageReturnToLogin": "{{ notification.cannotViewPage }} Quay lại trang đăng nhập.",
-    "updated": "cập nhật",
+    "emailSent": "Một email đã được gửi tới ",
+    "instructionToActivate": "kèm theo hướng dẫn để hoàn tất việc kích hoạt tài khoản.",
+    "newActivationEmail": "Một email kích hoạt mới đã được gửi tới ",
     "passwordUpdated": "Mật khẩu được {{ notification.updated }}.",
     "profileUpdated": "Hồ sơ cá nhân đã {{ notification.updated }}.",
     "resetPasswordSuccess": "Mật khẩu đã được đặt lại thành công.",
@@ -110,6 +113,7 @@
     "unableToLoadRoles": "Không thể tải các vai trò. {{ notification.returningToUserList }}",
     "unableToLoadUser": "Không thể tải người dùng. {{ notification.returningToUserList }}",
     "unableToLoadUserInfo": "Không thể tải thông tin người dùng. {{ notification.returningToDashboard }}",
+    "updated": "cập nhật",
     "userUpdated": "Đã {{ notification.updated }} người dùng."
   }
 }

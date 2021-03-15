@@ -4,6 +4,7 @@ import { CanActivate, CanActivateChild, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { UserStateService } from '../services/state/user-state.service';
 
@@ -23,7 +24,9 @@ export class AdminAuthGuard implements CanActivate, CanActivateChild {
       map((checkRole) => checkRole.isAdmin),
       tap((isAdmin) => {
         if (!isAdmin) {
-          const message: string = 'cannotViewPageReturnToDashboard';
+          const message: Message = new Message({
+            message: 'cannotViewPageReturnToDashboard',
+          });
           this.notificationService.showError([message]);
           this.router.navigateByUrl('/');
         }
