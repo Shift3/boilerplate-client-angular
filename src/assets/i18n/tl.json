@@ -63,6 +63,7 @@
       "confirmEmail": "Confirm your email",
       "confirmPassword": "Confirm the new password",
       "currentPassword": "{{ dynamicForm.placeholder.enter }} your current password",
+      "default": "Enter value",
       "email": "{{ dynamicForm.placeholder.enter }} your email",
       "enter": "Enter",
       "firstName": "{{ dynamicForm.placeholder.enter }} your first name",

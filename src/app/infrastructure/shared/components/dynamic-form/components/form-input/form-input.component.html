@@ -14,7 +14,7 @@
     [placeholder]="
       config.placeholder
         ? t(getObjectProperty('placeholder', config.placeholder))
-        : ''
+        : t('placeholder.default')
     "
     [autocomplete]="config.fieldConfig.autocomplete"
     [mask]="config.fieldConfig.mask"
