@@ -1,4 +1,20 @@
 {
+  "confirmationModal": {
+    "action": {
+      "continue": "Continuar",
+      "delete": "Borrar",
+      "logOut": "Cerrar sesión",
+      "resend": "Reenviar",
+      "send": "Enviar"
+    },
+    "body": "¿Quieres continuar?",
+    "title": {
+      "delete": "¿{{ confirmationModal.action.delete }}",
+      "logout": "Esto finalizará su sesión de inicio de sesión.",
+      "resendActivation": "¿Reenviar el correo electrónico de activación a",
+      "sendResetPassword": "¿Enviar correo electrónico de restablecimiento de contraseña a"
+    }
+  },
   "dynamicForm": {
     "action": {
       "add": "Agregar",
