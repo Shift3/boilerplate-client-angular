@@ -28,7 +28,7 @@ import { RequiredValidation } from '@utils/validation/required-validation';
               new FormField<IInputField>({
                 name: 'test',
                 label: 'test',
-                placeholder: 'Enter value',
+                placeholder: 'enter',
                 fieldType: 'input',
               }),
             ],
@@ -50,13 +50,13 @@ import { RequiredValidation } from '@utils/validation/required-validation';
               new FormField<IInputField>({
                 name: 'test',
                 label: 'test',
-                placeholder: 'Enter value',
+                placeholder: 'enter',
                 fieldType: 'input',
               }),
               new FormField<IInputField>({
                 name: 'confirmTest',
                 label: 'confirmTest',
-                placeholder: 'Confirm value',
+                placeholder: 'confirm',
                 fieldType: 'input',
               }),
             ],

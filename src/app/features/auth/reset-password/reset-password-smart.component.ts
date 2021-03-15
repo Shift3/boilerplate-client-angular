@@ -42,7 +42,7 @@ export class ResetPasswordSmartComponent {
         name: 'newPassword',
         fieldType: 'input',
         label: 'newPassword',
-        placeholder: 'Enter the new password',
+        placeholder: 'newPassword',
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',
@@ -53,7 +53,7 @@ export class ResetPasswordSmartComponent {
         name: 'confirmPassword',
         fieldType: 'input',
         label: 'confirmNewPassword',
-        placeholder: 'Confirm the new password',
+        placeholder: 'confirmPassword',
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',

@@ -36,7 +36,7 @@ export class LoginSmartComponent {
         name: 'email',
         fieldType: 'input',
         label: 'email',
-        placeholder: 'Enter your email',
+        placeholder: 'email',
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -47,7 +47,7 @@ export class LoginSmartComponent {
         name: 'password',
         fieldType: 'input',
         label: 'password',
-        placeholder: 'Enter your password',
+        placeholder: 'password',
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'current-password',

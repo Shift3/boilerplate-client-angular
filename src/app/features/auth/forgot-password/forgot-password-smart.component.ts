@@ -37,7 +37,7 @@ export class ForgotPasswordSmartComponent {
         name: 'email',
         fieldType: 'input',
         label: 'email',
-        placeholder: 'Enter your email',
+        placeholder: 'email',
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
