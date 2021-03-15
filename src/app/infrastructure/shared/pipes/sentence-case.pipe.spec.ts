@@ -7,7 +7,7 @@ import { SentenceCasePipe } from './sentence-case.pipe';
   : describe('[Unit] SentenceCasePipe', () => {
       const pipe = new SentenceCasePipe();
 
-      it('should return an empty string when falsy', () => {
+      it('should return an empty string when given an empty string', () => {
         const mockString = '';
         const expectedValue = '';
 
