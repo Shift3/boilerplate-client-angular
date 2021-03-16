@@ -55,7 +55,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       this.errorService.logError(
         error,
         sentryConfig,
-        errorMessage.map((errorMessage) => errorMessage.message),
+        errorMessage.map((message) => message.message),
       );
     }
   }
