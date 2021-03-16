@@ -1,6 +1,7 @@
 {
   "confirmationModal": {
     "action": {
+      "confirm": "Confirm",
       "continue": "Continue",
       "delete": "Delete",
       "logOut": "Log Out",

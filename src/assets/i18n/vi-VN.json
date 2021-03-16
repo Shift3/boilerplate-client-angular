@@ -1,6 +1,7 @@
 {
   "confirmationModal": {
     "action": {
+      "confirm": "Xác nhận",
       "continue": "Tiếp tục",
       "delete": "Xóa bỏ",
       "logOut": "Đăng xuất",
