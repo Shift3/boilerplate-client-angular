@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { AppComponent } from './app.component';
 import { environment } from '@env/environment.test';
@@ -15,7 +16,7 @@ import { TopNavigationSmartComponent } from '@shared/components/navigation/top-n
   : describe('[Integration] AppComponent', () => {
       beforeEach(async(() => {
         TestBed.configureTestingModule({
-          imports: [RouterTestingModule],
+          imports: [RouterTestingModule, TranslocoTestingModule],
           declarations: [
             AppComponent,
             MockComponent(FooterComponent),

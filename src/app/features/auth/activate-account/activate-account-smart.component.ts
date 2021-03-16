@@ -25,8 +25,11 @@ export class ActivateAccountSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'Activate Account',
-    submit: new SaveCancelButtonConfig({ save: 'Submit' }),
+    formTitle: {
+      action: 'activate',
+      model: 'account',
+    },
+    submit: new SaveCancelButtonConfig({ save: 'submit' }),
     validation: [
       MatchFieldValidation.validFieldMatch(
         'newPassword',
@@ -38,8 +41,8 @@ export class ActivateAccountSmartComponent {
       new FormField<IInputField>({
         name: 'newPassword',
         fieldType: 'input',
-        label: 'Password',
-        placeholder: 'Enter a new password',
+        label: 'password',
+        placeholder: 'newPassword',
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',
@@ -49,8 +52,8 @@ export class ActivateAccountSmartComponent {
       new FormField<IInputField>({
         name: 'confirmPassword',
         fieldType: 'input',
-        label: 'Confirm Password',
-        placeholder: 'Confirm the new password',
+        label: 'confirmPassword',
+        placeholder: 'confirmPassword',
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',

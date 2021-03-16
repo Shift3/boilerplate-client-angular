@@ -29,7 +29,12 @@ const routes: Routes = [
       {
         path: 'profile',
         component: UserDetailSmartComponent,
-        data: { title: 'Update Profile' },
+        data: {
+          title: {
+            action: 'update',
+            model: 'profile',
+          },
+        },
         resolve: {
           user: resolverList.GetLoggedInUserResolver,
         },

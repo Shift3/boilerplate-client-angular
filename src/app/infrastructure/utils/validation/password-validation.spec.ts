@@ -16,32 +16,38 @@ import { PasswordValidation } from './password-validation';
           expect(passwordValidator(passwordControl)).toEqual(null);
         });
 
-        it(`should return { invalidPassword: 'Password is required.' } when value is an empty string`, () => {
+        it(`should return { isRequired: 'Password is required.' } when value is an empty string`, () => {
           passwordControl.setValue('');
-          const expectedValue = { invalidPassword: 'Password is required.' };
+          const expectedValue = { isRequired: 'Password is required.' };
           expect(passwordValidator(passwordControl)).toEqual(expectedValue);
         });
 
-        it(`should return { invalidPassword: 'Password is too short.' } when value is too short`, () => {
+        it(`should return { invalidPassword: { tooShort: 'Password is too short.' }} when value is too short`, () => {
           passwordControl.setValue('test');
-          const expectedValue = { invalidPassword: 'Password is too short.' };
-          expect(passwordValidator(passwordControl)).toEqual(expectedValue);
-        });
-
-        it(`should return { invalidPassword: 'Password requires at least one special character.' } when missing special characters`, () => {
-          passwordControl.setValue('passwordTest1');
           const expectedValue = {
-            invalidPassword:
-              'Password requires at least one special character.',
+            invalidPassword: { tooShort: 'Password is too short.' },
           };
           expect(passwordValidator(passwordControl)).toEqual(expectedValue);
         });
 
-        it(`should return { invalidPassword: 'Password requires at least one numeric character.' } when missing numeric characters`, () => {
+        it(`should return { invalidPassword: { missingSpecialChar: 'Password requires at least one special character.' }} when missing special characters`, () => {
+          passwordControl.setValue('passwordTest1');
+          const expectedValue = {
+            invalidPassword: {
+              missingSpecialChar:
+                'Password requires at least one special character.',
+            },
+          };
+          expect(passwordValidator(passwordControl)).toEqual(expectedValue);
+        });
+
+        it(`should return { invalidPassword: { missingNumericChar: 'Password requires at least one numeric character.' }} when missing numeric characters`, () => {
           passwordControl.setValue('passwordTest!');
           const expectedValue = {
-            invalidPassword:
-              'Password requires at least one numeric character.',
+            invalidPassword: {
+              missingNumericChar:
+                'Password requires at least one numeric character.',
+            },
           };
           expect(passwordValidator(passwordControl)).toEqual(expectedValue);
         });

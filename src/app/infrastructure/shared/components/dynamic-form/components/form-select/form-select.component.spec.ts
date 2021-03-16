@@ -2,6 +2,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MockPipe } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { FormErrorPipe } from '@shared/pipes/form-error.pipe';
@@ -19,7 +20,7 @@ import { ISelectField, SelectField } from '@models/form/select';
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           declarations: [FormSelectComponent, MockPipe(FormErrorPipe)],
-          imports: [ReactiveFormsModule],
+          imports: [ReactiveFormsModule, TranslocoTestingModule],
         }).compileComponents();
       }));
 

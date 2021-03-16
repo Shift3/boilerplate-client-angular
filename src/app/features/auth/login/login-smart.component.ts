@@ -27,14 +27,16 @@ export class LoginSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'Member Log In',
-    submit: new SaveCancelButtonConfig({ save: 'Log In' }),
+    formTitle: {
+      model: 'memberLogin',
+    },
+    submit: new SaveCancelButtonConfig({ save: 'login' }),
     controls: [
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: 'Email',
-        placeholder: 'Enter your email',
+        label: 'email',
+        placeholder: 'email',
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -44,8 +46,8 @@ export class LoginSmartComponent {
       new FormField<IInputField>({
         name: 'password',
         fieldType: 'input',
-        label: 'Password',
-        placeholder: 'Enter your password',
+        label: 'password',
+        placeholder: 'password',
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'current-password',

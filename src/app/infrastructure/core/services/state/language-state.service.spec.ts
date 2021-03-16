@@ -36,13 +36,26 @@ import { Logger } from '@utils/logger';
         });
       });
 
-      describe('setActiveLanguage()', () => {
-        it('should set the active language', () => {
-          const mockLang = 'es-ES';
-          const expectedValue = 'spanish';
+      describe('getActiveLangIsDefaultLang()', () => {
+        // TODO: (pratima) revisit to fix this test
+        // it('should return true as an Observable', () => {
+        //   const mockCurrentActiveLang = 'en-US';
+        //   service.setActiveLanguage(mockCurrentActiveLang);
 
-          service.setActiveLanguage(mockLang);
-          expect(service.activeLanguage$.getValue()).toEqual(expectedValue);
+        //   const testActiveLang$ = new BehaviorSubject<boolean>(true);
+        //   const expectedValue = testActiveLang$.asObservable();
+
+        //   expect(service.getActiveLangIsDefaultLang()).toEqual(expectedValue);
+        // });
+
+        it('should return false as an Observable', () => {
+          const mockCurrentActiveLang = 'es-ES';
+          service.setActiveLanguage(mockCurrentActiveLang);
+
+          const testActiveLang$ = new BehaviorSubject<boolean>(false);
+          const expectedValue = testActiveLang$.asObservable();
+
+          expect(service.getActiveLangIsDefaultLang()).toEqual(expectedValue);
         });
       });
 
@@ -64,6 +77,26 @@ import { Logger } from '@utils/logger';
         });
       });
 
+      describe('getTextInDefaultLang()', () => {
+        it(`should return undefined if property doesn't exist in the default language JSON file`, () => {
+          const mockProperty = 'navigation.userProfile.name';
+          const expectedValue = undefined;
+
+          expect(service.getTextInDefaultLang(mockProperty)).toEqual(
+            expectedValue,
+          );
+        });
+
+        it('should return the text in default language', () => {
+          const mockProperty = 'navigation.userProfile.signOut';
+          const expectedValue = 'Sign Out';
+
+          expect(service.getTextInDefaultLang(mockProperty)).toEqual(
+            expectedValue,
+          );
+        });
+      });
+
       describe('selectLanguage()', () => {
         // TODO: Test with a language that isn't listed in the LANGUAGE enum
         // TODO: Should be able to test if this calls translocoService correctly with the right values
@@ -79,26 +112,13 @@ import { Logger } from '@utils/logger';
         });
       });
 
-      describe('getActiveLangIsDefaultLang()', () => {
-        // TODO: (pratima) revisit to fix this test
-        // it('should return true as an Observable', () => {
-        //   const mockCurrentActiveLang = 'en-US';
-        //   service.setActiveLanguage(mockCurrentActiveLang);
+      describe('setActiveLanguage()', () => {
+        it('should set the active language', () => {
+          const mockLang = 'es-ES';
+          const expectedValue = 'spanish';
 
-        //   const testActiveLang$ = new BehaviorSubject<boolean>(true);
-        //   const expectedValue = testActiveLang$.asObservable();
-
-        //   expect(service.getActiveLangIsDefaultLang()).toEqual(expectedValue);
-        // });
-
-        it('should return false as an Observable', () => {
-          const mockCurrentActiveLang = 'es-ES';
-          service.setActiveLanguage(mockCurrentActiveLang);
-
-          const testActiveLang$ = new BehaviorSubject<boolean>(false);
-          const expectedValue = testActiveLang$.asObservable();
-
-          expect(service.getActiveLangIsDefaultLang()).toEqual(expectedValue);
+          service.setActiveLanguage(mockLang);
+          expect(service.activeLanguage$.getValue()).toEqual(expectedValue);
         });
       });
     });

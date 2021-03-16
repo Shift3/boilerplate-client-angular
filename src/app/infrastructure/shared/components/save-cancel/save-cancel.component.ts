@@ -8,9 +8,8 @@ import {
 import { Location } from '@angular/common';
 import { FormGroup } from '@angular/forms';
 
-import { SaveCancelButtonConfig } from '@models/form/button';
-
 import { DataTransformationService } from '@core/services/data-transformation.service';
+import { SaveCancelButtonConfig } from '@models/form/button';
 
 @Component({
   selector: 'app-save-cancel',
@@ -41,7 +40,7 @@ export class SaveCancelComponent {
 
   public getObjectProperty(buttonLabel: string): string {
     return this.dataTransformationService.getObjectProperty(
-      'formText.buttons',
+      'dynamicForm.action',
       buttonLabel,
     );
   }

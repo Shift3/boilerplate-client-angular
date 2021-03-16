@@ -26,8 +26,10 @@ export class SignUpSmartComponent {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'Sign Up',
-    submit: new SaveCancelButtonConfig({ save: 'Sign Up' }),
+    formTitle: {
+      action: 'signUp',
+    },
+    submit: new SaveCancelButtonConfig({ save: 'signUp' }),
     validation: [
       MatchFieldValidation.validFieldMatch('email', 'confirmEmail', 'Email'),
     ],
@@ -35,8 +37,8 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: 'Email',
-        placeholder: 'Enter your email',
+        label: 'email',
+        placeholder: 'email',
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -46,8 +48,8 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'confirmEmail',
         fieldType: 'input',
-        label: 'Confirm Email',
-        placeholder: 'Confirm your email',
+        label: 'confirmEmail',
+        placeholder: 'confirmEmail',
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -56,16 +58,16 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'firstName',
         fieldType: 'input',
-        label: 'First Name',
-        placeholder: 'Enter your first name',
+        label: 'firstName',
+        placeholder: 'firstName',
         fieldConfig: new InputField({ autocomplete: 'given-name' }),
         validation: [RequiredValidation.required('First Name')],
       }),
       new FormField<IInputField>({
         name: 'lastName',
         fieldType: 'input',
-        label: 'Last Name',
-        placeholder: 'Enter your last name',
+        label: 'lastName',
+        placeholder: 'lastName',
         fieldConfig: new InputField({ autocomplete: 'family-name' }),
         validation: [RequiredValidation.required('Last Name')],
       }),

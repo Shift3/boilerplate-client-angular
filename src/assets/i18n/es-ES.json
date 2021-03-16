@@ -17,19 +17,75 @@
   },
   "dynamicForm": {
     "action": {
+      "activate": "Activar",
       "add": "Agregar",
+      "cancel": "Cancelar",
+      "change": "Cambio",
       "create": "Crear",
       "delete": "Borrar",
       "forgot": "Olvidó",
+      "login": "Iniciar sesión",
       "reset": "Reiniciar",
+      "signUp": "Inscribirse",
+      "submit": "Enviar",
       "update": "Actualizar"
+    },
+    "error": {
+      "confirmFieldRequired": "{{ control }} se requiere.",
+      "fieldsMismatched": "Los campos de {{ control }} no concuerdan.",
+      "invalidEmail": "Por favor ingrese una válida {{ control }}.",
+      "invalidPassword": {
+        "missingNumericChar": "La contraseña requiere al menos un carácter numérico.",
+        "missingSpecialChar": "La contraseña requiere al menos un carácter especial.",
+        "tooShort": "La contraseña es demasiado corta."
+      },
+      "invalidPhone": "Por favor ingrese un número de teléfono válido.",
+      "isRequired": "{{ control }} se requiere."
+    },
+    "label": {
+      "address": "Dirección",
+      "address2": "{{ dynamicForm.label.address }} 2",
+      "agency": "{{ dynamicForm.model.agency }}",
+      "agencyName": "Nombre de agencia",
+      "city": "Ciudad",
+      "confirm": "Confirmar",
+      "confirmEmail": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.email }}",
+      "confirmNewPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.new }} {{ dynamicForm.label.password }}",
+      "confirmPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.password }}",
+      "currentPassword": "Actual {{ dynamicForm.label.password }}",
+      "description": "Descripción",
+      "email": "Correo electrónico",
+      "firstName": "Nombre de pila",
+      "fullName": "Nombre completo",
+      "lastName": "Apellido",
+      "new": "Nueva",
+      "newPassword": "{{ dynamicForm.label.new }} {{ dynamicForm.label.password }}",
+      "password": "{{ dynamicForm.model.password }}",
+      "phoneNumber": "Número de teléfono",
+      "role": "Papel",
+      "state": "Expresar",
+      "zipCode": "Código postal"
     },
     "model": {
       "account": "Cuenta",
       "agency": "Agencia",
       "agent": "Agente",
+      "memberLogin": "Inicio de sesión de miembros",
       "password": "Contraseña",
-      "user": "Usuaria"
+      "profile": "Perfil",
+      "user": "Usuario"
+    },
+    "placeholder": {
+      "confirmEmail": "Confirme su email",
+      "confirmPassword": "Confirma la nueva contraseña",
+      "currentPassword": "{{ dynamicForm.placeholder.enter }} tu contraseña actual",
+      "default": "Ingrese valor",
+      "email": "{{ dynamicForm.placeholder.enter }} tu correo electrónico",
+      "enter": "Introduce",
+      "firstName": "Ponga su primer nombre",
+      "lastName": "Ingrese su apellido",
+      "newPassword": "Introduzca una nueva contraseña",
+      "password": "Ingresa tu contraseña"
     }
   },
   "dynamicTable": {
@@ -52,27 +108,30 @@
       "thumbnail": "Miniatura"
     }
   },
-  "formText": {
-    "buttons": {
-      "cancel": "Cancelar",
-      "create": "Crear",
-      "update": "Actualizar"
+  "navigation": {
+    "languages": {
+      "english": "Inglés",
+      "spanish": "Español",
+      "tagalog": "Tagalo",
+      "vietnamese": "Vietnamita"
+    },
+    "logoAlt": "Consultoría de tecnología Bitwise",
+    "navLinks": {
+      "directory": "Directorio",
+      "users": "Usuarias",
+      "agencies": "Agencias"
+    },
+    "userProfile": {
+      "imageAlt": "Foto de perfil",
+      "profileLinks": {
+        "profile": "Perfil",
+        "changePassword": "Cambiar la contraseña"
+      },
+      "signOut": "Desconectar",
+      "toggleNavBarText": "Alternar barra de navegación",
+      "welcomeText": "Hola"
     }
   },
-  "languages": {
-    "english": "Inglés",
-    "spanish": "Español",
-    "tagalog": "Tagalo",
-    "vietnamese": "Vietnamita"
-  },
-  "logoAlt": "Consultoría de tecnología Bitwise",
-  "navLinks": {
-    "directory": "Directorio",
-    "users": "Usuarias",
-    "agencies": "Agencias"
-  },
-  "loginButtonText": "Acceso",
-  "signUpButtonText": "Crear una cuenta",
   "signUp": {
     "cardHeader": "¿Aún no te has registrado?",
     "instruction": "Registrarse para su cuenta es rápida y fácil."

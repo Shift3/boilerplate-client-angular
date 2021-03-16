@@ -17,19 +17,75 @@
   },
   "dynamicForm": {
     "action": {
+      "activate": "Kích hoạt",
       "add": "Thêm vào",
+      "cancel": "Huỷ bỏ",
+      "change": "Thay đổi",
       "create": "Tạo nên",
       "delete": "Xóa bỏ",
       "forgot": "Quên mất",
+      "login": "Đăng nhập",
       "reset": "Cài lại",
+      "signUp": "Đăng ký",
+      "submit": "Gửi đi",
       "update": "Cập nhật"
+    },
+    "error": {
+      "confirmFieldRequired": "{{ control }} là bắt buộc.",
+      "fieldsMismatched": "Các trường {{ control }} không khớp.",
+      "invalidEmail": "Vui lòng nhập  {{ control }} hợp lệ.",
+      "invalidPassword": {
+        "missingNumericChar": "Mật khẩu yêu cầu ít nhất một ký tự số.",
+        "missingSpecialChar": "Mật khẩu yêu cầu ít nhất một ký tự đặc biệt.",
+        "tooShort": "Mật khẩu quá ngắn."
+      },
+      "invalidPhone": "Xin vui lòng nhập một số điện thoại hợp lệ.",
+      "isRequired": "{{ control }} là bắt buộc."
+    },
+    "label": {
+      "address": "Địa chỉ",
+      "address2": "{{ dynamicForm.label.address }} 2",
+      "agency": "{{ dynamicForm.model.agency }}",
+      "agencyName": "Tên cơ quan",
+      "city": "Tp.",
+      "confirm": "Xác nhận",
+      "confirmEmail": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.email }}",
+      "confirmNewPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.password }} {{ dynamicForm.label.new }}",
+      "confirmPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.password }}",
+      "currentPassword": "{{ dynamicForm.label.password }} hiện tại",
+      "description": "Sự miêu tả",
+      "email": "E-mail",
+      "firstName": "Tên đầu tiên",
+      "fullName": "Họ và tên",
+      "lastName": "Họ",
+      "new": "Mới",
+      "newPassword": "{{ dynamicForm.label.password }} {{ dynamicForm.label.new }} ",
+      "password": "{{ dynamicForm.model.password }}",
+      "phoneNumber": "Số điện thoại",
+      "role": "Vai trò",
+      "state": "Tiểu bang",
+      "zipCode": "Mã Bưu Chính"
     },
     "model": {
       "account": "Tài khoản",
-      "agent": "Đặc vụ",
       "agency": "Đại lý",
+      "agent": "Đặc vụ",
+      "memberLogin": "Đăng nhập thành viên",
       "password": "Mật khẩu",
+      "profile": "Hồ sơ",
       "user": "Người sử dụng"
+    },
+    "placeholder": {
+      "confirmEmail": "Xác nhận email của bạn",
+      "confirmPassword": "Xác nhận mật khẩu mới",
+      "currentPassword": "Nhập mật khẩu hiện tại của bạn",
+      "default": "Nhập giá trị",
+      "email": "Nhập email của bạn",
+      "enter": "Đi vào",
+      "firstName": "Nhập tên của bạn",
+      "lastName": "Nhập họ của bạn",
+      "newPassword": "Nhập mật khẩu mới",
+      "password": "Nhập mật khẩu của bạn"
     }
   },
   "dynamicTable": {
@@ -52,27 +108,30 @@
       "thumbnail": "Hình nhỏ"
     }
   },
-  "formText": {
-    "buttons": {
-      "cancel": "Huỷ bỏ",
-      "create": "Tạo nên",
-      "update": "Cập nhật"
+  "navigation": {
+    "languages": {
+      "english": "Tiếng Anh",
+      "spanish": "người Tây Ban Nha",
+      "tagalog": "Tagalog",
+      "vietnamese": "Tiếng Việt"
+    },
+    "logoAlt": "Tư vấn Công nghệ Bitwise",
+    "navLinks": {
+      "directory": "Danh mục",
+      "users": "Người dùng",
+      "agencies": "Cơ quan"
+    },
+    "userProfile": {
+      "imageAlt": "Ảnh đại diện",
+      "profileLinks": {
+        "profile": "Hồ sơ",
+        "changePassword": "Đổi mật khẩu"
+      },
+      "signOut": "Đăng xuất",
+      "toggleNavBarText": "Chuyển đổi thanh điều hướng",
+      "welcomeText": "Chào"
     }
   },
-  "languages": {
-    "english": "Tiếng Anh",
-    "spanish": "người Tây Ban Nha",
-    "tagalog": "Tagalog",
-    "vietnamese": "Tiếng Việt"
-  },
-  "logoAlt": "Tư vấn Công nghệ Bitwise",
-  "navLinks": {
-    "directory": "Danh mục",
-    "users": "Người dùng",
-    "agencies": "Cơ quan"
-  },
-  "loginButtonText": "Đăng nhập",
-  "signUpButtonText": "Tạo tài khoản",
   "signUp": {
     "cardHeader": "Chưa đăng ký?",
     "instruction": "Đăng ký tài khoản của bạn nhanh chóng và dễ dàng."
