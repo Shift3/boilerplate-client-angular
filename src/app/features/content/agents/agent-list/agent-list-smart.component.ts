@@ -51,7 +51,7 @@ export class AgentListSmartComponent implements OnInit {
         static: 'delete',
         dynamic: `${agent.name}?`,
       },
-      action: 'Delete',
+      action: 'delete',
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {

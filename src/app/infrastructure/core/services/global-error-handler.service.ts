@@ -20,9 +20,9 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
     if (error instanceof HttpErrorResponse) {
       // Server error
-      errorMessage =
-        [new Message({ message: sentryConfig.message })] ||
-        this.errorService.getServerMessage(error);
+      errorMessage = sentryConfig.message
+        ? [new Message({ message: sentryConfig.message })]
+        : this.errorService.getServerMessage(error);
 
       this.notifyAndLogMessage(error, errorMessage, sentryConfig);
     } else {

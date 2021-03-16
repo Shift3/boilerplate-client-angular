@@ -56,7 +56,7 @@ export class UserListSmartComponent implements OnInit {
         static: 'delete',
         dynamic: `${user.firstName} ${user.lastName}?`,
       },
-      action: 'Delete',
+      action: 'delete',
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {
@@ -71,7 +71,7 @@ export class UserListSmartComponent implements OnInit {
         static: 'resendActivation',
         dynamic: `${user.firstName} ${user.lastName}?`,
       },
-      action: 'Resend',
+      action: 'resend',
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
       if (result) {
@@ -86,7 +86,7 @@ export class UserListSmartComponent implements OnInit {
         static: 'sendResetPassword',
         dynamic: `${user.firstName} ${user.lastName}?`,
       },
-      action: 'Send',
+      action: 'send',
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
       if (result) {

@@ -27,7 +27,9 @@ export class ErrorService {
   public getServerMessage(error: HttpErrorResponse): Message[] {
     const errorList: Message[] = [];
     if (error && error.error) {
-      errorList.push(new Message({ message: error.error.message }));
+      errorList.push(
+        new Message({ type: 'dynamic', message: error.error.message }),
+      );
     } else {
       errorList.push(new Message({ message: 'unableToCompleteRequest' }));
     }
