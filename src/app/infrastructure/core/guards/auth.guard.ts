@@ -4,6 +4,7 @@ import { CanActivate, CanActivateChild, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { UserStateService } from '../services/state/user-state.service';
 
@@ -23,8 +24,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       map((checkRole) => checkRole.isValid),
       tap((isLoggedInUser) => {
         if (!isLoggedInUser) {
-          const message =
-            'You cannot view the requested page. Returning to the login page.';
+          const message: Message = new Message({
+            message: 'cannotViewPageReturnToLogin',
+          });
           this.notificationService.showError([message]);
           this.router.navigateByUrl('/auth');
         }

@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, map, take, tap } from 'rxjs/operators';
 
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { UserStateService } from '../services/state/user-state.service';
 
@@ -38,8 +39,7 @@ export class UpdateProfileOrUserGuard implements CanActivate {
   }
 
   private navigateOnError(): void {
-    const message =
-      'Unable to load user information. Returning to the dashboard.';
+    const message: Message = new Message({ message: 'unableToLoadUserInfo' });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');
   }

@@ -7,6 +7,7 @@ import { catchError, take } from 'rxjs/operators';
 
 import { AgencyService } from '../services/api/agency.service';
 import { IAgencyDTO } from '@models/agency';
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 
 @Injectable({
@@ -30,7 +31,7 @@ export class UpdateAgencyResolver implements Resolve<IAgencyDTO> {
   }
 
   private navigateOnError(): void {
-    const message = 'Unable to load agency. Returning to agency list.';
+    const message: Message = new Message({ message: 'unableToLoadAgency' });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/agency-list');
   }

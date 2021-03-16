@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { ForgotPasswordPresentationComponent } from './forgot-password-presentation.component';
@@ -28,6 +29,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
             ReactiveFormsModule,
             RouterTestingModule,
             ToastrTestingModule,
+            TranslocoTestingModule,
           ],
         }).compileComponents();
       }));

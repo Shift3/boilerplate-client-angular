@@ -2,12 +2,20 @@ import { Injectable, NgZone } from '@angular/core';
 
 import { ToastrService } from 'ngx-toastr';
 
+import { LanguageStateService } from '@core/services/state/language-state.service';
+import { Message } from '@models/message';
+
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
-  constructor(private toastr: ToastrService, private zone: NgZone) {}
-  public showSuccess(messageList: string[]): void {
+  constructor(
+    private languageStateService: LanguageStateService,
+    private toastr: ToastrService,
+    private zone: NgZone,
+  ) {}
+
+  public showSuccess(messageList: Message[]): void {
     const formattedMessage = this.formatMessageList(messageList);
     // Wrap notification call in zone invocation to fix rendering inconsistencies when using `Injector`
     this.zone.run(() => {
@@ -15,7 +23,7 @@ export class NotificationService {
     });
   }
 
-  public showError(messageList: string[]): void {
+  public showError(messageList: Message[]): void {
     const formattedMessage = this.formatMessageList(messageList);
     // Wrap notification call in zone invocation to fix rendering inconsistencies when using `Injector`
     this.zone.run(() => {
@@ -26,7 +34,21 @@ export class NotificationService {
     });
   }
 
-  private formatMessageList(messageList: string[]): string {
-    return messageList.join('<br />');
+  private formatMessageList(messageList: Message[]): string {
+    const translatedMessageList: string[] = this.translateMessageList(
+      messageList,
+    );
+    return translatedMessageList.join('<br />');
+  }
+
+  private translateMessageList(messageList: Message[]): string[] {
+    return messageList.map((message: Message) => {
+      if (message.type === 'static')
+        return this.languageStateService.getTranslation(
+          `notification.${message.message}`,
+        );
+
+      return message.message;
+    });
   }
 }

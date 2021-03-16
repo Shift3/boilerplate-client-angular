@@ -3,10 +3,12 @@ import { Router } from '@angular/router';
 import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { BehaviorSubject } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { CanEditAuthGuard } from './can-edit-auth.guard';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
@@ -28,7 +30,7 @@ import { UserStateService } from '../services/state/user-state.service';
             { provide: NotificationService, useValue: notificationMock },
             { provide: Router, useValue: routerMock },
           ],
-          imports: [HttpClientTestingModule],
+          imports: [HttpClientTestingModule, TranslocoTestingModule],
         });
         userStateState = TestBed.inject(UserStateService);
         injector = getTestBed();
@@ -57,7 +59,7 @@ import { UserStateService } from '../services/state/user-state.service';
 
         it(`should show a notification on failing the guard`, () => {
           const message = [
-            'You cannot view the requested page. Returning to the dashboard.',
+            new Message({ message: 'cannotViewPageReturnToDashboard' }),
           ];
 
           guard.canActivate().subscribe(() => {
