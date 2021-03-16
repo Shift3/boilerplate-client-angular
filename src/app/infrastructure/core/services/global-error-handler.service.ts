@@ -22,18 +22,14 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       // Server error
       errorMessage =
         [new Message({ message: sentryConfig.message })] ||
-        this.errorService
-          .getServerMessage(error)
-          .map((errString) => new Message({ message: errString }));
+        this.errorService.getServerMessage(error);
 
       this.notifyAndLogMessage(error, errorMessage, sentryConfig);
     } else {
       // Client Error
       sentryConfig.sendToSentry = true;
       sentryConfig.showDialog = true;
-      errorMessage = this.errorService
-        .getClientMessage(error)
-        .map((errString) => new Message({ message: errString }));
+      errorMessage = this.errorService.getClientMessage(error);
 
       this.notifyAndLogMessage(error, errorMessage, sentryConfig);
     }
@@ -46,9 +42,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   ): void {
     const notifier = this.injector.get(NotificationService);
     if (typeof errorMessage === 'string') {
-      errorMessage = this.errorService
-        .convertStringMessageToList(errorMessage)
-        .map((message) => new Message({ message }));
+      errorMessage = this.errorService.convertStringMessageToList(errorMessage);
     }
     notifier.showError(errorMessage);
     if (sentryConfig.sendToSentry) {

@@ -12,24 +12,24 @@ import { SentryErrorHandlerService } from './sentry-error-handler.service';
 })
 export class ErrorService {
   constructor(private sentryErrorHandlerService: SentryErrorHandlerService) {}
-  public getClientMessage(error: Error): string[] {
-    const errorList: string[] = [];
+  public getClientMessage(error: Error): Message[] {
+    const errorList: Message[] = [];
     if (!navigator.onLine) {
-      errorList.push('No Internet Connection.');
+      errorList.push(new Message({ message: 'noInternet' }));
       return errorList;
     }
     error.message
-      ? errorList.push(error.message)
-      : errorList.push(error.toString());
+      ? errorList.push(new Message({ message: error.message }))
+      : errorList.push(new Message({ message: error.toString() }));
     return errorList;
   }
 
-  public getServerMessage(error: HttpErrorResponse): string[] {
-    const errorList: string[] = [];
+  public getServerMessage(error: HttpErrorResponse): Message[] {
+    const errorList: Message[] = [];
     if (error && error.error) {
-      errorList.push(error.error.message);
+      errorList.push(new Message({ message: error.error.message }));
     } else {
-      errorList.push('Unable to complete request.');
+      errorList.push(new Message({ message: 'unableToCompleteRequest' }));
     }
     return errorList;
   }
@@ -85,9 +85,9 @@ export class ErrorService {
     }
   }
 
-  public convertStringMessageToList(message: string): string[] {
-    const messageList: string[] = [];
-    messageList.push(message);
+  public convertStringMessageToList(message: string): Message[] {
+    const messageList: Message[] = [];
+    messageList.push(new Message({ message }));
     return messageList;
   }
 }
