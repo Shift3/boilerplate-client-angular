@@ -2,7 +2,7 @@ import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ErrorService } from './error.service';
-import { Message } from '@models/message';
+import { IMessage, Message } from '@models/message';
 import { NotificationService } from './notification.service';
 import { ISentryConfig } from '@models/error';
 
@@ -16,7 +16,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     const sentryConfig: ISentryConfig = this.errorService.setErrorStateWhenUnknown(
       error,
     );
-    let errorMessage: Message[] | Message;
+    let errorMessage: IMessage[] | IMessage;
 
     if (error instanceof HttpErrorResponse) {
       // Server error
@@ -37,7 +37,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
   private notifyAndLogMessage(
     error: Error | HttpErrorResponse,
-    errorMessage: Message[],
+    errorMessage: IMessage[] | IMessage,
     sentryConfig: ISentryConfig,
   ): void {
     const notifier = this.injector.get(NotificationService);

@@ -12,7 +12,7 @@ import { SentryErrorHandlerService } from './sentry-error-handler.service';
 })
 export class ErrorService {
   constructor(private sentryErrorHandlerService: SentryErrorHandlerService) {}
-  public getClientMessage(error: Error): Message[] {
+  public getClientMessage(error: Error): IMessage[] {
     const errorList: Message[] = [];
     if (!navigator.onLine) {
       errorList.push(new Message({ message: 'noInternet' }));
@@ -24,7 +24,7 @@ export class ErrorService {
     return errorList;
   }
 
-  public getServerMessage(error: HttpErrorResponse): Message[] {
+  public getServerMessage(error: HttpErrorResponse): IMessage[] {
     const errorList: Message[] = [];
     if (error && error.error) {
       errorList.push(
@@ -88,7 +88,7 @@ export class ErrorService {
   }
 
   public convertMessageToMessageList(message: IMessage): IMessage[] {
-    const messageList: Message[] = [];
+    const messageList: IMessage[] = [];
     messageList.push(message);
     return messageList;
   }
