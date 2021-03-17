@@ -24,8 +24,8 @@ import { pipes } from './pipes';
     NgxBootstrapModule.forRoot(),
     NgxMaskModule.forRoot(),
     ReactiveFormsModule,
-    TranslocoModule,
     RouterModule,
+    TranslocoModule,
   ],
   exports: [
     CommonModule,
