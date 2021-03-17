@@ -5,10 +5,9 @@ import {
   components as adminComponents,
 } from './admin-routing.module';
 import { SharedModule } from '@shared/shared.module';
-import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
 
 @NgModule({
   declarations: [adminComponents],
-  imports: [SharedModule, TranslocoRootModule, AdminRoutingModule],
+  imports: [SharedModule, AdminRoutingModule],
 })
 export class AdminModule {}
