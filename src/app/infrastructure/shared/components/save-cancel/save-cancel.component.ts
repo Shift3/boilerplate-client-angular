@@ -8,6 +8,7 @@ import {
 import { Location } from '@angular/common';
 import { FormGroup } from '@angular/forms';
 
+import { DataTransformationService } from '@core/services/data-transformation.service';
 import { SaveCancelButtonConfig } from '@models/form/button';
 
 @Component({
@@ -24,7 +25,10 @@ export class SaveCancelComponent {
 
   @Output() public emitSave = new EventEmitter<void>();
 
-  constructor(private location: Location) {}
+  constructor(
+    private location: Location,
+    private dataTransformationService: DataTransformationService,
+  ) {}
 
   public cancel(): void {
     this.location.back();
@@ -32,5 +36,12 @@ export class SaveCancelComponent {
 
   public save(): void {
     this.emitSave.emit();
+  }
+
+  public getObjectProperty(buttonLabel: string): string {
+    return this.dataTransformationService.getObjectProperty(
+      'dynamicForm.action',
+      buttonLabel,
+    );
   }
 }

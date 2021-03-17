@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { environment } from '@env/environment.test';
 import { ErrorService } from './error.service';
 import { Logger } from '@utils/logger';
+import { Message } from '@models/message';
 import { SentryConfig } from '@models/error';
 
 !environment.testUnit
@@ -25,14 +26,14 @@ import { SentryConfig } from '@models/error';
       describe('getClientMessage()', () => {
         it(`should return the passed in error message in a list`, () => {
           const error = new Error('Test');
-          const expectedValue = ['Test'];
+          const expectedValue = [new Message({ message: 'Test' })];
 
           expect(service.getClientMessage(error)).toEqual(expectedValue);
         });
 
         it(`should return 'No Internet Connection.' in a list when the client reports being offline`, () => {
           const error = new Error('Test');
-          const expectedValue = ['No Internet Connection.'];
+          const expectedValue = [new Message({ message: 'noInternet' })];
           spyOnProperty(navigator, 'onLine').and.returnValue(false);
 
           expect(service.getClientMessage(error)).toEqual(expectedValue);
@@ -43,7 +44,9 @@ import { SentryConfig } from '@models/error';
         it(`should return the passed in error message in a list`, () => {
           const error = new Error('Test');
           const httpError = new HttpErrorResponse({ error });
-          const expectedValue = ['Test'];
+          const expectedValue = [
+            new Message({ type: 'dynamic', message: 'Test' }),
+          ];
 
           expect(service.getServerMessage(httpError)).toEqual(expectedValue);
         });
@@ -133,12 +136,12 @@ import { SentryConfig } from '@models/error';
         });
       });
 
-      describe('convertStringMessageToList()', () => {
+      describe('convertMessageToMessageList()', () => {
         it(`should return the passed in error message in a list`, () => {
-          const message = 'Test';
-          const expectedValue = ['Test'];
+          const message = new Message({ message: 'Test' });
+          const expectedValue = [new Message({ message: 'Test' })];
 
-          expect(service.convertStringMessageToList(message)).toEqual(
+          expect(service.convertMessageToMessageList(message)).toEqual(
             expectedValue,
           );
         });

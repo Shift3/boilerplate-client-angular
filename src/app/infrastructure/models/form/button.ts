@@ -4,8 +4,8 @@ export interface ISaveCancelButtonConfig {
 }
 
 export class SaveCancelButtonConfig implements ISaveCancelButtonConfig {
-  save: string = 'Save';
-  cancel: string = 'Cancel';
+  save: string = 'save';
+  cancel: string = 'cancel';
 
   constructor(configOverride?: Partial<ISaveCancelButtonConfig>) {
     if (configOverride) {

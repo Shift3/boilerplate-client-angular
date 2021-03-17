@@ -12,6 +12,7 @@ import { catchError, take } from 'rxjs/operators';
 
 import { IUserDTO } from '@models/user';
 import { UserService } from '../services/api/user.service';
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 
 @Injectable({
@@ -35,7 +36,7 @@ export class UpdateUserResolver implements Resolve<IUserDTO> {
   }
 
   private navigateOnError(): void {
-    const message = 'Unable to load user. Returning to user list.';
+    const message: Message = new Message({ message: 'unableToLoadUser' });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');
   }

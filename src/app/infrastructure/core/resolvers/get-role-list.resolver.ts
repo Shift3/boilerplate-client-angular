@@ -6,6 +6,7 @@ import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, take } from 'rxjs/operators';
 
 import { IRoleDTO } from '@models/role';
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { RoleService } from '../services/api/role.service';
 
@@ -30,7 +31,7 @@ export class GetRoleListResolver implements Resolve<IRoleDTO[]> {
   }
 
   private navigateOnError(): void {
-    const message = 'Unable to load roles. Returning to user list.';
+    const message: Message = new Message({ message: 'unableToLoadRoles' });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');
   }

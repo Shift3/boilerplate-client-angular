@@ -3,10 +3,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockPipe } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { SettingsComponent } from './settings.component';
+import { SentenceCasePipe } from '@shared/pipes/sentence-case.pipe';
 import { TrackByKeyPipe } from '@shared/pipes/track-by-key.pipe';
 
 !environment.testIntegration
@@ -17,8 +19,16 @@ import { TrackByKeyPipe } from '@shared/pipes/track-by-key.pipe';
 
       beforeEach(async(() => {
         TestBed.configureTestingModule({
-          declarations: [SettingsComponent, MockPipe(TrackByKeyPipe)],
-          imports: [HttpClientTestingModule, RouterTestingModule],
+          declarations: [
+            SettingsComponent,
+            MockPipe(SentenceCasePipe),
+            MockPipe(TrackByKeyPipe),
+          ],
+          imports: [
+            HttpClientTestingModule,
+            RouterTestingModule,
+            TranslocoTestingModule,
+          ],
         }).compileComponents();
       }));
 

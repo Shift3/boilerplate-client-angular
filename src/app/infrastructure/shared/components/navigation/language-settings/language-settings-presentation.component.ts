@@ -15,10 +15,17 @@ import {
 export class LanguageSettingsPresentationComponent {
   @Input() public activeLanguage: string = '';
   @Input() public availableLanguagesForSelection: string[] = [];
+  @Input() public activeLangIsDefaultLang: boolean = true;
 
   @Output() public emitSelection = new EventEmitter<string>();
 
   public selectLanguage(language: string): void {
     this.emitSelection.emit(language);
+  }
+
+  public getObjectProperty(label: string): string {
+    if (label.length === 0) return '';
+
+    return `navigation.languages.${label.toLowerCase()}`;
   }
 }

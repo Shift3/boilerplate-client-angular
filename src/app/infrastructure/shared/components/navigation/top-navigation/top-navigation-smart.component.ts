@@ -5,12 +5,14 @@ import { map } from 'rxjs/operators';
 
 import { INavigation, Navigation } from '@models/navigation';
 import { IUserDTO } from '@models/user';
+import { LanguageStateService } from '@core/services/state/language-state.service';
 import { UserStateService } from '@core/services/state/user-state.service';
 
 @Component({
   selector: 'app-top-navigation',
   template: `
     <app-top-navigation-presentation
+      [activeLangIsDefaultLang]="activeLangIsDefaultLang$ | async"
       [isValid]="isValid$ | async"
       [loggedInUser]="loggedInUser$ | async"
       [navLinks]="navLinks$ | async"
@@ -19,13 +21,18 @@ import { UserStateService } from '@core/services/state/user-state.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopNavigationSmartComponent implements OnInit {
+  public activeLangIsDefaultLang$: Observable<boolean>;
   public isValid$: Observable<boolean>;
   public loggedInUser$: Observable<IUserDTO>;
   public navLinks$: Observable<INavigation[]>;
 
-  constructor(private userStateService: UserStateService) {}
+  constructor(
+    public languageStateService: LanguageStateService,
+    private userStateService: UserStateService,
+  ) {}
 
   public ngOnInit(): void {
+    this.activeLangIsDefaultLang$ = this.languageStateService.getActiveLangIsDefaultLang();
     this.isValid$ = this.isValid();
     this.loggedInUser$ = this.getLoggedInUser();
     this.navLinks$ = this.buildNavLinkListBasedOnRole();

@@ -1,5 +1,4 @@
 import { environment } from '@env/environment';
-
 import { LANGUAGE } from '@models/enums';
 
 export const translocoConfigObj = {
@@ -12,5 +11,8 @@ export const translocoConfigObj = {
   keysManager: {},
   prodMode: environment.production,
   reRenderOnLangChange: true, // Remove this option if your application doesn't support changing language in runtime.
-  rootTranslationsPath: 'src/assets/i18n',
+  rootTranslationsPath:
+    environment.environment.toLowerCase() === 'test'
+      ? './assets/i18n/test'
+      : './assets/i18n',
 };

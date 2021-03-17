@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { AgentListPresentationComponent } from './agent-list-presentation.component';
 import { AgentListSmartComponent } from './agent-list-smart.component';
@@ -26,6 +27,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
             HttpClientTestingModule,
             RouterTestingModule,
             ToastrTestingModule,
+            TranslocoTestingModule,
           ],
         }).compileComponents();
       }));

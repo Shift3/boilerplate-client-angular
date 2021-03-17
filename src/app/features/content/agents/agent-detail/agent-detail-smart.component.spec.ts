@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { AgentDetailPresentationComponent } from './agent-detail-presentation.component';
 import { AgentDetailSmartComponent } from './agent-detail-smart.component';
@@ -28,6 +29,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
             ReactiveFormsModule,
             RouterTestingModule,
             ToastrTestingModule,
+            TranslocoTestingModule,
           ],
         }).compileComponents();
       }));

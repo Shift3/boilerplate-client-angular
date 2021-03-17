@@ -5,6 +5,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 
 import { of as observableOf } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { ApiService } from './api.service';
 import {
@@ -29,7 +30,11 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
       beforeEach(() => {
         TestBed.configureTestingModule({
-          imports: [HttpClientTestingModule, ToastrTestingModule],
+          imports: [
+            HttpClientTestingModule,
+            ToastrTestingModule,
+            TranslocoTestingModule,
+          ],
           providers: [ApiService, AgencyService],
         });
         // Returns a service with the MockBackend so we can test with dummy responses

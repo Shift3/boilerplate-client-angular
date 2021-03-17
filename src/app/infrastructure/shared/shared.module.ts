@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { NgxMaskModule } from 'ngx-mask';
+import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
 
 import {
   BootstrapModule,
   NgxBootstrapModule,
 } from './imports/bootstrap.module';
+
 import { components } from './components';
 import { directives } from './directives';
 import { pipes } from './pipes';
@@ -23,6 +25,7 @@ import { pipes } from './pipes';
     NgxBootstrapModule.forRoot(),
     NgxMaskModule.forRoot(),
     ReactiveFormsModule,
+    TranslocoRootModule,
     RouterModule,
   ],
   exports: [

@@ -152,6 +152,7 @@ import { IMessage } from '@models/message';
         it('should return a status message on success', () => {
           const payload: IForgotPasswordRequest = new ForgotPasswordRequest();
           const expectedValue: IMessage = {
+            type: 'static',
             message: '',
           };
           let response: IMessage;
@@ -168,7 +169,10 @@ import { IMessage } from '@models/message';
 
         it(`should show a notification on success`, () => {
           const payload: IForgotPasswordRequest = new ForgotPasswordRequest();
-          const expectedValue: IMessage = { message: 'Success' };
+          const expectedValue: IMessage = {
+            type: 'static',
+            message: 'Success',
+          };
           spyOn(apiService, 'post').and.returnValue(
             observableOf(expectedValue),
           );

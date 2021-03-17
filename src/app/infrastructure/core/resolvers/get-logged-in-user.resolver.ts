@@ -6,6 +6,7 @@ import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, mergeMap, take } from 'rxjs/operators';
 
 import { IUserDTO } from '@models/user';
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { UserService } from '../services/api/user.service';
 import { UserStateService } from '../services/state/user-state.service';
@@ -41,8 +42,7 @@ export class GetLoggedInUserResolver implements Resolve<IUserDTO> {
   }
 
   private navigateOnError(): void {
-    const message =
-      'Unable to load user information. Returning to the dashboard.';
+    const message: Message = new Message({ message: 'unableToLoadUserInfo' });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/content/agent-list');
   }

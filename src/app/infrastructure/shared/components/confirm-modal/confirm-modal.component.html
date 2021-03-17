@@ -1,26 +1,29 @@
-<div class="card">
+<div class="card" *transloco="let translate">
   <div class="card-header">
     <h4 class="modal-title" id="modal-basic-title">
-      {{ modalConfig.message }}
+      {{ translate(getObjectProperty('title', modalConfig.message.static)) }}
+      {{ modalConfig.message.dynamic }}
     </h4>
   </div>
-  <div class="modal-body">Do you want to continue?</div>
+  <div class="modal-body">{{ translate('confirmationModal.body') }}</div>
   <div class="save-cancel-container save-cancel-button-row">
-    <button
-      id="cancel-button"
-      class="btn btn-outline-dark"
-      type="button"
-      (click)="cancel()"
-    >
-      {{ 'Cancel' | uppercase }}
-    </button>
     <button
       id="form-submit-button"
       type="button"
       class="btn btn-outline-dark"
       (click)="submit()"
     >
-      {{ modalConfig.action | uppercase }}
+      {{
+        translate(getObjectProperty('action', modalConfig.action)) | uppercase
+      }}
+    </button>
+    <button
+      id="cancel-button"
+      class="btn btn-outline-dark"
+      type="button"
+      (click)="cancel()"
+    >
+      {{ translate('dynamicForm.action.cancel') | uppercase }}
     </button>
   </div>
 </div>

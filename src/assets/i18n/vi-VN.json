@@ -1,1 +1,180 @@
-{}
+{
+  "confirmationModal": {
+    "action": {
+      "confirm": "Xác nhận",
+      "continue": "Tiếp tục",
+      "delete": "Xóa bỏ",
+      "logOut": "Đăng xuất",
+      "resend": "Gửi lại",
+      "send": "Gửi"
+    },
+    "body": "Bạn có muốn tiếp tục?",
+    "title": {
+      "delete": "{{ confirmationModal.action.delete }}",
+      "logout": "Điều này sẽ kết thúc phiên đăng nhập của bạn.",
+      "resendActivation": "Gửi lại Email Kích hoạt tới",
+      "sendResetPassword": "Gửi Email Đặt lại Mật khẩu tới"
+    }
+  },
+  "dynamicForm": {
+    "action": {
+      "activate": "Kích hoạt",
+      "add": "Thêm vào",
+      "cancel": "Huỷ bỏ",
+      "change": "Thay đổi",
+      "create": "Tạo nên",
+      "delete": "Xóa bỏ",
+      "forgot": "Quên mất",
+      "login": "Đăng nhập",
+      "reset": "Cài lại",
+      "signUp": "Đăng ký",
+      "submit": "Gửi đi",
+      "update": "Cập nhật"
+    },
+    "error": {
+      "confirmFieldRequired": "{{ control }} là bắt buộc.",
+      "fieldsMismatched": "Các trường {{ control }} không khớp.",
+      "invalidEmail": "Vui lòng nhập  {{ control }} hợp lệ.",
+      "invalidPassword": {
+        "missingNumericChar": "Mật khẩu yêu cầu ít nhất một ký tự số.",
+        "missingSpecialChar": "Mật khẩu yêu cầu ít nhất một ký tự đặc biệt.",
+        "tooShort": "Mật khẩu quá ngắn."
+      },
+      "invalidPhone": "Xin vui lòng nhập một số điện thoại hợp lệ.",
+      "isRequired": "{{ control }} là bắt buộc."
+    },
+    "label": {
+      "address": "Địa chỉ",
+      "address2": "{{ dynamicForm.label.address }} 2",
+      "agency": "{{ dynamicForm.model.agency }}",
+      "agencyName": "Tên cơ quan",
+      "city": "Tp.",
+      "confirm": "Xác nhận",
+      "confirmEmail": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.email }}",
+      "confirmNewPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.password }} {{ dynamicForm.label.new }}",
+      "confirmPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.password }}",
+      "currentPassword": "{{ dynamicForm.label.password }} hiện tại",
+      "description": "Sự miêu tả",
+      "email": "E-mail",
+      "firstName": "Tên đầu tiên",
+      "fullName": "Họ và tên",
+      "lastName": "Họ",
+      "new": "Mới",
+      "newPassword": "{{ dynamicForm.label.password }} {{ dynamicForm.label.new }} ",
+      "password": "{{ dynamicForm.model.password }}",
+      "phoneNumber": "Số điện thoại",
+      "role": "Vai trò",
+      "state": "Tiểu bang",
+      "zipCode": "Mã Bưu Chính"
+    },
+    "model": {
+      "account": "Tài khoản",
+      "agency": "Đại lý",
+      "agent": "Đặc vụ",
+      "memberLogin": "Đăng nhập thành viên",
+      "password": "Mật khẩu",
+      "profile": "Hồ sơ",
+      "user": "Người sử dụng"
+    },
+    "placeholder": {
+      "confirmEmail": "Xác nhận email của bạn",
+      "confirmPassword": "Xác nhận mật khẩu mới",
+      "currentPassword": "Nhập mật khẩu hiện tại của bạn",
+      "default": "Nhập giá trị",
+      "email": "Nhập email của bạn",
+      "enter": "Đi vào",
+      "firstName": "Nhập tên của bạn",
+      "lastName": "Nhập họ của bạn",
+      "newPassword": "Nhập mật khẩu mới",
+      "password": "Nhập mật khẩu của bạn"
+    }
+  },
+  "dynamicTable": {
+    "header": {
+      "actions": "Hành động",
+      "activated": "Đã kích hoạt",
+      "agency": "Đại lý",
+      "agencyName": "Tên cơ quan",
+      "description": "Sự miêu tả",
+      "email": "E-mail",
+      "firstName": "Tên đầu tiên",
+      "lastName": "Họ",
+      "name": "Tên",
+      "phoneNumber": "Số điện thoại",
+      "role": "Vai trò"
+    },
+    "body": {
+      "emptyListMessage": "Không có dữ liệu",
+      "resendActivationEmail": "Gửi lại email đã kích hoạt",
+      "thumbnail": "Hình nhỏ"
+    }
+  },
+  "navigation": {
+    "languages": {
+      "english": "Tiếng Anh",
+      "spanish": "người Tây Ban Nha",
+      "tagalog": "Tagalog",
+      "vietnamese": "Tiếng Việt"
+    },
+    "navLinks": {
+      "directory": "Danh mục",
+      "users": "Người dùng",
+      "agencies": "Cơ quan"
+    },
+    "userProfile": {
+      "imageAlt": "Ảnh đại diện",
+      "profileLinks": {
+        "profile": "Hồ sơ",
+        "changePassword": "Đổi mật khẩu"
+      },
+      "signOut": "Đăng xuất",
+      "toggleNavBarText": "Chuyển đổi thanh điều hướng",
+      "welcomeText": "Chào"
+    }
+  },
+  "signUp": {
+    "cardHeader": "Chưa đăng ký?",
+    "instruction": "Đăng ký tài khoản của bạn nhanh chóng và dễ dàng."
+  },
+  "userProfile": {
+    "imageAlt": "Ảnh đại diện",
+    "profileLinks": {
+      "profile": "Hồ sơ",
+      "changePassword": "Đổi mật khẩu"
+    },
+    "signOutText": "Đăng xuất",
+    "toggleNavBarText": "Chuyển đổi thanh điều hướng",
+    "welcomeText": "Chào"
+  },
+  "notification": {
+    "activateAccountSuccess": "Tài khoản này đã được kích hoạt. Vui lòng hãy đăng nhập.",
+    "activationEmailSent": "Email kích hoạt đã được gửi tới ",
+    "agencyCreated": "Đã tạo đại lý.",
+    "agencyDeleted": "Đại lý đã bị xóa.",
+    "agencyUpdated": "Đã {{ notification.updated }} đại lý.",
+    "agentCreated": "Đã tạo đại lý.",
+    "agentDeleted": "Đại lý đã bị xóa.",
+    "agentUpdated": "Đã {{ notification.updated }} đại lý.",
+    "cannotViewPage": "Bạn không thể xem trang được yêu cầu.",
+    "cannotViewPageReturnToDashboard": "{{ notification.cannotViewPage }} {{ notification.returningToDashboard }}",
+    "cannotViewPageReturnToLogin": "{{ notification.cannotViewPage }} Quay lại trang đăng nhập.",
+    "emailSent": "Một email đã được gửi tới ",
+    "instructionToActivate": "kèm theo hướng dẫn để hoàn tất việc kích hoạt tài khoản.",
+    "newActivationEmail": "Một email kích hoạt mới đã được gửi tới ",
+    "noInternet": "Không có kết nối Internet.",
+    "passwordUpdated": "Mật khẩu được {{ notification.updated }}.",
+    "profileUpdated": "Hồ sơ cá nhân đã {{ notification.updated }}.",
+    "resetPasswordSuccess": "Mật khẩu đã được đặt lại thành công.",
+    "returningToDashboard": "Quay lại trang tổng quan.",
+    "returningToUserList": "Quay lại danh sách người dùng.",
+    "unableToCompleteRequest": "Không thể hoàn thành yêu cầu.",
+    "unableToLoadAgencies": "Không thể tải đại lý. {{ notification.returningToUserList }}",
+    "unableToLoadAgency": "Không thể tải đại lý. Quay lại danh sách đại lý.",
+    "unableToLoadAgent": "Không thể tải tác nhân. Quay lại danh sách đại lý.",
+    "unableToLoadRoles": "Không thể tải các vai trò. {{ notification.returningToUserList }}",
+    "unableToLoadUser": "Không thể tải người dùng. {{ notification.returningToUserList }}",
+    "unableToLoadUserInfo": "Không thể tải thông tin người dùng. {{ notification.returningToDashboard }}",
+    "updated": "cập nhật",
+    "userUpdated": "Đã {{ notification.updated }} người dùng."
+  }
+}

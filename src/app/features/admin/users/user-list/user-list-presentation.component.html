@@ -1,8 +1,11 @@
-<div class="row">
-  <button class="btn btn-add" routerLink="/admin/create-user">
-    {{ 'Add User' | uppercase }}
-  </button>
-</div>
+<ng-container *ngIf="checkRole?.isAdmin">
+  <div class="row" *transloco="let translate; read: 'dynamicForm'">
+    <button class="btn btn-add" routerLink="/admin/create-user">
+      {{ translate('action.add') | uppercase }}
+      {{ translate('model.user') | uppercase }}
+    </button>
+  </div>
+</ng-container>
 <ng-container *ngIf="userList; else loading">
   <app-user-table
     class="route-content"

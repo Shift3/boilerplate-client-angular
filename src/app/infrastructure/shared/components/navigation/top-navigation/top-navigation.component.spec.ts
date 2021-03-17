@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { MockComponent } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
@@ -20,7 +21,7 @@ import { TopNavigationPresentationComponent } from './top-navigation-presentatio
             TopNavigationSmartComponent,
             MockComponent(TopNavigationPresentationComponent),
           ],
-          imports: [HttpClientTestingModule],
+          imports: [HttpClientTestingModule, TranslocoTestingModule],
         }).compileComponents();
       }));
 

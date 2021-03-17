@@ -2,6 +2,7 @@ import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { ErrorService } from './error.service';
+import { IMessage, Message } from '@models/message';
 import { NotificationService } from './notification.service';
 import { ISentryConfig } from '@models/error';
 
@@ -15,34 +16,43 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     const sentryConfig: ISentryConfig = this.errorService.setErrorStateWhenUnknown(
       error,
     );
-    let errorMessage: string[] | string;
+    let errorMessage: IMessage[] | IMessage;
 
     if (error instanceof HttpErrorResponse) {
       // Server error
-      errorMessage =
-        sentryConfig.message || this.errorService.getServerMessage(error);
+      errorMessage = sentryConfig.message
+        ? [new Message({ message: sentryConfig.message })]
+        : this.errorService.getServerMessage(error);
+
       this.notifyAndLogMessage(error, errorMessage, sentryConfig);
     } else {
       // Client Error
       sentryConfig.sendToSentry = true;
       sentryConfig.showDialog = true;
       errorMessage = this.errorService.getClientMessage(error);
+
       this.notifyAndLogMessage(error, errorMessage, sentryConfig);
     }
   }
 
   private notifyAndLogMessage(
     error: Error | HttpErrorResponse,
-    errorMessage: string[] | string,
+    errorMessage: IMessage[] | IMessage,
     sentryConfig: ISentryConfig,
   ): void {
     const notifier = this.injector.get(NotificationService);
-    if (typeof errorMessage === 'string') {
-      errorMessage = this.errorService.convertStringMessageToList(errorMessage);
+    if (!Array.isArray(errorMessage)) {
+      errorMessage = this.errorService.convertMessageToMessageList(
+        errorMessage,
+      );
     }
     notifier.showError(errorMessage);
     if (sentryConfig.sendToSentry) {
-      this.errorService.logError(error, sentryConfig, errorMessage);
+      this.errorService.logError(
+        error,
+        sentryConfig,
+        errorMessage.map((message) => message.message),
+      );
     }
   }
 }

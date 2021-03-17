@@ -1,9 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
+import { ToastrService } from 'ngx-toastr';
+import { TranslocoTestingModule } from '@ngneat/transloco';
+
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { Message } from '@models/message';
 import { NotificationService } from './notification.service';
-import { ToastrService } from 'ngx-toastr';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
@@ -16,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 
       beforeEach(() => {
         TestBed.configureTestingModule({
+          imports: [TranslocoTestingModule],
           providers: [
             NotificationService,
             { provide: ToastrService, useValue: toastrMock },
@@ -30,7 +34,7 @@ import { ToastrService } from 'ngx-toastr';
 
       describe('showSuccess()', () => {
         it('should call toastrService.success with the messageList parameter', () => {
-          const messageList = ['Notification'];
+          const messageList = [new Message({ message: 'Notification' })];
 
           service.showSuccess(messageList);
           expect(toastrMock.success).toHaveBeenCalled();
@@ -39,7 +43,7 @@ import { ToastrService } from 'ngx-toastr';
 
       describe('showError()', () => {
         it('should call toastrService.error with the messageList parameter', () => {
-          const messageList = ['Notification'];
+          const messageList = [new Message({ message: 'Notification' })];
 
           service.showError(messageList);
           expect(toastrMock.error).toHaveBeenCalled();

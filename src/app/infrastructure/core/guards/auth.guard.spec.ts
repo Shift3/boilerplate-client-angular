@@ -7,6 +7,7 @@ import { BehaviorSubject, of as observableOf } from 'rxjs';
 import { AuthGuard } from './auth.guard';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { Message } from '@models/message';
 import { NotificationService } from '../services/notification.service';
 import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
@@ -67,7 +68,7 @@ import { RoleCheck } from '@models/role';
             observableOf(new RoleCheck()),
           );
           const message = [
-            'You cannot view the requested page. Returning to the login page.',
+            new Message({ message: 'cannotViewPageReturnToLogin' }),
           ];
 
           guard.canActivate().subscribe(() => {

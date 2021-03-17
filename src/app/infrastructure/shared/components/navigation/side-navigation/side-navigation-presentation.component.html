@@ -1,4 +1,4 @@
-<nav class="nav-container navbar-light">
+<nav class="nav-container navbar-light" *transloco="let translate">
   <a class="logo navbar-brand" [routerLink]="'/'">
     <img src="assets/img/logo.png" alt="Shift3 Technologies" />
   </a>
@@ -13,12 +13,15 @@
             (click)="isMenuCollapsed = true"
           >
             <span [class]="link.icon"></span>
-            {{ link.label }}
+            {{ translate(getObjectProperty(link.label)) }}
           </button>
           <app-language-settings></app-language-settings>
         </ul>
       </ng-container>
-      <app-settings [loggedInUser]="loggedInUser"></app-settings>
+      <app-settings
+        [activeLangIsDefaultLang]="activeLangIsDefaultLang"
+        [loggedInUser]="loggedInUser"
+      ></app-settings>
     </div>
   </ng-container>
   <ng-template #loggedOut>
@@ -31,7 +34,8 @@
         mat-raised-button
         routerLink="/auth/login"
       >
-        {{ 'Login/Create Account' | uppercase }}
+        {{ translate('dynamicForm.action.login') | uppercase }} /
+        {{ translate('dynamicForm.action.signUp') | uppercase }}
       </button>
     </div>
   </ng-template>

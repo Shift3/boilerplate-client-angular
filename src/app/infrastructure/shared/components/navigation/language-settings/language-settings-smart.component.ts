@@ -9,6 +9,7 @@ import { LanguageStateService } from '@core/services/state/language-state.servic
     <app-language-settings-presentation
       [activeLanguage]="activeLanguage$ | async"
       [availableLanguagesForSelection]="availableLanguagesForSelection$ | async"
+      [activeLangIsDefaultLang]="activeLangIsDefaultLang$ | async"
       (emitSelection)="selectLanguage($event)"
     ></app-language-settings-presentation>
   `,
@@ -17,15 +18,22 @@ import { LanguageStateService } from '@core/services/state/language-state.servic
 export class LanguageSettingsSmartComponent implements OnInit {
   public availableLanguagesForSelection$: Observable<string[]>;
   public activeLanguage$: Observable<string>;
+  public activeLangIsDefaultLang$: Observable<boolean>;
 
   constructor(public languageStateService: LanguageStateService) {}
 
   ngOnInit(): void {
+    this.activeAvailableLanguageSetup();
+  }
+
+  private activeAvailableLanguageSetup() {
     this.activeLanguage$ = this.languageStateService.getActiveLanguage();
     this.availableLanguagesForSelection$ = this.languageStateService.getAvailableLanguages();
+    this.activeLangIsDefaultLang$ = this.languageStateService.getActiveLangIsDefaultLang();
   }
 
   public selectLanguage(language: string): void {
-    this.languageStateService.selectLanguage(language);
+    if (language?.length)
+      this.languageStateService.selectLanguage(language.split('/')[0]);
   }
 }

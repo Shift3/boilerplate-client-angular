@@ -1,1 +1,183 @@
-{}
+{
+  "confirmationModal": {
+    "action": {
+      "confirm": "Confirm",
+      "continue": "Continue",
+      "delete": "Delete",
+      "logOut": "Log Out",
+      "resend": "Resend",
+      "send": "Send"
+    },
+    "body": "Do you want to continue?",
+    "title": {
+      "delete": "{{ confirmationModal.action.delete }}",
+      "logout": "This will end your login session.",
+      "resendActivation": "Resend Activation Email to",
+      "sendResetPassword": "Send Reset Password Email to"
+    }
+  },
+  "dynamicForm": {
+    "action": {
+      "activate": "Activate",
+      "add": "Add",
+      "cancel": "Cancel",
+      "change": "Change",
+      "create": "Create",
+      "delete": "Delete",
+      "forgot": "Forgot",
+      "login": "Log In",
+      "reset": "Reset",
+      "signUp": "Sign Up",
+      "submit": "Submit",
+      "update": "Update"
+    },
+    "error": {
+      "confirmFieldRequired": "{{ control }} is required.",
+      "fieldsMismatched": "{{ control }} fields do not match.",
+      "invalidEmail": "Please enter a valid Email.",
+      "invalidPassword": {
+        "missingNumericChar": "Password requires at least one numeric character.",
+        "missingSpecialChar": "Password requires at least one special character.",
+        "tooShort": "Password is too short."
+      },
+      "invalidPhone": "Please enter a valid phone number.",
+      "isRequired": "{{ control }} is required."
+    },
+    "label": {
+      "address": "Address",
+      "address2": "{{ dynamicForm.label.address }} 2",
+      "agency": "{{ dynamicForm.model.agency }}",
+      "agencyName": "Agency Name",
+      "city": "City",
+      "confirm": "Confirm",
+      "confirmEmail": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.email }}",
+      "confirmNewPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.new }} {{ dynamicForm.label.password }}",
+      "confirmPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.password }}",
+      "currentPassword": "Current {{ dynamicForm.label.password }}",
+      "description": "Description",
+      "email": "Email",
+      "firstName": "First Name",
+      "fullName": "Full Name",
+      "lastName": "Last Name",
+      "new": "New",
+      "newPassword": "{{ dynamicForm.label.new }} {{ dynamicForm.label.password }}",
+      "password": "{{ dynamicForm.model.password }}",
+      "phoneNumber": "Phone Number",
+      "role": "Role",
+      "state": "State",
+      "zipCode": "Zip Code"
+    },
+    "model": {
+      "account": "Account",
+      "agency": "Agency",
+      "agent": "Agent",
+      "memberLogin": "Member Log In",
+      "password": "Password",
+      "profile": "Profile",
+      "user": "User"
+    },
+    "placeholder": {
+      "confirmEmail": "Confirm your email",
+      "confirmPassword": "Confirm the new password",
+      "currentPassword": "{{ dynamicForm.placeholder.enter }} your current password",
+      "default": "Enter value",
+      "email": "{{ dynamicForm.placeholder.enter }} your email",
+      "enter": "Enter",
+      "firstName": "{{ dynamicForm.placeholder.enter }} your first name",
+      "lastName": "{{ dynamicForm.placeholder.enter }} your last name",
+      "newPassword": "{{ dynamicForm.placeholder.enter }} a new password",
+      "password": "{{ dynamicForm.placeholder.enter }} your password"
+    }
+  },
+  "dynamicTable": {
+    "header": {
+      "actions": "Actions",
+      "activated": "Activated",
+      "agency": "Agency",
+      "agencyName": "Agency Name",
+      "description": "Description",
+      "email": "Email",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "name": "Name",
+      "phoneNumber": "Phone Number",
+      "role": "Role"
+    },
+    "body": {
+      "emptyListMessage": "No data",
+      "resendActivationEmail": "Resend Activated Email",
+      "thumbnail": "Thumbnail"
+    }
+  },
+  "navigation": {
+    "languages": {
+      "english": "English",
+      "spanish": "Spanish",
+      "tagalog": "Tagalog",
+      "vietnamese": "Vietnamese"
+    },
+    "navLinks": {
+      "directory": "Directory",
+      "users": "Users",
+      "agencies": "Agencies"
+    },
+    "userProfile": {
+      "imageAlt": "Profile picture",
+      "profileLinks": {
+        "profile": "Profile",
+        "changePassword": "Change Password"
+      },
+      "signOut": "Sign Out",
+      "toggleNavBarText": "Toggle Navigation Bar",
+      "welcomeText": "Hi"
+    }
+  },
+  "signUp": {
+    "cardHeader": "Haven't Registered Yet?",
+    "instruction": "Registering for your account is quick and easy."
+  },
+  "userProfile": {
+    "imageAlt": "Profile picture",
+    "profileLinks": {
+      "profile": "Profile",
+      "changePassword": "Change Password"
+    },
+    "signOutText": "Sign Out",
+    "toggleNavBarText": "Toggle Navigation Bar",
+    "welcomeText": "Hi"
+  },
+  "notification": {
+    "activateAccountSuccess": "This account has been activated. Please log in.",
+    "activationEmailSent": "An activation email has been sent to ",
+    "agencyCreated": "Agency {{ notification.created }}.",
+    "agencyDeleted": "Agency {{ notification.deleted }}.",
+    "agencyUpdated": "Agency {{ notification.updated }}.",
+    "agentCreated": "Agent {{ notification.created }}.",
+    "agentDeleted": "Agent {{ notification.deleted }}.",
+    "agentUpdated": "Agent {{ notification.updated }}.",
+    "cannotViewPage": "You cannot view the requested page.",
+    "cannotViewPageReturnToDashboard": "{{ notification.cannotViewPage }} {{ notification.returningToDashboard }}",
+    "cannotViewPageReturnToLogin": "{{ notification.cannotViewPage }} Returning to the login page.",
+    "created": "created",
+    "deleted": "deleted",
+    "emailSent": "An email has been sent to",
+    "instructionToActivate": "with instructions to finish activating the account.",
+    "newActivationEmail": "A new activation email was sent to",
+    "noInternet": "No Internet Connection.",
+    "passwordUpdated": "Password {{ notification.updated }}.",
+    "profileUpdated": "Profile {{ notification.updated }}.",
+    "resetPasswordSuccess": "The password was reset successfully.",
+    "returningToDashboard": "Returning to the dashboard.",
+    "returningToUserList": "Returning to user list.",
+    "unableToCompleteRequest": "Unable to complete request.",
+    "unableToLoadAgencies": "Unable to load agencies. {{ notification.returningToUserList }}",
+    "unableToLoadAgency": "Unable to load agency. Returning to agency list.",
+    "unableToLoadAgent": "Unable to load agent. Returning to agent list.",
+    "unableToLoadRoles": "Unable to load roles. {{ notification.returningToUserList }}",
+    "unableToLoadUser": "Unable to load user. {{ notification.returningToUserList }}",
+    "unableToLoadUserInfo": "Unable to load user information. {{ notification.returningToDashboard }}",
+    "updated": "updated",
+    "user": "User",
+    "userUpdated": "{{ notification.user }} {{ notification.updated }}."
+  }
+}

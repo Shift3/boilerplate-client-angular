@@ -37,8 +37,11 @@ export class AgencyListSmartComponent implements OnInit {
 
   public openDeleteModal(agency: IAgencyDTO): void {
     const modalConfig = new ConfirmModalConfig({
-      message: `Delete ${agency.agencyName}?`,
-      action: 'Delete',
+      message: {
+        static: 'delete',
+        dynamic: `${agency.agencyName}?`,
+      },
+      action: 'delete',
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {
