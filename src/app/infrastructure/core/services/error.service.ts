@@ -43,26 +43,27 @@ export class ErrorService {
     if (error instanceof HttpErrorResponse) {
       switch (error.status) {
         case 500:
-          sentryConfig.message = 'Server Error';
+          sentryConfig.message = new Message({ message: 'serverError' });
           sentryConfig.sendToSentry = true;
           sentryConfig.showDialog = true;
           break;
         case 0:
           if (navigator.onLine) {
-            sentryConfig.message = 'Connection to servers is not available.';
+            sentryConfig.message = new Message({
+              message: 'noServerConnection',
+            });
             sentryConfig.sendToSentry = true;
             sentryConfig.showDialog = true;
           } else {
-            sentryConfig.message = 'No Internet Connection.';
+            sentryConfig.message = new Message({ message: 'noInternet' });
           }
           break;
         case 403:
-          sentryConfig.message =
-            'You do not have permission to view the selected page.';
+          sentryConfig.message = new Message({ message: 'forbidden' });
           sentryConfig.sendToSentry = true;
           break;
         case 404:
-          sentryConfig.message = 'Not found.';
+          sentryConfig.message = new Message({ message: 'notFound' });
           break;
       }
     }
