@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from '@env/environment';
 import { Logger } from '@utils/logger';
-import { Message } from '@models/message';
+import { IMessage, Message } from '@models/message';
 import { ISentryConfig, SentryConfig } from '@models/error';
 import { SentryErrorHandlerService } from './sentry-error-handler.service';
 
@@ -87,9 +87,9 @@ export class ErrorService {
     }
   }
 
-  public convertStringMessageToList(message: string): Message[] {
+  public convertMessageToMessageList(message: IMessage): IMessage[] {
     const messageList: Message[] = [];
-    messageList.push(new Message({ message }));
+    messageList.push(message);
     return messageList;
   }
 }

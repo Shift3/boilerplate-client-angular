@@ -41,8 +41,10 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     sentryConfig: ISentryConfig,
   ): void {
     const notifier = this.injector.get(NotificationService);
-    if (typeof errorMessage === 'string') {
-      errorMessage = this.errorService.convertStringMessageToList(errorMessage);
+    if (!Array.isArray(errorMessage)) {
+      errorMessage = this.errorService.convertMessageToMessageList(
+        errorMessage,
+      );
     }
     notifier.showError(errorMessage);
     if (sentryConfig.sendToSentry) {

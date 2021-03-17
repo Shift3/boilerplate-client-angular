@@ -136,12 +136,12 @@ import { SentryConfig } from '@models/error';
         });
       });
 
-      describe('convertStringMessageToList()', () => {
+      describe('convertMessageToMessageList()', () => {
         it(`should return the passed in error message in a list`, () => {
-          const message = 'Test';
+          const message = new Message({ message: 'Test' });
           const expectedValue = [new Message({ message: 'Test' })];
 
-          expect(service.convertStringMessageToList(message)).toEqual(
+          expect(service.convertMessageToMessageList(message)).toEqual(
             expectedValue,
           );
         });
