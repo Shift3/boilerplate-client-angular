@@ -16,7 +16,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     const sentryConfig: ISentryConfig = this.errorService.setErrorStateWhenUnknown(
       error,
     );
-    let errorMessage: Message[];
+    let errorMessage: Message[] | Message;
 
     if (error instanceof HttpErrorResponse) {
       // Server error
