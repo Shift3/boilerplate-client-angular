@@ -1,183 +1,183 @@
 {
   "confirmationModal": {
     "action": {
-      "confirm": "Confirm",
-      "continue": "Continue",
-      "delete": "Delete",
-      "logOut": "Log Out",
-      "resend": "Resend",
-      "send": "Send"
+      "confirm": "Kumpirmahin",
+      "continue": "Magpatuloy",
+      "delete": "Tanggalin",
+      "logOut": "Mag-log Out",
+      "resend": "Ipadala muli",
+      "send": "Ipadala"
     },
-    "body": "Do you want to continue?",
+    "body": "Gusto mo bang magpatuloy?",
     "title": {
       "delete": "{{ confirmationModal.action.delete }}",
-      "logout": "This will end your login session.",
-      "resendActivation": "Resend Activation Email to",
-      "sendResetPassword": "Send Reset Password Email to"
+      "logout": "Tatapusin nito ang iyong session sa pag-login.",
+      "resendActivation": "Ipadala muli ang Activation Email kay",
+      "sendResetPassword": "Magpadala ng I-reset ang Password Email kay"
     }
   },
   "dynamicForm": {
     "action": {
-      "activate": "Activate",
-      "add": "Add",
-      "cancel": "Cancel",
-      "change": "Change",
-      "create": "Create",
-      "delete": "Delete",
-      "forgot": "Forgot",
-      "login": "Log In",
-      "reset": "Reset",
-      "signUp": "Sign Up",
-      "submit": "Submit",
-      "update": "Update"
+      "activate": "Buhayin",
+      "add": "Idagdag pa",
+      "cancel": "Kanselahin",
+      "change": "Magbago",
+      "create": "Lumikha",
+      "delete": "Tanggalin",
+      "forgot": "Nakalimutan",
+      "login": "Mag log in",
+      "reset": "I-reset",
+      "signUp": "Mag-sign Up",
+      "submit": "Ipasa",
+      "update": "Pag-update"
     },
     "error": {
-      "confirmFieldRequired": "{{ control }} is required.",
-      "fieldsMismatched": "{{ control }} fields do not match.",
-      "invalidEmail": "Please enter a valid Email.",
+      "confirmFieldRequired": "{{ control }} ay kinakailangan.",
+      "fieldsMismatched": "{{ control }} ang mga patlang ay hindi tumutugma.",
+      "invalidEmail": "Mangyaring maglagay ng wastong Email.",
       "invalidPassword": {
-        "missingNumericChar": "Password requires at least one numeric character.",
-        "missingSpecialChar": "Password requires at least one special character.",
-        "tooShort": "Password is too short."
+        "missingNumericChar": "Ang kontrasenyas ay nangangailangan ng kahit isang character na bilang.",
+        "missingSpecialChar": "Ang kontrasenyas ay nangangailangan ng kahit isang espesyal na character.",
+        "tooShort": "Masyadong maikli ang kontrasenyas."
       },
-      "invalidPhone": "Please enter a valid phone number.",
-      "isRequired": "{{ control }} is required."
+      "invalidPhone": "Mangyaring maglagay ng wastong numero ng telepono.",
+      "isRequired": "{{ control }} ay kinakailangan."
     },
     "label": {
-      "address": "Address",
+      "address": "Tirahan",
       "address2": "{{ dynamicForm.label.address }} 2",
       "agency": "{{ dynamicForm.model.agency }}",
-      "agencyName": "Agency Name",
-      "city": "City",
-      "confirm": "Confirm",
-      "confirmEmail": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.email }}",
-      "confirmNewPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.new }} {{ dynamicForm.label.password }}",
-      "confirmPassword": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.password }}",
-      "currentPassword": "Current {{ dynamicForm.label.password }}",
-      "description": "Description",
+      "agencyName": "Pangalan ng Ahensya",
+      "city": "Lungsod",
+      "confirm": "Kumpirmahin",
+      "confirmEmail": "Kumpirmahin ang email",
+      "confirmNewPassword": "Kumpirmahin ang bagong kontrasenyas",
+      "confirmPassword": "Kumpirmahin ang kontrasenyas",
+      "currentPassword": "Kasalukuyang {{ dynamicForm.label.password }}",
+      "description": "Paglalarawan",
       "email": "Email",
-      "firstName": "First Name",
-      "fullName": "Full Name",
-      "lastName": "Last Name",
-      "new": "New",
+      "firstName": "Pangalan",
+      "fullName": "Buong pangalan",
+      "lastName": "Apelyido",
+      "new": "Bagong",
       "newPassword": "{{ dynamicForm.label.new }} {{ dynamicForm.label.password }}",
       "password": "{{ dynamicForm.model.password }}",
-      "phoneNumber": "Phone Number",
-      "role": "Role",
-      "state": "State",
+      "phoneNumber": "Numero ng telepono",
+      "role": "Tungkulin",
+      "state": "Estado",
       "zipCode": "Zip Code"
     },
     "model": {
       "account": "Account",
-      "agency": "Agency",
-      "agent": "Agent",
-      "memberLogin": "Member Log In",
-      "password": "Password",
+      "agency": "Ahensya",
+      "agent": "Ahente",
+      "memberLogin": "Pag-login ng miyembro",
+      "password": "Kontrasenyas",
       "profile": "Profile",
-      "user": "User"
+      "user": "Gumagamit"
     },
     "placeholder": {
-      "confirmEmail": "Confirm your email",
-      "confirmPassword": "Confirm the new password",
-      "currentPassword": "{{ dynamicForm.placeholder.enter }} your current password",
-      "default": "Enter value",
-      "email": "{{ dynamicForm.placeholder.enter }} your email",
-      "enter": "Enter",
-      "firstName": "{{ dynamicForm.placeholder.enter }} your first name",
-      "lastName": "{{ dynamicForm.placeholder.enter }} your last name",
-      "newPassword": "{{ dynamicForm.placeholder.enter }} a new password",
-      "password": "{{ dynamicForm.placeholder.enter }} your password"
+      "confirmEmail": "Kumpirmahin ang iyong email",
+      "confirmPassword": "Kumpirmahin ang bagong kontrasenyas",
+      "currentPassword": "{{ dynamicForm.placeholder.enter }} iyong kasalukuyang kontrasenyas",
+      "default": "Ipasok ang halaga",
+      "email": "{{ dynamicForm.placeholder.enter }} iyong email",
+      "enter": "Ipasok ang",
+      "firstName": "{{ dynamicForm.placeholder.enter }} iyong pangalan",
+      "lastName": "{{ dynamicForm.placeholder.enter }} iyong apelyido",
+      "newPassword": "Maglagay ng bagong kontrasenyas",
+      "password": "{{ dynamicForm.placeholder.enter }} iyong kontrasenyas"
     }
   },
   "dynamicTable": {
     "header": {
-      "actions": "Actions",
-      "activated": "Activated",
-      "agency": "Agency",
-      "agencyName": "Agency Name",
-      "description": "Description",
+      "actions": "Mga kilos",
+      "activated": "Pinapagana",
+      "agency": "Ahensya",
+      "agencyName": "Pangalan ng Ahensya",
+      "description": "Paglalarawan",
       "email": "Email",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "name": "Name",
-      "phoneNumber": "Phone Number",
-      "role": "Role"
+      "firstName": "Pangalan",
+      "lastName": "Apelyido",
+      "name": "Buong pangalan",
+      "phoneNumber": "Numero ng telepono",
+      "role": "Tungkulin"
     },
     "body": {
-      "emptyListMessage": "No data",
-      "resendActivationEmail": "Resend Activated Email",
+      "emptyListMessage": "Walang data",
+      "resendActivationEmail": "Ipadala muli ang Naka-aktibong Email",
       "thumbnail": "Thumbnail"
     }
   },
   "navigation": {
     "languages": {
-      "english": "English",
-      "spanish": "Spanish",
+      "english": "Ingles",
+      "spanish": "Espanyol",
       "tagalog": "Tagalog",
-      "vietnamese": "Vietnamese"
+      "vietnamese": "Biyetnames"
     },
     "navLinks": {
-      "directory": "Directory",
-      "users": "Users",
-      "agencies": "Agencies"
+      "directory": "Direktoryo",
+      "users": "Mga gumagamit",
+      "agencies": "Mga ahensya"
     },
     "userProfile": {
-      "imageAlt": "Profile picture",
+      "imageAlt": "Larawan sa profile",
       "profileLinks": {
         "profile": "Profile",
-        "changePassword": "Change Password"
+        "changePassword": "Palitan ang Kontrasenyas"
       },
-      "signOut": "Sign Out",
-      "toggleNavBarText": "Toggle Navigation Bar",
-      "welcomeText": "Hi"
+      "signOut": "Mag-sign Out",
+      "toggleNavBarText": "I-toggle ang pag-navigate",
+      "welcomeText": "Kamusta"
     }
   },
   "signUp": {
-    "cardHeader": "Haven't Registered Yet?",
-    "instruction": "Registering for your account is quick and easy."
+    "cardHeader": "Hindi pa Nakarehistro?",
+    "instruction": "Ang pagrehistro para sa iyong account ay mabilis at madali."
   },
   "userProfile": {
-    "imageAlt": "Profile picture",
+    "imageAlt": "Larawan sa profile",
     "profileLinks": {
       "profile": "Profile",
-      "changePassword": "Change Password"
+      "changePassword": "Palitan ang Kontrasenyas"
     },
-    "signOutText": "Sign Out",
-    "toggleNavBarText": "Toggle Navigation Bar",
-    "welcomeText": "Hi"
+    "signOutText": "Mag-sign Out",
+    "toggleNavBarText": "I-toggle ang pag-navigate",
+    "welcomeText": "Kamusta"
   },
   "notification": {
-    "activateAccountSuccess": "This account has been activated. Please log in.",
-    "activationEmailSent": "An activation email has been sent to ",
-    "agencyCreated": "Agency {{ notification.created }}.",
-    "agencyDeleted": "Agency {{ notification.deleted }}.",
-    "agencyUpdated": "Agency {{ notification.updated }}.",
-    "agentCreated": "Agent {{ notification.created }}.",
-    "agentDeleted": "Agent {{ notification.deleted }}.",
-    "agentUpdated": "Agent {{ notification.updated }}.",
-    "cannotViewPage": "You cannot view the requested page.",
+    "activateAccountSuccess": "Ang account na ito ay naaktibo. Mangyaring mag-log in",
+    "activationEmailSent": "Naipadala na ang isang email sa pag-activate ",
+    "agencyCreated": "Nilikha ang ahensya.",
+    "agencyDeleted": "Tinanggal ang ahensya.",
+    "agencyUpdated": "Na-update ang ahensya.",
+    "agentCreated": "Nilikha ang ahente.",
+    "agentDeleted": "Tinanggal ang ahensya.",
+    "agentUpdated": "Na-update ang ahensya.",
+    "cannotViewPage": "Hindi mo matitingnan ang hiniling na pahina.",
     "cannotViewPageReturnToDashboard": "{{ notification.cannotViewPage }} {{ notification.returningToDashboard }}",
-    "cannotViewPageReturnToLogin": "{{ notification.cannotViewPage }} Returning to the login page.",
-    "created": "created",
-    "deleted": "deleted",
-    "emailSent": "An email has been sent to",
-    "instructionToActivate": "with instructions to finish activating the account.",
-    "newActivationEmail": "A new activation email was sent to",
-    "noInternet": "No Internet Connection.",
-    "passwordUpdated": "Password {{ notification.updated }}.",
-    "profileUpdated": "Profile {{ notification.updated }}.",
-    "resetPasswordSuccess": "The password was reset successfully.",
-    "returningToDashboard": "Returning to the dashboard.",
-    "returningToUserList": "Returning to user list.",
-    "unableToCompleteRequest": "Unable to complete request.",
-    "unableToLoadAgencies": "Unable to load agencies. {{ notification.returningToUserList }}",
-    "unableToLoadAgency": "Unable to load agency. Returning to agency list.",
-    "unableToLoadAgent": "Unable to load agent. Returning to agent list.",
-    "unableToLoadRoles": "Unable to load roles. {{ notification.returningToUserList }}",
-    "unableToLoadUser": "Unable to load user. {{ notification.returningToUserList }}",
-    "unableToLoadUserInfo": "Unable to load user information. {{ notification.returningToDashboard }}",
-    "updated": "updated",
-    "user": "User",
-    "userUpdated": "{{ notification.user }} {{ notification.updated }}."
+    "cannotViewPageReturnToLogin": "{{ notification.cannotViewPage }} Bumabalik sa pahina ng pag-login.",
+    "created": "Nilikha",
+    "deleted": "Tinanggal",
+    "emailSent": "Naipadala na ang isang email",
+    "instructionToActivate": "na may mga tagubilin upang tapusin ang pag-aktibo ng account.",
+    "newActivationEmail": "Isang bagong email sa pag-aktibo ang ipinadala kay",
+    "noInternet": "Walang Koneksyon sa Internet.",
+    "passwordUpdated": "Na-update ang kontrasenyas.",
+    "profileUpdated": "Na-update ang profile.",
+    "resetPasswordSuccess": "Matagumpay na na-reset ang kontrasenyas.",
+    "returningToDashboard": "Bumabalik sa dashboard.",
+    "returningToUserList": "Bumabalik sa listahan ng gumagamit.",
+    "unableToCompleteRequest": "Hindi makumpleto ang kahilingan.",
+    "unableToLoadAgencies": "Hindi mai-load ang mga ahensya. {{ notification.returningToUserList }}",
+    "unableToLoadAgency": "Hindi mai-load ang ahensya. Bumabalik sa listahan ng ahensya.",
+    "unableToLoadAgent": "Hindi ma-load ang ahente. Bumabalik sa listahan ng ahente.",
+    "unableToLoadRoles": "Hindi mai-load ang mga tungkulin. {{ notification.returningToUserList }}",
+    "unableToLoadUser": "Hindi mai-load ang gumagamit. {{ notification.returningToUserList }}",
+    "unableToLoadUserInfo": "Hindi mai-load ang impormasyon ng gumagamit. {{ notification.returningToDashboard }}",
+    "updated": "Na-update",
+    "user": "Gumagamit",
+    "userUpdated": "Na-update ng gumagamit."
   }
 }
