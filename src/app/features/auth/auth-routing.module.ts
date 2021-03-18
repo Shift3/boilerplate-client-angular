@@ -32,12 +32,12 @@ const routes: Routes = [
       {
         path: 'forgot-password',
         component: ForgotPasswordSmartComponent,
-        data: { title: 'Forgot Password' },
+        data: { title: 'routing.auth.forgotPassword' },
       },
       {
         path: 'login',
         component: LoginSmartComponent,
-        data: { title: 'Login' },
+        data: { title: 'routing.auth.login' },
       },
       {
         path: 'logout',
@@ -52,7 +52,7 @@ const routes: Routes = [
       {
         path: 'signup',
         component: SignUpSmartComponent,
-        data: { title: 'Sign Up' },
+        data: { title: 'routing.auth.signUp' },
       },
     ],
   },

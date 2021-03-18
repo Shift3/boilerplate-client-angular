@@ -7,7 +7,8 @@ import {
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { TranslocoService } from '@ngneat/transloco';
+import { filter, map, mergeMap, switchMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 
 import { DataTransformationService } from '@core/services/data-transformation.service';
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private navbarStateService: NavbarStateService,
     private router: Router,
     private titleService: Title,
+    private translocoService: TranslocoService,
   ) {
     this.navbarToggle$ = this.navbarStateService.getNavbarToggle();
   }
@@ -68,13 +70,22 @@ export class AppComponent implements OnInit, OnDestroy {
                 );
           return routeName;
         }),
+        mergeMap((routeName) =>
+          // Listen to the language change event to translate with the latest language
+          this.translocoService.langChanges$.pipe(
+            switchMap((language) =>
+              // Use async selectTranslate to ensure the translation files are loaded
+              this.translocoService.selectTranslate(routeName, {}, language),
+            ),
+          ),
+        ),
       )
-      .subscribe((routeName) => {
-        const titleWithRoute = routeName
-          ? `${this.siteTitle} - ${routeName}`
+      .subscribe((translatedRouteName) => {
+        const translatedTitleWithRoute = translatedRouteName
+          ? `${this.siteTitle} - ${translatedRouteName}`
           : this.siteTitle;
-        this.header = routeName;
-        this.titleService.setTitle(`${titleWithRoute}`);
+        this.header = translatedRouteName;
+        this.titleService.setTitle(`${translatedTitleWithRoute}`);
       });
   }
 
