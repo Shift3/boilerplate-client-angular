@@ -22,7 +22,7 @@ import { NavbarStateService } from '@core/services/state/navbar-state.service';
 export class AppComponent implements OnInit, OnDestroy {
   public navbarToggle$: Observable<string>;
   public header = '';
-  public title = 'boilerplate-client-angular';
+  public siteTitle = 'boilerplate-client-angular';
 
   private routerEventsSubscription: Subscription;
 
@@ -58,17 +58,23 @@ export class AppComponent implements OnInit, OnDestroy {
         }),
         filter((route) => route.outlet === 'primary'),
         mergeMap((route) => route.data),
+        map((data) => data.title),
+        map((title) => {
+          const routeName =
+            typeof title === 'string'
+              ? title
+              : this.dataTransformationService.concatenateObjValues<string[]>(
+                  title,
+                );
+          return routeName;
+        }),
       )
-      .subscribe((event) => {
-        const pageTitle =
-          typeof event.title === 'string'
-            ? event.title
-            : this.dataTransformationService.concatenateObjValues<string[]>(
-                event.title,
-              );
-        const title = pageTitle ? `${this.title} - ${pageTitle}` : this.title;
-        this.header = event.title;
-        this.titleService.setTitle(`${title}`);
+      .subscribe((routeName) => {
+        const titleWithRoute = routeName
+          ? `${this.siteTitle} - ${routeName}`
+          : this.siteTitle;
+        this.header = routeName;
+        this.titleService.setTitle(`${titleWithRoute}`);
       });
   }
 
