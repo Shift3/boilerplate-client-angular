@@ -1,11 +1,13 @@
+import { IMessage, Message } from './message';
+
 export interface ISentryConfig {
-  message: string;
+  message: IMessage;
   sendToSentry: boolean;
   showDialog: boolean;
 }
 
 export class SentryConfig implements ISentryConfig {
-  message: string = '';
+  message: IMessage = new Message();
   sendToSentry: boolean = false;
   showDialog: boolean = false;
 
