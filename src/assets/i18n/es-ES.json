@@ -132,6 +132,10 @@
       "welcomeText": "Hola"
     }
   },
+  "notFound": {
+    "description": "Algo salió mal o esta página ya no existe.",
+    "goBack": "Regresa"
+  },
   "signUp": {
     "cardHeader": "¿Aún no te has registrado?",
     "instruction": "Registrarse para su cuenta es rápida y fácil."
