@@ -176,5 +176,12 @@
     "unableToLoadUserInfo": "Không thể tải thông tin người dùng. {{ notification.returningToDashboard }}",
     "updated": "cập nhật",
     "userUpdated": "Đã {{ notification.updated }} người dùng."
+  },
+  "routing": {
+    "auth": {
+      "login": "Đăng nhập",
+      "signUp": "Đăng ký",
+      "forgotPassword": "Quên mật khẩu"
+    }
   }
 }

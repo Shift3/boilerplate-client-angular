@@ -179,5 +179,12 @@
     "updated": "Na-update",
     "user": "Gumagamit",
     "userUpdated": "Na-update ng gumagamit."
+  },
+  "routing": {
+    "auth": {
+      "login": "Mag log in",
+      "signUp": "Mag-sign Up",
+      "forgotPassword": "Nakalimutan ang kontrasenyas"
+    }
   }
 }
