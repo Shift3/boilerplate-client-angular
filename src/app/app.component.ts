@@ -23,7 +23,7 @@ import { NavbarStateService } from '@core/services/state/navbar-state.service';
 export class AppComponent implements OnInit, OnDestroy {
   public navbarToggle$: Observable<string>;
   public header = '';
-  public siteTitle = 'foo';
+  public siteTitle = 'boilerplate-client-angular';
 
   private routerEventsSubscription: Subscription;
 
