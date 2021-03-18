@@ -23,7 +23,7 @@ import { NavbarStateService } from '@core/services/state/navbar-state.service';
 export class AppComponent implements OnInit, OnDestroy {
   public navbarToggle$: Observable<string>;
   public header = '';
-  public siteTitle = 'boilerplate-client-angular';
+  public siteTitle = 'foo';
 
   private routerEventsSubscription: Subscription;
 
@@ -61,24 +61,8 @@ export class AppComponent implements OnInit, OnDestroy {
         filter((route) => route.outlet === 'primary'),
         mergeMap((route) => route.data),
         map((data) => data.title),
-        map((title) => {
-          const routeName =
-            typeof title === 'string'
-              ? title
-              : this.dataTransformationService.concatenateObjValues<string[]>(
-                  title,
-                );
-          return routeName;
-        }),
-        mergeMap((routeName) =>
-          // Listen to the language change event to translate with the latest language
-          this.translocoService.langChanges$.pipe(
-            switchMap((language) =>
-              // Use async selectTranslate to ensure the translation files are loaded
-              this.translocoService.selectTranslate(routeName, {}, language),
-            ),
-          ),
-        ),
+        map((title) => this.getRouteNameFromTitle(title)),
+        mergeMap((routeName) => this.translateRouteName(routeName)),
       )
       .subscribe((translatedRouteName) => {
         const translatedTitleWithRoute = translatedRouteName
@@ -100,5 +84,23 @@ export class AppComponent implements OnInit, OnDestroy {
           mainHeader.focus();
         }
       });
+  }
+
+  private getRouteNameFromTitle(title: string): string {
+    const routeName =
+      typeof title === 'string'
+        ? title
+        : this.dataTransformationService.concatenateObjValues<string[]>(title);
+    return routeName;
+  }
+
+  private translateRouteName(routeName: string): Observable<string> {
+    // Listen to the language change event to translate with the latest language
+    return this.translocoService.langChanges$.pipe(
+      switchMap((language) =>
+        // Use async selectTranslate to ensure the translation files are loaded
+        this.translocoService.selectTranslate<string>(routeName, {}, language),
+      ),
+    );
   }
 }
