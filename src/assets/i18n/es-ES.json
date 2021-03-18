@@ -181,10 +181,33 @@
     "userUpdated": "{{ notification.user }} {{ notification.updated }}."
   },
   "routing": {
+    "admin": {
+      "agencyList": "Agency List",
+      "createAgency": "Create Agency",
+      "createUser": "Create User",
+      "updateAgency": "Update Agency",
+      "updateUser": "Update User",
+      "userList": "User List"
+    },
+    "app": {
+      "notFound": "Not Found"
+    },
     "auth": {
+      "activateAccount": "Activate Account",
+      "forgotPassword": "Olvidó Contraseña",
       "login": "Acceso",
-      "signUp": "Inscribirse",
-      "forgotPassword": "Olvidó Contraseña"
+      "logout": "Logged Out",
+      "resetPassword": "Reset Password",
+      "signUp": "Inscribirse"
+    },
+    "content": {
+      "agentList": "Agent List",
+      "createAgent": "Create Agent",
+      "updateAgent": "Update Agent"
+    },
+    "user": {
+      "changePassword": "Change Password",
+      "profile": "Update Profile"
     }
   }
 }

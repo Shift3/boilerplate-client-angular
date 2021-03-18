@@ -178,10 +178,33 @@
     "userUpdated": "Đã {{ notification.updated }} người dùng."
   },
   "routing": {
+    "admin": {
+      "agencyList": "Agency List",
+      "createAgency": "Create Agency",
+      "createUser": "Create User",
+      "updateAgency": "Update Agency",
+      "updateUser": "Update User",
+      "userList": "User List"
+    },
+    "app": {
+      "notFound": "Not Found"
+    },
     "auth": {
+      "activateAccount": "Activate Account",
+      "forgotPassword": "Quên mật khẩu",
       "login": "Đăng nhập",
-      "signUp": "Đăng ký",
-      "forgotPassword": "Quên mật khẩu"
+      "logout": "Logged Out",
+      "resetPassword": "Reset Password",
+      "signUp": "Đăng ký"
+    },
+    "content": {
+      "agentList": "Agent List",
+      "createAgent": "Create Agent",
+      "updateAgent": "Update Agent"
+    },
+    "user": {
+      "changePassword": "Change Password",
+      "profile": "Update Profile"
     }
   }
 }

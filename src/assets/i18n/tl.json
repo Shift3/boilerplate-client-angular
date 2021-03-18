@@ -181,10 +181,33 @@
     "userUpdated": "Na-update ng gumagamit."
   },
   "routing": {
+    "admin": {
+      "agencyList": "Agency List",
+      "createAgency": "Create Agency",
+      "createUser": "Create User",
+      "updateAgency": "Update Agency",
+      "updateUser": "Update User",
+      "userList": "User List"
+    },
+    "app": {
+      "notFound": "Not Found"
+    },
     "auth": {
+      "activateAccount": "Activate Account",
+      "forgotPassword": "Forgot Password",
       "login": "Mag log in",
-      "signUp": "Mag-sign Up",
-      "forgotPassword": "Nakalimutan ang kontrasenyas"
+      "logout": "Logged Out",
+      "resetPassword": "Nakalimutan ang kontrasenyas",
+      "signUp": "Mag-sign Up"
+    },
+    "content": {
+      "agentList": "Agent List",
+      "createAgent": "Create Agent",
+      "updateAgent": "Update Agent"
+    },
+    "user": {
+      "changePassword": "Change Password",
+      "profile": "Update Profile"
     }
   }
 }
