@@ -65,11 +65,11 @@ export class AppComponent implements OnInit, OnDestroy {
         mergeMap((routeName) => this.translateRouteName(routeName)),
       )
       .subscribe((translatedRouteName) => {
-        const translatedTitleWithRoute = translatedRouteName
+        const pageTitle = translatedRouteName
           ? `${this.siteTitle} - ${translatedRouteName}`
           : this.siteTitle;
         this.header = translatedRouteName;
-        this.titleService.setTitle(`${translatedTitleWithRoute}`);
+        this.titleService.setTitle(`${pageTitle}`);
       });
   }
 
