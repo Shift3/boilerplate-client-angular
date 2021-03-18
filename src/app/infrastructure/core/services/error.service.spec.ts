@@ -68,7 +68,7 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error, status: 500 });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: 'Server Error',
+            message: new Message({ message: 'serverError' }),
             sendToSentry: true,
             showDialog: true,
           });
@@ -83,7 +83,7 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: 'Connection to servers is not available.',
+            message: new Message({ message: 'noServerConnection' }),
             sendToSentry: true,
             showDialog: true,
           });
@@ -99,7 +99,7 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: 'No Internet Connection.',
+            message: new Message({ message: 'noInternet' }),
           });
           spyOnProperty(navigator, 'onLine').and.returnValue(false);
 
@@ -113,7 +113,7 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error, status: 403 });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: 'You do not have permission to view the selected page.',
+            message: new Message({ message: 'forbidden' }),
             sendToSentry: true,
           });
 
@@ -127,7 +127,7 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error, status: 404 });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: 'Not found.',
+            message: new Message({ message: 'notFound' }),
           });
 
           expect(
