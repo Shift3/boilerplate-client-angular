@@ -183,32 +183,32 @@
   },
   "routing": {
     "admin": {
-      "agencyList": "Agency List",
-      "createAgency": "Create Agency",
-      "createUser": "Create User",
-      "updateAgency": "Update Agency",
-      "updateUser": "Update User",
-      "userList": "User List"
+      "agencyList": "Danh sách đại lý",
+      "createAgency": "Tạo đại lý",
+      "createUser": "Tạo người dùng",
+      "updateAgency": "Cập nhật đại lý",
+      "updateUser": "Cập nhật người dùng",
+      "userList": "Danh sách người dùng"
     },
     "app": {
-      "notFound": "Not Found"
+      "notFound": "Không tìm thấy"
     },
     "auth": {
-      "activateAccount": "Activate Account",
+      "activateAccount": "Kích hoạt tài khoản",
       "forgotPassword": "Quên mật khẩu",
       "login": "Đăng nhập",
-      "logout": "Logged Out",
-      "resetPassword": "Reset Password",
+      "logout": "Đăng xuất",
+      "resetPassword": "Đặt lại mật khẩu",
       "signUp": "Đăng ký"
     },
     "content": {
-      "agentList": "Agent List",
-      "createAgent": "Create Agent",
-      "updateAgent": "Update Agent"
+      "agentList": "Danh sách đại lý",
+      "createAgent": "Tạo đại lý",
+      "updateAgent": "Cập nhật đại lý"
     },
     "user": {
-      "changePassword": "Change Password",
-      "profile": "Update Profile"
+      "changePassword": "Đổi mật khẩu",
+      "profile": "Cập nhật hồ sơ"
     }
   }
 }

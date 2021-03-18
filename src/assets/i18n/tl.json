@@ -186,32 +186,32 @@
   },
   "routing": {
     "admin": {
-      "agencyList": "Agency List",
-      "createAgency": "Create Agency",
-      "createUser": "Create User",
-      "updateAgency": "Update Agency",
-      "updateUser": "Update User",
-      "userList": "User List"
+      "agencyList": "Listahan ng Ahensya",
+      "createAgency": "Lumikha ng Ahensya",
+      "createUser": "Lumikha ng Gumagamit",
+      "updateAgency": "I-update ang Ahensya",
+      "updateUser": "I-update ang Gumagamit",
+      "userList": "Listahan ng Gumagamit"
     },
     "app": {
-      "notFound": "Not Found"
+      "notFound": "Hindi Mahanap"
     },
     "auth": {
-      "activateAccount": "Activate Account",
-      "forgotPassword": "Forgot Password",
-      "login": "Mag log in",
-      "logout": "Logged Out",
+      "activateAccount": "Isaaktibo ang Account",
+      "forgotPassword": "Nakalimutan ang Kontrasenyas",
+      "login": "Mag Log In",
+      "logout": "Naka-log Out",
       "resetPassword": "Nakalimutan ang kontrasenyas",
       "signUp": "Mag-sign Up"
     },
     "content": {
-      "agentList": "Agent List",
-      "createAgent": "Create Agent",
-      "updateAgent": "Update Agent"
+      "agentList": "Listahan ng Ahente",
+      "createAgent": "Lumikha ng Ahente",
+      "updateAgent": "I-update ang Ahente"
     },
     "user": {
-      "changePassword": "Change Password",
-      "profile": "Update Profile"
+      "changePassword": "Palitan ang Kontrasenyas",
+      "profile": "I-update ang Profile"
     }
   }
 }

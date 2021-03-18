@@ -186,32 +186,32 @@
   },
   "routing": {
     "admin": {
-      "agencyList": "Agency List",
-      "createAgency": "Create Agency",
-      "createUser": "Create User",
-      "updateAgency": "Update Agency",
-      "updateUser": "Update User",
-      "userList": "User List"
+      "agencyList": "Lista de Agencias",
+      "createAgency": "Crear Agencia",
+      "createUser": "Crear Usuario",
+      "updateAgency": "Actualizar Agencia",
+      "updateUser": "Actualizar Usuario",
+      "userList": "Lista de Usuarios"
     },
     "app": {
-      "notFound": "Not Found"
+      "notFound": "No Encontrada"
     },
     "auth": {
-      "activateAccount": "Activate Account",
+      "activateAccount": "Activar la Cuenta",
       "forgotPassword": "Olvidó Contraseña",
       "login": "Acceso",
-      "logout": "Logged Out",
-      "resetPassword": "Reset Password",
+      "logout": "Desconectado",
+      "resetPassword": "Restablecer la Contraseña",
       "signUp": "Inscribirse"
     },
     "content": {
-      "agentList": "Agent List",
-      "createAgent": "Create Agent",
-      "updateAgent": "Update Agent"
+      "agentList": "Lista de Agentes",
+      "createAgent": "Crear Agente",
+      "updateAgent": "Actualizar Agente"
     },
     "user": {
-      "changePassword": "Change Password",
-      "profile": "Update Profile"
+      "changePassword": "Cambiar la Contraseña",
+      "profile": "Actualizar Perfil"
     }
   }
 }
