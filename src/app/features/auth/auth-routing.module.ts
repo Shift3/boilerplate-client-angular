@@ -27,7 +27,7 @@ const routes: Routes = [
       {
         path: 'activate-account/:token',
         component: ActivateAccountSmartComponent,
-        data: { title: 'Activate Account' },
+        data: { title: 'routing.auth.activateAccount' },
       },
       {
         path: 'forgot-password',
@@ -42,12 +42,12 @@ const routes: Routes = [
       {
         path: 'logout',
         component: LogoutComponent,
-        data: { title: 'Logged Out' },
+        data: { title: 'routing.auth.logout' },
       },
       {
         path: 'reset-password/:token',
         component: ResetPasswordSmartComponent,
-        data: { title: 'Reset Password' },
+        data: { title: 'routing.auth.resetPassword' },
       },
       {
         path: 'signup',
