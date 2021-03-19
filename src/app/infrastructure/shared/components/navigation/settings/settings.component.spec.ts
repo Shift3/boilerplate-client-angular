@@ -6,6 +6,7 @@ import { MockPipe } from 'ng-mocks';
 import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
 import { SettingsComponent } from './settings.component';
 import { SentenceCasePipe } from '@shared/pipes/sentence-case.pipe';
@@ -25,6 +26,7 @@ import { TrackByKeyPipe } from '@shared/pipes/track-by-key.pipe';
             MockPipe(TrackByKeyPipe),
           ],
           imports: [
+            getTranslocoModule(),
             HttpClientTestingModule,
             RouterTestingModule,
             TranslocoTestingModule,

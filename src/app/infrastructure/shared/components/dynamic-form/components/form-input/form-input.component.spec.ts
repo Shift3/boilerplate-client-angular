@@ -9,6 +9,7 @@ import { environment } from '@env/environment.test';
 import { FormErrorPipe } from '@shared/pipes/form-error.pipe';
 import { FormField } from '@models/form/form';
 import { FormInputComponent } from './form-input.component';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { IInputField, InputField } from '@models/form/input';
 import { Logger } from '@utils/logger';
 
@@ -22,6 +23,7 @@ import { Logger } from '@utils/logger';
         TestBed.configureTestingModule({
           declarations: [FormInputComponent, MockPipe(FormErrorPipe)],
           imports: [
+            getTranslocoModule(),
             NgxMaskModule.forRoot(),
             ReactiveFormsModule,
             TranslocoTestingModule,

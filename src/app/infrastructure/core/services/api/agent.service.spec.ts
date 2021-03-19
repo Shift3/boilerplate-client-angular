@@ -16,6 +16,7 @@ import {
   IAgentDTO,
   IAgentRequest,
 } from '@models/agent';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
 import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
@@ -31,6 +32,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
       beforeEach(() => {
         TestBed.configureTestingModule({
           imports: [
+            getTranslocoModule(),
             HttpClientTestingModule,
             ToastrTestingModule,
             TranslocoTestingModule,
