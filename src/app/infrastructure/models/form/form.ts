@@ -36,31 +36,15 @@ export class FormField<T> implements IFormField<T> {
 
 export interface IFormConfig {
   formName: string;
-  formTitle: IFormTitle;
+  formTitle: string;
   validation: ValidatorFn[];
   controls: IFormField<IInputField | ISelectField<unknown>>[];
   submit?: ISaveCancelButtonConfig;
 }
 
-export interface IFormTitle {
-  action?: string;
-  model?: string;
-}
-
-export class FormTitle implements IFormTitle {
-  action: string = '';
-  model: string = '';
-
-  constructor(configOverride?: Partial<IFormTitle>) {
-    if (configOverride) {
-      Object.assign(this, configOverride);
-    }
-  }
-}
-
 export class FormConfig implements IFormConfig {
   formName: string = 'form';
-  formTitle: IFormTitle = new FormTitle();
+  formTitle: string = 'Create User';
   validation: ValidatorFn[] = [];
   controls: IFormField<IInputField | ISelectField<unknown>>[] = [];
   submit?: ISaveCancelButtonConfig = new SaveCancelButtonConfig();

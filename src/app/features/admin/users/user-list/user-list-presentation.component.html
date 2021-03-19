@@ -1,8 +1,7 @@
 <ng-container *ngIf="checkRole?.isAdmin">
   <div class="row" *transloco="let translate; read: 'dynamicForm'">
     <button class="btn btn-add" routerLink="/admin/create-user">
-      {{ translate('action.add') | uppercase }}
-      {{ translate('model.user') | uppercase }}
+      {{ translate('action.addUser') | uppercase }}
     </button>
   </div>
 </ng-container>

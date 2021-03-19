@@ -18,15 +18,17 @@
   },
   "dynamicForm": {
     "action": {
-      "activate": "Kích hoạt",
       "add": "Thêm vào",
+      "addAgency": "Thêm đại lý",
+      "addAgent": "Thêm đại lý",
+      "addUser": "Thêm người dùng",
       "cancel": "Huỷ bỏ",
       "change": "Thay đổi",
       "create": "Tạo nên",
+      "createAccount": "Tạo tài khoản",
       "delete": "Xóa bỏ",
-      "forgot": "Quên mất",
+      "forgotPassword": "Quên mật khẩu",
       "login": "Đăng nhập",
-      "reset": "Cài lại",
       "signUp": "Đăng ký",
       "submit": "Gửi đi",
       "update": "Cập nhật"
@@ -46,7 +48,7 @@
     "label": {
       "address": "Địa chỉ",
       "address2": "{{ dynamicForm.label.address }} 2",
-      "agency": "{{ dynamicForm.model.agency }}",
+      "agency": "Đại lý",
       "agencyName": "Tên cơ quan",
       "city": "Tp.",
       "confirm": "Xác nhận",
@@ -61,20 +63,11 @@
       "lastName": "Họ",
       "new": "Mới",
       "newPassword": "{{ dynamicForm.label.password }} {{ dynamicForm.label.new }} ",
-      "password": "{{ dynamicForm.model.password }}",
+      "password": "Mật khẩu",
       "phoneNumber": "Số điện thoại",
       "role": "Vai trò",
       "state": "Tiểu bang",
       "zipCode": "Mã Bưu Chính"
-    },
-    "model": {
-      "account": "Tài khoản",
-      "agency": "Đại lý",
-      "agent": "Đặc vụ",
-      "memberLogin": "Đăng nhập thành viên",
-      "password": "Mật khẩu",
-      "profile": "Hồ sơ",
-      "user": "Người sử dụng"
     },
     "placeholder": {
       "confirmEmail": "Xác nhận email của bạn",
@@ -87,6 +80,21 @@
       "lastName": "Nhập họ của bạn",
       "newPassword": "Nhập mật khẩu mới",
       "password": "Nhập mật khẩu của bạn"
+    },
+    "title": {
+      "activateAccount": "Kích hoạt tài khoản",
+      "changePassword": "Đổi mật khẩu",
+      "createAgency": "Tạo đại lý",
+      "createAgent": "Tạo đại lý",
+      "createUser": "Tạo người dùng",
+      "forgotPassword": "Quên mật khẩu",
+      "memberLogin": "Đăng nhập thành viên",
+      "resetPassword": "Đặt lại mật khẩu",
+      "signUp": "Đăng ký",
+      "updateAgency": "Cập nhật đại lý",
+      "updateAgent": "Cập nhật đại lý",
+      "updateProfile": "Cập nhật hồ sơ",
+      "updateUser": "Cập nhật người dùng"
     }
   },
   "dynamicTable": {
@@ -107,6 +115,15 @@
       "emptyListMessage": "Không có dữ liệu",
       "resendActivationEmail": "Gửi lại email đã kích hoạt",
       "thumbnail": "Hình nhỏ"
+    },
+    "tooltip": {
+      "deleteAgency": "Xóa đại lý",
+      "deleteAgent": "Xóa tác nhân",
+      "deleteUser": "Xóa người dùng",
+      "resetPassword": "Đặt lại mật khẩu",
+      "updateAgency": "Cập nhật đại lý",
+      "updateAgent": "Cập nhật đại lý",
+      "updateUser": "Cập nhật người dùng"
     }
   },
   "navigation": {

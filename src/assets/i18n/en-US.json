@@ -18,15 +18,17 @@
   },
   "dynamicForm": {
     "action": {
-      "activate": "Activate",
       "add": "Add",
+      "addAgency": "Add Agency",
+      "addAgent": "Add Agent",
+      "addUser": "Add User",
       "cancel": "Cancel",
       "change": "Change",
       "create": "Create",
+      "createAccount": "Create Account",
       "delete": "Delete",
-      "forgot": "Forgot",
+      "forgotPassword": "Forgot Password",
       "login": "Log In",
-      "reset": "Reset",
       "signUp": "Sign Up",
       "submit": "Submit",
       "update": "Update"
@@ -46,7 +48,7 @@
     "label": {
       "address": "Address",
       "address2": "{{ dynamicForm.label.address }} 2",
-      "agency": "{{ dynamicForm.model.agency }}",
+      "agency": "Agency",
       "agencyName": "Agency Name",
       "city": "City",
       "confirm": "Confirm",
@@ -61,20 +63,11 @@
       "lastName": "Last Name",
       "new": "New",
       "newPassword": "{{ dynamicForm.label.new }} {{ dynamicForm.label.password }}",
-      "password": "{{ dynamicForm.model.password }}",
+      "password": "Password",
       "phoneNumber": "Phone Number",
       "role": "Role",
       "state": "State",
       "zipCode": "Zip Code"
-    },
-    "model": {
-      "account": "Account",
-      "agency": "Agency",
-      "agent": "Agent",
-      "memberLogin": "Member Log In",
-      "password": "Password",
-      "profile": "Profile",
-      "user": "User"
     },
     "placeholder": {
       "confirmEmail": "Confirm your email",
@@ -87,6 +80,21 @@
       "lastName": "{{ dynamicForm.placeholder.enter }} your last name",
       "newPassword": "{{ dynamicForm.placeholder.enter }} a new password",
       "password": "{{ dynamicForm.placeholder.enter }} your password"
+    },
+    "title": {
+      "activateAccount": "Activate Account",
+      "changePassword": "Change Password",
+      "createAgency": "Create Agency",
+      "createAgent": "Create Agent",
+      "createUser": "Create User",
+      "forgotPassword": "Forgot Password",
+      "memberLogin": "Member Login",
+      "resetPassword": "Reset Password",
+      "signUp": "Sign Up",
+      "updateAgency": "Update Agency",
+      "updateAgent": "Update Agent",
+      "updateProfile": "Update Profile",
+      "updateUser": "Update User"
     }
   },
   "dynamicTable": {
@@ -107,6 +115,15 @@
       "emptyListMessage": "No data",
       "resendActivationEmail": "Resend Activated Email",
       "thumbnail": "Thumbnail"
+    },
+    "tooltip": {
+      "deleteAgency": "Delete Agency",
+      "deleteAgent": "Delete Agent",
+      "deleteUser": "Delete User",
+      "resetPassword": "Reset Password",
+      "updateAgency": "Update Agency",
+      "updateAgent": "Update Agent",
+      "updateUser": "Update User"
     }
   },
   "navigation": {

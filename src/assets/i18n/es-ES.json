@@ -3,7 +3,7 @@
     "action": {
       "confirm": "Confirmar",
       "continue": "Continuar",
-      "delete": "Borrar",
+      "delete": "Eliminar",
       "logOut": "Cerrar sesión",
       "resend": "Reenviar",
       "send": "Enviar"
@@ -18,15 +18,17 @@
   },
   "dynamicForm": {
     "action": {
-      "activate": "Activar",
       "add": "Agregar",
+      "addAgency": "Agregar agencia",
+      "addAgent": "Agregar agente",
+      "addUser": "Agregar usuario",
       "cancel": "Cancelar",
       "change": "Cambio",
       "create": "Crear",
-      "delete": "Borrar",
-      "forgot": "Olvidó",
+      "createAccount": "Crear una cuenta",
+      "delete": "Eliminar",
+      "forgotPassword": "Has olvidado tu contraseña",
       "login": "Iniciar sesión",
-      "reset": "Reiniciar",
       "signUp": "Inscribirse",
       "submit": "Enviar",
       "update": "Actualizar"
@@ -46,7 +48,7 @@
     "label": {
       "address": "Dirección",
       "address2": "{{ dynamicForm.label.address }} 2",
-      "agency": "{{ dynamicForm.model.agency }}",
+      "agency": "Agencia",
       "agencyName": "Nombre de agencia",
       "city": "Ciudad",
       "confirm": "Confirmar",
@@ -61,20 +63,11 @@
       "lastName": "Apellido",
       "new": "Nueva",
       "newPassword": "{{ dynamicForm.label.new }} {{ dynamicForm.label.password }}",
-      "password": "{{ dynamicForm.model.password }}",
+      "password": "Contraseña",
       "phoneNumber": "Número de teléfono",
       "role": "Papel",
       "state": "Expresar",
       "zipCode": "Código postal"
-    },
-    "model": {
-      "account": "Cuenta",
-      "agency": "Agencia",
-      "agent": "Agente",
-      "memberLogin": "Inicio de sesión de miembros",
-      "password": "Contraseña",
-      "profile": "Perfil",
-      "user": "Usuario"
     },
     "placeholder": {
       "confirmEmail": "Confirme su email",
@@ -87,6 +80,21 @@
       "lastName": "Ingrese su apellido",
       "newPassword": "Introduzca una nueva contraseña",
       "password": "Ingresa tu contraseña"
+    },
+    "title": {
+      "activateAccount": "Activar la Cuenta",
+      "changePassword": "Cambiar la Contraseña",
+      "createAgency": "Crear Agencia",
+      "createAgent": "Crear Agente",
+      "createUser": "Crear Usuario",
+      "forgotPassword": "Has Olvidado tu Contraseña",
+      "memberLogin": "Inicio de Sesión de Miembro",
+      "resetPassword": "Restablecer la Contraseña",
+      "signUp": "Inscribirse",
+      "updateAgency": "Actualizar Agencia",
+      "updateAgent": "Actualizar Agente",
+      "updateProfile": "Actualizar Perfil",
+      "updateUser": "Actualizar Usuario"
     }
   },
   "dynamicTable": {
@@ -107,6 +115,15 @@
       "emptyListMessage": "Sin datos",
       "resendActivationEmail": "Reenviar correo electrónico activado",
       "thumbnail": "Miniatura"
+    },
+    "tooltip": {
+      "deleteAgency": "Eliminar agencia",
+      "deleteAgent": "Eliminar agente",
+      "deleteUser": "Eliminar usuario",
+      "resetPassword": "Restablecer la contraseña",
+      "updateAgency": "Actualizar agencia",
+      "updateAgent": "Actualizar agente",
+      "updateUser": "Actualizar usuario"
     }
   },
   "navigation": {
