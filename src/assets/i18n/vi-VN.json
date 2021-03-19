@@ -184,5 +184,35 @@
     "unableToLoadUserInfo": "Không thể tải thông tin người dùng. {{ notification.returningToDashboard }}",
     "updated": "cập nhật",
     "userUpdated": "Đã {{ notification.updated }} người dùng."
+  },
+  "routing": {
+    "admin": {
+      "agencyList": "Danh sách đại lý",
+      "createAgency": "Tạo đại lý",
+      "createUser": "Tạo người dùng",
+      "updateAgency": "Cập nhật đại lý",
+      "updateUser": "Cập nhật người dùng",
+      "userList": "Danh sách người dùng"
+    },
+    "app": {
+      "notFound": "Không tìm thấy"
+    },
+    "auth": {
+      "activateAccount": "Kích hoạt tài khoản",
+      "forgotPassword": "Quên mật khẩu",
+      "login": "Đăng nhập",
+      "logout": "Đăng xuất",
+      "resetPassword": "Đặt lại mật khẩu",
+      "signUp": "Đăng ký"
+    },
+    "content": {
+      "agentList": "Danh sách đại lý",
+      "createAgent": "Tạo đại lý",
+      "updateAgent": "Cập nhật đại lý"
+    },
+    "user": {
+      "changePassword": "Đổi mật khẩu",
+      "profile": "Cập nhật hồ sơ"
+    }
   }
 }

@@ -187,5 +187,35 @@
     "updated": "Na-update",
     "user": "Gumagamit",
     "userUpdated": "Na-update ng gumagamit."
+  },
+  "routing": {
+    "admin": {
+      "agencyList": "Listahan ng Ahensya",
+      "createAgency": "Lumikha ng Ahensya",
+      "createUser": "Lumikha ng Gumagamit",
+      "updateAgency": "I-update ang Ahensya",
+      "updateUser": "I-update ang Gumagamit",
+      "userList": "Listahan ng Gumagamit"
+    },
+    "app": {
+      "notFound": "Hindi Mahanap"
+    },
+    "auth": {
+      "activateAccount": "Isaaktibo ang Account",
+      "forgotPassword": "Nakalimutan ang Kontrasenyas",
+      "login": "Mag Log In",
+      "logout": "Naka-log Out",
+      "resetPassword": "Nakalimutan ang kontrasenyas",
+      "signUp": "Mag-sign Up"
+    },
+    "content": {
+      "agentList": "Listahan ng Ahente",
+      "createAgent": "Lumikha ng Ahente",
+      "updateAgent": "I-update ang Ahente"
+    },
+    "user": {
+      "changePassword": "Palitan ang Kontrasenyas",
+      "profile": "I-update ang Profile"
+    }
   }
 }
