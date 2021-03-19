@@ -8,6 +8,7 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { DynamicFormComponent } from './dynamic-form.component';
 import { environment } from '@env/environment.test';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
 import { SaveCancelComponent } from '../save-cancel/save-cancel.component';
 
@@ -24,6 +25,7 @@ import { SaveCancelComponent } from '../save-cancel/save-cancel.component';
             MockComponent(SaveCancelComponent),
           ],
           imports: [
+            getTranslocoModule(),
             HttpClientTestingModule,
             ReactiveFormsModule,
             RouterTestingModule,
