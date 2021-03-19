@@ -25,15 +25,19 @@ import { SentryConfig } from '@models/error';
 
       describe('getClientMessage()', () => {
         it(`should return the passed in error message in a list`, () => {
-          const error = new Error('Test');
-          const expectedValue = [new Message({ message: 'Test' })];
+          const error = new Error('agencyCreated');
+          const expectedValue = [
+            new Message({ message: 'notification.agencyCreated' }),
+          ];
 
           expect(service.getClientMessage(error)).toEqual(expectedValue);
         });
 
         it(`should return 'No Internet Connection.' in a list when the client reports being offline`, () => {
-          const error = new Error('Test');
-          const expectedValue = [new Message({ message: 'noInternet' })];
+          const error = new Error('test');
+          const expectedValue = [
+            new Message({ message: 'notification.noInternet' }),
+          ];
           spyOnProperty(navigator, 'onLine').and.returnValue(false);
 
           expect(service.getClientMessage(error)).toEqual(expectedValue);
@@ -68,7 +72,7 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error, status: 500 });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: new Message({ message: 'serverError' }),
+            message: new Message({ message: 'notification.serverError' }),
             sendToSentry: true,
             showDialog: true,
           });
@@ -83,7 +87,9 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: new Message({ message: 'noServerConnection' }),
+            message: new Message({
+              message: 'notification.noServerConnection',
+            }),
             sendToSentry: true,
             showDialog: true,
           });
@@ -99,7 +105,7 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: new Message({ message: 'noInternet' }),
+            message: new Message({ message: 'notification.noInternet' }),
           });
           spyOnProperty(navigator, 'onLine').and.returnValue(false);
 
@@ -113,7 +119,7 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error, status: 403 });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: new Message({ message: 'forbidden' }),
+            message: new Message({ message: 'notification.forbidden' }),
             sendToSentry: true,
           });
 
@@ -127,7 +133,7 @@ import { SentryConfig } from '@models/error';
           const httpError = new HttpErrorResponse({ error, status: 404 });
           const sentryConfig = new SentryConfig();
           const expectedValue = new SentryConfig({
-            message: new Message({ message: 'notFound' }),
+            message: new Message({ message: 'notification.notFound' }),
           });
 
           expect(
@@ -138,8 +144,8 @@ import { SentryConfig } from '@models/error';
 
       describe('convertMessageToMessageList()', () => {
         it(`should return the passed in error message in a list`, () => {
-          const message = new Message({ message: 'Test' });
-          const expectedValue = [new Message({ message: 'Test' })];
+          const message = new Message({ message: 'notification.test' });
+          const expectedValue = [new Message({ message: 'notification.test' })];
 
           expect(service.convertMessageToMessageList(message)).toEqual(
             expectedValue,

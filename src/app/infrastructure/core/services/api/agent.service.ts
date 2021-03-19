@@ -7,6 +7,7 @@ import { ApiService } from './api.service';
 import { IAgentDTO, IAgentRequest } from '@models/agent';
 import { environment } from '@env/environment';
 import { Message } from '@models/message';
+import { INotification, Notification } from '@models/translation/notification';
 import { NotificationService } from '../notification.service';
 
 @Injectable({
@@ -42,7 +43,10 @@ export class AgentService {
       .post<IAgentDTO, IAgentRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message: Message = new Message({ message: 'agentCreated' });
+          const notification: INotification = new Notification();
+          const message: Message = new Message({
+            message: notification.agentCreated,
+          });
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -58,7 +62,10 @@ export class AgentService {
       .put<IAgentDTO, IAgentRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message: Message = new Message({ message: 'agentUpdated' });
+          const notification: INotification = new Notification();
+          const message: Message = new Message({
+            message: notification.agentUpdated,
+          });
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -69,7 +76,10 @@ export class AgentService {
 
     return this.apiService.delete<IAgentDTO>(endpoint).pipe(
       tap(() => {
-        const message: Message = new Message({ message: 'agentDeleted' });
+        const notification: INotification = new Notification();
+        const message: Message = new Message({
+          message: notification.agentDeleted,
+        });
         return this.notificationService.showSuccess([message]);
       }),
     );

@@ -35,7 +35,9 @@ import { NotificationService } from './notification.service';
 
       describe('showSuccess()', () => {
         it('should call toastrService.success with the messageList parameter', () => {
-          const messageList = [new Message({ message: 'Notification' })];
+          const messageList = [
+            new Message({ message: 'notification.notification' }),
+          ];
 
           service.showSuccess(messageList);
           expect(toastrMock.success).toHaveBeenCalled();
@@ -44,7 +46,9 @@ import { NotificationService } from './notification.service';
 
       describe('showError()', () => {
         it('should call toastrService.error with the messageList parameter', () => {
-          const messageList = [new Message({ message: 'Notification' })];
+          const messageList = [
+            new Message({ message: 'notification.notification' }),
+          ];
 
           service.showError(messageList);
           expect(toastrMock.error).toHaveBeenCalled();

@@ -8,6 +8,7 @@ import { AdminAuthGuard } from './admin-auth.guard';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { Message } from '@models/message';
+import { Notification } from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
@@ -57,8 +58,11 @@ import { UserStateService } from '../services/state/user-state.service';
         });
 
         it(`should show a notification on failing the guard`, () => {
+          const notification = new Notification();
           const message = [
-            new Message({ message: 'cannotViewPageReturnToDashboard' }),
+            new Message({
+              message: notification.cannotViewPageReturnToDashboard,
+            }),
           ];
 
           guard.canActivate().subscribe(() => {

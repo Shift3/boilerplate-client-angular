@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 
 import { Message } from '@models/message';
+import { Notification } from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 import { UserStateService } from '../services/state/user-state.service';
 
@@ -24,8 +25,9 @@ export class CanEditAuthGuard implements CanActivate, CanActivateChild {
       map((checkRole) => checkRole.canEdit),
       tap((canEdit) => {
         if (!canEdit) {
+          const notification = new Notification();
           const message: Message = new Message({
-            message: 'cannotViewPageReturnToDashboard',
+            message: notification.cannotViewPageReturnToDashboard,
           });
           this.notificationService.showError([message]);
           this.router.navigateByUrl('/');
