@@ -7,7 +7,7 @@ import { catchError, take } from 'rxjs/operators';
 
 import { IRoleDTO } from '@models/role';
 import { Message } from '@models/message';
-import { Notification } from '@models/translation/notification';
+import { INotification, Notification } from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 import { RoleService } from '../services/api/role.service';
 
@@ -32,7 +32,7 @@ export class GetRoleListResolver implements Resolve<IRoleDTO[]> {
   }
 
   private navigateOnError(): void {
-    const notification = new Notification();
+    const notification: INotification = new Notification();
     const message: Message = new Message({
       message: notification.unableToLoadRoles,
     });
