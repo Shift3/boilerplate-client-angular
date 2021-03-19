@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
 import { Message } from '@models/message';
 import { NotificationService } from './notification.service';
@@ -19,7 +20,7 @@ import { NotificationService } from './notification.service';
 
       beforeEach(() => {
         TestBed.configureTestingModule({
-          imports: [TranslocoTestingModule],
+          imports: [getTranslocoModule(), TranslocoTestingModule],
           providers: [
             NotificationService,
             { provide: ToastrService, useValue: toastrMock },

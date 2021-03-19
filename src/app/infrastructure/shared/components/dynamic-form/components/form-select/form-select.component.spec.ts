@@ -8,6 +8,7 @@ import { environment } from '@env/environment.test';
 import { FormErrorPipe } from '@shared/pipes/form-error.pipe';
 import { FormField } from '@models/form/form';
 import { FormSelectComponent } from './form-select.component';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
 import { ISelectField, SelectField } from '@models/form/select';
 
@@ -20,7 +21,11 @@ import { ISelectField, SelectField } from '@models/form/select';
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           declarations: [FormSelectComponent, MockPipe(FormErrorPipe)],
-          imports: [ReactiveFormsModule, TranslocoTestingModule],
+          imports: [
+            getTranslocoModule(),
+            ReactiveFormsModule,
+            TranslocoTestingModule,
+          ],
         }).compileComponents();
       }));
 

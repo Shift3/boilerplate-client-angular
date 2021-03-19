@@ -5,6 +5,7 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { ConfirmModalComponent } from './confirm-modal.component';
 import { environment } from '@env/environment.test';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
 
 !environment.testIntegration
@@ -16,7 +17,7 @@ import { Logger } from '@utils/logger';
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           declarations: [ConfirmModalComponent],
-          imports: [TranslocoTestingModule],
+          imports: [getTranslocoModule(), TranslocoTestingModule],
           providers: [NgbActiveModal],
         }).compileComponents();
       }));
