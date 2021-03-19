@@ -132,6 +132,10 @@
       "welcomeText": "Chào"
     }
   },
+  "notFound": {
+    "description": "Đã xảy ra lỗi hoặc trang này không tồn tại nữa.",
+    "goBack": "Quay lại"
+  },
   "signUp": {
     "cardHeader": "Chưa đăng ký?",
     "instruction": "Đăng ký tài khoản của bạn nhanh chóng và dễ dàng."

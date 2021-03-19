@@ -132,6 +132,10 @@
       "welcomeText": "Kamusta"
     }
   },
+  "notFound": {
+    "description": "Nagkaproblema o wala na ang pahinang ito.",
+    "goBack": "Bumalik ka"
+  },
   "signUp": {
     "cardHeader": "Hindi pa Nakarehistro?",
     "instruction": "Ang pagrehistro para sa iyong account ay mabilis at madali."
