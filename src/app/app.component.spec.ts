@@ -37,6 +37,6 @@ import { TopNavigationSmartComponent } from '@shared/components/navigation/top-n
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const app = fixture.componentInstance;
-        expect(app.title).toEqual('boilerplate-client-angular');
+        expect(app.siteTitle).toEqual('boilerplate-client-angular');
       });
     });

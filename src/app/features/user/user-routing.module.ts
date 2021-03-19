@@ -21,7 +21,7 @@ const routes: Routes = [
       {
         path: 'change-password',
         component: ChangePasswordSmartComponent,
-        data: { title: 'Change Password' },
+        data: { title: 'routing.user.changePassword' },
         resolve: {
           user: resolverList.GetLoggedInUserResolver,
         },
@@ -29,7 +29,9 @@ const routes: Routes = [
       {
         path: 'profile',
         component: UserDetailSmartComponent,
-        data: { title: 'updateProfile' },
+        data: {
+          title: 'routing.user.profile',
+        },
         resolve: {
           user: resolverList.GetLoggedInUserResolver,
         },

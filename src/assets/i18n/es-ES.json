@@ -204,5 +204,35 @@
     "updated": "actualizado",
     "user": "Usuario",
     "userUpdated": "{{ notification.user }} {{ notification.updated }}."
+  },
+  "routing": {
+    "admin": {
+      "agencyList": "Lista de Agencias",
+      "createAgency": "Crear Agencia",
+      "createUser": "Crear Usuario",
+      "updateAgency": "Actualizar Agencia",
+      "updateUser": "Actualizar Usuario",
+      "userList": "Lista de Usuarios"
+    },
+    "app": {
+      "notFound": "No Encontrada"
+    },
+    "auth": {
+      "activateAccount": "Activar la Cuenta",
+      "forgotPassword": "Olvidó Contraseña",
+      "login": "Acceso",
+      "logout": "Desconectado",
+      "resetPassword": "Restablecer la Contraseña",
+      "signUp": "Inscribirse"
+    },
+    "content": {
+      "agentList": "Lista de Agentes",
+      "createAgent": "Crear Agente",
+      "updateAgent": "Actualizar Agente"
+    },
+    "user": {
+      "changePassword": "Cambiar la Contraseña",
+      "profile": "Actualizar Perfil"
+    }
   }
 }

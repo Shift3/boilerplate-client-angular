@@ -42,7 +42,7 @@ const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent,
-    data: { title: 'Not Found' },
+    data: { title: 'routing.app.notFound' },
   },
 ];
 

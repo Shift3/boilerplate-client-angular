@@ -25,13 +25,15 @@ const routes: Routes = [
       {
         path: 'agent-list',
         component: AgentListSmartComponent,
-        data: { title: 'Agent List' },
+        data: { title: 'routing.content.agentList' },
       },
       {
         path: 'create-agent',
         component: AgentDetailSmartComponent,
         canActivate: [AdminAuthGuard],
-        data: { title: 'createAgent' },
+        data: {
+          title: 'routing.content.createAgent',
+        },
         resolve: {
           agent: resolverList.CreateAgentResolver,
         },
@@ -40,7 +42,9 @@ const routes: Routes = [
         path: 'update-agent/:id',
         component: AgentDetailSmartComponent,
         canActivate: [CanEditAuthGuard],
-        data: { title: 'updateAgent' },
+        data: {
+          title: 'routing.content.updateAgent',
+        },
         resolve: {
           agent: resolverList.UpdateAgentResolver,
         },

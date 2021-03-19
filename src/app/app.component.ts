@@ -7,7 +7,8 @@ import {
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { TranslocoService } from '@ngneat/transloco';
+import { filter, map, mergeMap, switchMap } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 
 import { DataTransformationService } from '@core/services/data-transformation.service';
@@ -22,7 +23,7 @@ import { NavbarStateService } from '@core/services/state/navbar-state.service';
 export class AppComponent implements OnInit, OnDestroy {
   public navbarToggle$: Observable<string>;
   public header = '';
-  public title = 'boilerplate-client-angular';
+  public siteTitle = 'boilerplate-client-angular';
 
   private routerEventsSubscription: Subscription;
 
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private navbarStateService: NavbarStateService,
     private router: Router,
     private titleService: Title,
+    private translocoService: TranslocoService,
   ) {
     this.navbarToggle$ = this.navbarStateService.getNavbarToggle();
   }
@@ -58,17 +60,16 @@ export class AppComponent implements OnInit, OnDestroy {
         }),
         filter((route) => route.outlet === 'primary'),
         mergeMap((route) => route.data),
+        map((data) => data.title),
+        map((title) => this.getRouteNameFromTitle(title)),
+        mergeMap((routeName) => this.translateRouteName(routeName)),
       )
-      .subscribe((event) => {
-        const pageTitle =
-          typeof event.title === 'string'
-            ? event.title
-            : this.dataTransformationService.concatenateObjValues<string[]>(
-                event.title,
-              );
-        const title = pageTitle ? `${this.title} - ${pageTitle}` : this.title;
-        this.header = event.title;
-        this.titleService.setTitle(`${title}`);
+      .subscribe((translatedRouteName) => {
+        const pageTitle = translatedRouteName
+          ? `${this.siteTitle} - ${translatedRouteName}`
+          : this.siteTitle;
+        this.header = translatedRouteName;
+        this.titleService.setTitle(`${pageTitle}`);
       });
   }
 
@@ -83,5 +84,23 @@ export class AppComponent implements OnInit, OnDestroy {
           mainHeader.focus();
         }
       });
+  }
+
+  private getRouteNameFromTitle(title: string): string {
+    const routeName =
+      typeof title === 'string'
+        ? title
+        : this.dataTransformationService.concatenateObjValues<string[]>(title);
+    return routeName;
+  }
+
+  private translateRouteName(routeName: string): Observable<string> {
+    // Listen to the language change event to translate with the latest language
+    return this.translocoService.langChanges$.pipe(
+      switchMap((language) =>
+        // Use async selectTranslate to ensure the translation files are loaded
+        this.translocoService.selectTranslate<string>(routeName, {}, language),
+      ),
+    );
   }
 }
