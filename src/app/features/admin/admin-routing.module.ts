@@ -30,12 +30,7 @@ const routes: Routes = [
       {
         path: 'create-user',
         component: UserDetailSmartComponent,
-        data: {
-          title: {
-            action: 'create',
-            model: 'user',
-          },
-        },
+        data: { title: 'createUser' },
         resolve: {
           agencyList: resolverList.GetAgencyListResolver,
           roleList: resolverList.GetRoleListResolver,
@@ -45,12 +40,7 @@ const routes: Routes = [
       {
         path: 'update-user/:id',
         component: UserDetailSmartComponent,
-        data: {
-          title: {
-            action: 'update',
-            model: 'user',
-          },
-        },
+        data: { title: 'updateUser' },
         canActivate: [UpdateProfileOrUserGuard],
         resolve: {
           agencyList: resolverList.GetAgencyListResolver,
@@ -71,12 +61,7 @@ const routes: Routes = [
       {
         path: 'create-agency',
         component: AgencyDetailSmartComponent,
-        data: {
-          title: {
-            action: 'create',
-            model: 'agency',
-          },
-        },
+        data: { title: 'createAgency' },
         resolve: {
           agency: resolverList.CreateAgencyResolver,
         },
@@ -84,12 +69,7 @@ const routes: Routes = [
       {
         path: 'update-agency/:id',
         component: AgencyDetailSmartComponent,
-        data: {
-          title: {
-            action: 'update',
-            model: 'agency',
-          },
-        },
+        data: { title: 'updateAgency' },
         resolve: {
           agency: resolverList.UpdateAgencyResolver,
         },

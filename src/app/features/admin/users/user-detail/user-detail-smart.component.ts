@@ -134,10 +134,12 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
-      formTitle: {
-        action: this.activatedRoute.snapshot.data?.title?.action || 'create',
-        model: this.activatedRoute.snapshot.data?.title?.model || 'user',
-      },
+      formTitle:
+        this.activatedRoute.snapshot.routeConfig?.path === 'profile'
+          ? 'updateProfile'
+          : this.user?.id
+          ? 'updateUser'
+          : 'createUser',
       submit: new SaveCancelButtonConfig({
         save: this.user?.id ? 'update' : 'create',
       }),

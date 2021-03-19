@@ -18,15 +18,17 @@
   },
   "dynamicForm": {
     "action": {
-      "activate": "Buhayin",
       "add": "Idagdag pa",
+      "addAgency": "Magdagdag ng Ahensya",
+      "addAgent": "Magdagdag ng Agent",
+      "addUser": "Idagdag ang gumagamit",
       "cancel": "Kanselahin",
       "change": "Magbago",
       "create": "Lumikha",
+      "createAccount": "Lumikha ng Account",
       "delete": "Tanggalin",
-      "forgot": "Nakalimutan",
+      "forgotPassword": "Nakalimutan ang password",
       "login": "Mag log in",
-      "reset": "I-reset",
       "signUp": "Mag-sign Up",
       "submit": "Ipasa",
       "update": "Pag-update"
@@ -46,7 +48,7 @@
     "label": {
       "address": "Tirahan",
       "address2": "{{ dynamicForm.label.address }} 2",
-      "agency": "{{ dynamicForm.model.agency }}",
+      "agency": "Ahensya",
       "agencyName": "Pangalan ng Ahensya",
       "city": "Lungsod",
       "confirm": "Kumpirmahin",
@@ -61,20 +63,11 @@
       "lastName": "Apelyido",
       "new": "Bagong",
       "newPassword": "{{ dynamicForm.label.new }} {{ dynamicForm.label.password }}",
-      "password": "{{ dynamicForm.model.password }}",
+      "password": "Kontrasenyas",
       "phoneNumber": "Numero ng telepono",
       "role": "Tungkulin",
       "state": "Estado",
       "zipCode": "Zip Code"
-    },
-    "model": {
-      "account": "Account",
-      "agency": "Ahensya",
-      "agent": "Ahente",
-      "memberLogin": "Pag-login ng miyembro",
-      "password": "Kontrasenyas",
-      "profile": "Profile",
-      "user": "Gumagamit"
     },
     "placeholder": {
       "confirmEmail": "Kumpirmahin ang iyong email",
@@ -87,6 +80,21 @@
       "lastName": "{{ dynamicForm.placeholder.enter }} iyong apelyido",
       "newPassword": "Maglagay ng bagong kontrasenyas",
       "password": "{{ dynamicForm.placeholder.enter }} iyong kontrasenyas"
+    },
+    "title": {
+      "activateAccount": "Isaaktibo ang Account",
+      "changePassword": "Palitan ANG password",
+      "createAgency": "Lumikha ng Ahensya",
+      "createAgent": "Lumikha ng Ahente",
+      "createUser": "Lumikha ng Gumagamit",
+      "forgotPassword": "Nakalimutan ang password",
+      "memberLogin": "Login ng Miyembro",
+      "resetPassword": "I-reset ang Password",
+      "signUp": "Mag-sign Up",
+      "updateAgency": "Update Agency",
+      "updateAgent": "Update Agent",
+      "updateProfile": "I-update ang Profile",
+      "updateUser": "I-update ang Gumagamit"
     }
   },
   "dynamicTable": {
@@ -107,6 +115,15 @@
       "emptyListMessage": "Walang data",
       "resendActivationEmail": "Ipadala muli ang Naka-aktibong Email",
       "thumbnail": "Thumbnail"
+    },
+    "tooltip": {
+      "deleteAgency": "Tanggalin ang Ahensya",
+      "deleteAgent": "Tanggalin ang Ahente",
+      "deleteUser": "Tanggalin ang Gumagamit",
+      "resetPassword": "I-reset ang Password",
+      "updateAgency": "Update Agency",
+      "updateAgent": "Update Agent",
+      "updateUser": "I-update ang Gumagamit"
     }
   },
   "navigation": {

@@ -31,12 +31,7 @@ const routes: Routes = [
         path: 'create-agent',
         component: AgentDetailSmartComponent,
         canActivate: [AdminAuthGuard],
-        data: {
-          title: {
-            action: 'create',
-            model: 'agent',
-          },
-        },
+        data: { title: 'createAgent' },
         resolve: {
           agent: resolverList.CreateAgentResolver,
         },
@@ -45,12 +40,7 @@ const routes: Routes = [
         path: 'update-agent/:id',
         component: AgentDetailSmartComponent,
         canActivate: [CanEditAuthGuard],
-        data: {
-          title: {
-            action: 'update',
-            model: 'agent',
-          },
-        },
+        data: { title: 'updateAgent' },
         resolve: {
           agent: resolverList.UpdateAgentResolver,
         },

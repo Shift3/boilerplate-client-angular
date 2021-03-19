@@ -63,30 +63,24 @@
               class="btn"
               type="button"
               routerLink="/admin/update-user/{{ item.id }}"
-              tooltip="{{ translate('dynamicForm.action.update') }} {{
-                translate('dynamicForm.model.user')
-              }}"
+              tooltip="{{ translate('dynamicTable.tooltip.updateUser') }}"
             >
               <span class="fa fa-edit"></span>
-              <span class="sr-only"
-                >{{ translate('dynamicForm.action.update') }}
-                {{ translate('dynamicForm.model.user') }}</span
-              >
+              <span class="sr-only">{{
+                translate('dynamicTable.tooltip.updateUser')
+              }}</span>
             </button>
             <ng-container *ngIf="!isSelf(item.id)">
               <button
                 class="btn"
                 type="button"
                 (click)="deleteUser(item)"
-                tooltip="{{ translate('dynamicForm.action.delete') }} {{
-                  translate('dynamicForm.model.user')
-                }}"
+                tooltip="{{ translate('dynamicTable.tooltip.deleteUser') }}"
               >
                 <span class="fa fa-trash"></span>
-                <span class="sr-only"
-                  >{{ translate('dynamicForm.action.delete') }}
-                  {{ translate('dynamicForm.model.user') }}</span
-                >
+                <span class="sr-only">{{
+                  translate('dynamicTable.tooltip.deleteUser')
+                }}</span>
               </button>
             </ng-container>
             <ng-container *ngIf="!isSelf(item.id)">
@@ -94,15 +88,12 @@
                 class="btn"
                 type="button"
                 (click)="resetPassword(item)"
-                tooltip="{{ translate('dynamicForm.action.reset') }} {{
-                  translate('dynamicForm.model.password')
-                }}"
+                tooltip="{{ translate('dynamicTable.tooltip.resetPassword') }}"
               >
                 <span class="fa fa-lock"></span>
-                <span class="sr-only"
-                  >{{ translate('dynamicForm.action.reset') }}
-                  {{ translate('dynamicForm.model.password') }}</span
-                >
+                <span class="sr-only">{{
+                  translate('dynamicTable.tooltip.resetPassword')
+                }}</span>
               </button>
             </ng-container>
           </td>

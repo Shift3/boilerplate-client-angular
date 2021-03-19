@@ -56,10 +56,7 @@ export class AgentDetailSmartComponent implements OnInit {
   private buildFormConfig() {
     const formConfig = new FormConfig({
       formName: 'form',
-      formTitle: {
-        action: this.activatedRoute.snapshot.data.title?.action || 'create',
-        model: this.activatedRoute.snapshot.data.title?.model || 'agent',
-      },
+      formTitle: this.agent?.id ? 'updateAgent' : 'createAgent',
       submit: new SaveCancelButtonConfig({
         save: this.agent?.id ? 'update' : 'create',
       }),
