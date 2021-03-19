@@ -91,8 +91,8 @@
       "memberLogin": "Login ng Miyembro",
       "resetPassword": "I-reset ang Password",
       "signUp": "Mag-sign Up",
-      "updateAgency": "Update Agency",
-      "updateAgent": "Update Agent",
+      "updateAgency": "I-update ang Ahensya",
+      "updateAgent": "I-update ang Ahente",
       "updateProfile": "I-update ang Profile",
       "updateUser": "I-update ang Gumagamit"
     }
@@ -121,8 +121,8 @@
       "deleteAgent": "Tanggalin ang Ahente",
       "deleteUser": "Tanggalin ang Gumagamit",
       "resetPassword": "I-reset ang Password",
-      "updateAgency": "Update Agency",
-      "updateAgent": "Update Agent",
+      "updateAgency": "I-update ang Ahensya",
+      "updateAgent": "I-update ang Ahente",
       "updateUser": "I-update ang Gumagamit"
     }
   },

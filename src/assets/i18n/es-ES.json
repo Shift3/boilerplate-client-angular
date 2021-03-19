@@ -91,9 +91,9 @@
       "memberLogin": "Inicio de sesión de miembro",
       "resetPassword": "Restablecer la contraseña",
       "signUp": "Inscribirse",
-      "updateAgency": "Agencia de actualización",
-      "updateAgent": "Agente de actualización",
-      "updateProfile": "Actualización del perfil",
+      "updateAgency": "Actualizar Agencia",
+      "updateAgent": "Actualizar Agente",
+      "updateProfile": "Actualizar perfil",
       "updateUser": "Actualizar usuario"
     }
   },
@@ -121,8 +121,8 @@
       "deleteAgent": "Eliminar agente",
       "deleteUser": "Borrar usuario",
       "resetPassword": "Restablecer la contraseña",
-      "updateAgency": "Agencia de actualización",
-      "updateAgent": "Agente de actualización",
+      "updateAgency": "Actualizar Agencia",
+      "updateAgent": "Actualizar Agente",
       "updateUser": "Actualizar usuario"
     }
   },
