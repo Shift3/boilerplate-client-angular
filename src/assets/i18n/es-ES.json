@@ -3,7 +3,7 @@
     "action": {
       "confirm": "Confirmar",
       "continue": "Continuar",
-      "delete": "Borrar",
+      "delete": "Eliminar",
       "logOut": "Cerrar sesión",
       "resend": "Reenviar",
       "send": "Enviar"
@@ -26,7 +26,7 @@
       "change": "Cambio",
       "create": "Crear",
       "createAccount": "Crear una cuenta",
-      "delete": "Borrar",
+      "delete": "Eliminar",
       "forgotPassword": "Has olvidado tu contraseña",
       "login": "Iniciar sesión",
       "signUp": "Inscribirse",
@@ -82,19 +82,19 @@
       "password": "Ingresa tu contraseña"
     },
     "title": {
-      "activateAccount": "Activar la cuenta",
-      "changePassword": "Cambiar la contraseña",
-      "createAgency": "Crear agencia",
-      "createAgent": "Crear agente",
-      "createUser": "Crear usuario",
-      "forgotPassword": "Has olvidado tu contraseña",
-      "memberLogin": "Inicio de sesión de miembro",
-      "resetPassword": "Restablecer la contraseña",
+      "activateAccount": "Activar la Cuenta",
+      "changePassword": "Cambiar la Contraseña",
+      "createAgency": "Crear Agencia",
+      "createAgent": "Crear Agente",
+      "createUser": "Crear Usuario",
+      "forgotPassword": "Has Olvidado tu Contraseña",
+      "memberLogin": "Inicio de Sesión de Miembro",
+      "resetPassword": "Restablecer la Contraseña",
       "signUp": "Inscribirse",
       "updateAgency": "Actualizar Agencia",
       "updateAgent": "Actualizar Agente",
-      "updateProfile": "Actualizar perfil",
-      "updateUser": "Actualizar usuario"
+      "updateProfile": "Actualizar Perfil",
+      "updateUser": "Actualizar Usuario"
     }
   },
   "dynamicTable": {
@@ -119,10 +119,10 @@
     "tooltip": {
       "deleteAgency": "Eliminar agencia",
       "deleteAgent": "Eliminar agente",
-      "deleteUser": "Borrar usuario",
+      "deleteUser": "Eliminar usuario",
       "resetPassword": "Restablecer la contraseña",
-      "updateAgency": "Actualizar Agencia",
-      "updateAgent": "Actualizar Agente",
+      "updateAgency": "Actualizar agencia",
+      "updateAgent": "Actualizar agente",
       "updateUser": "Actualizar usuario"
     }
   },
