@@ -3,20 +3,20 @@
     <thead>
       <tr>
         <th scope="col">
-          {{ translate('dynamicTable.header.name') | uppercase }}
+          {{ translate('dynamicTable.header.name') | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.description') | uppercase }}
+          {{ translate('dynamicTable.header.description') | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.email') | uppercase }}
+          {{ translate('dynamicTable.header.email') | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.phoneNumber') | uppercase }}
+          {{ translate('dynamicTable.header.phoneNumber') | localeuppercase }}
         </th>
         <ng-container *ngIf="checkRole.canEdit">
           <th scope="col w-10">
-            {{ translate('dynamicTable.header.actions') | uppercase }}
+            {{ translate('dynamicTable.header.actions') | localeuppercase }}
           </th>
         </ng-container>
       </tr>

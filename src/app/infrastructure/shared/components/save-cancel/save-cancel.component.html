@@ -7,7 +7,7 @@
     (click)="save()"
     [disabled]="shouldDisable"
   >
-    {{ getObjectProperty(buttonConfig.save) | transloco | uppercase }}
+    {{ getObjectProperty(buttonConfig.save) | transloco | localeuppercase }}
   </button>
   <button
     id="cancel-button"
@@ -16,6 +16,6 @@
     mat-raised-button
     (click)="cancel()"
   >
-    {{ getObjectProperty(buttonConfig.cancel) | transloco | uppercase }}
+    {{ getObjectProperty(buttonConfig.cancel) | transloco | localeuppercase }}
   </button>
 </div>
