@@ -72,10 +72,4 @@ export class Notification implements INotification {
   unableToLoadUserInfo: string = 'notification.unableToLoadUserInfo';
   user: string = 'notification.user';
   userUpdated: string = 'notification.userUpdated';
-
-  constructor(configOverride?: Partial<INotification>) {
-    if (configOverride) {
-      Object.assign(this, configOverride);
-    }
-  }
 }

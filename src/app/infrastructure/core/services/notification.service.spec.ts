@@ -5,6 +5,7 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { getTranslocoModule } from '@utils/test/transloco-testing-module';
+import { INotification, Notification } from '@models/translation/notification';
 import { Logger } from '@utils/logger';
 import { Message } from '@models/message';
 import { NotificationService } from './notification.service';
@@ -35,8 +36,9 @@ import { NotificationService } from './notification.service';
 
       describe('showSuccess()', () => {
         it('should call toastrService.success with the messageList parameter', () => {
+          const notification: INotification = new Notification();
           const messageList = [
-            new Message({ message: 'notification.notification' }),
+            new Message({ message: notification.agentCreated }),
           ];
 
           service.showSuccess(messageList);
@@ -46,8 +48,9 @@ import { NotificationService } from './notification.service';
 
       describe('showError()', () => {
         it('should call toastrService.error with the messageList parameter', () => {
+          const notification: INotification = new Notification();
           const messageList = [
-            new Message({ message: 'notification.notification' }),
+            new Message({ message: notification.cannotViewPage }),
           ];
 
           service.showError(messageList);
