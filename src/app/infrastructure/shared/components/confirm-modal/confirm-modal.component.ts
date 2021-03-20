@@ -5,6 +5,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalConfig, IConfirmModalConfig } from '@models/modal';
 
 import { DataTransformationService } from '@core/services/data-transformation.service';
+import {
+  IConfirmationModal,
+  ConfirmationModal,
+} from '@models/translation/confirmation-modal';
 
 @Component({
   templateUrl: './confirm-modal.component.html',
@@ -13,6 +17,8 @@ import { DataTransformationService } from '@core/services/data-transformation.se
 })
 export class ConfirmModalComponent {
   @Input() public modalConfig: IConfirmModalConfig = new ConfirmModalConfig();
+
+  public confirmationModal: IConfirmationModal = new ConfirmationModal();
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -29,10 +35,7 @@ export class ConfirmModalComponent {
 
   public getObjectProperty(property: string, label: string): string {
     return label?.length
-      ? this.dataTransformationService.getObjectProperty(
-          `confirmationModal.${property}`,
-          label,
-        )
-      : 'confirmationModal.action.continue';
+      ? this.confirmationModal[property][label]
+      : this.confirmationModal.action.continue;
   }
 }
