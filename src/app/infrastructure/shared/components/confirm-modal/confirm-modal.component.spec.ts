@@ -1,10 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MockPipe } from 'ng-mocks';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { ConfirmModalComponent } from './confirm-modal.component';
 import { environment } from '@env/environment.test';
+import { LocaleUpperCasePipe } from '@shared/pipes/locale-upper-case.pipe';
 import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
 
@@ -16,7 +18,7 @@ import { Logger } from '@utils/logger';
 
       beforeEach(async(() => {
         TestBed.configureTestingModule({
-          declarations: [ConfirmModalComponent],
+          declarations: [ConfirmModalComponent, MockPipe(LocaleUpperCasePipe)],
           imports: [getTranslocoModule(), TranslocoTestingModule],
           providers: [NgbActiveModal],
         }).compileComponents();

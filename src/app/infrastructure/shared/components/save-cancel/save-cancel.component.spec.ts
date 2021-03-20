@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MockPipe } from 'ng-mocks';
 import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { getTranslocoModule } from '@utils/test/transloco-testing-module';
+import { LocaleUpperCasePipe } from '@shared/pipes/locale-upper-case.pipe';
 import { Logger } from '@utils/logger';
 import { SaveCancelComponent } from './save-cancel.component';
 
@@ -16,7 +18,7 @@ import { SaveCancelComponent } from './save-cancel.component';
       beforeEach(async(() => {
         TestBed.configureTestingModule({
           imports: [getTranslocoModule(), TranslocoTestingModule],
-          declarations: [SaveCancelComponent],
+          declarations: [SaveCancelComponent, MockPipe(LocaleUpperCasePipe)],
         }).compileComponents();
       }));
 

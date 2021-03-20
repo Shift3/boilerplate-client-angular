@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MockPipe } from 'ng-mocks';
+
 import { environment } from '@env/environment.test';
+import { LocaleUpperCasePipe } from '@shared/pipes/locale-upper-case.pipe';
 import { Logger } from '@utils/logger';
 import { AgencyTableComponent } from './agency-table.component';
 
@@ -12,7 +15,7 @@ import { AgencyTableComponent } from './agency-table.component';
 
       beforeEach(async(() => {
         TestBed.configureTestingModule({
-          declarations: [AgencyTableComponent],
+          declarations: [AgencyTableComponent, MockPipe(LocaleUpperCasePipe)],
         }).compileComponents();
       }));
 
