@@ -35,9 +35,7 @@ export class ErrorService {
     const notification: INotification = new Notification();
 
     if (error && error.error) {
-      errorList.push(
-        new Message({ type: 'dynamic', message: error.error.message }),
-      );
+      errorList.push(new Message({ message: error.error.message }));
     } else {
       errorList.push(
         new Message({ message: notification.unableToCompleteRequest }),

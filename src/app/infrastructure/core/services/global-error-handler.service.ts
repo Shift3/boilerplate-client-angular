@@ -23,7 +23,6 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       errorMessage = sentryConfig.message.message
         ? [
             new Message({
-              type: 'dynamic',
               message: sentryConfig.message.message,
             }),
           ]
