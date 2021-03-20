@@ -48,9 +48,7 @@ import { SentryConfig } from '@models/error';
         it(`should return the passed in error message in a list`, () => {
           const error = new Error('Test');
           const httpError = new HttpErrorResponse({ error });
-          const expectedValue = [
-            new Message({ type: 'dynamic', message: 'Test' }),
-          ];
+          const expectedValue = [new Message({ message: 'Test' })];
 
           expect(service.getServerMessage(httpError)).toEqual(expectedValue);
         });
