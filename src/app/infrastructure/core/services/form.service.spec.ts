@@ -4,6 +4,10 @@ import { environment } from '@env/environment.test';
 import { FormConfig, FormField } from '@models/form/form';
 import { FormService } from './form.service';
 import { Logger } from '@utils/logger';
+import {
+  IDynamicForm,
+  DynamicForm,
+} from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField } from '@models/form/input';
 import { LoginRequest } from '@models/auth';
 import { MatchFieldValidation } from '@utils/validation/match-field-validation';
@@ -23,53 +27,55 @@ import { RequiredValidation } from '@utils/validation/required-validation';
         const fb = new FormBuilder();
         const formService = new FormService(fb);
         it(`should return a FormGroup with a FormControl from the provided formConfig`, () => {
+          const dynamicForm: IDynamicForm = new DynamicForm();
           const formConfig = new FormConfig({
             controls: [
               new FormField<IInputField>({
-                name: 'test',
-                label: 'test',
-                placeholder: 'enter',
+                name: 'email',
+                label: dynamicForm.label.email,
+                placeholder: dynamicForm.placeholder.email,
                 fieldType: 'input',
               }),
             ],
           });
           const form = formService.buildForm(formConfig);
-          expect(form.contains('test')).toBeTruthy();
+          expect(form.contains('email')).toBeTruthy();
         });
 
         it(`should return a FormGroup with validation errors when given validation on the FormGroup`, () => {
+          const dynamicForm: IDynamicForm = new DynamicForm();
           const formConfig = new FormConfig({
             validation: [
               MatchFieldValidation.validFieldMatch(
-                'test',
-                'confirmTest',
-                'Test',
+                'password',
+                'confirmPassword',
+                'Password',
               ),
             ],
             controls: [
               new FormField<IInputField>({
-                name: 'test',
-                label: 'test',
-                placeholder: 'enter',
+                name: 'password',
+                label: dynamicForm.label.password,
+                placeholder: dynamicForm.placeholder.password,
                 fieldType: 'input',
               }),
               new FormField<IInputField>({
-                name: 'confirmTest',
-                label: 'confirmTest',
-                placeholder: 'confirm',
+                name: 'confirmPassword',
+                label: dynamicForm.label.confirmPassword,
+                placeholder: dynamicForm.placeholder.confirmPassword,
                 fieldType: 'input',
               }),
             ],
           });
           const expectedValue = {
-            fieldsMismatched: 'Test fields do not match.',
+            fieldsMismatched: 'Password fields do not match.',
           };
           const form = formService.buildForm(formConfig);
           form.setValue({
-            test: 'test',
-            confirmTest: 'tests',
+            password: 'test',
+            confirmPassword: 'tests',
           });
-          expect(form.get('confirmTest').errors).toEqual(expectedValue);
+          expect(form.get('confirmPassword').errors).toEqual(expectedValue);
         });
       });
 

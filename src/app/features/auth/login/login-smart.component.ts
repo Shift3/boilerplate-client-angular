@@ -8,6 +8,10 @@ import { AuthService } from '@core/services/api/auth.service';
 import { EmailValidation } from '@utils/validation/email-validation';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
+import {
+  IDynamicForm,
+  DynamicForm,
+} from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { LoginRequest, ILoginRequest } from '@models/auth';
 import { RequiredValidation } from '@utils/validation/required-validation';
@@ -24,17 +28,18 @@ import { SaveCancelButtonConfig } from '@models/form/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginSmartComponent {
+  private dynamicForm: IDynamicForm = new DynamicForm();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'memberLogin',
-    submit: new SaveCancelButtonConfig({ save: 'login' }),
+    formTitle: this.dynamicForm.title.memberLogin,
+    submit: new SaveCancelButtonConfig({ save: this.dynamicForm.action.login }),
     controls: [
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: 'email',
-        placeholder: 'email',
+        label: this.dynamicForm.label.email,
+        placeholder: this.dynamicForm.placeholder.email,
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -44,8 +49,8 @@ export class LoginSmartComponent {
       new FormField<IInputField>({
         name: 'password',
         fieldType: 'input',
-        label: 'password',
-        placeholder: 'password',
+        label: this.dynamicForm.label.password,
+        placeholder: this.dynamicForm.placeholder.password,
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'current-password',

@@ -4,6 +4,10 @@ import { FormGroup } from '@angular/forms';
 
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
+import {
+  IDynamicForm,
+  DynamicForm,
+} from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { IResetPasswordRequest, ResetPasswordRequest } from '@models/user';
 import { MatchFieldValidation } from '@utils/validation/match-field-validation';
@@ -22,11 +26,14 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPasswordSmartComponent {
+  private dynamicForm: IDynamicForm = new DynamicForm();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'resetPassword',
-    submit: new SaveCancelButtonConfig({ save: 'submit' }),
+    formTitle: this.dynamicForm.title.resetPassword,
+    submit: new SaveCancelButtonConfig({
+      save: this.dynamicForm.action.submit,
+    }),
     validation: [
       MatchFieldValidation.validFieldMatch(
         'newPassword',
@@ -38,8 +45,8 @@ export class ResetPasswordSmartComponent {
       new FormField<IInputField>({
         name: 'newPassword',
         fieldType: 'input',
-        label: 'newPassword',
-        placeholder: 'newPassword',
+        label: this.dynamicForm.label.newPassword,
+        placeholder: this.dynamicForm.placeholder.newPassword,
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',
@@ -49,8 +56,8 @@ export class ResetPasswordSmartComponent {
       new FormField<IInputField>({
         name: 'confirmPassword',
         fieldType: 'input',
-        label: 'confirmNewPassword',
-        placeholder: 'confirmPassword',
+        label: this.dynamicForm.label.confirmNewPassword,
+        placeholder: this.dynamicForm.placeholder.confirmPassword,
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',

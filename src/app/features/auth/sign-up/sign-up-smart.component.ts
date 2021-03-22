@@ -5,11 +5,15 @@ import { Router } from '@angular/router';
 import { EmailValidation } from '@utils/validation/email-validation';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
+import {
+  IDynamicForm,
+  DynamicForm,
+} from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
+import { ISignupRequest, SignupRequest } from '@models/auth';
 import { MatchFieldValidation } from '@utils/validation/match-field-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
-import { ISignupRequest, SignupRequest } from '@models/auth';
 import { UserService } from '@core/services/api/user.service';
 
 @Component({
@@ -23,11 +27,14 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpSmartComponent {
+  private dynamicForm: IDynamicForm = new DynamicForm();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'signUp',
-    submit: new SaveCancelButtonConfig({ save: 'signUp' }),
+    formTitle: this.dynamicForm.title.signUp,
+    submit: new SaveCancelButtonConfig({
+      save: this.dynamicForm.action.signUp,
+    }),
     validation: [
       MatchFieldValidation.validFieldMatch('email', 'confirmEmail', 'Email'),
     ],
@@ -35,8 +42,8 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: 'email',
-        placeholder: 'email',
+        label: this.dynamicForm.label.email,
+        placeholder: this.dynamicForm.placeholder.email,
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -46,8 +53,8 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'confirmEmail',
         fieldType: 'input',
-        label: 'confirmEmail',
-        placeholder: 'confirmEmail',
+        label: this.dynamicForm.label.confirmEmail,
+        placeholder: this.dynamicForm.placeholder.confirmEmail,
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -56,16 +63,16 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'firstName',
         fieldType: 'input',
-        label: 'firstName',
-        placeholder: 'firstName',
+        label: this.dynamicForm.label.firstName,
+        placeholder: this.dynamicForm.placeholder.firstName,
         fieldConfig: new InputField({ autocomplete: 'given-name' }),
         validation: [RequiredValidation.required('First Name')],
       }),
       new FormField<IInputField>({
         name: 'lastName',
         fieldType: 'input',
-        label: 'lastName',
-        placeholder: 'lastName',
+        label: this.dynamicForm.label.lastName,
+        placeholder: this.dynamicForm.placeholder.lastName,
         fieldConfig: new InputField({ autocomplete: 'family-name' }),
         validation: [RequiredValidation.required('Last Name')],
       }),

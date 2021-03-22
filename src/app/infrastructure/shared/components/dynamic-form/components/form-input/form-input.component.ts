@@ -34,12 +34,6 @@ export class FormInputComponent implements OnInit {
     return this.group.get(this.config.name);
   }
 
-  public getObjectProperty(key: string, label: string): string {
-    return label?.length
-      ? this.dataTransformationService.getObjectProperty(key, label)
-      : '';
-  }
-
   public get formErrorValue(): string {
     const property = this.formService.getFormErrorValue(
       this.formControl.errors,
@@ -47,20 +41,18 @@ export class FormInputComponent implements OnInit {
 
     // Hack to set the configLabel to manipulate the control value passed into transloco
     if (property === 'fieldsMismatched') {
-      this.setConfigLabel(
-        this.formControl.errors[property].split(' ')[0].toLowerCase(),
-      );
+      this.setConfigLabel(this.formControl.errors[property].split(' ')[0]);
     } else {
       this.setConfigLabel(this.config.label);
     }
 
-    return this.dataTransformationService.getObjectProperty('error', property);
+    return this.dataTransformationService.getObjectProperty(
+      'dynamicForm.error',
+      property,
+    );
   }
 
   private setConfigLabel(label: string): void {
-    this.configLabel = this.dataTransformationService.getObjectProperty(
-      'label',
-      label,
-    );
+    this.configLabel = label;
   }
 }

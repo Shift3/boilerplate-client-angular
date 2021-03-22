@@ -6,6 +6,10 @@ import { Observable } from 'rxjs';
 import { EmailValidation } from '@utils/validation/email-validation';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
+import {
+  IDynamicForm,
+  DynamicForm,
+} from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { IForgotPasswordRequest, ForgotPasswordRequest } from '@models/user';
 import { IMessage } from '@models/message';
@@ -24,17 +28,20 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForgotPasswordSmartComponent {
+  private dynamicForm: IDynamicForm = new DynamicForm();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'forgotPassword',
-    submit: new SaveCancelButtonConfig({ save: 'submit' }),
+    formTitle: this.dynamicForm.title.forgotPassword,
+    submit: new SaveCancelButtonConfig({
+      save: this.dynamicForm.action.submit,
+    }),
     controls: [
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: 'email',
-        placeholder: 'email',
+        label: this.dynamicForm.label.email,
+        placeholder: this.dynamicForm.placeholder.email,
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
