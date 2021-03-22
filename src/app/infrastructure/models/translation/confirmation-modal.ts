@@ -14,12 +14,6 @@ export class ConfirmationModalAction implements IConfirmationModalAction {
   logOut: string = 'confirmationModal.action.logOut';
   resend: string = 'confirmationModal.action.resend';
   send: string = 'confirmationModal.action.send';
-
-  constructor(configOverride?: Partial<IConfirmationModalAction>) {
-    if (configOverride) {
-      Object.assign(this, configOverride);
-    }
-  }
 }
 
 export interface IConfirmationModalTitle {
@@ -34,12 +28,6 @@ export class ConfirmationModalTitle implements IConfirmationModalTitle {
   logout: string = 'confirmationModal.title.logout';
   resendActivation: string = 'confirmationModal.title.resendActivation';
   sendResetPassword: string = 'confirmationModal.title.sendResetPassword';
-
-  constructor(configOverride?: Partial<IConfirmationModalTitle>) {
-    if (configOverride) {
-      Object.assign(this, configOverride);
-    }
-  }
 }
 
 export interface IConfirmationModal {
@@ -52,10 +40,4 @@ export class ConfirmationModal implements IConfirmationModal {
   action: IConfirmationModalAction = new ConfirmationModalAction();
   body: string = 'confirmationModal.body';
   title: IConfirmationModalTitle = new ConfirmationModalTitle();
-
-  constructor(configOverride?: Partial<IConfirmationModal>) {
-    if (configOverride) {
-      Object.assign(this, configOverride);
-    }
-  }
 }

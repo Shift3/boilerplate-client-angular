@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 import { AuthService } from '@core/services/api/auth.service';
 import { ConfirmModalConfig } from '@models/modal';
 import { ModalService } from '@core/services/modal.service';
+import {
+  IConfirmationModal,
+  ConfirmationModal,
+} from '@models/translation/confirmation-modal';
 import { INavigation, profileLinkList } from '@models/navigation';
 import { NavbarStateService } from '@core/services/state/navbar-state.service';
 import { DataTransformationService } from '@app/infrastructure/core/services/data-transformation.service';
@@ -58,11 +62,12 @@ export class SettingsComponent implements OnInit {
   }
 
   public openConfirmModal(): void {
+    const confirmationModal: IConfirmationModal = new ConfirmationModal();
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: 'logout',
+        static: confirmationModal.title.logout,
       },
-      action: 'Log Out',
+      action: confirmationModal.action.logOut,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {

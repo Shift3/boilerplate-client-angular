@@ -1,7 +1,7 @@
 <div class="card" *transloco="let translate">
   <div class="card-header">
     <h4 class="modal-title" id="modal-basic-title">
-      {{ translate(getObjectProperty('title', modalConfig.message.static)) }}
+      {{ translate(modalConfig.message.static) }}
       {{ modalConfig.message.dynamic }}
     </h4>
   </div>
@@ -13,10 +13,7 @@
       class="btn btn-outline-dark"
       (click)="submit()"
     >
-      {{
-        translate(getObjectProperty('action', modalConfig.action))
-          | localeuppercase
-      }}
+      {{ translate(modalConfig.action) | localeuppercase }}
     </button>
     <button
       id="cancel-button"
