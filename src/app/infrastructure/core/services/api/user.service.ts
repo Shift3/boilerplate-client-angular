@@ -15,6 +15,7 @@ import {
   IUserDTO,
 } from '@models/user';
 import { IMessage, Message } from '@models/message';
+import { INotification, Notification } from '@models/translation/notification';
 import { NotificationService } from '../notification.service';
 import { ISessionDTO, ISignupRequest } from '@models/auth';
 import { UserStateService } from '../state/user-state.service';
@@ -42,8 +43,9 @@ export class UserService {
       .post<IUserDTO, ISignupRequest>(endpoint, payload)
       .pipe(
         tap((response) => {
+          const notification: INotification = new Notification();
           const messages: Message[] = [
-            new Message({ message: 'activationEmailSent' }),
+            new Message({ message: notification.activationEmailSent }),
             new Message({ type: 'dynamic', message: response.email }),
           ];
           this.notificationService.showSuccess(messages);
@@ -77,8 +79,9 @@ export class UserService {
       .put<IUserDTO, IResetPasswordRequest>(endpoint, payload)
       .pipe(
         tap(() => {
+          const notification: INotification = new Notification();
           const message: Message = new Message({
-            message: 'resetPasswordSuccess',
+            message: notification.resetPasswordSuccess,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -95,8 +98,9 @@ export class UserService {
       .put<IUserDTO, IResetPasswordRequest>(endpoint, payload)
       .pipe(
         tap(() => {
+          const notification: INotification = new Notification();
           const message: Message = new Message({
-            message: 'activateAccountSuccess',
+            message: notification.activateAccountSuccess,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -120,7 +124,10 @@ export class UserService {
       .pipe(
         tap((user) => this.userStateService.setUserSession(user)),
         tap(() => {
-          const message: Message = new Message({ message: 'profileUpdated' });
+          const notification: INotification = new Notification();
+          const message: Message = new Message({
+            message: notification.profileUpdated,
+          });
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -143,10 +150,11 @@ export class UserService {
       .post<IUserDTO, IChangeUserRequest>(endpoint, payload)
       .pipe(
         tap((response) => {
+          const notification: INotification = new Notification();
           const messages: Message[] = [
-            new Message({ message: 'emailSent' }),
+            new Message({ message: notification.emailSent }),
             new Message({ type: 'dynamic', message: response.email }),
-            new Message({ message: 'instructionToActivate' }),
+            new Message({ message: notification.instructionToActivate }),
           ];
           return this.notificationService.showSuccess(messages);
         }),
@@ -175,7 +183,10 @@ export class UserService {
         tap((response) => this.userStateService.setUserSession(response.user)),
         tap((response) => this.authService.setToken(response.jwtToken)),
         tap(() => {
-          const message: Message = new Message({ message: 'passwordUpdated' });
+          const notification: INotification = new Notification();
+          const message: Message = new Message({
+            message: notification.passwordUpdated,
+          });
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -192,7 +203,10 @@ export class UserService {
       .put<IUserDTO, IChangeUserRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message: Message = new Message({ message: 'userUpdated' });
+          const notification: INotification = new Notification();
+          const message: Message = new Message({
+            message: notification.userUpdated,
+          });
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -203,13 +217,14 @@ export class UserService {
 
     return this.apiService.delete<IUserDTO>(endpoint).pipe(
       tap(() => {
+        const notification: INotification = new Notification();
         const messages: Message[] = [
-          new Message({ message: 'user' }),
+          new Message({ message: notification.user }),
           new Message({
             type: 'dynamic',
             message: `${user.firstName} ${user.lastName}`,
           }),
-          new Message({ message: 'deleted' }),
+          new Message({ message: notification.deleted }),
         ];
         return this.notificationService.showSuccess(messages);
       }),
@@ -221,8 +236,9 @@ export class UserService {
 
     return this.apiService.get<never>(endpoint).pipe(
       tap(() => {
+        const notification: INotification = new Notification();
         const messages: Message[] = [
-          new Message({ message: 'newActivationEmail' }),
+          new Message({ message: notification.newActivationEmail }),
           new Message({
             type: 'dynamic',
             message: `${user.firstName} ${user.lastName}`,

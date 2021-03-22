@@ -5,6 +5,7 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { getTranslocoModule } from '@utils/test/transloco-testing-module';
+import { INotification, Notification } from '@models/translation/notification';
 import { Logger } from '@utils/logger';
 import { Message } from '@models/message';
 import { NotificationService } from './notification.service';
@@ -35,7 +36,10 @@ import { NotificationService } from './notification.service';
 
       describe('showSuccess()', () => {
         it('should call toastrService.success with the messageList parameter', () => {
-          const messageList = [new Message({ message: 'Notification' })];
+          const notification: INotification = new Notification();
+          const messageList = [
+            new Message({ message: notification.agentCreated }),
+          ];
 
           service.showSuccess(messageList);
           expect(toastrMock.success).toHaveBeenCalled();
@@ -44,7 +48,10 @@ import { NotificationService } from './notification.service';
 
       describe('showError()', () => {
         it('should call toastrService.error with the messageList parameter', () => {
-          const messageList = [new Message({ message: 'Notification' })];
+          const notification: INotification = new Notification();
+          const messageList = [
+            new Message({ message: notification.cannotViewPage }),
+          ];
 
           service.showError(messageList);
           expect(toastrMock.error).toHaveBeenCalled();

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Logger } from '@utils/logger';
 import { IMessage, Message } from '@models/message';
+import { INotification, Notification } from '@models/translation/notification';
 import { ISentryConfig, SentryConfig } from '@models/error';
 import { SentryErrorHandlerService } from './sentry-error-handler.service';
 
@@ -14,24 +15,31 @@ export class ErrorService {
   constructor(private sentryErrorHandlerService: SentryErrorHandlerService) {}
   public getClientMessage(error: Error): IMessage[] {
     const errorList: Message[] = [];
+    const notification: INotification = new Notification();
+
     if (!navigator.onLine) {
-      errorList.push(new Message({ message: 'noInternet' }));
+      errorList.push(new Message({ message: notification.noInternet }));
       return errorList;
     }
+
     error.message
-      ? errorList.push(new Message({ message: error.message }))
-      : errorList.push(new Message({ message: error.toString() }));
+      ? errorList.push(new Message({ message: notification[error.message] }))
+      : errorList.push(
+          new Message({ message: notification[error.toString()] }),
+        );
     return errorList;
   }
 
   public getServerMessage(error: HttpErrorResponse): IMessage[] {
     const errorList: Message[] = [];
+    const notification: INotification = new Notification();
+
     if (error && error.error) {
-      errorList.push(
-        new Message({ type: 'dynamic', message: error.error.message }),
-      );
+      errorList.push(new Message({ message: error.error.message }));
     } else {
-      errorList.push(new Message({ message: 'unableToCompleteRequest' }));
+      errorList.push(
+        new Message({ message: notification.unableToCompleteRequest }),
+      );
     }
     return errorList;
   }
@@ -41,29 +49,39 @@ export class ErrorService {
     sentryConfig: ISentryConfig = new SentryConfig(),
   ): ISentryConfig {
     if (error instanceof HttpErrorResponse) {
+      const notification: INotification = new Notification();
+
       switch (error.status) {
         case 500:
-          sentryConfig.message = new Message({ message: 'serverError' });
+          sentryConfig.message = new Message({
+            message: notification.serverError,
+          });
           sentryConfig.sendToSentry = true;
           sentryConfig.showDialog = true;
           break;
         case 0:
           if (navigator.onLine) {
             sentryConfig.message = new Message({
-              message: 'noServerConnection',
+              message: notification.noServerConnection,
             });
             sentryConfig.sendToSentry = true;
             sentryConfig.showDialog = true;
           } else {
-            sentryConfig.message = new Message({ message: 'noInternet' });
+            sentryConfig.message = new Message({
+              message: notification.noInternet,
+            });
           }
           break;
         case 403:
-          sentryConfig.message = new Message({ message: 'forbidden' });
+          sentryConfig.message = new Message({
+            message: notification.forbidden,
+          });
           sentryConfig.sendToSentry = true;
           break;
         case 404:
-          sentryConfig.message = new Message({ message: 'notFound' });
+          sentryConfig.message = new Message({
+            message: notification.notFound,
+          });
           break;
       }
     }

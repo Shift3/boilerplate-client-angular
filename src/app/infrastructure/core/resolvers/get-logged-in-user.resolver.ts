@@ -7,6 +7,7 @@ import { catchError, mergeMap, take } from 'rxjs/operators';
 
 import { IUserDTO } from '@models/user';
 import { Message } from '@models/message';
+import { INotification, Notification } from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 import { UserService } from '../services/api/user.service';
 import { UserStateService } from '../services/state/user-state.service';
@@ -42,7 +43,10 @@ export class GetLoggedInUserResolver implements Resolve<IUserDTO> {
   }
 
   private navigateOnError(): void {
-    const message: Message = new Message({ message: 'unableToLoadUserInfo' });
+    const notification: INotification = new Notification();
+    const message: Message = new Message({
+      message: notification.unableToLoadUserInfo,
+    });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/content/agent-list');
   }

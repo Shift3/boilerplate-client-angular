@@ -44,9 +44,7 @@ export class NotificationService {
   private translateMessageList(messageList: Message[]): string[] {
     return messageList.map((message: Message) => {
       if (message.type === 'static')
-        return this.languageStateService.getTranslation(
-          `notification.${message.message}`,
-        );
+        return this.languageStateService.getTranslation(message.message);
 
       return message.message;
     });

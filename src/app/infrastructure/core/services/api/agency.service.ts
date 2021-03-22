@@ -7,6 +7,7 @@ import { ApiService } from './api.service';
 import { IAgencyDTO, IAgencyRequest } from '@models/agency';
 import { environment } from '@env/environment';
 import { Message } from '@models/message';
+import { INotification, Notification } from '@models/translation/notification';
 import { NotificationService } from '../notification.service';
 
 @Injectable({
@@ -42,7 +43,10 @@ export class AgencyService {
       .post<IAgencyDTO, IAgencyRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message: Message = new Message({ message: 'agencyCreated' });
+          const notification: INotification = new Notification();
+          const message: Message = new Message({
+            message: notification.agencyCreated,
+          });
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -58,7 +62,10 @@ export class AgencyService {
       .put<IAgencyDTO, IAgencyRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const message: Message = new Message({ message: 'agencyUpdated' });
+          const notification: INotification = new Notification();
+          const message: Message = new Message({
+            message: notification.agencyUpdated,
+          });
           return this.notificationService.showSuccess([message]);
         }),
       );
@@ -69,7 +76,10 @@ export class AgencyService {
 
     return this.apiService.delete<IAgencyDTO>(endpoint).pipe(
       tap(() => {
-        const message: Message = new Message({ message: 'agencyDeleted' });
+        const notification: INotification = new Notification();
+        const message: Message = new Message({
+          message: notification.agencyDeleted,
+        });
         return this.notificationService.showSuccess([message]);
       }),
     );
