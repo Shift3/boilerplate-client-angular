@@ -1,24 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-
-import { TranslocoService, TranslocoTestingModule } from '@ngneat/transloco';
-
 import { environment } from '@env/environment.test';
 import { LocaleUpperCasePipe } from './locale-upper-case.pipe';
 import { Logger } from '@utils/logger';
+import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
   : describe('[Unit] LocaleUpperCasePipe', () => {
-      let service: TranslocoService;
-      let pipe: LocaleUpperCasePipe;
-      beforeEach(() => {
-        TestBed.configureTestingModule({
-          imports: [TranslocoTestingModule],
-          providers: [TranslocoService],
-        });
-        service = TestBed.inject(TranslocoService);
-        pipe = new LocaleUpperCasePipe(service);
-      });
+      const pipe: LocaleUpperCasePipe = new LocaleUpperCasePipe();
 
       it('should be created', () => {
         expect(pipe).toBeTruthy();
@@ -27,7 +15,6 @@ import { Logger } from '@utils/logger';
       it('should return an empty string when given an empty string', () => {
         const testValue = '';
         const expectedValue = '';
-        spyOn(service, 'getActiveLang').and.returnValue('en');
         expect(pipe.transform(testValue)).toEqual(expectedValue);
       });
 
@@ -55,6 +42,10 @@ import { Logger } from '@utils/logger';
         expect(pipe.transform(undefined)).toEqual(null);
       });
 
+      it('should return empty string when passed a non string value', () => {
+        expect(pipe.transform(1 as any)).toEqual('');
+      });
+
       it('should should use the passed in parameter locale', () => {
         const locale = 'tr-TR';
         const testValue1 = 'ı';
@@ -66,24 +57,16 @@ import { Logger } from '@utils/logger';
         expect(pipe.transform(testValue2, locale)).toEqual(expectedValue2);
       });
 
-      it('should should prefer the passed in parameter locale to the active language', () => {
+      it('should should prefer the passed in parameter locale to the default language', () => {
         const locale = 'tr-TR';
         const testValue1 = 'ı';
         const expectedValue1 = 'I';
         const testValue2 = 'i';
         const expectedValue2 = 'İ';
-        spyOn(service, 'getActiveLang').and.returnValue('vi-VN');
+        translocoConfigObj.defaultLang = 'en-US';
 
         expect(pipe.transform(testValue1, locale)).toEqual(expectedValue1);
         expect(pipe.transform(testValue2, locale)).toEqual(expectedValue2);
-      });
-
-      it('should should use the active language when not passed a parameter', () => {
-        const testValue = 'i';
-        const expectedValue = 'I';
-        spyOn(service, 'getActiveLang').and.returnValue('vi-VN');
-
-        expect(pipe.transform(testValue)).toEqual(expectedValue);
       });
 
       it('should log a warning when given an invalid locale', () => {
