@@ -9,8 +9,8 @@ import { EmailValidation } from '@utils/validation/email-validation';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
 import {
-  IDynamicForm,
-  DynamicForm,
+  IDynamicFormTranslationType,
+  DynamicFormTranslationType,
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { LoginRequest, ILoginRequest } from '@models/auth';
@@ -28,18 +28,20 @@ import { SaveCancelButtonConfig } from '@models/form/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginSmartComponent {
-  private dynamicForm: IDynamicForm = new DynamicForm();
+  private dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: this.dynamicForm.title.memberLogin,
-    submit: new SaveCancelButtonConfig({ save: this.dynamicForm.action.login }),
+    formTitle: this.dynamicFormTranslationKeys.title.memberLogin,
+    submit: new SaveCancelButtonConfig({
+      save: this.dynamicFormTranslationKeys.action.login,
+    }),
     controls: [
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: this.dynamicForm.label.email,
-        placeholder: this.dynamicForm.placeholder.email,
+        label: this.dynamicFormTranslationKeys.label.email,
+        placeholder: this.dynamicFormTranslationKeys.placeholder.email,
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -49,8 +51,8 @@ export class LoginSmartComponent {
       new FormField<IInputField>({
         name: 'password',
         fieldType: 'input',
-        label: this.dynamicForm.label.password,
-        placeholder: this.dynamicForm.placeholder.password,
+        label: this.dynamicFormTranslationKeys.label.password,
+        placeholder: this.dynamicFormTranslationKeys.placeholder.password,
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'current-password',

@@ -23,8 +23,8 @@ import { ISelectField, ISelectOptions, SelectField } from '@models/form/select';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
 import {
-  IDynamicForm,
-  DynamicForm,
+  IDynamicFormTranslationType,
+  DynamicFormTranslationType,
 } from '@models/translation/dynamic-form/dynamic-form';
 
 @Component({
@@ -136,26 +136,26 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private buildFormConfig() {
-    const dynamicForm: IDynamicForm = new DynamicForm();
+    const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
     const formConfig = new FormConfig({
       formName: 'form',
       formTitle:
         this.activatedRoute.snapshot.routeConfig?.path === 'profile'
-          ? dynamicForm.title.updateProfile
+          ? dynamicFormTranslationKeys.title.updateProfile
           : this.user?.id
-          ? dynamicForm.title.updateUser
-          : dynamicForm.title.createUser,
+          ? dynamicFormTranslationKeys.title.updateUser
+          : dynamicFormTranslationKeys.title.createUser,
       submit: new SaveCancelButtonConfig({
         save: this.user?.id
-          ? dynamicForm.action.update
-          : dynamicForm.action.create,
+          ? dynamicFormTranslationKeys.action.update
+          : dynamicFormTranslationKeys.action.create,
       }),
       controls: [
         new FormField<IInputField>({
           name: 'firstName',
           value: this.user?.firstName,
           fieldType: 'input',
-          label: dynamicForm.label.firstName,
+          label: dynamicFormTranslationKeys.label.firstName,
           fieldConfig: new InputField({ autocomplete: 'given-name' }),
           validation: [RequiredValidation.required('First Name')],
         }),
@@ -163,7 +163,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           name: 'lastName',
           value: this.user?.lastName,
           fieldType: 'input',
-          label: dynamicForm.label.lastName,
+          label: dynamicFormTranslationKeys.label.lastName,
           fieldConfig: new InputField({ autocomplete: 'family-name' }),
           validation: [RequiredValidation.required('Last Name')],
         }),
@@ -171,7 +171,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           name: 'email',
           value: this.user?.email,
           fieldType: 'input',
-          label: dynamicForm.label.email,
+          label: dynamicFormTranslationKeys.label.email,
           fieldConfig: new InputField({
             inputType: 'email',
             autocomplete: 'email',
@@ -187,7 +187,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
         name: 'agencyName',
         value: this.user?.agency.agencyName,
         fieldType: 'select',
-        label: dynamicForm.label.agency,
+        label: dynamicFormTranslationKeys.label.agency,
         fieldConfig: new SelectField({
           options: this.agencyList,
           optionName: 'agencyName',
@@ -205,7 +205,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
         name: 'roleId',
         value: this.user?.role.id,
         fieldType: 'select',
-        label: dynamicForm.label.role,
+        label: dynamicFormTranslationKeys.label.role,
         fieldConfig: new SelectField({
           options: this.roleList,
           optionName: 'roleName',

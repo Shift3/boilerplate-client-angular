@@ -10,8 +10,8 @@ import { EmailValidation } from '@utils/validation/email-validation';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
 import {
-  IDynamicForm,
-  DynamicForm,
+  IDynamicFormTranslationType,
+  DynamicFormTranslationType,
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { ISelectField, SelectField } from '@models/form/select';
@@ -58,23 +58,23 @@ export class AgentDetailSmartComponent implements OnInit {
   }
 
   private buildFormConfig() {
-    const dynamicForm: IDynamicForm = new DynamicForm();
+    const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
     const formConfig = new FormConfig({
       formName: 'form',
       formTitle: this.agent?.id
-        ? dynamicForm.title.updateAgent
-        : dynamicForm.title.createAgent,
+        ? dynamicFormTranslationKeys.title.updateAgent
+        : dynamicFormTranslationKeys.title.createAgent,
       submit: new SaveCancelButtonConfig({
         save: this.agent?.id
-          ? dynamicForm.action.update
-          : dynamicForm.action.create,
+          ? dynamicFormTranslationKeys.action.update
+          : dynamicFormTranslationKeys.action.create,
       }),
       controls: [
         new FormField<IInputField>({
           name: 'name',
           value: this.agent?.name,
           fieldType: 'input',
-          label: dynamicForm.label.fullName,
+          label: dynamicFormTranslationKeys.label.fullName,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('Full Name')],
         }),
@@ -82,7 +82,7 @@ export class AgentDetailSmartComponent implements OnInit {
           name: 'email',
           value: this.agent?.email,
           fieldType: 'input',
-          label: dynamicForm.label.email,
+          label: dynamicFormTranslationKeys.label.email,
           fieldConfig: new InputField({ inputType: 'email' }),
           validation: [EmailValidation.validEmail(true)],
         }),
@@ -90,7 +90,7 @@ export class AgentDetailSmartComponent implements OnInit {
           name: 'description',
           value: this.agent?.description,
           fieldType: 'input',
-          label: dynamicForm.label.description,
+          label: dynamicFormTranslationKeys.label.description,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('Description')],
         }),
@@ -98,7 +98,7 @@ export class AgentDetailSmartComponent implements OnInit {
           name: 'phoneNumber',
           value: this.agent?.phoneNumber,
           fieldType: 'input',
-          label: dynamicForm.label.phoneNumber,
+          label: dynamicFormTranslationKeys.label.phoneNumber,
           fieldConfig: new InputField({ mask: Constants.masks.US_PHONE }),
           validation: [PhoneValidation.validPhone(true)],
         }),
@@ -106,7 +106,7 @@ export class AgentDetailSmartComponent implements OnInit {
           name: 'address1',
           value: this.agent?.address.address1,
           fieldType: 'input',
-          label: dynamicForm.label.address,
+          label: dynamicFormTranslationKeys.label.address,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('Address')],
         }),
@@ -114,14 +114,14 @@ export class AgentDetailSmartComponent implements OnInit {
           name: 'address2',
           value: this.agent?.address.address2,
           fieldType: 'input',
-          label: dynamicForm.label.address2,
+          label: dynamicFormTranslationKeys.label.address2,
           fieldConfig: new InputField(),
         }),
         new FormField<IInputField>({
           name: 'city',
           value: this.agent?.address.city,
           fieldType: 'input',
-          label: dynamicForm.label.city,
+          label: dynamicFormTranslationKeys.label.city,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('City')],
         }),
@@ -129,7 +129,7 @@ export class AgentDetailSmartComponent implements OnInit {
           name: 'state',
           value: this.agent?.address.state,
           fieldType: 'select',
-          label: dynamicForm.label.state,
+          label: dynamicFormTranslationKeys.label.state,
           fieldConfig: new SelectField({
             options: stateList,
           }),
@@ -139,7 +139,7 @@ export class AgentDetailSmartComponent implements OnInit {
           name: 'zipCode',
           value: this.agent?.address.zipCode,
           fieldType: 'input',
-          label: dynamicForm.label.zipCode,
+          label: dynamicFormTranslationKeys.label.zipCode,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('Zip Code')],
         }),

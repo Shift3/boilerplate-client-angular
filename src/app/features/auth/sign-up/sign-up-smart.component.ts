@@ -6,8 +6,8 @@ import { EmailValidation } from '@utils/validation/email-validation';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
 import {
-  IDynamicForm,
-  DynamicForm,
+  IDynamicFormTranslationType,
+  DynamicFormTranslationType,
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { ISignupRequest, SignupRequest } from '@models/auth';
@@ -27,13 +27,13 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpSmartComponent {
-  private dynamicForm: IDynamicForm = new DynamicForm();
+  private dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: this.dynamicForm.title.signUp,
+    formTitle: this.dynamicFormTranslationKeys.title.signUp,
     submit: new SaveCancelButtonConfig({
-      save: this.dynamicForm.action.signUp,
+      save: this.dynamicFormTranslationKeys.action.signUp,
     }),
     validation: [
       MatchFieldValidation.validFieldMatch('email', 'confirmEmail', 'Email'),
@@ -42,8 +42,8 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: this.dynamicForm.label.email,
-        placeholder: this.dynamicForm.placeholder.email,
+        label: this.dynamicFormTranslationKeys.label.email,
+        placeholder: this.dynamicFormTranslationKeys.placeholder.email,
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -53,8 +53,8 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'confirmEmail',
         fieldType: 'input',
-        label: this.dynamicForm.label.confirmEmail,
-        placeholder: this.dynamicForm.placeholder.confirmEmail,
+        label: this.dynamicFormTranslationKeys.label.confirmEmail,
+        placeholder: this.dynamicFormTranslationKeys.placeholder.confirmEmail,
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',
@@ -63,16 +63,16 @@ export class SignUpSmartComponent {
       new FormField<IInputField>({
         name: 'firstName',
         fieldType: 'input',
-        label: this.dynamicForm.label.firstName,
-        placeholder: this.dynamicForm.placeholder.firstName,
+        label: this.dynamicFormTranslationKeys.label.firstName,
+        placeholder: this.dynamicFormTranslationKeys.placeholder.firstName,
         fieldConfig: new InputField({ autocomplete: 'given-name' }),
         validation: [RequiredValidation.required('First Name')],
       }),
       new FormField<IInputField>({
         name: 'lastName',
         fieldType: 'input',
-        label: this.dynamicForm.label.lastName,
-        placeholder: this.dynamicForm.placeholder.lastName,
+        label: this.dynamicFormTranslationKeys.label.lastName,
+        placeholder: this.dynamicFormTranslationKeys.placeholder.lastName,
         fieldConfig: new InputField({ autocomplete: 'family-name' }),
         validation: [RequiredValidation.required('Last Name')],
       }),

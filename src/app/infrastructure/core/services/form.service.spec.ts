@@ -5,8 +5,8 @@ import { FormConfig, FormField } from '@models/form/form';
 import { FormService } from './form.service';
 import { Logger } from '@utils/logger';
 import {
-  IDynamicForm,
-  DynamicForm,
+  IDynamicFormTranslationType,
+  DynamicFormTranslationType,
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField } from '@models/form/input';
 import { LoginRequest } from '@models/auth';
@@ -27,13 +27,13 @@ import { RequiredValidation } from '@utils/validation/required-validation';
         const fb = new FormBuilder();
         const formService = new FormService(fb);
         it(`should return a FormGroup with a FormControl from the provided formConfig`, () => {
-          const dynamicForm: IDynamicForm = new DynamicForm();
+          const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
           const formConfig = new FormConfig({
             controls: [
               new FormField<IInputField>({
                 name: 'email',
-                label: dynamicForm.label.email,
-                placeholder: dynamicForm.placeholder.email,
+                label: dynamicFormTranslationKeys.label.email,
+                placeholder: dynamicFormTranslationKeys.placeholder.email,
                 fieldType: 'input',
               }),
             ],
@@ -43,7 +43,7 @@ import { RequiredValidation } from '@utils/validation/required-validation';
         });
 
         it(`should return a FormGroup with validation errors when given validation on the FormGroup`, () => {
-          const dynamicForm: IDynamicForm = new DynamicForm();
+          const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
           const formConfig = new FormConfig({
             validation: [
               MatchFieldValidation.validFieldMatch(
@@ -55,14 +55,15 @@ import { RequiredValidation } from '@utils/validation/required-validation';
             controls: [
               new FormField<IInputField>({
                 name: 'password',
-                label: dynamicForm.label.password,
-                placeholder: dynamicForm.placeholder.password,
+                label: dynamicFormTranslationKeys.label.password,
+                placeholder: dynamicFormTranslationKeys.placeholder.password,
                 fieldType: 'input',
               }),
               new FormField<IInputField>({
                 name: 'confirmPassword',
-                label: dynamicForm.label.confirmPassword,
-                placeholder: dynamicForm.placeholder.confirmPassword,
+                label: dynamicFormTranslationKeys.label.confirmPassword,
+                placeholder:
+                  dynamicFormTranslationKeys.placeholder.confirmPassword,
                 fieldType: 'input',
               }),
             ],

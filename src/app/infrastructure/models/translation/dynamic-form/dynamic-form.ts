@@ -4,7 +4,7 @@ import { IDynamicFormLabel, DynamicFormLabel } from './label';
 import { IDynamicFormPlaceholder, DynamicFormPlaceholder } from './placeholder';
 import { IDynamicFormTitle, DynamicFormTitle } from './title';
 
-export interface IDynamicForm {
+export interface IDynamicFormTranslationType {
   action: IDynamicFormAction;
   error: IDynamicFormError;
   label: IDynamicFormLabel;
@@ -12,7 +12,7 @@ export interface IDynamicForm {
   title: IDynamicFormTitle;
 }
 
-export class DynamicForm implements IDynamicForm {
+export class DynamicFormTranslationType implements IDynamicFormTranslationType {
   action: IDynamicFormAction = new DynamicFormAction();
   error: IDynamicFormError = new DynamicFormError();
   label: IDynamicFormLabel = new DynamicFormLabel();

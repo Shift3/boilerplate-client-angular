@@ -7,8 +7,8 @@ import { EmailValidation } from '@utils/validation/email-validation';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
 import {
-  IDynamicForm,
-  DynamicForm,
+  IDynamicFormTranslationType,
+  DynamicFormTranslationType,
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { IForgotPasswordRequest, ForgotPasswordRequest } from '@models/user';
@@ -28,20 +28,20 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForgotPasswordSmartComponent {
-  private dynamicForm: IDynamicForm = new DynamicForm();
+  private dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: this.dynamicForm.title.forgotPassword,
+    formTitle: this.dynamicFormTranslationKeys.title.forgotPassword,
     submit: new SaveCancelButtonConfig({
-      save: this.dynamicForm.action.submit,
+      save: this.dynamicFormTranslationKeys.action.submit,
     }),
     controls: [
       new FormField<IInputField>({
         name: 'email',
         fieldType: 'input',
-        label: this.dynamicForm.label.email,
-        placeholder: this.dynamicForm.placeholder.email,
+        label: this.dynamicFormTranslationKeys.label.email,
+        placeholder: this.dynamicFormTranslationKeys.placeholder.email,
         fieldConfig: new InputField({
           inputType: 'email',
           autocomplete: 'email',

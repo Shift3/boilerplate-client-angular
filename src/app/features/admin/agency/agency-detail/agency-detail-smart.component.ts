@@ -8,8 +8,8 @@ import { AgencyService } from '@core/services/api/agency.service';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
 import {
-  IDynamicForm,
-  DynamicForm,
+  IDynamicFormTranslationType,
+  DynamicFormTranslationType,
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
@@ -56,23 +56,23 @@ export class AgencyDetailSmartComponent implements OnInit {
   }
 
   private buildFormConfig() {
-    const dynamicForm: IDynamicForm = new DynamicForm();
+    const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
     const formConfig = new FormConfig({
       formName: 'form',
       formTitle: this.agency?.id
-        ? dynamicForm.title.updateAgency
-        : dynamicForm.title.createAgency,
+        ? dynamicFormTranslationKeys.title.updateAgency
+        : dynamicFormTranslationKeys.title.createAgency,
       submit: new SaveCancelButtonConfig({
         save: this.agency?.id
-          ? dynamicForm.action.update
-          : dynamicForm.action.create,
+          ? dynamicFormTranslationKeys.action.update
+          : dynamicFormTranslationKeys.action.create,
       }),
       controls: [
         new FormField<IInputField>({
           name: 'agencyName',
           value: this.agency?.agencyName,
           fieldType: 'input',
-          label: dynamicForm.label.agencyName,
+          label: dynamicFormTranslationKeys.label.agencyName,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('Agency Name')],
         }),
