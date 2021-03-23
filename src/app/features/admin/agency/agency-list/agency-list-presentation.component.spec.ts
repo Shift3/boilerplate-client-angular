@@ -1,12 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { MockComponent } from 'ng-mocks';
+import { MockComponent, MockPipe } from 'ng-mocks';
 
 import { AgencyListPresentationComponent } from './agency-list-presentation.component';
 import { AgencyTableComponent } from '../agency-table/agency-table.component';
 import { environment } from '@env/environment.test';
 import { getTranslocoModule } from '@utils/test/transloco-testing-module';
+import { LocaleUpperCasePipe } from '@shared/pipes/locale-upper-case.pipe';
 import { Logger } from '@utils/logger';
 
 !environment.testIntegration
@@ -20,6 +21,7 @@ import { Logger } from '@utils/logger';
           declarations: [
             AgencyListPresentationComponent,
             MockComponent(AgencyTableComponent),
+            MockPipe(LocaleUpperCasePipe),
           ],
           imports: [getTranslocoModule(), RouterTestingModule],
         }).compileComponents();

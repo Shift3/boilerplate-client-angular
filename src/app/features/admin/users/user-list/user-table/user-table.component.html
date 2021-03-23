@@ -3,27 +3,27 @@
     <thead>
       <tr>
         <th scope="col">
-          {{ translate('dynamicTable.header.lastName') | uppercase }}
+          {{ translate('dynamicTable.header.lastName') | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.firstName') | uppercase }}
+          {{ translate('dynamicTable.header.firstName') | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.email') | uppercase }}
+          {{ translate('dynamicTable.header.email') | localeuppercase }}
         </th>
         <ng-container *ngIf="checkRole?.isSuperAdmin">
           <th scope="col">
-            {{ translate('dynamicTable.header.agency') | uppercase }}
+            {{ translate('dynamicTable.header.agency') | localeuppercase }}
           </th>
         </ng-container>
         <th scope="col">
-          {{ translate('dynamicTable.header.role') | uppercase }}
+          {{ translate('dynamicTable.header.role') | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.activated') | uppercase }}
+          {{ translate('dynamicTable.header.activated') | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.actions') | uppercase }}
+          {{ translate('dynamicTable.header.actions') | localeuppercase }}
         </th>
       </tr>
     </thead>

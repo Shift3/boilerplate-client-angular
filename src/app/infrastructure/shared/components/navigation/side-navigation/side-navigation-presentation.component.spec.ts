@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { MockComponent } from 'ng-mocks';
+import { MockComponent, MockPipe } from 'ng-mocks';
 
 import { environment } from '@env/environment.test';
 import { LanguageSettingsSmartComponent } from '../language-settings/language-settings-smart.component';
+import { LocaleUpperCasePipe } from '@shared/pipes/locale-upper-case.pipe';
 import { Logger } from '@utils/logger';
 import { SideNavigationPresentationComponent } from './side-navigation-presentation.component';
 import { SettingsComponent } from '../settings/settings.component';
@@ -21,6 +22,7 @@ import { SettingsComponent } from '../settings/settings.component';
             SideNavigationPresentationComponent,
             MockComponent(LanguageSettingsSmartComponent),
             MockComponent(SettingsComponent),
+            MockPipe(LocaleUpperCasePipe),
           ],
           imports: [RouterTestingModule],
         }).compileComponents();

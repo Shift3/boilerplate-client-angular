@@ -14,7 +14,8 @@
       (click)="submit()"
     >
       {{
-        translate(getObjectProperty('action', modalConfig.action)) | uppercase
+        translate(getObjectProperty('action', modalConfig.action))
+          | localeuppercase
       }}
     </button>
     <button
@@ -23,7 +24,7 @@
       type="button"
       (click)="cancel()"
     >
-      {{ translate('dynamicForm.action.cancel') | uppercase }}
+      {{ translate('dynamicForm.action.cancel') | localeuppercase }}
     </button>
   </div>
 </div>

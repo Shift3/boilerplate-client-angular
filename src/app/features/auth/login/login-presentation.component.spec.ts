@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { MockComponent } from 'ng-mocks';
+import { MockComponent, MockPipe } from 'ng-mocks';
 
 import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-form.component';
 import { environment } from '@env/environment.test';
+import { LocaleUpperCasePipe } from '@shared/pipes/locale-upper-case.pipe';
 import { Logger } from '@utils/logger';
 import { LoginPresentationComponent } from './login-presentation.component';
 
@@ -19,6 +20,7 @@ import { LoginPresentationComponent } from './login-presentation.component';
           declarations: [
             LoginPresentationComponent,
             MockComponent(DynamicFormComponent),
+            MockPipe(LocaleUpperCasePipe),
           ],
           imports: [RouterTestingModule],
         }).compileComponents();

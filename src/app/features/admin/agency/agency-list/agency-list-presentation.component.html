@@ -1,7 +1,7 @@
 <ng-container *transloco="let translate; read: 'dynamicForm'">
   <div class="row">
     <button class="btn btn-add" routerLink="/admin/create-agency">
-      {{ translate('action.addAgency') | uppercase }}
+      {{ translate('action.addAgency') | localeuppercase }}
     </button>
   </div>
   <ng-container *ngIf="agencyList; else loading">

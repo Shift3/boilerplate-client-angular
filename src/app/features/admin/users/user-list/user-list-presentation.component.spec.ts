@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { MockPipe } from 'ng-mocks';
+
 import { environment } from '@env/environment.test';
+import { LocaleUpperCasePipe } from '@shared/pipes/locale-upper-case.pipe';
 import { Logger } from '@utils/logger';
 import { UserListPresentationComponent } from './user-list-presentation.component';
 
@@ -13,7 +16,10 @@ import { UserListPresentationComponent } from './user-list-presentation.componen
 
       beforeEach(async(() => {
         TestBed.configureTestingModule({
-          declarations: [UserListPresentationComponent],
+          declarations: [
+            UserListPresentationComponent,
+            MockPipe(LocaleUpperCasePipe),
+          ],
           imports: [RouterTestingModule],
         }).compileComponents();
       }));
