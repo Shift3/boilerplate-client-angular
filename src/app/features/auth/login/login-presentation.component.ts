@@ -8,7 +8,16 @@ import {
 
 import { FormConfig, IFormConfig } from '@models/form/form';
 import { FormGroup } from '@angular/forms';
+import {
+  IDynamicFormAction,
+  DynamicFormAction,
+} from '@models/translation/dynamic-form/action';
 import { ISignUp, SignUp } from '@models/translation/sign-up';
+
+export interface IActions {
+  createAccount: string;
+  forgotPassword: string;
+}
 
 @Component({
   selector: 'app-login-presentation',
@@ -22,6 +31,11 @@ export class LoginPresentationComponent {
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
 
+  private dynamicFormAction: IDynamicFormAction = new DynamicFormAction();
+  public actions: IActions = {
+    createAccount: this.dynamicFormAction.createAccount,
+    forgotPassword: this.dynamicFormAction.forgotPassword,
+  };
   public signUp: ISignUp = new SignUp();
 
   public propagateForm(form: FormGroup): void {

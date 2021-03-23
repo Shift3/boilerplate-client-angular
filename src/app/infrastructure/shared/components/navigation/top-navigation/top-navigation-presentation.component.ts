@@ -1,7 +1,16 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
+import {
+  IDynamicFormAction,
+  DynamicFormAction,
+} from '@models/translation/dynamic-form/action';
 import { INavigation } from '@models/navigation';
 import { IUserDTO, UserDTO } from '@models/user';
+
+export interface IActions {
+  createAccount: string;
+  login: string;
+}
 
 @Component({
   selector: 'app-top-navigation-presentation',
@@ -15,6 +24,11 @@ export class TopNavigationPresentationComponent {
   @Input() public loggedInUser: IUserDTO = new UserDTO();
   @Input() public navLinks: INavigation[];
 
+  private dynamicFormAction: IDynamicFormAction = new DynamicFormAction();
+  public actions: IActions = {
+    createAccount: this.dynamicFormAction.createAccount,
+    login: this.dynamicFormAction.login,
+  };
   public isMenuCollapsed = true;
 
   getObjectProperty(label): string {

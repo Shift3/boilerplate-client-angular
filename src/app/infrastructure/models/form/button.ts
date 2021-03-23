@@ -1,11 +1,18 @@
+import {
+  IDynamicFormTranslationKey,
+  DynamicFormTranslationKey,
+} from '@models/translation/dynamic-form/dynamic-form';
+
+const dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
+
 export interface ISaveCancelButtonConfig {
   save: string;
   cancel: string;
 }
 
 export class SaveCancelButtonConfig implements ISaveCancelButtonConfig {
-  save: string = 'save';
-  cancel: string = 'cancel';
+  save: string = dynamicFormTranslationKeys.action.submit;
+  cancel: string = dynamicFormTranslationKeys.action.cancel;
 
   constructor(configOverride?: Partial<ISaveCancelButtonConfig>) {
     if (configOverride) {

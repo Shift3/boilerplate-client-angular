@@ -7,6 +7,10 @@ import {
 } from '@angular/core';
 
 import { IAgentDTO } from '@models/agent';
+import {
+  IDynamicFormAction,
+  DynamicFormAction,
+} from '@models/translation/dynamic-form/action';
 import { IRoleCheck, RoleCheck } from '@models/role';
 
 @Component({
@@ -20,6 +24,9 @@ export class AgentListPresentationComponent {
   @Input() public checkRole: IRoleCheck = new RoleCheck();
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
+
+  private dynamicFormAction: IDynamicFormAction = new DynamicFormAction();
+  public addButtonText: string = this.dynamicFormAction.addAgent;
 
   public deleteAgent(agent: IAgentDTO): void {
     this.emitDelete.emit(agent);

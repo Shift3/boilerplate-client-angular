@@ -1,10 +1,6 @@
-<div
-  class="field-container"
-  [formGroup]="group"
-  *transloco="let translate; read: 'dynamicForm'"
->
+<div class="field-container" [formGroup]="group" *transloco="let translate">
   <label class="field-label" [for]="config.name">
-    {{ translate(getObjectProperty('label', config.label)) }}
+    {{ translate(config.label) }}
   </label>
   <input
     [id]="config.name"
@@ -13,8 +9,8 @@
     [formControlName]="config.name"
     [placeholder]="
       config.placeholder
-        ? translate(getObjectProperty('placeholder', config.placeholder))
-        : translate('placeholder.default')
+        ? translate(config.placeholder)
+        : translate('dynamicForm.placeholder.default')
     "
     [autocomplete]="config.fieldConfig.autocomplete"
     [mask]="config.fieldConfig.mask"

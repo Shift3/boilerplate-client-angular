@@ -1,6 +1,6 @@
 <div class="card" *transloco="let translate">
   <h2 class="card-header">
-    {{ translate(getObjectProperty(formConfig.formTitle)) }}
+    {{ translate(formConfig.formTitle) }}
   </h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-container *ngIf="formConfig.controls.length">

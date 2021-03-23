@@ -4,6 +4,10 @@ import { FormGroup } from '@angular/forms';
 
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
+import {
+  IDynamicFormTranslationKey,
+  DynamicFormTranslationKey,
+} from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { IResetPasswordRequest, ResetPasswordRequest } from '@models/user';
 import { MatchFieldValidation } from '@utils/validation/match-field-validation';
@@ -22,11 +26,14 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivateAccountSmartComponent {
+  private dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'activateAccount',
-    submit: new SaveCancelButtonConfig({ save: 'submit' }),
+    formTitle: this.dynamicFormTranslationKeys.title.activateAccount,
+    submit: new SaveCancelButtonConfig({
+      save: this.dynamicFormTranslationKeys.action.submit,
+    }),
     validation: [
       MatchFieldValidation.validFieldMatch(
         'newPassword',
@@ -38,8 +45,8 @@ export class ActivateAccountSmartComponent {
       new FormField<IInputField>({
         name: 'newPassword',
         fieldType: 'input',
-        label: 'password',
-        placeholder: 'newPassword',
+        label: this.dynamicFormTranslationKeys.label.password,
+        placeholder: this.dynamicFormTranslationKeys.placeholder.newPassword,
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',
@@ -49,8 +56,9 @@ export class ActivateAccountSmartComponent {
       new FormField<IInputField>({
         name: 'confirmPassword',
         fieldType: 'input',
-        label: 'confirmPassword',
-        placeholder: 'confirmPassword',
+        label: this.dynamicFormTranslationKeys.label.confirmPassword,
+        placeholder: this.dynamicFormTranslationKeys.placeholder
+          .confirmPassword,
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',

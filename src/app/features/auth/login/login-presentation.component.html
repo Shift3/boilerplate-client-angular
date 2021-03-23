@@ -8,7 +8,7 @@
     ></app-dynamic-form>
     <div class="forgot-password-container">
       <a class="forgot-password-link" routerLink="/auth/forgot-password"
-        >{{ translate('dynamicForm.action.forgotPassword') }}?</a
+        >{{ translate(actions.forgotPassword) }}?</a
       >
     </div>
   </div>
@@ -24,7 +24,7 @@
       mat-raised-button
       routerLink="/auth/signup"
     >
-      {{ translate('dynamicForm.action.createAccount') | localeuppercase }}
+      {{ translate(actions.createAccount) | localeuppercase }}
     </button>
   </div>
 </div>

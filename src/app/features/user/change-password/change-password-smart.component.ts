@@ -11,6 +11,10 @@ import {
   IChangePasswordRequest,
   IUserDTO,
 } from '@models/user';
+import {
+  IDynamicFormTranslationKey,
+  DynamicFormTranslationKey,
+} from '@models/translation/dynamic-form/dynamic-form';
 import { MatchFieldValidation } from '@utils/validation/match-field-validation';
 import { PasswordValidation } from '@utils/validation/password-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
@@ -28,11 +32,14 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChangePasswordSmartComponent {
+  private dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',
-    formTitle: 'changePassword',
-    submit: new SaveCancelButtonConfig({ save: 'submit' }),
+    formTitle: this.dynamicFormTranslationKeys.title.changePassword,
+    submit: new SaveCancelButtonConfig({
+      save: this.dynamicFormTranslationKeys.action.submit,
+    }),
     validation: [
       MatchFieldValidation.validFieldMatch(
         'newPassword',
@@ -44,8 +51,9 @@ export class ChangePasswordSmartComponent {
       new FormField<IInputField>({
         name: 'oldPassword',
         fieldType: 'input',
-        label: 'currentPassword',
-        placeholder: 'currentPassword',
+        label: this.dynamicFormTranslationKeys.label.currentPassword,
+        placeholder: this.dynamicFormTranslationKeys.placeholder
+          .currentPassword,
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'current-password',
@@ -55,8 +63,8 @@ export class ChangePasswordSmartComponent {
       new FormField<IInputField>({
         name: 'newPassword',
         fieldType: 'input',
-        label: 'newPassword',
-        placeholder: 'newPassword',
+        label: this.dynamicFormTranslationKeys.label.newPassword,
+        placeholder: this.dynamicFormTranslationKeys.placeholder.newPassword,
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',
@@ -66,8 +74,9 @@ export class ChangePasswordSmartComponent {
       new FormField<IInputField>({
         name: 'confirmPassword',
         fieldType: 'input',
-        label: 'confirmNewPassword',
-        placeholder: 'confirmPassword',
+        label: this.dynamicFormTranslationKeys.label.confirmNewPassword,
+        placeholder: this.dynamicFormTranslationKeys.placeholder
+          .confirmPassword,
         fieldConfig: new InputField({
           inputType: 'password',
           autocomplete: 'new-password',
