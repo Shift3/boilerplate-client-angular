@@ -113,13 +113,13 @@
     },
     "body": {
       "emptyListMessage": "Walang data",
-      "resendActivationEmail": "Ipadala muli ang Naka-aktibong Email",
       "thumbnail": "Thumbnail"
     },
     "tooltip": {
       "deleteAgency": "Tanggalin ang Ahensya",
       "deleteAgent": "Tanggalin ang Ahente",
       "deleteUser": "Tanggalin ang Gumagamit",
+      "resendActivationEmail": "Ipadala muli ang Naka-aktibong Email",
       "resetPassword": "I-reset ang Password",
       "updateAgency": "I-update ang Ahensya",
       "updateAgent": "I-update ang Ahente",
