@@ -14,6 +14,10 @@ import { ForgotPasswordRequest, IUserDTO } from '@models/user';
 import { ModalService } from '@core/services/modal.service';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
+import {
+  IConfirmationModal,
+  ConfirmationModal,
+} from '@models/translation/confirmation-modal';
 import { IRoleCheck } from '@models/role';
 
 @Component({
@@ -38,6 +42,8 @@ export class UserListSmartComponent implements OnInit {
   public loggedInUser$: Observable<IUserDTO>;
   public userList$: Observable<IUserDTO[]>;
 
+  private confirmationModal: IConfirmationModal = new ConfirmationModal();
+
   constructor(
     private modalService: ModalService,
     private userService: UserService,
@@ -53,10 +59,10 @@ export class UserListSmartComponent implements OnInit {
   public openDeleteModal(user: IUserDTO): void {
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: 'delete',
+        static: this.confirmationModal.title.delete,
         dynamic: `${user.firstName} ${user.lastName}?`,
       },
-      action: 'delete',
+      action: this.confirmationModal.action.delete,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {
@@ -68,10 +74,10 @@ export class UserListSmartComponent implements OnInit {
   public openResendActivationEmailModal(user: IUserDTO): void {
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: 'resendActivation',
+        static: this.confirmationModal.title.resendActivation,
         dynamic: `${user.firstName} ${user.lastName}?`,
       },
-      action: 'resend',
+      action: this.confirmationModal.action.resend,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
       if (result) {
@@ -83,10 +89,10 @@ export class UserListSmartComponent implements OnInit {
   public openResetPasswordModal(user: IUserDTO): void {
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: 'sendResetPassword',
+        static: this.confirmationModal.title.sendResetPassword,
         dynamic: `${user.firstName} ${user.lastName}?`,
       },
-      action: 'send',
+      action: this.confirmationModal.action.send,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
       if (result) {

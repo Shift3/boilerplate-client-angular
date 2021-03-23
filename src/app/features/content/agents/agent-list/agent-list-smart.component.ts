@@ -11,6 +11,10 @@ import { catchError, startWith, switchMap } from 'rxjs/operators';
 import { AgentService } from '@core/services/api/agent.service';
 import { ConfirmModalConfig } from '@models/modal';
 import { IAgentDTO } from '@models/agent';
+import {
+  IConfirmationModal,
+  ConfirmationModal,
+} from '@models/translation/confirmation-modal';
 import { IRoleCheck } from '@models/role';
 import { ModalService } from '@core/services/modal.service';
 import { UserStateService } from '@core/services/state/user-state.service';
@@ -46,12 +50,13 @@ export class AgentListSmartComponent implements OnInit {
   }
 
   public openDeleteModal(agent: IAgentDTO): void {
+    const confirmationModal: IConfirmationModal = new ConfirmationModal();
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: 'delete',
+        static: confirmationModal.title.delete,
         dynamic: `${agent.name}?`,
       },
-      action: 'delete',
+      action: confirmationModal.action.delete,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {

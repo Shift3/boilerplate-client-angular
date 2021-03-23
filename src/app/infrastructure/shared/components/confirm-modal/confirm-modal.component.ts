@@ -4,7 +4,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConfirmModalConfig, IConfirmModalConfig } from '@models/modal';
 
-import { DataTransformationService } from '@core/services/data-transformation.service';
+import {
+  IConfirmationModal,
+  ConfirmationModal,
+} from '@models/translation/confirmation-modal';
 
 @Component({
   templateUrl: './confirm-modal.component.html',
@@ -14,10 +17,9 @@ import { DataTransformationService } from '@core/services/data-transformation.se
 export class ConfirmModalComponent {
   @Input() public modalConfig: IConfirmModalConfig = new ConfirmModalConfig();
 
-  constructor(
-    private activeModal: NgbActiveModal,
-    private dataTransformationService: DataTransformationService,
-  ) {}
+  public confirmationModal: IConfirmationModal = new ConfirmationModal();
+
+  constructor(private activeModal: NgbActiveModal) {}
 
   public cancel(): void {
     this.activeModal.close();
@@ -25,14 +27,5 @@ export class ConfirmModalComponent {
 
   public submit(): void {
     this.activeModal.close(this.modalConfig);
-  }
-
-  public getObjectProperty(property: string, label: string): string {
-    return label?.length
-      ? this.dataTransformationService.getObjectProperty(
-          `confirmationModal.${property}`,
-          label,
-        )
-      : 'confirmationModal.action.continue';
   }
 }
