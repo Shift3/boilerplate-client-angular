@@ -12,8 +12,7 @@ export class LocaleUpperCasePipe implements PipeTransform {
     value: string | null | undefined,
     language?: string,
   ): string | null {
-    if (value == null) return null;
-    if (typeof value !== 'string') {
+    if (!value || typeof value !== 'string') {
       return '';
     }
     const locale = language || translocoConfigObj.defaultLang;
