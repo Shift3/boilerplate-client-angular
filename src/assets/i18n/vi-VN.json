@@ -113,13 +113,13 @@
     },
     "body": {
       "emptyListMessage": "Không có dữ liệu",
-      "resendActivationEmail": "Gửi lại email đã kích hoạt",
       "thumbnail": "Hình nhỏ"
     },
     "tooltip": {
       "deleteAgency": "Xóa đại lý",
       "deleteAgent": "Xóa tác nhân",
       "deleteUser": "Xóa người dùng",
+      "resendActivationEmail": "Gửi lại email đã kích hoạt",
       "resetPassword": "Đặt lại mật khẩu",
       "updateAgency": "Cập nhật đại lý",
       "updateAgent": "Cập nhật đại lý",

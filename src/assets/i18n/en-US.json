@@ -113,13 +113,13 @@
     },
     "body": {
       "emptyListMessage": "No data",
-      "resendActivationEmail": "Resend Activated Email",
       "thumbnail": "Thumbnail"
     },
     "tooltip": {
       "deleteAgency": "Delete Agency",
       "deleteAgent": "Delete Agent",
       "deleteUser": "Delete User",
+      "resendActivationEmail": "Resend Activated Email",
       "resetPassword": "Reset Password",
       "updateAgency": "Update Agency",
       "updateAgent": "Update Agent",

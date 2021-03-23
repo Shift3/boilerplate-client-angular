@@ -7,6 +7,10 @@ import {
 } from '@angular/core';
 
 import { IAgentDTO } from '@models/agent';
+import {
+  IDynamicTableTranslationKey,
+  DynamicTableTranslationKey,
+} from '@models/translation/dynamic-table';
 import { IRoleCheck, RoleCheck } from '@models/role';
 import { ITableConfig, TableConfig } from '@models/table';
 
@@ -22,6 +26,8 @@ export class AgentTableComponent {
   @Input() public tableData: IAgentDTO[] = [];
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
+
+  public dynamicTableTranslationKeys: IDynamicTableTranslationKey = new DynamicTableTranslationKey();
 
   public deleteAgent(agent: IAgentDTO): void {
     this.emitDelete.emit(agent);
