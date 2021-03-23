@@ -3,20 +3,20 @@
     <thead>
       <tr>
         <th scope="col">
-          {{ translate('dynamicTable.header.name') | localeuppercase }}
+          {{ translate(dynamicTable.header.name) | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.description') | localeuppercase }}
+          {{ translate(dynamicTable.header.description) | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.email') | localeuppercase }}
+          {{ translate(dynamicTable.header.email) | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.phoneNumber') | localeuppercase }}
+          {{ translate(dynamicTable.header.phoneNumber) | localeuppercase }}
         </th>
         <ng-container *ngIf="checkRole.canEdit">
           <th scope="col w-10">
-            {{ translate('dynamicTable.header.actions') | localeuppercase }}
+            {{ translate(dynamicTable.header.actions) | localeuppercase }}
           </th>
         </ng-container>
       </tr>
@@ -30,7 +30,7 @@
                 class="thumbnail-container"
                 [src]="item.thumbnail"
                 alt="{{ item.name }} {{
-                  translate('dynamicTable.body.thumbnail')
+                  translate(dynamicTable.body.thumbnail)
                 }}"
               />
             </ng-container>
@@ -44,24 +44,24 @@
               <button
                 class="btn"
                 type="button"
-                tooltip="{{ translate('dynamicTable.tooltip.updateAgent') }}"
+                tooltip="{{ translate(dynamicTable.tooltip.updateAgent) }}"
                 routerLink="/content/update-agent/{{ item.id }}"
               >
                 <span class="fa fa-edit"></span>
                 <span class="sr-only">
-                  {{ translate('dynamicTable.tooltip.updateAgent') }}
+                  {{ translate(dynamicTable.tooltip.updateAgent) }}
                 </span>
               </button>
               <ng-container *ngIf="checkRole.isAdmin">
                 <button
                   class="btn"
                   type="button"
-                  tooltip="{{ translate('dynamicTable.tooltip.deleteAgent') }}"
+                  tooltip="{{ translate(dynamicTable.tooltip.deleteAgent) }}"
                   (click)="deleteAgent(item)"
                 >
                   <span class="fa fa-trash"></span>
                   <span class="sr-only">
-                    {{ translate('dynamicTable.tooltip.deleteAgent') }}
+                    {{ translate(dynamicTable.tooltip.deleteAgent) }}
                   </span>
                 </button>
               </ng-container>
@@ -72,6 +72,6 @@
     </tbody>
   </table>
   <div class="center" *ngIf="!tableData.length">
-    {{ translate('dynamicTable.body.emptyListMessage') }}
+    {{ translate(dynamicTable.body.emptyListMessage) }}
   </div>
 </ng-container>

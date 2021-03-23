@@ -16,7 +16,7 @@ export class DynamicTableHeader implements IDynamicTableHeader {
   actions: string = 'dynamicTable.header.actions';
   activated: string = 'dynamicTable.header.activated';
   agency: string = 'dynamicTable.header.agency';
-  agencyName: string = 'dynamicTable.header.actions';
+  agencyName: string = 'dynamicTable.header.agencyName';
   description: string = 'dynamicTable.header.description';
   email: string = 'dynamicTable.header.email';
   firstName: string = 'dynamicTable.header.firstName';

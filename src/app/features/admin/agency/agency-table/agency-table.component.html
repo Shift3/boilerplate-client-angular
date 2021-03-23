@@ -3,10 +3,10 @@
     <thead>
       <tr>
         <th scope="col">
-          {{ translate('dynamicTable.header.agencyName') | localeuppercase }}
+          {{ translate(dynamicTable.header.agencyName) | localeuppercase }}
         </th>
         <th scope="col w-10">
-          {{ translate('dynamicTable.header.actions') | localeuppercase }}
+          {{ translate(dynamicTable.header.actions) | localeuppercase }}
         </th>
       </tr>
     </thead>
@@ -18,23 +18,23 @@
             <button
               class="btn"
               type="button"
-              tooltip="{{ translate('dynamicTable.tooltip.updateAgency') }}"
+              tooltip="{{ translate(dynamicTable.tooltip.updateAgency) }}"
               routerLink="/admin/update-agency/{{ item.id }}"
             >
               <span class="fa fa-edit"></span>
               <span class="sr-only">{{
-                translate('dynamicTable.tooltip.updateAgency')
+                translate(dynamicTable.tooltip.updateAgency)
               }}</span>
             </button>
             <button
               class="btn"
               type="button"
-              tooltip="{{ translate('dynamicTable.tooltip.deleteAgency') }}"
+              tooltip="{{ translate(dynamicTable.tooltip.deleteAgency) }}"
               (click)="deleteAgency(item)"
             >
               <span class="fa fa-trash"></span>
               <span class="sr-only">{{
-                translate('dynamicTable.tooltip.deleteAgency')
+                translate(dynamicTable.tooltip.deleteAgency)
               }}</span>
             </button>
           </td>
@@ -43,6 +43,6 @@
     </tbody>
   </table>
   <div class="center" *ngIf="!tableData.length">
-    {{ translate('dynamicTable.body.emptyListMessage') }}
+    {{ translate(dynamicTable.body.emptyListMessage) }}
   </div>
 </ng-container>

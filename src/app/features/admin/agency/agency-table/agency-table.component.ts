@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 
 import { IAgencyDTO } from '@models/agency';
+import { IDynamicTable, DynamicTable } from '@models/translation/dynamic-table';
 import { ITableConfig, TableConfig } from '@models/table';
 
 @Component({
@@ -19,6 +20,8 @@ export class AgencyTableComponent {
   @Input() public tableConfig: ITableConfig = new TableConfig();
 
   @Output() public emitDelete = new EventEmitter<IAgencyDTO>();
+
+  public dynamicTable: IDynamicTable = new DynamicTable();
 
   public deleteAgency(agency: IAgencyDTO): void {
     this.emitDelete.emit(agency);

@@ -3,27 +3,27 @@
     <thead>
       <tr>
         <th scope="col">
-          {{ translate('dynamicTable.header.lastName') | localeuppercase }}
+          {{ translate(dynamicTable.header.lastName) | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.firstName') | localeuppercase }}
+          {{ translate(dynamicTable.header.firstName) | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.email') | localeuppercase }}
+          {{ translate(dynamicTable.header.email) | localeuppercase }}
         </th>
         <ng-container *ngIf="checkRole?.isSuperAdmin">
           <th scope="col">
-            {{ translate('dynamicTable.header.agency') | localeuppercase }}
+            {{ translate(dynamicTable.header.agency) | localeuppercase }}
           </th>
         </ng-container>
         <th scope="col">
-          {{ translate('dynamicTable.header.role') | localeuppercase }}
+          {{ translate(dynamicTable.header.role) | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.activated') | localeuppercase }}
+          {{ translate(dynamicTable.header.activated) | localeuppercase }}
         </th>
         <th scope="col">
-          {{ translate('dynamicTable.header.actions') | localeuppercase }}
+          {{ translate(dynamicTable.header.actions) | localeuppercase }}
         </th>
       </tr>
     </thead>
@@ -46,13 +46,13 @@
                 class="btn"
                 (click)="resendActivationEmail(item)"
                 tooltip="{{
-                  translate('dynamicTable.tooltip.resendActivationEmail')
+                  translate(dynamicTable.tooltip.resendActivationEmail)
                 }}"
               >
                 <span class="fa fa-envelope"></span>
                 <span class="sr-only">
                   {{
-                    translate('dynamicTable.tooltip.resendActivationEmail')
+                    translate(dynamicTable.tooltip.resendActivationEmail)
                   }}</span
                 >
               </button>
@@ -63,11 +63,11 @@
               class="btn"
               type="button"
               routerLink="/admin/update-user/{{ item.id }}"
-              tooltip="{{ translate('dynamicTable.tooltip.updateUser') }}"
+              tooltip="{{ translate(dynamicTable.tooltip.updateUser) }}"
             >
               <span class="fa fa-edit"></span>
               <span class="sr-only">{{
-                translate('dynamicTable.tooltip.updateUser')
+                translate(dynamicTable.tooltip.updateUser)
               }}</span>
             </button>
             <ng-container *ngIf="!isSelf(item.id)">
@@ -75,11 +75,11 @@
                 class="btn"
                 type="button"
                 (click)="deleteUser(item)"
-                tooltip="{{ translate('dynamicTable.tooltip.deleteUser') }}"
+                tooltip="{{ translate(dynamicTable.tooltip.deleteUser) }}"
               >
                 <span class="fa fa-trash"></span>
                 <span class="sr-only">{{
-                  translate('dynamicTable.tooltip.deleteUser')
+                  translate(dynamicTable.tooltip.deleteUser)
                 }}</span>
               </button>
             </ng-container>
@@ -88,11 +88,11 @@
                 class="btn"
                 type="button"
                 (click)="resetPassword(item)"
-                tooltip="{{ translate('dynamicTable.tooltip.resetPassword') }}"
+                tooltip="{{ translate(dynamicTable.tooltip.resetPassword) }}"
               >
                 <span class="fa fa-lock"></span>
                 <span class="sr-only">{{
-                  translate('dynamicTable.tooltip.resetPassword')
+                  translate(dynamicTable.tooltip.resetPassword)
                 }}</span>
               </button>
             </ng-container>
@@ -102,6 +102,6 @@
     </tbody>
   </table>
   <div class="center" *ngIf="!tableData.length">
-    {{ translate('dynamicTable.body.emptyListMessage') }}
+    {{ translate(dynamicTable.body.emptyListMessage) }}
   </div>
 </ng-container>
