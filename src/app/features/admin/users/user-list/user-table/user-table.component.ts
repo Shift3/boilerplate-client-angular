@@ -6,7 +6,10 @@ import {
   Output,
 } from '@angular/core';
 
-import { IDynamicTable, DynamicTable } from '@models/translation/dynamic-table';
+import {
+  IDynamicTableTranslationKey,
+  DynamicTableTranslationKey,
+} from '@models/translation/dynamic-table';
 import { IRoleCheck, RoleCheck } from '@models/role';
 import { ITableConfig, TableConfig } from '@models/table';
 import { IUserDTO } from '@models/user';
@@ -26,7 +29,7 @@ export class UserTableComponent {
   @Output() public emitResendActivationEmail = new EventEmitter<IUserDTO>();
   @Output() public emitResetPassword = new EventEmitter<IUserDTO>();
 
-  public dynamicTable: IDynamicTable = new DynamicTable();
+  public dynamicTableTranslationKeys: IDynamicTableTranslationKey = new DynamicTableTranslationKey();
 
   public deleteUser(user: IUserDTO): void {
     this.emitDelete.emit(user);

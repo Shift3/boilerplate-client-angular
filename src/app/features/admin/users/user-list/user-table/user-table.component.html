@@ -3,27 +3,47 @@
     <thead>
       <tr>
         <th scope="col">
-          {{ translate(dynamicTable.header.lastName) | localeuppercase }}
+          {{
+            translate(dynamicTableTranslationKeys.header.lastName)
+              | localeuppercase
+          }}
         </th>
         <th scope="col">
-          {{ translate(dynamicTable.header.firstName) | localeuppercase }}
+          {{
+            translate(dynamicTableTranslationKeys.header.firstName)
+              | localeuppercase
+          }}
         </th>
         <th scope="col">
-          {{ translate(dynamicTable.header.email) | localeuppercase }}
+          {{
+            translate(dynamicTableTranslationKeys.header.email)
+              | localeuppercase
+          }}
         </th>
         <ng-container *ngIf="checkRole?.isSuperAdmin">
           <th scope="col">
-            {{ translate(dynamicTable.header.agency) | localeuppercase }}
+            {{
+              translate(dynamicTableTranslationKeys.header.agency)
+                | localeuppercase
+            }}
           </th>
         </ng-container>
         <th scope="col">
-          {{ translate(dynamicTable.header.role) | localeuppercase }}
+          {{
+            translate(dynamicTableTranslationKeys.header.role) | localeuppercase
+          }}
         </th>
         <th scope="col">
-          {{ translate(dynamicTable.header.activated) | localeuppercase }}
+          {{
+            translate(dynamicTableTranslationKeys.header.activated)
+              | localeuppercase
+          }}
         </th>
         <th scope="col">
-          {{ translate(dynamicTable.header.actions) | localeuppercase }}
+          {{
+            translate(dynamicTableTranslationKeys.header.actions)
+              | localeuppercase
+          }}
         </th>
       </tr>
     </thead>
@@ -46,13 +66,17 @@
                 class="btn"
                 (click)="resendActivationEmail(item)"
                 tooltip="{{
-                  translate(dynamicTable.tooltip.resendActivationEmail)
+                  translate(
+                    dynamicTableTranslationKeys.tooltip.resendActivationEmail
+                  )
                 }}"
               >
                 <span class="fa fa-envelope"></span>
                 <span class="sr-only">
                   {{
-                    translate(dynamicTable.tooltip.resendActivationEmail)
+                    translate(
+                      dynamicTableTranslationKeys.tooltip.resendActivationEmail
+                    )
                   }}</span
                 >
               </button>
@@ -63,11 +87,13 @@
               class="btn"
               type="button"
               routerLink="/admin/update-user/{{ item.id }}"
-              tooltip="{{ translate(dynamicTable.tooltip.updateUser) }}"
+              tooltip="{{
+                translate(dynamicTableTranslationKeys.tooltip.updateUser)
+              }}"
             >
               <span class="fa fa-edit"></span>
               <span class="sr-only">{{
-                translate(dynamicTable.tooltip.updateUser)
+                translate(dynamicTableTranslationKeys.tooltip.updateUser)
               }}</span>
             </button>
             <ng-container *ngIf="!isSelf(item.id)">
@@ -75,11 +101,13 @@
                 class="btn"
                 type="button"
                 (click)="deleteUser(item)"
-                tooltip="{{ translate(dynamicTable.tooltip.deleteUser) }}"
+                tooltip="{{
+                  translate(dynamicTableTranslationKeys.tooltip.deleteUser)
+                }}"
               >
                 <span class="fa fa-trash"></span>
                 <span class="sr-only">{{
-                  translate(dynamicTable.tooltip.deleteUser)
+                  translate(dynamicTableTranslationKeys.tooltip.deleteUser)
                 }}</span>
               </button>
             </ng-container>
@@ -88,11 +116,13 @@
                 class="btn"
                 type="button"
                 (click)="resetPassword(item)"
-                tooltip="{{ translate(dynamicTable.tooltip.resetPassword) }}"
+                tooltip="{{
+                  translate(dynamicTableTranslationKeys.tooltip.resetPassword)
+                }}"
               >
                 <span class="fa fa-lock"></span>
                 <span class="sr-only">{{
-                  translate(dynamicTable.tooltip.resetPassword)
+                  translate(dynamicTableTranslationKeys.tooltip.resetPassword)
                 }}</span>
               </button>
             </ng-container>
@@ -102,6 +132,6 @@
     </tbody>
   </table>
   <div class="center" *ngIf="!tableData.length">
-    {{ translate(dynamicTable.body.emptyListMessage) }}
+    {{ translate(dynamicTableTranslationKeys.body.emptyListMessage) }}
   </div>
 </ng-container>

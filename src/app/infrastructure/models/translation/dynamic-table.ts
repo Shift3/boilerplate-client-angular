@@ -58,13 +58,13 @@ export class DynamicTableTooltip implements IDynamicTableTooltip {
   updateUser: string = 'dynamicTable.tooltip.updateUser';
 }
 
-export interface IDynamicTable {
+export interface IDynamicTableTranslationKey {
   header: IDynamicTableHeader;
   body: IDynamicTableBody;
   tooltip: IDynamicTableTooltip;
 }
 
-export class DynamicTable implements IDynamicTable {
+export class DynamicTableTranslationKey implements IDynamicTableTranslationKey {
   header: IDynamicTableHeader = new DynamicTableHeader();
   body: IDynamicTableBody = new DynamicTableBody();
   tooltip: IDynamicTableTooltip = new DynamicTableTooltip();
