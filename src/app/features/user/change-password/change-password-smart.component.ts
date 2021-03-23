@@ -12,8 +12,8 @@ import {
   IUserDTO,
 } from '@models/user';
 import {
-  IDynamicFormTranslationType,
-  DynamicFormTranslationType,
+  IDynamicFormTranslationKey,
+  DynamicFormTranslationKey,
 } from '@models/translation/dynamic-form/dynamic-form';
 import { MatchFieldValidation } from '@utils/validation/match-field-validation';
 import { PasswordValidation } from '@utils/validation/password-validation';
@@ -32,7 +32,7 @@ import { UserService } from '@core/services/api/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChangePasswordSmartComponent {
-  private dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
+  private dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig({
     formName: 'form',

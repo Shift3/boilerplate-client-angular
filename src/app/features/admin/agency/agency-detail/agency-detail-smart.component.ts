@@ -8,8 +8,8 @@ import { AgencyService } from '@core/services/api/agency.service';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
 import {
-  IDynamicFormTranslationType,
-  DynamicFormTranslationType,
+  IDynamicFormTranslationKey,
+  DynamicFormTranslationKey,
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
@@ -56,7 +56,7 @@ export class AgencyDetailSmartComponent implements OnInit {
   }
 
   private buildFormConfig() {
-    const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
+    const dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
     const formConfig = new FormConfig({
       formName: 'form',
       formTitle: this.agency?.id

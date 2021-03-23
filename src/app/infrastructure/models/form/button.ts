@@ -1,9 +1,9 @@
 import {
-  IDynamicFormTranslationType,
-  DynamicFormTranslationType,
+  IDynamicFormTranslationKey,
+  DynamicFormTranslationKey,
 } from '@models/translation/dynamic-form/dynamic-form';
 
-const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
+const dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
 
 export interface ISaveCancelButtonConfig {
   save: string;

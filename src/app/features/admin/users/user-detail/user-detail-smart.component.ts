@@ -23,8 +23,8 @@ import { ISelectField, ISelectOptions, SelectField } from '@models/form/select';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
 import {
-  IDynamicFormTranslationType,
-  DynamicFormTranslationType,
+  IDynamicFormTranslationKey,
+  DynamicFormTranslationKey,
 } from '@models/translation/dynamic-form/dynamic-form';
 
 @Component({
@@ -136,7 +136,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   }
 
   private buildFormConfig() {
-    const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
+    const dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
     const formConfig = new FormConfig({
       formName: 'form',
       formTitle:

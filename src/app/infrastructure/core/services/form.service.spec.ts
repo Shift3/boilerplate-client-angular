@@ -5,8 +5,8 @@ import { FormConfig, FormField } from '@models/form/form';
 import { FormService } from './form.service';
 import { Logger } from '@utils/logger';
 import {
-  IDynamicFormTranslationType,
-  DynamicFormTranslationType,
+  IDynamicFormTranslationKey,
+  DynamicFormTranslationKey,
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField } from '@models/form/input';
 import { LoginRequest } from '@models/auth';
@@ -27,7 +27,7 @@ import { RequiredValidation } from '@utils/validation/required-validation';
         const fb = new FormBuilder();
         const formService = new FormService(fb);
         it(`should return a FormGroup with a FormControl from the provided formConfig`, () => {
-          const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
+          const dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
           const formConfig = new FormConfig({
             controls: [
               new FormField<IInputField>({
@@ -43,7 +43,7 @@ import { RequiredValidation } from '@utils/validation/required-validation';
         });
 
         it(`should return a FormGroup with validation errors when given validation on the FormGroup`, () => {
-          const dynamicFormTranslationKeys: IDynamicFormTranslationType = new DynamicFormTranslationType();
+          const dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
           const formConfig = new FormConfig({
             validation: [
               MatchFieldValidation.validFieldMatch(
