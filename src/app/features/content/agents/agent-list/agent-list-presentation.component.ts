@@ -8,9 +8,9 @@ import {
 
 import { IAgentDTO } from '@models/agent';
 import {
-  IDynamicForm,
-  DynamicForm,
-} from '@models/translation/dynamic-form/dynamic-form';
+  IDynamicFormAction,
+  DynamicFormAction,
+} from '@models/translation/dynamic-form/action';
 import { IRoleCheck, RoleCheck } from '@models/role';
 
 @Component({
@@ -25,8 +25,8 @@ export class AgentListPresentationComponent {
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
 
-  private dynamicForm: IDynamicForm = new DynamicForm();
-  public addButtonText: string = this.dynamicForm.action.addAgent;
+  private dynamicFormAction: IDynamicFormAction = new DynamicFormAction();
+  public addButtonText: string = this.dynamicFormAction.addAgent;
 
   public deleteAgent(agent: IAgentDTO): void {
     this.emitDelete.emit(agent);

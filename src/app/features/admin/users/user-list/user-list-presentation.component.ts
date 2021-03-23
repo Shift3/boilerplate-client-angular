@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 
 import {
-  IDynamicForm,
-  DynamicForm,
-} from '@models/translation/dynamic-form/dynamic-form';
+  IDynamicFormAction,
+  DynamicFormAction,
+} from '@models/translation/dynamic-form/action';
 import { IRoleCheck, RoleCheck } from '@models/role';
 import { IUserDTO } from '@models/user';
 
@@ -28,8 +28,8 @@ export class UserListPresentationComponent {
   @Output() public emitResendActivationEmail = new EventEmitter<IUserDTO>();
   @Output() public emitResetPassword = new EventEmitter<IUserDTO>();
 
-  private dynamicForm: IDynamicForm = new DynamicForm();
-  public addButtonText: string = this.dynamicForm.action.addUser;
+  private dynamicFormAction: IDynamicFormAction = new DynamicFormAction();
+  public addButtonText: string = this.dynamicFormAction.addUser;
 
   public deleteUser(user: IUserDTO): void {
     this.emitDelete.emit(user);

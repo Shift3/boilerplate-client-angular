@@ -3,11 +3,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { TranslocoService } from '@ngneat/transloco';
 
-import { translocoConfigObj } from '@app/transloco/transloco-config';
-
+import { ITranslation } from '@models/translation/translation';
 import { LANGUAGE } from '@models/enums';
 
 import jsonFiles from '@assets/i18n/index';
+import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 @Injectable({
   providedIn: 'root',
@@ -108,7 +108,7 @@ export class LanguageStateService {
     );
   }
 
-  private getLangJsonObj(languageCode: string): object {
+  private getLangJsonObj(languageCode: string): ITranslation {
     return jsonFiles[languageCode.replace('-', '')].default;
   }
 

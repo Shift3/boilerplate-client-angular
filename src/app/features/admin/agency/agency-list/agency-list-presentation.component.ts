@@ -8,9 +8,9 @@ import {
 
 import { IAgencyDTO } from '@models/agency';
 import {
-  IDynamicForm,
-  DynamicForm,
-} from '@models/translation/dynamic-form/dynamic-form';
+  IDynamicFormAction,
+  DynamicFormAction,
+} from '@models/translation/dynamic-form/action';
 
 @Component({
   selector: 'app-agency-list-presentation',
@@ -23,8 +23,8 @@ export class AgencyListPresentationComponent {
 
   @Output() public emitDelete = new EventEmitter<IAgencyDTO>();
 
-  private dynamicForm: IDynamicForm = new DynamicForm();
-  public addButtonText: string = this.dynamicForm.action.addAgency;
+  private dynamicFormAction: IDynamicFormAction = new DynamicFormAction();
+  public addButtonText: string = this.dynamicFormAction.addAgency;
 
   public deleteAgency(agency: IAgencyDTO): void {
     this.emitDelete.emit(agency);
