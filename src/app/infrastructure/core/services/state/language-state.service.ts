@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { TranslocoService } from '@ngneat/transloco';
 
+import { ILanguageTranslationKey } from '@models/translation/navigation';
 import { ITranslation } from '@models/translation/translation';
 import { LANGUAGE } from '@models/enums';
 
@@ -95,11 +96,9 @@ export class LanguageStateService {
   }
 
   private getLanguageKeyFromJson(language: string): string {
-    const navigationLanguageList: string = 'navigation.languages';
-    const languages = this.getPropValue(
-      this.getLangJsonObj(this.translocoService.getActiveLang()),
-      navigationLanguageList,
-    );
+    const languages: ILanguageTranslationKey = this.getLangJsonObj(
+      this.translocoService.getActiveLang(),
+    ).navigation.languages;
 
     return Object.keys(languages).find((key) =>
       typeof languages[key] === 'string'

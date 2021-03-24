@@ -134,15 +134,15 @@
       "vietnamese": "Vietnamese"
     },
     "navLinks": {
+      "agencies": "Agencies",
       "directory": "Directory",
-      "users": "Users",
-      "agencies": "Agencies"
+      "users": "Users"
     },
     "userProfile": {
       "imageAlt": "Profile picture",
       "profileLinks": {
-        "profile": "Profile",
-        "changePassword": "Change Password"
+        "changePassword": "Change Password",
+        "profile": "Profile"
       },
       "signOut": "Sign Out",
       "toggleNavBarText": "Toggle Navigation Bar",

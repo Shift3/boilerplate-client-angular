@@ -6,6 +6,10 @@ import {
 } from '@models/translation/dynamic-form/action';
 import { INavigation } from '@models/navigation';
 import { IUserDTO, UserDTO } from '@models/user';
+import {
+  INavLinksTranslationKey,
+  NavLinksTranslationKey,
+} from '@app/infrastructure/models/translation/navigation';
 
 export interface IActions {
   createAccount: string;
@@ -30,8 +34,5 @@ export class TopNavigationPresentationComponent {
     login: this.dynamicFormAction.login,
   };
   public isMenuCollapsed = true;
-
-  getObjectProperty(label): string {
-    return `navigation.navLinks.${label.toLowerCase()}`;
-  }
+  public navLinksTranslationKey: INavLinksTranslationKey = new NavLinksTranslationKey();
 }
