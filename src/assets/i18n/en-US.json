@@ -153,20 +153,6 @@
     "description": "Something went wrong or this page doesn't exist anymore.",
     "goBack": "Go Back"
   },
-  "signUp": {
-    "cardHeader": "Haven't Registered Yet?",
-    "instruction": "Registering for your account is quick and easy."
-  },
-  "userProfile": {
-    "imageAlt": "Profile picture",
-    "profileLinks": {
-      "profile": "Profile",
-      "changePassword": "Change Password"
-    },
-    "signOutText": "Sign Out",
-    "toggleNavBarText": "Toggle Navigation Bar",
-    "welcomeText": "Hi"
-  },
   "notification": {
     "activateAccountSuccess": "This account has been activated. Please log in.",
     "activationEmailSent": "An activation email has been sent to ",
@@ -234,5 +220,9 @@
       "changePassword": "Change Password",
       "profile": "Update Profile"
     }
+  },
+  "signUp": {
+    "cardHeader": "Haven't Registered Yet?",
+    "instruction": "Registering for your account is quick and easy."
   }
 }

@@ -153,20 +153,6 @@
     "description": "Algo salió mal o esta página ya no existe.",
     "goBack": "Regresa"
   },
-  "signUp": {
-    "cardHeader": "¿Aún no te has registrado?",
-    "instruction": "Registrarse para su cuenta es rápida y fácil."
-  },
-  "userProfile": {
-    "imageAlt": "Foto de perfil",
-    "profileLinks": {
-      "profile": "Perfil",
-      "changePassword": "Cambiar la contraseña"
-    },
-    "signOutText": "Desconectar",
-    "toggleNavBarText": "Alternar barra de navegación",
-    "welcomeText": "Hola"
-  },
   "notification": {
     "activateAccountSuccess": "Esta cuenta ha sido activada. Por favor Iniciar sesión.",
     "activationEmailSent": "Se ha enviado un correo electrónico de activación a ",
@@ -234,5 +220,9 @@
       "changePassword": "Cambiar la Contraseña",
       "profile": "Actualizar Perfil"
     }
+  },
+  "signUp": {
+    "cardHeader": "¿Aún no te has registrado?",
+    "instruction": "Registrarse para su cuenta es rápida y fácil."
   }
 }

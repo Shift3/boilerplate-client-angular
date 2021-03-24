@@ -153,20 +153,6 @@
     "description": "Nagkaproblema o wala na ang pahinang ito.",
     "goBack": "Bumalik ka"
   },
-  "signUp": {
-    "cardHeader": "Hindi pa Nakarehistro?",
-    "instruction": "Ang pagrehistro para sa iyong account ay mabilis at madali."
-  },
-  "userProfile": {
-    "imageAlt": "Larawan sa profile",
-    "profileLinks": {
-      "profile": "Profile",
-      "changePassword": "Palitan ang Kontrasenyas"
-    },
-    "signOutText": "Mag-sign Out",
-    "toggleNavBarText": "I-toggle ang pag-navigate",
-    "welcomeText": "Kamusta"
-  },
   "notification": {
     "activateAccountSuccess": "Ang account na ito ay naaktibo. Mangyaring mag-log in",
     "activationEmailSent": "Naipadala na ang isang email sa pag-activate ",
@@ -234,5 +220,9 @@
       "changePassword": "Palitan ang Kontrasenyas",
       "profile": "I-update ang Profile"
     }
+  },
+  "signUp": {
+    "cardHeader": "Hindi pa Nakarehistro?",
+    "instruction": "Ang pagrehistro para sa iyong account ay mabilis at madali."
   }
 }

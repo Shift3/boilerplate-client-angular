@@ -1,9 +1,10 @@
 import { IConfirmationModal } from './confirmation-modal';
 import { DynamicFormTranslationKey } from './dynamic-form/dynamic-form';
+import { DynamicTableTranslationKey } from './dynamic-table';
 import { INotFound } from './not-found';
 import { INotification } from './notification';
+import { IRoutingTranslationKey } from './routing';
 import { ISignUp } from './sign-up';
-import { DynamicTableTranslationKey } from './dynamic-table';
 
 export interface ITranslation {
   confirmationModal: IConfirmationModal;
@@ -11,5 +12,6 @@ export interface ITranslation {
   dynamicTable: DynamicTableTranslationKey;
   notFound: INotFound;
   notification: INotification;
+  routing: IRoutingTranslationKey;
   signUp: ISignUp;
 }
