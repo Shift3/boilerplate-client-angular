@@ -15,8 +15,8 @@ import { ModalService } from '@core/services/modal.service';
 import { UserService } from '@core/services/api/user.service';
 import { UserStateService } from '@core/services/state/user-state.service';
 import {
-  IConfirmationModal,
-  ConfirmationModal,
+  IConfirmationModalTranslationKey,
+  ConfirmationModalTranslationKey,
 } from '@models/translation/confirmation-modal';
 import { IRoleCheck } from '@models/role';
 
@@ -42,7 +42,7 @@ export class UserListSmartComponent implements OnInit {
   public loggedInUser$: Observable<IUserDTO>;
   public userList$: Observable<IUserDTO[]>;
 
-  private confirmationModal: IConfirmationModal = new ConfirmationModal();
+  private confirmationModalTranslationKeys: IConfirmationModalTranslationKey = new ConfirmationModalTranslationKey();
 
   constructor(
     private modalService: ModalService,
@@ -59,10 +59,10 @@ export class UserListSmartComponent implements OnInit {
   public openDeleteModal(user: IUserDTO): void {
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: this.confirmationModal.title.delete,
+        static: this.confirmationModalTranslationKeys.title.delete,
         dynamic: `${user.firstName} ${user.lastName}?`,
       },
-      action: this.confirmationModal.action.delete,
+      action: this.confirmationModalTranslationKeys.action.delete,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {
@@ -74,10 +74,10 @@ export class UserListSmartComponent implements OnInit {
   public openResendActivationEmailModal(user: IUserDTO): void {
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: this.confirmationModal.title.resendActivation,
+        static: this.confirmationModalTranslationKeys.title.resendActivation,
         dynamic: `${user.firstName} ${user.lastName}?`,
       },
-      action: this.confirmationModal.action.resend,
+      action: this.confirmationModalTranslationKeys.action.resend,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
       if (result) {
@@ -89,10 +89,10 @@ export class UserListSmartComponent implements OnInit {
   public openResetPasswordModal(user: IUserDTO): void {
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: this.confirmationModal.title.sendResetPassword,
+        static: this.confirmationModalTranslationKeys.title.sendResetPassword,
         dynamic: `${user.firstName} ${user.lastName}?`,
       },
-      action: this.confirmationModal.action.send,
+      action: this.confirmationModalTranslationKeys.action.send,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((result) => {
       if (result) {

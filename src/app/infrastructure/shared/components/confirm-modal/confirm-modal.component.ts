@@ -5,8 +5,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalConfig, IConfirmModalConfig } from '@models/modal';
 
 import {
-  IConfirmationModal,
-  ConfirmationModal,
+  IConfirmationModalTranslationKey,
+  ConfirmationModalTranslationKey,
 } from '@models/translation/confirmation-modal';
 import {
   IDynamicFormAction,
@@ -21,7 +21,7 @@ import {
 export class ConfirmModalComponent {
   @Input() public modalConfig: IConfirmModalConfig = new ConfirmModalConfig();
 
-  public confirmationModal: IConfirmationModal = new ConfirmationModal();
+  public confirmationModal: IConfirmationModalTranslationKey = new ConfirmationModalTranslationKey();
   public dynamicFormAction: IDynamicFormAction = new DynamicFormAction();
 
   constructor(private activeModal: NgbActiveModal) {}

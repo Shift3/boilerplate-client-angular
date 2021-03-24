@@ -12,8 +12,8 @@ import { AgentService } from '@core/services/api/agent.service';
 import { ConfirmModalConfig } from '@models/modal';
 import { IAgentDTO } from '@models/agent';
 import {
-  IConfirmationModal,
-  ConfirmationModal,
+  IConfirmationModalTranslationKey,
+  ConfirmationModalTranslationKey,
 } from '@models/translation/confirmation-modal';
 import { IRoleCheck } from '@models/role';
 import { LanguageStateService } from '@core/services/state/language-state.service';
@@ -55,13 +55,13 @@ export class AgentListSmartComponent implements OnInit {
   }
 
   public openDeleteModal(agent: IAgentDTO): void {
-    const confirmationModal: IConfirmationModal = new ConfirmationModal();
+    const confirmationModalTranslationKeys: IConfirmationModalTranslationKey = new ConfirmationModalTranslationKey();
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: confirmationModal.title.delete,
+        static: confirmationModalTranslationKeys.title.delete,
         dynamic: `${agent.name}?`,
       },
-      action: confirmationModal.action.delete,
+      action: confirmationModalTranslationKeys.action.delete,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {
