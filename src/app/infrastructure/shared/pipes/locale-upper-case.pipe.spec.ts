@@ -34,11 +34,11 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
         expect(pipe.transform(testValue2)).toEqual(expectedValue2);
       });
 
-      it('should map null to null', () => {
+      it('should map null to empty string', () => {
         expect(pipe.transform(null)).toEqual('');
       });
 
-      it('should map undefined to null', () => {
+      it('should map undefined to empty string', () => {
         expect(pipe.transform(undefined)).toEqual('');
       });
 
