@@ -11,7 +11,17 @@
       *ngFor="let option of config.fieldConfig.options"
       [value]="option[config.fieldConfig.optionValue]"
     >
-      {{ option[config.fieldConfig.optionName] }}
+      <ng-container
+        *ngIf="
+          config.fieldConfig.shouldOptionNameBeTranslatedByClient;
+          else original
+        "
+      >
+        {{ translate(option[config.fieldConfig.optionName]) }}
+      </ng-container>
+      <ng-template #original>
+        {{ option[config.fieldConfig.optionName] }}
+      </ng-template>
     </option>
   </select>
   <span class="error-container">
