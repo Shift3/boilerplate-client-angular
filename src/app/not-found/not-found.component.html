@@ -1,10 +1,10 @@
 <div class="route-container" *transloco="let translate">
   <div class="child">
     <h2 class="not-found-status">404</h2>
-    <p>{{ translate(notFound.description) }}</p>
+    <p>{{ translate(notFoundTranslationKeys.description) }}</p>
     <div class="row">
       <button id="cancel-button" class="btn" (click)="back()">
-        {{ translate(notFound.goBack) }}
+        {{ translate(notFoundTranslationKeys.goBack) }}
       </button>
     </div>
   </div>
