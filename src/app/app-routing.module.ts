@@ -3,10 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from '@core/guards/auth.guard';
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
+import {
+  IRoutingAppTranslationKey,
+  RoutingAppTranslationKey,
+} from '@models/translation/routing';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RedirectComponent } from './redirect/redirect.component';
-import { RedirectRouteGuard } from './infrastructure/core/guards/redirect-route.guard';
+import { RedirectRouteGuard } from '@core/guards/redirect-route.guard';
 
+const appRoutingTranslationKeys: IRoutingAppTranslationKey = new RoutingAppTranslationKey();
 const routes: Routes = [
   {
     path: '',
@@ -42,7 +47,7 @@ const routes: Routes = [
   {
     path: '**',
     component: NotFoundComponent,
-    data: { title: 'routing.app.notFound' },
+    data: { title: appRoutingTranslationKeys.notFound },
   },
 ];
 

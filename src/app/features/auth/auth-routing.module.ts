@@ -14,6 +14,12 @@ import { ResetPasswordPresentationComponent } from './reset-password/reset-passw
 import { SignUpPresentationComponent } from './sign-up/sign-up-presentation.component';
 import { SignUpSmartComponent } from './sign-up/sign-up-smart.component';
 
+import {
+  IRoutingAuthTranslationKey,
+  RoutingAuthTranslationKey,
+} from '@models/translation/routing';
+
+const authRoutingTranslationKeys: IRoutingAuthTranslationKey = new RoutingAuthTranslationKey();
 const routes: Routes = [
   {
     path: '',
@@ -27,32 +33,32 @@ const routes: Routes = [
       {
         path: 'activate-account/:token',
         component: ActivateAccountSmartComponent,
-        data: { title: 'routing.auth.activateAccount' },
+        data: { title: authRoutingTranslationKeys.activateAccount },
       },
       {
         path: 'forgot-password',
         component: ForgotPasswordSmartComponent,
-        data: { title: 'routing.auth.forgotPassword' },
+        data: { title: authRoutingTranslationKeys.forgotPassword },
       },
       {
         path: 'login',
         component: LoginSmartComponent,
-        data: { title: 'routing.auth.login' },
+        data: { title: authRoutingTranslationKeys.login },
       },
       {
         path: 'logout',
         component: LogoutComponent,
-        data: { title: 'routing.auth.logout' },
+        data: { title: authRoutingTranslationKeys.logout },
       },
       {
         path: 'reset-password/:token',
         component: ResetPasswordSmartComponent,
-        data: { title: 'routing.auth.resetPassword' },
+        data: { title: authRoutingTranslationKeys.resetPassword },
       },
       {
         path: 'signup',
         component: SignUpSmartComponent,
-        data: { title: 'routing.auth.signUp' },
+        data: { title: authRoutingTranslationKeys.signUp },
       },
     ],
   },
