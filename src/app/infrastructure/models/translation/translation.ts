@@ -5,7 +5,7 @@ import { INavigationTranslationKey } from './navigation';
 import { INotFoundTranslationKey } from './not-found';
 import { INotificationTranslationKey } from './notification';
 import { IRoutingTranslationKey } from './routing';
-import { ISignUp } from './sign-up';
+import { ISignUpTranslationKey } from './sign-up';
 import { LANGUAGE } from '../enums';
 import { translocoConfigObj } from '@app/transloco/transloco-config';
 
@@ -17,7 +17,7 @@ export interface ITranslation {
   notFound: INotFoundTranslationKey;
   notification: INotificationTranslationKey;
   routing: IRoutingTranslationKey;
-  signUp: ISignUp;
+  signUp: ISignUpTranslationKey;
 }
 
 export interface IHasTranslation {
