@@ -134,15 +134,15 @@
       "vietnamese": "Tiếng Việt"
     },
     "navLinks": {
+      "agencies": "Cơ quan",
       "directory": "Danh mục",
-      "users": "Người dùng",
-      "agencies": "Cơ quan"
+      "users": "Người dùng"
     },
     "userProfile": {
       "imageAlt": "Ảnh đại diện",
       "profileLinks": {
-        "profile": "Hồ sơ",
-        "changePassword": "Đổi mật khẩu"
+        "changePassword": "Đổi mật khẩu",
+        "profile": "Hồ sơ"
       },
       "signOut": "Đăng xuất",
       "toggleNavBarText": "Chuyển đổi thanh điều hướng",

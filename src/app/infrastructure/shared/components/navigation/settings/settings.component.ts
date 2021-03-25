@@ -13,10 +13,14 @@ import {
   IConfirmationModal,
   ConfirmationModal,
 } from '@models/translation/confirmation-modal';
+import { DataTransformationService } from '@core/services/data-transformation.service';
 import { INavigation, profileLinkList } from '@models/navigation';
-import { NavbarStateService } from '@core/services/state/navbar-state.service';
-import { DataTransformationService } from '@app/infrastructure/core/services/data-transformation.service';
 import { IUserDTO, UserDTO } from '@models/user';
+import {
+  IUserProfileTranslationKey,
+  UserProfileTranslationKey,
+} from '@models/translation/navigation';
+import { NavbarStateService } from '@core/services/state/navbar-state.service';
 
 interface IDefaultLangText {
   toggleNavBarText: string;
@@ -37,6 +41,7 @@ export class SettingsComponent implements OnInit {
   public profileLinks: INavigation[] = profileLinkList;
   public showTopNav =
     localStorage.getItem('navbarToggle') === 'top' ? true : false;
+  public userProfileTranslationKeys: IUserProfileTranslationKey = new UserProfileTranslationKey();
 
   constructor(
     private authService: AuthService,
@@ -53,10 +58,10 @@ export class SettingsComponent implements OnInit {
   private languageSetup() {
     this.defaultLangText = {
       toggleNavBarText: this.dataTransformationService.getTextInDefaultLang(
-        'navigation.userProfile.toggleNavBarText',
+        this.userProfileTranslationKeys.toggleNavBarText,
       ),
       signOut: this.dataTransformationService.getTextInDefaultLang(
-        'navigation.userProfile.signOut',
+        this.userProfileTranslationKeys.signOut,
       ),
     };
   }
@@ -89,13 +94,5 @@ export class SettingsComponent implements OnInit {
 
   public showPlaceholderImageOnEmptyOrError(): void {
     this.loggedInUser.profilePicture = this.profilePicturePlaceholder;
-  }
-
-  public getObjectProperty(label: string): string {
-    if (label?.length)
-      return this.dataTransformationService.getObjectProperty(
-        'navigation.userProfile.profileLinks',
-        label,
-      );
   }
 }

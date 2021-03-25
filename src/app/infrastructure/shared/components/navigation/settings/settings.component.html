@@ -1,7 +1,7 @@
 <div ngbDropdown class="navbar-nav" *transloco="let translate">
   <button id="profileDropdown" class="nav-link" ngbDropdownToggle>
     <span class="fa fa-user"></span>
-    {{ translate('navigation.userProfile.welcomeText') }}
+    {{ translate(userProfileTranslationKeys.welcomeText) }}
     {{ loggedInUser?.firstName }}
   </button>
   <div
@@ -14,7 +14,7 @@
         <img
           class="profile-photo"
           [src]="loggedInUser.profilePicture || profilePicturePlaceholder"
-          [alt]="translate('navigation.userProfile.imageAlt')"
+          [alt]="translate(userProfileTranslationKeys.imageAlt)"
           (error)="showPlaceholderImageOnEmptyOrError()"
         />
         <div>{{ loggedInUser?.firstName }}</div>
@@ -26,20 +26,25 @@
           *ngFor="let link of profileLinks; trackBy: 'id' | trackByKey"
         >
           <button ngbDropdownItem [routerLink]="link.link">
-            {{ translate(getObjectProperty(link.label)) | titlecase }}
+            {{
+              translate(userProfileTranslationKeys.profileLinks[link?.label])
+                | titlecase
+            }}
             <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
               / {{ link.label | sentenceCase }}
             </span>
           </button>
         </ng-container>
         <button ngbDropdownItem (click)="toggleNavBar()">
-          {{ translate('navigation.userProfile.toggleNavBarText') | titlecase }}
+          {{
+            translate(userProfileTranslationKeys.toggleNavBarText) | titlecase
+          }}
           <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
             / {{ defaultLangText.toggleNavBarText | titlecase }}
           </span>
         </button>
         <button ngbDropdownItem (click)="openConfirmModal()">
-          {{ translate('navigation.userProfile.signOut') | titlecase }}
+          {{ translate(userProfileTranslationKeys.signOut) | titlecase }}
           <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
             / {{ defaultLangText.signOut | titlecase }}
           </span>

@@ -24,7 +24,7 @@
             (click)="isMenuCollapsed = true"
           >
             <span [class]="link.icon"></span>
-            {{ translate(getObjectProperty(link.label)) }}
+            {{ translate(navLinksTranslationKey[link?.label?.toLowerCase()]) }}
           </button>
           <app-language-settings></app-language-settings>
         </ul>

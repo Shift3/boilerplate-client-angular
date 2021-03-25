@@ -6,6 +6,11 @@ import {
   EventEmitter,
 } from '@angular/core';
 
+import {
+  ILanguageTranslationKey,
+  LanguageTranslationKey,
+} from '@models/translation/navigation';
+
 @Component({
   selector: 'app-language-settings-presentation',
   templateUrl: './language-settings-presentation.component.html',
@@ -19,13 +24,9 @@ export class LanguageSettingsPresentationComponent {
 
   @Output() public emitSelection = new EventEmitter<string>();
 
+  public languageTranslationKeys: ILanguageTranslationKey = new LanguageTranslationKey();
+
   public selectLanguage(language: string): void {
     this.emitSelection.emit(language);
-  }
-
-  public getObjectProperty(label: string): string {
-    if (label.length === 0) return '';
-
-    return `navigation.languages.${label.toLowerCase()}`;
   }
 }

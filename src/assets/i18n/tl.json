@@ -134,15 +134,15 @@
       "vietnamese": "Biyetnames"
     },
     "navLinks": {
+      "agencies": "Mga ahensya",
       "directory": "Direktoryo",
-      "users": "Mga gumagamit",
-      "agencies": "Mga ahensya"
+      "users": "Mga gumagamit"
     },
     "userProfile": {
       "imageAlt": "Larawan sa profile",
       "profileLinks": {
-        "profile": "Profile",
-        "changePassword": "Palitan ang Kontrasenyas"
+        "changePassword": "Palitan ang Kontrasenyas",
+        "profile": "Profile"
       },
       "signOut": "Mag-sign Out",
       "toggleNavBarText": "I-toggle ang pag-navigate",

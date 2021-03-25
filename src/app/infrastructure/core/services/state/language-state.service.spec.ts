@@ -4,6 +4,10 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 import { BehaviorSubject } from 'rxjs';
 
 import { environment } from '@env/environment.test';
+import {
+  INavigationTranslationKey,
+  NavigationTranslationKey,
+} from '@models/translation/navigation';
 import { LanguageStateService } from './language-state.service';
 import { Logger } from '@utils/logger';
 
@@ -88,7 +92,8 @@ import { Logger } from '@utils/logger';
         });
 
         it('should return the text in default language', () => {
-          const mockProperty = 'navigation.userProfile.signOut';
+          const navigationTranslationKeys: INavigationTranslationKey = new NavigationTranslationKey();
+          const mockProperty = navigationTranslationKeys.userProfile.signOut;
           const expectedValue = 'Sign Out';
 
           expect(service.getTextInDefaultLang(mockProperty)).toEqual(

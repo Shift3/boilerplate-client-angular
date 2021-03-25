@@ -5,7 +5,7 @@
     class="nav-link language-button"
   >
     <span class="fa fa-language"></span>
-    {{ translate(getObjectProperty(activeLanguage)) | titlecase }}
+    {{ translate(languageTranslationKeys[activeLanguage]) | titlecase }}
   </button>
   <div
     ngbDropdownMenu
@@ -14,7 +14,7 @@
   >
     <ng-container *ngFor="let language of availableLanguagesForSelection">
       <button ngbDropdownItem (click)="selectLanguage(language)">
-        {{ translate(getObjectProperty(language)) | titlecase }}
+        {{ translate(languageTranslationKeys[language]) | titlecase }}
         <span *ngIf="!activeLangIsDefaultLang" class="default-lang-text">
           / {{ language | titlecase }}
         </span>
