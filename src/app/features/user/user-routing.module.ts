@@ -6,8 +6,13 @@ import { ChangePasswordSmartComponent } from './change-password/change-password-
 import { UserDetailSmartComponent } from '../admin/users/user-detail/user-detail-smart.component';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
 
+import {
+  IRoutingUserTranslationKey,
+  RoutingUserTranslationKey,
+} from '@models/translation/routing';
 import { resolverList } from '@core/resolvers';
 
+const userRoutingTranslationKeys: IRoutingUserTranslationKey = new RoutingUserTranslationKey();
 const routes: Routes = [
   {
     path: '',
@@ -21,7 +26,7 @@ const routes: Routes = [
       {
         path: 'change-password',
         component: ChangePasswordSmartComponent,
-        data: { title: 'routing.user.changePassword' },
+        data: { title: userRoutingTranslationKeys.changePassword },
         resolve: {
           user: resolverList.GetLoggedInUserResolver,
         },
@@ -30,7 +35,7 @@ const routes: Routes = [
         path: 'profile',
         component: UserDetailSmartComponent,
         data: {
-          title: 'routing.user.profile',
+          title: userRoutingTranslationKeys.profile,
         },
         resolve: {
           user: resolverList.GetLoggedInUserResolver,

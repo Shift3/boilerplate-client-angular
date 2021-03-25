@@ -13,10 +13,15 @@ import { UserListPresentationComponent } from './users/user-list/user-list-prese
 import { UserListSmartComponent } from './users/user-list/user-list-smart.component';
 import { UserTableComponent } from './users/user-list/user-table/user-table.component';
 
+import {
+  IRoutingAdminTranslationKey,
+  RoutingAdminTranslationKey,
+} from '@models/translation/routing';
 import { UpdateProfileOrUserGuard } from '@core/guards/update-profile-or-user.guard';
 
 import { resolverList } from '@core/resolvers';
 
+const adminRoutingTranslationKeys: IRoutingAdminTranslationKey = new RoutingAdminTranslationKey();
 const routes: Routes = [
   {
     path: '',
@@ -31,7 +36,7 @@ const routes: Routes = [
         path: 'create-user',
         component: UserDetailSmartComponent,
         data: {
-          title: 'routing.admin.createUser',
+          title: adminRoutingTranslationKeys.createUser,
         },
         resolve: {
           agencyList: resolverList.GetAgencyListResolver,
@@ -43,7 +48,7 @@ const routes: Routes = [
         path: 'update-user/:id',
         component: UserDetailSmartComponent,
         data: {
-          title: 'routing.admin.updateUser',
+          title: adminRoutingTranslationKeys.updateUser,
         },
         canActivate: [UpdateProfileOrUserGuard],
         resolve: {
@@ -55,18 +60,18 @@ const routes: Routes = [
       {
         path: 'user-list',
         component: UserListSmartComponent,
-        data: { title: 'routing.admin.userList' },
+        data: { title: adminRoutingTranslationKeys.userList },
       },
       {
         path: 'agency-list',
         component: AgencyListSmartComponent,
-        data: { title: 'routing.admin.agencyList' },
+        data: { title: adminRoutingTranslationKeys.agencyList },
       },
       {
         path: 'create-agency',
         component: AgencyDetailSmartComponent,
         data: {
-          title: 'routing.admin.createAgency',
+          title: adminRoutingTranslationKeys.createAgency,
         },
         resolve: {
           agency: resolverList.CreateAgencyResolver,
@@ -76,7 +81,7 @@ const routes: Routes = [
         path: 'update-agency/:id',
         component: AgencyDetailSmartComponent,
         data: {
-          title: 'routing.admin.updateAgency',
+          title: adminRoutingTranslationKeys.updateAgency,
         },
         resolve: {
           agency: resolverList.UpdateAgencyResolver,

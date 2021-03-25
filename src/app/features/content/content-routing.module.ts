@@ -10,8 +10,13 @@ import { ContentLayoutComponent } from './content-layout/content-layout.componen
 
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { CanEditAuthGuard } from '@core/guards/can-edit-auth.guard';
+import {
+  IRoutingContentTranslationKey,
+  RoutingContentTranslationKey,
+} from '@models/translation/routing';
 import { resolverList } from '@core/resolvers';
 
+const contentRoutingTranslationKeys: IRoutingContentTranslationKey = new RoutingContentTranslationKey();
 const routes: Routes = [
   {
     path: '',
@@ -25,14 +30,14 @@ const routes: Routes = [
       {
         path: 'agent-list',
         component: AgentListSmartComponent,
-        data: { title: 'routing.content.agentList' },
+        data: { title: contentRoutingTranslationKeys.agentList },
       },
       {
         path: 'create-agent',
         component: AgentDetailSmartComponent,
         canActivate: [AdminAuthGuard],
         data: {
-          title: 'routing.content.createAgent',
+          title: contentRoutingTranslationKeys.createAgent,
         },
         resolve: {
           agent: resolverList.CreateAgentResolver,
@@ -43,7 +48,7 @@ const routes: Routes = [
         component: AgentDetailSmartComponent,
         canActivate: [CanEditAuthGuard],
         data: {
-          title: 'routing.content.updateAgent',
+          title: contentRoutingTranslationKeys.updateAgent,
         },
         resolve: {
           agent: resolverList.UpdateAgentResolver,
