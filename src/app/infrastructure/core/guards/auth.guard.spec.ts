@@ -8,7 +8,10 @@ import { AuthGuard } from './auth.guard';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
@@ -68,9 +71,11 @@ import { RoleCheck } from '@models/role';
           spyOn(userState, 'checkRoleList').and.returnValue(
             observableOf(new RoleCheck()),
           );
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message = [
-            new Message({ message: notification.cannotViewPageReturnToLogin }),
+            new Message({
+              message: notificationTranslationKeys.cannotViewPageReturnToLogin,
+            }),
           ];
 
           guard.canActivate().subscribe(() => {

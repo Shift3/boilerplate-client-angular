@@ -9,7 +9,10 @@ import { CanEditAuthGuard } from './can-edit-auth.guard';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
@@ -59,10 +62,11 @@ import { UserStateService } from '../services/state/user-state.service';
         });
 
         it(`should show a notification on failing the guard`, () => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message = [
             new Message({
-              message: notification.cannotViewPageReturnToDashboard,
+              message:
+                notificationTranslationKeys.cannotViewPageReturnToDashboard,
             }),
           ];
 
