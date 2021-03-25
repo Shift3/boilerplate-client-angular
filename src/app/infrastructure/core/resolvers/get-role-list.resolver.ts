@@ -7,7 +7,10 @@ import { catchError, take } from 'rxjs/operators';
 
 import { IRoleDTO } from '@models/role';
 import { Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 import { RoleService } from '../services/api/role.service';
 
@@ -32,9 +35,9 @@ export class GetRoleListResolver implements Resolve<IRoleDTO[]> {
   }
 
   private navigateOnError(): void {
-    const notification: INotification = new Notification();
+    const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
     const message: Message = new Message({
-      message: notification.unableToLoadRoles,
+      message: notificationTranslationKeys.unableToLoadRoles,
     });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');

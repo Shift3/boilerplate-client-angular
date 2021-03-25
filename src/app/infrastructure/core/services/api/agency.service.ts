@@ -7,7 +7,10 @@ import { ApiService } from './api.service';
 import { IAgencyDTO, IAgencyRequest } from '@models/agency';
 import { environment } from '@env/environment';
 import { Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { NotificationService } from '../notification.service';
 
 @Injectable({
@@ -43,9 +46,9 @@ export class AgencyService {
       .post<IAgencyDTO, IAgencyRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.agencyCreated,
+            message: notificationTranslationKeys.agencyCreated,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -62,9 +65,9 @@ export class AgencyService {
       .put<IAgencyDTO, IAgencyRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.agencyUpdated,
+            message: notificationTranslationKeys.agencyUpdated,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -76,9 +79,9 @@ export class AgencyService {
 
     return this.apiService.delete<IAgencyDTO>(endpoint).pipe(
       tap(() => {
-        const notification: INotification = new Notification();
+        const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
         const message: Message = new Message({
-          message: notification.agencyDeleted,
+          message: notificationTranslationKeys.agencyDeleted,
         });
         return this.notificationService.showSuccess([message]);
       }),

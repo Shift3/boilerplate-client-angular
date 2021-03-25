@@ -4,7 +4,10 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Logger } from '@utils/logger';
 import { IMessage, Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { ISentryConfig, SentryConfig } from '@models/error';
 import { SentryErrorHandlerService } from './sentry-error-handler.service';
 
@@ -15,30 +18,38 @@ export class ErrorService {
   constructor(private sentryErrorHandlerService: SentryErrorHandlerService) {}
   public getClientMessage(error: Error): IMessage[] {
     const errorList: Message[] = [];
-    const notification: INotification = new Notification();
+    const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
 
     if (!navigator.onLine) {
-      errorList.push(new Message({ message: notification.noInternet }));
+      errorList.push(
+        new Message({ message: notificationTranslationKeys.noInternet }),
+      );
       return errorList;
     }
 
     error.message
-      ? errorList.push(new Message({ message: notification[error.message] }))
+      ? errorList.push(
+          new Message({ message: notificationTranslationKeys[error.message] }),
+        )
       : errorList.push(
-          new Message({ message: notification[error.toString()] }),
+          new Message({
+            message: notificationTranslationKeys[error.toString()],
+          }),
         );
     return errorList;
   }
 
   public getServerMessage(error: HttpErrorResponse): IMessage[] {
     const errorList: Message[] = [];
-    const notification: INotification = new Notification();
+    const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
 
     if (error && error.error) {
       errorList.push(new Message({ message: error.error.message }));
     } else {
       errorList.push(
-        new Message({ message: notification.unableToCompleteRequest }),
+        new Message({
+          message: notificationTranslationKeys.unableToCompleteRequest,
+        }),
       );
     }
     return errorList;
@@ -49,12 +60,12 @@ export class ErrorService {
     sentryConfig: ISentryConfig = new SentryConfig(),
   ): ISentryConfig {
     if (error instanceof HttpErrorResponse) {
-      const notification: INotification = new Notification();
+      const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
 
       switch (error.status) {
         case 500:
           sentryConfig.message = new Message({
-            message: notification.serverError,
+            message: notificationTranslationKeys.serverError,
           });
           sentryConfig.sendToSentry = true;
           sentryConfig.showDialog = true;
@@ -62,25 +73,25 @@ export class ErrorService {
         case 0:
           if (navigator.onLine) {
             sentryConfig.message = new Message({
-              message: notification.noServerConnection,
+              message: notificationTranslationKeys.noServerConnection,
             });
             sentryConfig.sendToSentry = true;
             sentryConfig.showDialog = true;
           } else {
             sentryConfig.message = new Message({
-              message: notification.noInternet,
+              message: notificationTranslationKeys.noInternet,
             });
           }
           break;
         case 403:
           sentryConfig.message = new Message({
-            message: notification.forbidden,
+            message: notificationTranslationKeys.forbidden,
           });
           sentryConfig.sendToSentry = true;
           break;
         case 404:
           sentryConfig.message = new Message({
-            message: notification.notFound,
+            message: notificationTranslationKeys.notFound,
           });
           break;
       }

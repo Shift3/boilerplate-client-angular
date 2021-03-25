@@ -3,7 +3,7 @@ import { IDynamicFormTranslationKey } from './dynamic-form/dynamic-form';
 import { IDynamicTableTranslationKey } from './dynamic-table';
 import { INavigationTranslationKey } from './navigation';
 import { INotFoundTranslationKey } from './not-found';
-import { INotification } from './notification';
+import { INotificationTranslationKey } from './notification';
 import { IRoutingTranslationKey } from './routing';
 import { ISignUp } from './sign-up';
 import { LANGUAGE } from '../enums';
@@ -15,7 +15,7 @@ export interface ITranslation {
   dynamicTable: IDynamicTableTranslationKey;
   navigation: INavigationTranslationKey;
   notFound: INotFoundTranslationKey;
-  notification: INotification;
+  notification: INotificationTranslationKey;
   routing: IRoutingTranslationKey;
   signUp: ISignUp;
 }

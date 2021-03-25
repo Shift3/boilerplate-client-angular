@@ -1,4 +1,4 @@
-export interface INotification {
+export interface INotificationTranslationKey {
   activateAccountSuccess: string;
   activationEmailSent: string;
   agencyCreated: string;
@@ -35,7 +35,7 @@ export interface INotification {
   userUpdated: string;
 }
 
-export class Notification implements INotification {
+export class NotificationTranslationKey implements INotificationTranslationKey {
   activateAccountSuccess: string = 'notification.activateAccountSuccess';
   activationEmailSent: string = 'notification.activationEmailSent';
   agencyCreated: string = 'notification.agencyCreated';
