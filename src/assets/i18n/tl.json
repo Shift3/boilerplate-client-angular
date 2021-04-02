@@ -115,6 +115,9 @@
       "emptyListMessage": "Walang data",
       "thumbnail": "Thumbnail"
     },
+    "popover": {
+      "instructions": "Magdagdag o mag-edit ng isang pagsasalin"
+    },
     "tooltip": {
       "deleteAgency": "Tanggalin ang Ahensya",
       "deleteAgent": "Tanggalin ang Ahente",

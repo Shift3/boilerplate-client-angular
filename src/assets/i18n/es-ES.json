@@ -115,6 +115,9 @@
       "emptyListMessage": "Sin datos",
       "thumbnail": "Miniatura"
     },
+    "popover": {
+      "instructions": "Agregar o editar una traducción"
+    },
     "tooltip": {
       "deleteAgency": "Eliminar agencia",
       "deleteAgent": "Eliminar agente",

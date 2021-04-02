@@ -115,6 +115,9 @@
       "emptyListMessage": "No data",
       "thumbnail": "Thumbnail"
     },
+    "popover": {
+      "instructions": "Add or edit a translation"
+    },
     "tooltip": {
       "deleteAgency": "Delete Agency",
       "deleteAgent": "Delete Agent",
