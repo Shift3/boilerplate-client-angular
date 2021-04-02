@@ -24,7 +24,7 @@
             <button
               class="btn"
               type="button"
-              tooltip="{{
+              ngbTooltip="{{
                 translate(dynamicTableTranslationKeys.tooltip.updateAgency)
               }}"
               routerLink="/admin/update-agency/{{ item.id }}"
@@ -37,7 +37,7 @@
             <button
               class="btn"
               type="button"
-              tooltip="{{
+              ngbTooltip="{{
                 translate(dynamicTableTranslationKeys.tooltip.deleteAgency)
               }}"
               (click)="deleteAgency(item)"

@@ -12,8 +12,6 @@ import {
   NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-
 /**
  * Loads only used Bootstrap modules.
  */
@@ -49,8 +47,8 @@ export class BootstrapModule {}
  * Loads only used NgxBootstrap modules.
  */
 @NgModule({
-  imports: [TooltipModule.forRoot()],
-  exports: [TooltipModule],
+  imports: [],
+  exports: [],
 })
 export class NgxBootstrapModule {
   static forRoot() {

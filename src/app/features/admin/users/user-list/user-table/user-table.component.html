@@ -65,7 +65,7 @@
               <button
                 class="btn"
                 (click)="resendActivationEmail(item)"
-                tooltip="{{
+                ngbTooltip="{{
                   translate(
                     dynamicTableTranslationKeys.tooltip.resendActivationEmail
                   )
@@ -87,7 +87,7 @@
               class="btn"
               type="button"
               routerLink="/admin/update-user/{{ item.id }}"
-              tooltip="{{
+              ngbTooltip="{{
                 translate(dynamicTableTranslationKeys.tooltip.updateUser)
               }}"
             >
@@ -101,7 +101,7 @@
                 class="btn"
                 type="button"
                 (click)="deleteUser(item)"
-                tooltip="{{
+                ngbTooltip="{{
                   translate(dynamicTableTranslationKeys.tooltip.deleteUser)
                 }}"
               >
@@ -116,7 +116,7 @@
                 class="btn"
                 type="button"
                 (click)="resetPassword(item)"
-                tooltip="{{
+                ngbTooltip="{{
                   translate(dynamicTableTranslationKeys.tooltip.resetPassword)
                 }}"
               >
