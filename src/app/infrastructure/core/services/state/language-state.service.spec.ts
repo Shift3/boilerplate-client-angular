@@ -10,6 +10,7 @@ import {
 } from '@models/translation/navigation';
 import { LanguageStateService } from './language-state.service';
 import { Logger } from '@utils/logger';
+import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
@@ -81,6 +82,19 @@ import { Logger } from '@utils/logger';
         });
       });
 
+      describe('getDynamicLanguageForTranslation()', () => {
+        it('should return as an Observable', () => {
+          const mockLang$ = new BehaviorSubject<string>('en-US');
+          const testLang$ = new BehaviorSubject<string>('en-US');
+          const expectedValue = testLang$.asObservable();
+
+          service.dynamicLanguageForTranslation$ = mockLang$;
+          expect(service.getDynamicLanguageForTranslation()).toEqual(
+            expectedValue,
+          );
+        });
+      });
+
       describe('getTextInDefaultLang()', () => {
         it(`should return undefined if property doesn't exist in the default language JSON file`, () => {
           const mockProperty = 'navigation.userProfile.name';
@@ -98,6 +112,18 @@ import { Logger } from '@utils/logger';
 
           expect(service.getTextInDefaultLang(mockProperty)).toEqual(
             expectedValue,
+          );
+        });
+      });
+
+      describe('resetDynamicLanguageForTranslation()', () => {
+        it('should reset the language for dynamic translation', () => {
+          const testLang$ = new BehaviorSubject<string>('es-ES');
+
+          service.dynamicLanguageForTranslation$ = testLang$;
+          service.resetDynamicLanguageForTranslation();
+          expect(service.dynamicLanguageForTranslation$.getValue()).toEqual(
+            translocoConfigObj.defaultLang,
           );
         });
       });
@@ -124,6 +150,18 @@ import { Logger } from '@utils/logger';
 
           service.setActiveLanguage(mockLang);
           expect(service.activeLanguage$.getValue()).toEqual(expectedValue);
+        });
+      });
+
+      describe('setDynamicLanguageForTranslation()', () => {
+        it('should set the language for dynamic translation', () => {
+          const testLang = 'es-ES';
+          const expectedValue = 'es-ES';
+
+          service.setDynamicLanguageForTranslation(testLang);
+          expect(service.dynamicLanguageForTranslation$.getValue()).toEqual(
+            expectedValue,
+          );
         });
       });
     });

@@ -1,4 +1,5 @@
 import { IAddressDTO, AddressDTO } from './address';
+import { IHasTranslation } from './translation/translation';
 
 export interface IAgentDTO {
   id: number;
@@ -11,6 +12,7 @@ export interface IAgentDTO {
   documentList: unknown[];
   address: IAddressDTO;
   agency: unknown;
+  hasTranslationList: IHasTranslation[];
 }
 
 export class AgentDTO implements IAgentDTO {
@@ -24,6 +26,7 @@ export class AgentDTO implements IAgentDTO {
   documentList: unknown[] = [];
   address: IAddressDTO = new AddressDTO();
   agency: unknown;
+  hasTranslationList: IHasTranslation[] = [];
 
   constructor(configOverride?: Partial<IAgentDTO>) {
     if (configOverride) {

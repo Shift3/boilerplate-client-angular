@@ -115,7 +115,11 @@
       "emptyListMessage": "Không có dữ liệu",
       "thumbnail": "Hình nhỏ"
     },
+    "popover": {
+      "instructions": "Thêm hoặc chỉnh sửa bản dịch"
+    },
     "tooltip": {
+      "setTranslation": "Đặt bản dịch",
       "deleteAgency": "Xóa đại lý",
       "deleteAgent": "Xóa tác nhân",
       "deleteUser": "Xóa người dùng",

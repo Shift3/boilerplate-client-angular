@@ -12,6 +12,7 @@ import {
   DynamicFormAction,
 } from '@models/translation/dynamic-form/action';
 import { IRoleCheck, RoleCheck } from '@models/role';
+import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 @Component({
   selector: 'app-agent-list-presentation',
@@ -22,6 +23,8 @@ import { IRoleCheck, RoleCheck } from '@models/role';
 export class AgentListPresentationComponent {
   @Input() public agentList: IAgentDTO;
   @Input() public checkRole: IRoleCheck = new RoleCheck();
+  @Input() public dynamicLanguageForTranslation: string =
+    translocoConfigObj.defaultLang;
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
 

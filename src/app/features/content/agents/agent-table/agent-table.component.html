@@ -54,11 +54,11 @@
           <td>{{ item.email }}</td>
           <td>{{ item.phoneNumber }}</td>
           <ng-container *ngIf="checkRole.canEdit">
-            <td class="w-10">
+            <td class="w-15">
               <button
                 class="btn"
                 type="button"
-                tooltip="{{
+                ngbTooltip="{{
                   translate(dynamicTableTranslationKeys.tooltip.updateAgent)
                 }}"
                 routerLink="/content/update-agent/{{ item.id }}"
@@ -70,11 +70,32 @@
                   }}
                 </span>
               </button>
+              <button
+                class="btn"
+                type="button"
+                [ngbPopover]="popContent"
+                [ngbTooltip]="tipContent"
+                triggers="manual"
+                #p1="ngbPopover"
+                #t1="ngbTooltip"
+                (mouseenter)="openSelectLanguageTooltip(t1)"
+                (mouseleave)="closeSelectLanguageTooltip(t1)"
+                (click)="openSelectLanguagePopover(p1, item)"
+              >
+                <span class="fa fa-language"></span>
+                <span class="sr-only">
+                  {{
+                    translate(
+                      dynamicTableTranslationKeys.tooltip.setTranslation
+                    )
+                  }}
+                </span>
+              </button>
               <ng-container *ngIf="checkRole.isAdmin">
                 <button
                   class="btn"
                   type="button"
-                  tooltip="{{
+                  ngbTooltip="{{
                     translate(dynamicTableTranslationKeys.tooltip.deleteAgent)
                   }}"
                   (click)="deleteAgent(item)"
@@ -96,4 +117,12 @@
   <div class="center" *ngIf="!tableData.length">
     {{ translate(dynamicTableTranslationKeys.body.emptyListMessage) }}
   </div>
+  <ng-template #popContent let-agent="agent"
+    ><app-select-language
+      [hasTranslationList]="agent.hasTranslationList"
+    ></app-select-language
+  ></ng-template>
+  <ng-template #tipContent>{{
+    translate(dynamicTableTranslationKeys.tooltip.setTranslation)
+  }}</ng-template>
 </ng-container>

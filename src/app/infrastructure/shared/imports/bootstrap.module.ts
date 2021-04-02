@@ -7,10 +7,10 @@ import {
   NgbModalModule,
   NgbNavModule,
   NgbPaginationModule,
+  NgbPopoverModule,
   NgbToastModule,
+  NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
-
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 /**
  * Loads only used Bootstrap modules.
@@ -24,7 +24,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     NgbModalModule,
     NgbNavModule,
     NgbPaginationModule,
+    NgbPopoverModule,
     NgbToastModule,
+    NgbTooltipModule,
   ],
   exports: [
     NgbAlertModule,
@@ -34,7 +36,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     NgbModalModule,
     NgbNavModule,
     NgbPaginationModule,
+    NgbPopoverModule,
     NgbToastModule,
+    NgbTooltipModule,
   ],
 })
 export class BootstrapModule {}
@@ -43,8 +47,8 @@ export class BootstrapModule {}
  * Loads only used NgxBootstrap modules.
  */
 @NgModule({
-  imports: [TooltipModule.forRoot()],
-  exports: [TooltipModule],
+  imports: [],
+  exports: [],
 })
 export class NgxBootstrapModule {
   static forRoot() {

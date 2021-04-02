@@ -6,11 +6,14 @@ import {
   Output,
 } from '@angular/core';
 
+import { NgbPopover, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+
 import { IAgentDTO } from '@models/agent';
 import {
   IDynamicTableTranslationKey,
   DynamicTableTranslationKey,
 } from '@models/translation/dynamic-table';
+import { NgbPositionEnum } from '@models/enums';
 import { IRoleCheck, RoleCheck } from '@models/role';
 import { ITableConfig, TableConfig } from '@models/table';
 
@@ -31,5 +34,27 @@ export class AgentTableComponent {
 
   public deleteAgent(agent: IAgentDTO): void {
     this.emitDelete.emit(agent);
+  }
+
+  public openSelectLanguagePopover(
+    popover: NgbPopover,
+    agent: IAgentDTO,
+  ): void {
+    popover.placement = NgbPositionEnum.LEFT;
+    popover.isOpen() ? popover.close() : popover.open({ agent });
+  }
+
+  public openSelectLanguageTooltip(tooltip: NgbTooltip): void {
+    tooltip.placement = NgbPositionEnum.TOP;
+    if (!tooltip.isOpen()) {
+      tooltip.open();
+    }
+  }
+
+  public closeSelectLanguageTooltip(tooltip: NgbTooltip): void {
+    tooltip.placement = NgbPositionEnum.AUTO;
+    if (tooltip.isOpen()) {
+      tooltip.close();
+    }
   }
 }
