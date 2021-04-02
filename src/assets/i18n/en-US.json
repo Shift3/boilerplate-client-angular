@@ -119,6 +119,7 @@
       "instructions": "Add or edit a translation"
     },
     "tooltip": {
+      "setTranslation": "Set Translation",
       "deleteAgency": "Delete Agency",
       "deleteAgent": "Delete Agent",
       "deleteUser": "Delete User",
