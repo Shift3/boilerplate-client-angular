@@ -1,8 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MockPipe } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
+
 import { environment } from '@env/environment.test';
-import { SelectLanguageComponent } from './select-language.component';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
+import { LocaleUpperCasePipe } from '@shared/pipes/locale-upper-case.pipe';
 import { Logger } from '@utils/logger';
+import { SelectLanguageComponent } from './select-language.component';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -12,7 +17,11 @@ import { Logger } from '@utils/logger';
 
       beforeEach(async(() => {
         TestBed.configureTestingModule({
-          declarations: [SelectLanguageComponent],
+          declarations: [
+            SelectLanguageComponent,
+            MockPipe(LocaleUpperCasePipe),
+          ],
+          imports: [getTranslocoModule(), TranslocoTestingModule],
         }).compileComponents();
       }));
 
