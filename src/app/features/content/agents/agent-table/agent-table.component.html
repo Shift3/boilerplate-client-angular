@@ -54,7 +54,7 @@
           <td>{{ item.email }}</td>
           <td>{{ item.phoneNumber }}</td>
           <ng-container *ngIf="checkRole.canEdit">
-            <td class="w-10">
+            <td class="w-15">
               <button
                 class="btn"
                 type="button"
@@ -67,6 +67,27 @@
                 <span class="sr-only">
                   {{
                     translate(dynamicTableTranslationKeys.tooltip.updateAgent)
+                  }}
+                </span>
+              </button>
+              <button
+                class="btn"
+                type="button"
+                tooltip="{{
+                  translate(dynamicTableTranslationKeys.tooltip.setTranslation)
+                }}"
+                placement="left"
+                [ngbPopover]="popContent"
+                triggers="manual"
+                #p1="ngbPopover"
+                (click)="openSelectLanguagePopover(p1, item)"
+              >
+                <span class="fa fa-language"></span>
+                <span class="sr-only">
+                  {{
+                    translate(
+                      dynamicTableTranslationKeys.tooltip.setTranslation
+                    )
                   }}
                 </span>
               </button>

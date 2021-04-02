@@ -6,6 +6,8 @@ import {
   Output,
 } from '@angular/core';
 
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+
 import { IAgentDTO } from '@models/agent';
 import {
   IDynamicTableTranslationKey,
@@ -36,5 +38,12 @@ export class AgentTableComponent {
 
   public selectLanguage(languageCode: string): void {
     this.emitSelectLanguage.emit(languageCode);
+  }
+
+  public openSelectLanguagePopover(
+    popover: NgbPopover,
+    agent: IAgentDTO,
+  ): void {
+    popover.isOpen() ? popover.close() : popover.open({ agent });
   }
 }
