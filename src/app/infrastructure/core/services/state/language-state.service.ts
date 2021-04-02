@@ -30,6 +30,10 @@ export class LanguageStateService {
     this.getAvailableLanguagesForSelection(),
   );
 
+  public dynamicLanguageForTranslation$ = new BehaviorSubject<string>(
+    this.defaultLanguage,
+  );
+
   public getActiveLanguage(): Observable<string> {
     return this.activeLanguage$.asObservable();
   }
@@ -40,6 +44,10 @@ export class LanguageStateService {
 
   public getActiveLangIsDefaultLang(): Observable<boolean> {
     return this.activeLangIsDefaultLang$.asObservable();
+  }
+
+  public getDynamicLanguageForTranslation(): Observable<string> {
+    return this.dynamicLanguageForTranslation$.asObservable();
   }
 
   public getTextInDefaultLang(property: string): string {
@@ -57,6 +65,10 @@ export class LanguageStateService {
     );
   }
 
+  public resetDynamicLanguageForTranslation(): void {
+    this.dynamicLanguageForTranslation$.next(this.defaultLanguage);
+  }
+
   public selectLanguage(language: string): void {
     const languageName: string = this.getLanguageKeyFromJson(language);
     const languageCode: string = this.getLanguageCodeFromLanguage(languageName);
@@ -69,6 +81,10 @@ export class LanguageStateService {
   public setActiveLanguage(languageCode: string): void {
     this.translocoService.setActiveLang(languageCode);
     this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
+  }
+
+  public setDynamicLanguageForTranslation(languageCode: string): void {
+    this.dynamicLanguageForTranslation$.next(languageCode);
   }
 
   private checkActiveLangIsDefaultLang(): boolean {
