@@ -13,6 +13,7 @@ import {
   IDynamicTableTranslationKey,
   DynamicTableTranslationKey,
 } from '@models/translation/dynamic-table';
+import { NgbPositionEnum } from '@models/enums';
 import { IRoleCheck, RoleCheck } from '@models/role';
 import { ITableConfig, TableConfig } from '@models/table';
 
@@ -44,12 +45,12 @@ export class AgentTableComponent {
     popover: NgbPopover,
     agent: IAgentDTO,
   ): void {
-    popover.placement = 'left';
+    popover.placement = NgbPositionEnum.LEFT;
     popover.isOpen() ? popover.close() : popover.open({ agent });
   }
 
   public openSelectLanguageTooltip(tooltip: NgbTooltip): void {
-    tooltip.placement = 'top';
+    tooltip.placement = NgbPositionEnum.TOP;
     if (!tooltip.isOpen()) {
       tooltip.open();
     }
