@@ -6,8 +6,11 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import { HasTranslation, IHasTranslation } from '@models/agent';
 import { DynamicTablePopover } from '@models/translation/dynamic-table';
+import {
+  HasTranslation,
+  IHasTranslation,
+} from '@models/translation/translation';
 import { LanguageTranslationKey } from '@models/translation/navigation';
 
 @Component({
