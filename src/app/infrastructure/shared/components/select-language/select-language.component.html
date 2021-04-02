@@ -3,7 +3,7 @@
     <div class="instructions">
       {{ translate(popover.instructions) | localeuppercase }}
     </div>
-    <ng-container *ngFor="let language of agent.hasTranslationList">
+    <ng-container *ngFor="let language of hasTranslationList">
       <button
         class="btn language-btn"
         [ngClass]="

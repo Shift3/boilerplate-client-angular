@@ -6,7 +6,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 
-import { AgentDTO, IAgentDTO } from '@models/agent';
+import { HasTranslation, IHasTranslation } from '@models/agent';
 import { DynamicTablePopover } from '@models/translation/dynamic-table';
 import { LanguageTranslationKey } from '@models/translation/navigation';
 
@@ -17,7 +17,7 @@ import { LanguageTranslationKey } from '@models/translation/navigation';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectLanguageComponent {
-  @Input() public agent: IAgentDTO = new AgentDTO();
+  @Input() public hasTranslationList: IHasTranslation = new HasTranslation();
 
   @Output() public emitSelectLanguage = new EventEmitter<string>();
 

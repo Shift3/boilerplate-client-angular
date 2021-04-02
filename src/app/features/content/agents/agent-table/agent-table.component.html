@@ -119,7 +119,7 @@
   </div>
   <ng-template #popContent let-agent="agent"
     ><app-select-language
-      [agent]="agent"
+      [hasTranslationList]="agent.hasTranslationList"
       (emitSelectLanguage)="selectLanguage($event)"
     ></app-select-language
   ></ng-template>
