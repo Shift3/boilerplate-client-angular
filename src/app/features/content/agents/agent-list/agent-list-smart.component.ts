@@ -25,6 +25,7 @@ import { UserStateService } from '@core/services/state/user-state.service';
       [agentList]="agentList$ | async"
       [checkRole]="checkRole$ | async"
       (emitDelete)="openDeleteModal($event)"
+      (emitSelectLanguage)="selectLanguage($event)"
     ></app-agent-list-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -63,6 +64,10 @@ export class AgentListSmartComponent implements OnInit {
         this.deleteAgent(agent);
       }
     });
+  }
+
+  public selectLanguage(languageCode: string): void {
+    // currently noop
   }
 
   private getAgentList(): void {

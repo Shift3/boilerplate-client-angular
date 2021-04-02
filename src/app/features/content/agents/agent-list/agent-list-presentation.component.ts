@@ -24,11 +24,16 @@ export class AgentListPresentationComponent {
   @Input() public checkRole: IRoleCheck = new RoleCheck();
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
+  @Output() public emitSelectLanguage = new EventEmitter<string>();
 
   private dynamicFormAction: IDynamicFormAction = new DynamicFormAction();
   public addButtonText: string = this.dynamicFormAction.addAgent;
 
   public deleteAgent(agent: IAgentDTO): void {
     this.emitDelete.emit(agent);
+  }
+
+  public selectLanguage(languageCode: string): void {
+    this.emitSelectLanguage.emit(languageCode);
   }
 }
