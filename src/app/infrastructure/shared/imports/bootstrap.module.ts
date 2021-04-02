@@ -9,6 +9,7 @@ import {
   NgbPaginationModule,
   NgbPopoverModule,
   NgbToastModule,
+  NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -27,6 +28,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     NgbPaginationModule,
     NgbPopoverModule,
     NgbToastModule,
+    NgbTooltipModule,
   ],
   exports: [
     NgbAlertModule,
@@ -38,6 +40,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     NgbPaginationModule,
     NgbPopoverModule,
     NgbToastModule,
+    NgbTooltipModule,
   ],
 })
 export class BootstrapModule {}
