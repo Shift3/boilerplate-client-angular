@@ -8,9 +8,9 @@ export interface IHasTranslation {
 }
 
 export class HasTranslation implements IHasTranslation {
-  name: string = '';
+  name: string = translocoConfigObj.defaultLangName;
   code: string = translocoConfigObj.defaultLang;
-  hasTranslation: boolean;
+  hasTranslation: boolean = false;
   constructor(configOverride?: Partial<IHasTranslation>) {
     if (configOverride) {
       Object.assign(this, configOverride);
