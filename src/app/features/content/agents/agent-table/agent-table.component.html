@@ -73,13 +73,13 @@
               <button
                 class="btn"
                 type="button"
-                tooltip="{{
-                  translate(dynamicTableTranslationKeys.tooltip.setTranslation)
-                }}"
-                placement="left"
                 [ngbPopover]="popContent"
+                [ngbTooltip]="tipContent"
                 triggers="manual"
                 #p1="ngbPopover"
+                #t1="ngbTooltip"
+                (mouseenter)="openSelectLanguageTooltip(t1)"
+                (mouseleave)="closeSelectLanguageTooltip(t1)"
                 (click)="openSelectLanguagePopover(p1, item)"
               >
                 <span class="fa fa-language"></span>
@@ -124,3 +124,6 @@
     (emitSelectLanguage)="selectLanguage($event)"
   ></app-select-language
 ></ng-template>
+<ng-template #tipContent>{{
+  dynamicTableTranslationKeys.tooltip.setTranslation | transloco
+}}</ng-template>

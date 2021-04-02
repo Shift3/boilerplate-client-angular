@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 
-import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPopover, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 import { IAgentDTO } from '@models/agent';
 import {
@@ -44,6 +44,20 @@ export class AgentTableComponent {
     popover: NgbPopover,
     agent: IAgentDTO,
   ): void {
+    popover.placement = 'left';
     popover.isOpen() ? popover.close() : popover.open({ agent });
+  }
+
+  public openSelectLanguageTooltip(tooltip: NgbTooltip): void {
+    tooltip.placement = 'top';
+    if (!tooltip.isOpen()) {
+      tooltip.open();
+    }
+  }
+
+  public closeSelectLanguageTooltip(tooltip: NgbTooltip): void {
+    if (tooltip.isOpen()) {
+      tooltip.close();
+    }
   }
 }
