@@ -11,6 +11,7 @@ import { SideNavigationPresentationComponent } from './navigation/side-navigatio
 import { SideNavigationSmartComponent } from './navigation/side-navigation/side-navigation-smart.component';
 import { TopNavigationPresentationComponent } from './navigation/top-navigation/top-navigation-presentation.component';
 import { TopNavigationSmartComponent } from './navigation/top-navigation/top-navigation-smart.component';
+import { SelectLanguageComponent } from './select-language/select-language.component';
 /**
  * Add components that do not need to be specifically referenced.
  */
@@ -23,6 +24,7 @@ export const components = [
   LanguageSettingsPresentationComponent,
   LanguageSettingsSmartComponent,
   SaveCancelComponent,
+  SelectLanguageComponent,
   SettingsComponent,
   SideNavigationPresentationComponent,
   SideNavigationSmartComponent,

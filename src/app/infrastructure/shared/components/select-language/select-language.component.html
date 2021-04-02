@@ -1,0 +1,19 @@
+<div class="select-language-container">
+  <div class="instructions">
+    {{ popover.instructions | transloco | localeuppercase }}
+  </div>
+  <ng-container *ngFor="let language of agent.hasTranslationList">
+    <button
+      class="btn language-btn"
+      [ngClass]="
+        language.hasTranslation ? 'btn-add' : 'btn-missing-translation'
+      "
+      (click)="selectLanguage(language.code)"
+    >
+      {{ languageTranslationKeys[language.name] | transloco | titlecase }}
+      <ng-container *ngIf="language.hasTranslation"
+        ><span class="fa fa-check"></span
+      ></ng-container>
+    </button>
+  </ng-container>
+</div>

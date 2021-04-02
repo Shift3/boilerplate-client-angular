@@ -1,0 +1,36 @@
+@import '../../../../../assets/styles/variables';
+
+button:hover {
+  text-decoration: underline;
+}
+
+.fa {
+  color: white;
+}
+
+.select-language-container {
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+}
+
+.instructions {
+  color: $primary;
+  text-align: center;
+  font-weight: bold;
+}
+
+.btn-missing-translation {
+  color: $accent;
+  background-color: white;
+  border: 1px solid $accent;
+}
+
+.btn-add:hover {
+  color: white;
+}
+
+.language-btn {
+  margin: 5px;
+}
