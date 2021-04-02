@@ -20,7 +20,7 @@ import { LanguageTranslationKey } from '@models/translation/navigation';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectLanguageComponent {
-  @Input() public hasTranslationList: IHasTranslation = new HasTranslation();
+  @Input() public hasTranslationList: IHasTranslation;
 
   @Output() public emitSelectLanguage = new EventEmitter<string>();
 
