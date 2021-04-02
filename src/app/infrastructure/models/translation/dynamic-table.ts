@@ -36,6 +36,14 @@ export class DynamicTableBody implements IDynamicTableBody {
   thumbnail: string = 'dynamicTable.body.thumbnail';
 }
 
+export interface IDynamicTablePopover {
+  instructions: string;
+}
+
+export class DynamicTablePopover implements IDynamicTablePopover {
+  instructions: string = 'dynamicTable.popover.instructions';
+}
+
 export interface IDynamicTableTooltip {
   deleteAgency: string;
   deleteAgent: string;
