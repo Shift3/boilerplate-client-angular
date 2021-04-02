@@ -57,6 +57,7 @@ export class AgentTableComponent {
   }
 
   public closeSelectLanguageTooltip(tooltip: NgbTooltip): void {
+    tooltip.placement = NgbPositionEnum.AUTO;
     if (tooltip.isOpen()) {
       tooltip.close();
     }
