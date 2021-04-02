@@ -1,4 +1,5 @@
 import { IAddressDTO, AddressDTO } from './address';
+import { LANGUAGE } from './enums';
 import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 export interface IHasTranslation {
@@ -8,7 +9,7 @@ export interface IHasTranslation {
 }
 
 export class HasTranslation implements IHasTranslation {
-  name: string = translocoConfigObj.defaultLangName;
+  name: string = LANGUAGE[translocoConfigObj.defaultLang];
   code: string = translocoConfigObj.defaultLang;
   hasTranslation: boolean = false;
   constructor(configOverride?: Partial<IHasTranslation>) {

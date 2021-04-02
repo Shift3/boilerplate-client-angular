@@ -4,7 +4,6 @@ import { LANGUAGE } from '@models/enums';
 export const translocoConfigObj = {
   availableLangs: Object.keys(LANGUAGE),
   defaultLang: 'en-US',
-  defaultLangName: 'english',
   fallbackLang: 'en-US', // Dictates what language to use if you don’t have any particular translation label
   flatten: {
     aot: environment.production,
