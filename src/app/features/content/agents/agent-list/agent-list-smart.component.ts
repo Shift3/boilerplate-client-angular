@@ -16,6 +16,7 @@ import {
   ConfirmationModal,
 } from '@models/translation/confirmation-modal';
 import { IRoleCheck } from '@models/role';
+import { LanguageStateService } from '@core/services/state/language-state.service';
 import { ModalService } from '@core/services/modal.service';
 import { UserStateService } from '@core/services/state/user-state.service';
 
@@ -24,19 +25,21 @@ import { UserStateService } from '@core/services/state/user-state.service';
     <app-agent-list-presentation
       [agentList]="agentList$ | async"
       [checkRole]="checkRole$ | async"
+      [dynamicLanguageForTranslation]="dynamicLanguageForTranslation$ | async"
       (emitDelete)="openDeleteModal($event)"
-      (emitSelectLanguage)="selectLanguage($event)"
     ></app-agent-list-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgentListSmartComponent implements OnInit {
   public emitGetAgentList = new EventEmitter<void>();
-  public checkRole$: Observable<IRoleCheck>;
   public agentList$: Observable<IAgentDTO[]>;
+  public checkRole$: Observable<IRoleCheck>;
+  public dynamicLanguageForTranslation$: Observable<string>;
 
   constructor(
     private agentService: AgentService,
+    private languageStateService: LanguageStateService,
     private modalService: ModalService,
     private userStateService: UserStateService,
   ) {}
@@ -44,6 +47,7 @@ export class AgentListSmartComponent implements OnInit {
   public ngOnInit(): void {
     this.getAgentList();
     this.checkRole$ = this.checkRoleList();
+    this.dynamicLanguageForTranslation$ = this.getDynamicLanguageForTranslation();
   }
 
   public checkRoleList(): Observable<IRoleCheck> {
@@ -66,8 +70,8 @@ export class AgentListSmartComponent implements OnInit {
     });
   }
 
-  public selectLanguage(languageCode: string): void {
-    // currently noop
+  private getDynamicLanguageForTranslation() {
+    return this.languageStateService.getDynamicLanguageForTranslation();
   }
 
   private getAgentList(): void {

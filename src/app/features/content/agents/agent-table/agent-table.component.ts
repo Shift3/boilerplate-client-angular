@@ -29,16 +29,11 @@ export class AgentTableComponent {
   @Input() public tableData: IAgentDTO[] = [];
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
-  @Output() public emitSelectLanguage = new EventEmitter<string>();
 
   public dynamicTableTranslationKeys: IDynamicTableTranslationKey = new DynamicTableTranslationKey();
 
   public deleteAgent(agent: IAgentDTO): void {
     this.emitDelete.emit(agent);
-  }
-
-  public selectLanguage(languageCode: string): void {
-    this.emitSelectLanguage.emit(languageCode);
   }
 
   public openSelectLanguagePopover(

@@ -120,7 +120,6 @@
   <ng-template #popContent let-agent="agent"
     ><app-select-language
       [hasTranslationList]="agent.hasTranslationList"
-      (emitSelectLanguage)="selectLanguage($event)"
     ></app-select-language
   ></ng-template>
   <ng-template #tipContent>{{
