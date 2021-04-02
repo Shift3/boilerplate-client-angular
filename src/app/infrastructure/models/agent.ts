@@ -1,4 +1,22 @@
 import { IAddressDTO, AddressDTO } from './address';
+import { translocoConfigObj } from '@app/transloco/transloco-config';
+
+export interface IHasTranslation {
+  name: string;
+  code: string;
+  hasTranslation: boolean;
+}
+
+export class HasTranslation implements IHasTranslation {
+  name: string = '';
+  code: string = translocoConfigObj.defaultLang;
+  hasTranslation: boolean;
+  constructor(configOverride?: Partial<IHasTranslation>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
 
 export interface IAgentDTO {
   id: number;
@@ -11,6 +29,7 @@ export interface IAgentDTO {
   documentList: unknown[];
   address: IAddressDTO;
   agency: unknown;
+  hasTranslationList: IHasTranslation[];
 }
 
 export class AgentDTO implements IAgentDTO {
@@ -24,6 +43,7 @@ export class AgentDTO implements IAgentDTO {
   documentList: unknown[] = [];
   address: IAddressDTO = new AddressDTO();
   agency: unknown;
+  hasTranslationList: IHasTranslation[] = [];
 
   constructor(configOverride?: Partial<IAgentDTO>) {
     if (configOverride) {
