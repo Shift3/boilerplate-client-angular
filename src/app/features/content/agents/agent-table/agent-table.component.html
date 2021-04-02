@@ -117,13 +117,13 @@
   <div class="center" *ngIf="!tableData.length">
     {{ translate(dynamicTableTranslationKeys.body.emptyListMessage) }}
   </div>
+  <ng-template #popContent let-agent="agent"
+    ><app-select-language
+      [agent]="agent"
+      (emitSelectLanguage)="selectLanguage($event)"
+    ></app-select-language
+  ></ng-template>
+  <ng-template #tipContent>{{
+    translate(dynamicTableTranslationKeys.tooltip.setTranslation)
+  }}</ng-template>
 </ng-container>
-<ng-template #popContent let-agent="agent"
-  ><app-select-language
-    [agent]="agent"
-    (emitSelectLanguage)="selectLanguage($event)"
-  ></app-select-language
-></ng-template>
-<ng-template #tipContent>{{
-  dynamicTableTranslationKeys.tooltip.setTranslation | transloco
-}}</ng-template>
