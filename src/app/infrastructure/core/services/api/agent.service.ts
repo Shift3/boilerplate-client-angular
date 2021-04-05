@@ -4,7 +4,13 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
-import { IAgentDTO, IAgentRequest } from '@models/agent';
+import {
+  AgentTranslation,
+  IAgentDTO,
+  IAgentRequest,
+  IAgentTranslation,
+  IAgentTranslationList,
+} from '@models/agent';
 import { environment } from '@env/environment';
 import { Message } from '@models/message';
 import { INotification, Notification } from '@models/translation/notification';
@@ -22,6 +28,43 @@ export class AgentService {
     private notificationService: NotificationService,
   ) {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
+  }
+
+  public unpackAgentTranslationList(
+    content: IAgentTranslationList,
+    languageCode: string,
+  ): IAgentTranslation {
+    const translation = new AgentTranslation();
+    for (const property in content) {
+      if (content.hasOwnProperty(property) && property === languageCode) {
+        for (const translationProperty in translation) {
+          if (translation.hasOwnProperty(translationProperty)) {
+            translation[translationProperty] =
+              content[property][translationProperty];
+          }
+        }
+      }
+    }
+
+    return translation;
+  }
+
+  public getTranslatedAgent(agent: IAgentDTO, languageCode: string): IAgentDTO {
+    agent.translatedContentForDisplay = this.unpackAgentTranslationList(
+      agent.content,
+      languageCode,
+    );
+
+    return agent;
+  }
+
+  public getTranslatedAgentList(
+    agentList: IAgentDTO[],
+    languageCode: string,
+  ): IAgentDTO[] {
+    agentList.forEach((agent) => this.getTranslatedAgent(agent, languageCode));
+
+    return agentList;
   }
 
   public getAgentList(): Observable<IAgentDTO[]> {
