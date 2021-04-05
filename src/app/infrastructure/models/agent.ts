@@ -1,6 +1,33 @@
 import { IAddressDTO, AddressDTO } from './address';
 import { IHasTranslation } from './translation/translation';
 
+export interface IAgentTranslation {
+  description: string;
+}
+
+export class AgentTranslation implements IAgentTranslation {
+  description: string = '';
+
+  constructor(configOverride?: Partial<IAgentTranslation>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface IAgentTranslationList {
+  [key: string]: IAgentTranslation;
+}
+
+export class AgentTranslationList implements IAgentTranslationList {
+  [key: string]: IAgentTranslation;
+  constructor(configOverride?: Partial<IAgentTranslationList>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
 export interface IAgentDTO {
   id: number;
   thumbnail: string;
