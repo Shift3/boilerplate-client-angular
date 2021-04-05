@@ -5,8 +5,8 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { merge, Observable, of as observableOf } from 'rxjs';
-import { catchError, startWith, switchMap } from 'rxjs/operators';
+import { combineLatest, Observable, of as observableOf } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { AgentService } from '@core/services/api/agent.service';
 import { ConfirmModalConfig } from '@models/modal';
@@ -19,6 +19,7 @@ import { IRoleCheck } from '@models/role';
 import { LanguageStateService } from '@core/services/state/language-state.service';
 import { ModalService } from '@core/services/modal.service';
 import { UserStateService } from '@core/services/state/user-state.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   template: `
@@ -41,6 +42,7 @@ export class AgentListSmartComponent implements OnInit {
     private agentService: AgentService,
     private languageStateService: LanguageStateService,
     private modalService: ModalService,
+    private translocoService: TranslocoService,
     private userStateService: UserStateService,
   ) {}
 
@@ -75,11 +77,22 @@ export class AgentListSmartComponent implements OnInit {
   }
 
   private getAgentList(): void {
-    this.agentList$ = merge(this.emitGetAgentList).pipe(
-      startWith({}),
-      switchMap(() => this.agentService.getAgentList()),
+    this.agentList$ = combineLatest([
+      this.agentService.getAgentList(),
+      this.translocoService.langChanges$,
+    ]).pipe(
+      map(([agentList, activeLanguage]) =>
+        this.getTranslatedAgentList(agentList, activeLanguage),
+      ),
       catchError(() => observableOf([])),
     );
+  }
+
+  private getTranslatedAgentList(
+    agentList: IAgentDTO[],
+    languageCode: string,
+  ): IAgentDTO[] {
+    return this.agentService.getTranslatedAgentList(agentList, languageCode);
   }
 
   private deleteAgent(agent: IAgentDTO): void {
