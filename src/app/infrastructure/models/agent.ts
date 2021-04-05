@@ -32,7 +32,8 @@ export interface IAgentDTO {
   id: number;
   thumbnail: string;
   name: string;
-  description: string;
+  content: IAgentTranslationList;
+  translatedContentForDisplay: IAgentTranslation;
   email: string;
   phoneNumber: string;
   categoryList: unknown[];
@@ -46,7 +47,8 @@ export class AgentDTO implements IAgentDTO {
   id: number = 0;
   thumbnail: string = '';
   name: string = '';
-  description: string = '';
+  content: IAgentTranslationList;
+  translatedContentForDisplay: IAgentTranslation = new AgentTranslation();
   email: string = '';
   phoneNumber: string = '';
   categoryList: unknown[] = [];
@@ -63,7 +65,7 @@ export class AgentDTO implements IAgentDTO {
 }
 
 export interface IAgentRequest {
-  description: string;
+  content: IAgentTranslationList;
   email: string;
   name: string;
   phoneNumber: string;
@@ -72,7 +74,7 @@ export interface IAgentRequest {
 }
 
 export class AgentRequest implements IAgentRequest {
-  description: string = '';
+  content: IAgentTranslationList = new AgentTranslationList();
   email: string = '';
   name: string = '';
   phoneNumber: string = '';
