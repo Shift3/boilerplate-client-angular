@@ -32,7 +32,7 @@ export interface IAgentDTO {
   id: number;
   thumbnail: string;
   name: string;
-  content: IAgentTranslationList;
+  dynamicContent: IAgentTranslationList;
   translatedContentForDisplay: IAgentTranslation;
   // TODO: Remove description when feature is complete
   description: string;
@@ -49,7 +49,7 @@ export class AgentDTO implements IAgentDTO {
   id: number = 0;
   thumbnail: string = '';
   name: string = '';
-  content: IAgentTranslationList;
+  dynamicContent: IAgentTranslationList;
   translatedContentForDisplay: IAgentTranslation = new AgentTranslation();
   description: string = '';
   email: string = '';
@@ -68,7 +68,6 @@ export class AgentDTO implements IAgentDTO {
 }
 
 export interface IAgentRequest {
-  content: IAgentTranslationList;
   email: string;
   name: string;
   phoneNumber: string;
@@ -77,7 +76,6 @@ export interface IAgentRequest {
 }
 
 export class AgentRequest implements IAgentRequest {
-  content: IAgentTranslationList = new AgentTranslationList();
   email: string = '';
   name: string = '';
   phoneNumber: string = '';

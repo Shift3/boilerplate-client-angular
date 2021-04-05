@@ -51,7 +51,7 @@ export class AgentService {
 
   public getTranslatedAgent(agent: IAgentDTO, languageCode: string): IAgentDTO {
     agent.translatedContentForDisplay = this.unpackAgentTranslationList(
-      agent.content,
+      agent.dynamicContent,
       languageCode,
     );
 

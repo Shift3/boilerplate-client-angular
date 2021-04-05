@@ -48,7 +48,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
           id: 1,
           name: 'Test Tester',
           email: 'test@test.com',
-          content: {
+          dynamicContent: {
             'en-US': {
               description: 'This is a test',
             },
