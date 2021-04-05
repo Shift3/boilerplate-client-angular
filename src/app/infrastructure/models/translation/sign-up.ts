@@ -1,9 +1,9 @@
-export interface ISignUp {
+export interface ISignUpTranslationKey {
   cardHeader: string;
   instruction: string;
 }
 
-export class SignUp implements ISignUp {
+export class SignUpTranslationKey implements ISignUpTranslationKey {
   cardHeader: string = 'signUp.cardHeader';
   instruction: string = 'signUp.instruction';
 }

@@ -10,8 +10,8 @@ import { AuthService } from '@core/services/api/auth.service';
 import { ConfirmModalConfig } from '@models/modal';
 import { ModalService } from '@core/services/modal.service';
 import {
-  IConfirmationModal,
-  ConfirmationModal,
+  IConfirmationModalTranslationKey,
+  ConfirmationModalTranslationKey,
 } from '@models/translation/confirmation-modal';
 import { DataTransformationService } from '@core/services/data-transformation.service';
 import { INavigation, profileLinkList } from '@models/navigation';
@@ -67,12 +67,12 @@ export class SettingsComponent implements OnInit {
   }
 
   public openConfirmModal(): void {
-    const confirmationModal: IConfirmationModal = new ConfirmationModal();
+    const confirmationModalTranslationKeys: IConfirmationModalTranslationKey = new ConfirmationModalTranslationKey();
     const modalConfig = new ConfirmModalConfig({
       message: {
-        static: confirmationModal.title.logout,
+        static: confirmationModalTranslationKeys.title.logout,
       },
-      action: confirmationModal.action.logOut,
+      action: confirmationModalTranslationKeys.action.logOut,
     });
     this.modalService.openConfirmModal(modalConfig).subscribe((isConfirmed) => {
       if (isConfirmed) {

@@ -1,7 +1,10 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { INotFound, NotFound } from '@models/translation/not-found';
+import {
+  INotFoundTranslationKey,
+  NotFoundTranslationKey,
+} from '@models/translation/not-found';
 
 @Component({
   selector: 'app-not-found',
@@ -10,7 +13,7 @@ import { INotFound, NotFound } from '@models/translation/not-found';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotFoundComponent {
-  public notFound: INotFound = new NotFound();
+  public notFoundTranslationKeys: INotFoundTranslationKey = new NotFoundTranslationKey();
 
   constructor(private location: Location) {}
 

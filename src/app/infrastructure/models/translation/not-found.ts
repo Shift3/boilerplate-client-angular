@@ -1,9 +1,9 @@
-export interface INotFound {
+export interface INotFoundTranslationKey {
   description: string;
   goBack: string;
 }
 
-export class NotFound implements INotFound {
+export class NotFoundTranslationKey implements INotFoundTranslationKey {
   description: string = 'notFound.description';
   goBack: string = 'notFound.goBack';
 }

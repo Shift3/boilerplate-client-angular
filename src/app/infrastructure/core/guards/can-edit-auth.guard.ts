@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 
 import { Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 import { UserStateService } from '../services/state/user-state.service';
 
@@ -25,9 +28,10 @@ export class CanEditAuthGuard implements CanActivate, CanActivateChild {
       map((checkRole) => checkRole.canEdit),
       tap((canEdit) => {
         if (!canEdit) {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.cannotViewPageReturnToDashboard,
+            message:
+              notificationTranslationKeys.cannotViewPageReturnToDashboard,
           });
           this.notificationService.showError([message]);
           this.router.navigateByUrl('/');

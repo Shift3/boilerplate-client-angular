@@ -8,7 +8,10 @@ import { catchError, take } from 'rxjs/operators';
 import { IUserDTO } from '@models/user';
 import { UserService } from '../services/api/user.service';
 import { Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 
 @Injectable({
@@ -32,9 +35,9 @@ export class UpdateUserResolver implements Resolve<IUserDTO> {
   }
 
   private navigateOnError(): void {
-    const notification: INotification = new Notification();
+    const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
     const message: Message = new Message({
-      message: notification.unableToLoadUser,
+      message: notificationTranslationKeys.unableToLoadUser,
     });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/user-list');

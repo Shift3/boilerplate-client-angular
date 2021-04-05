@@ -1,4 +1,4 @@
-export interface IConfirmationModalAction {
+export interface IConfirmationModalActionTranslationKey {
   confirm: string;
   continue: string;
   delete: string;
@@ -7,7 +7,8 @@ export interface IConfirmationModalAction {
   send: string;
 }
 
-export class ConfirmationModalAction implements IConfirmationModalAction {
+export class ConfirmationModalActionTranslationKey
+  implements IConfirmationModalActionTranslationKey {
   confirm: string = 'confirmationModal.action.confirm';
   continue: string = 'confirmationModal.action.continue';
   delete: string = 'confirmationModal.action.delete';
@@ -16,28 +17,30 @@ export class ConfirmationModalAction implements IConfirmationModalAction {
   send: string = 'confirmationModal.action.send';
 }
 
-export interface IConfirmationModalTitle {
+export interface IConfirmationModalTitleTranslationKey {
   delete: string;
   logout: string;
   resendActivation: string;
   sendResetPassword: string;
 }
 
-export class ConfirmationModalTitle implements IConfirmationModalTitle {
+export class ConfirmationModalTitleTranslationKey
+  implements IConfirmationModalTitleTranslationKey {
   delete: string = 'confirmationModal.title.delete';
   logout: string = 'confirmationModal.title.logout';
   resendActivation: string = 'confirmationModal.title.resendActivation';
   sendResetPassword: string = 'confirmationModal.title.sendResetPassword';
 }
 
-export interface IConfirmationModal {
-  action: IConfirmationModalAction;
+export interface IConfirmationModalTranslationKey {
+  action: IConfirmationModalActionTranslationKey;
   body: string;
-  title: IConfirmationModalTitle;
+  title: IConfirmationModalTitleTranslationKey;
 }
 
-export class ConfirmationModal implements IConfirmationModal {
-  action: IConfirmationModalAction = new ConfirmationModalAction();
+export class ConfirmationModalTranslationKey
+  implements IConfirmationModalTranslationKey {
+  action: IConfirmationModalActionTranslationKey = new ConfirmationModalActionTranslationKey();
   body: string = 'confirmationModal.body';
-  title: IConfirmationModalTitle = new ConfirmationModalTitle();
+  title: IConfirmationModalTitleTranslationKey = new ConfirmationModalTitleTranslationKey();
 }

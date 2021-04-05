@@ -8,7 +8,10 @@ import { catchError, take } from 'rxjs/operators';
 import { AgencyService } from '../services/api/agency.service';
 import { IAgencyDTO } from '@models/agency';
 import { Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { NotificationService } from '../services/notification.service';
 
 @Injectable({
@@ -32,9 +35,9 @@ export class UpdateAgencyResolver implements Resolve<IAgencyDTO> {
   }
 
   private navigateOnError(): void {
-    const notification: INotification = new Notification();
+    const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
     const message: Message = new Message({
-      message: notification.unableToLoadAgency,
+      message: notificationTranslationKeys.unableToLoadAgency,
     });
     this.notificationService.showError([message]);
     this.router.navigateByUrl('/admin/agency-list');

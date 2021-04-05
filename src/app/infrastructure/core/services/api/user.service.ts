@@ -15,7 +15,10 @@ import {
   IUserDTO,
 } from '@models/user';
 import { IMessage, Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { NotificationService } from '../notification.service';
 import { ISessionDTO, ISignupRequest } from '@models/auth';
 import { UserStateService } from '../state/user-state.service';
@@ -43,9 +46,11 @@ export class UserService {
       .post<IUserDTO, ISignupRequest>(endpoint, payload)
       .pipe(
         tap((response) => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const messages: Message[] = [
-            new Message({ message: notification.activationEmailSent }),
+            new Message({
+              message: notificationTranslationKeys.activationEmailSent,
+            }),
             new Message({ type: 'dynamic', message: response.email }),
           ];
           this.notificationService.showSuccess(messages);
@@ -79,9 +84,9 @@ export class UserService {
       .put<IUserDTO, IResetPasswordRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.resetPasswordSuccess,
+            message: notificationTranslationKeys.resetPasswordSuccess,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -98,9 +103,9 @@ export class UserService {
       .put<IUserDTO, IResetPasswordRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.activateAccountSuccess,
+            message: notificationTranslationKeys.activateAccountSuccess,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -124,9 +129,9 @@ export class UserService {
       .pipe(
         tap((user) => this.userStateService.setUserSession(user)),
         tap(() => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.profileUpdated,
+            message: notificationTranslationKeys.profileUpdated,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -150,11 +155,13 @@ export class UserService {
       .post<IUserDTO, IChangeUserRequest>(endpoint, payload)
       .pipe(
         tap((response) => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const messages: Message[] = [
-            new Message({ message: notification.emailSent }),
+            new Message({ message: notificationTranslationKeys.emailSent }),
             new Message({ type: 'dynamic', message: response.email }),
-            new Message({ message: notification.instructionToActivate }),
+            new Message({
+              message: notificationTranslationKeys.instructionToActivate,
+            }),
           ];
           return this.notificationService.showSuccess(messages);
         }),
@@ -183,9 +190,9 @@ export class UserService {
         tap((response) => this.userStateService.setUserSession(response.user)),
         tap((response) => this.authService.setToken(response.jwtToken)),
         tap(() => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.passwordUpdated,
+            message: notificationTranslationKeys.passwordUpdated,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -203,9 +210,9 @@ export class UserService {
       .put<IUserDTO, IChangeUserRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.userUpdated,
+            message: notificationTranslationKeys.userUpdated,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -217,14 +224,14 @@ export class UserService {
 
     return this.apiService.delete<IUserDTO>(endpoint).pipe(
       tap(() => {
-        const notification: INotification = new Notification();
+        const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
         const messages: Message[] = [
-          new Message({ message: notification.user }),
+          new Message({ message: notificationTranslationKeys.user }),
           new Message({
             type: 'dynamic',
             message: `${user.firstName} ${user.lastName}`,
           }),
-          new Message({ message: notification.deleted }),
+          new Message({ message: notificationTranslationKeys.deleted }),
         ];
         return this.notificationService.showSuccess(messages);
       }),
@@ -236,9 +243,11 @@ export class UserService {
 
     return this.apiService.get<never>(endpoint).pipe(
       tap(() => {
-        const notification: INotification = new Notification();
+        const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
         const messages: Message[] = [
-          new Message({ message: notification.newActivationEmail }),
+          new Message({
+            message: notificationTranslationKeys.newActivationEmail,
+          }),
           new Message({
             type: 'dynamic',
             message: `${user.firstName} ${user.lastName}`,

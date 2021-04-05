@@ -12,7 +12,10 @@ import {
   IDynamicFormAction,
   DynamicFormAction,
 } from '@models/translation/dynamic-form/action';
-import { ISignUp, SignUp } from '@models/translation/sign-up';
+import {
+  ISignUpTranslationKey,
+  SignUpTranslationKey,
+} from '@models/translation/sign-up';
 
 export interface IActions {
   createAccount: string;
@@ -36,7 +39,7 @@ export class LoginPresentationComponent {
     createAccount: this.dynamicFormAction.createAccount,
     forgotPassword: this.dynamicFormAction.forgotPassword,
   };
-  public signUp: ISignUp = new SignUp();
+  public signUpTranslationKeys: ISignUpTranslationKey = new SignUpTranslationKey();
 
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);

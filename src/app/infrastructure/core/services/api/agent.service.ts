@@ -7,7 +7,10 @@ import { ApiService } from './api.service';
 import { IAgentDTO, IAgentRequest } from '@models/agent';
 import { environment } from '@env/environment';
 import { Message } from '@models/message';
-import { INotification, Notification } from '@models/translation/notification';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { NotificationService } from '../notification.service';
 
 @Injectable({
@@ -43,9 +46,9 @@ export class AgentService {
       .post<IAgentDTO, IAgentRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.agentCreated,
+            message: notificationTranslationKeys.agentCreated,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -62,9 +65,9 @@ export class AgentService {
       .put<IAgentDTO, IAgentRequest>(endpoint, payload)
       .pipe(
         tap(() => {
-          const notification: INotification = new Notification();
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
           const message: Message = new Message({
-            message: notification.agentUpdated,
+            message: notificationTranslationKeys.agentUpdated,
           });
           return this.notificationService.showSuccess([message]);
         }),
@@ -76,9 +79,9 @@ export class AgentService {
 
     return this.apiService.delete<IAgentDTO>(endpoint).pipe(
       tap(() => {
-        const notification: INotification = new Notification();
+        const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
         const message: Message = new Message({
-          message: notification.agentDeleted,
+          message: notificationTranslationKeys.agentDeleted,
         });
         return this.notificationService.showSuccess([message]);
       }),
