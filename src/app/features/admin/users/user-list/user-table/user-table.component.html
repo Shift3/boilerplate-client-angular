@@ -56,7 +56,7 @@
           <ng-container *ngIf="checkRole?.isSuperAdmin">
             <td>{{ item.agency.agencyName }}</td>
           </ng-container>
-          <td>{{ item.role.roleName }}</td>
+          <td>{{ item.role.roleKey }}</td>
           <td>
             <ng-container *ngIf="item.activatedAt; else resendEmail">
               {{ item.activatedAt | date }}

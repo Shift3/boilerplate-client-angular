@@ -208,7 +208,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
         label: dynamicFormTranslationKeys.label.role,
         fieldConfig: new SelectField({
           options: this.roleList,
-          optionName: 'roleName',
+          optionName: 'roleKey',
           optionValue: 'id',
         }),
         validation: [RequiredValidation.required('Role')],

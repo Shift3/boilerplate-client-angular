@@ -49,7 +49,7 @@ import { UserStateService } from '../state/user-state.service';
           profilePicture: null,
           role: {
             id: 1,
-            roleName: 'User',
+            roleKey: 'User',
           },
         });
         testUserSession = {
@@ -69,7 +69,7 @@ import { UserStateService } from '../state/user-state.service';
             },
             role: {
               id: 1,
-              roleName: 'User',
+              roleKey: 'User',
             },
           },
           jwtToken:

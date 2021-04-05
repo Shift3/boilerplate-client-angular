@@ -2,12 +2,12 @@ export type RoleType = 'Admin' | 'Editor' | 'User' | 'Super Administrator' | '';
 
 export interface IRoleDTO {
   id: number;
-  roleName: RoleType;
+  roleKey: RoleType;
 }
 
 export class RoleDTO implements IRoleDTO {
   id: number = 0;
-  roleName: RoleType = '';
+  roleKey: RoleType = '';
 
   static isValidRoleType(role: RoleType): role is RoleType {
     return ['Admin', 'Editor', 'User', 'Super Administrator'].includes(role);

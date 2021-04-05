@@ -70,7 +70,7 @@ import { IMessage } from '@models/message';
           profilePicture: null,
           role: {
             id: 1,
-            roleName: 'User',
+            roleKey: 'User',
           },
         });
         testUserSession = {
@@ -90,7 +90,7 @@ import { IMessage } from '@models/message';
             },
             role: {
               id: 1,
-              roleName: 'User',
+              roleKey: 'User',
             },
           },
           jwtToken:

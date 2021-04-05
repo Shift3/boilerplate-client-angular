@@ -47,7 +47,7 @@ import { RoleService } from './role.service';
           const expectedValue: IRoleDTO[] = [
             {
               id: 1,
-              roleName: 'User',
+              roleKey: 'User',
             },
           ];
           let response: IRoleDTO[];

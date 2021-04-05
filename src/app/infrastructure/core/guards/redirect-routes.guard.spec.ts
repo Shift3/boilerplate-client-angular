@@ -53,7 +53,7 @@ import { UserStateService } from '../services/state/user-state.service';
           const testUser$ = new BehaviorSubject<IUserDTO>(
             new UserDTO({
               role: new RoleDTO({
-                roleName: 'Admin',
+                roleKey: 'Admin',
               }),
             }),
           );
@@ -68,7 +68,7 @@ import { UserStateService } from '../services/state/user-state.service';
           const testUser$ = new BehaviorSubject<IUserDTO>(
             new UserDTO({
               role: new RoleDTO({
-                roleName: 'Editor',
+                roleKey: 'Editor',
               }),
             }),
           );

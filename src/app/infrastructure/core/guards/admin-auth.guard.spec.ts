@@ -81,7 +81,7 @@ import { UserStateService } from '../services/state/user-state.service';
               lastName: 'Tester',
               role: {
                 id: 2,
-                roleName: 'User',
+                roleKey: 'User',
               },
             }),
           );
@@ -99,7 +99,7 @@ import { UserStateService } from '../services/state/user-state.service';
               lastName: 'Tester',
               role: {
                 id: 2,
-                roleName: 'Admin',
+                roleKey: 'Admin',
               },
             }),
           );
@@ -117,7 +117,7 @@ import { UserStateService } from '../services/state/user-state.service';
               lastName: 'Tester',
               role: {
                 id: 2,
-                roleName: 'Super Administrator',
+                roleKey: 'Super Administrator',
               },
             }),
           );
@@ -135,7 +135,7 @@ import { UserStateService } from '../services/state/user-state.service';
               lastName: 'Tester',
               role: {
                 id: 2,
-                roleName: 'Editor',
+                roleKey: 'Editor',
               },
             }),
           );
