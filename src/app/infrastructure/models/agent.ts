@@ -34,6 +34,8 @@ export interface IAgentDTO {
   name: string;
   content: IAgentTranslationList;
   translatedContentForDisplay: IAgentTranslation;
+  // TODO: Remove description when feature is complete
+  description: string;
   email: string;
   phoneNumber: string;
   categoryList: unknown[];
@@ -49,6 +51,7 @@ export class AgentDTO implements IAgentDTO {
   name: string = '';
   content: IAgentTranslationList;
   translatedContentForDisplay: IAgentTranslation = new AgentTranslation();
+  description: string = '';
   email: string = '';
   phoneNumber: string = '';
   categoryList: unknown[] = [];
