@@ -12,7 +12,7 @@ import { LanguageTranslationKey } from '@models/translation/navigation';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectLanguageComponent {
-  @Input() public hasTranslationList: IHasTranslation;
+  @Input() public hasTranslationList: IHasTranslation[];
 
   public popover = new DynamicTablePopover();
   public languageTranslationKeys = new LanguageTranslationKey();

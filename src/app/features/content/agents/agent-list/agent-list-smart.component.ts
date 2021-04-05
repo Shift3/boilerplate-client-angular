@@ -33,8 +33,8 @@ import { TranslocoService } from '@ngneat/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgentListSmartComponent implements OnInit {
-  public emitGetAgentList = new EventEmitter<void>();
   public agentList$: Observable<IAgentDTO[]>;
+  public emitGetAgentList = new EventEmitter<void>();
   public checkRole$: Observable<IRoleCheck>;
   public dynamicLanguageForTranslation$: Observable<string>;
 
