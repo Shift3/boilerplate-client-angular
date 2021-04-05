@@ -76,6 +76,10 @@ export class AgentListSmartComponent implements OnInit {
     return this.languageStateService.getDynamicLanguageForTranslation();
   }
 
+  /**
+   * Listens to the latest values from the agent list response
+   * and active language streams and uses them to unpack the translation for the table.
+   */
   private getAgentList(): void {
     this.agentList$ = combineLatest([
       this.agentService.getAgentList(),
