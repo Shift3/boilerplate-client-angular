@@ -15,6 +15,11 @@ import {
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { ISelectField, SelectField } from '@models/form/select';
+import { LANGUAGE } from '@models/enums';
+import {
+  INavigationTranslationKey,
+  NavigationTranslationKey,
+} from '@models/translation/navigation';
 import { PhoneValidation } from '@utils/validation/phone-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
@@ -37,6 +42,7 @@ export class AgentDetailSmartComponent implements OnInit {
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
   public languageCode: string = '';
+  public languageName: string = '';
   public isSetTranslation: boolean =
     this.activatedRoute.snapshot.routeConfig.path ===
     'set-translation/:id/:languageCode';
@@ -51,6 +57,7 @@ export class AgentDetailSmartComponent implements OnInit {
     this.languageCode =
       this.activatedRoute.snapshot.params.languageCode ||
       translocoConfigObj.defaultLang;
+    this.languageName = LANGUAGE[this.languageCode];
   }
 
   public ngOnInit(): void {
@@ -73,9 +80,8 @@ export class AgentDetailSmartComponent implements OnInit {
     const dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
     const formConfig = new FormConfig({
       formName: 'form',
-      formTitle: this.agent?.id
-        ? dynamicFormTranslationKeys.title.updateAgent
-        : dynamicFormTranslationKeys.title.createAgent,
+      formTitle: this.setFormTitle(dynamicFormTranslationKeys),
+      formTitleParams: this.setFormTitleParams(),
       submit: new SaveCancelButtonConfig({
         save: this.agent?.id
           ? dynamicFormTranslationKeys.action.update
@@ -167,6 +173,26 @@ export class AgentDetailSmartComponent implements OnInit {
     });
 
     return formConfig;
+  }
+
+  private setFormTitle(
+    dynamicFormTranslationKeys: IDynamicFormTranslationKey,
+  ): string {
+    if (this.isSetTranslation) {
+      return dynamicFormTranslationKeys.title.setTranslation;
+    } else {
+      return this.agent.id
+        ? dynamicFormTranslationKeys.title.updateAgent
+        : dynamicFormTranslationKeys.title.createAgent;
+    }
+  }
+
+  private setFormTitleParams(): string {
+    if (this.isSetTranslation) {
+      const navigationKeys: INavigationTranslationKey = new NavigationTranslationKey();
+
+      return navigationKeys.languages[this.languageName];
+    }
   }
 
   private buildPayload(): IAgentRequest {
