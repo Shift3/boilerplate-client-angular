@@ -7,6 +7,7 @@ import {
   translocoConfig,
   TranslocoModule,
 } from '@ngneat/transloco';
+import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import {
   TranslocoPersistLangModule,
   TRANSLOCO_PERSIST_LANG_STORAGE,
@@ -25,9 +26,10 @@ export class TranslocoHttpLoader implements TranslocoLoader {
 }
 
 @NgModule({
-  exports: [TranslocoModule],
+  exports: [TranslocoModule, TranslocoLocaleModule],
   imports: [
     TranslocoModule,
+    TranslocoLocaleModule.init(),
     TranslocoPersistLangModule.init({
       storage: {
         provide: TRANSLOCO_PERSIST_LANG_STORAGE,
