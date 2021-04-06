@@ -19,6 +19,7 @@ import { PhoneValidation } from '@utils/validation/phone-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { stateList } from '@models/state';
+import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 @Component({
   template: `
@@ -35,6 +36,7 @@ export class AgentDetailSmartComponent implements OnInit {
   public agent: IAgentDTO;
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
+  public languageCode: string = '';
   public isSetTranslation: boolean =
     this.activatedRoute.snapshot.routeConfig.path ===
     'set-translation/:id/:languageCode';
@@ -99,8 +101,8 @@ export class AgentDetailSmartComponent implements OnInit {
           disabled: this.isSetTranslation,
         }),
         new FormField<IInputField>({
-          name: 'description',
-          value: this.agent?.description,
+          name: 'dynamicContent.description',
+          value: this.agent?.dynamicContent[this.languageCode]?.description,
           fieldType: 'input',
           label: dynamicFormTranslationKeys.label.description,
           fieldConfig: new InputField(),
