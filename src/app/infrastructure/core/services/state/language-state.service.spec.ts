@@ -164,4 +164,38 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
           );
         });
       });
+
+      describe('isAvailableLanguageCode()', () => {
+        it('should return true when the language code parameter is in the list', () => {
+          const testLang = 'es-ES';
+          const expectedValue = true;
+
+          expect(service.isAvailableLanguageCode(testLang)).toEqual(
+            expectedValue,
+          );
+        });
+
+        it('should return false when the language code parameter is not in the list', () => {
+          const testLang = 'en-GB';
+          const expectedValue = false;
+
+          expect(service.isAvailableLanguageCode(testLang)).toEqual(
+            expectedValue,
+          );
+        });
+
+        it('should return false when the language code parameter is null', () => {
+          const expectedValue = false;
+
+          expect(service.isAvailableLanguageCode(null)).toEqual(expectedValue);
+        });
+
+        it('should return false when the language code parameter is undefined', () => {
+          const expectedValue = false;
+
+          expect(service.isAvailableLanguageCode(undefined)).toEqual(
+            expectedValue,
+          );
+        });
+      });
     });
