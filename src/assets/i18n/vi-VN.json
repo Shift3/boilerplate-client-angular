@@ -186,6 +186,7 @@
     "unableToLoadAgencies": "Không thể tải đại lý. {{ notification.returningToUserList }}",
     "unableToLoadAgency": "Không thể tải đại lý. Quay lại danh sách đại lý.",
     "unableToLoadAgent": "Không thể tải tác nhân. Quay lại danh sách đại lý.",
+    "unableToLoadRequestedLanguage": "Không thể tải ngôn ngữ được yêu cầu để dịch. Quay lại danh sách đại lý.",
     "unableToLoadRoles": "Không thể tải các vai trò. {{ notification.returningToUserList }}",
     "unableToLoadUser": "Không thể tải người dùng. {{ notification.returningToUserList }}",
     "unableToLoadUserInfo": "Không thể tải thông tin người dùng. {{ notification.returningToDashboard }}",

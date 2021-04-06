@@ -28,6 +28,7 @@ export interface INotificationTranslationKey {
   unableToLoadAgencies: string;
   unableToLoadAgency: string;
   unableToLoadAgent: string;
+  unableToLoadRequestedLanguage: string;
   unableToLoadRoles: string;
   unableToLoadUser: string;
   unableToLoadUserInfo: string;
@@ -67,6 +68,8 @@ export class NotificationTranslationKey implements INotificationTranslationKey {
   unableToLoadAgencies: string = 'notification.unableToLoadAgencies';
   unableToLoadAgency: string = 'notification.unableToLoadAgency';
   unableToLoadAgent: string = 'notification.unableToLoadAgent';
+  unableToLoadRequestedLanguage: string =
+    'notification.unableToLoadRequestedLanguage';
   unableToLoadRoles: string = 'notification.unableToLoadRoles';
   unableToLoadUser: string = 'notification.unableToLoadUser';
   unableToLoadUserInfo: string = 'notification.unableToLoadUserInfo';

@@ -87,6 +87,10 @@ export class LanguageStateService {
     this.dynamicLanguageForTranslation$.next(languageCode);
   }
 
+  public isAvailableLanguageCode(languageCode: string): boolean {
+    return translocoConfigObj.availableLangs.includes(languageCode);
+  }
+
   private checkActiveLangIsDefaultLang(): boolean {
     return this.translocoService.getActiveLang() === this.defaultLanguage;
   }
