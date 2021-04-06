@@ -1126,6 +1126,13 @@
   resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-6.1.0.tgz#fce7550a095aeac42108f76ac1ebd63caf8304e9"
   integrity sha512-2GzkNJBKdeHkaUqaCAqSILPft0IzzHjMfAlAuGY6/ZLlVQ0glt5MTbIXtIhSbjR+OvlrljoXFLrvzs1LGdmE+A==
 
+"@ngneat/transloco-locale@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/transloco-locale/-/transloco-locale-1.4.0.tgz#0d967a33593e526d3723c3c9a243f4ff12f30c67"
+  integrity sha512-w9RhNJP+Y4TyEgdVUk8ZVcmOLldn2UnM7cg8/DSe3p8i4W+QfCbE9qSxyfrJ2axrBpUaRlhnU8wOI4/0EcBJEQ==
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngneat/transloco-persist-lang@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@ngneat/transloco-persist-lang/-/transloco-persist-lang-1.0.4.tgz#9579dbd12770c067a8ddde4c86304aaebd390c43"
