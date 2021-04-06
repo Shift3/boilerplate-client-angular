@@ -10,6 +10,7 @@ import { ContentLayoutComponent } from './content-layout/content-layout.componen
 
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { CanEditAuthGuard } from '@core/guards/can-edit-auth.guard';
+import { HasValidLanguageGuard } from '@core/guards/has-valid-language.guard';
 import {
   IRoutingContentTranslationKey,
   RoutingContentTranslationKey,
@@ -46,7 +47,7 @@ const routes: Routes = [
       {
         path: 'set-translation/:id/:languageCode',
         component: AgentDetailSmartComponent,
-        canActivate: [CanEditAuthGuard],
+        canActivate: [CanEditAuthGuard, HasValidLanguageGuard],
         data: {
           title: contentRoutingTranslationKeys.setTranslation,
         },
