@@ -60,7 +60,11 @@ export class AgentDetailSmartComponent implements OnInit {
   }
 
   public updateOrCreateAgent(): void {
-    return this.agent.id ? this.updateAgent() : this.createAgent();
+    if (this.isSetTranslation) {
+      this.setTranslation();
+    } else {
+      this.agent.id ? this.updateAgent() : this.createAgent();
+    }
   }
 
   private buildFormConfig() {
@@ -188,5 +192,9 @@ export class AgentDetailSmartComponent implements OnInit {
     this.agentService
       .updateAgent(requestPayload, this.agent.id)
       .subscribe(() => this.router.navigateByUrl('/content/agent-list'));
+  }
+
+  private setTranslation(): void {
+    const requestPayload = this.buildPayload();
   }
 }
