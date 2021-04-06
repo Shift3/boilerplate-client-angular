@@ -59,7 +59,11 @@
           <td>{{ item.role.roleName }}</td>
           <td>
             <ng-container *ngIf="item.activatedAt; else resendEmail">
-              {{ item.activatedAt | translocoDate: { dateStyle: 'medium' } }}
+              {{
+                item.activatedAt
+                  | translocoDate: { dateStyle: 'medium' }
+                  | titlecase
+              }}
             </ng-container>
             <ng-template #resendEmail>
               <button
