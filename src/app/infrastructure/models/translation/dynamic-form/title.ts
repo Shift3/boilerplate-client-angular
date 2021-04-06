@@ -27,5 +27,5 @@ export class DynamicFormTitle implements IDynamicFormTitle {
   updateAgency: string = 'dynamicForm.title.updateAgency';
   updateAgent: string = 'dynamicForm.title.updateAgent';
   updateProfile: string = 'dynamicForm.title.updateProfile';
-  updateUser: string = 'dynamicForm.title.activateAccount';
+  updateUser: string = 'dynamicForm.title.updateUser';
 }
