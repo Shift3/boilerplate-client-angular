@@ -5,11 +5,11 @@ import {
   DynamicFormAction,
 } from '@models/translation/dynamic-form/action';
 import { INavigation } from '@models/navigation';
-import { IUserDTO, UserDTO } from '@models/user';
 import {
   INavLinksTranslationKey,
   NavLinksTranslationKey,
-} from '@app/infrastructure/models/translation/navigation';
+} from '@models/translation/navigation';
+import { IUserDTO, UserDTO } from '@models/user';
 
 export interface IActions {
   createAccount: string;

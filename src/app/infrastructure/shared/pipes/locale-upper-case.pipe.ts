@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+import { Logger } from '@utils/logger';
 import { translocoConfigObj } from '@app/transloco/transloco-config';
-import { Logger } from '@app/infrastructure/utils/logger';
 
 @Pipe({ name: 'localeuppercase' })
 export class LocaleUpperCasePipe implements PipeTransform {

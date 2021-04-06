@@ -6,9 +6,9 @@ import { BehaviorSubject } from 'rxjs';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
-import { IUserDTO, UserDTO } from '@app/infrastructure/models/user';
 import { RedirectRouteGuard } from './redirect-route.guard';
-import { RoleDTO } from '@app/infrastructure/models/role';
+import { RoleDTO } from '@models/role';
+import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from '../services/state/user-state.service';
 
 !environment.testUnit

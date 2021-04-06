@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
+import { DataTransformationService } from '@core/services/data-transformation.service';
 import { Logger } from '@utils/logger';
-import { DataTransformationService } from '@app/infrastructure/core/services/data-transformation.service';
 import { LanguageStateService } from '@core/services/state/language-state.service';
 
 !environment.testUnit

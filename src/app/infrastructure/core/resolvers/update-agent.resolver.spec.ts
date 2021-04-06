@@ -3,15 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { of as observableOf } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { AgentDTO } from '@models/agent';
 import { AgentService } from '../services/api/agent.service';
 import { environment } from '@env/environment.test';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
 import { UpdateAgentResolver } from './update-agent.resolver';
-import { getTranslocoModule } from '@app/infrastructure/utils/test/transloco-testing-module';
-import { TranslocoTestingModule } from '@ngneat/transloco';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
