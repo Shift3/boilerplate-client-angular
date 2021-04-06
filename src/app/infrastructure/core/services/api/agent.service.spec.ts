@@ -48,7 +48,11 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
           id: 1,
           name: 'Test Tester',
           email: 'test@test.com',
-          description: 'Test Description',
+          dynamicContent: {
+            'en-US': {
+              description: 'This is a test',
+            },
+          },
           phoneNumber: '5595551234',
           address: {
             address1: '123 Main St.',

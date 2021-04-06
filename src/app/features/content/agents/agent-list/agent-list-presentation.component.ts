@@ -21,7 +21,7 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgentListPresentationComponent {
-  @Input() public agentList: IAgentDTO;
+  @Input() public agentList: IAgentDTO[] = [];
   @Input() public checkRole: IRoleCheck = new RoleCheck();
   @Input() public dynamicLanguageForTranslation: string =
     translocoConfigObj.defaultLang;
