@@ -10,6 +10,8 @@ import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
 import { UpdateAgentResolver } from './update-agent.resolver';
+import { getTranslocoModule } from '@app/infrastructure/utils/test/transloco-testing-module';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
@@ -43,7 +45,11 @@ import { UpdateAgentResolver } from './update-agent.resolver';
               useValue: routerMock,
             },
           ],
-          imports: [HttpClientTestingModule],
+          imports: [
+            HttpClientTestingModule,
+            getTranslocoModule(),
+            TranslocoTestingModule,
+          ],
         });
         injector = getTestBed();
         resolver = injector.inject(UpdateAgentResolver);
