@@ -8,9 +8,11 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { AgentDetailPresentationComponent } from './agent-detail-presentation.component';
 import { AgentDetailSmartComponent } from './agent-detail-smart.component';
+import { AgentDTO, AgentTranslation } from '@models/agent';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
+import { ActivatedRoute } from '@angular/router';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -30,6 +32,28 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
             RouterTestingModule,
             ToastrTestingModule,
             TranslocoTestingModule,
+          ],
+          providers: [
+            {
+              provide: ActivatedRoute,
+              useValue: {
+                snapshot: {
+                  data: {
+                    agent: new AgentDTO({
+                      dynamicContent: {
+                        ['en-US']: new AgentTranslation(),
+                      },
+                    }),
+                  },
+                  params: {
+                    languageCode: '',
+                  },
+                  routeConfig: {
+                    path: 'test',
+                  },
+                },
+              },
+            },
           ],
         }).compileComponents();
       }));
