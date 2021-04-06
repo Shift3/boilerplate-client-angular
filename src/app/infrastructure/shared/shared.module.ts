@@ -9,6 +9,7 @@ import {
 } from './imports/bootstrap.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 
 import { components } from './components';
 import { directives } from './directives';
@@ -26,6 +27,7 @@ import { pipes } from './pipes';
     ReactiveFormsModule,
     RouterModule,
     TranslocoModule,
+    TranslocoLocaleModule,
   ],
   exports: [
     CommonModule,
@@ -33,6 +35,7 @@ import { pipes } from './pipes';
     NgxBootstrapModule,
     ReactiveFormsModule,
     TranslocoModule,
+    TranslocoLocaleModule,
     components,
     directives,
     pipes,
