@@ -48,7 +48,7 @@ const routes: Routes = [
         component: AgentDetailSmartComponent,
         canActivate: [CanEditAuthGuard],
         data: {
-          title: contentRoutingTranslationKeys.updateAgent,
+          title: contentRoutingTranslationKeys.setTranslation,
         },
         resolve: {
           agent: resolverList.UpdateAgentResolver,

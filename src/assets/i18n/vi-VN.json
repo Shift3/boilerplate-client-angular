@@ -217,6 +217,7 @@
     "content": {
       "agentList": "Danh sách đại lý",
       "createAgent": "Tạo đại lý",
+      "setTranslation": "Đặt bản dịch",
       "updateAgent": "Cập nhật đại lý"
     },
     "user": {

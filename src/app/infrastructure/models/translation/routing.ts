@@ -45,6 +45,7 @@ export class RoutingAuthTranslationKey implements IRoutingAuthTranslationKey {
 export interface IRoutingContentTranslationKey {
   agentList: string;
   createAgent: string;
+  setTranslation: string;
   updateAgent: string;
 }
 
@@ -52,6 +53,7 @@ export class RoutingContentTranslationKey
   implements IRoutingContentTranslationKey {
   agentList: string = 'routing.content.agentList';
   createAgent: string = 'routing.content.createAgent';
+  setTranslation: string = 'routing.content.setTranslation';
   updateAgent: string = 'routing.content.updateAgent';
 }
 

@@ -220,6 +220,7 @@
     "content": {
       "agentList": "Lista de Agentes",
       "createAgent": "Crear Agente",
+      "setTranslation": "Establecer traducción",
       "updateAgent": "Actualizar Agente"
     },
     "user": {

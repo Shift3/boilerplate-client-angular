@@ -220,6 +220,7 @@
     "content": {
       "agentList": "Agent List",
       "createAgent": "Create Agent",
+      "setTranslation": "Set Translation",
       "updateAgent": "Update Agent"
     },
     "user": {

@@ -220,6 +220,7 @@
     "content": {
       "agentList": "Listahan ng Ahente",
       "createAgent": "Lumikha ng Ahente",
+      "setTranslation": "Itakda ang pagsasalin",
       "updateAgent": "I-update ang Ahente"
     },
     "user": {
