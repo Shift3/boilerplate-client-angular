@@ -15,6 +15,7 @@ import {
 } from '@models/translation/dynamic-table';
 import { NgbPositionEnum } from '@models/enums';
 import { IRoleCheck, RoleCheck } from '@models/role';
+import { ISelectedLanguage } from '@models/translation/translation';
 import { ITableConfig, TableConfig } from '@models/table';
 
 @Component({
@@ -29,11 +30,16 @@ export class AgentTableComponent {
   @Input() public tableData: IAgentDTO[] = [];
 
   @Output() public emitDelete = new EventEmitter<IAgentDTO>();
+  @Output() public emitSelectLanguage = new EventEmitter<ISelectedLanguage>();
 
   public dynamicTableTranslationKeys: IDynamicTableTranslationKey = new DynamicTableTranslationKey();
 
   public deleteAgent(agent: IAgentDTO): void {
     this.emitDelete.emit(agent);
+  }
+
+  public selectLanguage(selectedLanguage: ISelectedLanguage): void {
+    this.emitSelectLanguage.emit(selectedLanguage);
   }
 
   public openSelectLanguagePopover(

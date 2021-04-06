@@ -11,6 +11,7 @@
     [checkRole]="checkRole"
     [tableData]="agentList"
     (emitDelete)="deleteAgent($event)"
+    (emitSelectLanguage)="selectLanguage($event)"
   ></app-agent-table>
 </ng-container>
 <ng-template #loading>

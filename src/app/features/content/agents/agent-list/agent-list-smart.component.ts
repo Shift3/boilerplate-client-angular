@@ -4,7 +4,9 @@ import {
   EventEmitter,
   OnInit,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
+import { TranslocoService } from '@ngneat/transloco';
 import { combineLatest, Observable, of as observableOf } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -16,18 +18,17 @@ import {
   ConfirmationModalTranslationKey,
 } from '@models/translation/confirmation-modal';
 import { IRoleCheck } from '@models/role';
-import { LanguageStateService } from '@core/services/state/language-state.service';
+import { ISelectedLanguage } from '@models/translation/translation';
 import { ModalService } from '@core/services/modal.service';
 import { UserStateService } from '@core/services/state/user-state.service';
-import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   template: `
     <app-agent-list-presentation
       [agentList]="agentList$ | async"
       [checkRole]="checkRole$ | async"
-      [dynamicLanguageForTranslation]="dynamicLanguageForTranslation$ | async"
       (emitDelete)="openDeleteModal($event)"
+      (emitSelectLanguage)="selectLanguage($event)"
     ></app-agent-list-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,8 +41,8 @@ export class AgentListSmartComponent implements OnInit {
 
   constructor(
     private agentService: AgentService,
-    private languageStateService: LanguageStateService,
     private modalService: ModalService,
+    private router: Router,
     private translocoService: TranslocoService,
     private userStateService: UserStateService,
   ) {}
@@ -49,7 +50,6 @@ export class AgentListSmartComponent implements OnInit {
   public ngOnInit(): void {
     this.getAgentList();
     this.checkRole$ = this.checkRoleList();
-    this.dynamicLanguageForTranslation$ = this.getDynamicLanguageForTranslation();
   }
 
   public checkRoleList(): Observable<IRoleCheck> {
@@ -72,8 +72,10 @@ export class AgentListSmartComponent implements OnInit {
     });
   }
 
-  private getDynamicLanguageForTranslation() {
-    return this.languageStateService.getDynamicLanguageForTranslation();
+  public selectLanguage(selectedLanguage: ISelectedLanguage): void {
+    this.router.navigateByUrl(
+      `/content/set-translation/${selectedLanguage.id}/${selectedLanguage.languageCode}`,
+    );
   }
 
   /**
