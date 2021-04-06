@@ -36,7 +36,7 @@ export class UserStateService {
    */
   public checkRoleList(): Observable<IRoleCheck> {
     return this.getUserSession().pipe(
-      map((user) => user?.role?.roleName),
+      map((user) => user?.role?.roleKey),
       map((roleName) => {
         const roleList: IRoleCheck = new RoleCheck({
           canEdit: RoleDTO.canEdit(roleName),

@@ -99,7 +99,7 @@ import { RoleCheck } from '@models/role';
               lastName: 'Tester',
               role: {
                 id: 2,
-                roleName: 'User',
+                roleKey: 'User',
               },
             }),
           );

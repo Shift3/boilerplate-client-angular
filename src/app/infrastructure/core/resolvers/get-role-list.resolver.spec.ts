@@ -54,7 +54,7 @@ import { RoleService } from '../services/api/role.service';
         it('should resolve the user role object in an array', () => {
           const expectedValue = new Array<RoleDTO>({
             id: 0,
-            roleName: '',
+            roleKey: '',
           });
           spyOn(service, 'getRoleList').and.returnValue(
             observableOf(expectedValue),

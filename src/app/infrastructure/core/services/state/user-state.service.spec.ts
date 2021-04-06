@@ -28,7 +28,7 @@ import { UserStateService } from './user-state.service';
             lastName: 'Tester',
             role: {
               id: 2,
-              roleName: 'Super Administrator',
+              roleKey: 'Super Administrator',
             },
           }),
         );
@@ -38,7 +38,7 @@ import { UserStateService } from './user-state.service';
             lastName: 'Tester',
             role: {
               id: 1,
-              roleName: 'Admin',
+              roleKey: 'Admin',
             },
           }),
         );
@@ -105,7 +105,7 @@ import { UserStateService } from './user-state.service';
             },
             role: {
               id: 0,
-              roleName: '',
+              roleKey: '',
             },
           };
           service.setUserSession(testUser);
@@ -155,7 +155,7 @@ import { UserStateService } from './user-state.service';
               lastName: 'Tester',
               role: {
                 id: 3,
-                roleName: 'User',
+                roleKey: 'User',
               },
             }),
           );
@@ -174,7 +174,7 @@ import { UserStateService } from './user-state.service';
               lastName: 'Tester',
               role: {
                 id: 3,
-                roleName: 'Editor',
+                roleKey: 'Editor',
               },
             }),
           );
@@ -198,7 +198,7 @@ import { UserStateService } from './user-state.service';
               lastName: 'Tester',
               role: {
                 id: 3,
-                roleName: 'Admin',
+                roleKey: 'Admin',
               },
             }),
           );
@@ -222,7 +222,7 @@ import { UserStateService } from './user-state.service';
               lastName: 'Tester',
               role: {
                 id: 3,
-                roleName: 'Super Administrator',
+                roleKey: 'Super Administrator',
               },
             }),
           );
