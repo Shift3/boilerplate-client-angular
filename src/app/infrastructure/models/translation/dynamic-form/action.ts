@@ -10,6 +10,7 @@ export interface IDynamicFormAction {
   delete: string;
   forgotPassword: string;
   login: string;
+  setTranslation: string;
   signUp: string;
   submit: string;
   update: string;
@@ -27,6 +28,7 @@ export class DynamicFormAction implements IDynamicFormAction {
   delete: string = 'dynamicForm.action.delete';
   forgotPassword: string = 'dynamicForm.action.forgotPassword';
   login: string = 'dynamicForm.action.login';
+  setTranslation: string = 'dynamicForm.action.setTranslation';
   signUp: string = 'dynamicForm.action.signUp';
   submit: string = 'dynamicForm.action.submit';
   update: string = 'dynamicForm.action.update';

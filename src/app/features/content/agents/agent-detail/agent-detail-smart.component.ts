@@ -84,7 +84,9 @@ export class AgentDetailSmartComponent implements OnInit {
       formTitleParams: this.setFormTitleParams(),
       submit: new SaveCancelButtonConfig({
         save: this.agent?.id
-          ? dynamicFormTranslationKeys.action.update
+          ? this.isSetTranslation
+            ? dynamicFormTranslationKeys.action.setTranslation
+            : dynamicFormTranslationKeys.action.update
           : dynamicFormTranslationKeys.action.create,
       }),
       controls: [
