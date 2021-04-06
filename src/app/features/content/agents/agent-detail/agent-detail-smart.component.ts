@@ -35,6 +35,9 @@ export class AgentDetailSmartComponent implements OnInit {
   public agent: IAgentDTO;
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
+  public isSetTranslation: boolean =
+    this.activatedRoute.snapshot.routeConfig.path ===
+    'set-translation/:id/:languageCode';
 
   constructor(
     private activatedRoute: ActivatedRoute,
