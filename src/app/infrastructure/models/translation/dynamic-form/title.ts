@@ -7,6 +7,7 @@ export interface IDynamicFormTitle {
   forgotPassword: string;
   memberLogin: string;
   resetPassword: string;
+  setTranslation: string;
   signUp: string;
   updateAgency: string;
   updateAgent: string;
@@ -23,6 +24,7 @@ export class DynamicFormTitle implements IDynamicFormTitle {
   forgotPassword: string = 'dynamicForm.title.forgotPassword';
   memberLogin: string = 'dynamicForm.title.memberLogin';
   resetPassword: string = 'dynamicForm.title.resetPassword';
+  setTranslation: string = 'dynamicForm.title.setTranslation';
   signUp: string = 'dynamicForm.title.signUp';
   updateAgency: string = 'dynamicForm.title.updateAgency';
   updateAgent: string = 'dynamicForm.title.updateAgent';

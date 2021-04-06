@@ -90,6 +90,7 @@
       "forgotPassword": "Nakalimutan ang Kontrasenyas",
       "memberLogin": "Login ng Miyembro",
       "resetPassword": "I-reset ang Kontrasenyas",
+      "setTranslation": "Itakda ang pagsasalin para sa {{ value }}",
       "signUp": "Mag-sign Up",
       "updateAgency": "I-update ang Ahensya",
       "updateAgent": "I-update ang Ahente",

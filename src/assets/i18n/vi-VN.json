@@ -90,6 +90,7 @@
       "forgotPassword": "Quên mật khẩu",
       "memberLogin": "Đăng nhập thành viên",
       "resetPassword": "Đặt lại mật khẩu",
+      "setTranslation": "Đặt bản dịch cho tiếng {{ value }}",
       "signUp": "Đăng ký",
       "updateAgency": "Cập nhật đại lý",
       "updateAgent": "Cập nhật đại lý",

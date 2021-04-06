@@ -90,6 +90,7 @@
       "forgotPassword": "Forgot Password",
       "memberLogin": "Member Login",
       "resetPassword": "Reset Password",
+      "setTranslation": "Set Translation for {{ value }}",
       "signUp": "Sign Up",
       "updateAgency": "Update Agency",
       "updateAgent": "Update Agent",

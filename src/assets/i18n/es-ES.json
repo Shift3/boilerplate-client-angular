@@ -90,6 +90,7 @@
       "forgotPassword": "Has Olvidado tu Contraseña",
       "memberLogin": "Inicio de Sesión de Miembro",
       "resetPassword": "Restablecer la Contraseña",
+      "setTranslation": "Establecer traducción para {{ value }}",
       "signUp": "Inscribirse",
       "updateAgency": "Actualizar Agencia",
       "updateAgent": "Actualizar Agente",
