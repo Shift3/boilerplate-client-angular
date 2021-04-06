@@ -44,6 +44,17 @@ const routes: Routes = [
         },
       },
       {
+        path: 'set-translation/:id/:languageCode',
+        component: AgentDetailSmartComponent,
+        canActivate: [CanEditAuthGuard],
+        data: {
+          title: contentRoutingTranslationKeys.updateAgent,
+        },
+        resolve: {
+          agent: resolverList.UpdateAgentResolver,
+        },
+      },
+      {
         path: 'update-agent/:id',
         component: AgentDetailSmartComponent,
         canActivate: [CanEditAuthGuard],
