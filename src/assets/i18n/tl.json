@@ -188,6 +188,7 @@
     "unableToLoadAgencies": "Hindi mai-load ang mga ahensya. {{ notification.returningToUserList }}",
     "unableToLoadAgency": "Hindi mai-load ang ahensya. Bumabalik sa listahan ng ahensya.",
     "unableToLoadAgent": "Hindi ma-load ang ahente. Bumabalik sa listahan ng ahente.",
+    "unableToLoadRequestedLanguage": "Hindi mai-load ang hiniling na wika para sa pagsasalin. Bumabalik sa listahan ng ahente.",
     "unableToLoadRoles": "Hindi mai-load ang mga tungkulin. {{ notification.returningToUserList }}",
     "unableToLoadUser": "Hindi mai-load ang gumagamit. {{ notification.returningToUserList }}",
     "unableToLoadUserInfo": "Hindi mai-load ang impormasyon ng gumagamit. {{ notification.returningToDashboard }}",

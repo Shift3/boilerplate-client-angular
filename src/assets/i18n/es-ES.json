@@ -188,6 +188,7 @@
     "unableToLoadAgencies": "No se pueden cargar agencias. {{ notification.returningToUserList }}",
     "unableToLoadAgency": "No se pudo cargar la agencia. Volviendo a la lista de agencias.",
     "unableToLoadAgent": "No se pudo cargar el agente. Volviendo a la lista de agentes.",
+    "unableToLoadRequestedLanguage": "No se puede cargar el idioma solicitado para la traducción. Volviendo a la lista de agentes.",
     "unableToLoadRoles": "No se pueden cargar roles. {{ notification.returningToUserList }}",
     "unableToLoadUser": "No se pudo cargar el usuario. {{ notification.returningToUserList }}",
     "unableToLoadUserInfo": "No se pudo cargar la información del usuario. {{ notification.returningToDashboard }}",

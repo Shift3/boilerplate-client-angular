@@ -188,6 +188,7 @@
     "unableToLoadAgencies": "Unable to load agencies. {{ notification.returningToUserList }}",
     "unableToLoadAgency": "Unable to load agency. Returning to agency list.",
     "unableToLoadAgent": "Unable to load agent. Returning to agent list.",
+    "unableToLoadRequestedLanguage": "Unable to load requested language for translation. Returning to agent list.",
     "unableToLoadRoles": "Unable to load roles. {{ notification.returningToUserList }}",
     "unableToLoadUser": "Unable to load user. {{ notification.returningToUserList }}",
     "unableToLoadUserInfo": "Unable to load user information. {{ notification.returningToDashboard }}",
