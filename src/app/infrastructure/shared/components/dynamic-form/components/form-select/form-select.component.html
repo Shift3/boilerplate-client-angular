@@ -1,7 +1,10 @@
 <div class="field-container" [formGroup]="group" *transloco="let translate">
   <label class="field-label" [for]="config.name">
     {{ translate(config.label) }}
-    <span *ngIf="!(activeLangIsDefaultLang$ | async)" class="default-lang-text">
+    <span
+      *ngIf="(activeLangIsDefaultLang$ | async) === false"
+      class="default-lang-text"
+    >
       /
       <span
         [transloco]="config.label"

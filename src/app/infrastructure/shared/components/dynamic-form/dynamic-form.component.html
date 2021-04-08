@@ -7,7 +7,7 @@
         })
       }}
       <span
-        *ngIf="!(activeLangIsDefaultLang$ | async)"
+        *ngIf="(activeLangIsDefaultLang$ | async) === false"
         class="default-lang-text"
       >
         /
@@ -21,7 +21,7 @@
     <ng-template #noParams>
       {{ translate(formConfig.formTitle) }}
       <span
-        *ngIf="!(activeLangIsDefaultLang$ | async)"
+        *ngIf="(activeLangIsDefaultLang$ | async) === false"
         class="default-lang-text"
       >
         /
