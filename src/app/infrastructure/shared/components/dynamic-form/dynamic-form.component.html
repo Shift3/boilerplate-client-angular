@@ -1,6 +1,15 @@
 <div class="card" *transloco="let translate">
   <h2 class="card-header">
-    {{ translate(formConfig.formTitle) }}
+    <ng-container *ngIf="formConfig.formTitleParams; else noParams">
+      {{
+        translate(formConfig.formTitle, {
+          value: translate(formConfig.formTitleParams)
+        })
+      }}
+    </ng-container>
+    <ng-template #noParams>
+      {{ translate(formConfig.formTitle) }}
+    </ng-template>
   </h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <ng-container *ngIf="formConfig.controls.length">

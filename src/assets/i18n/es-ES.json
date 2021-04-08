@@ -29,6 +29,7 @@
       "delete": "Eliminar",
       "forgotPassword": "Has olvidado tu contraseña",
       "login": "Iniciar sesión",
+      "setTranslation": "Establecer traducción",
       "signUp": "Inscribirse",
       "submit": "Enviar",
       "update": "Actualizar"
@@ -90,6 +91,7 @@
       "forgotPassword": "Has Olvidado tu Contraseña",
       "memberLogin": "Inicio de Sesión de Miembro",
       "resetPassword": "Restablecer la Contraseña",
+      "setTranslation": "Establecer traducción para {{ value }}",
       "signUp": "Inscribirse",
       "updateAgency": "Actualizar Agencia",
       "updateAgent": "Actualizar Agente",
@@ -219,6 +221,7 @@
     "content": {
       "agentList": "Lista de Agentes",
       "createAgent": "Crear Agente",
+      "setTranslation": "Establecer traducción",
       "updateAgent": "Actualizar Agente"
     },
     "user": {

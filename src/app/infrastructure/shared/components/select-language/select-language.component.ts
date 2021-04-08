@@ -1,8 +1,16 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 
 import { DynamicTablePopover } from '@models/translation/dynamic-table';
-import { IHasTranslation } from '@models/translation/translation';
-import { LanguageStateService } from '@core/services/state/language-state.service';
+import {
+  IHasTranslation,
+  ISelectedLanguage,
+} from '@models/translation/translation';
 import { LanguageTranslationKey } from '@models/translation/navigation';
 
 @Component({
@@ -13,13 +21,14 @@ import { LanguageTranslationKey } from '@models/translation/navigation';
 })
 export class SelectLanguageComponent {
   @Input() public hasTranslationList: IHasTranslation[];
+  @Input() public id: number;
+
+  @Output() public emitSetLanguage = new EventEmitter<ISelectedLanguage>();
 
   public popover = new DynamicTablePopover();
   public languageTranslationKeys = new LanguageTranslationKey();
 
-  constructor(private languageStateService: LanguageStateService) {}
-
-  public selectLanguage(languageCode: string) {
-    this.languageStateService.setDynamicLanguageForTranslation(languageCode);
+  public selectLanguage(languageCode: string): void {
+    this.emitSetLanguage.emit({ id: this.id, languageCode });
   }
 }

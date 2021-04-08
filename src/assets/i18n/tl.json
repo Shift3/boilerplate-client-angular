@@ -29,6 +29,7 @@
       "delete": "Tanggalin",
       "forgotPassword": "Nakalimutan ang password",
       "login": "Mag log in",
+      "setTranslation": "Itakda ang Pagsasalin",
       "signUp": "Mag-sign Up",
       "submit": "Ipasa",
       "update": "Pag-update"
@@ -90,6 +91,7 @@
       "forgotPassword": "Nakalimutan ang Kontrasenyas",
       "memberLogin": "Login ng Miyembro",
       "resetPassword": "I-reset ang Kontrasenyas",
+      "setTranslation": "Itakda ang pagsasalin para sa {{ value }}",
       "signUp": "Mag-sign Up",
       "updateAgency": "I-update ang Ahensya",
       "updateAgent": "I-update ang Ahente",
@@ -219,6 +221,7 @@
     "content": {
       "agentList": "Listahan ng Ahente",
       "createAgent": "Lumikha ng Ahente",
+      "setTranslation": "Itakda ang pagsasalin",
       "updateAgent": "I-update ang Ahente"
     },
     "user": {

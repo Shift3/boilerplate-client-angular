@@ -31,7 +31,9 @@ export class FormInputComponent implements OnInit {
   }
 
   public get formControl(): AbstractControl {
-    return this.group.get(this.config.name);
+    return this.config.name.split('.').length > 1
+      ? this.group.controls[this.config.name]
+      : this.group.get(this.config.name);
   }
 
   public get formErrorValue(): string {

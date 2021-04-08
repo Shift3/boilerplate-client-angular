@@ -15,10 +15,16 @@ import {
 } from '@models/translation/dynamic-form/dynamic-form';
 import { IInputField, InputField } from '@models/form/input';
 import { ISelectField, SelectField } from '@models/form/select';
+import { LANGUAGE } from '@models/enums';
+import {
+  INavigationTranslationKey,
+  NavigationTranslationKey,
+} from '@models/translation/navigation';
 import { PhoneValidation } from '@utils/validation/phone-validation';
 import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { stateList } from '@models/state';
+import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 @Component({
   template: `
@@ -35,6 +41,11 @@ export class AgentDetailSmartComponent implements OnInit {
   public agent: IAgentDTO;
   public form: FormGroup = new FormGroup({});
   public formConfig: IFormConfig = new FormConfig();
+  public languageCode: string = '';
+  public languageName: string = '';
+  public isSetTranslation: boolean =
+    this.activatedRoute.snapshot.routeConfig.path ===
+    'set-translation/:id/:languageCode';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -43,6 +54,10 @@ export class AgentDetailSmartComponent implements OnInit {
     private router: Router,
   ) {
     this.agent = this.activatedRoute.snapshot.data.agent;
+    this.languageCode =
+      this.activatedRoute.snapshot.params.languageCode ||
+      translocoConfigObj.defaultLang;
+    this.languageName = LANGUAGE[this.languageCode];
   }
 
   public ngOnInit(): void {
@@ -54,19 +69,24 @@ export class AgentDetailSmartComponent implements OnInit {
   }
 
   public updateOrCreateAgent(): void {
-    return this.agent.id ? this.updateAgent() : this.createAgent();
+    if (this.isSetTranslation) {
+      this.setTranslation();
+    } else {
+      this.agent.id ? this.updateAgent() : this.createAgent();
+    }
   }
 
   private buildFormConfig() {
     const dynamicFormTranslationKeys: IDynamicFormTranslationKey = new DynamicFormTranslationKey();
     const formConfig = new FormConfig({
       formName: 'form',
-      formTitle: this.agent?.id
-        ? dynamicFormTranslationKeys.title.updateAgent
-        : dynamicFormTranslationKeys.title.createAgent,
+      formTitle: this.setFormTitle(dynamicFormTranslationKeys),
+      formTitleParams: this.setFormTitleParams(),
       submit: new SaveCancelButtonConfig({
         save: this.agent?.id
-          ? dynamicFormTranslationKeys.action.update
+          ? this.isSetTranslation
+            ? dynamicFormTranslationKeys.action.setTranslation
+            : dynamicFormTranslationKeys.action.update
           : dynamicFormTranslationKeys.action.create,
       }),
       controls: [
@@ -77,6 +97,7 @@ export class AgentDetailSmartComponent implements OnInit {
           label: dynamicFormTranslationKeys.label.fullName,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('Full Name')],
+          disabled: this.isSetTranslation,
         }),
         new FormField<IInputField>({
           name: 'email',
@@ -85,10 +106,11 @@ export class AgentDetailSmartComponent implements OnInit {
           label: dynamicFormTranslationKeys.label.email,
           fieldConfig: new InputField({ inputType: 'email' }),
           validation: [EmailValidation.validEmail(true)],
+          disabled: this.isSetTranslation,
         }),
         new FormField<IInputField>({
-          name: 'description',
-          value: this.agent?.description,
+          name: 'dynamicContent.description',
+          value: this.agent?.dynamicContent[this.languageCode]?.description,
           fieldType: 'input',
           label: dynamicFormTranslationKeys.label.description,
           fieldConfig: new InputField(),
@@ -101,6 +123,7 @@ export class AgentDetailSmartComponent implements OnInit {
           label: dynamicFormTranslationKeys.label.phoneNumber,
           fieldConfig: new InputField({ mask: Constants.masks.US_PHONE }),
           validation: [PhoneValidation.validPhone(true)],
+          disabled: this.isSetTranslation,
         }),
         new FormField<IInputField>({
           name: 'address1',
@@ -109,6 +132,7 @@ export class AgentDetailSmartComponent implements OnInit {
           label: dynamicFormTranslationKeys.label.address,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('Address')],
+          disabled: this.isSetTranslation,
         }),
         new FormField<IInputField>({
           name: 'address2',
@@ -116,6 +140,7 @@ export class AgentDetailSmartComponent implements OnInit {
           fieldType: 'input',
           label: dynamicFormTranslationKeys.label.address2,
           fieldConfig: new InputField(),
+          disabled: this.isSetTranslation,
         }),
         new FormField<IInputField>({
           name: 'city',
@@ -124,6 +149,7 @@ export class AgentDetailSmartComponent implements OnInit {
           label: dynamicFormTranslationKeys.label.city,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('City')],
+          disabled: this.isSetTranslation,
         }),
         new FormField<ISelectField<string>>({
           name: 'state',
@@ -134,6 +160,7 @@ export class AgentDetailSmartComponent implements OnInit {
             options: stateList,
           }),
           validation: [RequiredValidation.required('State')],
+          disabled: this.isSetTranslation,
         }),
         new FormField<IInputField>({
           name: 'zipCode',
@@ -142,11 +169,32 @@ export class AgentDetailSmartComponent implements OnInit {
           label: dynamicFormTranslationKeys.label.zipCode,
           fieldConfig: new InputField(),
           validation: [RequiredValidation.required('Zip Code')],
+          disabled: this.isSetTranslation,
         }),
       ],
     });
 
     return formConfig;
+  }
+
+  private setFormTitle(
+    dynamicFormTranslationKeys: IDynamicFormTranslationKey,
+  ): string {
+    if (this.isSetTranslation) {
+      return dynamicFormTranslationKeys.title.setTranslation;
+    } else {
+      return this.agent.id
+        ? dynamicFormTranslationKeys.title.updateAgent
+        : dynamicFormTranslationKeys.title.createAgent;
+    }
+  }
+
+  private setFormTitleParams(): string {
+    if (this.isSetTranslation) {
+      const navigationKeys: INavigationTranslationKey = new NavigationTranslationKey();
+
+      return navigationKeys.languages[this.languageName];
+    }
   }
 
   private buildPayload(): IAgentRequest {
@@ -174,5 +222,10 @@ export class AgentDetailSmartComponent implements OnInit {
     this.agentService
       .updateAgent(requestPayload, this.agent.id)
       .subscribe(() => this.router.navigateByUrl('/content/agent-list'));
+  }
+
+  private setTranslation(): void {
+    const requestPayload = this.buildPayload();
+    // TODO: send request to update/create the translation records in the database
   }
 }

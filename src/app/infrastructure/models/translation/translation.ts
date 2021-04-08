@@ -36,3 +36,8 @@ export class HasTranslation implements IHasTranslation {
     }
   }
 }
+
+export interface ISelectedLanguage {
+  id: number;
+  languageCode: string;
+}

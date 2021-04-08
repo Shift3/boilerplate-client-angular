@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { of as observableOf } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { AgentDTO } from '@models/agent';
 import { AgentService } from '../services/api/agent.service';
 import { environment } from '@env/environment.test';
+import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
 import { NotificationService } from '../services/notification.service';
 import { UpdateAgentResolver } from './update-agent.resolver';
@@ -43,7 +45,11 @@ import { UpdateAgentResolver } from './update-agent.resolver';
               useValue: routerMock,
             },
           ],
-          imports: [HttpClientTestingModule],
+          imports: [
+            HttpClientTestingModule,
+            getTranslocoModule(),
+            TranslocoTestingModule,
+          ],
         });
         injector = getTestBed();
         resolver = injector.inject(UpdateAgentResolver);

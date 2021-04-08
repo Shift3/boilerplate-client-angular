@@ -19,7 +19,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AgencyListPresentationComponent {
-  @Input() public agencyList: IAgencyDTO;
+  @Input() public agencyList: IAgencyDTO[];
 
   @Output() public emitDelete = new EventEmitter<IAgencyDTO>();
 

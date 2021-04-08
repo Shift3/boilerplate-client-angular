@@ -29,6 +29,7 @@
       "delete": "Xóa bỏ",
       "forgotPassword": "Quên mật khẩu",
       "login": "Đăng nhập",
+      "setTranslation": "Đặt bản dịch",
       "signUp": "Đăng ký",
       "submit": "Gửi đi",
       "update": "Cập nhật"
@@ -90,6 +91,7 @@
       "forgotPassword": "Quên mật khẩu",
       "memberLogin": "Đăng nhập thành viên",
       "resetPassword": "Đặt lại mật khẩu",
+      "setTranslation": "Đặt bản dịch cho tiếng {{ value }}",
       "signUp": "Đăng ký",
       "updateAgency": "Cập nhật đại lý",
       "updateAgent": "Cập nhật đại lý",
@@ -216,6 +218,7 @@
     "content": {
       "agentList": "Danh sách đại lý",
       "createAgent": "Tạo đại lý",
+      "setTranslation": "Đặt bản dịch",
       "updateAgent": "Cập nhật đại lý"
     },
     "user": {

@@ -1,14 +1,14 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed, getTestBed } from '@angular/core/testing';
 
-import { AgentDTO } from '@models/agent';
+import { AgentDTO, AgentTranslation } from '@models/agent';
 import { CreateAgentResolver } from './create-agent.resolver';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 
 !environment.testUnit
   ? Logger.log('Unit skipped')
-  : describe('[Unit] CreateUserResolver', () => {
+  : describe('[Unit] CreateAgentResolver', () => {
       let resolver: CreateAgentResolver;
       let injector: TestBed;
 
@@ -32,7 +32,11 @@ import { Logger } from '@utils/logger';
         });
 
         it('should resolve a new instance of the agent object', () => {
-          const expectedValue = new AgentDTO();
+          const expectedValue = new AgentDTO({
+            dynamicContent: {
+              'en-US': new AgentTranslation(),
+            },
+          });
           resolver.resolve().subscribe((response) => {
             expect(response).toEqual(expectedValue);
           });

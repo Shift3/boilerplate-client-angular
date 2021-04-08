@@ -29,6 +29,7 @@
       "delete": "Delete",
       "forgotPassword": "Forgot Password",
       "login": "Log In",
+      "setTranslation": "Set Translation",
       "signUp": "Sign Up",
       "submit": "Submit",
       "update": "Update"
@@ -90,6 +91,7 @@
       "forgotPassword": "Forgot Password",
       "memberLogin": "Member Login",
       "resetPassword": "Reset Password",
+      "setTranslation": "Set Translation for {{ value }}",
       "signUp": "Sign Up",
       "updateAgency": "Update Agency",
       "updateAgent": "Update Agent",
@@ -219,6 +221,7 @@
     "content": {
       "agentList": "Agent List",
       "createAgent": "Create Agent",
+      "setTranslation": "Set Translation",
       "updateAgent": "Update Agent"
     },
     "user": {
