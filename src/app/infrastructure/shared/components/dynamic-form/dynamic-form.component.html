@@ -6,18 +6,24 @@
           value: translate(formConfig.formTitleParams)
         })
       }}
-      <span *ngIf="!(activeLangIsDefaultLang$ | async)" class="default-lang-text">
+      <span
+        *ngIf="!(activeLangIsDefaultLang$ | async)"
+        class="default-lang-text"
+      >
         /
-        <span
-          [transloco]="formConfig.formTitle"
-          [translocoParams]="{ value: translate(formConfig.formTitleParams, {}, translocoConfig.defaultLang)}"
-          [translocoLang]="translocoConfig.defaultLang + '|static'"
-        ></span>
+        {{
+          getFormTitleParamsDefaultLanguageText({
+            value: formConfig.formTitleParams
+          })
+        }}
       </span>
     </ng-container>
     <ng-template #noParams>
       {{ translate(formConfig.formTitle) }}
-      <span *ngIf="!(activeLangIsDefaultLang$ | async)" class="default-lang-text">
+      <span
+        *ngIf="!(activeLangIsDefaultLang$ | async)"
+        class="default-lang-text"
+      >
         /
         <span
           [transloco]="formConfig.formTitle"

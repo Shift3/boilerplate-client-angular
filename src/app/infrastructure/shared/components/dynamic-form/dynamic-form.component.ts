@@ -14,7 +14,11 @@ import { LanguageStateService } from '@core/services/state/language-state.servic
 import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 import { Observable } from 'rxjs';
-import { TranslocoConfig } from '@ngneat/transloco';
+import {
+  TranslocoConfig,
+  TranslocoService,
+  translate,
+} from '@ngneat/transloco';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -38,6 +42,7 @@ export class DynamicFormComponent implements OnInit {
   constructor(
     private formService: FormService,
     private languageStateService: LanguageStateService,
+    private translocoService: TranslocoService,
   ) {}
 
   public ngOnInit(): void {
@@ -54,5 +59,32 @@ export class DynamicFormComponent implements OnInit {
     this.emitForm.emit(form);
 
     return form;
+  }
+
+  public getFormTitleParamsDefaultLanguageText(params?: object): string {
+    if (params) {
+      const translatedParamsObj = {};
+      Object.keys(params).forEach((param) => {
+        Object.assign(translatedParamsObj, {
+          [param]: this.translocoService.translate(
+            params[param],
+            {},
+            this.translocoConfig.defaultLang,
+          ),
+        });
+      });
+
+      return this.translocoService.translate(
+        this.formConfig.formTitle,
+        translatedParamsObj,
+        this.translocoConfig.defaultLang,
+      );
+    }
+
+    return this.translocoService.translate(
+      this.formConfig.formTitle,
+      {},
+      this.translocoConfig.defaultLang,
+    );
   }
 }
