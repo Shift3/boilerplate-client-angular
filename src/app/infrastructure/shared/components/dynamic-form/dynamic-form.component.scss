@@ -1,6 +1,12 @@
+.card-header {
+  line-height: 16px;
+  margin-bottom: 20px;
+}
+
 .field-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
 }
 
 .field-label {
@@ -9,4 +15,14 @@
 
 .error-container {
   height: 24px;
+}
+
+.default-lang-text {
+  font-size: 16px;
+  font-style: italic;
+  text-transform: capitalize;
+}
+
+.field-container .field-label .default-lang-text {
+  font-size: 14px;
 }

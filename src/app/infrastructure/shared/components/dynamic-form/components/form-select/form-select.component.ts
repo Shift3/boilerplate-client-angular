@@ -4,8 +4,16 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormField, IFormField } from '@models/form/form';
 import { ISelectField, SelectField } from '@models/form/select';
 
-import { DataTransformationService } from '@core/services/data-transformation.service';
 import { FormService } from '@core/services/form.service';
+import {
+  IDynamicFormError,
+  DynamicFormError,
+} from '@models/translation/dynamic-form/error';
+import { LanguageStateService } from '@core/services/state/language-state.service';
+import { translocoConfigObj } from '@app/transloco/transloco-config';
+
+import { Observable } from 'rxjs';
+import { TranslocoConfig } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-form-select',
@@ -15,19 +23,25 @@ import { FormService } from '@core/services/form.service';
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class FormSelectComponent implements OnInit {
+  public activeLangIsDefaultLang$: Observable<boolean>;
   public config: IFormField<ISelectField<unknown>> = new FormField<
     ISelectField<unknown>
   >({ fieldConfig: new SelectField<unknown>() });
   public configLabel: string = '';
   public group: FormGroup = new FormGroup({});
+  public translocoConfig: TranslocoConfig = Object.assign(
+    {},
+    translocoConfigObj,
+  );
 
   constructor(
-    private dataTransformationService: DataTransformationService,
     private formService: FormService,
+    private languageStateService: LanguageStateService,
   ) {}
 
   ngOnInit() {
     this.setConfigLabel(this.config.label);
+    this.activeLangIsDefaultLang$ = this.languageStateService.getActiveLangIsDefaultLang();
   }
 
   public get formControl(): AbstractControl {
@@ -49,10 +63,8 @@ export class FormSelectComponent implements OnInit {
       this.setConfigLabel(this.config.label);
     }
 
-    return this.dataTransformationService.getObjectProperty(
-      'dynamicForm.error',
-      property,
-    );
+    const dynamicFormErrorTranslationKeys: IDynamicFormError = new DynamicFormError();
+    return dynamicFormErrorTranslationKeys[property];
   }
 
   private setConfigLabel(label: string): void {
