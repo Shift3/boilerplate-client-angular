@@ -6,9 +6,27 @@
           value: translate(formConfig.formTitleParams)
         })
       }}
+      <span
+        *ngIf="(activeLangIsDefaultLang$ | async) === false"
+        class="default-lang-text"
+      >
+        /
+        {{
+          getFormTitleParamsDefaultLanguageText({
+            value: formConfig.formTitleParams
+          })
+        }}
+      </span>
     </ng-container>
     <ng-template #noParams>
       {{ translate(formConfig.formTitle) }}
+      <span
+        *ngIf="(activeLangIsDefaultLang$ | async) === false"
+        class="default-lang-text"
+      >
+        /
+        {{ getFormTitleParamsDefaultLanguageText() }}
+      </span>
     </ng-template>
   </h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
