@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 
 import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { TranslocoService } from '@ngneat/transloco';
 
 import { AuthService } from './api/auth.service';
 
@@ -17,7 +18,11 @@ import { AuthService } from './api/auth.service';
 export class ApiInterceptorService implements HttpInterceptor {
   private AUTH_HEADER = 'Authorization';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private translocoService: TranslocoService,
+  ) {}
 
   intercept<T>(
     req: HttpRequest<T>,
@@ -28,6 +33,8 @@ export class ApiInterceptorService implements HttpInterceptor {
         headers: req.headers.set('Content-Type', 'application/json'),
       });
     }
+
+    req = this.addLanguageKey(req);
     req = this.addAuthenticationToken(req);
 
     return next.handle(req).pipe(
@@ -45,6 +52,16 @@ export class ApiInterceptorService implements HttpInterceptor {
         return observableThrowError(error);
       }),
     );
+  }
+
+  private addLanguageKey<T>(request: HttpRequest<T>): HttpRequest<T> {
+    // set the active language as the value for `language` parameter in the header
+    return request.clone({
+      headers: request.headers.set(
+        'language',
+        this.translocoService.getActiveLang(),
+      ),
+    });
   }
 
   private addAuthenticationToken<T>(request: HttpRequest<T>): HttpRequest<T> {
