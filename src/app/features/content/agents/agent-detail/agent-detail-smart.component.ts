@@ -3,7 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 
 import { AddressDTO } from '@models/address';
-import { AgentRequest, IAgentDTO, IAgentRequest } from '@models/agent';
+import {
+  AgentRequest,
+  IAgentDTO,
+  IAgentRequest,
+  AgentTranslation,
+} from '@models/agent';
 import { AgentService } from '@core/services/api/agent.service';
 import { Constants } from '@utils/constants';
 import { EmailValidation } from '@utils/validation/email-validation';
@@ -25,6 +30,8 @@ import { RequiredValidation } from '@utils/validation/required-validation';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { stateList } from '@models/state';
 import { translocoConfigObj } from '@app/transloco/transloco-config';
+
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   template: `
@@ -52,6 +59,7 @@ export class AgentDetailSmartComponent implements OnInit {
     private agentService: AgentService,
     private formService: FormService,
     private router: Router,
+    private translocoService: TranslocoService,
   ) {
     this.agent = this.activatedRoute.snapshot.data.agent;
     this.languageCode =
@@ -200,12 +208,22 @@ export class AgentDetailSmartComponent implements OnInit {
   private buildPayload(): IAgentRequest {
     const payloadDTO = new AgentRequest();
     const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
+
     const addressDTO = new AddressDTO();
     const addressPayload = this.formService.buildRequestPayload(
       this.form,
       addressDTO,
     );
     payload.address = addressPayload;
+
+    const dynamicContentDTO = new AgentTranslation();
+    const dynamicContentPayload = this.formService.buildRequestPayload(
+      this.form,
+      dynamicContentDTO,
+    );
+    payload.dynamicContent = {
+      [this.translocoService.getActiveLang()]: dynamicContentPayload,
+    };
 
     return payload;
   }
@@ -226,6 +244,7 @@ export class AgentDetailSmartComponent implements OnInit {
 
   private setTranslation(): void {
     const requestPayload = this.buildPayload();
+    console.log(requestPayload);
     // TODO: send request to update/create the translation records in the database
   }
 }

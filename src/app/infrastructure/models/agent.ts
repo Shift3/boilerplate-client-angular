@@ -71,6 +71,7 @@ export interface IAgentRequest {
   phoneNumber: string;
   thumbnail: string;
   address: IAddressDTO;
+  dynamicContent: IAgentTranslationList;
 }
 
 export class AgentRequest implements IAgentRequest {
@@ -79,6 +80,7 @@ export class AgentRequest implements IAgentRequest {
   phoneNumber: string = '';
   thumbnail: string = 'https://shift3tech.com/images/s3-logo-white.svg';
   address: IAddressDTO = new AddressDTO();
+  dynamicContent: IAgentTranslationList = new AgentTranslationList();
 
   constructor(configOverride?: Partial<IAgentRequest>) {
     if (configOverride) {

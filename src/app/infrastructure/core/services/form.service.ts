@@ -73,6 +73,13 @@ export class FormService {
       if (requestPayload.hasOwnProperty(property)) {
         if (form.controls[property] && form.controls[property].value) {
           requestPayload[property] = form.controls[property].value;
+        } else {
+          const nestedProperty: string = Object.keys(form.controls).find(
+            (k) => k.toLowerCase().indexOf(property.toLowerCase()) > -1,
+          );
+          if (nestedProperty) {
+            requestPayload[property] = form.controls[nestedProperty].value;
+          }
         }
       }
     }
