@@ -29,10 +29,7 @@ export class FormInputComponent implements OnInit {
   });
   public configLabel: string;
   public group: FormGroup = new FormGroup({});
-  public translocoConfig: TranslocoConfig = Object.assign(
-    {},
-    translocoConfigObj,
-  );
+  public translocoConfig: TranslocoConfig = { ...translocoConfigObj };
 
   constructor(
     private formService: FormService,

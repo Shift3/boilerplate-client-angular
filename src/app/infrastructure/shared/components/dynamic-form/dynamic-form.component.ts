@@ -34,10 +34,7 @@ export class DynamicFormComponent implements OnInit {
 
   public activeLangIsDefaultLang$: Observable<boolean>;
   public form: FormGroup = new FormGroup({});
-  public translocoConfig: TranslocoConfig = Object.assign(
-    {},
-    translocoConfigObj,
-  );
+  public translocoConfig: TranslocoConfig = { ...translocoConfigObj };
 
   constructor(
     private formService: FormService,
@@ -61,11 +58,11 @@ export class DynamicFormComponent implements OnInit {
     return form;
   }
 
-  public getFormTitleParamsDefaultLanguageText(params?: object): string {
+  public getFormTitleParamsDefaultLanguageText<T>(params?: T): string {
+    const paramValuesInDefaultLanguage = {};
     if (params) {
-      const translatedParamsObj = {};
       Object.keys(params).forEach((param) => {
-        Object.assign(translatedParamsObj, {
+        Object.assign(paramValuesInDefaultLanguage, {
           [param]: this.translocoService.translate(
             params[param],
             {},
@@ -73,17 +70,11 @@ export class DynamicFormComponent implements OnInit {
           ),
         });
       });
-
-      return this.translocoService.translate(
-        this.formConfig.formTitle,
-        translatedParamsObj,
-        this.translocoConfig.defaultLang,
-      );
     }
 
     return this.translocoService.translate(
       this.formConfig.formTitle,
-      {},
+      paramValuesInDefaultLanguage,
       this.translocoConfig.defaultLang,
     );
   }

@@ -29,10 +29,7 @@ export class FormSelectComponent implements OnInit {
   >({ fieldConfig: new SelectField<unknown>() });
   public configLabel: string = '';
   public group: FormGroup = new FormGroup({});
-  public translocoConfig: TranslocoConfig = Object.assign(
-    {},
-    translocoConfigObj,
-  );
+  public translocoConfig: TranslocoConfig = { ...translocoConfigObj };
 
   constructor(
     private formService: FormService,
