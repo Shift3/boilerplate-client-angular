@@ -244,7 +244,6 @@ export class AgentDetailSmartComponent implements OnInit {
 
   private setTranslation(): void {
     const requestPayload = this.buildPayload();
-    console.log(requestPayload);
     // TODO: send request to update/create the translation records in the database
   }
 }
