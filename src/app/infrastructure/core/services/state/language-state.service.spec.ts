@@ -54,7 +54,7 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
         // });
 
         it('should return false as an Observable', () => {
-          const mockCurrentActiveLang = 'es-ES';
+          const mockCurrentActiveLang = 'es-MX';
           service.setActiveLanguage(mockCurrentActiveLang);
 
           const testActiveLang$ = new BehaviorSubject<boolean>(false);
@@ -118,7 +118,7 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
 
       describe('resetDynamicLanguageForTranslation()', () => {
         it('should reset the language for dynamic translation', () => {
-          const testLang$ = new BehaviorSubject<string>('es-ES');
+          const testLang$ = new BehaviorSubject<string>('es-MX');
 
           service.dynamicLanguageForTranslation$ = testLang$;
           service.resetDynamicLanguageForTranslation();
@@ -145,7 +145,7 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
 
       describe('setActiveLanguage()', () => {
         it('should set the active language', () => {
-          const mockLang = 'es-ES';
+          const mockLang = 'es-MX';
           const expectedValue = 'spanish';
 
           service.setActiveLanguage(mockLang);
@@ -155,8 +155,8 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
 
       describe('setDynamicLanguageForTranslation()', () => {
         it('should set the language for dynamic translation', () => {
-          const testLang = 'es-ES';
-          const expectedValue = 'es-ES';
+          const testLang = 'es-MX';
+          const expectedValue = 'es-MX';
 
           service.setDynamicLanguageForTranslation(testLang);
           expect(service.dynamicLanguageForTranslation$.getValue()).toEqual(
@@ -167,7 +167,7 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
 
       describe('isAvailableLanguageCode()', () => {
         it('should return true when the language code parameter is in the list', () => {
-          const testLang = 'es-ES';
+          const testLang = 'es-MX';
           const expectedValue = true;
 
           expect(service.isAvailableLanguageCode(testLang)).toEqual(
