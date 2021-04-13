@@ -1,3 +1,8 @@
+import {
+  AgentRequest,
+  AgentTranslation,
+  AgentTranslationList,
+} from '@models/agent';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { environment } from '@env/environment.test';
@@ -159,6 +164,22 @@ import { RequiredValidation } from '@utils/validation/required-validation';
           expect(formService.buildRequestPayload(form, payload)).toEqual(
             expectedValue,
           );
+        });
+
+        it(`should return a populated object with nested values`, () => {
+          const dynamicContentPayload = new AgentTranslation();
+          const expectedValue = new AgentTranslation({
+            description: 'Test User Description',
+          });
+          const form = new FormGroup({});
+          form.addControl('name', new FormControl('Test User'));
+          form.addControl(
+            'dynamicContent.description',
+            new FormControl('Test User Description'),
+          );
+          expect(
+            formService.buildRequestPayload(form, dynamicContentPayload),
+          ).toEqual(expectedValue);
         });
       });
     });
