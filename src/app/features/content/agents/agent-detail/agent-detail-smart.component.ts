@@ -220,7 +220,6 @@ export class AgentDetailSmartComponent implements OnInit {
       this.form,
       dynamicContentDTO,
     );
-    console.log(this.languageCode);
     payload.dynamicContent = {
       [this.languageCode]: dynamicContentPayload,
     };
