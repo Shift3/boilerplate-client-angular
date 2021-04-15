@@ -59,7 +59,6 @@ export class AgentDetailSmartComponent implements OnInit {
     private agentService: AgentService,
     private formService: FormService,
     private router: Router,
-    private translocoService: TranslocoService,
   ) {
     this.agent = this.activatedRoute.snapshot.data.agent;
     this.languageCode =
@@ -222,7 +221,7 @@ export class AgentDetailSmartComponent implements OnInit {
       dynamicContentDTO,
     );
     payload.dynamicContent = {
-      [this.translocoService.getActiveLang()]: dynamicContentPayload,
+      [this.languageCode]: dynamicContentPayload,
     };
 
     return payload;
