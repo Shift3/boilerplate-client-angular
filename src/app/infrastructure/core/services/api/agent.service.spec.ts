@@ -19,6 +19,7 @@ import {
   AgentTranslationRequest,
   IAgentTranslation,
   IAgentTranslationList,
+  AgentTranslation,
 } from '@models/agent';
 import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
@@ -248,7 +249,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
       describe('getTranslatedAgent()', () => {
         it('should return the requested agent without the translated content when language requested does not exist on the agent data', () => {
-          const agent: IAgentDTO = { ...testAgent };
+          const agent: IAgentDTO = new AgentDTO({ ...testAgent });
           const expectedValue: IAgentDTO = { ...testAgent };
           const value: IAgentDTO = service.getTranslatedAgent(agent, 'es-MX');
 
