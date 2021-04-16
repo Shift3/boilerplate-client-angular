@@ -231,7 +231,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
           expect({ ...value }).toEqual({ ...expectedValue });
         });
 
-        it('should return the translated content for the request agent', () => {
+        it('should return the translated content for the requested agent', () => {
           const agent: IAgentDTO = { ...testAgent };
           const content: IAgentTranslationList = agent.dynamicContent;
           const expectedValue: IAgentTranslation = {
@@ -247,7 +247,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
       });
 
       describe('getTranslatedAgent()', () => {
-        it('should return the requested agent with out the translated content when language requested does not exist on the agent data', () => {
+        it('should return the requested agent without the translated content when language requested does not exist on the agent data', () => {
           const agent: IAgentDTO = { ...testAgent };
           const expectedValue: IAgentDTO = { ...testAgent };
           const value: IAgentDTO = service.getTranslatedAgent(agent, 'es-MX');
@@ -255,7 +255,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
           expect({ ...value }).toEqual({ ...expectedValue });
         });
 
-        it('should return the requested agent with the translated content', () => {
+        it('should return the requested agent with the requested translated content', () => {
           const agent: IAgentDTO = { ...testAgent };
           const translatedContent: IAgentTranslation = {
             description: 'This is a test',
