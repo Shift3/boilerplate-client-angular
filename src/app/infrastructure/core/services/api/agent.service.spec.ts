@@ -257,15 +257,13 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
         });
 
         it('should return the requested agent with the requested translated content', () => {
-          const agent: IAgentDTO = { ...testAgent };
-          const translatedContent: IAgentTranslation = {
+          const translatedContent = new AgentTranslation({
             description: 'This is a test',
-          };
+          });
+          const agent: IAgentDTO = new AgentDTO({ ...testAgent });
           const expectedValue: IAgentDTO = {
             ...testAgent,
-            translatedContentForDisplay: {
-              ...translatedContent,
-            },
+            translatedContentForDisplay: translatedContent,
           };
           const value: IAgentDTO = service.getTranslatedAgent(agent, 'en-US');
 
@@ -275,25 +273,21 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
       describe('getTranslatedAgentList()', () => {
         it('should return the agents in the list with translated content unpacked', () => {
-          const agentList: IAgentDTO[] = [
+          const translatedContent = new AgentTranslation({
+            description: 'This is a test',
+          });
+          const agentList: IAgentDTO[] = new Array<IAgentDTO>(
             { ...testAgent },
             { ...anotherTestAgent },
-          ];
-          const translatedContent: IAgentTranslation = {
-            description: 'This is a test',
-          };
+          );
           const expectedValue: IAgentDTO[] = [
             {
               ...testAgent,
-              translatedContentForDisplay: {
-                ...translatedContent,
-              },
+              translatedContentForDisplay: translatedContent,
             },
             {
               ...anotherTestAgent,
-              translatedContentForDisplay: {
-                ...translatedContent,
-              },
+              translatedContentForDisplay: translatedContent,
             },
           ];
           const value: IAgentDTO[] = service.getTranslatedAgentList(
