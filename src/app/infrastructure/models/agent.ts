@@ -88,3 +88,17 @@ export class AgentRequest implements IAgentRequest {
     }
   }
 }
+
+export interface IAgentTranslationRequest {
+  dynamicContent: IAgentTranslationList;
+}
+
+export class AgentTranslationRequest implements IAgentTranslationRequest {
+  dynamicContent: IAgentTranslationList = new AgentTranslationList();
+
+  constructor(configOverride?: Partial<IAgentTranslationRequest>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}

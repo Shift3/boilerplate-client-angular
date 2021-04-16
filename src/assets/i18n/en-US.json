@@ -186,6 +186,8 @@
     "returningToDashboard": "Returning to the dashboard.",
     "returningToUserList": "Returning to user list.",
     "serverError": "Server Error.",
+    "translationCreated": "Translation {{ notification.created }}.",
+    "translationUpdated": "Translation {{ notification.updated }}.",
     "unableToCompleteRequest": "Unable to complete request.",
     "unableToLoadAgencies": "Unable to load agencies. {{ notification.returningToUserList }}",
     "unableToLoadAgency": "Unable to load agency. Returning to agency list.",

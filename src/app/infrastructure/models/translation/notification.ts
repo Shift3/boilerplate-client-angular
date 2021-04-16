@@ -24,6 +24,8 @@ export interface INotificationTranslationKey {
   returningToDashboard: string;
   returningToUserList: string;
   serverError: string;
+  translationCreated: string;
+  translationUpdated: string;
   unableToCompleteRequest: string;
   unableToLoadAgencies: string;
   unableToLoadAgency: string;
@@ -64,6 +66,8 @@ export class NotificationTranslationKey implements INotificationTranslationKey {
   returningToDashboard: string = 'notification.returningToDashboard';
   returningToUserList: string = 'notification.returningToUserList';
   serverError: string = 'notification.serverError';
+  translationCreated: string = 'notification.translationCreated';
+  translationUpdated: string = 'notification.translationUpdated';
   unableToCompleteRequest: string = 'notification.unableToCompleteRequest';
   unableToLoadAgencies: string = 'notification.unableToLoadAgencies';
   unableToLoadAgency: string = 'notification.unableToLoadAgency';

@@ -8,6 +8,7 @@ import {
   IAgentDTO,
   IAgentRequest,
   AgentTranslation,
+  IAgentTranslationRequest,
 } from '@models/agent';
 import { AgentService } from '@core/services/api/agent.service';
 import { Constants } from '@utils/constants';
@@ -242,7 +243,28 @@ export class AgentDetailSmartComponent implements OnInit {
   }
 
   private setTranslation(): void {
-    const requestPayload = this.buildPayload();
-    // TODO: send request to update/create the translation records in the database
+    const requestPayload = this.buildPayload(),
+      translationForLanguage = this.agent.hasTranslationList.find(
+        (language) => language.code === this.languageCode,
+      ),
+      translationPayload: IAgentTranslationRequest = {
+        dynamicContent: requestPayload.dynamicContent,
+      };
+
+    translationForLanguage.hasTranslation
+      ? this.updateTranslation(translationPayload)
+      : this.createTranslation(translationPayload);
+  }
+
+  private createTranslation(payload: IAgentTranslationRequest): void {
+    this.agentService
+      .createTranslation(payload, this.agent.id)
+      .subscribe(() => this.router.navigateByUrl('/content/agent-list'));
+  }
+
+  private updateTranslation(payload: IAgentTranslationRequest): void {
+    this.agentService
+      .updateTranslation(payload, this.agent.id)
+      .subscribe(() => this.router.navigateByUrl('/content/agent-list'));
   }
 }
