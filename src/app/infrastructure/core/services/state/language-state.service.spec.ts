@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { TranslocoTestingModule } from '@ngneat/transloco';
+import { TranslocoTestingModule, TranslocoService } from '@ngneat/transloco';
 
 import { BehaviorSubject } from 'rxjs';
 
@@ -8,6 +8,10 @@ import {
   INavigationTranslationKey,
   NavigationTranslationKey,
 } from '@models/translation/navigation';
+import {
+  INotificationTranslationKey,
+  NotificationTranslationKey,
+} from '@models/translation/notification';
 import { LanguageStateService } from './language-state.service';
 import { Logger } from '@utils/logger';
 import { translocoConfigObj } from '@app/transloco/transloco-config';
@@ -16,11 +20,19 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
   ? Logger.log('Unit skipped')
   : describe('[Unit] LanguageStateService', () => {
       let service: LanguageStateService;
+      // const translocoServiceMock = {
+      //   getActiveLang: jasmine.createSpy('getActiveLang'),
+      //   setActiveLang: jasmine.createSpy('setActiveLang'),
+      //   translate: jasmine.createSpy('translate')
+      // };
 
       beforeEach(() => {
         TestBed.configureTestingModule({
           imports: [TranslocoTestingModule],
-          providers: [LanguageStateService],
+          providers: [
+            LanguageStateService,
+            // { provide: TranslocoService, useValue: translocoServiceMock }
+          ],
         });
         service = TestBed.inject(LanguageStateService);
       });
@@ -95,6 +107,26 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
         });
       });
 
+      describe('getLanguageCodeFromLanguage()', () => {
+        it('should return undefined for any language that is not supported by the application', () => {
+          const language: string = 'Russian';
+          const expectedValue = undefined;
+
+          expect(service.getLanguageCodeFromLanguage(language)).toEqual(
+            expectedValue,
+          );
+        });
+
+        it('should return the language code of the language', () => {
+          const language: string = 'English';
+          const expectedValue = 'en-US';
+
+          expect(service.getLanguageCodeFromLanguage(language)).toEqual(
+            expectedValue,
+          );
+        });
+      });
+
       describe('getTextInDefaultLang()', () => {
         it(`should return undefined if property doesn't exist in the default language JSON file`, () => {
           const mockProperty = 'navigation.userProfile.name';
@@ -114,6 +146,18 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
             expectedValue,
           );
         });
+      });
+
+      describe('getTranslation()', () => {
+        // TODO: (pratima) revisit to fix this test
+        // it('should return the translation for value', () => {
+        //   const mockCurrentActiveLang = 'en-US';
+        //   service.setActiveLanguage(mockCurrentActiveLang);
+        //   const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
+        //   const value: string = notificationTranslationKeys.emailSent;
+        //   const expectedValue = 'Se ha enviado un correo electrónico a ';
+        //   expect(service.getTranslation(value)).toEqual(expectedValue);
+        // });
       });
 
       describe('resetDynamicLanguageForTranslation()', () => {

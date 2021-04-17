@@ -196,6 +196,7 @@
     "unableToLoadUserInfo": "Hindi mai-load ang impormasyon ng gumagamit. {{ notification.returningToDashboard }}",
     "updated": "Na-update",
     "user": "Gumagamit",
+    "userSettingsUpdated": "Nai-update ang Mga Setting ng Gumagamit",
     "userUpdated": "Na-update ng gumagamit."
   },
   "routing": {

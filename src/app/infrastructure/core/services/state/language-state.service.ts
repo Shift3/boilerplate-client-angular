@@ -38,16 +38,22 @@ export class LanguageStateService {
     return this.activeLanguage$.asObservable();
   }
 
-  public getAvailableLanguages(): Observable<string[]> {
-    return this.availableLanguagesForSelection$.asObservable();
-  }
-
   public getActiveLangIsDefaultLang(): Observable<boolean> {
     return this.activeLangIsDefaultLang$.asObservable();
   }
 
+  public getAvailableLanguages(): Observable<string[]> {
+    return this.availableLanguagesForSelection$.asObservable();
+  }
+
   public getDynamicLanguageForTranslation(): Observable<string> {
     return this.dynamicLanguageForTranslation$.asObservable();
+  }
+
+  public getLanguageCodeFromLanguage(language: string): string {
+    return Object.keys(LANGUAGE).find(
+      (key) => LANGUAGE[key].toLowerCase() === language.toLowerCase().trim(),
+    );
   }
 
   public getTextInDefaultLang(property: string): string {
@@ -58,6 +64,7 @@ export class LanguageStateService {
   }
 
   public getTranslation(value: string): string {
+    console.log(value, this.translocoService.getActiveLang());
     return this.translocoService.translate(
       value,
       {},
@@ -103,12 +110,6 @@ export class LanguageStateService {
     return Object.values(LANGUAGE)
       .filter((language) => language !== this.getActiveLanguageFromCode())
       .sort();
-  }
-
-  private getLanguageCodeFromLanguage(language: string): string {
-    return Object.keys(LANGUAGE).find(
-      (key) => LANGUAGE[key].toLowerCase() === language.toLowerCase().trim(),
-    );
   }
 
   private getLanguageFromCode(languageCode: string): string {

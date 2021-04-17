@@ -33,6 +33,7 @@ export interface INotificationTranslationKey {
   unableToLoadUser: string;
   unableToLoadUserInfo: string;
   user: string;
+  userSettingsUpdated: string;
   userUpdated: string;
 }
 
@@ -74,5 +75,6 @@ export class NotificationTranslationKey implements INotificationTranslationKey {
   unableToLoadUser: string = 'notification.unableToLoadUser';
   unableToLoadUserInfo: string = 'notification.unableToLoadUserInfo';
   user: string = 'notification.user';
+  userSettingsUpdated: string = 'notification.userSettingsUpdated';
   userUpdated: string = 'notification.userUpdated';
 }

@@ -196,6 +196,7 @@
     "unableToLoadUserInfo": "No se pudo cargar la información del usuario. {{ notification.returningToDashboard }}",
     "updated": "actualizado",
     "user": "Usuario",
+    "userSettingsUpdated": "Configuración de usuario {{ notification.updated }}",
     "userUpdated": "{{ notification.user }} {{ notification.updated }}."
   },
   "routing": {

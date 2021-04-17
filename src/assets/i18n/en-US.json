@@ -196,6 +196,7 @@
     "unableToLoadUserInfo": "Unable to load user information. {{ notification.returningToDashboard }}",
     "updated": "updated",
     "user": "User",
+    "userSettingsUpdated": "User Settings {{ notification.updated }}",
     "userUpdated": "{{ notification.user }} {{ notification.updated }}."
   },
   "routing": {
