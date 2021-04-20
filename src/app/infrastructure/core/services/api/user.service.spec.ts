@@ -575,7 +575,10 @@ import { IMessage } from '@models/message';
             },
           );
           const expectedValue: IUserSettingDTO = {
-            languageId: 1,
+            language: {
+              language: 'Spanish',
+              languageCode: 'es-MX',
+            },
             userId: 1,
           };
 

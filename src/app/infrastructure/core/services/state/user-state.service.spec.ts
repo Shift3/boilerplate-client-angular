@@ -107,6 +107,12 @@ import { UserStateService } from './user-state.service';
               id: 0,
               roleKey: '',
             },
+            settings: {
+              language: {
+                language: 'English',
+                languageCode: 'en-US',
+              },
+            },
           };
           service.setUserSession(testUser);
           const storedUser = JSON.parse(localStorage.getItem('user'));
