@@ -12,12 +12,15 @@ import { environment } from '@env/environment.test';
 import {
   ChangePasswordRequest,
   ChangeUserRequest,
+  ChangeUserSettingRequest,
   ForgotPasswordRequest,
   IChangePasswordRequest,
   IChangeUserRequest,
+  IChangeUserSettingRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
   IUserDTO,
+  IUserSettingDTO,
   ResetPasswordRequest,
   UserDTO,
 } from '@models/user';
@@ -547,6 +550,38 @@ import { IMessage } from '@models/message';
           spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
           service.resendActivationEmail(user).subscribe(() => {
+            expect(notificationMock.showSuccess).toHaveBeenCalled();
+          });
+        });
+      });
+
+      describe('updateUserSetting()', () => {
+        it('should use PUT as the request method', () => {
+          const userSetting: IChangeUserSettingRequest = new ChangeUserSettingRequest(
+            {
+              language: 'en-US',
+            },
+          );
+          service.updateUserSetting(userSetting, 1).subscribe();
+          const req = httpTestingController.expectOne(`${route}/1/settings`);
+
+          expect(req.request.method).toBe('PUT');
+        });
+
+        it('should show a notification on success', () => {
+          const userSetting: IChangeUserSettingRequest = new ChangeUserSettingRequest(
+            {
+              language: 'es-MX',
+            },
+          );
+          const expectedValue: IUserSettingDTO = {
+            languageId: 1,
+            userId: 1,
+          };
+
+          spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+          service.updateUserSetting(userSetting, 1).subscribe(() => {
             expect(notificationMock.showSuccess).toHaveBeenCalled();
           });
         });

@@ -10,9 +10,11 @@ import { environment } from '@env/environment';
 import {
   IChangePasswordRequest,
   IChangeUserRequest,
+  IChangeUserSettingRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
   IUserDTO,
+  IUserSettingDTO,
 } from '@models/user';
 import { IMessage, Message } from '@models/message';
 import {
@@ -256,5 +258,25 @@ export class UserService {
         return this.notificationService.showSuccess(messages);
       }),
     );
+  }
+
+  public updateUserSetting(
+    payload: IChangeUserSettingRequest,
+    userId: number,
+  ): Observable<IUserSettingDTO> {
+    const endpoint = `${this.url}/${userId}/settings`;
+
+    return this.apiService
+      .put<IUserSettingDTO, IChangeUserSettingRequest>(endpoint, payload)
+      .pipe(
+        tap(() => {
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
+          const message: IMessage = new Message({
+            message: notificationTranslationKeys.userSettingsUpdated,
+          });
+
+          return this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 }

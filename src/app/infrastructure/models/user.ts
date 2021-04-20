@@ -10,6 +10,7 @@ export interface IUserDTO {
   profilePicture: string | null;
   agency: IAgencyDTO;
   role: IRoleDTO;
+  settings: IUserSettingDTO;
 }
 
 export class UserDTO implements IUserDTO {
@@ -21,6 +22,7 @@ export class UserDTO implements IUserDTO {
   profilePicture: string | null = null;
   agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
+  settings: IUserSettingDTO = new UserSettingDTO();
 
   constructor(configOverride?: Partial<IUserDTO>) {
     if (configOverride) {
@@ -95,6 +97,46 @@ export class ChangeUserRequest implements IChangeUserRequest {
   role: IRoleDTO = new RoleDTO();
 
   constructor(configOverride?: IChangeUserRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface ILanguage {
+  language: string;
+  languageCode: string;
+}
+
+export class Language implements ILanguage {
+  language: string = 'English';
+  languageCode: string = 'en-US';
+}
+
+export interface IUserSettingDTO {
+  userId: number;
+  language: ILanguage;
+}
+
+export class UserSettingDTO implements IUserSettingDTO {
+  userId: number = 0;
+  language: ILanguage = new Language();
+
+  constructor(configOverride?: Partial<IUserSettingDTO>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface IChangeUserSettingRequest {
+  language: string;
+}
+
+export class ChangeUserSettingRequest implements IChangeUserSettingRequest {
+  language: string = 'en-US';
+
+  constructor(configOverride?: IChangeUserSettingRequest) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }

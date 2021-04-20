@@ -26,7 +26,9 @@
             <span [class]="link.icon"></span>
             {{ translate(navLinksTranslationKey[link?.label?.toLowerCase()]) }}
           </button>
-          <app-language-settings></app-language-settings>
+          <app-language-settings
+            [loggedInUser]="loggedInUser"
+          ></app-language-settings>
         </ul>
       </ng-container>
       <app-settings
@@ -37,7 +39,9 @@
   </ng-container>
   <ng-template #loggedOut>
     <div class="login-button-container">
-      <app-language-settings></app-language-settings>
+      <app-language-settings
+        [loggedInUser]="loggedInUser"
+      ></app-language-settings>
       <button
         id="form-submit-button"
         class="btn"
