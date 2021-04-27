@@ -37,8 +37,12 @@ export function preloadUserLanguage(
     return userStateService.getUserSession().pipe(
       tap((user: UserDTO) => {
         console.log(user);
-        transloco.setActiveLang(user.settings.language.languageCode);
-        return transloco.load(user.settings.language.languageCode).toPromise();
+        const preferredLang: string =
+          user.settings?.language?.languageCode ||
+          translocoConfigObj.defaultLang;
+
+        transloco.setActiveLang(preferredLang);
+        return transloco.load(preferredLang).toPromise();
       }),
     );
   };
