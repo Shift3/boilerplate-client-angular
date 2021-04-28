@@ -29,12 +29,53 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
   ? Logger.log('Unit skipped')
   : describe('[Unit] AgentService', () => {
       const route = `${environment.apiRoute}/agents`;
-      let anotherTestAgent: IAgentDTO;
       let apiService: ApiService;
       let httpTestingController: HttpTestingController;
       let service: AgentService;
-      let testAgent: IAgentDTO;
-      let testAgentSetTranslation: IAgentDTO;
+      const testAgent: IAgentDTO = new AgentDTO({
+        id: 1,
+        name: 'Test Tester',
+        email: 'test@test.com',
+        dynamicContent: {
+          'en-US': {
+            description: 'This is a test',
+          },
+        },
+        phoneNumber: '5595551234',
+        address: {
+          address1: '123 Main St.',
+          address2: '',
+          city: 'Fresno',
+          state: 'CA',
+          zipCode: '93721',
+        },
+      });
+      const anotherTestAgent: IAgentDTO = new AgentDTO({
+        id: 2,
+        name: 'Test Tester Testing',
+        email: 'test+1@test.com',
+        dynamicContent: {
+          'en-US': {
+            description: 'This is a test',
+          },
+        },
+        phoneNumber: '5595555555',
+        address: {
+          address1: '123 Main St.',
+          address2: '',
+          city: 'Fresno',
+          state: 'CA',
+          zipCode: '93721',
+        },
+      });
+      const testAgentSetTranslation: IAgentDTO = {
+        ...testAgent,
+        dynamicContent: {
+          'es-MX': {
+            description: 'Esto es una prueba',
+          },
+        },
+      };
 
       beforeEach(() => {
         TestBed.configureTestingModule({
@@ -51,50 +92,6 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
         apiService = TestBed.inject(ApiService);
         // Inject the http service and test controller for each test
         httpTestingController = TestBed.inject(HttpTestingController);
-        testAgent = new AgentDTO({
-          id: 1,
-          name: 'Test Tester',
-          email: 'test@test.com',
-          dynamicContent: {
-            'en-US': {
-              description: 'This is a test',
-            },
-          },
-          phoneNumber: '5595551234',
-          address: {
-            address1: '123 Main St.',
-            address2: '',
-            city: 'Fresno',
-            state: 'CA',
-            zipCode: '93721',
-          },
-        });
-        anotherTestAgent = new AgentDTO({
-          id: 2,
-          name: 'Test Tester Testing',
-          email: 'test+1@test.com',
-          dynamicContent: {
-            'en-US': {
-              description: 'This is a test',
-            },
-          },
-          phoneNumber: '5595555555',
-          address: {
-            address1: '123 Main St.',
-            address2: '',
-            city: 'Fresno',
-            state: 'CA',
-            zipCode: '93721',
-          },
-        });
-        testAgentSetTranslation = {
-          ...testAgent,
-          dynamicContent: {
-            'es-MX': {
-              description: 'Esto es una prueba',
-            },
-          },
-        };
       });
 
       it('should be created', () => {
