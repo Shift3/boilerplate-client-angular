@@ -10,6 +10,7 @@ import {
   ILanguageTranslationKey,
   LanguageTranslationKey,
 } from '@models/translation/navigation';
+import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 @Component({
   selector: 'app-language-settings-presentation',
@@ -18,7 +19,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSettingsPresentationComponent {
-  @Input() public activeLanguage: string = '';
+  @Input() public activeLanguage: string = translocoConfigObj.defaultLang;
   @Input() public availableLanguagesForSelection: string[] = [];
   @Input() public activeLangIsDefaultLang: boolean = true;
 

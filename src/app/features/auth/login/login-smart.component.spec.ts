@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
@@ -26,6 +27,7 @@ import { LoginSmartComponent } from './login-smart.component';
             HttpClientTestingModule,
             ReactiveFormsModule,
             RouterTestingModule,
+            TranslocoTestingModule,
           ],
         }).compileComponents();
       }));

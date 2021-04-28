@@ -64,7 +64,6 @@ export class LanguageStateService {
   }
 
   public getTranslation(value: string): string {
-    console.log(value, this.translocoService.getActiveLang());
     return this.translocoService.translate(
       value,
       {},

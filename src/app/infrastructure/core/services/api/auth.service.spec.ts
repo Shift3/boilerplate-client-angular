@@ -25,6 +25,7 @@ import { UserStateService } from '../state/user-state.service';
       let httpTestingController: HttpTestingController;
       const userStateMock = {
         setUserSession: jasmine.createSpy('setUserSession'),
+        setUserSettings: jasmine.createSpy('setUserSettings'),
       };
 
       beforeEach(() => {
@@ -70,6 +71,12 @@ import { UserStateService } from '../state/user-state.service';
             role: {
               id: 1,
               roleKey: 'User',
+            },
+            userSettings: {
+              language: {
+                language: 'english',
+                languageCode: 'en-US',
+              },
             },
           },
           jwtToken:
@@ -123,6 +130,20 @@ import { UserStateService } from '../state/user-state.service';
           service.login(requestPayload).subscribe((response) => {
             expect(userStateMock.setUserSession).toHaveBeenCalledWith(
               response.user,
+            );
+          });
+        });
+
+        it('should call userStateService.setUserSettings on success', () => {
+          const requestPayload: ILoginRequest = new LoginRequest();
+          const expectedValue: ISessionDTO = { ...testUserSession };
+          spyOn(apiService, 'post').and.returnValue(
+            observableOf(expectedValue),
+          );
+
+          service.login(requestPayload).subscribe((response) => {
+            expect(userStateMock.setUserSettings).toHaveBeenCalledWith(
+              response.user.userSettings[0],
             );
           });
         });

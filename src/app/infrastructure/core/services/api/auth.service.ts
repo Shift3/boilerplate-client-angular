@@ -6,7 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
 import { environment } from '@env/environment';
 import { ILoginRequest, ISessionDTO } from '@models/auth';
-import { UserStateService } from '../state/user-state.service';
+import { UserStateService } from '@core/services/state/user-state.service';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +32,9 @@ export class AuthService {
         tap((response) => localStorage.setItem('token', response.jwtToken)),
         tap((response) => this.userStateService.setUserSession(response.user)),
         tap((response) => this.setToken(response.jwtToken)),
+        tap((response) =>
+          this.userStateService.setUserSettings(response.user.userSettings[0]),
+        ),
       );
   }
 

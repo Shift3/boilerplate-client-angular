@@ -10,7 +10,7 @@ export interface IUserDTO {
   profilePicture: string | null;
   agency: IAgencyDTO;
   role: IRoleDTO;
-  settings?: IUserSetting;
+  userSettings?: IUserSetting;
 }
 
 export class UserDTO implements IUserDTO {
@@ -22,7 +22,7 @@ export class UserDTO implements IUserDTO {
   profilePicture: string | null = null;
   agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
-  settings: IUserSetting = new UserSetting();
+  userSettings: IUserSetting = new UserSetting();
 
   constructor(configOverride?: Partial<IUserDTO>) {
     if (configOverride) {

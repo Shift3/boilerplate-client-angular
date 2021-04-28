@@ -1,11 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of as observableOf } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
+import {
+  IUserDTO,
+  UserDTO,
+  IUserSettingDTO,
+  UserSettingDTO,
+} from '@models/user';
 import { Logger } from '@utils/logger';
+import { LanguageStateService } from '@core/services/state/language-state.service';
 import { RoleCheck } from '@models/role';
-import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from './user-state.service';
 
 !environment.testUnit
@@ -16,9 +23,19 @@ import { UserStateService } from './user-state.service';
         new UserDTO(),
       );
       let testAdminUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
+
+      const languageStateMock = {
+        getActiveLanguage: jasmine.createSpy('getActiveLanguage'),
+        setActiveLanguage: jasmine.createSpy('setActiveLanguage'),
+      };
+
       beforeEach(() => {
         TestBed.configureTestingModule({
-          providers: [UserStateService],
+          providers: [
+            UserStateService,
+            { provide: LanguageStateService, useValue: languageStateMock },
+          ],
+          imports: [TranslocoTestingModule],
         });
         service = TestBed.inject(UserStateService);
         service.userSession$ = new BehaviorSubject<IUserDTO>(null);
@@ -107,7 +124,7 @@ import { UserStateService } from './user-state.service';
               id: 0,
               roleKey: '',
             },
-            settings: {
+            userSettings: {
               language: {
                 language: 'English',
                 languageCode: 'en-US',
@@ -243,6 +260,32 @@ import { UserStateService } from './user-state.service';
           service.checkRoleList().subscribe((response) => {
             expect(response).toEqual(expectedValue);
           });
+        });
+      });
+
+      describe('setUserSettings()', () => {
+        it('should set user preferred language as the active language for translation', () => {
+          const testUserSetting: IUserSettingDTO = new UserSettingDTO({
+            userId: 1,
+            language: {
+              language: 'spanish',
+              languageCode: 'es-MX',
+            },
+          });
+
+          // const testResponse$ = new BehaviorSubject<string>('spanish');
+          // const expectedValue = testResponse$.asObservable();
+
+          service.setUserSettings(testUserSetting);
+          // const spy = spyOn(languageStateMock, 'setActiveLanguage').and.returnValue(observableOf('spanish'));
+
+          let response;
+          languageStateMock
+            .getActiveLanguage()
+            .subscribe((language) => (response = language));
+          // .and.returnValue(observableOf('spanish'));
+
+          expect(response).toEqual('spanish');
         });
       });
     });
