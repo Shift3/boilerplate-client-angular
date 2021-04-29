@@ -10,6 +10,7 @@ import {
   IAgentRequest,
   IAgentTranslation,
   IAgentTranslationList,
+  IAgentTranslationRequest,
 } from '@models/agent';
 import { environment } from '@env/environment';
 import { Message } from '@models/message';
@@ -129,5 +130,43 @@ export class AgentService {
     agentList.forEach((agent) => this.getTranslatedAgent(agent, languageCode));
 
     return agentList;
+  }
+
+  public createTranslation(
+    payload: IAgentTranslationRequest,
+    agentId: number,
+  ): Observable<IAgentDTO> {
+    const endpoint = `${this.url}/${agentId}/translations`;
+
+    return this.apiService
+      .post<IAgentDTO, IAgentTranslationRequest>(endpoint, payload)
+      .pipe(
+        tap(() => {
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
+          const message: Message = new Message({
+            message: notificationTranslationKeys.translationCreated,
+          });
+          return this.notificationService.showSuccess([message]);
+        }),
+      );
+  }
+
+  public updateTranslation(
+    payload: IAgentTranslationRequest,
+    agentId: number,
+  ): Observable<IAgentDTO> {
+    const endpoint = `${this.url}/${agentId}/translations`;
+
+    return this.apiService
+      .put<IAgentDTO, IAgentTranslationRequest>(endpoint, payload)
+      .pipe(
+        tap(() => {
+          const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
+          const message: Message = new Message({
+            message: notificationTranslationKeys.translationUpdated,
+          });
+          return this.notificationService.showSuccess([message]);
+        }),
+      );
   }
 }
