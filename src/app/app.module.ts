@@ -25,10 +25,10 @@ export function preloadUserSettings(
   return () => {
     return userStateService.getUserSession().pipe(
       tap((user: IUserDTO) => {
-        userStateService.setUserSettings(user.userSettings[0]);
+        userStateService.setUserSettings(user.settings);
 
         const preferredLang: string =
-          user.userSettings[0].language?.languageCode ||
+          user.settings.language?.languageCode ||
           translocoConfigObj.defaultLang;
 
         return transloco.load(preferredLang).toPromise();

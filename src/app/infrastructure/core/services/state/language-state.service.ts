@@ -86,7 +86,8 @@ export class LanguageStateService {
 
   public setActiveLanguage(languageCode: string): void {
     this.translocoService.setActiveLang(languageCode);
-    this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
+
+    this.updateBehaviorSubjects(languageCode);
   }
 
   public setDynamicLanguageForTranslation(languageCode: string): void {
@@ -141,5 +142,13 @@ export class LanguageStateService {
     this.availableLanguagesForSelection$.next(
       this.getAvailableLanguagesForSelection(),
     );
+  }
+
+  private updateBehaviorSubjects(languageCode: string): void {
+    this.activeLanguage$.next(this.getLanguageFromCode(languageCode));
+    this.availableLanguagesForSelection$.next(
+      this.getAvailableLanguagesForSelection(),
+    );
+    this.activeLangIsDefaultLang$.next(this.checkActiveLangIsDefaultLang());
   }
 }

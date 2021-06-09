@@ -3,10 +3,11 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   Input,
+  ChangeDetectorRef,
 } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import {
+  ChangeUserSettingRequest,
   IChangeUserSettingRequest,
   IUserDTO,
   UserDTO,
@@ -18,9 +19,9 @@ import { UserService } from '@core/services/api/user.service';
   selector: 'app-language-settings',
   template: `
     <app-language-settings-presentation
-      [activeLanguage]="activeLanguage$ | async"
-      [availableLanguagesForSelection]="availableLanguagesForSelection$ | async"
-      [activeLangIsDefaultLang]="activeLangIsDefaultLang$ | async"
+      [activeLanguage]="activeLanguage"
+      [availableLanguagesForSelection]="availableLanguagesForSelection"
+      [activeLangIsDefaultLang]="activeLangIsDefaultLang"
       (emitSelection)="selectLanguage($event)"
     ></app-language-settings-presentation>
   `,
@@ -29,11 +30,12 @@ import { UserService } from '@core/services/api/user.service';
 export class LanguageSettingsSmartComponent implements OnInit {
   @Input() loggedInUser: IUserDTO = new UserDTO();
 
-  public availableLanguagesForSelection$: Observable<string[]>;
-  public activeLanguage$: Observable<string>;
-  public activeLangIsDefaultLang$: Observable<boolean>;
+  public availableLanguagesForSelection: string[];
+  public activeLanguage: string;
+  public activeLangIsDefaultLang: boolean;
 
   constructor(
+    private cd: ChangeDetectorRef,
     public languageStateService: LanguageStateService,
     private userService: UserService,
   ) {}
@@ -43,9 +45,26 @@ export class LanguageSettingsSmartComponent implements OnInit {
   }
 
   private activeAvailableLanguageSetup() {
-    this.activeLanguage$ = this.languageStateService.getActiveLanguage();
-    this.availableLanguagesForSelection$ = this.languageStateService.getAvailableLanguages();
-    this.activeLangIsDefaultLang$ = this.languageStateService.getActiveLangIsDefaultLang();
+    this.languageStateService
+      .getActiveLanguage()
+      .subscribe((activeLanguage: string) => {
+        this.activeLanguage = activeLanguage;
+        this.cd.markForCheck();
+      });
+
+    this.languageStateService
+      .getAvailableLanguages()
+      .subscribe((availableLanguagesForSelection: string[]) => {
+        this.availableLanguagesForSelection = availableLanguagesForSelection;
+        this.cd.markForCheck();
+      });
+
+    this.languageStateService
+      .getActiveLangIsDefaultLang()
+      .subscribe((activeLangIsDefaultLang: boolean) => {
+        this.activeLangIsDefaultLang = activeLangIsDefaultLang;
+        this.cd.markForCheck();
+      });
   }
 
   public selectLanguage(language: string): void {
@@ -60,9 +79,11 @@ export class LanguageSettingsSmartComponent implements OnInit {
       const languageCode: string = this.languageStateService.getLanguageCodeFromLanguage(
         language,
       );
-      const userSettingPayload: IChangeUserSettingRequest = {
-        language: languageCode,
-      };
+      const userSettingPayload: IChangeUserSettingRequest = new ChangeUserSettingRequest(
+        {
+          language: languageCode,
+        },
+      );
 
       this.userService.updateUserSetting(
         userSettingPayload,

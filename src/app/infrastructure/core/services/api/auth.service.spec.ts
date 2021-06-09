@@ -72,7 +72,7 @@ import { UserStateService } from '../state/user-state.service';
               id: 1,
               roleKey: 'User',
             },
-            userSettings: {
+            settings: {
               language: {
                 language: 'english',
                 languageCode: 'en-US',
@@ -143,7 +143,7 @@ import { UserStateService } from '../state/user-state.service';
 
           service.login(requestPayload).subscribe((response) => {
             expect(userStateMock.setUserSettings).toHaveBeenCalledWith(
-              response.user.userSettings[0],
+              response.user.settings,
             );
           });
         });

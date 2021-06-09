@@ -25,7 +25,9 @@ import { UserStateService } from './user-state.service';
       let testAdminUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
 
       const languageStateMock = {
-        getActiveLanguage: jasmine.createSpy('getActiveLanguage'),
+        getActiveLanguage: jasmine
+          .createSpy('getActiveLanguage')
+          .and.returnValue(observableOf('spanish')),
         setActiveLanguage: jasmine.createSpy('setActiveLanguage'),
       };
 
@@ -124,7 +126,7 @@ import { UserStateService } from './user-state.service';
               id: 0,
               roleKey: '',
             },
-            userSettings: {
+            settings: {
               language: {
                 language: 'English',
                 languageCode: 'en-US',
@@ -264,7 +266,7 @@ import { UserStateService } from './user-state.service';
       });
 
       describe('setUserSettings()', () => {
-        it('should set user preferred language as the active language for translation', () => {
+        it('should call languageStateService.setActiveLanguage on success', () => {
           const testUserSetting: IUserSettingDTO = new UserSettingDTO({
             userId: 1,
             language: {
@@ -273,19 +275,10 @@ import { UserStateService } from './user-state.service';
             },
           });
 
-          // const testResponse$ = new BehaviorSubject<string>('spanish');
-          // const expectedValue = testResponse$.asObservable();
-
           service.setUserSettings(testUserSetting);
-          // const spy = spyOn(languageStateMock, 'setActiveLanguage').and.returnValue(observableOf('spanish'));
-
-          let response;
-          languageStateMock
-            .getActiveLanguage()
-            .subscribe((language) => (response = language));
-          // .and.returnValue(observableOf('spanish'));
-
-          expect(response).toEqual('spanish');
+          expect(languageStateMock.setActiveLanguage).toHaveBeenCalledWith(
+            'es-MX',
+          );
         });
       });
     });

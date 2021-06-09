@@ -44,7 +44,13 @@ export class ErrorService {
     const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
 
     if (error && error.error) {
-      errorList.push(new Message({ message: error.error.message }));
+      const messageList: Message[] = error.error.message
+        .split(';')
+        .map((message) => {
+          return new Message({ message });
+        });
+      errorList.push(...messageList);
+      // errorList.push(new Message({ message: error.error.message }));
     } else {
       errorList.push(
         new Message({

@@ -10,7 +10,7 @@ export interface IUserDTO {
   profilePicture: string | null;
   agency: IAgencyDTO;
   role: IRoleDTO;
-  userSettings?: IUserSetting;
+  settings: IUserSetting;
 }
 
 export class UserDTO implements IUserDTO {
@@ -22,7 +22,7 @@ export class UserDTO implements IUserDTO {
   profilePicture: string | null = null;
   agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
-  userSettings: IUserSetting = new UserSetting();
+  settings: IUserSetting = new UserSetting();
 
   constructor(configOverride?: Partial<IUserDTO>) {
     if (configOverride) {
@@ -104,11 +104,15 @@ export class ChangeUserRequest implements IChangeUserRequest {
 }
 
 export interface ILanguage {
+  currency: string;
+  dateFormat: string;
   language: string;
   languageCode: string;
 }
 
 export class Language implements ILanguage {
+  currency: string = 'dollar';
+  dateFormat: string = 'mm/dd/yyyy';
   language: string = 'English';
   languageCode: string = 'en-US';
 }
@@ -122,12 +126,10 @@ export class UserSetting implements IUserSetting {
 }
 
 export interface IUserSettingDTO {
-  userId: number;
   language: ILanguage;
 }
 
 export class UserSettingDTO implements IUserSettingDTO {
-  userId: number = 0;
   language: ILanguage = new Language();
 
   constructor(configOverride?: Partial<IUserSettingDTO>) {
