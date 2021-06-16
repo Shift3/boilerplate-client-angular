@@ -15,16 +15,22 @@ export class NotificationService {
     private zone: NgZone,
   ) {}
 
-  public showSuccess(messageList: Message[]): void {
-    const formattedMessage = this.formatMessageList(messageList);
+  public showSuccess(
+    messageList: Message[],
+    isFromServer: boolean = false,
+  ): void {
+    const formattedMessage = this.formatMessageList(messageList, isFromServer);
     // Wrap notification call in zone invocation to fix rendering inconsistencies when using `Injector`
     this.zone.run(() => {
       this.toastr.success(formattedMessage, '', { enableHtml: true });
     });
   }
 
-  public showError(messageList: Message[]): void {
-    const formattedMessage = this.formatMessageList(messageList);
+  public showError(
+    messageList: Message[],
+    isFromServer: boolean = false,
+  ): void {
+    const formattedMessage = this.formatMessageList(messageList, isFromServer);
     // Wrap notification call in zone invocation to fix rendering inconsistencies when using `Injector`
     this.zone.run(() => {
       this.toastr.error(formattedMessage, '', {
@@ -34,16 +40,23 @@ export class NotificationService {
     });
   }
 
-  private formatMessageList(messageList: Message[]): string {
+  private formatMessageList(
+    messageList: Message[],
+    isFromServer: boolean = false,
+  ): string {
     const translatedMessageList: string[] = this.translateMessageList(
       messageList,
+      isFromServer,
     );
     return translatedMessageList.join('<br />');
   }
 
-  private translateMessageList(messageList: Message[]): string[] {
+  private translateMessageList(
+    messageList: Message[],
+    isFromServer: boolean = false,
+  ): string[] {
     return messageList.map((message: Message) => {
-      if (message.type === 'static')
+      if (message.type === 'static' && !isFromServer)
         return this.languageStateService.getTranslation(message.message);
 
       return message.message;
