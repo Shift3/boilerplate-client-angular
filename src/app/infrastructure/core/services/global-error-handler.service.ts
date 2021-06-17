@@ -43,7 +43,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     error: Error | HttpErrorResponse,
     errorMessage: IMessage[] | IMessage,
     sentryConfig: ISentryConfig,
-    isFromServer: boolean = false,
+    isServerTranslated: boolean = false,
   ): void {
     const notifier = this.injector.get(NotificationService);
     if (!Array.isArray(errorMessage)) {
@@ -51,7 +51,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
         errorMessage,
       );
     }
-    notifier.showError(errorMessage, isFromServer);
+    notifier.showError(errorMessage, isServerTranslated);
     if (sentryConfig.sendToSentry) {
       this.errorService.logError(
         error,

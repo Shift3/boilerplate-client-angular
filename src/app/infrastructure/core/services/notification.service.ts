@@ -17,9 +17,12 @@ export class NotificationService {
 
   public showSuccess(
     messageList: Message[],
-    isFromServer: boolean = false,
+    isServerTranslated: boolean = false,
   ): void {
-    const formattedMessage = this.formatMessageList(messageList, isFromServer);
+    const formattedMessage = this.formatMessageList(
+      messageList,
+      isServerTranslated,
+    );
     // Wrap notification call in zone invocation to fix rendering inconsistencies when using `Injector`
     this.zone.run(() => {
       this.toastr.success(formattedMessage, '', { enableHtml: true });
@@ -28,9 +31,12 @@ export class NotificationService {
 
   public showError(
     messageList: Message[],
-    isFromServer: boolean = false,
+    isServerTranslated: boolean = false,
   ): void {
-    const formattedMessage = this.formatMessageList(messageList, isFromServer);
+    const formattedMessage = this.formatMessageList(
+      messageList,
+      isServerTranslated,
+    );
     // Wrap notification call in zone invocation to fix rendering inconsistencies when using `Injector`
     this.zone.run(() => {
       this.toastr.error(formattedMessage, '', {
@@ -42,21 +48,21 @@ export class NotificationService {
 
   private formatMessageList(
     messageList: Message[],
-    isFromServer: boolean = false,
+    isServerTranslated: boolean = false,
   ): string {
     const translatedMessageList: string[] = this.translateMessageList(
       messageList,
-      isFromServer,
+      isServerTranslated,
     );
     return translatedMessageList.join('<br />');
   }
 
   private translateMessageList(
     messageList: Message[],
-    isFromServer: boolean = false,
+    isServerTranslated: boolean = false,
   ): string[] {
     return messageList.map((message: Message) => {
-      if (message.type === 'static' && !isFromServer)
+      if (message.type === 'static' && !isServerTranslated)
         return this.languageStateService.getTranslation(message.message);
 
       return message.message;
