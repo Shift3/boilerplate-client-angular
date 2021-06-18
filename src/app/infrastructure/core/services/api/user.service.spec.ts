@@ -21,6 +21,7 @@ import {
   IResetPasswordRequest,
   IUserDTO,
   IUserSettingDTO,
+  Language,
   ResetPasswordRequest,
   UserDTO,
 } from '@models/user';
@@ -77,7 +78,7 @@ import { IMessage } from '@models/message';
           },
         });
         testUserSession = {
-          user: {
+          user: new UserDTO({
             id: 1,
             email: 'test@test.com',
             activatedAt: null,
@@ -95,7 +96,7 @@ import { IMessage } from '@models/message';
               id: 1,
               roleKey: 'User',
             },
-          },
+          }),
           jwtToken:
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
         };
@@ -575,11 +576,10 @@ import { IMessage } from '@models/message';
             },
           );
           const expectedValue: IUserSettingDTO = {
-            language: {
+            language: new Language({
               language: 'Spanish',
               languageCode: 'es-MX',
-            },
-            userId: 1,
+            }),
           };
 
           spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));

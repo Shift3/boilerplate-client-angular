@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { ILoginRequest, LoginRequest, ISessionDTO } from '@models/auth';
-import { IUserDTO, UserDTO } from '@models/user';
+import { IUserDTO, Language, UserDTO } from '@models/user';
 import { UserStateService } from '../state/user-state.service';
 
 !environment.testUnit
@@ -73,10 +73,10 @@ import { UserStateService } from '../state/user-state.service';
               roleKey: 'User',
             },
             settings: {
-              language: {
+              language: new Language({
                 language: 'english',
                 languageCode: 'en-US',
-              },
+              }),
             },
           },
           jwtToken:

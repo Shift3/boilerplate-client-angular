@@ -9,6 +9,7 @@ import {
   UserDTO,
   IUserSettingDTO,
   UserSettingDTO,
+  Language,
 } from '@models/user';
 import { Logger } from '@utils/logger';
 import { LanguageStateService } from '@core/services/state/language-state.service';
@@ -108,7 +109,7 @@ import { UserStateService } from './user-state.service';
             firstName: 'Test',
             lastName: 'Tester',
           });
-          const expectedValue = {
+          const expectedValue: IUserDTO = new UserDTO({
             id: 0,
             email: '',
             activatedAt: null,
@@ -130,12 +131,14 @@ import { UserStateService } from './user-state.service';
               language: {
                 language: 'English',
                 languageCode: 'en-US',
+                currency: 'dollar',
+                dateFormat: 'mm/dd/yyyy',
               },
             },
-          };
+          });
           service.setUserSession(testUser);
           const storedUser = JSON.parse(localStorage.getItem('user'));
-          expect(storedUser).toEqual(expectedValue);
+          expect(storedUser).toEqual({ ...expectedValue });
         });
       });
 
@@ -268,11 +271,10 @@ import { UserStateService } from './user-state.service';
       describe('setUserSettings()', () => {
         it('should call languageStateService.setActiveLanguage on success', () => {
           const testUserSetting: IUserSettingDTO = new UserSettingDTO({
-            userId: 1,
-            language: {
+            language: new Language({
               language: 'spanish',
               languageCode: 'es-MX',
-            },
+            }),
           });
 
           service.setUserSettings(testUserSetting);
