@@ -10,7 +10,7 @@ export interface IUserDTO {
   profilePicture: string | null;
   agency: IAgencyDTO;
   role: IRoleDTO;
-  settings: IUserSetting;
+  settings: IUserSettingDTO;
 }
 
 export class UserDTO implements IUserDTO {
@@ -22,7 +22,7 @@ export class UserDTO implements IUserDTO {
   profilePicture: string | null = null;
   agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
-  settings: IUserSetting = new UserSetting();
+  settings: IUserSettingDTO = new UserSettingDTO();
 
   constructor(configOverride?: Partial<IUserDTO>) {
     if (configOverride) {
@@ -115,14 +115,12 @@ export class Language implements ILanguage {
   dateFormat: string = 'mm/dd/yyyy';
   language: string = 'English';
   languageCode: string = 'en-US';
-}
 
-export interface IUserSetting {
-  language: ILanguage;
-}
-
-export class UserSetting implements IUserSetting {
-  language: ILanguage = new Language();
+  constructor(configOverride?: Partial<ILanguage>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
 }
 
 export interface IUserSettingDTO {
