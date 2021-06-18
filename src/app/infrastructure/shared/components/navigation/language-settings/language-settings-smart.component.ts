@@ -85,10 +85,9 @@ export class LanguageSettingsSmartComponent implements OnInit {
         },
       );
 
-      this.userService.updateUserSetting(
-        userSettingPayload,
-        this.loggedInUser.id,
-      );
+      this.userService
+        .updateUserSetting(userSettingPayload, this.loggedInUser.id)
+        .subscribe();
     }
   }
 }
