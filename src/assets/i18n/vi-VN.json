@@ -184,6 +184,8 @@
     "returningToDashboard": "Quay lại trang tổng quan.",
     "returningToUserList": "Quay lại danh sách người dùng.",
     "serverError": "Lỗi máy chủ.",
+    "translationCreated": "Bản dịch đã tạo.",
+    "translationUpdated": "Đã cập nhật bản dịch.",
     "unableToCompleteRequest": "Không thể hoàn thành yêu cầu.",
     "unableToLoadAgencies": "Không thể tải đại lý. {{ notification.returningToUserList }}",
     "unableToLoadAgency": "Không thể tải đại lý. Quay lại danh sách đại lý.",

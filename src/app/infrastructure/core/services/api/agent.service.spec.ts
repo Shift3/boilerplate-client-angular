@@ -15,6 +15,11 @@ import {
   AgentRequest,
   IAgentDTO,
   IAgentRequest,
+  IAgentTranslationRequest,
+  AgentTranslationRequest,
+  IAgentTranslation,
+  IAgentTranslationList,
+  AgentTranslation,
 } from '@models/agent';
 import { getTranslocoModule } from '@utils/test/transloco-testing-module';
 import { Logger } from '@utils/logger';
@@ -24,10 +29,53 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
   ? Logger.log('Unit skipped')
   : describe('[Unit] AgentService', () => {
       const route = `${environment.apiRoute}/agents`;
-      let testAgent: IAgentDTO;
-      let service: AgentService;
       let apiService: ApiService;
       let httpTestingController: HttpTestingController;
+      let service: AgentService;
+      const testAgent: IAgentDTO = new AgentDTO({
+        id: 1,
+        name: 'Test Tester',
+        email: 'test@test.com',
+        dynamicContent: {
+          'en-US': {
+            description: 'This is a test',
+          },
+        },
+        phoneNumber: '5595551234',
+        address: {
+          address1: '123 Main St.',
+          address2: '',
+          city: 'Fresno',
+          state: 'CA',
+          zipCode: '93721',
+        },
+      });
+      const anotherTestAgent: IAgentDTO = new AgentDTO({
+        id: 2,
+        name: 'Test Tester Testing',
+        email: 'test+1@test.com',
+        dynamicContent: {
+          'en-US': {
+            description: 'This is a test',
+          },
+        },
+        phoneNumber: '5595555555',
+        address: {
+          address1: '123 Main St.',
+          address2: '',
+          city: 'Fresno',
+          state: 'CA',
+          zipCode: '93721',
+        },
+      });
+      const testAgentSetTranslation: IAgentDTO = {
+        ...testAgent,
+        dynamicContent: {
+          'es-MX': {
+            description: 'Esto es una prueba',
+          },
+        },
+      };
 
       beforeEach(() => {
         TestBed.configureTestingModule({
@@ -44,25 +92,8 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
         apiService = TestBed.inject(ApiService);
         // Inject the http service and test controller for each test
         httpTestingController = TestBed.inject(HttpTestingController);
-        testAgent = new AgentDTO({
-          id: 1,
-          name: 'Test Tester',
-          email: 'test@test.com',
-          dynamicContent: {
-            'en-US': {
-              description: 'This is a test',
-            },
-          },
-          phoneNumber: '5595551234',
-          address: {
-            address1: '123 Main St.',
-            address2: '',
-            city: 'Fresno',
-            state: 'CA',
-            zipCode: '93721',
-          },
-        });
       });
+
       it('should be created', () => {
         expect(service).toBeTruthy();
       });
@@ -90,8 +121,8 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
       describe('createAgent()', () => {
         it('should use POST as the request method', () => {
-          const newUser: IAgentRequest = new AgentRequest();
-          service.createAgent(newUser).subscribe();
+          const newAgent: IAgentRequest = new AgentRequest();
+          service.createAgent(newAgent).subscribe();
           const req = httpTestingController.expectOne(route);
 
           expect(req.request.method).toBe('POST');
@@ -176,6 +207,154 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
           );
 
           service.deleteAgent(agent).subscribe((res) => {
+            response = res;
+          });
+
+          expect(response).toEqual(expectedValue);
+        });
+      });
+
+      describe('unpackAgentTranslationList', () => {
+        it('should return empty translated content when language code requested does not exist on the agent data', () => {
+          const agent: IAgentDTO = { ...testAgent };
+          const content: IAgentTranslationList = agent.dynamicContent;
+          const expectedValue: IAgentTranslation = {
+            description: '',
+          };
+          const value: IAgentTranslation = service.unpackAgentTranslationList(
+            content,
+            'es-MX',
+          );
+
+          expect({ ...value }).toEqual({ ...expectedValue });
+        });
+
+        it('should return the translated content for the requested agent', () => {
+          const agent: IAgentDTO = { ...testAgent };
+          const content: IAgentTranslationList = agent.dynamicContent;
+          const expectedValue: IAgentTranslation = {
+            description: 'This is a test',
+          };
+          const value: IAgentTranslation = service.unpackAgentTranslationList(
+            content,
+            'en-US',
+          );
+
+          expect({ ...value }).toEqual({ ...expectedValue });
+        });
+      });
+
+      describe('getTranslatedAgent()', () => {
+        it('should return the equivalent to the entire JSON value of the requested agent when the language requested does not exist on the agent data', () => {
+          const agent: IAgentDTO = new AgentDTO({ ...testAgent });
+          const expectedValue: IAgentDTO = { ...testAgent };
+          const value: IAgentDTO = service.getTranslatedAgent(agent, 'es-MX');
+
+          expect({ ...value }).toEqual({ ...expectedValue });
+        });
+
+        it('should return the requested agent with the requested translated content', () => {
+          const translatedContent = new AgentTranslation({
+            description: 'This is a test',
+          });
+          const agent: IAgentDTO = new AgentDTO({ ...testAgent });
+          const expectedValue: IAgentDTO = {
+            ...testAgent,
+            translatedContentForDisplay: translatedContent,
+          };
+          const value: IAgentDTO = service.getTranslatedAgent(agent, 'en-US');
+
+          expect({ ...value }).toEqual({ ...expectedValue });
+        });
+      });
+
+      describe('getTranslatedAgentList()', () => {
+        it('should return the agents in the list with translated content unpacked', () => {
+          const translatedContent = new AgentTranslation({
+            description: 'This is a test',
+          });
+          const agentList: IAgentDTO[] = new Array<IAgentDTO>(
+            { ...testAgent },
+            { ...anotherTestAgent },
+          );
+          const expectedValue: IAgentDTO[] = [
+            {
+              ...testAgent,
+              translatedContentForDisplay: translatedContent,
+            },
+            {
+              ...anotherTestAgent,
+              translatedContentForDisplay: translatedContent,
+            },
+          ];
+          const value: IAgentDTO[] = service.getTranslatedAgentList(
+            agentList,
+            'en-US',
+          );
+
+          expect(value).toEqual(expectedValue);
+        });
+      });
+
+      describe('createTranslation()', () => {
+        it('should use POST as the request method', () => {
+          const newTranslation: IAgentTranslationRequest = new AgentTranslationRequest();
+          service.createTranslation(newTranslation, 1).subscribe();
+          const translationRoute = `${route}/1/translations`;
+          const req = httpTestingController.expectOne(translationRoute);
+
+          expect(req.request.method).toBe('POST');
+        });
+
+        it('should return the requested agent on creation', () => {
+          const newAgentTranslation: IAgentTranslationRequest = new AgentTranslationRequest(
+            {
+              dynamicContent: {
+                'es-MX': {
+                  description: 'Esto es una prueba',
+                },
+              },
+            },
+          );
+          const expectedValue: IAgentDTO = { ...testAgentSetTranslation };
+          let response: IAgentDTO;
+          spyOn(apiService, 'post').and.returnValue(
+            observableOf(expectedValue),
+          );
+
+          service.createTranslation(newAgentTranslation, 1).subscribe((res) => {
+            response = res;
+          });
+
+          expect(response).toEqual(expectedValue);
+        });
+      });
+
+      describe('updateTranslation()', () => {
+        it('should use PUT as the request method', () => {
+          const agentTranslation: IAgentTranslationRequest = new AgentTranslationRequest();
+          service.updateTranslation(agentTranslation, 1).subscribe();
+          const translationRoute = `${route}/1/translations`;
+          const req = httpTestingController.expectOne(translationRoute);
+
+          expect(req.request.method).toBe('PUT');
+        });
+
+        it('should return the requested agent on successful update', () => {
+          const agentTranslation: IAgentTranslationRequest = new AgentTranslationRequest(
+            {
+              dynamicContent: {
+                'es-MX': {
+                  description: 'Esto es una prueba',
+                },
+              },
+            },
+          );
+          const expectedValue: IAgentDTO = { ...testAgentSetTranslation };
+          let response: IAgentDTO;
+          spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+          service.updateTranslation(agentTranslation, 1).subscribe((res) => {
             response = res;
           });
 

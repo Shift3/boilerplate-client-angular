@@ -186,6 +186,8 @@
     "returningToDashboard": "Volviendo al tablero.",
     "returningToUserList": "Volviendo a la lista de usuarios.",
     "serverError": "Error del Servidor.",
+    "translationCreated": "Traducción {{ notification.created }}.",
+    "translationUpdated": "Traducción {{ notification.updated }}.",
     "unableToCompleteRequest": "No se pudo completar la solicitud.",
     "unableToLoadAgencies": "No se pueden cargar agencias. {{ notification.returningToUserList }}",
     "unableToLoadAgency": "No se pudo cargar la agencia. Volviendo a la lista de agencias.",

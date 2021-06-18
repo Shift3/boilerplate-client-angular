@@ -186,6 +186,8 @@
     "returningToDashboard": "Bumabalik sa dashboard.",
     "returningToUserList": "Bumabalik sa listahan ng gumagamit.",
     "serverError": "Error sa Server.",
+    "translationCreated": "Nilikha ang pagsasalin.",
+    "translationUpdated": "Na-update ang pagsasalin.",
     "unableToCompleteRequest": "Hindi makumpleto ang kahilingan.",
     "unableToLoadAgencies": "Hindi mai-load ang mga ahensya. {{ notification.returningToUserList }}",
     "unableToLoadAgency": "Hindi mai-load ang ahensya. Bumabalik sa listahan ng ahensya.",
