@@ -1,3 +1,4 @@
+import { translocoConfigObj } from '@app/transloco/transloco-config';
 import { AgencyDTO, IAgencyDTO } from './agency';
 import { IRoleDTO, RoleDTO } from './role';
 
@@ -142,7 +143,7 @@ export interface IChangeUserSettingRequest {
 }
 
 export class ChangeUserSettingRequest implements IChangeUserSettingRequest {
-  language: string = 'en-US';
+  language: string = translocoConfigObj.defaultLang;
 
   constructor(configOverride?: IChangeUserSettingRequest) {
     if (configOverride) {
