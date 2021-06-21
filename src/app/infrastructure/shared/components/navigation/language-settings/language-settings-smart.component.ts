@@ -1,9 +1,8 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
-  ChangeDetectorRef,
+  OnInit,
 } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -37,7 +36,6 @@ export class LanguageSettingsSmartComponent implements OnInit {
   public activeLangIsDefaultLang$: Observable<boolean>;
 
   constructor(
-    private cd: ChangeDetectorRef,
     public languageStateService: LanguageStateService,
     private userService: UserService,
   ) {}
