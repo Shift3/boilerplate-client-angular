@@ -8,10 +8,6 @@ import {
   INavigationTranslationKey,
   NavigationTranslationKey,
 } from '@models/translation/navigation';
-import {
-  INotificationTranslationKey,
-  NotificationTranslationKey,
-} from '@models/translation/notification';
 import { LanguageStateService } from './language-state.service';
 import { Logger } from '@utils/logger';
 import { translocoConfigObj } from '@app/transloco/transloco-config';
@@ -20,18 +16,18 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
   ? Logger.log('Unit skipped')
   : describe('[Unit] LanguageStateService', () => {
       let service: LanguageStateService;
-      // const translocoServiceMock = {
-      //   getActiveLang: jasmine.createSpy('getActiveLang'),
-      //   setActiveLang: jasmine.createSpy('setActiveLang'),
-      //   translate: jasmine.createSpy('translate')
-      // };
+      const translocoServiceMock = {
+        getActiveLang: jasmine.createSpy('getActiveLang'),
+        setActiveLang: jasmine.createSpy('setActiveLang'),
+        translate: jasmine.createSpy('translate'),
+      };
 
       beforeEach(() => {
         TestBed.configureTestingModule({
           imports: [TranslocoTestingModule],
           providers: [
             LanguageStateService,
-            // { provide: TranslocoService, useValue: translocoServiceMock }
+            { provide: TranslocoService, useValue: translocoServiceMock },
           ],
         });
         service = TestBed.inject(LanguageStateService);
@@ -76,6 +72,15 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
             'english',
             'spanish',
           ]);
+          const expectedValue = testAvailableLangs$.asObservable();
+
+          service.availableLanguagesForSelection$ = mockAvailableLangs$;
+          expect(service.getAvailableLanguages()).toEqual(expectedValue);
+        });
+
+        it('should return a empty array as an Observable', () => {
+          const mockAvailableLangs$ = new BehaviorSubject<string[]>([]);
+          const testAvailableLangs$ = new BehaviorSubject<string[]>([]);
           const expectedValue = testAvailableLangs$.asObservable();
 
           service.availableLanguagesForSelection$ = mockAvailableLangs$;
@@ -138,15 +143,17 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
       });
 
       describe('getTranslation()', () => {
-        // TODO: (pratima) revisit to fix this test
-        // it('should return the translation for value', () => {
-        //   const mockCurrentActiveLang = 'en-US';
-        //   service.setActiveLanguage(mockCurrentActiveLang);
-        //   const notificationTranslationKeys: INotificationTranslationKey = new NotificationTranslationKey();
-        //   const value: string = notificationTranslationKeys.emailSent;
-        //   const expectedValue = 'Se ha enviado un correo electrónico a ';
-        //   expect(service.getTranslation(value)).toEqual(expectedValue);
-        // });
+        xit('should call translocoService.translate with value param', () => {
+          const testValue = 'test';
+          const testActiveLang = 'en-US';
+          translocoServiceMock.getActiveLang.and.returnValue(testActiveLang);
+          service.getTranslation(testValue);
+          expect(translocoServiceMock.translate).toHaveBeenCalledWith(
+            testValue,
+            {},
+            testActiveLang,
+          );
+        });
       });
 
       describe('resetDynamicLanguageForTranslation()', () => {
@@ -165,12 +172,9 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
         // TODO: Test with a language that isn't listed in the LANGUAGE enum
         // TODO: Should be able to test if this calls translocoService correctly with the right values
         it('should set the active language', () => {
-          const mockCurrentActiveLang = 'en-US';
-          service.setActiveLanguage(mockCurrentActiveLang);
-
           const mockNewLang = 'spanish';
           const expectedValue = 'spanish';
-
+          translocoServiceMock.getActiveLang.and.returnValue('es-MX');
           service.selectLanguage(mockNewLang);
           expect(service.activeLanguage$.getValue()).toEqual(expectedValue);
         });
