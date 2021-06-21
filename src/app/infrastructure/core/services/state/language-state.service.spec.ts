@@ -178,6 +178,26 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
           service.selectLanguage(mockNewLang);
           expect(service.activeLanguage$.getValue()).toEqual(expectedValue);
         });
+
+        it('should set the activeLangIsDefaultLang stream to false when the active language is not the default language', () => {
+          const mockNewLang = 'spanish';
+          const expectedValue = false;
+          translocoServiceMock.getActiveLang.and.returnValue('es-MX');
+          service.selectLanguage(mockNewLang);
+          expect(service.activeLangIsDefaultLang$.getValue()).toEqual(
+            expectedValue,
+          );
+        });
+
+        it('should set the activeLangIsDefaultLang stream to true when the active language is the default language', () => {
+          const mockNewLang = 'english';
+          const expectedValue = true;
+          translocoServiceMock.getActiveLang.and.returnValue('en-US');
+          service.selectLanguage(mockNewLang);
+          expect(service.activeLangIsDefaultLang$.getValue()).toEqual(
+            expectedValue,
+          );
+        });
       });
 
       describe('setActiveLanguage()', () => {
