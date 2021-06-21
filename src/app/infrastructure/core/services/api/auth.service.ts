@@ -32,9 +32,9 @@ export class AuthService {
         tap((response) => localStorage.setItem('token', response.jwtToken)),
         tap((response) => this.userStateService.setUserSession(response.user)),
         tap((response) => this.setToken(response.jwtToken)),
-        tap((response) => {
-          this.userStateService.setUserSettings(response.user.settings);
-        }),
+        tap((response) =>
+          this.userStateService.setUserSettings(response.user.settings),
+        ),
       );
   }
 
