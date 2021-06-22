@@ -5,9 +5,9 @@ import { TranslocoService } from '@ngneat/transloco';
 
 import { ILanguageTranslationKey } from '@models/translation/navigation';
 import { ITranslation } from '@models/translation/translation';
-import { LANGUAGE } from '@models/enums';
-
 import jsonFiles from '@assets/i18n/index';
+import { LANGUAGE } from '@models/enums';
+import { Logger } from '@utils/logger';
 import { translocoConfigObj } from '@app/transloco/transloco-config';
 
 @Injectable({
@@ -51,9 +51,16 @@ export class LanguageStateService {
   }
 
   public getLanguageCodeFromLanguage(language: string): string {
-    return Object.keys(LANGUAGE).find(
-      (key) => LANGUAGE[key].toLowerCase() === language.toLowerCase().trim(),
+    const languageCode = Object.keys(LANGUAGE).find(
+      (key) => LANGUAGE[key]?.toLowerCase() === language?.toLowerCase().trim(),
     );
+    if (!languageCode) {
+      Logger.warn(
+        `${language} is not a supported language, falling back to ${translocoConfigObj.defaultLang} for ${translocoConfigObj.defaultLangName}`,
+      );
+      return translocoConfigObj.defaultLang;
+    }
+    return languageCode;
   }
 
   public getTextInDefaultLang(property: string): string {
@@ -121,11 +128,20 @@ export class LanguageStateService {
       this.translocoService.getActiveLang(),
     ).navigation.languages;
 
-    return Object.keys(languages).find((key) =>
+    const languageKey = Object.keys(languages).find((key) =>
       typeof languages[key] === 'string'
         ? key.toLowerCase() === language.trim().toLowerCase()
         : false,
     );
+
+    if (!languageKey) {
+      Logger.warn(
+        `${language} is not a supported language, falling back to ${translocoConfigObj.defaultLangName}`,
+      );
+      return translocoConfigObj.defaultLangName;
+    }
+
+    return languageKey;
   }
 
   private getLangJsonObj(languageCode: string): ITranslation {
