@@ -77,7 +77,7 @@ export class FormService {
           const nestedProperty: string = Object.keys(form.controls).find(
             (k) => k.toLowerCase().indexOf(property.toLowerCase()) > -1,
           );
-          if (nestedProperty) {
+          if (nestedProperty?.includes('dynamicContent')) {
             requestPayload[property] = form.controls[nestedProperty].value;
           }
         }
