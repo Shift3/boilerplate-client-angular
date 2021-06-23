@@ -71,7 +71,7 @@ export class FormService {
   public buildRequestPayload<T>(form: FormGroup, requestPayload: T): T {
     for (const property in requestPayload) {
       if (requestPayload.hasOwnProperty(property)) {
-        if (form.controls[property] && form.controls[property].value) {
+        if (form.controls[property]?.value) {
           requestPayload[property] = form.controls[property].value;
         } else {
           const nestedProperty: string = Object.keys(form.controls).find(
