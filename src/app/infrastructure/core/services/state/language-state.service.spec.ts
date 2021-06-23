@@ -196,6 +196,7 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
 
         it('should call the logger when given a non-supported value', () => {
           const mockNewLang = 'french';
+          translocoServiceMock.getActiveLang.and.returnValue('en-US');
           const spy = spyOn(Logger, 'warn');
           service.selectLanguage(mockNewLang);
 
