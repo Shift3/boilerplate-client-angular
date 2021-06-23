@@ -31,7 +31,6 @@ export class TranslocoHttpLoader implements TranslocoLoader {
     TranslocoModule,
     TranslocoLocaleModule.init(),
     TranslocoPersistLangModule.init({
-      // add a function call here to fetch language from user-settings model
       storage: {
         provide: TRANSLOCO_PERSIST_LANG_STORAGE,
         useValue: localStorage,
