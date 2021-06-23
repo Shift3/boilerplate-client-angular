@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { IRoleCheck, RoleDTO, RoleCheck } from '@models/role';
-import { IUserDTO, UserDTO } from '@models/user';
+import { IUserDTO, IUserSettingDTO, UserDTO } from '@models/user';
 import { LanguageStateService } from '@core/services/state/language-state.service';
 import { translocoConfigObj } from '@app/transloco/transloco-config';
 
@@ -57,7 +57,7 @@ export class UserStateService {
     return this.getUserSession().pipe(map((user) => user?.id === userId));
   }
 
-  public setUserSettings(settings): void {
+  public setUserSettings(settings: IUserSettingDTO): void {
     const userPreferredLanguage: string =
       settings.language?.languageCode || translocoConfigObj.defaultLang;
     this.languageStateService.setActiveLanguage(userPreferredLanguage);
