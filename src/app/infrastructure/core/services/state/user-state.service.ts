@@ -57,9 +57,10 @@ export class UserStateService {
     return this.getUserSession().pipe(map((user) => user?.id === userId));
   }
 
-  public setUserSettings(settings: IUserSettingDTO): void {
+  public setUserSettings(user: IUserDTO): void {
     const userPreferredLanguage: string =
-      settings.language?.languageCode || translocoConfigObj.defaultLang;
+      user?.settings.language?.languageCode || translocoConfigObj.defaultLang;
     this.languageStateService.setActiveLanguage(userPreferredLanguage);
+    this.setUserSession(user);
   }
 }
