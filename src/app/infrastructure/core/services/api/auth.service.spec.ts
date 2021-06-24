@@ -120,20 +120,6 @@ import { UserStateService } from '../state/user-state.service';
           expect(response).toEqual(expectedValue);
         });
 
-        it('should call userStateService.setUserSession on success', () => {
-          const requestPayload: ILoginRequest = new LoginRequest();
-          const expectedValue: ISessionDTO = { ...testUserSession };
-          spyOn(apiService, 'post').and.returnValue(
-            observableOf(expectedValue),
-          );
-
-          service.login(requestPayload).subscribe((response) => {
-            expect(userStateMock.setUserSession).toHaveBeenCalledWith(
-              response.user,
-            );
-          });
-        });
-
         it('should call userStateService.setUserSettings on success', () => {
           const requestPayload: ILoginRequest = new LoginRequest();
           const expectedValue: ISessionDTO = { ...testUserSession };
@@ -143,7 +129,7 @@ import { UserStateService } from '../state/user-state.service';
 
           service.login(requestPayload).subscribe((response) => {
             expect(userStateMock.setUserSettings).toHaveBeenCalledWith(
-              response.user.settings,
+              response.user,
             );
           });
         });

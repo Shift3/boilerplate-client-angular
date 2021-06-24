@@ -270,14 +270,16 @@ import { UserStateService } from './user-state.service';
 
       describe('setUserSettings()', () => {
         it('should call languageStateService.setActiveLanguage on success', () => {
-          const testUserSetting: IUserSettingDTO = new UserSettingDTO({
-            language: new Language({
-              language: 'spanish',
-              languageCode: 'es-MX',
+          const testUser = new UserDTO({
+            settings: new UserSettingDTO({
+              language: new Language({
+                language: 'spanish',
+                languageCode: 'es-MX',
+              }),
             }),
           });
 
-          service.setUserSettings(testUserSetting);
+          service.setUserSettings(testUser);
           expect(languageStateMock.setActiveLanguage).toHaveBeenCalledWith(
             'es-MX',
           );
