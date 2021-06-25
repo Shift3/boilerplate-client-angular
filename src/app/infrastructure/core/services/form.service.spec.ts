@@ -1,8 +1,4 @@
-import {
-  AgentRequest,
-  AgentTranslation,
-  AgentTranslationList,
-} from '@models/agent';
+import { AgentTranslation } from '@models/agent';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { environment } from '@env/environment.test';
