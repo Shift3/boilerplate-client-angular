@@ -217,7 +217,7 @@ export class AgentDetailSmartComponent implements OnInit {
     payload.address = addressPayload;
 
     const dynamicContentDTO = new AgentTranslation();
-    const dynamicContentPayload = this.formService.buildRequestPayload(
+    const dynamicContentPayload = this.formService.buildNestedRequestPayload(
       this.form,
       dynamicContentDTO,
     );
