@@ -195,6 +195,7 @@
     "unableToLoadUser": "Không thể tải người dùng. {{ notification.returningToUserList }}",
     "unableToLoadUserInfo": "Không thể tải thông tin người dùng. {{ notification.returningToDashboard }}",
     "updated": "cập nhật",
+    "userSettingsUpdated": "Đã cập nhật cài đặt người dùng",
     "userUpdated": "Đã {{ notification.updated }} người dùng."
   },
   "routing": {

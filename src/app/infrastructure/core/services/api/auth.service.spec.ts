@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
 import { ILoginRequest, LoginRequest, ISessionDTO } from '@models/auth';
-import { IUserDTO, UserDTO } from '@models/user';
+import { IUserDTO, Language, UserDTO } from '@models/user';
 import { UserStateService } from '../state/user-state.service';
 
 !environment.testUnit
@@ -25,6 +25,7 @@ import { UserStateService } from '../state/user-state.service';
       let httpTestingController: HttpTestingController;
       const userStateMock = {
         setUserSession: jasmine.createSpy('setUserSession'),
+        setUserSettings: jasmine.createSpy('setUserSettings'),
       };
 
       beforeEach(() => {
@@ -71,6 +72,12 @@ import { UserStateService } from '../state/user-state.service';
               id: 1,
               roleKey: 'User',
             },
+            settings: {
+              language: new Language({
+                language: 'english',
+                languageCode: 'en-US',
+              }),
+            },
           },
           jwtToken:
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
@@ -113,7 +120,7 @@ import { UserStateService } from '../state/user-state.service';
           expect(response).toEqual(expectedValue);
         });
 
-        it('should call userStateService.setUserSession on success', () => {
+        it('should call userStateService.setUserSettings on success', () => {
           const requestPayload: ILoginRequest = new LoginRequest();
           const expectedValue: ISessionDTO = { ...testUserSession };
           spyOn(apiService, 'post').and.returnValue(
@@ -121,7 +128,7 @@ import { UserStateService } from '../state/user-state.service';
           );
 
           service.login(requestPayload).subscribe((response) => {
-            expect(userStateMock.setUserSession).toHaveBeenCalledWith(
+            expect(userStateMock.setUserSettings).toHaveBeenCalledWith(
               response.user,
             );
           });

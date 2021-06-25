@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { BehaviorSubject } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
@@ -26,7 +27,7 @@ import { UserStateService } from '../services/state/user-state.service';
             UserStateService,
             { provide: Router, useValue: routerMock },
           ],
-          imports: [HttpClientTestingModule],
+          imports: [HttpClientTestingModule, TranslocoTestingModule],
         });
         userState = TestBed.inject(UserStateService);
         injector = getTestBed();

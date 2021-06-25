@@ -1,9 +1,0 @@
-{
-  "dynamicForm": {
-    "label": {
-      "confirm": "Confirm",
-      "test": "Test",
-      "confirmTest": "{{ dynamicForm.label.confirm }} {{ dynamicForm.label.test }}"
-    }
-  }
-}

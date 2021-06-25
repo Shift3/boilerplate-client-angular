@@ -1,3 +1,4 @@
+import { translocoConfigObj } from '@app/transloco/transloco-config';
 import { AgencyDTO, IAgencyDTO } from './agency';
 import { IRoleDTO, RoleDTO } from './role';
 
@@ -10,6 +11,7 @@ export interface IUserDTO {
   profilePicture: string | null;
   agency: IAgencyDTO;
   role: IRoleDTO;
+  settings: IUserSettingDTO;
 }
 
 export class UserDTO implements IUserDTO {
@@ -21,6 +23,7 @@ export class UserDTO implements IUserDTO {
   profilePicture: string | null = null;
   agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
+  settings: IUserSettingDTO = new UserSettingDTO();
 
   constructor(configOverride?: Partial<IUserDTO>) {
     if (configOverride) {
@@ -95,6 +98,54 @@ export class ChangeUserRequest implements IChangeUserRequest {
   role: IRoleDTO = new RoleDTO();
 
   constructor(configOverride?: IChangeUserRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface ILanguage {
+  currency: string;
+  dateFormat: string;
+  language: string;
+  languageCode: string;
+}
+
+export class Language implements ILanguage {
+  currency: string = 'dollar';
+  dateFormat: string = 'mm/dd/yyyy';
+  language: string = 'English';
+  languageCode: string = 'en-US';
+
+  constructor(configOverride?: Partial<ILanguage>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface IUserSettingDTO {
+  language: ILanguage;
+}
+
+export class UserSettingDTO implements IUserSettingDTO {
+  language: ILanguage = new Language();
+
+  constructor(configOverride?: Partial<IUserSettingDTO>) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface IChangeUserSettingRequest {
+  language: string;
+}
+
+export class ChangeUserSettingRequest implements IChangeUserSettingRequest {
+  language: string = translocoConfigObj.defaultLang;
+
+  constructor(configOverride?: IChangeUserSettingRequest) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }

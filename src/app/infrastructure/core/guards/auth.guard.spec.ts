@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { BehaviorSubject, of as observableOf } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { AuthGuard } from './auth.guard';
 import { environment } from '@env/environment.test';
@@ -34,7 +35,7 @@ import { RoleCheck } from '@models/role';
             { provide: NotificationService, useValue: notificationMock },
             { provide: Router, useValue: routerMock },
           ],
-          imports: [HttpClientTestingModule],
+          imports: [HttpClientTestingModule, TranslocoTestingModule],
         });
         userState = TestBed.inject(UserStateService);
         injector = getTestBed();
