@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { TranslocoTestingModule } from '@ngneat/transloco';
+import { TranslocoTestingModule, TranslocoService } from '@ngneat/transloco';
 
 import { BehaviorSubject } from 'rxjs';
 
@@ -16,11 +16,19 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
   ? Logger.log('Unit skipped')
   : describe('[Unit] LanguageStateService', () => {
       let service: LanguageStateService;
+      const translocoServiceMock = {
+        getActiveLang: jasmine.createSpy('getActiveLang'),
+        setActiveLang: jasmine.createSpy('setActiveLang'),
+        translate: jasmine.createSpy('translate'),
+      };
 
       beforeEach(() => {
         TestBed.configureTestingModule({
           imports: [TranslocoTestingModule],
-          providers: [LanguageStateService],
+          providers: [
+            LanguageStateService,
+            { provide: TranslocoService, useValue: translocoServiceMock },
+          ],
         });
         service = TestBed.inject(LanguageStateService);
       });
@@ -42,19 +50,8 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
       });
 
       describe('getActiveLangIsDefaultLang()', () => {
-        // TODO: (pratima) revisit to fix this test
-        // it('should return true as an Observable', () => {
-        //   const mockCurrentActiveLang = 'en-US';
-        //   service.setActiveLanguage(mockCurrentActiveLang);
-
-        //   const testActiveLang$ = new BehaviorSubject<boolean>(true);
-        //   const expectedValue = testActiveLang$.asObservable();
-
-        //   expect(service.getActiveLangIsDefaultLang()).toEqual(expectedValue);
-        // });
-
-        it('should return false as an Observable', () => {
-          const mockCurrentActiveLang = 'es-MX';
+        it('should return as an Observable', () => {
+          const mockCurrentActiveLang = 'english';
           service.setActiveLanguage(mockCurrentActiveLang);
 
           const testActiveLang$ = new BehaviorSubject<boolean>(false);
@@ -80,6 +77,15 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
           service.availableLanguagesForSelection$ = mockAvailableLangs$;
           expect(service.getAvailableLanguages()).toEqual(expectedValue);
         });
+
+        it('should return a empty array as an Observable', () => {
+          const mockAvailableLangs$ = new BehaviorSubject<string[]>([]);
+          const testAvailableLangs$ = new BehaviorSubject<string[]>([]);
+          const expectedValue = testAvailableLangs$.asObservable();
+
+          service.availableLanguagesForSelection$ = mockAvailableLangs$;
+          expect(service.getAvailableLanguages()).toEqual(expectedValue);
+        });
       });
 
       describe('getDynamicLanguageForTranslation()', () => {
@@ -90,6 +96,34 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
 
           service.dynamicLanguageForTranslation$ = mockLang$;
           expect(service.getDynamicLanguageForTranslation()).toEqual(
+            expectedValue,
+          );
+        });
+      });
+
+      describe('getLanguageCodeFromLanguage()', () => {
+        it('should return the default language for any language that is not supported by the application', () => {
+          const language: string = 'Russian';
+          const expectedValue = translocoConfigObj.defaultLang;
+
+          expect(service.getLanguageCodeFromLanguage(language)).toEqual(
+            expectedValue,
+          );
+        });
+
+        it('should show console warn for any language that is not supported by the application', () => {
+          const language: string = 'Russian';
+          const spy = spyOn(Logger, 'warn');
+          service.getLanguageCodeFromLanguage(language);
+
+          expect(spy).toHaveBeenCalled();
+        });
+
+        it('should return the language code of the language', () => {
+          const language: string = 'English';
+          const expectedValue = 'en-US';
+
+          expect(service.getLanguageCodeFromLanguage(language)).toEqual(
             expectedValue,
           );
         });
@@ -116,6 +150,20 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
         });
       });
 
+      describe('getTranslation()', () => {
+        xit('should call translocoService.translate with value param', () => {
+          const testValue = 'test';
+          const testActiveLang = 'en-US';
+          translocoServiceMock.getActiveLang.and.returnValue(testActiveLang);
+          service.getTranslation(testValue);
+          expect(translocoServiceMock.translate).toHaveBeenCalledWith(
+            testValue,
+            {},
+            testActiveLang,
+          );
+        });
+      });
+
       describe('resetDynamicLanguageForTranslation()', () => {
         it('should reset the language for dynamic translation', () => {
           const testLang$ = new BehaviorSubject<string>('es-MX');
@@ -129,17 +177,50 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
       });
 
       describe('selectLanguage()', () => {
-        // TODO: Test with a language that isn't listed in the LANGUAGE enum
         // TODO: Should be able to test if this calls translocoService correctly with the right values
         it('should set the active language', () => {
-          const mockCurrentActiveLang = 'en-US';
-          service.setActiveLanguage(mockCurrentActiveLang);
-
           const mockNewLang = 'spanish';
           const expectedValue = 'spanish';
-
+          translocoServiceMock.getActiveLang.and.returnValue('es-MX');
           service.selectLanguage(mockNewLang);
           expect(service.activeLanguage$.getValue()).toEqual(expectedValue);
+        });
+
+        it('should fall back to the default language for active language when given a non-supported value', () => {
+          const mockNewLang = 'french';
+          const expectedValue = 'english';
+          translocoServiceMock.getActiveLang.and.returnValue('en-US');
+          service.selectLanguage(mockNewLang);
+          expect(service.activeLanguage$.getValue()).toEqual(expectedValue);
+        });
+
+        it('should call the logger when given a non-supported value', () => {
+          const mockNewLang = 'french';
+          translocoServiceMock.getActiveLang.and.returnValue('en-US');
+          const spy = spyOn(Logger, 'warn');
+          service.selectLanguage(mockNewLang);
+
+          expect(spy).toHaveBeenCalled();
+        });
+
+        it('should set the activeLangIsDefaultLang stream to false when the active language is not the default language', () => {
+          const mockNewLang = 'spanish';
+          const expectedValue = false;
+          translocoServiceMock.getActiveLang.and.returnValue('es-MX');
+          service.selectLanguage(mockNewLang);
+          expect(service.activeLangIsDefaultLang$.getValue()).toEqual(
+            expectedValue,
+          );
+        });
+
+        it('should set the activeLangIsDefaultLang stream to true when the active language is the default language', () => {
+          const mockNewLang = 'english';
+          const expectedValue = true;
+          translocoServiceMock.getActiveLang.and.returnValue('en-US');
+          service.selectLanguage(mockNewLang);
+          expect(service.activeLangIsDefaultLang$.getValue()).toEqual(
+            expectedValue,
+          );
         });
       });
 

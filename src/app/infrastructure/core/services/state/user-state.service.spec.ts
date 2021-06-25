@@ -1,11 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of as observableOf } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
+import {
+  IUserDTO,
+  UserDTO,
+  IUserSettingDTO,
+  UserSettingDTO,
+  Language,
+} from '@models/user';
 import { Logger } from '@utils/logger';
+import { LanguageStateService } from '@core/services/state/language-state.service';
 import { RoleCheck } from '@models/role';
-import { IUserDTO, UserDTO } from '@models/user';
 import { UserStateService } from './user-state.service';
 
 !environment.testUnit
@@ -16,9 +24,21 @@ import { UserStateService } from './user-state.service';
         new UserDTO(),
       );
       let testAdminUser$ = new BehaviorSubject<IUserDTO>(new UserDTO());
+
+      const languageStateMock = {
+        getActiveLanguage: jasmine
+          .createSpy('getActiveLanguage')
+          .and.returnValue(observableOf('spanish')),
+        setActiveLanguage: jasmine.createSpy('setActiveLanguage'),
+      };
+
       beforeEach(() => {
         TestBed.configureTestingModule({
-          providers: [UserStateService],
+          providers: [
+            UserStateService,
+            { provide: LanguageStateService, useValue: languageStateMock },
+          ],
+          imports: [TranslocoTestingModule],
         });
         service = TestBed.inject(UserStateService);
         service.userSession$ = new BehaviorSubject<IUserDTO>(null);
@@ -89,7 +109,7 @@ import { UserStateService } from './user-state.service';
             firstName: 'Test',
             lastName: 'Tester',
           });
-          const expectedValue = {
+          const expectedValue: IUserDTO = new UserDTO({
             id: 0,
             email: '',
             activatedAt: null,
@@ -107,10 +127,18 @@ import { UserStateService } from './user-state.service';
               id: 0,
               roleKey: '',
             },
-          };
+            settings: {
+              language: {
+                language: 'English',
+                languageCode: 'en-US',
+                currency: 'dollar',
+                dateFormat: 'mm/dd/yyyy',
+              },
+            },
+          });
           service.setUserSession(testUser);
           const storedUser = JSON.parse(localStorage.getItem('user'));
-          expect(storedUser).toEqual(expectedValue);
+          expect(storedUser).toEqual({ ...expectedValue });
         });
       });
 
@@ -237,6 +265,24 @@ import { UserStateService } from './user-state.service';
           service.checkRoleList().subscribe((response) => {
             expect(response).toEqual(expectedValue);
           });
+        });
+      });
+
+      describe('setUserSettings()', () => {
+        it('should call languageStateService.setActiveLanguage on success', () => {
+          const testUser = new UserDTO({
+            settings: new UserSettingDTO({
+              language: new Language({
+                language: 'spanish',
+                languageCode: 'es-MX',
+              }),
+            }),
+          });
+
+          service.setUserSettings(testUser);
+          expect(languageStateMock.setActiveLanguage).toHaveBeenCalledWith(
+            'es-MX',
+          );
         });
       });
     });

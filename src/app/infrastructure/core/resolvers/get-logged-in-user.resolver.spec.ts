@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { of as observableOf } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { environment } from '@env/environment.test';
 import { GetLoggedInUserResolver } from './get-logged-in-user.resolver';
@@ -37,7 +38,7 @@ import { UserService } from '../services/api/user.service';
               useValue: routerMock,
             },
           ],
-          imports: [HttpClientTestingModule],
+          imports: [HttpClientTestingModule, TranslocoTestingModule],
         });
         injector = getTestBed();
         resolver = injector.inject(GetLoggedInUserResolver);

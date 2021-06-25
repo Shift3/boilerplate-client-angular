@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { of as observableOf } from 'rxjs';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 
 import { AgencyDTO } from '@models/agency';
 import { AgencyService } from '../services/api/agency.service';
@@ -42,7 +43,7 @@ import { UserStateService } from '../services/state/user-state.service';
               useValue: routerMock,
             },
           ],
-          imports: [HttpClientTestingModule],
+          imports: [HttpClientTestingModule, TranslocoTestingModule],
         });
         userService = TestBed.inject(UserService);
         userStateService = TestBed.inject(UserStateService);

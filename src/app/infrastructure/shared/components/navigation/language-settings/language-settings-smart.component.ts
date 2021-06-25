@@ -1,7 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  OnInit,
+} from '@angular/core';
+
 import { Observable } from 'rxjs';
 
+import {
+  ChangeUserSettingRequest,
+  IChangeUserSettingRequest,
+  IUserDTO,
+  UserDTO,
+} from '@app/infrastructure/models/user';
 import { LanguageStateService } from '@core/services/state/language-state.service';
+import { UserService } from '@core/services/api/user.service';
 
 @Component({
   selector: 'app-language-settings',
@@ -16,11 +29,16 @@ import { LanguageStateService } from '@core/services/state/language-state.servic
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSettingsSmartComponent implements OnInit {
+  @Input() loggedInUser: IUserDTO = new UserDTO();
+
   public availableLanguagesForSelection$: Observable<string[]>;
   public activeLanguage$: Observable<string>;
   public activeLangIsDefaultLang$: Observable<boolean>;
 
-  constructor(public languageStateService: LanguageStateService) {}
+  constructor(
+    public languageStateService: LanguageStateService,
+    private userService: UserService,
+  ) {}
 
   ngOnInit(): void {
     this.activeAvailableLanguageSetup();
@@ -33,7 +51,26 @@ export class LanguageSettingsSmartComponent implements OnInit {
   }
 
   public selectLanguage(language: string): void {
-    if (language?.length)
+    if (language?.length) {
       this.languageStateService.selectLanguage(language.split('/')[0]);
+      this.setUserSettingLanguage(language);
+    }
+  }
+
+  private setUserSettingLanguage(language: string): void {
+    if (this.loggedInUser?.id) {
+      const languageCode: string = this.languageStateService.getLanguageCodeFromLanguage(
+        language,
+      );
+      const userSettingPayload: IChangeUserSettingRequest = new ChangeUserSettingRequest(
+        {
+          language: languageCode,
+        },
+      );
+
+      this.userService
+        .updateUserSetting(userSettingPayload, this.loggedInUser.id)
+        .subscribe();
+    }
   }
 }

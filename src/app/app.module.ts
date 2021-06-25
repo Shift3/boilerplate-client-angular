@@ -11,7 +11,7 @@ import {
 import { AppComponent } from './app.component';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
-import { TranslocoRootModule } from './transloco/transloco-root.module';
+import { TranslocoRootModule } from '@app/transloco/transloco-root.module';
 
 /**
  * Root feature module.
@@ -31,7 +31,6 @@ import { TranslocoRootModule } from './transloco/transloco-root.module';
     // AppRoutingModule must be loaded last.
     AppRoutingModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

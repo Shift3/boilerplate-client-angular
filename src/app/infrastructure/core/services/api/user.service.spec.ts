@@ -12,12 +12,16 @@ import { environment } from '@env/environment.test';
 import {
   ChangePasswordRequest,
   ChangeUserRequest,
+  ChangeUserSettingRequest,
   ForgotPasswordRequest,
   IChangePasswordRequest,
   IChangeUserRequest,
+  IChangeUserSettingRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
   IUserDTO,
+  IUserSettingDTO,
+  Language,
   ResetPasswordRequest,
   UserDTO,
 } from '@models/user';
@@ -74,7 +78,7 @@ import { IMessage } from '@models/message';
           },
         });
         testUserSession = {
-          user: {
+          user: new UserDTO({
             id: 1,
             email: 'test@test.com',
             activatedAt: null,
@@ -92,7 +96,7 @@ import { IMessage } from '@models/message';
               id: 1,
               roleKey: 'User',
             },
-          },
+          }),
           jwtToken:
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
         };
@@ -547,6 +551,40 @@ import { IMessage } from '@models/message';
           spyOn(apiService, 'get').and.returnValue(observableOf(expectedValue));
 
           service.resendActivationEmail(user).subscribe(() => {
+            expect(notificationMock.showSuccess).toHaveBeenCalled();
+          });
+        });
+      });
+
+      describe('updateUserSetting()', () => {
+        it('should use PUT as the request method', () => {
+          const userSetting: IChangeUserSettingRequest = new ChangeUserSettingRequest(
+            {
+              language: 'en-US',
+            },
+          );
+          service.updateUserSetting(userSetting, 1).subscribe();
+          const req = httpTestingController.expectOne(`${route}/1/settings`);
+
+          expect(req.request.method).toBe('PUT');
+        });
+
+        it('should show a notification on success', () => {
+          const userSetting: IChangeUserSettingRequest = new ChangeUserSettingRequest(
+            {
+              language: 'es-MX',
+            },
+          );
+          const expectedValue: IUserSettingDTO = {
+            language: new Language({
+              language: 'Spanish',
+              languageCode: 'es-MX',
+            }),
+          };
+
+          spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
+
+          service.updateUserSetting(userSetting, 1).subscribe(() => {
             expect(notificationMock.showSuccess).toHaveBeenCalled();
           });
         });
