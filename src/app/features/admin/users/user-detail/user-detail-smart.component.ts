@@ -10,14 +10,14 @@ import { FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
-import { IAgencyDTO } from '@models/agency';
+import { AgencyDTO, IAgencyDTO } from '@models/agency';
 import { ChangeUserRequest, IChangeUserRequest, IUserDTO } from '@models/user';
 import { EmailValidation } from '@utils/validation/email-validation';
 import { FormConfig, FormField, IFormConfig } from '@models/form/form';
 import { FormService } from '@core/services/form.service';
 import { IInputField, InputField } from '@models/form/input';
 import { RequiredValidation } from '@utils/validation/required-validation';
-import { IRoleCheck, RoleType } from '@models/role';
+import { IRoleCheck, RoleDTO, RoleType } from '@models/role';
 import { SaveCancelButtonConfig } from '@models/form/button';
 import { ISelectField, ISelectOptions, SelectField } from '@models/form/select';
 import { UserService } from '@core/services/api/user.service';
@@ -125,12 +125,22 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
   private buildPayload(): IChangeUserRequest {
     const payloadDTO = new ChangeUserRequest();
     const payload = this.formService.buildRequestPayload(this.form, payloadDTO);
-    // Set unique values that diverges from the `FormGroup` here
+    // Set unique values that diverge from the `FormGroup` here
     if (this.checkRole.isSuperAdmin && !this.isSelf) {
-      payload.agency.agencyName = this.form.get('agencyName').value;
+      const agencyDTO = new AgencyDTO();
+      const agencyPayload = this.formService.buildNestedRequestPayload(
+        this.form,
+        agencyDTO,
+      );
+      payload.agency = agencyPayload;
     }
     if (!this.isSelf) {
-      payload.role.id = this.form.get('roleId').value;
+      const roleDTO = new RoleDTO();
+      const rolePayload = this.formService.buildNestedRequestPayload(
+        this.form,
+        roleDTO,
+      );
+      payload.role = rolePayload;
     }
     return payload;
   }
@@ -184,7 +194,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     // Add agency control only if the user is a Super Administrator.
     if (this.checkRole.isSuperAdmin && !this.isSelf) {
       const agencyList = new FormField<ISelectField<IAgencyDTO>>({
-        name: 'agencyName',
+        name: 'agency.agencyName',
         value: this.user?.agency.agencyName,
         fieldType: 'select',
         label: dynamicFormTranslationKeys.label.agency,
@@ -202,7 +212,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
     // Add role control if the user is not the logged in user.
     if (!this.isSelf) {
       const roleList = new FormField<ISelectField<RoleType>>({
-        name: 'roleId',
+        name: 'role.roleId',
         value: this.user?.role.id,
         fieldType: 'select',
         label: dynamicFormTranslationKeys.label.role,
