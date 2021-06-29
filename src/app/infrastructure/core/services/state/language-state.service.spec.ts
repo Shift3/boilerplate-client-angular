@@ -51,12 +51,14 @@ import { translocoConfigObj } from '@app/transloco/transloco-config';
 
       describe('getActiveLangIsDefaultLang()', () => {
         it('should return as an Observable', () => {
-          const mockCurrentActiveLang = 'english';
-          service.setActiveLanguage(mockCurrentActiveLang);
-
-          const testActiveLang$ = new BehaviorSubject<boolean>(false);
-          const expectedValue = testActiveLang$.asObservable();
-
+          const mockActiveLangIsDefaultLang$ = new BehaviorSubject<boolean>(
+            true,
+          );
+          const testActiveLangIsDefaultLang$ = new BehaviorSubject<boolean>(
+            true,
+          );
+          const expectedValue = testActiveLangIsDefaultLang$.asObservable();
+          service.activeLangIsDefaultLang$ = mockActiveLangIsDefaultLang$;
           expect(service.getActiveLangIsDefaultLang()).toEqual(expectedValue);
         });
       });
