@@ -49,6 +49,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
+              "aot": true,
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
