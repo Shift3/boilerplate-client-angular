@@ -1,7 +1,7 @@
 provider "aws" {
   alias   = "east"
   profile = var.profile
-  region  = var.region
+  region  = "us-east-1"
 
   assume_role {
     role_arn = var.assume_role_arn
