@@ -37,6 +37,11 @@
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -137,6 +142,11 @@
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/styles"
+              ]
+            },
             "scripts": []
           }
         },
@@ -166,6 +176,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "boilerplate-client-angular"
 }
