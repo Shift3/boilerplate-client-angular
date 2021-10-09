@@ -97,6 +97,18 @@ The project `environment` files will need to be updated with the path to the API
 
 After provisioning and before deploying, the `deploy:staging` script in `package.json` needs to be updated, as mentioned [above](#local-environment).
 
+#### Code Owners
+
+The repository should contain a `.github` folder with a `CODEOWNERS` file inside. This file specifies who are the developers responsible for the project's code.
+
+When starting a new project, remove the boilerplate owners and replace them with you and your teamates. The syntax is simply:
+
+```
+* @<github username> @<github username 2>
+```
+
+For more information, see [Github Codeowners](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners).
+
 ### Yarn
 
 This project is configured to use `yarn` instead of `npm`. `yarn` can be installed [here](https://yarnpkg.com/getting-started/install) and its commands are [here](https://yarnpkg.com/getting-started/usage). It is significantly faster than `npm`. `yarn` uses `yarn.lock` as its lockfile instead of the `package-lock.json` from `npm`. `yarn.lock` should be committed and kept current in the project just like `package-lock.json` would be for a project using `npm`.
