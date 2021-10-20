@@ -95,21 +95,11 @@ If this project is being cloned to start a new project, there are a few things t
 
 The project name will need to be updated in the `README.md`, `package.json`, `angular.json`, `karma.conf.js`, CircleCI `config.yml`, `app.e2e.spec.ts`, `index.html`, `app.component.ts`, and `app.component.spec.ts` files with the new project name. The README also refers to the boilerplate, both in the text and in the CircleCI badges.
 
+The CODEOWNERS file [should be updated](https://github.com/Shift3/standards-and-practices/blob/main/standards/github_folder_template.md#how-to-create-a-code-ownership-file) to reflect the developers responsible for the project.
+
 The project `environment` files will need to be updated with the path to the APIs. The development `environment.ts` assumes a local development server of `http://localhost:3000`, which might need to be updated.
 
 After provisioning and before deploying, the `deploy:staging` script in `package.json` needs to be updated, as mentioned [above](#local-environment).
-
-#### Code Owners
-
-The repository should contain a `.github` folder with a `CODEOWNERS` file inside. This file specifies who are the developers responsible for the project's code.
-
-When starting a new project, remove the boilerplate owners and replace them with you and your teamates. The syntax is simply:
-
-```
-* @<github username> @<github username 2>
-```
-
-For more information, see [Github Codeowners](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners).
 
 ### Yarn
 
