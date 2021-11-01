@@ -1,59 +1,145 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">{{ 'Name' | uppercase }}</th>
-      <th scope="col">{{ 'Description' | uppercase }}</th>
-      <th scope="col">{{ 'Email' | uppercase }}</th>
-      <th scope="col">{{ 'Phone Number' | uppercase }}</th>
-      <ng-container *ngIf="checkRole.canEdit">
-        <th scope="col w-10">{{ 'Actions' | uppercase }}</th>
-      </ng-container>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngIf="tableData.length">
-      <tr *ngFor="let item of tableData; trackBy: 'id' | trackByKey">
-        <td class="name-container">
-          <ng-container *ngIf="item.thumbnail">
+<div class="table-card mb-3">
+  <div class="table-card__header">
+    <form class="form" [formGroup]="searchForm">
+      <div class="input-group">
+        <input
+          formControlName="search"
+          type="text"
+          name="search"
+          class="form-control"
+          placeholder="Search agents"
+          aria-label="Text input with dropdown button"
+        />
+      </div>
+    </form>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th
+          colspan="2"
+          class="sortable"
+          scope="col"
+          (click)="sortColumnToggle('name')"
+        >
+          Name
+          <i *ngIf="sort['name'] == -1" class="fa fa-caret-down"></i>
+          <i *ngIf="sort['name'] == 1" class="fa fa-caret-up"></i>
+        </th>
+        <th
+          class="sortable"
+          scope="col"
+          (click)="sortColumnToggle('description')"
+        >
+          Description
+          <i *ngIf="sort['description'] == -1" class="fa fa-caret-down"></i>
+          <i *ngIf="sort['description'] == 1" class="fa fa-caret-up"></i>
+        </th>
+        <th class="sortable" scope="col" (click)="sortColumnToggle('email')">
+          Email
+          <i *ngIf="sort['email'] == -1" class="fa fa-caret-down"></i>
+          <i *ngIf="sort['email'] == 1" class="fa fa-caret-up"></i>
+        </th>
+        <th
+          class="sortable"
+          scope="col"
+          (click)="sortColumnToggle('phoneNumber')"
+        >
+          Phone Number
+          <i *ngIf="sort['phoneNumber'] == -1" class="fa fa-caret-down"></i>
+          <i *ngIf="sort['phoneNumber'] == 1" class="fa fa-caret-up"></i>
+        </th>
+        <th *ngIf="checkRole.canEdit" scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="tableData && tableData.results.length">
+        <tr
+          *ngFor="let item of tableData.results; trackBy: 'id' | trackByKey"
+          routerLink="/content/update-agent/{{ item.id }}"
+        >
+          <td width="1">
             <img
-              class="thumbnail-container"
+              *ngIf="item.thumbnail"
+              width="32"
+              class="rounded-circle"
               [src]="item.thumbnail"
               alt="{{ item.name }} thumbnail"
             />
-          </ng-container>
-          {{ item.name }}
-        </td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.email }}</td>
-        <td>{{ item.phoneNumber }}</td>
-        <ng-container *ngIf="checkRole.canEdit">
-          <td class="w-10">
-            <button
-              class="btn"
-              type="button"
-              tooltip="Update Agent"
-              routerLink="/content/update-agent/{{ item.id }}"
+            <div *ngIf="!item.thumbnail" class="empty-avatar">
+              <i class="text-muted fa fa-user"></i>
+            </div>
+          </td>
+          <td class="name-container">
+            {{ item.name }}
+          </td>
+          <td>{{ item.description }}</td>
+          <td>
+            <a
+              (click)="$event.stopPropagation()"
+              href="mailto:{{ item.email }}"
+              >{{ item.email }}</a
             >
-              <span class="fa fa-edit"></span>
-              <span class="sr-only">Update Agent</span>
-            </button>
+          </td>
+          <td>{{ item.phoneNumber | mask: '(000) 000-0000' }}</td>
+          <td *ngIf="checkRole.canEdit" width="1">
             <ng-container *ngIf="checkRole.isAdmin">
               <button
-                class="btn"
+                class="btn btn-link"
                 type="button"
                 tooltip="Delete Agent"
-                (click)="deleteAgent(item)"
+                (click)="deleteAgent(item); $event.stopPropagation()"
               >
                 <span class="fa fa-trash"></span>
                 <span class="sr-only">Delete Agent</span>
               </button>
             </ng-container>
           </td>
-        </ng-container>
-      </tr>
-    </ng-container>
-  </tbody>
-</table>
-<div class="center" *ngIf="!tableData.length">
-  {{ tableConfig?.emptyListMessage }}
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+  <ng-container *ngIf="!tableData">
+    <div class="table">
+      <div class="loader"></div>
+    </div>
+  </ng-container>
+
+  <div class="table-card__footer">
+    <p *ngIf="tableData" class="text-muted text-left">
+      <ng-container *ngIf="tableData.results.length">
+        Displaying
+        {{ (tableData.meta.page - 1) * tableData.meta.pageSize + 1 }} -
+        {{
+          (tableData.meta.page - 1) * tableData.meta.pageSize +
+            tableData.results.length
+        }}
+        of {{ tableData.meta.count }} results.
+      </ng-container>
+    </p>
+    <p
+      class="text-muted text-left"
+      *ngIf="!tableData || !tableData.results.length"
+    >
+      {{ tableConfig?.emptyListMessage }}
+    </p>
+    <div>
+      <button
+        class="btn btn-link"
+        (click)="changePage(tableData.links.prev)"
+        [disabled]="!tableData || !tableData.links.prev"
+      >
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button
+        class="btn btn-link"
+        (click)="changePage(tableData.links.next)"
+        [disabled]="!tableData || !tableData.links.next"
+      >
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
 </div>

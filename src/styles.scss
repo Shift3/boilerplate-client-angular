@@ -13,6 +13,10 @@ html {
   box-sizing: border-box;
 }
 
+.navbar-brand img {
+  max-height: 3rem;
+}
+
 .holy-grail {
   min-height: 100vh;
 }
@@ -78,14 +82,11 @@ html {
 }
 
 .shadow {
-  -webkit-box-shadow: 1px 1px 5px 1px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow: 1px 1px 5px 1px #ccc; /* Firefox 3.5 - 3.6 */
-  box-shadow: 1px 1px 5px 1px #ccc; /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
   z-index: 1;
 }
 
 .routed-content {
-  padding: 20px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -140,17 +141,22 @@ html {
 }
 //#endregion
 
+ng-component {
+  width: 100%;
+}
+
 //#region Cards
 .card {
-  background: $primary;
-  padding: 50px;
-  max-width: 500px;
-  min-width: 500px;
+  background: white;
+  padding: 0.75rem;
+  width: 100%;
   border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .card-header {
-  color: $card-header;
+  color: #333;
   padding: 0;
   background-color: inherit;
   border-bottom: initial;
@@ -158,33 +164,96 @@ html {
 //#endregion
 
 //#region Tables
-thead {
-  background: $primary;
+
+.table-card .loader {
+  margin: 1em auto;
+}
+
+.table-card {
+  background: white;
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  &__header {
+    padding: 0.75em;
+  }
+
+  &__footer {
+    padding: 0.75em;
+    background: #efefef;
+    border-radius: 0 0 6px 6px;
+    display: flex;
+    align-items: center;
+    p {
+      flex: 1;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+.btn-link[disabled] {
+  * {
+    color: #ccc;
+  }
+}
+
+.btn-danger .fa {
   color: white;
 }
-
+.empty-avatar {
+  width: 32px;
+  height: 32px;
+  background: #efefef;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .table {
-  min-width: 1000px;
+  margin: 0;
+
+  thead {
+    border-bottom: 1px solid #efefef;
+  }
+
+  thead th {
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    &.sortable {
+      cursor: pointer;
+    }
+  }
+
+  tbody {
+    tr {
+      background: white;
+      transition: 0.15s ease-in-out all;
+    }
+    tr:hover {
+      cursor: pointer;
+      background: #dedede;
+    }
+
+    tr > td {
+      vertical-align: middle;
+      padding: 6px 0.75em;
+      line-height: 1em;
+    }
+
+    tr:not(last-child) {
+      border-bottom: 1px solid #efefef;
+    }
+  }
 }
 
-.table th {
-  border-top: 0;
+td,
+th {
+  border: none !important;
 }
-
-th:nth-child(1) {
-  border-radius: 15px 0px 0px 0px;
-}
-
-th:nth-last-child(1) {
-  border-radius: 0px 15px 0px 0px;
-}
-
-tbody > tr {
-  background: white;
-}
-
 td {
-  color: $primary;
+  color: #333;
 }
 
 table .w-10 {

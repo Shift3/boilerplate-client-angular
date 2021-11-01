@@ -28,6 +28,7 @@ import { pipes } from './pipes';
   exports: [
     CommonModule,
     BootstrapModule,
+    NgxMaskModule,
     NgxBootstrapModule,
     ReactiveFormsModule,
     components,

@@ -1,5 +1,10 @@
 // Placeholder styling until the full row of elements comes in
 .row {
-  justify-content: flex-end;
   padding: 20px;
+  display: flex;
+  align-items: center;
+  h1 {
+    font-weight: bold;
+    flex: 1;
+  }
 }

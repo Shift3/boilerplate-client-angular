@@ -3,10 +3,8 @@
   border-radius: 50%;
 }
 
-.name-container {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+td:first-child {
+  padding-right: 0 !important;
 }
 
 .td-container {

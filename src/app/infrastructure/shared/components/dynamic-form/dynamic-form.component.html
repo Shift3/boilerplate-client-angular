@@ -1,20 +1,26 @@
-<div class="card">
-  <h2 class="card-header">{{ formConfig.formTitle }}</h2>
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <ng-container *ngIf="formConfig.controls.length">
-      <ng-container
-        *ngFor="let field of formConfig.controls; trackBy: 'name' | trackByKey"
-        appDynamicField
-        [fieldConfig]="field"
-        [group]="form"
-      ></ng-container>
-    </ng-container>
-    <app-save-cancel
-      class="save-cancel-container"
-      [buttonConfig]="formConfig.submit"
-      [form]="form"
-      [shouldDisable]="!form.valid"
-      (emitSubmit)="submit()"
-    ></app-save-cancel>
-  </form>
+<div class="container">
+  <h1>{{ formConfig.formTitle }}</h1>
+
+  <div class="card">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <ng-container *ngIf="formConfig.controls.length">
+        <ng-container
+          *ngFor="
+            let field of formConfig.controls;
+            trackBy: 'name' | trackByKey
+          "
+          appDynamicField
+          [fieldConfig]="field"
+          [group]="form"
+        ></ng-container>
+      </ng-container>
+      <app-save-cancel
+        class="save-cancel-container"
+        [buttonConfig]="formConfig.submit"
+        [form]="form"
+        [shouldDisable]="!form.valid"
+        (emitSubmit)="submit()"
+      ></app-save-cancel>
+    </form>
+  </div>
 </div>

@@ -7,6 +7,23 @@ import { ApiService } from './api.service';
 import { IAgentDTO, IAgentRequest } from '@models/agent';
 import { environment } from '@env/environment';
 import { NotificationService } from '../notification.service';
+import { HttpParams } from '@angular/common/http';
+
+export interface Paginated<T> {
+  results: T[];
+  meta: {
+    pageCount: number;
+    count: number;
+    page: number;
+    pageSize: number;
+  };
+  links: {
+    first: string;
+    next: string;
+    prev: string;
+    last: string;
+  };
+}
 
 @Injectable({
   providedIn: 'root',
@@ -22,10 +39,30 @@ export class AgentService {
     this.url = `${environment.apiRoute}/${this.controllerRoute}`;
   }
 
-  public getAgentList(): Observable<IAgentDTO[]> {
-    const endpoint = `${this.url}`;
+  public getAgentList(
+    sort: any,
+    query: string,
+    endpoint?: string,
+  ): Observable<Paginated<IAgentDTO>> {
+    let params = new HttpParams();
 
-    return this.apiService.get<IAgentDTO[]>(endpoint);
+    if (!endpoint && query) {
+      params = params.set('filter', `name__icontains:${query}`);
+    }
+
+    if (!endpoint) {
+      endpoint = this.url;
+
+      if (sort) {
+        const str = Object.entries(sort)
+          .map(([k, v]) => (v == -1 ? `-${k}` : k))
+          .join(',');
+
+        params = params.set('sort', str);
+      }
+    }
+
+    return this.apiService.get<Paginated<IAgentDTO>>(endpoint, { params });
   }
 
   public findAgent(id: number): Observable<IAgentDTO> {

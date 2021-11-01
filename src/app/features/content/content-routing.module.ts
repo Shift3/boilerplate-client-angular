@@ -11,6 +11,7 @@ import { ContentLayoutComponent } from './content-layout/content-layout.componen
 import { AdminAuthGuard } from '@core/guards/admin-auth.guard';
 import { CanEditAuthGuard } from '@core/guards/can-edit-auth.guard';
 import { resolverList } from '@core/resolvers';
+import { NgxMaskModule } from 'ngx-mask';
 
 const routes: Routes = [
   {
