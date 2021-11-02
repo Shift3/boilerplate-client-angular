@@ -125,6 +125,8 @@ This project can be run through Docker (it is not recommended for involved devel
 
 To run the unit test or e2e test servers, run `docker-compose exec client ng test --watch=false --browsers=ChromeHeadlessDocker` or `docker-compose exec client ng e2e --port 4202` respectively while running the above development server.
 
+If you still have more docker questions or are having issues with docker there's a [Docker FAQ](https://github.com/Shift3/boilerplate-client-angular/wiki/Docker-FAQ) in the wiki.
+
 ### CI
 
 This project is configured to work with CircleCI. The CI builds the application, runs tests, and runs the linter. All of these jobs need to pass for the CI build to succeed. The config file is found [here](https://github.com/Shift3/boilerplate-client-angular/blob/development/.circleci/config.yml). The project name needs to match the new project name for the builds to succeed.
