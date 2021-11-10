@@ -2,7 +2,7 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
-const { SpecReporter } = require('jasmine-spec-reporter');
+const { SpecReporter } = require('jasmine-spec-reporter').SpecReporter;
 
 /**
  * @type { import("protractor").Config }
@@ -16,9 +16,8 @@ exports.config = {
       args: ['--no-sandbox', '--headless', '--window-size=1024,768'],
     },
   },
-  directConnect: true,
   baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine',
+  framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
