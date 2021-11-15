@@ -21,7 +21,8 @@
       "@shared/*": ["app/infrastructure/shared/*"],
       "@utils/*": ["app/infrastructure/utils/*"]
     },
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
