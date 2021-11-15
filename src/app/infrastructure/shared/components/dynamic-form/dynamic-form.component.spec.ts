@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -16,20 +16,22 @@ import { SaveCancelComponent } from '../save-cancel/save-cancel.component';
       let component: DynamicFormComponent;
       let fixture: ComponentFixture<DynamicFormComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            DynamicFormComponent,
-            MockComponent(SaveCancelComponent),
-          ],
-          imports: [
-            HttpClientTestingModule,
-            ReactiveFormsModule,
-            RouterTestingModule,
-          ],
-          providers: [FormBuilder],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              DynamicFormComponent,
+              MockComponent(SaveCancelComponent),
+            ],
+            imports: [
+              HttpClientTestingModule,
+              ReactiveFormsModule,
+              RouterTestingModule,
+            ],
+            providers: [FormBuilder],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(DynamicFormComponent);

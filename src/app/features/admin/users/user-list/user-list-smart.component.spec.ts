@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -16,19 +16,21 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
       let component: UserListSmartComponent;
       let fixture: ComponentFixture<UserListSmartComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            UserListSmartComponent,
-            MockComponent(UserListPresentationComponent),
-          ],
-          imports: [
-            HttpClientTestingModule,
-            RouterTestingModule,
-            ToastrTestingModule,
-          ],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              UserListSmartComponent,
+              MockComponent(UserListPresentationComponent),
+            ],
+            imports: [
+              HttpClientTestingModule,
+              RouterTestingModule,
+              ToastrTestingModule,
+            ],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(UserListSmartComponent);

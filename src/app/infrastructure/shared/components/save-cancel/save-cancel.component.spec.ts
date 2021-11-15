@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
@@ -10,11 +10,13 @@ import { SaveCancelComponent } from './save-cancel.component';
       let component: SaveCancelComponent;
       let fixture: ComponentFixture<SaveCancelComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [SaveCancelComponent],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [SaveCancelComponent],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(SaveCancelComponent);

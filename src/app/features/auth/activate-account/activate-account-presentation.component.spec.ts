@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MockComponent } from 'ng-mocks';
 
@@ -13,14 +13,16 @@ import { ActivateAccountPresentationComponent } from './activate-account-present
       let component: ActivateAccountPresentationComponent;
       let fixture: ComponentFixture<ActivateAccountPresentationComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            ActivateAccountPresentationComponent,
-            MockComponent(DynamicFormComponent),
-          ],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              ActivateAccountPresentationComponent,
+              MockComponent(DynamicFormComponent),
+            ],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(ActivateAccountPresentationComponent);

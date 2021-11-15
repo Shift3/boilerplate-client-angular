@@ -1,5 +1,5 @@
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MockPipe } from 'ng-mocks';
 import { NgxMaskModule } from 'ngx-mask';
@@ -17,12 +17,14 @@ import { Logger } from '@utils/logger';
       let component: FormInputComponent;
       let fixture: ComponentFixture<FormInputComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [FormInputComponent, MockPipe(FormErrorPipe)],
-          imports: [NgxMaskModule.forRoot(), ReactiveFormsModule],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [FormInputComponent, MockPipe(FormErrorPipe)],
+            imports: [NgxMaskModule.forRoot(), ReactiveFormsModule],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(FormInputComponent);
