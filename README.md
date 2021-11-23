@@ -1,9 +1,9 @@
 # BoilerplateClientAngular
 
-| Branch      | Status                                                                                                                                                                                                                           |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| development | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular)                         |
-| master      | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/master) |
+| Branch      | Status                                                                                                                                                                                                                       |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| development | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular)                     |
+| main        | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/main.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/main) |
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
@@ -18,6 +18,8 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
   - [Development](#development)
     - [Template Repository](#template-repository)
     - [Initializing the Project](#initializing-the-project)
+    - [Yarn](#yarn)
+      - [How to Use `npm` Instead of `yarn`](#how-to-use-npm-instead-of-yarn)
     - [Prettier](#prettier)
     - [Docker](#docker)
     - [CI](#ci)
@@ -42,7 +44,7 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
 
 The AWS configuration **for the sandbox** is handled by Terraform. Terraform needs the AWS credentials which developers should already have or can access through Zoho Vault. The Terraform configuration is separated into modules for each cloud service it sets up.
 
-Terraform also needs the project secrets saved in `project/terraform/terraform.tfvars` with the following structure:
+Terraform also needs the project secrets saved in `project/terraform/main/<environment-name>/terraform.tfvars` with the following structure:
 
 ```
 profile = "shift3"
@@ -58,6 +60,16 @@ web_domain_name = ""
 | profile         |                              This must match the AWS credentials name on the development machine |
 | region          |                                                                      This is usually `us-west-2` |
 | web_domain_name | This will be the web domain name for the project, an example may be: `example.shift3sandbox.com` |
+
+Once this is completed, navigate to the terraform/main/<environment-name> folder in your terminal and run the following commands:
+
+1. `terraform init`
+   - This command is used to initialize a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control. It is safe to run this command multiple times.
+2. `terraform plan`
+   - The plan command will give you information on what will be built through Terraform, as well as any feedback if there will be forseen issues (missing variables etc.)
+   - This also gives you the chance to make adjustments if need be to ensure the output is correct for what you need. (domain name, environment variables for EB etc.)
+3. `terraform apply`
+   - The apply command will actually setup all of the required AWS services to deploy this project. Terraform will save a state file for you, and can continue from where it left off if something goes wrong.
 
 ### Local Environment
 
@@ -79,11 +91,27 @@ This project is configured as a [template repository](https://docs.github.com/en
 
 ### Initializing the Project
 
-If this project is being cloned to start a new project, there are a few things that need to be updated to make it work. The project name will need to be updated in the `README.md`, `package.json`, `angular.json`, `karma.conf.js`, CircleCI `config.yml`, `app.e2e.spec.ts`, `index.html`, `app.component.ts`, and `app.component.spec.ts` files with the new project name. The README also refers to the boilerplate, both in the text and in the CircleCI badges.
+If this project is being cloned to start a new project, there are a few things that need to be updated to make it work.
+
+The project name will need to be updated in the `README.md`, `package.json`, `angular.json`, `karma.conf.js`, CircleCI `config.yml`, `app.e2e.spec.ts`, `index.html`, `app.component.ts`, and `app.component.spec.ts` files with the new project name. The README also refers to the boilerplate, both in the text and in the CircleCI badges.
+
+The CODEOWNERS file [should be updated](https://github.com/Shift3/standards-and-practices/blob/main/standards/github_folder_template.md#how-to-create-a-code-ownership-file) to reflect the developers responsible for the project.
 
 The project `environment` files will need to be updated with the path to the APIs. The development `environment.ts` assumes a local development server of `http://localhost:3000`, which might need to be updated.
 
 After provisioning and before deploying, the `deploy:staging` script in `package.json` needs to be updated, as mentioned [above](#local-environment).
+
+### Yarn
+
+This project is configured to use `yarn` instead of `npm`. `yarn` can be installed [here](https://yarnpkg.com/getting-started/install) and its commands are [here](https://yarnpkg.com/getting-started/usage). It is significantly faster than `npm`. `yarn` uses `yarn.lock` as its lockfile instead of the `package-lock.json` from `npm`. `yarn.lock` should be committed and kept current in the project just like `package-lock.json` would be for a project using `npm`.
+
+#### How to Use `npm` Instead of `yarn`
+
+In order to use `npm` instead of `yarn`, the project needs to be updated in a few areas.
+
+- [`angular.json`](angular.json) specifies `yarn` as the package manager on line 5.
+- CircleCI's [`config.yml`](.circleci/config.yml) uses `yarn` instead of `npm` to execute scripts.
+- The `yarn-lock` file should be deleted and the `package-lock.json` file should be committed in its place.
 
 ### Prettier
 
@@ -96,6 +124,8 @@ Prettier can be configured within [editors](https://prettier.io/docs/en/editors.
 This project can be run through Docker (it is not recommended for involved development because it makes it harder to debug the codebase). Running `docker-compose up` will configure and serve the project locally. It supports hot reloading. (On Windows, `docker-compose` needs access to the drive where the project is located. It should see `C:\` by default but other drives need to be added manually: see [here](https://docs.microsoft.com/en-us/archive/blogs/stevelasker/configuring-docker-for-windows-volumes), [here](https://rominirani.com/docker-on-windows-mounting-host-directories-d96f3f056a2c) and [here](https://docs.docker.com/compose/env-file/)).
 
 To run the unit test or e2e test servers, run `docker-compose exec client ng test --watch=false --browsers=ChromeHeadlessDocker` or `docker-compose exec client ng e2e --port 4202` respectively while running the above development server.
+
+If you still have more docker questions or are having issues with docker there's a [Docker FAQ](https://github.com/Shift3/boilerplate-client-angular/wiki/Docker-FAQ) in the wiki.
 
 ### CI
 

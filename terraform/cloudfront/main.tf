@@ -1,7 +1,6 @@
 provider "aws" {
-  version = "2.58"
   alias   = "east"
-  profile = "${var.profile}"
+  profile = var.profile
   region  = "us-east-1"
 
   assume_role {
@@ -15,30 +14,30 @@ data "aws_route53_zone" "zone" {
 }
 
 resource "aws_acm_certificate" "cert_cloudfront_east" {
-  provider                  = "aws.east"
-  domain_name               = "${var.web_domain_name}"
+  provider                  = aws.east
+  domain_name               = var.web_domain_name
   subject_alternative_names = ["www.${var.web_domain_name}"]
   validation_method         = "DNS"
 }
 
 resource "aws_route53_record" "cert_validation" {
-  name    = "${aws_acm_certificate.cert_cloudfront_east.domain_validation_options.0.resource_record_name}"
-  type    = "${aws_acm_certificate.cert_cloudfront_east.domain_validation_options.0.resource_record_type}"
-  zone_id = "${data.aws_route53_zone.zone.id}"
-  records = ["${aws_acm_certificate.cert_cloudfront_east.domain_validation_options.0.resource_record_value}"]
+  name    = aws_acm_certificate.cert_cloudfront_east.domain_validation_options.0.resource_record_name
+  type    = aws_acm_certificate.cert_cloudfront_east.domain_validation_options.0.resource_record_type
+  zone_id = data.aws_route53_zone.zone.id
+  records = [aws_acm_certificate.cert_cloudfront_east.domain_validation_options.0.resource_record_value]
   ttl     = 60
 }
 
 resource "aws_route53_record" "cert_validation_west_www" {
-  name    = "${aws_acm_certificate.cert_cloudfront_east.domain_validation_options.1.resource_record_name}"
-  type    = "${aws_acm_certificate.cert_cloudfront_east.domain_validation_options.1.resource_record_type}"
-  zone_id = "${data.aws_route53_zone.zone.id}"
-  records = ["${aws_acm_certificate.cert_cloudfront_east.domain_validation_options.1.resource_record_value}"]
+  name    = aws_acm_certificate.cert_cloudfront_east.domain_validation_options.1.resource_record_name
+  type    = aws_acm_certificate.cert_cloudfront_east.domain_validation_options.1.resource_record_type
+  zone_id = data.aws_route53_zone.zone.id
+  records = [aws_acm_certificate.cert_cloudfront_east.domain_validation_options.1.resource_record_value]
   ttl     = 60
 }
 
 resource "aws_s3_bucket" "web_bucket" {
-  bucket = "${var.web_domain_name}"
+  bucket = var.web_domain_name
   acl    = "public-read"
 
   cors_rule {
@@ -69,13 +68,13 @@ EOF
 # Create Cloudfront distribution
 resource "aws_cloudfront_distribution" "prod_distribution" {
   origin {
-    domain_name = "${aws_s3_bucket.web_bucket.bucket_domain_name}"
+    domain_name = aws_s3_bucket.web_bucket.bucket_domain_name
     origin_id   = "S3-${aws_s3_bucket.web_bucket.bucket}"
   }
 
-  aliases = ["${var.web_domain_name}", "www.${var.web_domain_name}"]
+  aliases = [var.web_domain_name, "www.${var.web_domain_name}"]
 
-  depends_on = ["aws_route53_record.cert_validation"]
+  depends_on = [aws_route53_record.cert_validation]
 
   # By default, show index.html file
   default_root_object = "index.html"
@@ -145,32 +144,32 @@ resource "aws_cloudfront_distribution" "prod_distribution" {
 
   # SSL certificate for the service.
   viewer_certificate {
-    acm_certificate_arn = "${aws_acm_certificate.cert_cloudfront_east.arn}"
+    acm_certificate_arn = aws_acm_certificate.cert_cloudfront_east.arn
     ssl_support_method  = "sni-only"
   }
 }
 
 # Create Route 53
 resource "aws_route53_record" "cloud_front" {
-  zone_id = "${data.aws_route53_zone.zone.id}"
-  name    = "${var.web_domain_name}"
+  zone_id = data.aws_route53_zone.zone.id
+  name    = var.web_domain_name
   type    = "A"
 
   alias {
-    name                   = "${aws_cloudfront_distribution.prod_distribution.domain_name}"
-    zone_id                = "${aws_cloudfront_distribution.prod_distribution.hosted_zone_id}"
+    name                   = aws_cloudfront_distribution.prod_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.prod_distribution.hosted_zone_id
     evaluate_target_health = true
   }
 }
 
 resource "aws_route53_record" "cloud_front_www" {
-  zone_id = "${data.aws_route53_zone.zone.id}"
+  zone_id = data.aws_route53_zone.zone.id
   name    = "www.${var.web_domain_name}"
   type    = "A"
 
   alias {
-    name                   = "${aws_cloudfront_distribution.prod_distribution.domain_name}"
-    zone_id                = "${aws_cloudfront_distribution.prod_distribution.hosted_zone_id}"
+    name                   = aws_cloudfront_distribution.prod_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.prod_distribution.hosted_zone_id
     evaluate_target_health = true
   }
 }
