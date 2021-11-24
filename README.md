@@ -5,7 +5,7 @@
 | development | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular)                     |
 | main        | [![Shift3](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/main.svg?style=shield&circle-token=f7e07709887f5d8310779f748d524c40756e2f8a)](https://circleci.com/gh/Shift3/boilerplate-client-angular/tree/main) |
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2
 
 This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angular/wiki) which explains the project and its implementation in much greater detail than the code comments.
 
