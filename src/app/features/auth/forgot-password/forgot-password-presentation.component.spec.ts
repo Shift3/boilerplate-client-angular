@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MockComponent } from 'ng-mocks';
 
@@ -13,14 +13,16 @@ import { ForgotPasswordPresentationComponent } from './forgot-password-presentat
       let component: ForgotPasswordPresentationComponent;
       let fixture: ComponentFixture<ForgotPasswordPresentationComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            ForgotPasswordPresentationComponent,
-            MockComponent(DynamicFormComponent),
-          ],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              ForgotPasswordPresentationComponent,
+              MockComponent(DynamicFormComponent),
+            ],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(ForgotPasswordPresentationComponent);

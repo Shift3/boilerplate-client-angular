@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
@@ -14,15 +14,17 @@ import { LoginPresentationComponent } from './login-presentation.component';
       let component: LoginPresentationComponent;
       let fixture: ComponentFixture<LoginPresentationComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            LoginPresentationComponent,
-            MockComponent(DynamicFormComponent),
-          ],
-          imports: [RouterTestingModule],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              LoginPresentationComponent,
+              MockComponent(DynamicFormComponent),
+            ],
+            imports: [RouterTestingModule],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(LoginPresentationComponent);

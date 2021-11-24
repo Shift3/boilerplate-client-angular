@@ -50,7 +50,7 @@ const routes: Routes = [
  * Root feature routing module. Loads all lazy loaded routes and root-level routes.
  */
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

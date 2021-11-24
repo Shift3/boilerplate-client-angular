@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -16,19 +16,21 @@ import { LoginSmartComponent } from './login-smart.component';
       let component: LoginSmartComponent;
       let fixture: ComponentFixture<LoginSmartComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            LoginSmartComponent,
-            MockComponent(LoginPresentationComponent),
-          ],
-          imports: [
-            HttpClientTestingModule,
-            ReactiveFormsModule,
-            RouterTestingModule,
-          ],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              LoginSmartComponent,
+              MockComponent(LoginPresentationComponent),
+            ],
+            imports: [
+              HttpClientTestingModule,
+              ReactiveFormsModule,
+              RouterTestingModule,
+            ],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(LoginSmartComponent);

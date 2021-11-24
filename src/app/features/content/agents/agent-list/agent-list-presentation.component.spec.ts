@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
@@ -14,15 +14,17 @@ import { AgentTableComponent } from '../agent-table/agent-table.component';
       let component: AgentListPresentationComponent;
       let fixture: ComponentFixture<AgentListPresentationComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            AgentListPresentationComponent,
-            MockComponent(AgentTableComponent),
-          ],
-          imports: [RouterTestingModule],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              AgentListPresentationComponent,
+              MockComponent(AgentTableComponent),
+            ],
+            imports: [RouterTestingModule],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(AgentListPresentationComponent);
