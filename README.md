@@ -44,12 +44,12 @@ This boilerplate has a [wiki](https://github.com/Shift3/boilerplate-client-angul
 
 The AWS configuration **for the sandbox** is handled by Terraform. Terraform needs the AWS credentials which developers should already have or can access through Zoho Vault. The Terraform configuration is separated into modules for each cloud service it sets up.
 
-Terraform also needs the project secrets saved in `project/terraform/main/<environment-name>/terraform.tfvars` with the following structure:
+Terraform also needs the project secrets saved in `project/terraform/terraform.tfvars` with the following structure:
 
 ```
-profile = "shift3"
+aws_profile = "shift3"
 
-region = "us-west-2"
+aws_region = "us-west-2"
 
 web_domain_name = ""
 
@@ -57,17 +57,27 @@ web_domain_name = ""
 
 | Secret          |                                                                                             Note |
 | :-------------- | -----------------------------------------------------------------------------------------------: |
-| profile         |                              This must match the AWS credentials name on the development machine |
-| region          |                                                                      This is usually `us-west-2` |
+| aws_profile     |                              This must match the AWS credentials name on the development machine |
+| aws_region      |                                                                      This is usually `us-west-2` |
 | web_domain_name | This will be the web domain name for the project, an example may be: `example.shift3sandbox.com` |
 
-Once this is completed, navigate to the terraform/main/<environment-name> folder in your terminal and run the following commands:
+Terraform also needs to update the following key value within `main.tf` by replacing <project-name> and <environment> with actual values:
+
+```
+terraform {
+  backend "s3" {
+    key     = "<project-name>/<environment>/terraform.tfstate"
+  }
+}
+```
+
+Once this is completed, navigate to the terraform folder in your terminal and run the following commands:
 
 1. `terraform init`
    - This command is used to initialize a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control. It is safe to run this command multiple times.
 2. `terraform plan`
    - The plan command will give you information on what will be built through Terraform, as well as any feedback if there will be forseen issues (missing variables etc.)
-   - This also gives you the chance to make adjustments if need be to ensure the output is correct for what you need. (domain name, environment variables for EB etc.)
+   - This also gives you the chance to make adjustments if need be to ensure the output is correct for what you need. (domain name, configurations values for cloud-front etc.)
 3. `terraform apply`
    - The apply command will actually setup all of the required AWS services to deploy this project. Terraform will save a state file for you, and can continue from where it left off if something goes wrong.
 
