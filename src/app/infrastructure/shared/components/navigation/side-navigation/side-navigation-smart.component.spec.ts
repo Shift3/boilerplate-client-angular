@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { MockComponent } from 'ng-mocks';
@@ -14,15 +14,17 @@ import { SideNavigationPresentationComponent } from './side-navigation-presentat
       let component: SideNavigationSmartComponent;
       let fixture: ComponentFixture<SideNavigationSmartComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            SideNavigationSmartComponent,
-            MockComponent(SideNavigationPresentationComponent),
-          ],
-          imports: [HttpClientTestingModule],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              SideNavigationSmartComponent,
+              MockComponent(SideNavigationPresentationComponent),
+            ],
+            imports: [HttpClientTestingModule],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(SideNavigationSmartComponent);

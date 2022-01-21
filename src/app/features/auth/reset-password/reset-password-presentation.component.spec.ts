@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MockComponent } from 'ng-mocks';
 
@@ -13,14 +13,16 @@ import { ResetPasswordPresentationComponent } from './reset-password-presentatio
       let component: ResetPasswordPresentationComponent;
       let fixture: ComponentFixture<ResetPasswordPresentationComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            ResetPasswordPresentationComponent,
-            MockComponent(DynamicFormComponent),
-          ],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              ResetPasswordPresentationComponent,
+              MockComponent(DynamicFormComponent),
+            ],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(ResetPasswordPresentationComponent);

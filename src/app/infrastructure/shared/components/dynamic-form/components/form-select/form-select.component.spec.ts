@@ -1,5 +1,5 @@
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MockPipe } from 'ng-mocks';
 
@@ -16,12 +16,14 @@ import { ISelectField, SelectField } from '@models/form/select';
       let component: FormSelectComponent;
       let fixture: ComponentFixture<FormSelectComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [FormSelectComponent, MockPipe(FormErrorPipe)],
-          imports: [ReactiveFormsModule],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [FormSelectComponent, MockPipe(FormErrorPipe)],
+            imports: [ReactiveFormsModule],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(FormSelectComponent);

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { environment } from '@env/environment.test';
@@ -11,12 +11,14 @@ import { UserListPresentationComponent } from './user-list-presentation.componen
       let component: UserListPresentationComponent;
       let fixture: ComponentFixture<UserListPresentationComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [UserListPresentationComponent],
-          imports: [RouterTestingModule],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [UserListPresentationComponent],
+            imports: [RouterTestingModule],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(UserListPresentationComponent);

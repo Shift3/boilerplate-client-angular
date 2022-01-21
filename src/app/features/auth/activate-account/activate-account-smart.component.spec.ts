@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -16,20 +16,22 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
       let component: ActivateAccountSmartComponent;
       let fixture: ComponentFixture<ActivateAccountSmartComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            ActivateAccountSmartComponent,
-            MockComponent(ActivateAccountPresentationComponent),
-          ],
-          imports: [
-            HttpClientTestingModule,
-            ReactiveFormsModule,
-            RouterTestingModule,
-            ToastrTestingModule,
-          ],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              ActivateAccountSmartComponent,
+              MockComponent(ActivateAccountPresentationComponent),
+            ],
+            imports: [
+              HttpClientTestingModule,
+              ReactiveFormsModule,
+              RouterTestingModule,
+              ToastrTestingModule,
+            ],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(ActivateAccountSmartComponent);

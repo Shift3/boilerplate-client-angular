@@ -1,8 +1,9 @@
-import { name, version } from '../../package.json';
+import * as packageInfo from '../../package.json';
+const { name, version } = packageInfo;
 
 export const environment = {
   production: false,
-  name,
+  name: name,
   environment: 'Test',
   apiRoute: 'http://localhost:3000',
   sentry: {
@@ -12,5 +13,5 @@ export const environment = {
   },
   testUnit: true,
   testIntegration: true,
-  version,
+  version: version,
 };

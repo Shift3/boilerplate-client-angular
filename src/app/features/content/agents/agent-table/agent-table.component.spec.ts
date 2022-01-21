@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
@@ -10,11 +10,13 @@ import { AgentTableComponent } from './agent-table.component';
       let component: AgentTableComponent;
       let fixture: ComponentFixture<AgentTableComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [AgentTableComponent],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [AgentTableComponent],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(AgentTableComponent);

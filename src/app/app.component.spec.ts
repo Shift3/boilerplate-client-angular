@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
@@ -13,17 +13,19 @@ import { TopNavigationSmartComponent } from '@shared/components/navigation/top-n
 !environment.testIntegration
   ? Logger.log('Integration skipped')
   : describe('[Integration] AppComponent', () => {
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          imports: [RouterTestingModule],
-          declarations: [
-            AppComponent,
-            MockComponent(FooterComponent),
-            MockComponent(SideNavigationSmartComponent),
-            MockComponent(TopNavigationSmartComponent),
-          ],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            imports: [RouterTestingModule],
+            declarations: [
+              AppComponent,
+              MockComponent(FooterComponent),
+              MockComponent(SideNavigationSmartComponent),
+              MockComponent(TopNavigationSmartComponent),
+            ],
+          }).compileComponents();
+        }),
+      );
 
       it('should create the app', () => {
         const fixture = TestBed.createComponent(AppComponent);

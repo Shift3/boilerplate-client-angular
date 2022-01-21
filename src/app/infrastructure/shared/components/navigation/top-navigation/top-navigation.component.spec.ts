@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { MockComponent } from 'ng-mocks';
@@ -14,15 +14,17 @@ import { TopNavigationPresentationComponent } from './top-navigation-presentatio
       let component: TopNavigationSmartComponent;
       let fixture: ComponentFixture<TopNavigationSmartComponent>;
 
-      beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [
-            TopNavigationSmartComponent,
-            MockComponent(TopNavigationPresentationComponent),
-          ],
-          imports: [HttpClientTestingModule],
-        }).compileComponents();
-      }));
+      beforeEach(
+        waitForAsync(() => {
+          TestBed.configureTestingModule({
+            declarations: [
+              TopNavigationSmartComponent,
+              MockComponent(TopNavigationPresentationComponent),
+            ],
+            imports: [HttpClientTestingModule],
+          }).compileComponents();
+        }),
+      );
 
       beforeEach(() => {
         fixture = TestBed.createComponent(TopNavigationSmartComponent);

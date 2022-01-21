@@ -1,4 +1,5 @@
-import { name, version } from '../../package.json';
+import * as packageInfo from '../../package.json';
+const { name, version } = packageInfo;
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -6,7 +7,7 @@ import { name, version } from '../../package.json';
 
 export const environment = {
   production: false,
-  name,
+  name: name,
   environment: 'Development',
   apiRoute: 'http://localhost:3000',
   sentry: {
@@ -14,7 +15,7 @@ export const environment = {
     enabled: false,
     dialogEnabled: false,
   },
-  version,
+  version: version,
 };
 
 /*
@@ -24,4 +25,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
