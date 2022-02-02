@@ -6,7 +6,8 @@
   <div
     ngbDropdownMenu
     aria-labelledby="profileDropdown"
-    class="dropdown-menu-right"
+    id="dropdown-menu"
+    [ngClass]="navigationPosition ? 'dropdown-menu-' + navigationPosition : ''"
   >
     <div class="profile-dropdown-container">
       <div class="profile-info">

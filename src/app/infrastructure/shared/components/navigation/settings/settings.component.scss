@@ -26,3 +26,16 @@
   margin: 0 20px;
   height: 125px;
 }
+
+#dropdown-menu.dropdown-menu {
+  right: 0px;
+  left: unset !important;
+
+  &.dropdown-menu-top.show {
+    transform: translate(-5px, 60px) !important;
+  }
+
+  &.dropdown-menu-side.show {
+    transform: translate(60px, 60px) !important;
+  }
+}

@@ -16,6 +16,7 @@ import { IUserDTO, UserDTO } from '@models/user';
 })
 export class SettingsComponent {
   @Input() loggedInUser: IUserDTO = new UserDTO();
+  @Input() navigationPosition: string = 'top';
 
   public profilePicturePlaceholder = `assets/img/portrait_placeholder.png`;
   public profileLinks: INavigation[] = profileLinkList;
