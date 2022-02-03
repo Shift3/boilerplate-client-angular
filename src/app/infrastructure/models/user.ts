@@ -100,3 +100,19 @@ export class ChangeUserRequest implements IChangeUserRequest {
     }
   }
 }
+
+export interface IUpdateUserProfile {
+  firstName: string;
+  lastName: string;
+}
+
+export class UpdateUserProfile implements IUpdateUserProfile {
+  firstName: string = '';
+  lastName: string = '';
+
+  constructor(configOverride?: IUpdateUserProfile) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}

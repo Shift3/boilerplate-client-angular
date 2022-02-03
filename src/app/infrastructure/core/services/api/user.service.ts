@@ -2,7 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
@@ -12,6 +12,7 @@ import {
   IChangeUserRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
+  IUpdateUserProfile,
   IUserDTO,
 } from '@models/user';
 import { IMessage } from '@models/message';
@@ -99,15 +100,15 @@ export class UserService {
   }
 
   public updateProfile(
-    payload: IChangeUserRequest,
+    payload: IUpdateUserProfile,
     userId: number,
   ): Observable<IUserDTO> {
     const endpoint = `${this.url}/profile/${userId}`;
 
     return this.apiService
-      .put<IUserDTO, IChangeUserRequest>(endpoint, payload)
+      .put<IUserDTO, IUpdateUserProfile>(endpoint, payload)
       .pipe(
-        tap((user) => this.userStateService.setUserSession(user)),
+        tap((user: IUserDTO) => this.userStateService.setUserSession(user)),
         tap(() => {
           const message = 'Profile updated.';
           this.notificationService.showSuccess([message]);
@@ -121,7 +122,11 @@ export class UserService {
     if (agencyId) {
       params = new HttpParams().set('agencyId', agencyId.toString());
     }
-    return this.apiService.get<IUserDTO[]>(endpoint, { params });
+    return this.apiService
+      .get<IUserDTO[]>(endpoint, { params })
+      .pipe(
+        map((response) => response['results']),
+      );
   }
 
   public createUser(payload: IChangeUserRequest): Observable<IUserDTO> {
