@@ -2,12 +2,13 @@ import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 import { environment } from '@env/environment';
 import {
+  IChangeEmailRequest,
   IChangePasswordRequest,
   IChangeUserRequest,
   IForgotPasswordRequest,
@@ -16,9 +17,9 @@ import {
   IUserDTO,
 } from '@models/user';
 import { IMessage } from '@models/message';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '@core/services/notification.service';
 import { ISessionDTO, ISignupRequest } from '@models/auth';
-import { UserStateService } from '../state/user-state.service';
+import { UserStateService } from '@core/services/state/user-state.service';
 
 @Injectable({
   providedIn: 'root',
@@ -122,11 +123,7 @@ export class UserService {
     if (agencyId) {
       params = new HttpParams().set('agencyId', agencyId.toString());
     }
-    return this.apiService
-      .get<IUserDTO[]>(endpoint, { params })
-      .pipe(
-        map((response) => response['results']),
-      );
+    return this.apiService.get<IUserDTO[]>(endpoint, { params });
   }
 
   public createUser(payload: IChangeUserRequest): Observable<IUserDTO> {
@@ -209,4 +206,22 @@ export class UserService {
       }),
     );
   }
+
+  public requestEmailChange(
+    payload: IChangeEmailRequest,
+    userId: number,
+  ): Observable<IUserDTO> {
+    const endpoint = `${this.url}/request-change-email/${userId}`;
+
+    return this.apiService
+      .put<IUserDTO, IChangeEmailRequest>(endpoint, payload)
+      .pipe(
+        tap((response: IUserDTO) => this.userStateService.setUserSession(response)),
+        tap(() => {
+          const message = `Email verification sent. Follow the instructions in the email to proceed.`;
+          return this.notificationService.showSuccess([message]);
+        })
+      );
+  }
+
 }

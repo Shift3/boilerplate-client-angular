@@ -59,6 +59,20 @@ export class ResetPasswordRequest implements IResetPasswordRequest {
   }
 }
 
+export interface IChangeEmailRequest {
+  email: string;
+}
+
+export class ChangeEmailRequest implements IChangeEmailRequest {
+  email: string = '';
+
+  constructor(configOverride?: IChangeEmailRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
 export interface IChangePasswordRequest {
   oldPassword: string;
   newPassword: string;
