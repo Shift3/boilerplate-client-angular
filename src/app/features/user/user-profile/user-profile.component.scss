@@ -1,0 +1,15 @@
+.user-profile-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    max-height: 100%;
+    width: 100%;
+
+    @media screen and (max-width: 1200px) {
+        grid-template-columns: 1fr;
+
+        &:first-child {
+            margin: 0 12.5% 0 12.5%;
+        }
+    }
+}
