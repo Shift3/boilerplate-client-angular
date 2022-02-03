@@ -1,1 +1,5 @@
-<p>change-email-presentation works!</p>
+<app-dynamic-form
+  [formConfig]="formConfig"
+  (emitForm)="propagateForm($event)"
+  (emitSubmit)="submit()"
+></app-dynamic-form>
