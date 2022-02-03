@@ -38,15 +38,17 @@
           </ng-template>
         </td>
         <td>
-          <button
-            class="btn"
-            type="button"
-            routerLink="/admin/update-user/{{ item.id }}"
-            tooltip="Update User"
-          >
-            <span class="fa fa-edit"></span>
-            <span class="sr-only">Update User</span>
-          </button>
+          <ng-container *ngIf="!isSelf(item.id)">
+            <button
+              class="btn"
+              type="button"
+              routerLink="/admin/update-user/{{ item.id }}"
+              tooltip="Update User"
+            >
+              <span class="fa fa-edit"></span>
+              <span class="sr-only">Update User</span>
+            </button>
+          </ng-container>
           <ng-container *ngIf="!isSelf(item.id)">
             <button
               class="btn"

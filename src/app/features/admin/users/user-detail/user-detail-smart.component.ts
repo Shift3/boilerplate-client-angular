@@ -155,17 +155,6 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
           fieldConfig: new InputField({ autocomplete: 'family-name' }),
           validation: [RequiredValidation.required('Last Name')],
         }),
-        new FormField<IInputField>({
-          name: 'email',
-          value: this.user?.email,
-          fieldType: 'input',
-          label: 'Email',
-          fieldConfig: new InputField({
-            inputType: 'email',
-            autocomplete: 'email',
-          }),
-          validation: [EmailValidation.validEmail(true)],
-        }),
       ],
     });
 
@@ -189,6 +178,17 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
 
     // Add role control if the user is not the logged in user.
     if (!this.isSelf) {
+      const email = new FormField<IInputField>({
+        name: 'email',
+        value: this.user?.email,
+        fieldType: 'input',
+        label: 'Email',
+        fieldConfig: new InputField({
+          inputType: 'email',
+          autocomplete: 'email',
+        }),
+        validation: [EmailValidation.validEmail(true)],
+      });
       const roleList = new FormField<ISelectField<RoleType>>({
         name: 'roleId',
         value: this.user?.role.id,
@@ -202,7 +202,7 @@ export class UserDetailSmartComponent implements OnInit, OnDestroy {
         validation: [RequiredValidation.required('Role')],
         disabled: this.isSelf,
       });
-      formConfig.controls.push(roleList);
+      formConfig.controls.push(...[email, roleList]);
     }
 
     return formConfig;
