@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MockComponent } from 'ng-mocks';
+
+import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-form.component';
 import { UserProfileDetailPresentationComponent } from './user-profile-detail-presentation.component';
 
 import { environment } from '@env/environment.test';
@@ -13,7 +16,10 @@ import { Logger } from '@utils/logger';
 
       beforeEach(async () => {
         await TestBed.configureTestingModule({
-          declarations: [ UserProfileDetailPresentationComponent ]
+          declarations: [
+            UserProfileDetailPresentationComponent,
+            MockComponent(DynamicFormComponent),
+          ]
         })
         .compileComponents();
       });

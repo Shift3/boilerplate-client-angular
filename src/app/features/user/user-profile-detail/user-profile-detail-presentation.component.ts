@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
+import { FormConfig, IFormConfig } from '@models/form/form';
 
 @Component({
   selector: 'app-user-profile-detail-presentation',
@@ -7,10 +10,22 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileDetailPresentationComponent implements OnInit {
+  @Input() formConfig: IFormConfig = new FormConfig({});
+
+  @Output() public emitForm = new EventEmitter<FormGroup>();
+  @Output() public emitSubmit = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public propagateForm(form: FormGroup): void {
+    this.emitForm.emit(form);
+  }
+
+  public submit(): void {
+    this.emitSubmit.emit();
   }
 
 }

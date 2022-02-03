@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MockComponent } from 'ng-mocks';
 
@@ -7,6 +10,7 @@ import { UserProfileDetailSmartComponent } from './user-profile-detail-smart.com
 
 import { environment } from '@env/environment.test';
 import { Logger } from '@utils/logger';
+import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
@@ -19,6 +23,12 @@ import { Logger } from '@utils/logger';
           declarations: [
             UserProfileDetailSmartComponent,
             MockComponent(UserProfileDetailPresentationComponent),
+          ],
+          imports: [
+            HttpClientTestingModule,
+            ReactiveFormsModule,
+            RouterTestingModule,
+            ToastrTestingModule,
           ]
         })
         .compileComponents();
