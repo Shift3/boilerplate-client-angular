@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { IFormConfig, FormConfig } from '@models/form/form';
@@ -9,16 +9,11 @@ import { IFormConfig, FormConfig } from '@models/form/form';
   styleUrls: ['./confirm-change-email-presentation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ConfirmChangeEmailPresentationComponent implements OnInit {
+export class ConfirmChangeEmailPresentationComponent {
   @Input() formConfig: IFormConfig = new FormConfig({});
 
   @Output() public emitForm = new EventEmitter<FormGroup>();
   @Output() public emitSubmit = new EventEmitter<void>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public propagateForm(form: FormGroup): void {
     this.emitForm.emit(form);
