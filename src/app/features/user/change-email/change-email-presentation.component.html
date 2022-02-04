@@ -1,5 +1,31 @@
-<app-dynamic-form
-  [formConfig]="formConfig"
-  (emitForm)="propagateForm($event)"
-  (emitSubmit)="submit()"
-></app-dynamic-form>
+<div class="change-email-container card">
+  <div
+    *ngIf="user?.newEmail"
+    class="existing-request-container"
+  >
+    <h2 class="card-header">Update Email</h2>
+    <p class="existing-request-info">
+      An email change has already been requested for your account.
+    </p>
+
+    <button
+      id="form-submit-button"
+      class="btn"
+      type="submit"
+      mat-raised-button
+      (click)="resendVerificationEmail()"
+    >
+      RESEND VERIFICATION EMAIL
+    </button>
+
+    <p class="request-another-change">
+      If you would like to request email change to another email, enter the new email below.
+    </p>
+  </div>
+
+  <app-dynamic-form
+    [formConfig]="formConfig"
+    (emitForm)="propagateForm($event)"
+    (emitSubmit)="submit()"
+  ></app-dynamic-form>
+</div>

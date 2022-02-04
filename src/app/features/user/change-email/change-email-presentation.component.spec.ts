@@ -10,7 +10,7 @@ import { Logger } from '@utils/logger';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
-  : describe('ChangeEmailPresentationComponent', () => {
+  : describe('[Integration] ChangeEmailPresentationComponent', () => {
       let component: ChangeEmailPresentationComponent;
       let fixture: ComponentFixture<ChangeEmailPresentationComponent>;
 

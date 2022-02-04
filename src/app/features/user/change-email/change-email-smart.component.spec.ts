@@ -14,7 +14,7 @@ import { ToastrTestingModule } from '@utils/test/toastr-testing-module';
 
 !environment.testIntegration
   ? Logger.log('Integration skipped')
-  : describe('ChangeEmailSmartComponent', () => {
+  : describe('[Integration] ChangeEmailSmartComponent', () => {
       let component: ChangeEmailSmartComponent;
       let fixture: ComponentFixture<ChangeEmailSmartComponent>;
 

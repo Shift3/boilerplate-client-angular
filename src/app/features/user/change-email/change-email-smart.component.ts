@@ -13,8 +13,10 @@ import { buildFormConfig } from './form-config';
   template: `
     <app-change-email-presentation
       [formConfig]="formConfig"
+      [user]="user"
       (emitForm)="propagateForm($event)"
       (emitSubmit)="requestEmailChange()"
+      (emitResendVerificationEmail)="resendVerificationEmail()"
     ></app-change-email-presentation>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -45,6 +47,12 @@ export class ChangeEmailSmartComponent implements OnInit {
 
     this.userService
       .requestEmailChange(requestPayload, this.user.id)
+      .subscribe();
+  }
+
+  public resendVerificationEmail(): void {
+    this.userService
+      .resendVerificationEmail(this.user.id)
       .subscribe();
   }
 
