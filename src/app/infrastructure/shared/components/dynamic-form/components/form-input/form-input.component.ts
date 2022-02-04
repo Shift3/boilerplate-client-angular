@@ -20,4 +20,14 @@ export class FormInputComponent {
   public get formControl(): AbstractControl {
     return this.group.get(this.config.name);
   }
+
+  public validateValue(value: string): void {
+    if (value && this.config.fieldConfig.inputType === 'number') {
+      this.group.controls[this.config.name].setValue(parseFloat(value));
+    }
+
+    if (value?.length > 0 && !value?.trim()) {
+      this.group.controls[this.config.name].setValue(value.trim());
+    }
+  }
 }

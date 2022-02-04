@@ -10,6 +10,7 @@ export interface IUserDTO {
   profilePicture: string | null;
   agency: IAgencyDTO;
   role: IRoleDTO;
+  newEmail: string | null;
 }
 
 export class UserDTO implements IUserDTO {
@@ -21,6 +22,7 @@ export class UserDTO implements IUserDTO {
   profilePicture: string | null = null;
   agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
+  newEmail: string = '';
 
   constructor(configOverride?: Partial<IUserDTO>) {
     if (configOverride) {
@@ -109,6 +111,20 @@ export class ChangeUserRequest implements IChangeUserRequest {
   role: IRoleDTO = new RoleDTO();
 
   constructor(configOverride?: IChangeUserRequest) {
+    if (configOverride) {
+      Object.assign(this, configOverride);
+    }
+  }
+}
+
+export interface IConfirmChangeEmailRequest {
+  verificationCode: number;
+}
+
+export class ConfirmChangeEmailRequest implements IConfirmChangeEmailRequest {
+  verificationCode: number = 0;
+
+  constructor(configOverride?: IConfirmChangeEmailRequest) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }

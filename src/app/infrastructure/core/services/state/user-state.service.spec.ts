@@ -107,6 +107,7 @@ import { UserStateService } from './user-state.service';
               id: 0,
               roleName: '',
             },
+            newEmail: '',
           };
           service.setUserSession(testUser);
           const storedUser = JSON.parse(localStorage.getItem('user'));

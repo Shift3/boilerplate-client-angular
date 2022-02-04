@@ -17,8 +17,7 @@ import { SaveCancelButtonConfig } from '@models/form/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SaveCancelComponent {
-  @Input()
-  public buttonConfig: SaveCancelButtonConfig = new SaveCancelButtonConfig();
+  @Input() public buttonConfig: SaveCancelButtonConfig = new SaveCancelButtonConfig();
   @Input() public form: FormGroup = new FormGroup({});
   @Input() public shouldDisable: boolean = false;
 

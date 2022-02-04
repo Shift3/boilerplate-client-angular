@@ -8,6 +8,7 @@
     [placeholder]="config.placeholder"
     [autocomplete]="config.fieldConfig.autocomplete"
     [mask]="config.fieldConfig.mask"
+    (blur)="validateValue($event.target.value)"
   />
   <span class="error-container">
     <ng-container *ngIf="formControl?.errors">

@@ -1,5 +1,6 @@
 <div class="save-cancel-button-row">
   <button
+    *ngIf="buttonConfig.showCancel"
     id="cancel-button"
     type="button"
     class="btn"
@@ -11,6 +12,7 @@
   <button
     id="form-submit-button"
     class="btn"
+    [ngClass]="buttonConfig.showCancel ? '' : 'full-width-button'"
     type="submit"
     mat-raised-button
     (click)="save()"

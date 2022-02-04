@@ -1,8 +1,18 @@
-button {
-  min-width: 150px;
-  padding: 10px;
-}
+.save-cancel-button-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 
-.save-cancel-button-row > button:not(:first-child) {
-  margin-left: 10px;
+  button {
+    min-width: 150px;
+    padding: 10px;
+
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+
+    &.full-width-button {
+      width: 100%;
+    }
+  }
 }

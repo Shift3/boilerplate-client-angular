@@ -11,6 +11,7 @@ import {
   IChangeEmailRequest,
   IChangePasswordRequest,
   IChangeUserRequest,
+  IConfirmChangeEmailRequest,
   IForgotPasswordRequest,
   IResetPasswordRequest,
   IUpdateUserProfile,
@@ -207,6 +208,18 @@ export class UserService {
     );
   }
 
+  public resendVerificationEmail(userId: number): Observable<never> {
+    const endpoint = `${this.url}/resend-change-email-verification-email/${userId}`;
+
+    return this.apiService.get<never>(endpoint)
+      .pipe(
+        tap(() => {
+          const message = `Change Email verification email has been sent.`;
+          return this.notificationService.showSuccess([message]);
+        }),
+      );
+  }
+
   public requestEmailChange(
     payload: IChangeEmailRequest,
     userId: number,
@@ -222,6 +235,22 @@ export class UserService {
           return this.notificationService.showSuccess([message]);
         })
       );
+  }
+
+  public confirmChangeEmail(
+    payload: IConfirmChangeEmailRequest,
+    token: string,
+  ): Observable<IUserDTO> {
+    const endpoint = `${this.url}/confirm-change-email/${token}`;
+
+    return this.apiService
+      .put<IUserDTO, IConfirmChangeEmailRequest>(endpoint, payload)
+      .pipe(
+        tap(() => {
+          const message = 'Email was changed successfully.';
+          return this.notificationService.showSuccess([message]);
+        }),
+      )
   }
 
 }
