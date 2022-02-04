@@ -14,9 +14,10 @@ export const buildFormConfig: (args: IUserEmailFormConfig) => FormConfig = ({
     user,
 }) => {
     const formName = 'form';
-    const formTitle = 'Update Email';
+    const formTitle = user?.newEmail ? '' : 'Update Email';
     const submit = new SaveCancelButtonConfig({
         save: 'Submit',
+        showCancel: false,
     });
     const email = new FormField<IInputField>({
         name: 'email',

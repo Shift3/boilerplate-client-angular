@@ -16,6 +16,7 @@ export const buildFormConfig: (args: IUserProfileFormConfig) => FormConfig = ({
     const formTitle = 'Update Profile';
     const submit = new SaveCancelButtonConfig({
         save: 'Submit',
+        showCancel: false,
     });
     const firstName = new FormField<IInputField>({
         name: 'firstName',
