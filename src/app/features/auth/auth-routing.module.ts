@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ActivateAccountPresentationComponent } from './activate-account/activate-account-presentation.component';
 import { ActivateAccountSmartComponent } from './activate-account/activate-account-smart.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { ConfirmChangeEmailPresentationComponent } from './confirm-change-email/confirm-change-email-presentation.component';
+import { ConfirmChangeEmailSmartComponent } from './confirm-change-email/confirm-change-email-smart.component';
 import { ForgotPasswordPresentationComponent } from './forgot-password/forgot-password-presentation.component';
 import { ForgotPasswordSmartComponent } from './forgot-password/forgot-password-smart.component';
 import { LoginPresentationComponent } from './login/login-presentation.component';
@@ -13,6 +15,7 @@ import { ResetPasswordSmartComponent } from './reset-password/reset-password-sma
 import { ResetPasswordPresentationComponent } from './reset-password/reset-password-presentation.component';
 import { SignUpPresentationComponent } from './sign-up/sign-up-presentation.component';
 import { SignUpSmartComponent } from './sign-up/sign-up-smart.component';
+
 
 const routes: Routes = [
   {
@@ -54,6 +57,11 @@ const routes: Routes = [
         component: SignUpSmartComponent,
         data: { title: 'Sign Up' },
       },
+      {
+        path: 'confirm-change-email/:token',
+        component: ConfirmChangeEmailSmartComponent,
+        data: { title: 'Confirm Change Email' },
+      }
     ],
   },
 ];
@@ -71,6 +79,8 @@ export const components = [
   ActivateAccountPresentationComponent,
   ActivateAccountSmartComponent,
   AuthLayoutComponent,
+  ConfirmChangeEmailPresentationComponent,
+  ConfirmChangeEmailSmartComponent,
   ForgotPasswordPresentationComponent,
   ForgotPasswordSmartComponent,
   LoginPresentationComponent,

@@ -3,6 +3,7 @@ export interface IPattern {
   EMAIL_REGEX: RegExp;
   SYMBOL_REGEX: RegExp;
   US_PHONE_REGEX: RegExp;
+  VERIFICATION_CODE: RegExp;
 }
 
 export interface IMaskString {
@@ -25,5 +26,6 @@ export const Constants: IConstant = {
     EMAIL_REGEX: /^[a-z0-9!#$%&'*+\/=?^_\`{|}~.-]+@[a-z0-9]([a-z0-9-])+(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i,
     SYMBOL_REGEX: /[-+_!@#$%^&*,.?]/,
     US_PHONE_REGEX: /(^\d{10}$)/,
+    VERIFICATION_CODE: /^([1-9]{1}[0-9]{5})$/,
   },
 };
