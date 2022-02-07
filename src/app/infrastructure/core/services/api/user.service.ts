@@ -156,9 +156,9 @@ export class UserService {
     return this.apiService
       .put<ISessionDTO, IChangePasswordRequest>(endpoint, payload)
       .pipe(
-        tap((response) => localStorage.setItem('token', response.jwtToken)),
+        tap((response) => localStorage.setItem('token', response.token)),
         tap((response) => this.userStateService.setUserSession(response.user)),
-        tap((response) => this.authService.setToken(response.jwtToken)),
+        tap((response) => this.authService.setToken(response.token)),
         tap(() => {
           const message = `Password updated.`;
           return this.notificationService.showSuccess([message]);

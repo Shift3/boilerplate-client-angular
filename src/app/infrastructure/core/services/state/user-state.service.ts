@@ -23,6 +23,7 @@ export class UserStateService {
   }
 
   public setUserSession(user: IUserDTO): void {
+    debugger;
     localStorage.setItem('user', JSON.stringify(user));
     this.userSession$.next(user);
   }

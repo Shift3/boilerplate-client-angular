@@ -93,7 +93,7 @@ import { IMessage } from '@models/message';
               roleName: 'User',
             },
           },
-          jwtToken:
+          token:
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
         };
       });
@@ -441,7 +441,7 @@ import { IMessage } from '@models/message';
           spyOn(apiService, 'put').and.returnValue(observableOf(expectedValue));
 
           service.changePassword(newPassword, 1).subscribe((response) => {
-            expect(authMock.setToken).toHaveBeenCalledWith(response.jwtToken);
+            expect(authMock.setToken).toHaveBeenCalledWith(response.token);
           });
         });
 
