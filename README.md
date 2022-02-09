@@ -1,4 +1,16 @@
+### Warning! This boilerplate is unmaintained/community maintained at the moment. It lacks other feature supported by our [React Boilerplate](https://github.com/Shift3/boilerplate-client-react/) such as pagination, an updated design, image uploader and others, and may or may not work out the box with our [Node Boilerplate](https://github.com/Shift3/boilerplate-server-node/) backend. The angular boilerplate also has some architectural choices that may be difficult for beginners to grasp.
+
+--------
+
+--------
+
+--------
+
+
 # BoilerplateClientAngular
+
+Our current recommendation is to use the [React Boilerplate](https://github.com/Shift3/boilerplate-client-react/) as your frontend boilerplate instead, as it is actively maintained.
+
 
 | Branch      | Status                                                                                                                                                                                                                       |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
