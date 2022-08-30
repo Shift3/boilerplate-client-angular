@@ -71,15 +71,27 @@ export class FormService {
   public buildRequestPayload<T>(form: FormGroup, requestPayload: T): T {
     for (const property in requestPayload) {
       if (requestPayload.hasOwnProperty(property)) {
-        if (form.controls[property] && form.controls[property].value) {
+        if (form.controls[property]?.value) {
           requestPayload[property] = form.controls[property].value;
-        } else {
-          const nestedProperty: string = Object.keys(form.controls).find(
-            (k) => k.toLowerCase().indexOf(property.toLowerCase()) > -1,
-          );
-          if (nestedProperty) {
-            requestPayload[property] = form.controls[nestedProperty].value;
-          }
+        }
+      }
+    }
+
+    return requestPayload;
+  }
+
+  /**
+   * Build a request payload and map to nested values from the matching `FormGroup` values.
+   * Does not handle conditional logic.
+   */
+  public buildNestedRequestPayload<T>(form: FormGroup, requestPayload: T): T {
+    for (const property in requestPayload) {
+      if (requestPayload.hasOwnProperty(property)) {
+        const nestedProperty: string = Object.keys(form.controls).find(
+          (k) => k.toLowerCase().indexOf(property.toLowerCase()) > -1,
+        );
+        if (nestedProperty) {
+          requestPayload[property] = form.controls[nestedProperty].value;
         }
       }
     }

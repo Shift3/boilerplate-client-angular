@@ -39,7 +39,7 @@ export interface IForgotPasswordRequest {
 export class ForgotPasswordRequest implements IForgotPasswordRequest {
   email: string = '';
 
-  constructor(configOverride?: IForgotPasswordRequest) {
+  constructor(configOverride?: Partial<IForgotPasswordRequest>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
@@ -55,7 +55,7 @@ export class ResetPasswordRequest implements IResetPasswordRequest {
   newPassword: string = '';
   confirmPassword: string = '';
 
-  constructor(configOverride?: IResetPasswordRequest) {
+  constructor(configOverride?: Partial<IResetPasswordRequest>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
@@ -73,7 +73,7 @@ export class ChangePasswordRequest implements IChangePasswordRequest {
   newPassword: string = '';
   confirmPassword: string = '';
 
-  constructor(configOverride?: IChangePasswordRequest) {
+  constructor(configOverride?: Partial<IChangePasswordRequest>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
@@ -97,7 +97,7 @@ export class ChangeUserRequest implements IChangeUserRequest {
   agency: IAgencyDTO = new AgencyDTO();
   role: IRoleDTO = new RoleDTO();
 
-  constructor(configOverride?: IChangeUserRequest) {
+  constructor(configOverride?: Partial<IChangeUserRequest>) {
     if (configOverride) {
       Object.assign(this, configOverride);
     }
